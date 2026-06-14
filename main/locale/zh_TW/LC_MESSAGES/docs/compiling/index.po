@@ -1,0 +1,65 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) Copyright &copy; 2015, Emscripten Contributors.
+# This file is distributed under the same license as the Emscripten package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Emscripten main\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-14 14:25+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: zh_TW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../../source/docs/compiling/index.rst:5
+msgid "Compiling and Running Projects"
+msgstr ""
+
+#: ../../../source/docs/compiling/index.rst:7
+msgid ""
+"This section contains topics about building projects and running the output."
+msgstr ""
+
+#: ../../../source/docs/compiling/index.rst:9
+msgid ""
+":ref:`Building-Projects` shows how to use :ref:`emccdoc` as a drop-in "
+"replacement for *gcc* in your existing project."
+msgstr ""
+
+#: ../../../source/docs/compiling/index.rst:10
+msgid ""
+":ref:`WebAssembly` explains how Emscripten can be used to build WebAssembly "
+"files"
+msgstr ""
+
+#: ../../../source/docs/compiling/index.rst:11
+msgid ""
+":ref:`Running-html-files-with-emrun` explains how to use *emrun* to run "
+"generated HTML pages in a locally launched web server."
+msgstr ""
+
+#: ../../../source/docs/compiling/index.rst:12
+msgid ""
+":ref:`Modularized-Output` covers the various options for generating "
+"modularized JS code."
+msgstr ""
+
+#: ../../../source/docs/compiling/index.rst:13
+msgid ""
+":ref:`Deploying-Pages` covers topics related to hosting Emscripten compiled "
+"web pages on a CDN."
+msgstr ""
+
+#: ../../../source/docs/compiling/index.rst:14
+msgid ":ref:`GitLab` explains how to build and test projects on GitLab."
+msgstr ""
+
+#: ../../../source/docs/compiling/index.rst:15
+msgid ":ref:`Contrib-Ports` contains information about contrib ports."
+msgstr ""

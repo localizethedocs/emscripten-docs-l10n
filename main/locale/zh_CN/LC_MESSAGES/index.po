@@ -1,0 +1,96 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) Copyright &copy; 2015, Emscripten Contributors.
+# This file is distributed under the same license as the Emscripten package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Emscripten main\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-14 14:25+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../../source/index.rst:9
+msgid "Welcome to Emscripten SDK |release|"
+msgstr ""
+
+#: ../../../source/index.rst:11
+msgid ""
+"This documentation contains everything you need to :ref:`start developing "
+"<Tutorial>` with the Emscripten SDK."
+msgstr ""
+
+#: ../../../source/index.rst:13
+msgid "Emscripten logo"
+msgstr ""
+
+#: ../../../source/index.rst:19
+msgid ""
+"Emscripten is a complete compiler toolchain to WebAssembly, using LLVM, with "
+"a special focus on speed, size, and the Web platform."
+msgstr ""
+
+#: ../../../source/index.rst:23
+msgid ""
+":doc:`Docs <docs/index>` `GitHub <https://github.com/emscripten-core/"
+"emscripten>`_"
+msgstr ""
+
+#: ../../../source/index.rst:29
+msgid "Porting"
+msgstr ""
+
+#: ../../../source/index.rst:31
+msgid ""
+"Compile your existing projects written in C or C++ -- or any language that "
+"uses `LLVM <https://llvm.org/>`_ -- to browsers, `Node.js <https://nodejs."
+"org/>`_, or `wasm runtimes <https://v8.dev/blog/emscripten-standalone-"
+"wasm#running-in-wasm-runtimes>`_."
+msgstr ""
+
+#: ../../../source/index.rst:33
+msgid "APIs"
+msgstr ""
+
+#: ../../../source/index.rst:35
+msgid ""
+"Emscripten converts OpenGL into WebGL, and has support for familiar APIs "
+"like SDL, pthreads, and POSIX, as well as Web APIs and JavaScript."
+msgstr ""
+
+#: ../../../source/index.rst:37
+msgid "Fast"
+msgstr ""
+
+#: ../../../source/index.rst:39
+msgid ""
+"Thanks to the combination of LLVM, Emscripten, `Binaryen <https://github.com/"
+"WebAssembly/binaryen>`_, and `WebAssembly <https://webassembly.org/>`_, the "
+"output is compact and runs at near-native speed."
+msgstr ""
+
+#: ../../../source/index.rst:41
+msgid "Interested to learn more?"
+msgstr ""
+
+#: ../../../source/index.rst:43
+msgid ""
+"Read our :doc:`About page <docs/introducing_emscripten/about_emscripten>`!"
+msgstr ""
+
+#: ../../../source/index.rst:45
+msgid "Ready to get started?"
+msgstr ""
+
+#: ../../../source/index.rst:47
+msgid ""
+":doc:`Download and install the SDK <docs/getting_started/downloads>` and "
+"then proceed to the :doc:`Tutorial <docs/getting_started/Tutorial>`!"
+msgstr ""

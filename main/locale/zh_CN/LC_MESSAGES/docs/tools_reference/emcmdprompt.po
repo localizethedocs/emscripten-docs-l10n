@@ -1,0 +1,60 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) Copyright &copy; 2015, Emscripten Contributors.
+# This file is distributed under the same license as the Emscripten package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Emscripten main\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-14 14:25+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../../source/docs/tools_reference/emcmdprompt.rst:5
+msgid "Emscripten Windows Command Prompt (emcmdprompt.bat)"
+msgstr ""
+
+#: ../../../source/docs/tools_reference/emcmdprompt.rst:7
+msgid ""
+"The *Emscripten Command Prompt* is used to call Emscripten tools from the "
+"command line on Windows."
+msgstr ""
+
+#: ../../../source/docs/tools_reference/emcmdprompt.rst:9
+msgid ""
+"The prompt can be launched from the file system by locating and opening the "
+"file **emcmdprompt.bat**."
+msgstr ""
+
+#: ../../../source/docs/tools_reference/emcmdprompt.rst:11
+msgid ""
+"The *Emscripten Command Prompt* is configured with the correct system paths "
+"and settings to point to the :term:`active <Active Tool/SDK>` Emscripten "
+"tools. From within the prompt you can call :ref:`emsdk <emsdk>` to change "
+"the current SDK or tools."
+msgstr ""
+
+#: ../../../source/docs/tools_reference/emcmdprompt.rst:16
+msgid "Command line syntax"
+msgstr ""
+
+#: ../../../source/docs/tools_reference/emcmdprompt.rst:18
+msgid ""
+"The tool is not *intended* to be run from an existing command line prompt."
+msgstr ""
+
+#: ../../../source/docs/tools_reference/emcmdprompt.rst:20
+msgid ""
+"However, if **emcmdprompt.bat** is called on the command line, a nested "
+"Emscripten command prompt is spawned within the current prompt (note that "
+"this is not necessarily obvious). You can then use this prompt to access the "
+"SDK tools. To exit the nested command prompt, type **exit** and then press "
+"the **Enter** key."
+msgstr ""

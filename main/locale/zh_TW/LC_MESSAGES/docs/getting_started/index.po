@@ -1,0 +1,43 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) Copyright &copy; 2015, Emscripten Contributors.
+# This file is distributed under the same license as the Emscripten package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Emscripten main\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-14 14:25+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: zh_TW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../../source/docs/getting_started/index.rst:5
+msgid "Getting Started"
+msgstr ""
+
+#: ../../../source/docs/getting_started/index.rst:7
+msgid ""
+"Now you know why Emscripten is :ref:`right for you <about-emscripten>`, it's "
+"time to *get started*."
+msgstr ""
+
+#: ../../../source/docs/getting_started/index.rst:10
+msgid ""
+"This section provides a walk-through of :ref:`downloading and installing the "
+"SDK <sdk-download-and-install>` and the basics of :ref:`using the Emscripten "
+"toolchain <Tutorial>`. The general :ref:`FAQ` answers many common questions "
+"about setting up and using Emscripten."
+msgstr ""
+
+#: ../../../source/docs/getting_started/index.rst:15
+msgid ""
+"We also explain where to :ref:`Report Bugs <bug-reports>` in the toolchain "
+"and the site. The :ref:`emscripten-test-suite` is a great resource for "
+"finding examples of how to use Emscripten."
+msgstr ""

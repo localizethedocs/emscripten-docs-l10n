@@ -1,0 +1,2575 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) Copyright &copy; 2015, Emscripten Contributors.
+# This file is distributed under the same license as the Emscripten package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Emscripten main\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-14 14:25+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:5
+msgid "emscripten.h"
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:7
+msgid ""
+"This page documents the public C++ APIs provided by `emscripten.h <https://"
+"github.com/emscripten-core/emscripten/blob/main/system/include/emscripten/"
+"emscripten.h>`_."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:9
+msgid ""
+"Emscripten uses existing/familiar APIs where possible (for example: :term:"
+"`SDL`). This API provides C++ support for capabilities that are specific to "
+"JavaScript or the browser environment, or for which there is no existing API."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:15
+msgid "Table of Contents"
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:18
+msgid "Inline assembly/JavaScript"
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:20
+#: ../../../source/docs/api_reference/emscripten.h.rst:238
+msgid ""
+"Guide material for the following APIs can be found in :ref:`interacting-with-"
+"code-call-javascript-from-native`."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:23
+#: ../../../source/docs/api_reference/emscripten.h.rst:1031
+msgid "Defines"
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:27
+msgid "Convenient syntax for JavaScript library functions."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:29
+msgid ""
+"This allows you to declare JavaScript in your C code as a function, which "
+"can be called like a normal C function. For example, the following C program "
+"would display two alerts if it was compiled with Emscripten and run in the "
+"browser:"
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:45
+msgid ""
+"Arguments can be passed as normal C arguments, and have the same name in the "
+"JavaScript code. These arguments can either be of type ``int32_t`` or "
+"``double``."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:60
+msgid ""
+"Null-terminated C strings can also be passed into ``EM_JS`` functions, but "
+"to operate on them, they need to be copied out from the heap to convert to "
+"high-level JavaScript strings."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:70
+msgid ""
+"In the same manner, pointers to any type (including ``void *``) can be "
+"passed inside ``EM_JS`` code, where they appear as integers like ``char *`` "
+"pointers above did. Accessing the data can be managed by reading the heap "
+"directly."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:86
+msgid ""
+"In addition, EM_JS functions can return a value back to C code. The output "
+"value is passed back with a ``return`` statement:"
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:105
+#: ../../../source/docs/api_reference/emscripten.h.rst:184
+msgid ""
+"Strings can be returned back to C from JavaScript, but one needs to be "
+"careful about memory management."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:127
+msgid "Convenient syntax for inline assembly/JavaScript."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:129
+msgid ""
+"This allows you to declare JavaScript in your C code \"inline\", which is "
+"then executed when your compiled code is run in the browser. For example, "
+"the following C code would display two alerts if it was compiled with "
+"Emscripten and run in the browser:"
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:135
+msgid ""
+"Arguments can be passed inside the JavaScript code block, where they arrive "
+"as variables ``$0``, ``$1`` etc. These arguments can either be of type "
+"``int32_t`` or ``double``."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:143
+msgid "Note the ``{`` and ``}``."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:145
+msgid ""
+"Null-terminated C strings can also be passed into ``EM_ASM`` blocks, but to "
+"operate on them, they need to be copied out from the heap to convert to high-"
+"level JavaScript strings."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:151
+msgid ""
+"In the same manner, pointers to any type (including ``void *``) can be "
+"passed inside ``EM_ASM`` code, where they appear as integers like ``char *`` "
+"pointers above did. Accessing the data can be managed by reading the heap "
+"directly."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:161
+msgid ""
+"As of Emscripten ``1.30.4``, the contents of ``EM_ASM`` code blocks appear "
+"inside the normal JS file, and as result, Closure compiler and other "
+"JavaScript minifiers will be able to operate on them. You may need to use "
+"safety quotes in some places (``a['b']`` instead of ``a.b``) to avoid "
+"minification from occurring."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:162
+msgid ""
+"The C preprocessor does not have an understanding of JavaScript tokens, and "
+"as a result, if the ``code`` block contains a comma character ``,``, it may "
+"be necessary to wrap the code block inside parentheses. For example, code "
+"``EM_ASM(return [1,2,3].length);`` will not compile, but ``EM_ASM((return "
+"[1,2,3].length));`` does."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:166
+msgid ""
+"This macro, as well as :c:macro:`EM_ASM_DOUBLE` and :c:macro:`EM_ASM_PTR`, "
+"behave like :c:macro:`EM_ASM`, but in addition they also return a value back "
+"to C code. The output value is passed back with a ``return`` statement:"
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:180
+msgid ""
+"Similar to :c:macro:`EM_ASM_INT` but for a pointer-sized return values. When "
+"building with ``-sMEMORY64`` this results in i64 return value, otherwise it "
+"results in an i32 return value."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:201
+msgid "Similar to :c:macro:`EM_ASM_INT` but for a ``double`` return value."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:205
+msgid ""
+"This behaves like :c:macro:`EM_ASM`, but does the call on the main thread. "
+"This is useful in a pthreads build, when you want to interact with the DOM "
+"from a pthread; this basically proxies the call for you."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:209
+msgid ""
+"This call is proxied in a synchronous way to the main thread, that is, "
+"execution will resume after the main thread has finished running the JS. "
+"Synchronous proxying also makes it possible to return a value, see the next "
+"two variants."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:216
+msgid "Similar to :c:macro:`MAIN_THREAD_EM_ASM` but returns an ``int`` value."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:220
+msgid ""
+"Similar to :c:macro:`MAIN_THREAD_EM_ASM` but returns a ``double`` value."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:224
+msgid "Similar to :c:macro:`MAIN_THREAD_EM_ASM` but returns a pointer value."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:228
+msgid ""
+"Similar to :c:macro:`MAIN_THREAD_EM_ASM` but is proxied in an "
+"**asynchronous** way, that is, the main thread will receive a request to run "
+"the code, and will run it when it can; the worker will not wait for that. "
+"(Note that if this is called on the main thread, then there is nothing to "
+"proxy, and the JS is executed immediately and synchronously.)"
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:236
+msgid "Calling JavaScript From C/C++"
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:241
+msgid "Function pointer types for callbacks"
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:243
+msgid ""
+"The following types are used to define function callback signatures used in "
+"a number of functions in this file."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:247
+msgid "General function pointer type for use in callbacks with no parameters."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:249
+#: ../../../source/docs/api_reference/emscripten.h.rst:260
+#: ../../../source/docs/api_reference/emscripten.h.rst:271
+#: ../../../source/docs/api_reference/emscripten.h.rst:557
+#: ../../../source/docs/api_reference/emscripten.h.rst:567
+#: ../../../source/docs/api_reference/emscripten.h.rst:577
+#: ../../../source/docs/api_reference/emscripten.h.rst:587
+#: ../../../source/docs/api_reference/emscripten.h.rst:597
+#: ../../../source/docs/api_reference/emscripten.h.rst:606
+#: ../../../source/docs/api_reference/emscripten.h.rst:615
+#: ../../../source/docs/api_reference/emscripten.h.rst:950
+#: ../../../source/docs/api_reference/emscripten.h.rst:1406
+msgid "Defined as: ::"
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:256
+msgid ""
+"Generic function pointer type for use in callbacks with a single ``void*`` "
+"parameter."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:258
+msgid ""
+"This type is used to define function callbacks that need to pass arbitrary "
+"data. For example, :c:func:`emscripten_set_main_loop_arg` sets user-defined "
+"data, and passes it to a callback of this type on completion."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:267
+msgid ""
+"General function pointer type for use in callbacks with a C string (``const "
+"char *``) parameter."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:269
+msgid ""
+"This type is used for function callbacks that need to be passed a C string. "
+"For example, it is used in :c:func:`emscripten_async_wget` to pass the name "
+"of a file that has been asynchronously loaded."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:277
+#: ../../../source/docs/api_reference/emscripten.h.rst:350
+#: ../../../source/docs/api_reference/emscripten.h.rst:622
+#: ../../../source/docs/api_reference/emscripten.h.rst:958
+#: ../../../source/docs/api_reference/emscripten.h.rst:1067
+#: ../../../source/docs/api_reference/emscripten.h.rst:1219
+#: ../../../source/docs/api_reference/emscripten.h.rst:1411
+msgid "Functions"
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:281
+#: ../../../source/docs/api_reference/emscripten.h.rst:292
+msgid ""
+"Interface to the underlying JavaScript engine. This function will ``eval()`` "
+"the given script. Note: If ``-sDYNAMIC_EXECUTION=0`` is set, this function "
+"will not be available."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:283
+#: ../../../source/docs/api_reference/emscripten.h.rst:294
+#: ../../../source/docs/api_reference/emscripten.h.rst:306
+#: ../../../source/docs/api_reference/emscripten.h.rst:318
+msgid ""
+"This function can be called from a pthread, and it is executed in the scope "
+"of the Web Worker that is hosting the pthread. To evaluate a function in the "
+"scope of the main runtime thread, see the function "
+"emscripten_sync_run_in_main_runtime_thread()."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:285
+#: ../../../source/docs/api_reference/emscripten.h.rst:296
+#: ../../../source/docs/api_reference/emscripten.h.rst:308
+#: ../../../source/docs/api_reference/emscripten.h.rst:320
+#: ../../../source/docs/api_reference/emscripten.h.rst:334
+msgid "The script to evaluate."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:0
+msgid "Return type"
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:287
+#: ../../../source/docs/api_reference/emscripten.h.rst:323
+#: ../../../source/docs/api_reference/emscripten.h.rst:338
+#: ../../../source/docs/api_reference/emscripten.h.rst:406
+msgid "void"
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:0
+msgid "Returns"
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:298
+msgid "The result of the evaluation, as an integer."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:299
+#: ../../../source/docs/api_reference/emscripten.h.rst:442
+#: ../../../source/docs/api_reference/emscripten.h.rst:908
+#: ../../../source/docs/api_reference/emscripten.h.rst:1024
+#: ../../../source/docs/api_reference/emscripten.h.rst:1088
+#: ../../../source/docs/api_reference/emscripten.h.rst:1094
+#: ../../../source/docs/api_reference/emscripten.h.rst:1124
+msgid "int"
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:304
+msgid ""
+"Interface to the underlying JavaScript engine. This function will ``eval()`` "
+"the given script. Note that this overload uses a single buffer shared "
+"between calls. Note: If ``-sDYNAMIC_EXECUTION=0`` is set, this function will "
+"not be available."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:310
+msgid "The result of the evaluation, as a string."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:311
+#: ../../../source/docs/api_reference/emscripten.h.rst:1138
+#: ../../../source/docs/api_reference/emscripten.h.rst:1150
+msgid "char*"
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:316
+msgid "Asynchronously run a script, after a specified amount of time."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:322
+msgid "The amount of time before the script is run, in milliseconds."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:328
+msgid "Asynchronously loads a script from a URL."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:330
+msgid ""
+"This integrates with the run dependencies system, so your script can call "
+"``addRunDependency`` multiple times, prepare various asynchronous tasks, and "
+"call ``removeRunDependency`` on them; when all are complete (or if there "
+"were no run dependencies to begin with), ``onload`` is called. An example "
+"use for this is to load an asset module, that is, the output of the file "
+"packager."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:332
+msgid ""
+"This function is currently only available in main browser thread, and it "
+"will immediately fail by calling the supplied onerror() handler if called in "
+"a pthread."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:336
+msgid ""
+"A callback function, with no parameters, that is executed when the script "
+"has fully loaded."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:337
+msgid ""
+"A callback function, with no parameters, that is executed if there is an "
+"error in loading."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:344
+msgid "Browser Execution Environment"
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:346
+msgid ""
+"Guide material for the following APIs can be found in :ref:`emscripten-"
+"runtime-environment`."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:354
+msgid "Set a C function as the main event loop for the calling thread."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:356
+msgid ""
+"If the main loop function needs to receive user-defined data, use :c:func:"
+"`emscripten_set_main_loop_arg` instead."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:358
+msgid ""
+"The JavaScript environment will call that function at a specified number of "
+"frames per second. If called on the main browser thread, setting 0 or a "
+"negative value as the ``fps`` will use the browser’s "
+"``requestAnimationFrame`` mechanism to call the main loop function. This is "
+"**HIGHLY** recommended if you are doing rendering, as the browser’s "
+"``requestAnimationFrame`` will make sure you render at a proper smooth rate "
+"that lines up properly with the browser and monitor. If you do not render at "
+"all in your application, then you should pick a specific frame rate that "
+"makes sense for your code."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:360
+msgid ""
+"If ``simulate_infinite_loop`` is true, the function will throw an exception "
+"in order to stop execution of the caller. This will lead to the main loop "
+"being entered instead of code after the call to :c:func:"
+"`emscripten_set_main_loop` being run, which is the closest we can get to "
+"simulating an infinite loop (we do something similar in `glutMainLoop "
+"<https://github.com/emscripten-core/emscripten/blob/1.29.12/system/include/"
+"GL/freeglut_std.h#L400>`_ in `GLUT <http://www.opengl.org/resources/"
+"libraries/glut/>`_). If this parameter is ``false``, then the behavior is "
+"the same as it was before this parameter was added to the API, which is that "
+"execution continues normally. Note that in both cases we do not run global "
+"destructors, ``atexit``, etc., since we know the main loop will still be "
+"running, but if we do not simulate an infinite loop then the stack will be "
+"unwound. That means that if ``simulate_infinite_loop`` is ``false``, and you "
+"created an object on the stack, it will be cleaned up before the main loop "
+"is called for the first time."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:362
+msgid ""
+"This function can be called in a pthread, in which case the callback loop "
+"will be set up to be called in the context of the calling thread. In order "
+"for the loop to work, the calling thread must regularly \"yield back\" to "
+"the browser by exiting from its pthread main function, since the callback "
+"will be able to execute only when the calling thread is not executing any "
+"other code. This means that running a synchronously blocking main loop is "
+"not compatible with the emscripten_set_main_loop() function."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:364
+msgid ""
+"Since ``requestAnimationFrame()`` API is not available in web workers, when "
+"called ``emscripten_set_main_loop()`` in a pthread with ``fps`` <= 0, the "
+"effect of syncing up to the display's refresh rate is emulated, and "
+"generally will not precisely line up with vsync intervals."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:366
+msgid ""
+"There can be only *one* main loop function at a time, per thread. To change "
+"the main loop function, first :c:func:`cancel <emscripten_cancel_main_loop>` "
+"the current loop, and then call this function to set another."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:368
+msgid ""
+"See :c:func:`emscripten_set_main_loop_expected_blockers`, :c:func:"
+"`emscripten_pause_main_loop`, :c:func:`emscripten_resume_main_loop` and :c:"
+"func:`emscripten_cancel_main_loop` for information about blocking, pausing, "
+"and resuming the main loop of the calling thread."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:370
+msgid ""
+"Calling this function overrides the effect of any previous calls to :c:func:"
+"`emscripten_set_main_loop_timing` in the calling thread by applying the "
+"timing mode specified by the parameter ``fps``. To specify a different "
+"timing mode for the current thread, call the function :c:func:"
+"`emscripten_set_main_loop_timing` after setting up the main loop."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:372
+msgid ""
+"Currently, using `the new Wasm exception handling <https://emscripten.org/"
+"docs/porting/exceptions.html#webassembly-exception-handling-proposal>`_ and "
+"``simulate_infinite_loop`` == true at the same time does not work yet in C++ "
+"projects that have objects with destructors on the stack at the time of the "
+"call."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:374
+msgid "C function to set as main event loop for the calling thread."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:375
+msgid ""
+"Number of frames per second that the JavaScript will call the function. "
+"Setting ``int <=0`` (recommended) uses the browser’s "
+"``requestAnimationFrame`` mechanism to call the function."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:376
+#: ../../../source/docs/api_reference/emscripten.h.rst:388
+msgid ""
+"If true, this function will throw an exception in order to stop execution of "
+"the caller."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:381
+msgid ""
+"Set a C function as the main event loop for the calling thread, passing it "
+"user-defined data."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:383
+msgid ""
+"The information in :c:func:`emscripten_set_main_loop` also applies to this "
+"function."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:385
+msgid ""
+"C function to set as main event loop. The function signature must have a "
+"``void*`` parameter for passing the ``arg`` value."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:386
+msgid ""
+"User-defined data passed to the main loop function, untouched by the API "
+"itself."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:387
+msgid ""
+"Number of frames per second at which the JavaScript will call the function. "
+"Setting ``int <=0`` (recommended) uses the browser’s "
+"``requestAnimationFrame`` mechanism to call the function."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:394
+msgid "Add a function that **blocks** the main loop for the calling thread."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:396
+msgid ""
+"The function is added to the back of a queue of events to be blocked; the "
+"main loop will not run until all blockers in the queue complete."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:398
+msgid ""
+"In the \"counted\" version, blockers are counted (internally) and ``Module."
+"setStatus`` is called with some text to report progress (``setStatus`` is a "
+"general hook that a program can define in order to show processing updates)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:402
+msgid ""
+"Main loop blockers block the main loop from running, and can be counted to "
+"show progress. In contrast, :c:func:`emscripten_async_call` is not counted, "
+"does not block the main loop, and can fire at a specific time in the future."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:404
+msgid ""
+"The main loop blocker function. The function signature must have a ``void*`` "
+"parameter for passing the ``arg`` value."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:405
+msgid "User-defined arguments to pass to the blocker function."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:412
+msgid "Pause and resume the main loop for the calling thread."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:414
+msgid ""
+"Pausing and resuming the main loop is useful if your app needs to perform "
+"some synchronous operation, for example to load a file from the network. It "
+"might be wrong to run the main loop before that finishes (the original code "
+"assumes that), so you can break the code up into asynchronous callbacks, but "
+"you must pause the main loop until they complete."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:416
+msgid ""
+"These are fairly low-level functions. :c:func:"
+"`emscripten_push_main_loop_blocker` (and friends) provide more convenient "
+"alternatives."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:422
+msgid "Cancels the main event loop for the calling thread."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:424
+msgid ""
+"See also :c:func:`emscripten_set_main_loop` and :c:func:"
+"`emscripten_set_main_loop_arg` for information about setting and using the "
+"main loop."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:426
+msgid ""
+"This function cancels the main loop, which means that it will no longer be "
+"called. No other changes occur to control flow. In particular, if you "
+"started the main loop with the ``simulate_infinite_loop`` option, you can "
+"still cancel the main loop, but execution will not continue in the code "
+"right after setting the main loop (we do not actually run an infinite loop "
+"there - that's not possible in JavaScript, so to simulate an infinite loop "
+"we halt execution at that stage, and then the next thing that runs is the "
+"main loop itself, so it seems like an infinite loop has begun there; "
+"canceling the main loop sort of breaks the metaphor)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:430
+msgid ""
+"Specifies the scheduling mode that the main loop tick function of the "
+"calling thread will be called with."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:432
+msgid ""
+"This function can be used to interactively control the rate at which "
+"Emscripten runtime drives the main loop specified by calling the function :c:"
+"func:`emscripten_set_main_loop`. In native development, this corresponds "
+"with the \"swap interval\" or the \"presentation interval\" for 3D "
+"rendering. The new tick interval specified by this function takes effect "
+"immediately on the existing main loop, and this function must be called only "
+"after setting up a main loop via :c:func:`emscripten_set_main_loop`."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:0
+msgid "param int mode"
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:434
+msgid ""
+"The timing mode to use. Allowed values are EM_TIMING_SETTIMEOUT, "
+"EM_TIMING_RAF and EM_TIMING_SETIMMEDIATE."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:436
+msgid ""
+"The timing value to activate for the main loop. This value interpreted "
+"differently according to the ``mode`` parameter:  - If ``mode`` is "
+"EM_TIMING_SETTIMEOUT, then ``value`` specifies the number of milliseconds to "
+"wait between subsequent ticks to the main loop and updates occur independent "
+"of the vsync rate of the display (vsync off). This method uses the "
+"JavaScript ``setTimeout`` function to drive the animation. - If ``mode`` is "
+"EM_TIMING_RAF, then updates are performed using the "
+"``requestAnimationFrame`` function (with vsync enabled), and this value is "
+"interpreted as a \"swap interval\" rate for the main loop. The value of "
+"``1`` specifies the runtime that it should render at every vsync (typically "
+"60fps), whereas the value ``2`` means that the main loop callback should be "
+"called only every second vsync (30fps). As a general formula, the value "
+"``n`` means that the main loop is updated at every n'th vsync, or at a rate "
+"of ``60/n`` for 60Hz displays, and ``120/n`` for 120Hz displays. - If "
+"``mode`` is EM_TIMING_SETIMMEDIATE, then updates are performed using the "
+"``setImmediate`` function, or if not available, emulated via "
+"``postMessage``. See `setImmediate on MDN <https://developer.mozilla.org/en-"
+"US/docs/Web/API/Window/setImmediate>` for more information. Note that this "
+"mode is **strongly not recommended** to be used when deploying Emscripten "
+"output to the web, since it depends on an unstable web extension that is in "
+"draft status, browsers other than IE do not currently support it, and its "
+"implementation has been considered controversial in review."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:436
+msgid ""
+"The timing value to activate for the main loop. This value interpreted "
+"differently according to the ``mode`` parameter:"
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:438
+msgid ""
+"If ``mode`` is EM_TIMING_SETTIMEOUT, then ``value`` specifies the number of "
+"milliseconds to wait between subsequent ticks to the main loop and updates "
+"occur independent of the vsync rate of the display (vsync off). This method "
+"uses the JavaScript ``setTimeout`` function to drive the animation."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:439
+msgid ""
+"If ``mode`` is EM_TIMING_RAF, then updates are performed using the "
+"``requestAnimationFrame`` function (with vsync enabled), and this value is "
+"interpreted as a \"swap interval\" rate for the main loop. The value of "
+"``1`` specifies the runtime that it should render at every vsync (typically "
+"60fps), whereas the value ``2`` means that the main loop callback should be "
+"called only every second vsync (30fps). As a general formula, the value "
+"``n`` means that the main loop is updated at every n'th vsync, or at a rate "
+"of ``60/n`` for 60Hz displays, and ``120/n`` for 120Hz displays."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:440
+msgid ""
+"If ``mode`` is EM_TIMING_SETIMMEDIATE, then updates are performed using the "
+"``setImmediate`` function, or if not available, emulated via "
+"``postMessage``. See `setImmediate on MDN <https://developer.mozilla.org/en-"
+"US/docs/Web/API/Window/setImmediate>` for more information. Note that this "
+"mode is **strongly not recommended** to be used when deploying Emscripten "
+"output to the web, since it depends on an unstable web extension that is in "
+"draft status, browsers other than IE do not currently support it, and its "
+"implementation has been considered controversial in review."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:443
+msgid ""
+"The value 0 is returned on success, and a nonzero value is returned on "
+"failure. A failure occurs if there is no main loop active before calling "
+"this function."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:445
+msgid ""
+"Browsers heavily optimize towards using ``requestAnimationFrame`` for "
+"animation instead of the other provided modes. Because of that, for best "
+"experience across browsers, calling this function with "
+"``mode=EM_TIMING_RAF`` and ``value=1`` will yield best results. Using the "
+"JavaScript ``setTimeout`` function is known to cause stutter and generally "
+"worse experience than using the ``requestAnimationFrame`` function."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:447
+msgid ""
+"There is a functional difference between ``setTimeout`` and "
+"``requestAnimationFrame``: If the user minimizes the browser window or hides "
+"your application tab, browsers will typically stop calling "
+"``requestAnimationFrame`` callbacks, but ``setTimeout``-based main loop will "
+"continue to be run, although with heavily throttled intervals. See "
+"`setTimeout on MDN <https://developer.mozilla.org/en-US/docs/Web/API/"
+"WindowTimers.setTimeout#Inactive_tabs>` for more information."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:451
+msgid ""
+"Returns the current main loop timing mode that is in effect. For "
+"interpretation of the values, see the documentation of the function :c:func:"
+"`emscripten_set_main_loop_timing`. The timing mode is controlled by calling "
+"the functions :c:func:`emscripten_set_main_loop_timing` and :c:func:"
+"`emscripten_set_main_loop`."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:0
+msgid "param mode"
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:453
+msgid "If not null, the used timing mode is returned here."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:0
+msgid "type mode"
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:454
+#: ../../../source/docs/api_reference/emscripten.h.rst:456
+msgid "int*"
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:0
+msgid "param value"
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:455
+msgid "If not null, the used timing value is returned here."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:0
+msgid "type value"
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:460
+msgid "Sets the number of blockers that are about to be pushed."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:462
+msgid ""
+"The number is used for reporting the *relative progress* through a set of "
+"blockers, after which the main loop will continue."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:464
+msgid ""
+"For example, a game might have to run 10 blockers before starting a new "
+"level. The operation would first set this value as '10' and then push the 10 "
+"blockers. When the 3\\ :sup:`rd` blocker (say) completes, progress is "
+"displayed as 3/10."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:466
+msgid "The number of blockers that are about to be pushed."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:470
+msgid ""
+"Call a C function asynchronously, that is, after returning control to the "
+"JavaScript event loop."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:472
+msgid "This is done by a ``setTimeout``."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:474
+msgid ""
+"When building natively this becomes a simple direct call, after "
+"``SDL_Delay`` (you must include **SDL.h** for that)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:476
+msgid ""
+"If ``millis`` is negative, the browser's ``requestAnimationFrame`` mechanism "
+"is used. (Note that 0 means that ``setTimeout`` is still used, which "
+"basically means \"run asynchronously as soon as possible\".)"
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:478
+msgid ""
+"The C function to call asynchronously. The function signature must have a "
+"``void*`` parameter for passing the ``arg`` value."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:479
+msgid "User-defined argument to pass to the C function."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:480
+msgid "Timeout before function is called."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:485
+msgid ""
+"Stops the current thread of execution, but leaves the runtime alive so that "
+"you can continue to run code later (so global destructors etc., are not "
+"run). Note that the runtime is kept alive automatically when you do an "
+"asynchronous operation like :c:func:`emscripten_async_call`, so you don't "
+"need to call this function for those cases."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:487
+msgid ""
+"In a multithreaded application, this just exits the current thread (and "
+"allows running code later in the Web Worker in which it runs)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:491
+msgid ""
+"Shuts down the runtime and exits (terminates) the program, as if you called "
+"``exit()``."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:493
+msgid ""
+"The difference is that ``emscripten_force_exit`` will shut down the runtime "
+"even if you previously called :c:func:`emscripten_exit_with_live_runtime` or "
+"otherwise kept the runtime alive. In other words, this method gives you the "
+"option to completely shut down the runtime after it was kept alive beyond "
+"the completion of ``main()``."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:495
+msgid ""
+"Note that if ``EXIT_RUNTIME`` is not set (which is the case by default) then "
+"the runtime cannot be shut down, as we do not include the code to do so. "
+"Build with ``-sEXIT_RUNTIME`` if you want to be able to exit the runtime."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:497
+msgid ""
+"The same as for the *libc* function `exit() <http://linux.die.net/man/3/"
+"exit>`_."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:501
+msgid "Returns the value of ``window.devicePixelRatio``."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:503
+#: ../../../source/docs/api_reference/emscripten.h.rst:533
+msgid "double"
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:504
+msgid "The pixel ratio or 1.0 if not supported."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:508
+msgid "Returns the window title."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:510
+msgid "The returned string will be valid until the next call of the function"
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:514
+msgid "Sets the window title."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:518
+msgid "Returns the width and height of the screen."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:522
+msgid "Hide the OS mouse cursor over the canvas."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:524
+msgid ""
+"Note that SDL’s ``SDL_ShowCursor`` command shows and hides the SDL cursor, "
+"not the OS one. This command is useful to hide the OS cursor if your app "
+"draws its own cursor."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:529
+msgid ""
+"Returns the highest-precision representation of the current time that the "
+"browser provides."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:531
+msgid ""
+"This uses either ``Date.now`` or ``performance.now``. The result is not an "
+"absolute time, and is only meaningful in comparison to other calls to this "
+"function."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:534
+msgid "The current time, in milliseconds (ms)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:538
+msgid ""
+"Generates a random number in the range 0-1. This maps to ``Math.random()``."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:540
+msgid "float"
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:541
+msgid "A random number."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:548
+msgid "Asynchronous File System API"
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:551
+#: ../../../source/docs/api_reference/emscripten.h.rst:936
+#: ../../../source/docs/api_reference/emscripten.h.rst:1287
+#: ../../../source/docs/api_reference/emscripten.h.rst:1399
+msgid "Typedefs"
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:555
+msgid ""
+"Function pointer type for the ``onload`` callback of :c:func:"
+"`emscripten_async_wget_data` (specific values of the parameters documented "
+"in that method)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:565
+msgid ""
+"Function pointer type for the ``onload`` callback of :c:func:"
+"`emscripten_async_wget2` (specific values of the parameters documented in "
+"that method)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:575
+msgid ""
+"Function pointer type for the ``onerror`` and ``onprogress`` callbacks of :c:"
+"func:`emscripten_async_wget2` (specific values of the parameters documented "
+"in that method)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:585
+msgid ""
+"Function pointer type for the ``onload`` callback of :c:func:"
+"`emscripten_async_wget2_data` (specific values of the parameters documented "
+"in that method)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:595
+msgid ""
+"Function pointer type for the ``onerror`` callback of :c:func:"
+"`emscripten_async_wget2_data` (specific values of the parameters documented "
+"in that method)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:604
+msgid ""
+"Function pointer type for the ``onprogress`` callback of :c:func:"
+"`emscripten_async_wget2_data` (specific values of the parameters documented "
+"in that method)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:613
+msgid ""
+"Function pointer type for the ``onload`` callback of :c:func:"
+"`emscripten_run_preload_plugins_data` (specific values of the parameters "
+"documented in that method)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:626
+#: ../../../source/docs/api_reference/emscripten.h.rst:671
+msgid "Loads a file from a URL asynchronously."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:628
+msgid ""
+"In addition to fetching the URL from the network, preload plugins are "
+"executed so that the data is usable in ``IMG_Load`` and so forth (we "
+"asynchronously do the work to make the browser decode the image or audio "
+"etc.).  See :ref:`preloading-files` for more information on preloading files."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:631
+msgid ""
+"When the file is ready the ``onload`` callback will be called. If any error "
+"occurs ``onerror`` will be called. The callbacks are called with the file as "
+"their argument."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:633
+#: ../../../source/docs/api_reference/emscripten.h.rst:1332
+msgid "The URL to load."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:634
+#: ../../../source/docs/api_reference/emscripten.h.rst:682
+#: ../../../source/docs/api_reference/emscripten.h.rst:1333
+msgid ""
+"The name of the file created and loaded from the URL. If the file already "
+"exists it will be overwritten. If the destination directory for the file "
+"does not exist on the filesystem, it will be created. A relative pathname "
+"may be passed, which will be interpreted relative to the current working "
+"directory at the time of the call to this function."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:635
+msgid ""
+"Callback on successful load of the file. The callback function parameter "
+"value is:  - *(const char*)* : The name of the ``file`` that was loaded from "
+"the URL."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:635
+msgid ""
+"Callback on successful load of the file. The callback function parameter "
+"value is:"
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:637
+msgid ""
+"*(const char*)* : The name of the ``file`` that was loaded from the URL."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:639
+msgid ""
+"Callback in the event of failure. The callback function parameter value is:  "
+"- *(const char*)* : The name of the ``file`` that failed to load from the "
+"URL."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:639
+#: ../../../source/docs/api_reference/emscripten.h.rst:775
+#: ../../../source/docs/api_reference/emscripten.h.rst:903
+msgid ""
+"Callback in the event of failure. The callback function parameter value is:"
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:641
+msgid ""
+"*(const char*)* : The name of the ``file`` that failed to load from the URL."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:647
+#: ../../../source/docs/api_reference/emscripten.h.rst:709
+msgid "Loads a buffer from a URL asynchronously."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:649
+msgid "This is the \"data\" version of :c:func:`emscripten_async_wget`."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:651
+#: ../../../source/docs/api_reference/emscripten.h.rst:713
+msgid ""
+"Instead of writing to a file, this function writes to a buffer directly in "
+"memory. This avoids the overhead of using the emulated file system; note "
+"however that since files are not used, it cannot run preload plugins to set "
+"things up for ``IMG_Load`` and so forth (``IMG_Load`` etc. work on files)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:653
+msgid ""
+"When the file is ready then the ``onload`` callback will be called. If any "
+"error occurred ``onerror`` will be called."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:655
+#: ../../../source/docs/api_reference/emscripten.h.rst:680
+#: ../../../source/docs/api_reference/emscripten.h.rst:717
+msgid "The URL of the file to load."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:657
+#: ../../../source/docs/api_reference/emscripten.h.rst:688
+#: ../../../source/docs/api_reference/emscripten.h.rst:723
+#: ../../../source/docs/api_reference/emscripten.h.rst:769
+#: ../../../source/docs/api_reference/emscripten.h.rst:808
+#: ../../../source/docs/api_reference/emscripten.h.rst:829
+#: ../../../source/docs/api_reference/emscripten.h.rst:846
+#: ../../../source/docs/api_reference/emscripten.h.rst:863
+#: ../../../source/docs/api_reference/emscripten.h.rst:880
+msgid ""
+"User-defined data that is passed to the callbacks, untouched by the API "
+"itself. This may be used by a callback to identify the associated call."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:658
+#: ../../../source/docs/api_reference/emscripten.h.rst:809
+msgid ""
+"Callback on successful load of the URL into the buffer. The callback "
+"function parameter values are:  - *(void*)* : Equal to ``arg`` (user defined "
+"data). - *(void*)* : A pointer to a buffer with the data. Note that, as with "
+"the worker API, the data buffer only lives during the callback; it must be "
+"used or copied during that time. - *(int)* : The size of the buffer, in "
+"bytes."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:658
+#: ../../../source/docs/api_reference/emscripten.h.rst:809
+msgid ""
+"Callback on successful load of the URL into the buffer. The callback "
+"function parameter values are:"
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:660
+#: ../../../source/docs/api_reference/emscripten.h.rst:666
+#: ../../../source/docs/api_reference/emscripten.h.rst:691
+#: ../../../source/docs/api_reference/emscripten.h.rst:696
+#: ../../../source/docs/api_reference/emscripten.h.rst:701
+#: ../../../source/docs/api_reference/emscripten.h.rst:729
+#: ../../../source/docs/api_reference/emscripten.h.rst:736
+#: ../../../source/docs/api_reference/emscripten.h.rst:743
+#: ../../../source/docs/api_reference/emscripten.h.rst:772
+#: ../../../source/docs/api_reference/emscripten.h.rst:777
+#: ../../../source/docs/api_reference/emscripten.h.rst:811
+#: ../../../source/docs/api_reference/emscripten.h.rst:817
+#: ../../../source/docs/api_reference/emscripten.h.rst:832
+#: ../../../source/docs/api_reference/emscripten.h.rst:836
+#: ../../../source/docs/api_reference/emscripten.h.rst:849
+#: ../../../source/docs/api_reference/emscripten.h.rst:853
+#: ../../../source/docs/api_reference/emscripten.h.rst:866
+#: ../../../source/docs/api_reference/emscripten.h.rst:871
+#: ../../../source/docs/api_reference/emscripten.h.rst:883
+#: ../../../source/docs/api_reference/emscripten.h.rst:887
+#: ../../../source/docs/api_reference/emscripten.h.rst:999
+msgid "*(void*)* : Equal to ``arg`` (user defined data)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:661
+#: ../../../source/docs/api_reference/emscripten.h.rst:812
+msgid ""
+"*(void*)* : A pointer to a buffer with the data. Note that, as with the "
+"worker API, the data buffer only lives during the callback; it must be used "
+"or copied during that time."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:662
+#: ../../../source/docs/api_reference/emscripten.h.rst:813
+msgid "*(int)* : The size of the buffer, in bytes."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:664
+#: ../../../source/docs/api_reference/emscripten.h.rst:815
+#: ../../../source/docs/api_reference/emscripten.h.rst:834
+#: ../../../source/docs/api_reference/emscripten.h.rst:851
+#: ../../../source/docs/api_reference/emscripten.h.rst:869
+msgid ""
+"Callback in the event of failure. The callback function parameter values "
+"are:  - *(void*)* : Equal to ``arg`` (user defined data)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:664
+#: ../../../source/docs/api_reference/emscripten.h.rst:694
+#: ../../../source/docs/api_reference/emscripten.h.rst:733
+#: ../../../source/docs/api_reference/emscripten.h.rst:815
+#: ../../../source/docs/api_reference/emscripten.h.rst:834
+#: ../../../source/docs/api_reference/emscripten.h.rst:851
+#: ../../../source/docs/api_reference/emscripten.h.rst:869
+msgid ""
+"Callback in the event of failure. The callback function parameter values are:"
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:673
+msgid ""
+"This is an **experimental** \"more feature-complete\" version of :c:func:"
+"`emscripten_async_wget`."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:675
+msgid ""
+"Preload plug-ins are at this time *not* executed on the downloaded data. You "
+"may want to call :c:func:`emscripten_run_preload_plugins` in the ``onload`` "
+"callback if you want to be able to use the downloaded file with ``IMG_Load`` "
+"and such."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:678
+msgid ""
+"When the file is ready the ``onload`` callback will be called with the "
+"object pointers given in ``arg`` and ``file``. During the download the "
+"``onprogress`` callback is called."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:684
+#: ../../../source/docs/api_reference/emscripten.h.rst:719
+msgid "'GET' or 'POST'."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:686
+#: ../../../source/docs/api_reference/emscripten.h.rst:721
+msgid ""
+"Request parameters for POST requests (see ``requesttype``). The parameters "
+"are specified in the same way as they would be in the URL for an equivalent "
+"GET request: e.g. ``key=value&key2=value2``."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:689
+msgid ""
+"Callback on successful load of the file. The callback function parameter "
+"values are:  - *(void*)* : Equal to ``arg`` (user defined data). - *(const "
+"char*)* : The ``file`` passed to the original call."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:689
+#: ../../../source/docs/api_reference/emscripten.h.rst:726
+msgid ""
+"Callback on successful load of the file. The callback function parameter "
+"values are:"
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:692
+msgid "*(const char*)* : The ``file`` passed to the original call."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:694
+msgid ""
+"Callback in the event of failure. The callback function parameter values "
+"are:  - *(void*)* : Equal to ``arg`` (user defined data). - *(int)* : The "
+"HTTP status code."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:697
+msgid "*(int)* : The HTTP status code."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:699
+msgid ""
+"Callback during load of the file. The callback function parameter values "
+"are:  - *(void*)* : Equal to ``arg`` (user defined data). - *(int)* : The "
+"progress (percentage completed)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:699
+msgid ""
+"Callback during load of the file. The callback function parameter values are:"
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:702
+msgid "*(int)* : The progress (percentage completed)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:704
+#: ../../../source/docs/api_reference/emscripten.h.rst:747
+msgid ""
+"A handle to request (``int``) that can be used to :c:func:`abort "
+"<emscripten_async_wget2_abort>` the request."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:711
+msgid ""
+"This is the \"data\" version of :c:func:`emscripten_async_wget2`. It is an "
+"**experimental** \"more feature complete\" version of :c:func:"
+"`emscripten_async_wget_data`."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:715
+msgid ""
+"When the file is ready the ``onload`` callback will be called with the "
+"object pointers given in ``arg``, a pointer to the buffer in memory, and an "
+"unsigned integer containing the size of the buffer. During the download the "
+"``onprogress`` callback is called with progress information. If an error "
+"occurs, ``onerror`` will be called with the HTTP status code and a string "
+"containing the status description."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:724
+msgid ""
+"Tells the runtime whether to free the returned buffer after ``onload`` is "
+"complete. If ``false`` freeing the buffer is the receiver's responsibility."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:726
+msgid ""
+"Callback on successful load of the file. The callback function parameter "
+"values are:  - *(unsigned)* : Handle to the request - *(void*)* : Equal to "
+"``arg`` (user defined data). - *(void*)* : A pointer to the buffer in "
+"memory. - *(unsigned)* : The size of the buffer (in bytes)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:728
+#: ../../../source/docs/api_reference/emscripten.h.rst:735
+#: ../../../source/docs/api_reference/emscripten.h.rst:742
+msgid "*(unsigned)* : Handle to the request"
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:730
+msgid "*(void*)* : A pointer to the buffer in memory."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:731
+msgid "*(unsigned)* : The size of the buffer (in bytes)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:733
+msgid ""
+"Callback in the event of failure. The callback function parameter values "
+"are:  - *(unsigned)* : Handle to the request - *(void*)* : Equal to ``arg`` "
+"(user defined data). - *(int)* : The HTTP error code. - *(const char*)* : A "
+"string with the status description."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:737
+msgid "*(int)* : The HTTP error code."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:738
+msgid "*(const char*)* : A string with the status description."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:740
+msgid ""
+"Callback called (regularly) during load of the file to update progress. The "
+"callback function parameter values are:  - *(unsigned)* : Handle to the "
+"request - *(void*)* : Equal to ``arg`` (user defined data). - *(int)* : The "
+"number of bytes loaded. - *(int)* : The total size of the data in bytes, or "
+"zero if the size is unavailable."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:740
+msgid ""
+"Callback called (regularly) during load of the file to update progress. The "
+"callback function parameter values are:"
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:744
+msgid "*(int)* : The number of bytes loaded."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:745
+msgid ""
+"*(int)* : The total size of the data in bytes, or zero if the size is "
+"unavailable."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:752
+msgid ""
+"Abort an asynchronous request raised using :c:func:`emscripten_async_wget2` "
+"or :c:func:`emscripten_async_wget2_data`."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:754
+msgid "A handle to request to be aborted."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:759
+msgid ""
+"Runs preload plugins on a buffer of data asynchronously. This is a \"data\" "
+"version of :c:func:`emscripten_run_preload_plugins`, which receives raw data "
+"as input instead of a filename (this can prevent the need to write data to a "
+"file first). See :ref:`preloading-files` for more information on preload "
+"plugins."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:762
+msgid ""
+"When file is loaded then the ``onload`` callback will be called. If any "
+"error occurs ``onerror`` will be called."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:764
+msgid ""
+"``onload`` also receives a second parameter, which is a 'fake' filename "
+"which you can pass into ``IMG_Load`` (it is not an actual file, but it "
+"identifies this image for ``IMG_Load`` to be able to process it). Note that "
+"the user of this API is responsible for ``free()`` ing the memory allocated "
+"for the fake filename."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:766
+msgid "The buffer of data to process."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:767
+msgid "The file suffix, e.g. 'png' or 'jpg'."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:770
+msgid ""
+"Callback on successful processing of the data. The callback function "
+"parameter values are:  - *(void*)* : Equal to ``arg`` (user defined data). - "
+"*(const char*)* : A 'fake' filename which you can pass into ``IMG_Load``. "
+"See above for more information."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:770
+msgid ""
+"Callback on successful processing of the data. The callback function "
+"parameter values are:"
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:773
+msgid ""
+"*(const char*)* : A 'fake' filename which you can pass into ``IMG_Load``. "
+"See above for more information."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:775
+msgid ""
+"Callback in the event of failure. The callback function parameter value is:  "
+"- *(void*)* : Equal to ``arg`` (user defined data)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:781
+msgid ""
+"Starts an asynchronous dlopen operation to load a shared library from a "
+"filename or URL.  Returns immediately and requires the caller to return to "
+"the event loop.  The ``onsuccess`` and ``onerror`` callbacks are used to "
+"signal success or failure of the request.  Upon ``onerror`` callback the "
+"normal ``dlerror`` C function can be used get the error details.  The flags "
+"are the same as those used in the normal ``dlopen`` C function."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:788
+msgid "The filename (or URLs) of the shared library to load."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:789
+msgid "See dlopen flags."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:790
+msgid "User data passed to onsuccess, and onerror callbacks."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:791
+msgid "Called if the library was loaded successfully."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:792
+msgid "Called if there is an error loading the library."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:796
+msgid "Asynchronous IndexedDB API"
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:798
+msgid ""
+"IndexedDB is a browser API that lets you store data persistently, that is, "
+"you can save data there and load it later when the user re-visits the web "
+"page. IDBFS provides one way to use IndexedDB, through the Emscripten "
+"filesystem layer. The ``emscripten_idb_*`` methods listed here provide an "
+"alternative API, directly to IndexedDB, thereby avoiding the overhead of the "
+"filesystem layer."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:802
+msgid ""
+"Loads data from local IndexedDB storage asynchronously. This allows use of "
+"persistent data, without the overhead of the filesystem layer."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:804
+msgid ""
+"When the data is ready then the ``onload`` callback will be called. If any "
+"error occurred ``onerror`` will be called."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:806
+#: ../../../source/docs/api_reference/emscripten.h.rst:825
+msgid "The IndexedDB database from which to load."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:807
+#: ../../../source/docs/api_reference/emscripten.h.rst:826
+msgid "The identifier of the data to load."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:821
+msgid ""
+"Stores data to local IndexedDB storage asynchronously. This allows use of "
+"persistent data, without the overhead of the filesystem layer."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:823
+msgid ""
+"When the data has been stored then the ``onstore`` callback will be called. "
+"If any error occurred ``onerror`` will be called."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:827
+msgid "A pointer to the data to store."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:828
+msgid "How many bytes to store."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:830
+msgid ""
+"Callback on successful store of the data buffer to the URL. The callback "
+"function parameter values are:  - *(void*)* : Equal to ``arg`` (user defined "
+"data)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:830
+msgid ""
+"Callback on successful store of the data buffer to the URL. The callback "
+"function parameter values are:"
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:840
+msgid "Deletes data from local IndexedDB storage asynchronously."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:842
+msgid ""
+"When the data has been deleted then the ``ondelete`` callback will be "
+"called. If any error occurred ``onerror`` will be called."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:844
+#: ../../../source/docs/api_reference/emscripten.h.rst:861
+#: ../../../source/docs/api_reference/emscripten.h.rst:879
+msgid "The IndexedDB database."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:845
+#: ../../../source/docs/api_reference/emscripten.h.rst:862
+msgid "The identifier of the data."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:847
+msgid ""
+"Callback on successful delete  - *(void*)* : Equal to ``arg`` (user defined "
+"data)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:847
+msgid "Callback on successful delete"
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:857
+msgid ""
+"Checks if data with a certain ID exists in the local IndexedDB storage "
+"asynchronously."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:859
+msgid ""
+"When the data has been checked then the ``oncheck`` callback will be called. "
+"If any error occurred ``onerror`` will be called."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:864
+msgid ""
+"Callback on successful check, with arguments  - *(void*)* : Equal to ``arg`` "
+"(user defined data). - *int* : Whether the file exists or not."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:864
+msgid "Callback on successful check, with arguments"
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:867
+msgid "*int* : Whether the file exists or not."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:875
+msgid "Clears all data from local IndexedDB storage asynchronously."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:877
+msgid ""
+"When the storage has been cleared then the ``onclear`` callback will be "
+"called. If any error occurred ``onerror`` will be called."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:881
+msgid ""
+"Callback on successful clear. The callback function parameter is:  - "
+"*(void*)* : Equal to ``arg`` (user defined data)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:881
+msgid "Callback on successful clear. The callback function parameter is:"
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:885
+msgid ""
+"Callback in the event of failure. The callback function parameter is:  - "
+"*(void*)* : Equal to ``arg`` (user defined data)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:885
+msgid "Callback in the event of failure. The callback function parameter is:"
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:892
+msgid ""
+"Runs preload plugins on a file asynchronously. It works on file data already "
+"present and performs any required asynchronous operations available as "
+"preload plugins, such as decoding images for use in ``IMG_Load``, or "
+"decoding audio for use in ``Mix_LoadWAV``. See :ref:`preloading-files` for "
+"more information on preloading plugins."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:895
+msgid ""
+"Once the operations are complete, the ``onload`` callback will be called. If "
+"any error occurs ``onerror`` will be called. The callbacks are called with "
+"the file as their argument."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:897
+msgid "The name of the file to process."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:899
+msgid ""
+"Callback on successful processing of the file. The callback function "
+"parameter value is:  - *(const char*)* : The name of the ``file`` that was "
+"processed."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:899
+msgid ""
+"Callback on successful processing of the file. The callback function "
+"parameter value is:"
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:901
+msgid "*(const char*)* : The name of the ``file`` that was processed."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:903
+msgid ""
+"Callback in the event of failure. The callback function parameter value is:  "
+"- *(const char*)* : The name of the ``file`` for which the operation failed."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:905
+msgid ""
+"*(const char*)* : The name of the ``file`` for which the operation failed."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:907
+msgid "0 if successful, -1 if the file does not exist"
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:913
+msgid "Compiling"
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:917
+msgid ""
+"Tells the compiler and linker to preserve a symbol, and export it, as if you "
+"added it to :ref:`EXPORTED_FUNCTIONS <faq-dead-code-elimination>`."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:920
+msgid "For example: ::"
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:924
+msgid ""
+"Note that this will only work if the object file in which the symbol is "
+"defined is otherwise included by the linker.  If the object file is part of "
+"an archive, and is not otherwise referenced the linker will not include it "
+"at all and any symbols in the object file will not be included or exported.  "
+"One way to work around this limitation is to use the ``-Wl,--whole-"
+"archive`` / ``-Wl,--no-whole-archive`` flags on either side of the archive "
+"file."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:933
+msgid "Worker API"
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:940
+msgid ""
+"A wrapper around web workers that lets you create workers and communicate "
+"with them."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:942
+msgid ""
+"Note that the current API is mainly focused on a main thread that sends jobs "
+"to workers and waits for responses, i.e., in an asymmetrical manner, there "
+"is no current API to send a message without being asked for it from a worker "
+"to the main thread."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:948
+msgid ""
+"Function pointer type for the callback from :c:func:`emscripten_call_worker` "
+"(specific values of the parameters documented in that method)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:962
+msgid "Creates a worker."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:964
+msgid ""
+"A worker must be compiled separately from the main program, and with the "
+"``BUILD_AS_WORKER`` flag set to 1."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:966
+msgid ""
+"That worker must not be compiled with the ``-pthread`` flag as the POSIX "
+"threads implementation and this Worker API are incompatible."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:968
+msgid "The URL of the worker script."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:970
+msgid "A handle to the newly created worker."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:971
+msgid "worker_handle"
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:977
+msgid "Destroys a worker. See :c:func:`emscripten_create_worker`"
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:979
+msgid "A handle to the worker to be destroyed."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:984
+msgid "Asynchronously calls a worker."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:986
+msgid ""
+"The worker function will be called with two parameters: a data pointer, and "
+"a size. The data block defined by the pointer and size exists only during "
+"the callback: **it cannot be relied upon afterwards**. If you need to keep "
+"some of that information outside the callback, then it needs to be copied to "
+"a safe location."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:988
+msgid ""
+"The called worker function can return data, by calling :c:func:"
+"`emscripten_worker_respond`. When the worker is called, if a callback was "
+"given it will be called with three arguments: a data pointer, a size, and an "
+"argument that was provided when calling :c:func:`emscripten_call_worker` (to "
+"more easily associate callbacks to calls). The data block defined by the "
+"data pointer and size behave like the data block in the worker function — it "
+"exists only during the callback."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:990
+msgid "A handle to the worker to be called."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:991
+msgid ""
+"The name of the function in the worker. The function must be a C function "
+"(so no C++ name mangling), and must be exported (:ref:`EXPORTED_FUNCTIONS "
+"<faq-dead-code-elimination>`)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:993
+msgid "The address of a block of memory to copy over."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:994
+msgid "The size of the block of memory."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:995
+msgid ""
+"Worker callback with the response. This can be ``null``. The callback "
+"function parameter values are:  - *(char*)* : The ``data`` pointer provided "
+"in :c:func:`emscripten_call_worker`. - *(int)* : The ``size`` of the block "
+"of data. - *(void*)* : Equal to ``arg`` (user defined data)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:995
+msgid ""
+"Worker callback with the response. This can be ``null``. The callback "
+"function parameter values are:"
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:997
+msgid ""
+"*(char*)* : The ``data`` pointer provided in :c:func:"
+"`emscripten_call_worker`."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:998
+msgid "*(int)* : The ``size`` of the block of data."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1001
+msgid "An argument (user data) to be passed to the callback"
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1006
+msgid ""
+"Sends a response when in a worker call (that is, when called by the main "
+"thread using :c:func:`emscripten_call_worker`)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1008
+msgid ""
+"Both functions post a message back to the thread which called the worker. "
+"The :c:func:`emscripten_worker_respond_provisionally` variant can be invoked "
+"multiple times, which will queue up messages to be posted to the worker’s "
+"creator. Eventually, the _respond variant must be invoked, which will "
+"disallow further messages and free framework resources previously allocated "
+"for this worker call."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1010
+msgid ""
+"Calling the provisional version is optional, but you must call the non-"
+"provisional version to avoid leaks."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1012
+msgid "The message to be posted."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1013
+msgid "The size of the message, in bytes."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1018
+msgid "Checks how many responses are being waited for from a worker."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1020
+msgid ""
+"This only counts calls to :c:func:`emscripten_call_worker` that had a "
+"callback (calls with null callbacks are ignored), and where the response has "
+"not yet been received. It is a simple way to check on the status of the "
+"worker to see how busy it is, and do basic decisions about throttling."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1022
+msgid "The handle to the relevant worker."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1023
+msgid "The number of responses waited on from a worker."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1028
+msgid "Logging utilities"
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1035
+msgid ""
+"If specified, logs directly to the browser console/inspector window. If not "
+"specified, logs via the application Module."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1039
+msgid ""
+"If specified, prints a warning message (combined with :c:data:"
+"`EM_LOG_CONSOLE`)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1043
+msgid ""
+"If specified, prints an info message to console (combined with :c:data:"
+"`EM_LOG_CONSOLE`)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1047
+msgid ""
+"If specified, prints a debug message to console (combined with :c:data:"
+"`EM_LOG_CONSOLE`)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1051
+msgid ""
+"If specified, prints an error message (combined with :c:data:"
+"`EM_LOG_CONSOLE`). If neither :c:data:`EM_LOG_WARN`, :c:data:"
+"`EM_LOG_ERROR`, :c:data:`EM_LOG_INFO` nor :c:data:`EM_LOG_DEBUG` is "
+"specified, a log message is printed. :c:data:`EM_LOG_WARN`, :c:data:"
+"`EM_LOG_INFO`, :c:data:`EM_LOG_DEBUG` and :c:data:`EM_LOG_ERROR` are "
+"mutually exclusive. If :c:data:`EM_LOG_CONSOLE` is not specified then the "
+"message will be outputted via err() (for :c:data:`EM_LOG_ERROR` or :c:data:"
+"`EM_LOG_WARN`) or out() otherwise."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1055
+msgid ""
+"If specified, prints a call stack that contains file names referring to "
+"original C sources using source map information."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1059
+msgid ""
+"If specified, prints a call stack that contains file names referring to "
+"lines in the built .js/.html file along with the message. The flags :c:data:"
+"`EM_LOG_C_STACK` and :c:data:`EM_LOG_JS_STACK` can be combined to output "
+"both untranslated and translated file and line information."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1063
+msgid ""
+"If specified, the pathnames of the file information in the call stack will "
+"be omitted."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1071
+msgid "Returns the value of a compiler setting."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1073
+msgid ""
+"For example, to return the integer representing the value of "
+"``INITIAL_MEMORY`` during compilation: ::"
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1077
+msgid ""
+"For values containing anything other than an integer, a string is returned "
+"(you will need to cast the ``long`` return value to a ``char*``)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1079
+msgid ""
+"Some useful things this can do is provide the version of Emscripten "
+"(“EMSCRIPTEN_VERSION”), the optimization level (“OPT_LEVEL”), debug level "
+"(“DEBUG_LEVEL”), etc."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1081
+msgid ""
+"For this command to work, you must build with the following compiler option "
+"(as we do not want to increase the build size with this metadata): ::"
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1085
+msgid "The compiler setting to return."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1087
+msgid ""
+"The value of the specified setting. Note that for values other than an "
+"integer, a string is returned (cast the ``int`` return value to a ``char*``)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1092
+msgid "Returns whether pseudo-synchronous functions can be used."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1095
+msgid "1 if program was compiled with -sASYNCIFY, 0 otherwise."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1100
+msgid "Emits ``debugger``."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1102
+msgid ""
+"This is inline in the code, which tells the JavaScript engine to invoke the "
+"debugger if it gets there."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1107
+msgid ""
+"Prints out a message to the console, optionally with the callstack "
+"information."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1109
+msgid ""
+"A binary OR of items from the list of :c:data:`EM_LOG_xxx <EM_LOG_CONSOLE>` "
+"flags that specify printing options."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1110
+msgid "A ``printf``-style format string."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1111
+msgid ""
+"A ``printf``-style \"...\" parameter list that is parsed according to the "
+"``printf`` formatting rules."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1116
+msgid "Programmatically obtains the current callstack."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1118
+msgid ""
+"To query the amount of bytes needed for a callstack without writing it, pass "
+"0 to ``out`` and ``maxbytes``, in which case the function will return the "
+"number of bytes (including the terminating zero) that will be needed to hold "
+"the full callstack. Note that this might be fully accurate since subsequent "
+"calls will carry different line numbers, so it is best to allocate a few "
+"bytes extra to be safe."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1120
+msgid ""
+"A binary OR of items from the list of :c:data:`EM_LOG_xxx <EM_LOG_CONSOLE>` "
+"flags that specify printing options. The flags :c:data:`EM_LOG_CONSOLE`, :c:"
+"data:`EM_LOG_WARN` and :c:data:`EM_LOG_ERROR` do not apply in this function "
+"and are ignored."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1121
+msgid ""
+"A pointer to a memory region where the callstack string will be written to. "
+"The string outputted by this function will always be null-terminated."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1122
+msgid ""
+"The maximum number of bytes that this function can write to the memory "
+"pointed to by ``out``. If there is not enough space, the output will be "
+"truncated (but always null-terminated)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1123
+msgid ""
+"The number of bytes written (not number of characters, so this will also "
+"include the terminating zero)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1129
+msgid "Gets preloaded image data and the size of the image."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1131
+msgid ""
+"The function returns pointer to loaded image or NULL — the pointer should be "
+"``free()``'d. The width/height of the image are written to the ``w`` and "
+"``h`` parameters if the data is valid."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1133
+msgid "Full path/filename to the file containing the preloaded image."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1135
+#: ../../../source/docs/api_reference/emscripten.h.rst:1147
+msgid "Width of the image (if data is valid)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1136
+#: ../../../source/docs/api_reference/emscripten.h.rst:1148
+msgid "Height of the image (if data is valid)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1137
+#: ../../../source/docs/api_reference/emscripten.h.rst:1149
+msgid "A pointer to the preloaded image or NULL."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1143
+msgid "Gets preloaded image data from a C ``FILE*``."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1145
+msgid "The ``FILE`` containing the preloaded image."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1154
+msgid ""
+"Prints a double as a string, including a null terminator. This is useful "
+"because JS engines have good support for printing out a double in a way that "
+"takes the least possible size, but preserves all the information in the "
+"double, i.e., it can then be parsed back in a perfectly reversible manner "
+"(snprintf etc. do not do so, sadly)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1156
+msgid "The double."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1157
+msgid ""
+"A pre-allocated buffer of sufficient size, or NULL if no output is requested "
+"(useful to get the necessary size)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1158
+msgid ""
+"The maximum number of bytes that can be written to the output pointer "
+"'to' (including the null terminator)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1159
+msgid ""
+"The number of necessary bytes, not including the null terminator (actually "
+"written, if ``to`` is not NULL)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1164
+msgid "Socket event registration"
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1166
+msgid ""
+"The functions in this section register callback functions for receiving "
+"socket events. These events are analogous to `WebSocket <https://developer."
+"mozilla.org/en/docs/WebSockets>`_ events but are emitted *after* the "
+"internal Emscripten socket processing has occurred. This means, for example, "
+"that the message callback will be triggered after the data has been added to "
+"the *recv_queue*, so that an application receiving this callback can simply "
+"read the data using the file descriptor passed as a parameter to the "
+"callback. All of the callbacks are passed a file descriptor (``fd``) "
+"representing the socket that the notified activity took place on. The error "
+"callback also takes an ``int`` representing the socket error number "
+"(``errno``) and a ``char*`` that represents the error message (``msg``)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1168
+msgid ""
+"Only a single callback function may be registered to handle any given event, "
+"so calling a given registration function more than once will cause the first "
+"callback to be replaced. Similarly, passing a ``NULL`` callback function to "
+"any ``emscripten_set_socket_*_callback`` call will de-register the callback "
+"registered for that event."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1170
+msgid ""
+"The ``userData`` pointer allows arbitrary data specified during event "
+"registration to be passed to the callback, this is particularly useful for "
+"passing ``this`` pointers around in Object Oriented code."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1172
+msgid ""
+"In addition to being able to register network callbacks from C it is also "
+"possible for native JavaScript code to directly use the underlying mechanism "
+"used to implement the callback registration. For example, the following code "
+"shows simple logging callbacks that are registered by default when "
+"``SOCKET_DEBUG`` is enabled:"
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1183
+msgid ""
+"Most of the JavaScript callback functions above get passed the file "
+"descriptor of the socket that triggered the callback, the on error callback "
+"however gets passed an *array* that contains the file descriptor, the error "
+"code and an error message."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1185
+msgid ""
+"The underlying JavaScript implementation doesn't pass ``userData``. This is "
+"mostly of use to C/C++ code and the ``emscripten_set_socket_*_callback`` "
+"calls simply create a closure containing the ``userData`` and pass that as "
+"the callback to the underlying JavaScript event registration mechanism."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1189
+msgid "Callback functions"
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1193
+msgid ""
+"Function pointer for :c:func:`emscripten_set_socket_open_callback`, and the "
+"other socket functions (except :c:func:"
+"`emscripten_set_socket_error_callback`). This is defined as:"
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:0
+msgid "param int fd"
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1199
+#: ../../../source/docs/api_reference/emscripten.h.rst:1211
+msgid "The file descriptor of the socket that triggered the callback."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:0
+msgid "param void* userData"
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1200
+#: ../../../source/docs/api_reference/emscripten.h.rst:1214
+msgid "The ``userData`` originally passed to the event registration function."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1205
+msgid ""
+"Function pointer for the :c:func:`emscripten_set_socket_error_callback`, "
+"defined as:"
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:0
+msgid "param int err"
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1212
+msgid "The code for the error that occurred."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:0
+msgid "param int msg"
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1213
+msgid "The message for the error that occurred."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1223
+msgid "Triggered by a ``WebSocket`` error."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1225
+#: ../../../source/docs/api_reference/emscripten.h.rst:1235
+#: ../../../source/docs/api_reference/emscripten.h.rst:1245
+#: ../../../source/docs/api_reference/emscripten.h.rst:1255
+#: ../../../source/docs/api_reference/emscripten.h.rst:1266
+#: ../../../source/docs/api_reference/emscripten.h.rst:1277
+msgid "See :ref:`emscripten-api-reference-sockets` for more information."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1227
+#: ../../../source/docs/api_reference/emscripten.h.rst:1237
+#: ../../../source/docs/api_reference/emscripten.h.rst:1247
+#: ../../../source/docs/api_reference/emscripten.h.rst:1257
+#: ../../../source/docs/api_reference/emscripten.h.rst:1268
+#: ../../../source/docs/api_reference/emscripten.h.rst:1279
+msgid "Arbitrary user data to be passed to the callback."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1228
+msgid ""
+"Pointer to a callback function. The callback returns a file descriptor, "
+"error code and message, and the arbitrary ``userData`` passed to this "
+"function."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1233
+msgid "Triggered when the ``WebSocket`` has opened."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1238
+#: ../../../source/docs/api_reference/emscripten.h.rst:1248
+#: ../../../source/docs/api_reference/emscripten.h.rst:1258
+#: ../../../source/docs/api_reference/emscripten.h.rst:1269
+#: ../../../source/docs/api_reference/emscripten.h.rst:1280
+msgid ""
+"Pointer to a callback function. The callback returns a file descriptor and "
+"the arbitrary ``userData`` passed to this function."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1243
+msgid "Triggered when ``listen`` has been called (synthetic event)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1253
+msgid "Triggered when the connection has been established."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1264
+msgid "Triggered when data is available to be read from the socket."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1275
+msgid "Triggered when the ``WebSocket`` has closed."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1284
+msgid "Unaligned types"
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1298
+msgid ""
+"Unaligned types. These may be used to force LLVM to emit unaligned loads/"
+"stores in places in your code where :ref:`SAFE_HEAP <debugging-SAFE-HEAP>` "
+"found an unaligned operation."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1300
+msgid ""
+"For usage examples see `test/core/test_set_align.c <https://github.com/"
+"emscripten-core/emscripten/blob/main/test/core/test_set_align.c>`_."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1302
+msgid ""
+"It is better to avoid unaligned operations, but if you are reading from a "
+"packed stream of bytes or such, these types may be useful!"
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1306
+msgid "Pseudo-synchronous functions"
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1308
+msgid ""
+"These functions require Asyncify (``-sASYNCIFY``). These functions are "
+"asynchronous but appear synchronous in C. See `Asyncify <https://emscripten."
+"org/docs/porting/asyncify.html>`_ for more details."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1311
+msgid "Sleeping"
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1315
+msgid ""
+"Sleep for `ms` milliseconds. This appears to be a normal \"synchronous\" "
+"sleep to the code, that is, execution does not continue to the next source "
+"line until the sleep is done. Note, however, that this is implemented using "
+"a return to the event loop (it is not possible to actually sleep in a "
+"blocking manner on the Web), which means that other async events may happen."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1322
+msgid "Network"
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1326
+msgid ""
+"Load file from url in *synchronously*. For the asynchronous version, see "
+"the :c:func:`emscripten_async_wget`."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1328
+msgid ""
+"In addition to fetching the URL from the network, preload plugins are "
+"executed so that the data is usable in ``IMG_Load`` and so forth (we "
+"synchronously do the work to make the browser decode the image or audio "
+"etc.).  See :ref:`preloading-files` for more information on preloading files."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1330
+msgid ""
+"This function is blocking; it won't return until all operations are "
+"finished. You can then open and read the file if it succeeded."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1334
+msgid "0 on success or 1 on error."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1338
+msgid ""
+"Synchronously fetches data off the network, and stores it to a buffer in "
+"memory, which is allocated for you. **You must free the buffer, or it will "
+"leak!**"
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1340
+msgid "The URL to fetch from"
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1341
+#: ../../../source/docs/api_reference/emscripten.h.rst:1354
+msgid ""
+"An out parameter that will be filled with a pointer to a buffer containing "
+"the data that is downloaded. This space has been malloced for you, **and you "
+"must free it, or it will leak!**"
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1342
+#: ../../../source/docs/api_reference/emscripten.h.rst:1355
+msgid ""
+"An out parameter that will be filled with the size of the downloaded data."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1343
+#: ../../../source/docs/api_reference/emscripten.h.rst:1356
+#: ../../../source/docs/api_reference/emscripten.h.rst:1366
+#: ../../../source/docs/api_reference/emscripten.h.rst:1374
+#: ../../../source/docs/api_reference/emscripten.h.rst:1383
+#: ../../../source/docs/api_reference/emscripten.h.rst:1390
+msgid ""
+"An out parameter that will be filled with a non-zero value if an error "
+"occurred."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1346
+msgid "IndexedDB"
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1350
+msgid ""
+"Synchronously fetches data from IndexedDB, and stores it to a buffer in "
+"memory, which is allocated for you. **You must free the buffer, or it will "
+"leak!**"
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1352
+msgid "The name of the database to load from"
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1353
+msgid "The name of the file to load"
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1360
+msgid "Synchronously stores data to IndexedDB."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1362
+msgid "The name of the database to store to"
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1363
+msgid "The name of the file to store"
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1364
+msgid "A pointer to the data to store"
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1365
+msgid "How many bytes to store"
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1370
+msgid "Synchronously deletes data from IndexedDB."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1372
+msgid "The name of the database to delete from"
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1373
+msgid "The name of the file to delete"
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1378
+msgid "Synchronously checks if a file exists in IndexedDB."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1380
+msgid "The name of the database to check in"
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1381
+msgid "The name of the file to check"
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1382
+msgid ""
+"An out parameter that will be filled with a non-zero value if the file "
+"exists in that database."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1387
+msgid "Synchronously clears all data from IndexedDB."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1389
+msgid "The name of the database to clear"
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1394
+msgid "Asyncify functions"
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1396
+msgid "These functions only work when using Asyncify."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1403
+msgid ""
+"Function pointer type for use in scan callbacks, receiving two pointers, for "
+"the beginning and end of a range of memory. You can then scan that range."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1415
+msgid ""
+"Scan the C userspace stack, which means the stack managed by the compiled "
+"code (as opposed to the Wasm VM's internal stack, which is not directly "
+"observable). This data is already in linear memory; this function just gives "
+"you a simple way to know where it is."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1422
+msgid ""
+"Scan \"registers\", by which we mean data that is not in memory. In Wasm, "
+"that means data stored in locals, including locals in functions higher up "
+"the stack - the Wasm VM has spilled them, but none of that is observable to "
+"user code)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1427
+msgid ""
+"Note that this function scans Wasm locals. Depending on the LLVM "
+"optimization level, this may not scan the original locals in your source "
+"code. For example in ``-O0`` locals may be stored on the stack. To make sure "
+"you scan everything necessary, you can also do ``emscripten_scan_stack``."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1433
+msgid ""
+"This function requires Asyncify - it relies on that option to spill the "
+"local state all the way up the stack. As a result, it will add overhead to "
+"your program."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1438
+msgid "ABI functions"
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1440
+msgid ""
+"The following functions are not declared in ``emscripten.h``, but are used "
+"internally in our system libraries. You may care about them if you replace "
+"the Emscripten runtime JS code, or run Emscripten binaries in your own "
+"runtime."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1447
+msgid ""
+"Called when memory has grown. In a JS runtime, this is used to know when to "
+"update the JS views on the Wasm memory, which otherwise we would need to "
+"constantly check for after any Wasm code runs. See `this wasi discussion "
+"<https://github.com/WebAssembly/WASI/issues/82>`_."
+msgstr ""
+
+#: ../../../source/docs/api_reference/emscripten.h.rst:1452
+msgid "Which memory has grown."
+msgstr ""

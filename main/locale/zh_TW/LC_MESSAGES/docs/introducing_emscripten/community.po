@@ -1,0 +1,96 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) Copyright &copy; 2015, Emscripten Contributors.
+# This file is distributed under the same license as the Emscripten package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Emscripten main\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-14 14:25+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: zh_TW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../../source/docs/introducing_emscripten/community.rst:5
+msgid "Community"
+msgstr ""
+
+#: ../../../source/docs/introducing_emscripten/community.rst:7
+msgid "Welcome to the Emscripten community!"
+msgstr ""
+
+#: ../../../source/docs/introducing_emscripten/community.rst:13
+msgid "Get in touch"
+msgstr ""
+
+#: ../../../source/docs/introducing_emscripten/community.rst:15
+msgid "The best ways to contact the community are:"
+msgstr ""
+
+#: ../../../source/docs/introducing_emscripten/community.rst:17
+msgid ""
+"The GitHub `Issue Tracker <https://github.com/emscripten-core/emscripten/"
+"issues?state=open>`_"
+msgstr ""
+
+#: ../../../source/docs/introducing_emscripten/community.rst:18
+msgid ""
+"Mailing list: `emscripten-discuss <http://groups.google.com/group/emscripten-"
+"discuss>`_"
+msgstr ""
+
+#: ../../../source/docs/introducing_emscripten/community.rst:19
+msgid ""
+"Real-time chat: `#emscripten on Discord <https://discord.gg/53u3EKq>`_ "
+"(there was also an IRC channel on Mozilla IRC, but they are shutting those "
+"servers down). We are also open to exploring other options than Discord, if "
+"you're interested to help out, let us know!"
+msgstr ""
+
+#: ../../../source/docs/introducing_emscripten/community.rst:21
+msgid ""
+"Feel free to ask questions, share your ideas, or just join the conversation!"
+msgstr ""
+
+#: ../../../source/docs/introducing_emscripten/community.rst:23
+msgid "Emscripten also has a presence on social media:"
+msgstr ""
+
+#: ../../../source/docs/introducing_emscripten/community.rst:25
+msgid ""
+"`@emscripten on Bluesky <https://bsky.app/profile/emscripten.bsky.social>`_"
+msgstr ""
+
+#: ../../../source/docs/introducing_emscripten/community.rst:26
+msgid "`@emscripten on Mastodon <https://fosstodon.org/@emscripten>`_"
+msgstr ""
+
+#: ../../../source/docs/introducing_emscripten/community.rst:27
+msgid "`@emscripten on Twitter <https://twitter.com/emscripten>`_"
+msgstr ""
+
+#: ../../../source/docs/introducing_emscripten/community.rst:31
+msgid "Report a bug"
+msgstr ""
+
+#: ../../../source/docs/introducing_emscripten/community.rst:33
+msgid ""
+":ref:`Bug reports <bug-reports>` can be posted in the GitHub `Issue Tracker "
+"<https://github.com/emscripten-core/emscripten/issues?state=open>`_."
+msgstr ""
+
+#: ../../../source/docs/introducing_emscripten/community.rst:37
+msgid "Contribute"
+msgstr ""
+
+#: ../../../source/docs/introducing_emscripten/community.rst:39
+msgid ""
+"Anyone can contribute to Emscripten. We've got some ideas to get you started "
+"on our :ref:`contributing` page!"
+msgstr ""

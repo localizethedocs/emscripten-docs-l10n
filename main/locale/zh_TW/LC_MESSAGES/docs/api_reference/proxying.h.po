@@ -1,0 +1,223 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) Copyright &copy; 2015, Emscripten Contributors.
+# This file is distributed under the same license as the Emscripten package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Emscripten main\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-14 14:25+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: zh_TW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../../source/docs/api_reference/proxying.h.rst:5
+msgid "proxying.h"
+msgstr ""
+
+#: ../../../source/docs/api_reference/proxying.h.rst:7
+msgid ""
+"The Emscripten `proxying.h`_ API provides a mechanism for dispatching work "
+"to be executed by a target thread and optionally blocking until that work "
+"has been completed. This is particularly useful in a Web context where "
+"certain JS APIs can only be called on particular threads; any thread can "
+"access those APIs by proxying the API calls to the correct threads. Proxying "
+"is also useful for wrapping asynchronous JS tasks with a synchronous "
+"interface. The calling thread can proxy the asynchronous task to a dedicated "
+"worker thread and wait until the worker thread eventually marks the task as "
+"complete, possibly after returning multiple times to the JS event loop."
+msgstr ""
+
+#: ../../../source/docs/api_reference/proxying.h.rst:17
+msgid ""
+"On the target thread, queued work can be executed in two ways. First, the "
+"user may explicitly call ``emscripten_proxy_execute_queue`` to execute any "
+"tasks that have been queued for the current thread. Alternatively, queued "
+"work will execute automatically if the target thread returns to the JS event "
+"loop, for example via ``emscripten_exit_with_live_runtime``."
+msgstr ""
+
+#: ../../../source/docs/api_reference/proxying.h.rst:23
+msgid ""
+"See `test_pthread_proxying.c`_ and `test_pthread_proxying_cpp.cpp`_ for "
+"examples of how to use the proxying API."
+msgstr ""
+
+#: ../../../source/docs/api_reference/proxying.h.rst:27
+msgid "API Reference"
+msgstr ""
+
+#: ../../../source/docs/api_reference/proxying.h.rst:30
+msgid "Types"
+msgstr ""
+
+#: ../../../source/docs/api_reference/proxying.h.rst:34
+msgid ""
+"An opaque handle to a set of thread-local work queues (one per thread) to "
+"which work can be asynchronously or synchronously proxied from other threads."
+msgstr ""
+
+#: ../../../source/docs/api_reference/proxying.h.rst:37
+msgid ""
+"Proxied work can only be completed on live thread runtimes, so users must "
+"ensure either that all proxied work is completed before a thread exits or "
+"that the thread exits with a live runtime, e.g. via "
+"``emscripten_exit_with_live_runtime`` to avoid dropped work."
+msgstr ""
+
+#: ../../../source/docs/api_reference/proxying.h.rst:44
+msgid ""
+"An opaque handle to a currently-executing proxied task, used to signal the "
+"end of the task."
+msgstr ""
+
+#: ../../../source/docs/api_reference/proxying.h.rst:48
+msgid "Functions"
+msgstr ""
+
+#: ../../../source/docs/api_reference/proxying.h.rst:52
+msgid "Allocate a new proxying queue."
+msgstr ""
+
+#: ../../../source/docs/api_reference/proxying.h.rst:56
+msgid ""
+"Free a proxying queue. The queue should not have any remaining queued work."
+msgstr ""
+
+#: ../../../source/docs/api_reference/proxying.h.rst:60
+msgid ""
+"Get the queue used for proxying low-level runtime work. Work on this queue "
+"may be processed at any time inside system functions, so it must be "
+"nonblocking and safe to run at any time, similar to a native signal handler. "
+"User code should generally not use this function."
+msgstr ""
+
+#: ../../../source/docs/api_reference/proxying.h.rst:67
+msgid ""
+"Execute all the tasks enqueued for the current thread on the given queue. "
+"New tasks that are enqueued concurrently with this execution will be "
+"executed as well. This function returns once it observes an empty queue."
+msgstr ""
+
+#: ../../../source/docs/api_reference/proxying.h.rst:73
+msgid ""
+"Signal the end of a task proxied with ``emscripten_proxy_sync_with_ctx``."
+msgstr ""
+
+#: ../../../source/docs/api_reference/proxying.h.rst:77
+msgid ""
+"Enqueue ``func`` to be called with argument ``arg`` on the given queue and "
+"thread then return immediately without waiting for ``func`` to be executed. "
+"Returns true if the work was successfully enqueued or false otherwise."
+msgstr ""
+
+#: ../../../source/docs/api_reference/proxying.h.rst:83
+msgid ""
+"Enqueue ``func`` to be called with argument ``arg`` on the given queue and "
+"thread then wait for ``func`` to be executed synchronously before returning. "
+"Returns true if the ``func`` was successfully completed and false otherwise, "
+"including if the target thread is canceled or exits before the work is "
+"completed."
+msgstr ""
+
+#: ../../../source/docs/api_reference/proxying.h.rst:91
+msgid ""
+"The same as ``emscripten_proxy_sync`` except that instead of waiting for the "
+"proxied function to return, it waits for the proxied task to be explicitly "
+"marked finished with ``emscripten_proxy_finish``. ``func`` need not call "
+"``emscripten_proxy_finish`` itself; it could instead store the context "
+"pointer and call ``emscripten_proxy_finish`` at an arbitrary later time."
+msgstr ""
+
+#: ../../../source/docs/api_reference/proxying.h.rst:99
+msgid ""
+"Enqueue ``func`` on the given queue and thread. Once (and if) it finishes "
+"executing, it will asynchronously proxy ``callback`` back to the current "
+"thread on the same queue, or if the target thread dies before the work can "
+"be completed, ``cancel`` will be proxied back instead. All three function "
+"will receive the same argument, ``arg``. Returns true if ``func`` was "
+"successfully enqueued and the target thread notified or false otherwise."
+msgstr ""
+
+#: ../../../source/docs/api_reference/proxying.h.rst:108
+msgid ""
+"Enqueue ``func`` on the given queue and thread. Once (and if) it finishes "
+"the task by calling ``emscripten_proxy_finish`` on the given "
+"``em_proxying_ctx``, it will asynchronously proxy ``callback`` back to the "
+"current thread on the same queue, or if the target thread dies before the "
+"work can be completed, ``cancel`` will be proxied back instead. All three "
+"function will receive the same argument, ``arg``. Returns true if ``func`` "
+"was successfully enqueued and the target thread notified or false otherwise."
+msgstr ""
+
+#: ../../../source/docs/api_reference/proxying.h.rst:117
+msgid "C++ API"
+msgstr ""
+
+#: ../../../source/docs/api_reference/proxying.h.rst:119
+msgid ""
+"This C++ API is provided by proxying.h when compiling with C++11 or later. "
+"It is defined within namespace ``emscripten``."
+msgstr ""
+
+#: ../../../source/docs/api_reference/proxying.h.rst:124
+msgid "A thin C++ wrapper around an ``em_proxying_queue*``."
+msgstr ""
+
+#: ../../../source/docs/api_reference/proxying.h.rst:128
+msgid "A thin C++ wrapper around an ``em_proxying_ctx*``."
+msgstr ""
+
+#: ../../../source/docs/api_reference/proxying.h.rst:132
+msgid "The wrapped ``em_proxying_ctx*``."
+msgstr ""
+
+#: ../../../source/docs/api_reference/proxying.h.rst:136
+msgid "Calls ``emscripten_proxy_finish`` on the wrapped ``em_proxying_ctx*``."
+msgstr ""
+
+#: ../../../source/docs/api_reference/proxying.h.rst:140
+msgid ""
+"Calls ``emscripten_proxy_execute_queue`` on the wrapped "
+"``em_proxying_queue*``."
+msgstr ""
+
+#: ../../../source/docs/api_reference/proxying.h.rst:144
+msgid ""
+"Calls ``emscripten_proxy_async`` to execute ``func``, returning ``true`` if "
+"the function was successfully enqueued and ``false`` otherwise."
+msgstr ""
+
+#: ../../../source/docs/api_reference/proxying.h.rst:149
+msgid ""
+"Calls ``emscripten_proxy_sync`` to execute ``func``, returning ``true`` if "
+"the function was successfully completed or ``false`` otherwise."
+msgstr ""
+
+#: ../../../source/docs/api_reference/proxying.h.rst:154
+msgid ""
+"Calls ``emscripten_proxy_sync_with_ctx`` to execute ``func``, returning "
+"``true`` if the function was successfully marked done with "
+"``emscripten_proxy_finish`` or ``ProxyingCtx::finish`` and ``false`` "
+"otherwise."
+msgstr ""
+
+#: ../../../source/docs/api_reference/proxying.h.rst:161
+msgid ""
+"Calls ``emscripten_proxy_callback`` to execute ``func`` and schedule either "
+"``callback`` or ``cancel``, returning ``true`` if the function was "
+"successfully enqueued and ``false`` otherwise."
+msgstr ""
+
+#: ../../../source/docs/api_reference/proxying.h.rst:167
+msgid ""
+"Calls ``emscripten_proxy_callback_with_ctx`` to execute ``func`` and "
+"schedule either ``callback`` or ``cancel``, returning ``true`` if the "
+"function was successfully enqueued and ``false`` otherwise."
+msgstr ""

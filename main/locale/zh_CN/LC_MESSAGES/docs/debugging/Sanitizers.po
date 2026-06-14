@@ -1,0 +1,354 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) Copyright &copy; 2015, Emscripten Contributors.
+# This file is distributed under the same license as the Emscripten package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Emscripten main\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-14 14:25+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../../source/docs/debugging/Sanitizers.rst:5
+msgid "Debugging with Sanitizers"
+msgstr ""
+
+#: ../../../source/docs/debugging/Sanitizers.rst:10
+msgid "Undefined Behaviour Sanitizer"
+msgstr ""
+
+#: ../../../source/docs/debugging/Sanitizers.rst:12
+msgid ""
+"Clang's `undefined behavior sanitizer`__ (UBSan) is available for use with "
+"Emscripten. This makes it much easier to catch bugs in your code."
+msgstr ""
+
+#: ../../../source/docs/debugging/Sanitizers.rst:17
+msgid ""
+"To use UBSan, simply pass ``-fsanitize=undefined`` to ``emcc`` or ``em++``. "
+"Note that you need to pass this at both the compile and link stages, as it "
+"affects both codegen and system libraries."
+msgstr ""
+
+#: ../../../source/docs/debugging/Sanitizers.rst:22
+msgid "Catching Null Dereference"
+msgstr ""
+
+#: ../../../source/docs/debugging/Sanitizers.rst:24
+msgid ""
+"By default, with Emscripten, dereferencing a null pointer does not "
+"immediately cause a segmentation fault, unlike traditional platforms, as 0 "
+"is just a normal address in a WebAssembly memory. 0 is also a normal "
+"location in a JavaScript Typed Array, which is an issue in the JavaScript "
+"alongside the WebAssembly (runtime support code, JS library methods, "
+"``EM_ASM/EM_JS``, etc.), and also for the compiled code if you build with ``-"
+"sWASM=0``."
+msgstr ""
+
+#: ../../../source/docs/debugging/Sanitizers.rst:31
+msgid ""
+"In builds with ``ASSERTIONS`` enabled, a magic cookie stored at address 0 is "
+"checked at the end of the program execution. That is, it will notify you if "
+"anything wrote to that location while the program ran. This only detects "
+"writes, not reads, and does not help to find where the bad write actually is."
+msgstr ""
+
+#: ../../../source/docs/debugging/Sanitizers.rst:36
+msgid "Consider the following program, ``null-assign.c``:"
+msgstr ""
+
+#: ../../../source/docs/debugging/Sanitizers.rst:45
+msgid "Without UBSan you get an error when the program exits:"
+msgstr ""
+
+#: ../../../source/docs/debugging/Sanitizers.rst:53
+#: ../../../source/docs/debugging/Sanitizers.rst:79
+msgid "With UBSan, you get the exact line number where this happened:"
+msgstr ""
+
+#: ../../../source/docs/debugging/Sanitizers.rst:62
+msgid "Consider the following program, ``null-read.c``:"
+msgstr ""
+
+#: ../../../source/docs/debugging/Sanitizers.rst:71
+msgid "Without UBSan there is no feedback:"
+msgstr ""
+
+#: ../../../source/docs/debugging/Sanitizers.rst:88
+msgid "Minimal Runtime"
+msgstr ""
+
+#: ../../../source/docs/debugging/Sanitizers.rst:90
+msgid ""
+"UBSan's runtime is non-trivial, and its use can unnecessarily increase the "
+"attack surface. For this reason, there is a minimal UBSan runtime that is "
+"designed for production uses."
+msgstr ""
+
+#: ../../../source/docs/debugging/Sanitizers.rst:94
+msgid ""
+"The minimal runtime is supported by Emscripten. To use it, pass the flag ``-"
+"fsanitize-minimal-runtime`` in addition to your ``-fsanitize`` flag."
+msgstr ""
+
+#: ../../../source/docs/debugging/Sanitizers.rst:110
+msgid "Address Sanitizer"
+msgstr ""
+
+#: ../../../source/docs/debugging/Sanitizers.rst:112
+msgid ""
+"Clang's `address sanitizer`__ (ASan) is also available for use with "
+"Emscripten. This makes it much easier to catch buffer overflows, memory "
+"leaks, and other related bugs in your code."
+msgstr ""
+
+#: ../../../source/docs/debugging/Sanitizers.rst:118
+msgid ""
+"To use ASan, simply pass ``-fsanitize=address`` to ``emcc`` or ``em++``. As "
+"with UBSan, you need to pass this at both the compile and link stages, as it "
+"affects both codegen and system libraries."
+msgstr ""
+
+#: ../../../source/docs/debugging/Sanitizers.rst:122
+msgid ""
+"You probably need to increase :ref:`INITIAL_MEMORY` to at least 64 MB or "
+"set :ref:`ALLOW_MEMORY_GROWTH` so that ASan has enough memory to start. "
+"Otherwise, you will receive an error message that looks something like:"
+msgstr ""
+
+#: ../../../source/docs/debugging/Sanitizers.rst:126
+msgid ""
+"Cannot enlarge memory arrays to size 55152640 bytes (OOM). Either (1) "
+"compile with ``-sINITIAL_MEMORY=X``  with X higher than the current value "
+"50331648, (2) compile with ``-sALLOW_MEMORY_GROWTH``  which allows "
+"increasing the size at runtime, or (3) if you want malloc to return NULL (0) "
+"instead of this abort, compile with ``-sABORTING_MALLOC=0``"
+msgstr ""
+
+#: ../../../source/docs/debugging/Sanitizers.rst:132
+msgid ""
+"ASan fully supports multi-thread environments. ASan also operates on the JS "
+"support code, that is, if JS tries to read from a memory address that is not "
+"valid, it will be caught, just like if that access happened from Wasm."
+msgstr ""
+
+#: ../../../source/docs/debugging/Sanitizers.rst:137
+msgid "Examples"
+msgstr ""
+
+#: ../../../source/docs/debugging/Sanitizers.rst:139
+msgid ""
+"Here are some examples of how AddressSanitizer can be used to help find bugs."
+msgstr ""
+
+#: ../../../source/docs/debugging/Sanitizers.rst:142
+msgid "Buffer Overflow"
+msgstr ""
+
+#: ../../../source/docs/debugging/Sanitizers.rst:144
+msgid "Consider ``buffer_overflow.c``:"
+msgstr ""
+
+#: ../../../source/docs/debugging/Sanitizers.rst:182
+msgid "Use After Free"
+msgstr ""
+
+#: ../../../source/docs/debugging/Sanitizers.rst:184
+msgid "Consider ``use_after_free.cpp``:"
+msgstr ""
+
+#: ../../../source/docs/debugging/Sanitizers.rst:229
+msgid "Memory Leaks"
+msgstr ""
+
+#: ../../../source/docs/debugging/Sanitizers.rst:231
+msgid "Consider ``leak.cpp``:"
+msgstr ""
+
+#: ../../../source/docs/debugging/Sanitizers.rst:259
+msgid ""
+"Note that since leak checks take place at program exit, you must use ``-"
+"sEXIT_RUNTIME``, or invoke ``__lsan_do_leak_check`` or "
+"``__lsan_do_recoverable_leak_check`` manually."
+msgstr ""
+
+#: ../../../source/docs/debugging/Sanitizers.rst:263
+msgid ""
+"You can detect that AddressSanitizer is enabled and run "
+"``__lsan_do_leak_check`` by doing:"
+msgstr ""
+
+#: ../../../source/docs/debugging/Sanitizers.rst:277
+msgid ""
+"This will be fatal if there are memory leaks. To check for memory leaks and "
+"allow the process to continue running, use "
+"``__lsan_do_recoverable_leak_check``."
+msgstr ""
+
+#: ../../../source/docs/debugging/Sanitizers.rst:281
+msgid ""
+"Also, if you only want to check for memory leaks, you may use ``-"
+"fsanitize=leak`` instead of ``-fsanitize=address``. ``-fsanitize=leak`` does "
+"not instrument all memory accesses, and as a result is much faster than ``-"
+"fsanitize=address``."
+msgstr ""
+
+#: ../../../source/docs/debugging/Sanitizers.rst:287
+msgid "Use After Return"
+msgstr ""
+
+#: ../../../source/docs/debugging/Sanitizers.rst:289
+msgid "Consider ``use_after_return.c``:"
+msgstr ""
+
+#: ../../../source/docs/debugging/Sanitizers.rst:308
+msgid ""
+"Note that to do this check, you have to use the ASan option "
+"``detect_stack_use_after_return``. You may enable this option by declaring a "
+"function called ``__asan_default_options`` like the example, or you can "
+"define ``Module['ASAN_OPTIONS'] = 'detect_stack_use_after_return=1'`` in the "
+"generated JavaScript. ``--pre-js`` is helpful here."
+msgstr ""
+
+#: ../../../source/docs/debugging/Sanitizers.rst:314
+msgid ""
+"This option is fairly expensive because it converts stack allocations into "
+"heap allocations, and these allocations are not reused so that future "
+"accesses can cause traps. Hence, it is not enabled by default."
+msgstr ""
+
+#: ../../../source/docs/debugging/Sanitizers.rst:339
+msgid "Configuration"
+msgstr ""
+
+#: ../../../source/docs/debugging/Sanitizers.rst:341
+msgid "ASan can be configured via a ``--pre-js`` file:"
+msgstr ""
+
+#: ../../../source/docs/debugging/Sanitizers.rst:347
+msgid ""
+"For example, put the above snippet with your options into ``asan_options."
+"js``, and compile with ``--pre-js asan_options.js``."
+msgstr ""
+
+#: ../../../source/docs/debugging/Sanitizers.rst:350
+msgid "For standalone LSan, use ``Module.LSAN_OPTIONS`` instead."
+msgstr ""
+
+#: ../../../source/docs/debugging/Sanitizers.rst:352
+msgid ""
+"For a detailed understanding of the flags, see the `ASan documentation`__. "
+"Please be warned that most flag combinations are not tested and may or may "
+"not work."
+msgstr ""
+
+#: ../../../source/docs/debugging/Sanitizers.rst:359
+msgid "Disabling ``malloc``/``free`` Stack Traces"
+msgstr ""
+
+#: ../../../source/docs/debugging/Sanitizers.rst:361
+msgid ""
+"In a program that uses ``malloc``/``free`` (or their C++ equivalent, "
+"``operator new``/``operator delete``) very frequently, taking a stack trace "
+"at all invocations to ``malloc``/``free`` can be very expensive. As a "
+"result, if you find your program to be very slow when using ASan, you can "
+"try using the option ``malloc_context_size=0``, like this:"
+msgstr ""
+
+#: ../../../source/docs/debugging/Sanitizers.rst:371
+msgid ""
+"This prevents ASan from reporting the location of memory leaks or offering "
+"insight into where the memory for a heap-based memory error originated, but "
+"may provide tremendous speed ups."
+msgstr ""
+
+#: ../../../source/docs/debugging/Sanitizers.rst:376
+msgid "Comparison to ``SAFE_HEAP``"
+msgstr ""
+
+#: ../../../source/docs/debugging/Sanitizers.rst:378
+msgid ""
+"Emscripten provides a ``SAFE_HEAP`` mode, which can be activated by running "
+"``emcc`` with ``-sSAFE_HEAP``. This does several things, some of which "
+"overlap with sanitizers."
+msgstr ""
+
+#: ../../../source/docs/debugging/Sanitizers.rst:382
+msgid ""
+"In general, ``SAFE_HEAP`` focuses on the specific pain points that come up "
+"when targeting Wasm. The sanitizers on the other hand focus on the specific "
+"pain points that are involved with using languages like C/C++. Those two "
+"sets overlap, but are not identical. Which you should use depends on which "
+"types of problems you are looking for. You may want to test with all "
+"sanitizers and with ``SAFE_HEAP`` for maximal coverage, but you may need to "
+"build separately for each mode, since not all sanitizers are compatible with "
+"each other, and not all of them are compatible with ``SAFE_HEAP`` (because "
+"the sanitizers do some pretty radical things!). You will get a compiler "
+"error if there is an issue with the flags you passed. A reasonable set of "
+"separate test builds to do might be: ASan, UBsan, and ``SAFE_HEAP``."
+msgstr ""
+
+#: ../../../source/docs/debugging/Sanitizers.rst:394
+msgid "The specific things ``SAFE_HEAP`` errors on include:"
+msgstr ""
+
+#: ../../../source/docs/debugging/Sanitizers.rst:396
+msgid ""
+"**NULL pointer (address 0) reads or writes**. As mentioned earlier, this is "
+"annoying in WebAssembly and JavaScript because 0 is just a normal address, "
+"so you don't get an immediate segfault, which can be confusing."
+msgstr ""
+
+#: ../../../source/docs/debugging/Sanitizers.rst:399
+msgid ""
+"**Unaligned reads or writes**. These work in WebAssembly, but on some "
+"platforms an incorrectly-aligned read or write may be much slower, and with "
+"wasm2js (``WASM=0``) it will be incorrect, as JavaScript Typed Arrays do not "
+"allow unaligned operations."
+msgstr ""
+
+#: ../../../source/docs/debugging/Sanitizers.rst:403
+msgid ""
+"**Reads or writes past the top of valid memory** as managed by ``sbrk()``, "
+"that is, memory that was not properly allocated by ``malloc()``. This is not "
+"specific to Wasm, however, in JavaScript if the address is big enough to be "
+"outside the Typed Array, ``undefined`` is returned which can be very "
+"confusing, which is why this was added (in Wasm at least an error is thrown; "
+"``SAFE_HEAP`` still helps with Wasm though, by checking the area between the "
+"top of ``sbrk()``'s memory and the end of the Wasm Memory)."
+msgstr ""
+
+#: ../../../source/docs/debugging/Sanitizers.rst:411
+msgid ""
+"``SAFE_HEAP`` does these checks by instrumenting every single load and "
+"store. That has the cost of slowing things down, but it does give a simple "
+"guarantee of finding *all* such problems. It can also be done after "
+"compilation, on an arbitrary Wasm binary, while the sanitizers must be done "
+"when compiling from source."
+msgstr ""
+
+#: ../../../source/docs/debugging/Sanitizers.rst:417
+msgid ""
+"In comparison, UBSan can also find null pointer reads and writes. It does "
+"not instrument every single load and store, however, as it is done during "
+"compilation of the source code, so the checks are added where clang knows "
+"they are needed. This is much more efficient, but there is a risk of codegen "
+"and optimizations changing something, or clang missing a specific location."
+msgstr ""
+
+#: ../../../source/docs/debugging/Sanitizers.rst:423
+msgid ""
+"ASan can find reads or writes of unallocated memory, which includes "
+"addresses above the ``sbrk()``-managed memory. It may be more efficient than "
+"``SAFE_HEAP`` in some cases: while it also checks every load and store, the "
+"LLVM optimizer is run after it adds those checks, which can remove some of "
+"them."
+msgstr ""

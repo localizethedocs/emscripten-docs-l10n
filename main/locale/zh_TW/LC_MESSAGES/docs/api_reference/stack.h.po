@@ -1,0 +1,63 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) Copyright &copy; 2015, Emscripten Contributors.
+# This file is distributed under the same license as the Emscripten package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Emscripten main\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-14 14:25+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: zh_TW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../../source/docs/api_reference/stack.h.rst:5
+msgid "stack.h"
+msgstr ""
+
+#: ../../../source/docs/api_reference/stack.h.rst:7
+msgid ""
+"The functions defined in `<emscripten/stack.h>` allow inspecting information "
+"about the WebAssembly data stack (sometimes called the \"user stack\" or the "
+"\"C stack\"). This data stack is the data contained within the linear memory "
+"(as opposed to the trusted call stack that is managed by the VM, and which "
+"is not visible to the running program)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/stack.h.rst:15
+msgid ""
+"Returns the starting address of the stack. This is the address that the "
+"stack pointer would point to when no bytes are in use on the stack."
+msgstr ""
+
+#: ../../../source/docs/api_reference/stack.h.rst:21
+msgid ""
+"Returns the end address of the stack. This is the address that the stack "
+"pointer would point to when the whole stack is in use. (The address pointed "
+"to by the end is not part of the stack itself). Note that the stack grows "
+"down so the address returned by `emscripten_stack_get_end()` is smaller "
+"than :c:func:`emscripten_stack_get_base()`."
+msgstr ""
+
+#: ../../../source/docs/api_reference/stack.h.rst:30
+msgid ""
+"Sets the internal values reported by :c:func:`emscripten_stack_get_base()` "
+"and :c:func:`emscripten_stack_get_end()`.  This should only be used by low "
+"level libraries such as asyncify fibers."
+msgstr ""
+
+#: ../../../source/docs/api_reference/stack.h.rst:36
+msgid "Returns the current stack pointer."
+msgstr ""
+
+#: ../../../source/docs/api_reference/stack.h.rst:40
+msgid ""
+"Returns the number of free bytes left on the stack.  This is required to be "
+"fast so that it can be called frequently."
+msgstr ""

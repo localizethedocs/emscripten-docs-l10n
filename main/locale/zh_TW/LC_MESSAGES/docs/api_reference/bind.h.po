@@ -1,0 +1,516 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) Copyright &copy; 2015, Emscripten Contributors.
+# This file is distributed under the same license as the Emscripten package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Emscripten main\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-14 14:25+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: zh_TW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../../source/docs/api_reference/bind.h.rst:5
+msgid "bind.h (under-construction)"
+msgstr ""
+
+#: ../../../source/docs/api_reference/bind.h.rst:7
+msgid ""
+"The C++ APIs in `bind.h <https://github.com/emscripten-core/emscripten/blob/"
+"main/system/include/emscripten/bind.h>`_ define"
+msgstr ""
+
+#: ../../../source/docs/api_reference/bind.h.rst:9
+msgid "Guide documentation for this API can be found in :ref:`Embind`."
+msgstr ""
+
+#: ../../../source/docs/api_reference/bind.h.rst:13
+msgid "Table of Contents"
+msgstr ""
+
+#: ../../../source/docs/api_reference/bind.h.rst:16
+msgid "How to use this API"
+msgstr ""
+
+#: ../../../source/docs/api_reference/bind.h.rst:20
+msgid "Defines"
+msgstr ""
+
+#: ../../../source/docs/api_reference/bind.h.rst:27
+msgid ""
+"This define is used to bind C++ classes, functions and other constructs to "
+"JavaScript. It is used differently depending on the construct being mapped — "
+"see the :ref:`embind guide <embind>` for examples."
+msgstr ""
+
+#: ../../../source/docs/api_reference/bind.h.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../../source/docs/api_reference/bind.h.rst:31
+msgid ""
+"This is a label to mark a group of related bindings (for example "
+"``EMSCRIPTEN_BINDINGS(physics)``, ``EMSCRIPTEN_BINDINGS(components)``, etc.)"
+msgstr ""
+
+#: ../../../source/docs/api_reference/bind.h.rst:47
+msgid "Policies"
+msgstr ""
+
+#: ../../../source/docs/api_reference/bind.h.rst:49
+msgid ""
+"Currently only :cpp:type:`allow_raw_pointers` policy is supported. "
+"Eventually we hope to implement `Boost.Python-like raw pointer policies "
+"<https://wiki.python.org/moin/boost.python/CallPolicy>`_ for managing object "
+"ownership."
+msgstr ""
+
+#: ../../../source/docs/api_reference/bind.h.rst:76
+msgid "This policy is used to allow raw pointers."
+msgstr ""
+
+#: ../../../source/docs/api_reference/bind.h.rst:91
+msgid "select_overload and select_const"
+msgstr ""
+
+#: ../../../source/docs/api_reference/bind.h.rst:137
+msgid "Functions"
+msgstr ""
+
+#: ../../../source/docs/api_reference/bind.h.rst:147
+msgid ""
+"Registers a function to export to JavaScript. This is called from within an :"
+"cpp:func:`EMSCRIPTEN_BINDINGS` block."
+msgstr ""
+
+#: ../../../source/docs/api_reference/bind.h.rst:150
+msgid "For example to export the function ``lerp()``"
+msgstr ""
+
+#: ../../../source/docs/api_reference/bind.h.rst:169
+msgid "The name of the function to export (e.g. ``\"lerp\"``)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/bind.h.rst:170
+msgid "Function pointer address for the exported function (e.g. ``&lerp``)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/bind.h.rst:171
+#: ../../../source/docs/api_reference/bind.h.rst:524
+#: ../../../source/docs/api_reference/bind.h.rst:556
+#: ../../../source/docs/api_reference/bind.h.rst:570
+#: ../../../source/docs/api_reference/bind.h.rst:641
+#: ../../../source/docs/api_reference/bind.h.rst:764
+msgid "|policies-argument|"
+msgstr ""
+
+#: ../../../source/docs/api_reference/bind.h.rst:176
+msgid "Value tuples"
+msgstr ""
+
+#: ../../../source/docs/api_reference/bind.h.rst:182
+#: ../../../source/docs/api_reference/bind.h.rst:223
+msgid ""
+"A typedef of ``ClassType``, the typename of the templated type for the class."
+msgstr ""
+
+#: ../../../source/docs/api_reference/bind.h.rst:187
+#: ../../../source/docs/api_reference/bind.h.rst:228
+#: ../../../source/docs/api_reference/bind.h.rst:370
+#: ../../../source/docs/api_reference/bind.h.rst:383
+#: ../../../source/docs/api_reference/bind.h.rst:495
+#: ../../../source/docs/api_reference/bind.h.rst:841
+msgid "Constructor."
+msgstr ""
+
+#: ../../../source/docs/api_reference/bind.h.rst:194
+#: ../../../source/docs/api_reference/bind.h.rst:235
+#: ../../../source/docs/api_reference/bind.h.rst:378
+msgid "Destructor."
+msgstr ""
+
+#: ../../../source/docs/api_reference/bind.h.rst:199
+msgid ""
+"Note that ``ElementType`` and ``InstanceType`` are typenames (templated "
+"types)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/bind.h.rst:204
+#: ../../../source/docs/api_reference/bind.h.rst:248
+msgid "Note that ``Getter`` is a typename (templated type)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/bind.h.rst:205
+#: ../../../source/docs/api_reference/bind.h.rst:249
+msgid "Note that ``Setter`` is a typename (templated type)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/bind.h.rst:210
+#: ../../../source/docs/api_reference/bind.h.rst:255
+msgid "Note that ``Index`` is an integer template parameter."
+msgstr ""
+
+#: ../../../source/docs/api_reference/bind.h.rst:217
+msgid "Value structs"
+msgstr ""
+
+#: ../../../source/docs/api_reference/bind.h.rst:259
+msgid "Smart pointers"
+msgstr ""
+
+#: ../../../source/docs/api_reference/bind.h.rst:0
+msgid "Returns"
+msgstr ""
+
+#: ../../../source/docs/api_reference/bind.h.rst:280
+msgid "Note that the ``PointerType`` returned is a typename (templated type)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/bind.h.rst:300
+msgid ""
+"A typedef for the PointerType::element_type, where ``PointerType`` is a "
+"typename (templated type)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/bind.h.rst:305
+msgid "Note that ``PointerType`` is a typename (templated type)"
+msgstr ""
+
+#: ../../../source/docs/api_reference/bind.h.rst:319
+msgid ""
+"A typedef to std::shared_ptr<PointeeType>, where ``PointeeType`` is a "
+"typename (templated type)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/bind.h.rst:323
+msgid "A typedef for the ``PointerType::element_type``."
+msgstr ""
+
+#: ../../../source/docs/api_reference/bind.h.rst:335
+msgid "Note that ``PointeeType`` is a typename (templated type)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/bind.h.rst:344
+msgid "Classes"
+msgstr ""
+
+#: ../../../source/docs/api_reference/bind.h.rst:357
+msgid "A typedef of ``T``, the typename of the templated type for the class."
+msgstr ""
+
+#: ../../../source/docs/api_reference/bind.h.rst:373
+#: ../../../source/docs/api_reference/bind.h.rst:386
+msgid "Note that ``Args`` is a typename (templated type)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/bind.h.rst:387
+msgid "Note that ``ReturnType`` is a typename (templated type)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/bind.h.rst:399
+msgid ""
+"A typedef of ``BaseClass``, the typename of the templated type for the class."
+msgstr ""
+
+#: ../../../source/docs/api_reference/bind.h.rst:404
+msgid "Note, is templated function which takes typename ``ClassType``."
+msgstr ""
+
+#: ../../../source/docs/api_reference/bind.h.rst:453
+msgid ""
+"Note that this is a templated struct taking typename parameter ``InputType`` "
+"and integer ``Index``."
+msgstr ""
+
+#: ../../../source/docs/api_reference/bind.h.rst:457
+msgid ""
+"This is a typedef to the parent struct typename parameter ``InputType``."
+msgstr ""
+
+#: ../../../source/docs/api_reference/bind.h.rst:462
+msgid ""
+"Note that this is a template struct taking typename ``... ConstructorArgs``."
+msgstr ""
+
+#: ../../../source/docs/api_reference/bind.h.rst:468
+msgid ""
+"Note that this is a templated class with typename parameters ``ClassType`` "
+"and ``BaseSpecifier``."
+msgstr ""
+
+#: ../../../source/docs/api_reference/bind.h.rst:472
+msgid "A typedef of ``ClassType`` (a typename for the class)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/bind.h.rst:477
+msgid "A typedef of ``BaseSpecifier`` (a typename for the class)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/bind.h.rst:509
+#: ../../../source/docs/api_reference/bind.h.rst:525
+#: ../../../source/docs/api_reference/bind.h.rst:557
+#: ../../../source/docs/api_reference/bind.h.rst:571
+#: ../../../source/docs/api_reference/bind.h.rst:589
+#: ../../../source/docs/api_reference/bind.h.rst:606
+#: ../../../source/docs/api_reference/bind.h.rst:642
+#: ../../../source/docs/api_reference/bind.h.rst:661
+#: ../../../source/docs/api_reference/bind.h.rst:688
+#: ../../../source/docs/api_reference/bind.h.rst:702
+#: ../../../source/docs/api_reference/bind.h.rst:721
+#: ../../../source/docs/api_reference/bind.h.rst:742
+#: ../../../source/docs/api_reference/bind.h.rst:765
+#: ../../../source/docs/api_reference/bind.h.rst:778
+msgid "|class_-function-returns|"
+msgstr ""
+
+#: ../../../source/docs/api_reference/bind.h.rst:522
+msgid ""
+"Zero-argument form of the class constructor. This invokes the natural "
+"constructor with the arguments specified in the template. See :ref:`embind-"
+"external-constructors` for more information."
+msgstr ""
+
+#: ../../../source/docs/api_reference/bind.h.rst:538
+msgid ""
+"Class constructor for objects that use a factory function to create the "
+"object.  This method will accept either a function pointer, ``std::"
+"function`` object or function object which will return a newly constructed "
+"object.  When the ``Callable`` is a function object the function signature "
+"must be explicitly specified in the ``Signature`` template parameter in the "
+"format ``ReturnType (Args...)``.  For ``Callable`` types other than function "
+"objects the method signature will be deduced."
+msgstr ""
+
+#: ../../../source/docs/api_reference/bind.h.rst:543
+msgid "The following are all valid calls to ``constructor``:"
+msgstr ""
+
+#: ../../../source/docs/api_reference/bind.h.rst:552
+msgid "See :ref:`embind-external-constructors` for more information."
+msgstr ""
+
+#: ../../../source/docs/api_reference/bind.h.rst:555
+#: ../../../source/docs/api_reference/bind.h.rst:640
+msgid ""
+"Note that ``Callable`` may be either a member function pointer, function "
+"pointer, ``std::function`` or function object."
+msgstr ""
+
+#: ../../../source/docs/api_reference/bind.h.rst:617
+msgid "This method is for declaring a method belonging to a class."
+msgstr ""
+
+#: ../../../source/docs/api_reference/bind.h.rst:619
+msgid ""
+"On the JavaScript side this is a function that gets bound as a property of "
+"the prototype. For example ``.function(\"myClassMember\", &MyClass::"
+"myClassMember)`` would bind ``myClassMember`` to ``MyClass.prototype."
+"myClassMember`` in the JavaScript.  This method will accept either a pointer-"
+"to-member-function, function pointer, ``std::function`` object or function "
+"object.  When the ``Callable`` is not a pointer-to-member-function it must "
+"accept the ``ClassType`` as the first (``this``) parameter.  When the "
+"``Callable`` is a function object the function signature must be explicitly "
+"specified in the ``Signature`` template parameter in the format ``ReturnType "
+"(Args...)``.  For ``Callable`` types other than function objects the method "
+"signature will be deduced."
+msgstr ""
+
+#: ../../../source/docs/api_reference/bind.h.rst:625
+msgid ""
+"A method name specified in the human-readable well-known symbol format (e."
+"g., ``@@iterator``) is bound using the named ``Symbol`` for JavaScript (e."
+"g., ``Symbol.iterator``)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/bind.h.rst:628
+msgid "The following are all valid calls to ``function``:"
+msgstr ""
+
+#: ../../../source/docs/api_reference/bind.h.rst:652
+msgid ""
+"Makes a bound class iterable in JavaScript by installing ``Symbol."
+"iterator``. This enables use with ``for...of`` loops, ``Array.from()``, and "
+"spread syntax."
+msgstr ""
+
+#: ../../../source/docs/api_reference/bind.h.rst:0
+msgid "Template Parameters"
+msgstr ""
+
+#: ../../../source/docs/api_reference/bind.h.rst:655
+msgid "The type of elements yielded by the iterator."
+msgstr ""
+
+#: ../../../source/docs/api_reference/bind.h.rst:657
+msgid "Name of the bound method that returns the number of elements."
+msgstr ""
+
+#: ../../../source/docs/api_reference/bind.h.rst:659
+msgid "Name of the bound method that retrieves an element by index."
+msgstr ""
+
+#: ../../../source/docs/api_reference/bind.h.rst:713
+msgid ""
+"Declare a read-only property with the specified ``fieldName`` on the class "
+"using the specified ``getter`` to retrieve the property value.  ``Getter`` "
+"may be either a class method, a function, a ``std::function`` or a function "
+"object.  When ``Getter`` is not pointer-to-member-function, it must accept "
+"an instance of the ``ClassType`` as the ``this`` argument.  When ``Getter`` "
+"is a function object, the property type must be specified as a template "
+"parameter as it cannot be deduced, e.g.: ``myClass."
+"property<int>(\"myIntProperty\", MyIntGetterFunctor());``"
+msgstr ""
+
+#: ../../../source/docs/api_reference/bind.h.rst:720
+#: ../../../source/docs/api_reference/bind.h.rst:740
+msgid "Note that ``Getter`` is a function template typename."
+msgstr ""
+
+#: ../../../source/docs/api_reference/bind.h.rst:732
+msgid ""
+"This is a function template taking typenames ``Setter`` and ``Getter``: "
+"``template<typename Getter, typename Setter>`` which declares a read-write "
+"property with the specified ``fieldName`` on the class. ``Getter`` and "
+"``Setter`` may be either a class method, a function, a ``std::function`` or "
+"a function object.  When ``Getter`` or ``Setter`` is not pointer-to-member-"
+"function, it must accept an instance of the ``ClassType`` as the ``this`` "
+"argument. When ``Getter`` or ``Setter`` is a function object, the property "
+"type must be specified as a template parameter as it cannot be deduced, e."
+"g.: ``myClass.property<int>(\"myIntProperty\", MyIntGetterFunctor(), "
+"MyIntSetterFunctor());``"
+msgstr ""
+
+#: ../../../source/docs/api_reference/bind.h.rst:741
+msgid "Note that ``Setter`` is a function template typename."
+msgstr ""
+
+#: ../../../source/docs/api_reference/bind.h.rst:752
+msgid "This method is for declaring a static function belonging to a class."
+msgstr ""
+
+#: ../../../source/docs/api_reference/bind.h.rst:754
+msgid ""
+"On the JavaScript side this is a function that gets bound as a property of "
+"the constructor. For example ``.class_function(\"myStaticFunction\", "
+"&MyClass::myStaticFunction)`` binds ``myStaticFunction`` to ``MyClass."
+"myStaticFunction``."
+msgstr ""
+
+#: ../../../source/docs/api_reference/bind.h.rst:759
+msgid ""
+"A method name specified in the human-readable well-known symbol format (e."
+"g., ``@@species``) is bound using the named ``Symbol`` for JavaScript (e.g., "
+"``Symbol.species``)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/bind.h.rst:785
+msgid "Vectors"
+msgstr ""
+
+#: ../../../source/docs/api_reference/bind.h.rst:795
+msgid "A function to register a ``std::vector<T>``."
+msgstr ""
+
+#: ../../../source/docs/api_reference/bind.h.rst:801
+msgid "Maps"
+msgstr ""
+
+#: ../../../source/docs/api_reference/bind.h.rst:811
+msgid "A function to register a ``std::map<K, V>``."
+msgstr ""
+
+#: ../../../source/docs/api_reference/bind.h.rst:818
+msgid "Enums"
+msgstr ""
+
+#: ../../../source/docs/api_reference/bind.h.rst:829
+msgid ""
+"Registers an enum to export to JavaScript. This is called from within an :"
+"cpp:func:`EMSCRIPTEN_BINDINGS` block and works with both C++98 enums and C+"
+"+11 \"enum classes\". See :ref:`embind-enums` for more information."
+msgstr ""
+
+#: ../../../source/docs/api_reference/bind.h.rst:836
+msgid "A typedef of ``EnumType`` (a typename for the class)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/bind.h.rst:843
+msgid "Name of the enum in JavaScript."
+msgstr ""
+
+#: ../../../source/docs/api_reference/bind.h.rst:844
+msgid ""
+"Determines how the enumerated values are represented in JavaScript.  "
+"Possible values:  - ``enum_value_type::object`` (default):   Values are "
+"JavaScript objects with a ``.value`` field.  - ``enum_value_type::"
+"number``:   Values are plain numbers matching their corresponding C++ "
+"values.  - ``enum_value_type::string``:   Values are strings containing "
+"their name."
+msgstr ""
+
+#: ../../../source/docs/api_reference/bind.h.rst:845
+msgid "Determines how the enumerated values are represented in JavaScript."
+msgstr ""
+
+#: ../../../source/docs/api_reference/bind.h.rst:847
+msgid "Possible values:"
+msgstr ""
+
+#: ../../../source/docs/api_reference/bind.h.rst:849
+msgid ""
+"``enum_value_type::object`` (default): Values are JavaScript objects with a "
+"``.value`` field."
+msgstr ""
+
+#: ../../../source/docs/api_reference/bind.h.rst:852
+msgid ""
+"``enum_value_type::number``: Values are plain numbers matching their "
+"corresponding C++ values."
+msgstr ""
+
+#: ../../../source/docs/api_reference/bind.h.rst:855
+msgid "``enum_value_type::string``: Values are strings containing their name."
+msgstr ""
+
+#: ../../../source/docs/api_reference/bind.h.rst:860
+msgid "Registers an enum value."
+msgstr ""
+
+#: ../../../source/docs/api_reference/bind.h.rst:862
+msgid "The name of the enumerated value."
+msgstr ""
+
+#: ../../../source/docs/api_reference/bind.h.rst:863
+msgid "The enumerated value."
+msgstr ""
+
+#: ../../../source/docs/api_reference/bind.h.rst:864
+msgid ""
+"A reference to the current object. This allows chaining of multiple enum "
+"values in the :cpp:func:`EMSCRIPTEN_BINDINGS` block."
+msgstr ""
+
+#: ../../../source/docs/api_reference/bind.h.rst:869
+msgid "Constants"
+msgstr ""
+
+#: ../../../source/docs/api_reference/bind.h.rst:879
+msgid ""
+"Registers a constant to export to JavaScript. This is called from within an :"
+"cpp:func:`EMSCRIPTEN_BINDINGS` block."
+msgstr ""
+
+#: ../../../source/docs/api_reference/bind.h.rst:888
+msgid "The name of the constant."
+msgstr ""
+
+#: ../../../source/docs/api_reference/bind.h.rst:889
+msgid "The constant type. This can be any type known to *embind*."
+msgstr ""

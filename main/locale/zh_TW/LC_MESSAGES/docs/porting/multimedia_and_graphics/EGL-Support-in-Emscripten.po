@@ -1,0 +1,376 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) Copyright &copy; 2015, Emscripten Contributors.
+# This file is distributed under the same license as the Emscripten package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Emscripten main\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-14 14:25+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: zh_TW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../../source/docs/porting/multimedia_and_graphics/EGL-Support-in-Emscripten.rst:5
+msgid "EGL Support in Emscripten"
+msgstr ""
+
+#: ../../../source/docs/porting/multimedia_and_graphics/EGL-Support-in-Emscripten.rst:7
+msgid "This article is under construction."
+msgstr ""
+
+#: ../../../source/docs/porting/multimedia_and_graphics/EGL-Support-in-Emscripten.rst:9
+msgid ""
+"Khronos Group publishes a specification called EGL, which is an API that "
+"handles (among other tasks) graphics context creation, rendering surface "
+"management, and interop between different Khronos Group graphics APIs "
+"(OpenGL, OpenGL ES, OpenVG). For detailed information, see the `Khronos EGL "
+"webpage <http://www.khronos.org/egl>`_."
+msgstr ""
+
+#: ../../../source/docs/porting/multimedia_and_graphics/EGL-Support-in-Emscripten.rst:11
+msgid ""
+"Currently, EGL is not very widely used across operating systems/graphics "
+"driver vendors. The most notable adoption is in the Android architecture, "
+"where EGL is the primary method for creating rendering contexts for OpenGL "
+"ES 1&2 when using the Android NDK. Also, Mesa has an implementation of the "
+"EGL specification in its `graphics driver <http://www.mesa3d.org/egl.html>`_."
+msgstr ""
+
+#: ../../../source/docs/porting/multimedia_and_graphics/EGL-Support-in-Emscripten.rst:13
+msgid ""
+"Emscripten also supplies an implementation of the EGL v1.4 specification. "
+"This allows C/C++ client code to use a (nearly) unified codebase for "
+"creating a GLES2 (WebGL) rendering context across Web, Linux (with Mesa) and "
+"Android NDK. The implementation of the EGL specification in Emscripten is "
+"not perfect, see the end of this page for a status chart."
+msgstr ""
+
+#: ../../../source/docs/porting/multimedia_and_graphics/EGL-Support-in-Emscripten.rst:16
+msgid "What EGL is not?"
+msgstr ""
+
+#: ../../../source/docs/porting/multimedia_and_graphics/EGL-Support-in-Emscripten.rst:18
+msgid ""
+"Somewhat disappointingly, EGL is not a self-sufficient complete solution for "
+"initializing GLES2 graphics rendering (on any platform, not just Emscripten) "
+"and overseeing various associated tasks. The specification is limited in its "
+"scope and lacks some features. In particular, EGL cannot help with the "
+"following tasks:"
+msgstr ""
+
+#: ../../../source/docs/porting/multimedia_and_graphics/EGL-Support-in-Emscripten.rst:20
+msgid ""
+"Creating a render window. The EGL specification does not specify how a "
+"target window is created to which to render to. One must use platform-"
+"specific native window system functions (X11, Win32 API, ANativeWindow) to "
+"first create a render window."
+msgstr ""
+
+#: ../../../source/docs/porting/multimedia_and_graphics/EGL-Support-in-Emscripten.rst:21
+msgid ""
+"Specifying render window size in arbitrary pixel increments. EGL does not "
+"have any functionality to request a desired size for the main render window, "
+"or to resize it."
+msgstr ""
+
+#: ../../../source/docs/porting/multimedia_and_graphics/EGL-Support-in-Emscripten.rst:22
+msgid ""
+"Specifying a fullscreen video mode/screen resolution. EGL cannot be used to "
+"control whether to render in a windowed or fullscreen mode, or to toggle "
+"between these at runtime."
+msgstr ""
+
+#: ../../../source/docs/porting/multimedia_and_graphics/EGL-Support-in-Emscripten.rst:24
+msgid ""
+"Therefore, for each platform, including Emscripten, there exists platform-"
+"specific means to perform these tasks."
+msgstr ""
+
+#: ../../../source/docs/porting/multimedia_and_graphics/EGL-Support-in-Emscripten.rst:27
+msgid "How to create a WebGL context using EGL?"
+msgstr ""
+
+#: ../../../source/docs/porting/multimedia_and_graphics/EGL-Support-in-Emscripten.rst:29
+msgid ""
+"In the web environment, WebGL is the technology used for 3D-accelerated "
+"rendering. WebGL is almost identical to GLES2, and because EGL does not "
+"apply at all for WebGL, for all purposes in this page, the terms WebGL and "
+"GLES2 are used interchangeably. Therefore to create a WebGL context, one "
+"uses EGL, and according to its wording, creates a GLES2 context."
+msgstr ""
+
+#: ../../../source/docs/porting/multimedia_and_graphics/EGL-Support-in-Emscripten.rst:33
+msgid "Initialization"
+msgstr ""
+
+#: ../../../source/docs/porting/multimedia_and_graphics/EGL-Support-in-Emscripten.rst:35
+msgid "Perform the following steps to create a GLES2 context using EGL:"
+msgstr ""
+
+#: ../../../source/docs/porting/multimedia_and_graphics/EGL-Support-in-Emscripten.rst:37
+msgid ""
+"Obtain a handle to an ``EGLDisplay`` object by calling ``eglGetDisplay``."
+msgstr ""
+
+#: ../../../source/docs/porting/multimedia_and_graphics/EGL-Support-in-Emscripten.rst:38
+msgid "Initialize EGL on that display by calling ``eglInitialize``."
+msgstr ""
+
+#: ../../../source/docs/porting/multimedia_and_graphics/EGL-Support-in-Emscripten.rst:39
+msgid ""
+"Call ``eglGetConfigs`` and/or ``eglChooseConfig`` one or multiple times to "
+"find the ``EGLConfig`` that represents the desired main render target "
+"parameters. To examine the attributes of an ``EGLConfig``, call "
+"``eglGetConfigAttrib``."
+msgstr ""
+
+#: ../../../source/docs/porting/multimedia_and_graphics/EGL-Support-in-Emscripten.rst:40
+msgid ""
+"At this point, one would use whatever platform-specific functions available "
+"(*X11*, *Win32 API*, *ANativeWindow*) to set up a native window to render "
+"to. For Emscripten, this step does not apply, and can be skipped."
+msgstr ""
+
+#: ../../../source/docs/porting/multimedia_and_graphics/EGL-Support-in-Emscripten.rst:41
+msgid ""
+"Create a main render target surface (``EGLSurface``) by calling "
+"``eglCreateWindowSurface`` with a valid display and config parameters. Set "
+"window and attribute list parameters to null."
+msgstr ""
+
+#: ../../../source/docs/porting/multimedia_and_graphics/EGL-Support-in-Emscripten.rst:42
+msgid ""
+"Create a GLES2 rendering context (``EGLContext``) by calling "
+"``eglCreateContext``, followed by a call to ``eglMakeCurrent`` to activate "
+"the rendering context. When creating the context, specify the context "
+"attribute ``EGL_CONTEXT_CLIENT_VERSION == 2``."
+msgstr ""
+
+#: ../../../source/docs/porting/multimedia_and_graphics/EGL-Support-in-Emscripten.rst:44
+msgid ""
+"After these steps, you have a set of EGL objects ``EGLDisplay``, "
+"``EGLConfig``, ``EGLSurface`` and ``EGLContext`` that represent the main "
+"GLES2 rendering context."
+msgstr ""
+
+#: ../../../source/docs/porting/multimedia_and_graphics/EGL-Support-in-Emscripten.rst:47
+msgid "Cleanup"
+msgstr ""
+
+#: ../../../source/docs/porting/multimedia_and_graphics/EGL-Support-in-Emscripten.rst:49
+msgid "The sequence to clean up at de-initialization is as follows:"
+msgstr ""
+
+#: ../../../source/docs/porting/multimedia_and_graphics/EGL-Support-in-Emscripten.rst:51
+msgid ""
+"Free up the currently active rendering context by calling "
+"``eglMakeCurrent(display, EGL_NO_SURFACE, EGL_NO_SURFACE, EGL_NO_CONTEXT)``."
+msgstr ""
+
+#: ../../../source/docs/porting/multimedia_and_graphics/EGL-Support-in-Emscripten.rst:52
+msgid ""
+"Deinitialize the ``EGLContext`` object by calling ``eglDestroyContext`` on "
+"it."
+msgstr ""
+
+#: ../../../source/docs/porting/multimedia_and_graphics/EGL-Support-in-Emscripten.rst:53
+msgid ""
+"Destroy all initialized ``EGLSurface`` objects by calling "
+"``eglDestroySurface`` on them."
+msgstr ""
+
+#: ../../../source/docs/porting/multimedia_and_graphics/EGL-Support-in-Emscripten.rst:54
+msgid "Deinitialize EGL altogether by calling ``eglTerminate(display)``."
+msgstr ""
+
+#: ../../../source/docs/porting/multimedia_and_graphics/EGL-Support-in-Emscripten.rst:55
+msgid ""
+"Delete the native rendering window. This step does not apply for Emscripten."
+msgstr ""
+
+#: ../../../source/docs/porting/multimedia_and_graphics/EGL-Support-in-Emscripten.rst:58
+msgid "Sample code"
+msgstr ""
+
+#: ../../../source/docs/porting/multimedia_and_graphics/EGL-Support-in-Emscripten.rst:60
+msgid ""
+"Example code for using EGL to initialize a WebGL context can be found in the "
+"sample applications in the `emscripten/test/third_party/glbook <https://"
+"github.com/emscripten-core/emscripten/tree/main/test/third_party/glbook>`_ "
+"directory, more specifically in the file `esUtil.c <https://github.com/"
+"emscripten-core/emscripten/blob/main/test/third_party/glbook/Common/esUtil."
+"c>`_."
+msgstr ""
+
+#: ../../../source/docs/porting/multimedia_and_graphics/EGL-Support-in-Emscripten.rst:63
+msgid "Implementation status and notes"
+msgstr ""
+
+#: ../../../source/docs/porting/multimedia_and_graphics/EGL-Support-in-Emscripten.rst:65
+msgid ""
+"This section lists all EGL v1.4 functions and describes their current "
+"implementation status in Emscripten."
+msgstr ""
+
+#: ../../../source/docs/porting/multimedia_and_graphics/EGL-Support-in-Emscripten.rst:68
+msgid "Fully implemented"
+msgstr ""
+
+#: ../../../source/docs/porting/multimedia_and_graphics/EGL-Support-in-Emscripten.rst:70
+msgid ""
+"``eglInitialize``, ``eglGetConfigs``, ``eglQueryContext``, "
+"``eglQueryString``, ``eglQuerySurface``, ``eglGetCurrentContext``, "
+"``glGetCurrentSurface``, ``eglGetCurrentDisplay``, ``eglReleaseThread``, "
+"``eglDestroySurface``, ``eglDestroyContext``: Implemented and should work "
+"according to the EGL v1.4 specification."
+msgstr ""
+
+#: ../../../source/docs/porting/multimedia_and_graphics/EGL-Support-in-Emscripten.rst:72
+msgid ""
+"``eglSwapBuffers``: Implemented, but this function cannot really control the "
+"swap behavior under WebGL. Calling this function is optional under "
+"Emscripten. In WebGL, the contents of the display are always presented to "
+"the screen only after the code yields its execution back to the browser, "
+"that is, when you return from the tick callback handler you passed to :c:"
+"func:`emscripten_set_main_loop`. The ``eglSwapBuffers`` function can however "
+"still be used to detect when a GL context loss event occurs."
+msgstr ""
+
+#: ../../../source/docs/porting/multimedia_and_graphics/EGL-Support-in-Emscripten.rst:74
+msgid ""
+"``eglGetDisplay``: Implemented according to the specification. Emscripten "
+"does not utilize multiple ``EGLNativeDisplayType`` objects, so pass in "
+"``EGL_DEFAULT_DISPLAY`` here. Emscripten currently actually ignores any "
+"value passed in here for Linux emulation purposes, but you should not rely "
+"on this in the future."
+msgstr ""
+
+#: ../../../source/docs/porting/multimedia_and_graphics/EGL-Support-in-Emscripten.rst:76
+msgid "``eglGetError``: Implemented according to the specification."
+msgstr ""
+
+#: ../../../source/docs/porting/multimedia_and_graphics/EGL-Support-in-Emscripten.rst:78
+msgid ""
+"According to the specification, ``eglGetError`` reports the single most "
+"recent error rather than the list of all previous errors. Don't call this "
+"function in a loop in the same way you would call ``glGetError``."
+msgstr ""
+
+#: ../../../source/docs/porting/multimedia_and_graphics/EGL-Support-in-Emscripten.rst:82
+msgid "Partially implemented"
+msgstr ""
+
+#: ../../../source/docs/porting/multimedia_and_graphics/EGL-Support-in-Emscripten.rst:84
+msgid ""
+"``eglChooseConfig``: Implemented as a stub, but this function does not do "
+"searching/filtering, and is at the moment identical to ``eglGetConfigs`` "
+"(`issue #643 <https://github.com/emscripten-core/emscripten/issues/643>`_)."
+msgstr ""
+
+#: ../../../source/docs/porting/multimedia_and_graphics/EGL-Support-in-Emscripten.rst:86
+msgid ""
+"``eglGetConfigAttrib``: Implemented. Querying for the attributes "
+"``EGL_BUFFER_SIZE``, ``EGL_ALPHA_SIZE``, ``EGL_BLUE_SIZE``, "
+"``EGL_GREEN_SIZE``, ``EGL_RED_SIZE``, ``EGL_DEPTH_SIZE`` and "
+"``EGL_STENCIL_SIZE`` currently return hardcoded default values (`issue #644 "
+"<https://github.com/emscripten-core/emscripten/issues/644>`_). The "
+"attributes ``EGL_MIN_SWAP_INTERVAL`` and ``EGL_MAX_SWAP_INTERVAL`` don't "
+"currently have any function. Instead, call :c:func:"
+"`emscripten_set_main_loop` to specify the main loop update rate."
+msgstr ""
+
+#: ../../../source/docs/porting/multimedia_and_graphics/EGL-Support-in-Emscripten.rst:88
+msgid ""
+"``eglCreateWindowSurface``: Implemented, except it is not possible to call "
+"this function multiple times to create multiple render windows."
+msgstr ""
+
+#: ../../../source/docs/porting/multimedia_and_graphics/EGL-Support-in-Emscripten.rst:90
+msgid ""
+"``eglCreateContext``: Implemented as a stub. It is not possible to call this "
+"function multiple times to create multiple contexts."
+msgstr ""
+
+#: ../../../source/docs/porting/multimedia_and_graphics/EGL-Support-in-Emscripten.rst:92
+msgid ""
+"``eglBindAPI``, ``eglQueryAPI``: Implemented, although these functions have "
+"little utility on Emscripten, since only the GLES2 client API is supported."
+msgstr ""
+
+#: ../../../source/docs/porting/multimedia_and_graphics/EGL-Support-in-Emscripten.rst:94
+msgid ""
+"``eglWaitClient``, ``eglWaitNative``: Implemented as no-op functions. These "
+"have no meaning on Emscripten."
+msgstr ""
+
+#: ../../../source/docs/porting/multimedia_and_graphics/EGL-Support-in-Emscripten.rst:96
+msgid ""
+"``eglSwapInterval``: Implemented as a no-op stub. Currently this function "
+"cannot set the vsync interval, or enable/disable it."
+msgstr ""
+
+#: ../../../source/docs/porting/multimedia_and_graphics/EGL-Support-in-Emscripten.rst:98
+msgid "``eglMakeCurrent``: Implemented as a no-op stub."
+msgstr ""
+
+#: ../../../source/docs/porting/multimedia_and_graphics/EGL-Support-in-Emscripten.rst:100
+msgid ""
+"``eglTerminate``: Implemented as a no-op function stub. JavaScript apps are "
+"not often shut down manually, but when closing the browser or switching the "
+"web page, the browser manages all teardown automatically. Therefore this "
+"function does not have a critical importance in Emscripten."
+msgstr ""
+
+#: ../../../source/docs/porting/multimedia_and_graphics/EGL-Support-in-Emscripten.rst:102
+msgid "``eglGetProcAddress``: Implemented, experimental."
+msgstr ""
+
+#: ../../../source/docs/porting/multimedia_and_graphics/EGL-Support-in-Emscripten.rst:105
+msgid "Missing functionality"
+msgstr ""
+
+#: ../../../source/docs/porting/multimedia_and_graphics/EGL-Support-in-Emscripten.rst:107
+msgid "The following functions are currently not implemented:"
+msgstr ""
+
+#: ../../../source/docs/porting/multimedia_and_graphics/EGL-Support-in-Emscripten.rst:109
+msgid ""
+"``eglCreatePbufferSurface``, ``eglCreatePixmapSurface``, "
+"``eglCreatePbufferFromClientBuffer``, ``eglSurfaceAttrib``, "
+"``eglBindTexImage``, ``eglReleaseTexImage``, ``eglWaitGL``, "
+"``eglCopyBuffers``."
+msgstr ""
+
+#: ../../../source/docs/porting/multimedia_and_graphics/EGL-Support-in-Emscripten.rst:111
+msgid ""
+"**Do not call**  these functions in Emscripten code, or the application will "
+"halt on trying to execute an undefined function."
+msgstr ""
+
+#: ../../../source/docs/porting/multimedia_and_graphics/EGL-Support-in-Emscripten.rst:114
+msgid "EGL extensions"
+msgstr ""
+
+#: ../../../source/docs/porting/multimedia_and_graphics/EGL-Support-in-Emscripten.rst:116
+msgid ""
+"Currently, Emscripten does not implement any extensions in the `EGL "
+"Extension Registry <http://www.khronos.org/registry/egl/>`_."
+msgstr ""
+
+#: ../../../source/docs/porting/multimedia_and_graphics/EGL-Support-in-Emscripten.rst:119
+msgid "EGL-related bugs and todos"
+msgstr ""
+
+#: ../../../source/docs/porting/multimedia_and_graphics/EGL-Support-in-Emscripten.rst:121
+msgid ""
+"The `Emscripten issue tracker <https://github.com/emscripten-core/emscripten/"
+"issues?labels=EGL&state=open>`_ lists EGL-related issues using the label "
+"EGL. Check that page to report or find issues in Emscripten related to EGL."
+msgstr ""

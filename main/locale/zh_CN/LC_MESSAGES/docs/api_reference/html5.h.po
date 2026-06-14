@@ -1,0 +1,3422 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) Copyright &copy; 2015, Emscripten Contributors.
+# This file is distributed under the same license as the Emscripten package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Emscripten main\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-14 14:25+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../../source/docs/api_reference/html5.h.rst:5
+msgid "html5.h"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:7
+msgid ""
+"The C++ APIs in `html5.h <https://github.com/emscripten-core/emscripten/blob/"
+"main/system/include/emscripten/html5.h>`_ define the Emscripten low-level "
+"glue bindings to interact with HTML5 events from native code."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:9
+msgid ""
+"The C++ APIs map closely to their :ref:`equivalent HTML5 JavaScript APIs "
+"<specifications-html5-api>`. The HTML5 specifications listed below provide "
+"additional detailed reference \"over and above\" the information provided in "
+"this document."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:11
+msgid ""
+"In addition, the :ref:`test-example-code-html5-api` can be reviewed to see "
+"how the code is used."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:15
+msgid ""
+"The HTML5 specifications for APIs that are mapped by **html5.h** include:"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:17
+msgid ""
+"`DOM Level 3 Events: Keyboard, Mouse, Mouse Wheel, Resize, Scroll, Focus "
+"<https://dvcs.w3.org/hg/dom3events/raw-file/tip/html/DOM3-Events.html>`_."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:18
+msgid ""
+"`Device Orientation Events for gyro and accelerometer <http://www.w3.org/TR/"
+"orientation-event/>`_."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:19
+msgid ""
+"`Screen Orientation Events for portrait/landscape handling <https://dvcs.w3."
+"org/hg/screen-orientation/raw-file/tip/Overview.html>`_."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:20
+msgid ""
+"`Fullscreen Events for browser canvas fullscreen modes transitioning "
+"<https://dvcs.w3.org/hg/fullscreen/raw-file/tip/Overview.html>`_."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:21
+msgid ""
+"`Pointer Lock Events for relative-mode mouse motion control <http://www.w3."
+"org/TR/pointerlock/>`_."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:22
+msgid ""
+"`Vibration API for mobile device haptic vibration feedback control <http://"
+"dev.w3.org/2009/dap/vibration/>`_."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:23
+msgid ""
+"`Page Visibility Events for power management control <http://www.w3.org/TR/"
+"page-visibility/>`_."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:24
+msgid "`Touch Events <http://www.w3.org/TR/touch-events/>`_."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:25
+msgid "`Gamepad API <http://www.w3.org/TR/gamepad/>`_."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:26
+msgid ""
+"`Beforeunload event <http://www.whatwg.org/specs/web-apps/current-work/"
+"multipage/history.html#beforeunloadevent>`_."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:27
+msgid ""
+"`WebGL context events <http://www.khronos.org/registry/webgl/specs/"
+"latest/1.0/#5.15.2>`_."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:28
+msgid ""
+"`Animation and timing <https://developer.mozilla.org/en-US/docs/Web/API/"
+"window/requestAnimationFrame>`_."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:29
+msgid "`Console <https://developer.mozilla.org/en-US/docs/Web/API/console>`_."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:30
+msgid ""
+"`Throw <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/"
+"Statements/throw>`_."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:35
+msgid "Table of Contents"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:38
+msgid "How to use this API"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:40
+msgid ""
+"Most of these APIs use an event-based architecture; functionality is "
+"accessed by registering a callback function that will be called when the "
+"event occurs."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:42
+msgid ""
+"The Gamepad API is currently an exception, as only a polling API is "
+"available. For some APIs, both an event-based and a polling-based model are "
+"exposed."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:47
+msgid "Registration functions"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:49
+msgid ""
+"The typical format of registration functions is as follows (some methods may "
+"omit various parameters):"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:63
+msgid ""
+"The ``target`` parameter is the ID of the HTML element to which the callback "
+"registration is to be applied. This field has the following special meanings:"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:65
+msgid ""
+"``EMSCRIPTEN_EVENT_TARGET_WINDOW``: The event listener is applied to the "
+"JavaScript ``window`` object."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:66
+msgid ""
+"``EMSCRIPTEN_EVENT_TARGET_DOCUMENT``: The event listener is applied to the "
+"JavaScript ``document`` object."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:67
+msgid ""
+"``EMSCRIPTEN_EVENT_TARGET_SCREEN``: The event listener is applied to the "
+"JavaScript ``window.screen`` object."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:68
+msgid ""
+"``0`` or ``NULL``: If building with the option ``-"
+"sDISABLE_DEPRECATED_FIND_EVENT_TARGET_BEHAVIOR`` (default), ``NULL`` denotes "
+"an invalid element. If building with legacy option ``-"
+"sDISABLE_DEPRECATED_FIND_EVENT_TARGET_BEHAVIOR=0`` (not recommended), a "
+"default element is chosen automatically based on the event type."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:69
+msgid ""
+"``#canvas``: If building with legacy option ``-"
+"sDISABLE_DEPRECATED_FIND_EVENT_TARGET_BEHAVIOR=0`` (not recommended), the "
+"event listener is applied to the Emscripten default WebGL canvas element. If "
+"building with the option ``-sDISABLE_DEPRECATED_FIND_EVENT_TARGET_BEHAVIOR`` "
+"(default), ``#canvas`` is interpreted as a CSS query selector: \"the first "
+"element with CSS ID 'canvas'\"."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:70
+msgid ""
+"Any other string: A CSS selector lookup is performed to the DOM with the "
+"passed string, and the event listener is applied to the first element that "
+"matches the query."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:72
+msgid ""
+"If the above are insufficient for you, you can add custom mappings in "
+"JavaScript using something like"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:79
+msgid ""
+"That will let ``!canvas`` map to the canvas held in Module.canvas. (You can "
+"write that JavaScript in an ``EM_JS`` or ``EM_ASM`` block that happens "
+"before you call the registration function, for example.)"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:85
+msgid ""
+"The ``userData`` parameter is a user-defined value that is passed "
+"(unchanged) to the registered event callback. This can be used to, for "
+"example, pass a pointer to a C++ class or similarly to enclose the C API in "
+"a clean object-oriented manner."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:89
+msgid ""
+"The ``useCapture`` parameter  maps to ``useCapture`` in `EventTarget."
+"addEventListener <https://developer.mozilla.org/en-US/docs/Web/API/"
+"EventTarget.addEventListener>`_. It indicates whether or not to initiate "
+"*capture*: if ``true`` the callback will be invoked only for the DOM capture "
+"and target phases; if ``false`` the callback will be triggered during the "
+"target and bubbling phases. See `DOM Level 3 Events <http://www.w3.org/"
+"TR/2003/NOTE-DOM-Level-3-Events-20031107/events.html#Events-phases>`_ for a "
+"more detailed explanation."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:91
+msgid ""
+"Most functions return the result using the type :c:data:`EMSCRIPTEN_RESULT`. "
+"Zero and positive values denote success. Negative values signal failure. "
+"None of the functions fail or abort by throwing a JavaScript or C++ "
+"exception. If a particular browser does not support the given feature, the "
+"value :c:data:`EMSCRIPTEN_RESULT_NOT_SUPPORTED` will be returned at the time "
+"the callback is registered."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:94
+msgid "Unregister function"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:96
+msgid ""
+"In order to unregister a single event handler callback, call the following "
+"function:"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:108
+msgid ""
+"The ``target``, ``userData`` and ``callback`` parameters are the same "
+"parameters provided in ``emscripten_set_some_callback`` with the only "
+"difference being that, since this function applies to all types of "
+"callbacks, the type of ``callback`` is ``void *``."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:110
+msgid ""
+"Note in particular that the value of ``userData`` will need to match with "
+"the call that was used to register the callback. If you are having trouble, "
+"double check the value of ``userData``."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:112
+msgid ""
+"The ``eventTypeId`` represents the event type, the same Id received in the "
+"callback functions."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:114
+msgid ""
+"The function returns ``EMSCRIPTEN_RESULT_SUCCESS`` when the event handler "
+"callback is removed and ``EMSCRIPTEN_RESULT_INVALID_PARAM`` otherwise."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:143
+#: ../../../source/docs/api_reference/html5.h.rst:345
+#: ../../../source/docs/api_reference/html5.h.rst:472
+#: ../../../source/docs/api_reference/html5.h.rst:574
+#: ../../../source/docs/api_reference/html5.h.rst:656
+#: ../../../source/docs/api_reference/html5.h.rst:734
+#: ../../../source/docs/api_reference/html5.h.rst:814
+#: ../../../source/docs/api_reference/html5.h.rst:905
+#: ../../../source/docs/api_reference/html5.h.rst:1004
+#: ../../../source/docs/api_reference/html5.h.rst:1204
+#: ../../../source/docs/api_reference/html5.h.rst:1332
+#: ../../../source/docs/api_reference/html5.h.rst:1475
+#: ../../../source/docs/api_reference/html5.h.rst:1604
+#: ../../../source/docs/api_reference/html5.h.rst:1713
+#: ../../../source/docs/api_reference/html5.h.rst:1835
+#: ../../../source/docs/api_reference/html5.h.rst:1917
+#: ../../../source/docs/api_reference/html5.h.rst:2054
+msgid "Callback functions"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:145
+msgid ""
+"When the event occurs the callback is invoked with the relevant event "
+"\"type\" (for example :c:data:`EMSCRIPTEN_EVENT_CLICK`), a ``struct`` "
+"containing the details of the event that occurred, and the ``userData`` that "
+"was originally passed to the registration function. The general format of "
+"the callback function is: ::"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:157
+msgid ""
+"Callback handlers that return a ``bool`` may specify ``true`` to signal that "
+"the handler *consumed* the event (this suppresses the default action for "
+"that event by calling its ``.preventDefault();`` member). Returning "
+"``false`` indicates that the event was not consumed — the default browser "
+"event action is carried out and the event is allowed to pass on/bubble up as "
+"normal."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:159
+msgid ""
+"Calling a registration function with a ``null`` pointer for the callback "
+"causes a de-registration of that callback from the given ``target`` element. "
+"All event handlers are also automatically unregistered when the C ``exit()`` "
+"function is invoked during the ``atexit`` handler pass. Either use the "
+"function :c:func:`emscripten_set_main_loop` or set ``Module.noExitRuntime = "
+"true;`` to make sure that leaving ``main()`` will not immediately cause an "
+"``exit()`` and clean up the event handlers."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:164
+msgid "Functions affected by web security"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:166
+msgid ""
+"Some functions, including :c:func:`emscripten_request_pointerlock` and :c:"
+"func:`emscripten_request_fullscreen`, are affected by web security."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:168
+msgid ""
+"While the functions can be called anywhere, the actual \"requests\" can only "
+"be raised inside the handler for a user-generated event (for example a key, "
+"mouse or touch press/release)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:170
+msgid ""
+"When porting code, it may be difficult to ensure that the functions are "
+"called inside appropriate event handlers (so that the requests are raised "
+"immediately). As a convenience, developers can set "
+"``deferUntilInEventHandler=true`` to automatically defer insecure requests "
+"until the user next presses a keyboard or mouse button. This simplifies "
+"porting, but often results in a poorer user experience. For example, the "
+"user must click once on the canvas to hide the pointer or transition to full "
+"screen."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:172
+msgid ""
+"Where possible, the functions should only be called inside appropriate event "
+"handlers. Setting ``deferUntilInEventHandler=false`` causes the functions to "
+"abort with an error if the request is refused due to a security restriction: "
+"this is a useful mechanism for discovering instances where the functions are "
+"called outside the handler for a user-generated event."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:178
+msgid "Test/Example code"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:180
+msgid "The HTML5 test code demonstrates how to use this API:"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:182
+msgid ""
+"`test_html5_core.c <https://github.com/emscripten-core/emscripten/blob/main/"
+"test/browser/test_html5_core.c>`_"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:183
+msgid ""
+"`test_html5_fullscreen.c <https://github.com/emscripten-core/emscripten/blob/"
+"main/test/browser/test_html5_fullscreen.c>`_"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:184
+msgid ""
+"`test_html5_mouse.c <https://github.com/emscripten-core/emscripten/blob/main/"
+"test/browser/test_html5_mouse.c>`_"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:188
+msgid "General types"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:193
+msgid ""
+"This is the Emscripten type for a UTF8 string (maps to a ``char``). This is "
+"used for node names, element ids, etc."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:197
+msgid "Function result values"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:199
+msgid ""
+"Most functions in this API return a result of type :c:data:"
+"`EMSCRIPTEN_RESULT`. None of the functions fail or abort by throwing a "
+"JavaScript or C++ exception. If a particular browser does not support the "
+"given feature, the value :c:data:`EMSCRIPTEN_RESULT_NOT_SUPPORTED` will be "
+"returned at the time the callback is registered."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:204
+msgid ""
+"This type is used to return the result of most functions in this API. Zero "
+"and positive values denote success, while negative values signal failure. "
+"Possible values are listed below."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:209
+msgid "The operation succeeded."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:213
+msgid ""
+"The requested operation cannot be completed now for :ref:`web security "
+"reasons<web-security-functions-html5-api>`, and has been deferred for "
+"completion in the next event handler."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:217
+msgid ""
+"The given operation is not supported by this browser or the target element. "
+"This value will be returned at the time the callback is registered if the "
+"operation is not supported."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:222
+msgid ""
+"The requested operation could not be completed now for :ref:`web security "
+"reasons<web-security-functions-html5-api>`. It failed because the user "
+"requested the operation not be deferred."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:226
+msgid "The operation failed because the specified target element is invalid."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:230
+msgid ""
+"The operation failed because the specified target element was not found."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:234
+msgid ""
+"The operation failed because an invalid parameter was passed to the function."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:238
+msgid ""
+"Generic failure result message, returned if no specific result is available."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:242
+msgid "The operation failed because no data is currently available."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:247
+msgid "Keys"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:250
+#: ../../../source/docs/api_reference/html5.h.rst:390
+#: ../../../source/docs/api_reference/html5.h.rst:530
+#: ../../../source/docs/api_reference/html5.h.rst:614
+#: ../../../source/docs/api_reference/html5.h.rst:702
+#: ../../../source/docs/api_reference/html5.h.rst:777
+#: ../../../source/docs/api_reference/html5.h.rst:864
+#: ../../../source/docs/api_reference/html5.h.rst:956
+#: ../../../source/docs/api_reference/html5.h.rst:1068
+#: ../../../source/docs/api_reference/html5.h.rst:1296
+#: ../../../source/docs/api_reference/html5.h.rst:1434
+#: ../../../source/docs/api_reference/html5.h.rst:1521
+#: ../../../source/docs/api_reference/html5.h.rst:1648
+#: ../../../source/docs/api_reference/html5.h.rst:1801
+#: ../../../source/docs/api_reference/html5.h.rst:1909
+#: ../../../source/docs/api_reference/html5.h.rst:1957
+msgid "Defines"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:256
+msgid "Emscripten key events."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:260
+msgid "The location of the key on the keyboard; one of the values below."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:267
+msgid "Locations of the key on the keyboard."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:270
+#: ../../../source/docs/api_reference/html5.h.rst:404
+#: ../../../source/docs/api_reference/html5.h.rst:550
+#: ../../../source/docs/api_reference/html5.h.rst:623
+#: ../../../source/docs/api_reference/html5.h.rst:713
+#: ../../../source/docs/api_reference/html5.h.rst:784
+#: ../../../source/docs/api_reference/html5.h.rst:872
+#: ../../../source/docs/api_reference/html5.h.rst:985
+#: ../../../source/docs/api_reference/html5.h.rst:1135
+#: ../../../source/docs/api_reference/html5.h.rst:1307
+#: ../../../source/docs/api_reference/html5.h.rst:1458
+#: ../../../source/docs/api_reference/html5.h.rst:1532
+#: ../../../source/docs/api_reference/html5.h.rst:1657
+#: ../../../source/docs/api_reference/html5.h.rst:1810
+#: ../../../source/docs/api_reference/html5.h.rst:1970
+msgid "Struct"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:274
+msgid ""
+"The event structure passed in `keyboard events <https://dvcs.w3.org/hg/"
+"dom3events/raw-file/tip/html/DOM3-Events.html#keys>`_: ``keypress``, "
+"``keydown`` and ``keyup``."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:276
+msgid ""
+"Note that since the `DOM Level 3 Events spec <https://dvcs.w3.org/hg/"
+"dom3events/raw-file/tip/html/DOM3-Events.html#keys>`_ is very recent at the "
+"time of writing (2014-03), uniform support for the different fields in the "
+"spec is still in flux. Be sure to check the results in multiple browsers. "
+"See the `unmerged pull request #2222 <https://github.com/emscripten-core/"
+"emscripten/pull/2222>`_ for an example of how to interpret the legacy key "
+"events."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:281
+#: ../../../source/docs/api_reference/html5.h.rst:413
+#: ../../../source/docs/api_reference/html5.h.rst:1583
+#: ../../../source/docs/api_reference/html5.h.rst:1666
+msgid "Absolute wallclock time when the data was recorded (milliseconds)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:285
+msgid "The printed representation of the pressed key."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:287
+msgid "Maximum size 32 ``char`` (i.e. ``EM_UTF8 key[32]``)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:291
+msgid ""
+"A string that identifies the physical key being pressed. The value is not "
+"affected by the current keyboard layout or modifier state, so a particular "
+"key will always return the same value."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:293
+msgid "Maximum size 32 ``char`` (i.e. ``EM_UTF8 code[32]``)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:297
+msgid ""
+"Indicates the location of the key on the keyboard. One of the :c:data:"
+"`DOM_KEY_LOCATION <DOM_KEY_LOCATION_STANDARD>` values."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:304
+msgid "Specifies which modifiers were active during the key event."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:308
+msgid "Specifies if this keyboard event represents a repeated press."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:312
+msgid ""
+"A locale string indicating the configured keyboard locale. This may be an "
+"empty string if the browser or device doesn't know the keyboard's locale."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:314
+msgid "Maximum size 32 char (i.e. ``EM_UTF8 locale[32]``)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:318
+msgid ""
+"The following fields are values from previous versions of the DOM key events "
+"specifications. See `the character representation of the key <https://"
+"developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent?redirectlocale=en-"
+"US&redirectslug=DOM%2FKeyboardEvent>`_. This is the field ``char`` from the "
+"docs, but renamed to ``charValue`` to avoid a C reserved word."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:320
+msgid "Maximum size 32 ``char`` (i.e. ``EM_UTF8 charValue[32]``)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:322
+msgid "This attribute has been dropped from DOM Level 3 events."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:326
+msgid ""
+"The Unicode reference number of the key; this attribute is used only by the "
+"keypress event. For keys whose ``char`` attribute contains multiple "
+"characters, this is the Unicode value of the first character in that "
+"attribute."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:328
+#: ../../../source/docs/api_reference/html5.h.rst:334
+msgid ""
+"This attribute is deprecated, you should use the field ``key`` instead, if "
+"available."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:332
+msgid ""
+"A system and implementation dependent numerical code identifying the "
+"unmodified value of the pressed key."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:339
+msgid ""
+"A system and implementation dependent numeric code identifying the "
+"unmodified value of the pressed key; this is usually the same as ``keyCode``."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:341
+msgid ""
+"This attribute is deprecated, you should use the field ``key`` instead, if "
+"available. Note though that while this field is deprecated, the cross-"
+"browser support for ``which`` may be better than for the other fields, so "
+"experimentation is recommended. Read issue https://github.com/emscripten-"
+"core/emscripten/issues/2817 for more information."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:349
+msgid ""
+"Function pointer for the :c:func:`keypress callback functions "
+"<emscripten_set_keypress_callback>`, defined as:"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:0
+msgid "param int eventType"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:355
+msgid "The type of :c:data:`key event <EMSCRIPTEN_EVENT_KEYPRESS>`."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:0
+msgid "param keyEvent"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:356
+msgid "Information about the key event that occurred."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:0
+msgid "type keyEvent"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:357
+msgid "const EmscriptenKeyboardEvent*"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:0
+msgid "param void* userData"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:358
+#: ../../../source/docs/api_reference/html5.h.rst:485
+#: ../../../source/docs/api_reference/html5.h.rst:587
+#: ../../../source/docs/api_reference/html5.h.rst:669
+#: ../../../source/docs/api_reference/html5.h.rst:747
+#: ../../../source/docs/api_reference/html5.h.rst:827
+#: ../../../source/docs/api_reference/html5.h.rst:918
+#: ../../../source/docs/api_reference/html5.h.rst:1017
+#: ../../../source/docs/api_reference/html5.h.rst:1217
+#: ../../../source/docs/api_reference/html5.h.rst:1345
+#: ../../../source/docs/api_reference/html5.h.rst:1359
+#: ../../../source/docs/api_reference/html5.h.rst:1488
+#: ../../../source/docs/api_reference/html5.h.rst:1618
+#: ../../../source/docs/api_reference/html5.h.rst:1726
+#: ../../../source/docs/api_reference/html5.h.rst:1848
+#: ../../../source/docs/api_reference/html5.h.rst:1930
+#: ../../../source/docs/api_reference/html5.h.rst:2068
+msgid "The ``userData`` originally passed to the registration function."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:0
+msgid "returns"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:359
+#: ../../../source/docs/api_reference/html5.h.rst:486
+#: ../../../source/docs/api_reference/html5.h.rst:588
+#: ../../../source/docs/api_reference/html5.h.rst:670
+#: ../../../source/docs/api_reference/html5.h.rst:748
+#: ../../../source/docs/api_reference/html5.h.rst:828
+#: ../../../source/docs/api_reference/html5.h.rst:919
+#: ../../../source/docs/api_reference/html5.h.rst:1018
+#: ../../../source/docs/api_reference/html5.h.rst:1218
+#: ../../../source/docs/api_reference/html5.h.rst:1346
+#: ../../../source/docs/api_reference/html5.h.rst:1360
+#: ../../../source/docs/api_reference/html5.h.rst:1489
+#: ../../../source/docs/api_reference/html5.h.rst:1619
+#: ../../../source/docs/api_reference/html5.h.rst:1727
+#: ../../../source/docs/api_reference/html5.h.rst:1849
+#: ../../../source/docs/api_reference/html5.h.rst:2069
+msgid "|callback-handler-return-value-doc|"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:0
+msgid "rtype"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:360
+#: ../../../source/docs/api_reference/html5.h.rst:487
+#: ../../../source/docs/api_reference/html5.h.rst:589
+#: ../../../source/docs/api_reference/html5.h.rst:671
+#: ../../../source/docs/api_reference/html5.h.rst:749
+#: ../../../source/docs/api_reference/html5.h.rst:829
+#: ../../../source/docs/api_reference/html5.h.rst:920
+#: ../../../source/docs/api_reference/html5.h.rst:1019
+#: ../../../source/docs/api_reference/html5.h.rst:1219
+#: ../../../source/docs/api_reference/html5.h.rst:1347
+#: ../../../source/docs/api_reference/html5.h.rst:1361
+#: ../../../source/docs/api_reference/html5.h.rst:1490
+#: ../../../source/docs/api_reference/html5.h.rst:1620
+#: ../../../source/docs/api_reference/html5.h.rst:1728
+#: ../../../source/docs/api_reference/html5.h.rst:1850
+#: ../../../source/docs/api_reference/html5.h.rst:2070
+#: ../../../source/docs/api_reference/html5.h.rst:2099
+#: ../../../source/docs/api_reference/html5.h.rst:2196
+msgid "bool"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:364
+#: ../../../source/docs/api_reference/html5.h.rst:492
+#: ../../../source/docs/api_reference/html5.h.rst:594
+#: ../../../source/docs/api_reference/html5.h.rst:675
+#: ../../../source/docs/api_reference/html5.h.rst:754
+#: ../../../source/docs/api_reference/html5.h.rst:834
+#: ../../../source/docs/api_reference/html5.h.rst:926
+#: ../../../source/docs/api_reference/html5.h.rst:1023
+#: ../../../source/docs/api_reference/html5.h.rst:1224
+#: ../../../source/docs/api_reference/html5.h.rst:1366
+#: ../../../source/docs/api_reference/html5.h.rst:1494
+#: ../../../source/docs/api_reference/html5.h.rst:1625
+#: ../../../source/docs/api_reference/html5.h.rst:1733
+#: ../../../source/docs/api_reference/html5.h.rst:1855
+#: ../../../source/docs/api_reference/html5.h.rst:1883
+#: ../../../source/docs/api_reference/html5.h.rst:1937
+#: ../../../source/docs/api_reference/html5.h.rst:2075
+#: ../../../source/docs/api_reference/html5.h.rst:2223
+#: ../../../source/docs/api_reference/html5.h.rst:2278
+#: ../../../source/docs/api_reference/html5.h.rst:2422
+msgid "Functions"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:370
+msgid ""
+"Registers a callback function for receiving browser-generated keyboard input "
+"events."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:372
+#: ../../../source/docs/api_reference/html5.h.rst:504
+#: ../../../source/docs/api_reference/html5.h.rst:600
+#: ../../../source/docs/api_reference/html5.h.rst:687
+#: ../../../source/docs/api_reference/html5.h.rst:763
+#: ../../../source/docs/api_reference/html5.h.rst:1230
+#: ../../../source/docs/api_reference/html5.h.rst:1257
+#: ../../../source/docs/api_reference/html5.h.rst:1374
+#: ../../../source/docs/api_reference/html5.h.rst:1388
+#: ../../../source/docs/api_reference/html5.h.rst:1414
+#: ../../../source/docs/api_reference/html5.h.rst:1634
+#: ../../../source/docs/api_reference/html5.h.rst:2083
+msgid "|target-parameter-doc|"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:374
+#: ../../../source/docs/api_reference/html5.h.rst:506
+#: ../../../source/docs/api_reference/html5.h.rst:602
+#: ../../../source/docs/api_reference/html5.h.rst:689
+#: ../../../source/docs/api_reference/html5.h.rst:765
+#: ../../../source/docs/api_reference/html5.h.rst:840
+#: ../../../source/docs/api_reference/html5.h.rst:932
+#: ../../../source/docs/api_reference/html5.h.rst:1029
+#: ../../../source/docs/api_reference/html5.h.rst:1232
+#: ../../../source/docs/api_reference/html5.h.rst:1376
+#: ../../../source/docs/api_reference/html5.h.rst:1390
+#: ../../../source/docs/api_reference/html5.h.rst:1500
+#: ../../../source/docs/api_reference/html5.h.rst:1636
+#: ../../../source/docs/api_reference/html5.h.rst:1740
+#: ../../../source/docs/api_reference/html5.h.rst:1862
+#: ../../../source/docs/api_reference/html5.h.rst:1946
+#: ../../../source/docs/api_reference/html5.h.rst:2085
+msgid "|userData-parameter-doc|"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:375
+#: ../../../source/docs/api_reference/html5.h.rst:507
+#: ../../../source/docs/api_reference/html5.h.rst:603
+#: ../../../source/docs/api_reference/html5.h.rst:690
+#: ../../../source/docs/api_reference/html5.h.rst:766
+#: ../../../source/docs/api_reference/html5.h.rst:841
+#: ../../../source/docs/api_reference/html5.h.rst:933
+#: ../../../source/docs/api_reference/html5.h.rst:1030
+#: ../../../source/docs/api_reference/html5.h.rst:1233
+#: ../../../source/docs/api_reference/html5.h.rst:1377
+#: ../../../source/docs/api_reference/html5.h.rst:1391
+#: ../../../source/docs/api_reference/html5.h.rst:1501
+#: ../../../source/docs/api_reference/html5.h.rst:1637
+#: ../../../source/docs/api_reference/html5.h.rst:1741
+#: ../../../source/docs/api_reference/html5.h.rst:2086
+msgid "|useCapture-parameter-doc|"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:376
+#: ../../../source/docs/api_reference/html5.h.rst:508
+#: ../../../source/docs/api_reference/html5.h.rst:604
+#: ../../../source/docs/api_reference/html5.h.rst:691
+#: ../../../source/docs/api_reference/html5.h.rst:767
+#: ../../../source/docs/api_reference/html5.h.rst:842
+#: ../../../source/docs/api_reference/html5.h.rst:934
+#: ../../../source/docs/api_reference/html5.h.rst:1031
+#: ../../../source/docs/api_reference/html5.h.rst:1234
+#: ../../../source/docs/api_reference/html5.h.rst:1378
+#: ../../../source/docs/api_reference/html5.h.rst:1392
+#: ../../../source/docs/api_reference/html5.h.rst:1502
+#: ../../../source/docs/api_reference/html5.h.rst:1638
+#: ../../../source/docs/api_reference/html5.h.rst:1742
+#: ../../../source/docs/api_reference/html5.h.rst:1863
+#: ../../../source/docs/api_reference/html5.h.rst:1947
+#: ../../../source/docs/api_reference/html5.h.rst:2087
+msgid "|callback-function-parameter-doc|"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:0
+msgid "Returns"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:377
+#: ../../../source/docs/api_reference/html5.h.rst:509
+#: ../../../source/docs/api_reference/html5.h.rst:521
+#: ../../../source/docs/api_reference/html5.h.rst:605
+#: ../../../source/docs/api_reference/html5.h.rst:692
+#: ../../../source/docs/api_reference/html5.h.rst:768
+#: ../../../source/docs/api_reference/html5.h.rst:843
+#: ../../../source/docs/api_reference/html5.h.rst:855
+#: ../../../source/docs/api_reference/html5.h.rst:935
+#: ../../../source/docs/api_reference/html5.h.rst:947
+#: ../../../source/docs/api_reference/html5.h.rst:1032
+#: ../../../source/docs/api_reference/html5.h.rst:1042
+#: ../../../source/docs/api_reference/html5.h.rst:1051
+#: ../../../source/docs/api_reference/html5.h.rst:1059
+#: ../../../source/docs/api_reference/html5.h.rst:1235
+#: ../../../source/docs/api_reference/html5.h.rst:1245
+#: ../../../source/docs/api_reference/html5.h.rst:1261
+#: ../../../source/docs/api_reference/html5.h.rst:1279
+#: ../../../source/docs/api_reference/html5.h.rst:1379
+#: ../../../source/docs/api_reference/html5.h.rst:1393
+#: ../../../source/docs/api_reference/html5.h.rst:1403
+#: ../../../source/docs/api_reference/html5.h.rst:1417
+#: ../../../source/docs/api_reference/html5.h.rst:1425
+#: ../../../source/docs/api_reference/html5.h.rst:1503
+#: ../../../source/docs/api_reference/html5.h.rst:1512
+#: ../../../source/docs/api_reference/html5.h.rst:1639
+#: ../../../source/docs/api_reference/html5.h.rst:1743
+#: ../../../source/docs/api_reference/html5.h.rst:1792
+#: ../../../source/docs/api_reference/html5.h.rst:1864
+#: ../../../source/docs/api_reference/html5.h.rst:1874
+#: ../../../source/docs/api_reference/html5.h.rst:1891
+#: ../../../source/docs/api_reference/html5.h.rst:1901
+#: ../../../source/docs/api_reference/html5.h.rst:1948
+#: ../../../source/docs/api_reference/html5.h.rst:2088
+#: ../../../source/docs/api_reference/html5.h.rst:2139
+#: ../../../source/docs/api_reference/html5.h.rst:2175
+#: ../../../source/docs/api_reference/html5.h.rst:2184
+#: ../../../source/docs/api_reference/html5.h.rst:2234
+#: ../../../source/docs/api_reference/html5.h.rst:2246
+msgid ":c:data:`EMSCRIPTEN_RESULT_SUCCESS`, or one of the other result values."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:0
+msgid "Return type"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:378
+#: ../../../source/docs/api_reference/html5.h.rst:510
+#: ../../../source/docs/api_reference/html5.h.rst:522
+#: ../../../source/docs/api_reference/html5.h.rst:606
+#: ../../../source/docs/api_reference/html5.h.rst:693
+#: ../../../source/docs/api_reference/html5.h.rst:769
+#: ../../../source/docs/api_reference/html5.h.rst:844
+#: ../../../source/docs/api_reference/html5.h.rst:856
+#: ../../../source/docs/api_reference/html5.h.rst:936
+#: ../../../source/docs/api_reference/html5.h.rst:948
+#: ../../../source/docs/api_reference/html5.h.rst:1033
+#: ../../../source/docs/api_reference/html5.h.rst:1043
+#: ../../../source/docs/api_reference/html5.h.rst:1052
+#: ../../../source/docs/api_reference/html5.h.rst:1060
+#: ../../../source/docs/api_reference/html5.h.rst:1236
+#: ../../../source/docs/api_reference/html5.h.rst:1246
+#: ../../../source/docs/api_reference/html5.h.rst:1280
+#: ../../../source/docs/api_reference/html5.h.rst:1380
+#: ../../../source/docs/api_reference/html5.h.rst:1394
+#: ../../../source/docs/api_reference/html5.h.rst:1404
+#: ../../../source/docs/api_reference/html5.h.rst:1418
+#: ../../../source/docs/api_reference/html5.h.rst:1426
+#: ../../../source/docs/api_reference/html5.h.rst:1504
+#: ../../../source/docs/api_reference/html5.h.rst:1513
+#: ../../../source/docs/api_reference/html5.h.rst:1640
+#: ../../../source/docs/api_reference/html5.h.rst:1744
+#: ../../../source/docs/api_reference/html5.h.rst:1793
+#: ../../../source/docs/api_reference/html5.h.rst:1865
+#: ../../../source/docs/api_reference/html5.h.rst:1875
+#: ../../../source/docs/api_reference/html5.h.rst:1892
+#: ../../../source/docs/api_reference/html5.h.rst:1902
+#: ../../../source/docs/api_reference/html5.h.rst:1949
+#: ../../../source/docs/api_reference/html5.h.rst:2089
+#: ../../../source/docs/api_reference/html5.h.rst:2140
+#: ../../../source/docs/api_reference/html5.h.rst:2165
+#: ../../../source/docs/api_reference/html5.h.rst:2176
+#: ../../../source/docs/api_reference/html5.h.rst:2185
+#: ../../../source/docs/api_reference/html5.h.rst:2235
+#: ../../../source/docs/api_reference/html5.h.rst:2247
+msgid "|EMSCRIPTEN_RESULT|"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:0
+msgid "see also"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:381
+msgid "https://developer.mozilla.org/en/DOM/Event/UIEvent/KeyEvent"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:382
+msgid "http://www.javascriptkit.com/jsref/eventkeyboardmouse.shtml"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:384
+msgid ""
+"To receive events, the element must be focusable, see https://github.com/"
+"emscripten-core/emscripten/pull/7484#issuecomment-437887001"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:387
+msgid "Mouse"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:400
+msgid "Emscripten mouse events."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:408
+msgid ""
+"The event structure passed in `mouse events <https://dvcs.w3.org/hg/"
+"dom3events/raw-file/tip/html/DOM3-Events.html#interface-MouseEvent>`_: "
+"`click <https://dvcs.w3.org/hg/dom3events/raw-file/tip/html/DOM3-Events."
+"html#event-type-click>`_, `mousedown <https://dvcs.w3.org/hg/dom3events/raw-"
+"file/tip/html/DOM3-Events.html#event-type-mousedown>`_, `mouseup <https://"
+"dvcs.w3.org/hg/dom3events/raw-file/tip/html/DOM3-Events.html#event-type-"
+"mouseup>`_, `dblclick <https://dvcs.w3.org/hg/dom3events/raw-file/tip/html/"
+"DOM3-Events.html#event-type-dblclick>`_, `mousemove <https://dvcs.w3.org/hg/"
+"dom3events/raw-file/tip/html/DOM3-Events.html#event-type-mousemove>`_, "
+"`mouseenter <https://dvcs.w3.org/hg/dom3events/raw-file/tip/html/DOM3-Events."
+"html#event-type-mouseenter>`_ and `mouseleave <https://dvcs.w3.org/hg/"
+"dom3events/raw-file/tip/html/DOM3-Events.html#event-type-mouseleave>`_."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:418
+msgid "The coordinates relative to the browser screen coordinate system."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:423
+msgid "The coordinates relative to the viewport associated with the event."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:431
+msgid "Specifies which modifiers were active during the mouse event."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:436
+msgid ""
+"Identifies which pointer device button changed state (see `MouseEvent.button "
+"<https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent.button>`_):"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:438
+msgid "0 : Left button"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:439
+msgid "1 : Middle button (if present)"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:440
+msgid "2 : Right button"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:445
+msgid ""
+"A bitmask that indicates which combinations of mouse buttons were being held "
+"down at the time of the event."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:450
+msgid ""
+"If pointer lock is active, these two extra fields give relative mouse "
+"movement since the last event."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:455
+msgid ""
+"These fields give the mouse coordinates mapped relative to the coordinate "
+"space of the target DOM element receiving the input events (Emscripten-"
+"specific extension; coordinates are rounded down to the nearest integer)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:461
+msgid ""
+"These fields give the mouse coordinates mapped to the Emscripten canvas "
+"client area (Emscripten-specific extension; coordinates are rounded down to "
+"the nearest integer)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:466
+msgid "Internal, and can be ignored."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:468
+msgid ""
+"Implementers only: pad this struct to multiple of 8 bytes to make "
+"``WheelEvent`` unambiguously align to 8 bytes."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:476
+msgid ""
+"Function pointer for the :c:func:`mouse event callback functions "
+"<emscripten_set_click_callback>`, defined as:"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:482
+msgid "The type of :c:data:`mouse event <EMSCRIPTEN_EVENT_CLICK>`."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:0
+msgid "param mouseEvent"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:483
+msgid "Information about the mouse event that occurred."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:0
+msgid "type mouseEvent"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:484
+msgid "const EmscriptenMouseEvent*"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:502
+msgid ""
+"Registers a callback function for receiving browser-generated `mouse input "
+"events <https://developer.mozilla.org/en/DOM/MouseEvent>`_."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:516
+msgid "Returns the most recently received mouse event state."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:518
+msgid ""
+"Note that for this function call to succeed, :c:func:"
+"`emscripten_set_xxx_callback <emscripten_set_click_callback>` must have "
+"first been called with one of the mouse event types and a non-zero callback "
+"function pointer to enable the mouse state capture."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:520
+msgid "The most recently received mouse event state."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:527
+msgid "Wheel"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:534
+msgid "Emscripten wheel event."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:538
+msgid ""
+"The units of measurement for the delta must be pixels (from `spec <http://"
+"www.w3.org/TR/DOM-Level-3-Events/#constants-1)>`_)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:542
+msgid ""
+"The units of measurement for the delta must be individual lines of text "
+"(from `spec <http://www.w3.org/TR/DOM-Level-3-Events/#constants-1)>`_)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:546
+msgid ""
+"The units of measurement for the delta must be pages, either defined as a "
+"single screen or as a demarcated page (from `spec <http://www.w3.org/TR/DOM-"
+"Level-3-Events/#constants-1)>`_)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:554
+msgid ""
+"The event structure passed in `mousewheel events <http://www.w3.org/TR/DOM-"
+"Level-3-Events/#event-type-wheel>`_."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:558
+msgid "Specifies general mouse information related to this event."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:564
+msgid ""
+"Movement of the wheel on each of the axes. Note that these values may be "
+"fractional, so you should avoid simply casting them to integer, or it might "
+"result in scroll values of 0. The positive Y scroll direction is when "
+"scrolling the page downwards (page CSS pixel +Y direction), which "
+"corresponds to scrolling the mouse wheel downwards (away from the screen) on "
+"Windows, Linux, and also on macOS when the 'natural scroll' option is "
+"disabled."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:570
+msgid ""
+"One of the :c:data:`DOM_DELTA_<DOM_DELTA_PIXEL>` values that indicates the "
+"units of measurement for the delta values."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:578
+msgid ""
+"Function pointer for the :c:func:`wheel event callback functions "
+"<emscripten_set_wheel_callback>`, defined as:"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:584
+msgid "The type of wheel event (:c:data:`EMSCRIPTEN_EVENT_WHEEL`)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:0
+msgid "param wheelEvent"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:585
+msgid "Information about the wheel event that occurred."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:0
+msgid "type wheelEvent"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:586
+msgid "const EmscriptenWheelEvent*"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:598
+msgid ""
+"Registers a callback function for receiving browser-generated `mousewheel "
+"events <http://www.w3.org/TR/DOM-Level-3-Events/#event-type-wheel>`_."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:611
+msgid "UI"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:619
+msgid "Emscripten UI events."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:627
+msgid ""
+"The event structure passed in DOM element `UIEvent <https://dvcs.w3.org/hg/"
+"dom3events/raw-file/tip/html/DOM3-Events.html#interface-UIEvent>`_ events: "
+"`resize <https://dvcs.w3.org/hg/dom3events/raw-file/tip/html/DOM3-Events."
+"html#event-type-resize>`_ and `scroll <https://dvcs.w3.org/hg/dom3events/raw-"
+"file/tip/html/DOM3-Events.html#event-type-scroll>`_."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:632
+msgid "For resize and scroll events this is always zero."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:637
+msgid "The clientWidth/clientHeight of the ``document.body`` element."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:642
+msgid "The innerWidth/innerHeight of the browser window."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:647
+msgid "The outerWidth/outerHeight of the browser window."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:652
+msgid "The page scroll position (rounded down to the nearest pixel)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:660
+msgid ""
+"Function pointer for the :c:func:`UI event callback functions "
+"<emscripten_set_resize_callback>`, defined as:"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:666
+msgid "The type of UI event (:c:data:`EMSCRIPTEN_EVENT_RESIZE`)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:0
+msgid "param uiEvent"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:667
+msgid "Information about the UI event that occurred."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:0
+msgid "type uiEvent"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:668
+msgid "const EmscriptenUiEvent*"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:680
+msgid ""
+"Registers a callback function for receiving DOM element `resize <https://"
+"dvcs.w3.org/hg/dom3events/raw-file/tip/html/DOM3-Events.html#event-type-"
+"resize>`_ and `scroll <https://dvcs.w3.org/hg/dom3events/raw-file/tip/html/"
+"DOM3-Events.html#event-type-scroll>`_ events."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:684
+msgid ""
+"For the ``resize`` callback, pass in target = "
+"``EMSCRIPTEN_EVENT_TARGET_WINDOW`` to get ``resize`` events from the "
+"``Window`` object."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:685
+msgid ""
+"The DOM3 Events specification only requires that the ``Window`` object sends "
+"resize events. It is valid to register a ``resize`` callback on other DOM "
+"elements, but the browser is not required to fire ``resize`` events for "
+"these."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:699
+msgid "Focus"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:709
+msgid "Emscripten focus events."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:717
+msgid ""
+"The event structure passed in DOM element `blur <https://dvcs.w3.org/hg/"
+"dom3events/raw-file/tip/html/DOM3-Events.html#event-type-blur>`_, `focus "
+"<https://dvcs.w3.org/hg/dom3events/raw-file/tip/html/DOM3-Events.html#event-"
+"type-focus>`_, `focusin <https://dvcs.w3.org/hg/dom3events/raw-file/tip/html/"
+"DOM3-Events.html#event-type-focusin>`_ and `focusout <https://dvcs.w3.org/hg/"
+"dom3events/raw-file/tip/html/DOM3-Events.html#event-type-focusout>`_ events."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:721
+msgid ""
+"The `nodeName <https://developer.mozilla.org/en-US/docs/Web/API/Node."
+"nodeName>`_ of the target HTML Element."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:723
+#: ../../../source/docs/api_reference/html5.h.rst:1154
+#: ../../../source/docs/api_reference/html5.h.rst:1322
+msgid "Maximum size 128 ``char`` (i.e. ``EM_UTF8 nodeName[128]``)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:727
+msgid "The ID of the target element."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:729
+#: ../../../source/docs/api_reference/html5.h.rst:1163
+#: ../../../source/docs/api_reference/html5.h.rst:1328
+msgid "Maximum size 128 ``char`` (i.e. ``EM_UTF8 id[128]``)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:738
+msgid ""
+"Function pointer for the :c:func:`focus event callback functions "
+"<emscripten_set_blur_callback>`, defined as:"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:744
+msgid "The type of focus event (:c:data:`EMSCRIPTEN_EVENT_BLUR`)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:0
+msgid "param focusEvent"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:745
+msgid "Information about the focus event that occurred."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:0
+msgid "type focusEvent"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:746
+msgid "const EmscriptenFocusEvent*"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:761
+msgid ""
+"Registers a callback function for receiving DOM element `blur <https://dvcs."
+"w3.org/hg/dom3events/raw-file/tip/html/DOM3-Events.html#event-type-blur>`_, "
+"`focus <https://dvcs.w3.org/hg/dom3events/raw-file/tip/html/DOM3-Events."
+"html#event-type-focus>`_, `focusin <https://dvcs.w3.org/hg/dom3events/raw-"
+"file/tip/html/DOM3-Events.html#event-type-focusin>`_ and `focusout <https://"
+"dvcs.w3.org/hg/dom3events/raw-file/tip/html/DOM3-Events.html#event-type-"
+"focusout>`_ events."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:774
+msgid "Device orientation"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:781
+msgid "Emscripten ``deviceorientation`` events."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:788
+msgid ""
+"The event structure passed in the `deviceorientation <http://dev.w3.org/geo/"
+"api/spec-source-orientation.html#deviceorientation>`_ event."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:795
+msgid ""
+"The `orientation <https://developer.mozilla.org/en-US/Apps/Build/"
+"gather_and_modify_data/"
+"responding_to_device_orientation_changes#Device_Orientation_API>`_ of the "
+"device in terms of the transformation from a coordinate frame fixed on the "
+"Earth to a coordinate frame fixed in the device."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:797
+msgid ""
+"The image (source: `dev.opera.com <http://dev.opera.com/articles/view/w3c-"
+"device-orientation-api/>`_) and definitions below illustrate the coordinate "
+"frame:"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:799
+msgid ""
+":c:type:`~EmscriptenDeviceOrientationEvent.alpha`: the rotation of the "
+"device around the Z axis."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:800
+msgid ""
+":c:type:`~EmscriptenDeviceOrientationEvent.beta`: the rotation of the device "
+"around the X axis."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:801
+msgid ""
+":c:type:`~EmscriptenDeviceOrientationEvent.gamma`: the rotation of the "
+"device around the Y axis."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:803
+msgid "Image of device showing X, Y, Z axes"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:810
+msgid ""
+"If ``false``, the orientation is only relative to some other base "
+"orientation, not to the fixed coordinate frame."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:818
+msgid ""
+"Function pointer for the :c:func:`orientation event callback functions "
+"<emscripten_set_deviceorientation_callback>`, defined as:"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:824
+msgid ""
+"The type of orientation event (:c:data:`EMSCRIPTEN_EVENT_DEVICEORIENTATION`)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:0
+msgid "param deviceOrientationEvent"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:825
+msgid "Information about the orientation event that occurred."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:0
+msgid "type deviceOrientationEvent"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:826
+msgid "const EmscriptenDeviceOrientationEvent*"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:838
+msgid ""
+"Registers a callback function for receiving the `deviceorientation <http://"
+"dev.w3.org/geo/api/spec-source-orientation.html#deviceorientation>`_ event."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:849
+msgid "Returns the most recently received ``deviceorientation`` event state."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:851
+msgid ""
+"Note that for this function call to succeed, :c:func:"
+"`emscripten_set_deviceorientation_callback` must have first been called with "
+"a non-zero callback function pointer to enable the ``deviceorientation`` "
+"state capture."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:853
+msgid "The most recently received ``deviceorientation`` event state."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:861
+msgid "Device motion"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:868
+msgid ""
+"Emscripten `devicemotion <http://w3c.github.io/deviceorientation/spec-source-"
+"orientation.html#devicemotion>`_ event."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:876
+msgid ""
+"The event structure passed in the `devicemotion <http://w3c.github.io/"
+"deviceorientation/spec-source-orientation.html#devicemotion>`_ event."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:882
+msgid "Acceleration of the device excluding gravity."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:889
+msgid "Acceleration of the device including gravity."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:896
+msgid "The rotational delta of the device."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:900
+msgid ""
+"A bitfield that is a combination of "
+"EMSCRIPTEN_DEVICE_MOTION_EVENT_SUPPORTS_* fields that specifies the "
+"different fields of this structure that the current browser supports. If for "
+"example the EMSCRIPTEN_DEVICE_MOTION_EVENT_SUPPORTS_ACCELERATION bit is not "
+"present in this field, then the accelerationX/Y/Z fields of this structure "
+"should be assumed to not be valid."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:909
+msgid ""
+"Function pointer for the :c:func:`devicemotion event callback functions "
+"<emscripten_set_devicemotion_callback>`, defined as:"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:915
+msgid ""
+"The type of devicemotion event (:c:data:`EMSCRIPTEN_EVENT_DEVICEMOTION`)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:0
+msgid "param deviceMotionEvent"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:916
+msgid "Information about the devicemotion event that occurred."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:0
+msgid "type deviceMotionEvent"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:917
+msgid "const EmscriptenDeviceMotionEvent*"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:930
+msgid ""
+"Registers a callback function for receiving the `devicemotion <http://w3c."
+"github.io/deviceorientation/spec-source-orientation.html#devicemotion>`_ "
+"event."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:941
+msgid ""
+"Returns the most recently received `devicemotion <http://w3c.github.io/"
+"deviceorientation/spec-source-orientation.html#devicemotion>`_ event state."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:943
+msgid ""
+"Note that for this function call to succeed, :c:func:"
+"`emscripten_set_devicemotion_callback` must have first been called with a "
+"non-zero callback function pointer to enable the ``devicemotion`` state "
+"capture."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:945
+msgid "The most recently received ``devicemotion`` event state."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:953
+msgid "Orientation"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:960
+msgid ""
+"Emscripten `orientationchange <https://w3c.github.io/screen-orientation/>`_ "
+"event."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:965
+msgid ""
+"Either the orientation API is not supported or the orientation type is not "
+"known."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:969
+msgid "Primary portrait mode orientation."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:973
+msgid "Secondary portrait mode orientation."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:977
+msgid "Primary landscape mode orientation."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:981
+msgid "Secondary landscape mode orientation."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:989
+msgid ""
+"The event structure passed in the `orientationchange <https://w3c.github.io/"
+"screen-orientation/>`_ event."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:994
+msgid ""
+"One of the :c:type:`EM_ORIENTATION_PORTRAIT_xxx "
+"<EMSCRIPTEN_ORIENTATION_PORTRAIT_PRIMARY>` fields, or :c:type:"
+"`EMSCRIPTEN_ORIENTATION_UNKNOWN` if unknown."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:998
+msgid ""
+"Emscripten-specific extension: Some browsers refer to ``window."
+"orientation``, so report that as well."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1000
+msgid ""
+"Orientation angle in degrees. 0: \"default orientation\", i.e. default "
+"upright orientation to hold the mobile device in. Could be either landscape "
+"or portrait."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1008
+msgid ""
+"Function pointer for the :c:func:`orientationchange event callback functions "
+"<emscripten_set_orientationchange_callback>`, defined as:"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1014
+msgid ""
+"The type of orientationchange event (:c:data:"
+"`EMSCRIPTEN_EVENT_ORIENTATIONCHANGE`)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:0
+msgid "param orientationChangeEvent"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1015
+msgid "Information about the orientationchange event that occurred."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:0
+msgid "type orientationChangeEvent"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1016
+msgid "const EmscriptenOrientationChangeEvent*"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1027
+msgid ""
+"Registers a callback function for receiving the `orientationchange <https://"
+"w3c.github.io/screen-orientation/>`_ event."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1038
+msgid "Returns the current device orientation state."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1040
+msgid "The most recently received orientation state."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1048
+msgid ""
+"Locks the screen orientation to the given set of :c:data:`allowed "
+"orientations <EMSCRIPTEN_ORIENTATION_PORTRAIT_PRIMARY>`."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1050
+msgid ""
+"A bitfield set of :c:data:`EMSCRIPTEN_ORIENTATION_xxx "
+"<EMSCRIPTEN_ORIENTATION_PORTRAIT_PRIMARY>` flags."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1057
+msgid "Removes the orientation lock so the screen can turn to any orientation."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1065
+msgid "Fullscreen"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1072
+msgid ""
+"Emscripten `fullscreenchange <https://dvcs.w3.org/hg/fullscreen/raw-file/tip/"
+"Overview.html>`_ event."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1076
+msgid ""
+"An enum-like type which specifies how the Emscripten runtime should treat "
+"the CSS size of the target element when displaying it in fullscreen mode via "
+"calls to functions :c:func:`emscripten_request_fullscreen_strategy` and :c:"
+"func:`emscripten_enter_soft_fullscreen`."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1081
+msgid ""
+"Specifies that the DOM element should not be resized by Emscripten runtime "
+"when transitioning between fullscreen and windowed modes. The browser will "
+"be responsible for scaling the DOM element to the fullscreen size. The "
+"proper browser behavior in this mode is to stretch the element to fit the "
+"full display ignoring aspect ratio, but at the time of writing, browsers "
+"implement different behavior here. See the discussion at https://github.com/"
+"emscripten-core/emscripten/issues/2556 for more information."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1087
+msgid ""
+"Specifies that the Emscripten runtime should explicitly stretch the CSS size "
+"of the target element to cover the whole screen when transitioning to "
+"fullscreen mode. This will change the aspect ratio of the displayed content."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1092
+msgid ""
+"Specifies that the Emscripten runtime should explicitly scale the CSS size "
+"of the target element to cover the whole screen, while adding either "
+"vertical or horizontal black letterbox padding to preserve the aspect ratio "
+"of the content. The aspect ratio that is used here is the render target size "
+"of the canvas element. To change the desired aspect ratio, call :c:func:"
+"`emscripten_set_canvas_element_size` before entering fullscreen mode."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1098
+msgid ""
+"An enum-like type which specifies how the Emscripten runtime should treat "
+"the pixel size (render target resolution) of the target canvas element when "
+"displaying it in fullscreen mode via calls to functions :c:func:"
+"`emscripten_request_fullscreen_strategy` and :c:func:"
+"`emscripten_enter_soft_fullscreen`. To better understand the underlying "
+"distinction between the CSS size of a canvas element versus the render "
+"target size of a canvas element, see https://www.khronos.org/webgl/wiki/"
+"HandlingHighDPI."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1104
+msgid ""
+"Specifies that the Emscripten runtime should not do any changes to the "
+"render target resolution of the target canvas element that is displayed in "
+"fullscreen mode. Use this mode when your application is set up to render to "
+"a single fixed resolution that cannot be changed under any condition."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1109
+msgid ""
+"Specifies that the Emscripten runtime should resize the render target of the "
+"canvas element to match 1:1 with the CSS size of the element in fullscreen "
+"mode. On high DPI displays (`window.devicePixelRatio` > 1), the CSS size is "
+"not the same as the physical screen resolution of the device. Call :c:func:"
+"`emscripten_get_device_pixel_ratio` to obtain the pixel ratio between CSS "
+"pixels and actual device pixels of the screen. Use this mode when you want "
+"to render to a pixel resolution that is DPI-independent."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1115
+msgid ""
+"Specifies that the Emscripten runtime should resize the canvas render target "
+"size to match 1:1 with the physical screen resolution on the device. This "
+"corresponds to high definition displays on retina iOS and other mobile and "
+"desktop devices with high DPI. Use this mode to match and render 1:1 to the "
+"native display resolution."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1120
+msgid ""
+"An enum-like type that specifies what kind of image filtering algorithm to "
+"apply to the element when it is presented in fullscreen mode."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1124
+msgid ""
+"Specifies that the image filtering mode should not be changed from the "
+"existing setting in the CSS style."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1128
+msgid ""
+"Applies a CSS style to the element that displays the content using a nearest-"
+"neighbor image filtering algorithm in fullscreen mode."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1132
+msgid ""
+"Applies a CSS style to the element that displays the content using a "
+"bilinear image filtering algorithm in fullscreen mode. This is the default "
+"browser behavior."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1139
+msgid ""
+"The event structure passed in the `fullscreenchange <https://dvcs.w3.org/hg/"
+"fullscreen/raw-file/tip/Overview.html>`_ event."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1143
+msgid ""
+"Specifies whether an element on the browser page is currently fullscreen."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1148
+msgid ""
+"Specifies if the current page has the ability to display elements fullscreen."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1152
+msgid ""
+"The `nodeName <https://developer.mozilla.org/en-US/docs/Web/API/Node."
+"nodeName>`_ of the target HTML Element that is in full screen mode."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1156
+msgid ""
+"If ``isFullscreen`` is ``false``, then ``nodeName``, ``id`` and "
+"``elementWidth`` and ``elementHeight`` specify information about the element "
+"that just exited fullscreen mode."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1161
+msgid "The ID of the target HTML element that is in full screen mode."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1169
+msgid "The new pixel size of the element that changed fullscreen status."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1175
+msgid "The size of the whole screen, in pixels."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1179
+msgid ""
+"The options structure that is passed in to functions :c:func:"
+"`emscripten_request_fullscreen_strategy` and :c:func:"
+"`emscripten_enter_soft_fullscreen` to configure how the target element "
+"should be displayed in fullscreen mode."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1184
+msgid ""
+"Specifies the rule how the CSS size (the displayed size) of the target "
+"element is resized when displayed in fullscreen mode."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1188
+msgid ""
+"Specifies how the render target size (the pixel resolution) of the target "
+"element is adjusted when displayed in fullscreen mode."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1192
+msgid ""
+"Specifies the image filtering algorithm to apply to the element in "
+"fullscreen mode."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1196
+msgid ""
+"If nonzero, points to a user-provided callback function which will be called "
+"whenever either the CSS or the canvas render target size changes. Use this "
+"callback to reliably obtain information about canvas resize events."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1201
+msgid ""
+"Stores a custom data field which will be passed to all calls to the user-"
+"provided callback function."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1208
+msgid ""
+"Function pointer for the :c:func:`fullscreen event callback functions "
+"<emscripten_set_fullscreenchange_callback>`, defined as:"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1214
+msgid ""
+"The type of fullscreen event (:c:data:`EMSCRIPTEN_EVENT_FULLSCREENCHANGE`)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:0
+msgid "param fullscreenChangeEvent"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1215
+msgid "Information about the fullscreen event that occurred."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:0
+msgid "type fullscreenChangeEvent"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1216
+msgid "const EmscriptenFullscreenChangeEvent*"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1228
+msgid ""
+"Registers a callback function for receiving the `fullscreenchange <https://"
+"dvcs.w3.org/hg/fullscreen/raw-file/tip/Overview.html>`_ event."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1241
+msgid ""
+"Returns the current page `fullscreen <https://dvcs.w3.org/hg/fullscreen/raw-"
+"file/tip/Overview.html>`_ state."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1243
+msgid "The most recently received fullscreen state."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1251
+msgid "Requests the given target element to transition to full screen mode."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1253
+#: ../../../source/docs/api_reference/html5.h.rst:1411
+msgid ""
+"This function can be called anywhere, but for web security reasons its "
+"associated *request* can only be raised inside the event handler for a user-"
+"generated event (for example a key, mouse or touch press/release). This has "
+"implications for porting and the value of ``deferUntilInEventHandler``  — "
+"see :ref:`web-security-functions-html5-api` for more information."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1255
+msgid ""
+"This function only performs a fullscreen request without changing any "
+"parameters of the DOM element that is to be displayed in fullscreen mode. At "
+"the time of writing, there are differences in how browsers present elements "
+"in fullscreen mode. For more information, read the discussion at https://"
+"github.com/emscripten-core/emscripten/issues/2556. To display an element in "
+"fullscreen mode in a way that is consistent across browsers, prefer calling "
+"the function :c:func:`emscripten_request_fullscreen_strategy` instead. This "
+"function is best called only in scenarios where the preconfigured presets "
+"defined by :c:func:`emscripten_request_fullscreen_strategy` conflict with "
+"the developer's use case in some way."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1259
+#: ../../../source/docs/api_reference/html5.h.rst:1416
+msgid ""
+"If ``true`` requests made outside of a user-generated event handler are "
+"automatically deferred until the user next presses a keyboard or mouse "
+"button. If ``false`` the request will fail if called outside of a user-"
+"generated event handler."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1262
+msgid "**EMSCRIPTEN_RESULT**"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1266
+msgid ""
+"Requests the given target element to transition to full screen mode, using a "
+"custom presentation mode for the element. This function is otherwise the "
+"same as :c:func:`emscripten_request_fullscreen`, but this function adds "
+"options to control how resizing and aspect ratio, and ensures that the "
+"behavior is consistent across browsers."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1268
+msgid ""
+"This function makes changes to the DOM to satisfy consistent presentation "
+"across browsers. These changes have been designed to intrude as little as "
+"possible, and the changes are cleared once windowed browsing is restored. If "
+"any of these changes are conflicting, see the function :c:func:"
+"`emscripten_request_fullscreen` instead, which performs a bare fullscreen "
+"request without any modifications to the DOM."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1270
+msgid ""
+"[in] Points to a configuration structure filled by the caller which "
+"specifies display options for the fullscreen mode."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1275
+msgid "Returns back to windowed browsing mode from a proper fullscreen mode."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1277
+msgid ""
+"Do not call this function to attempt to return to windowed browsing mode "
+"from a soft fullscreen mode, or vice versa."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1284
+msgid ""
+"Enters a \"soft\" fullscreen mode, where the given target element is "
+"displayed in the whole client area of the page and all other elements are "
+"hidden, but does not actually request fullscreen mode for the browser. This "
+"function is useful in cases where the actual Fullscreen API is not desirable "
+"or needed, for example in packaged apps for Firefox OS, where applications "
+"essentially already cover the whole screen."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1286
+msgid ""
+"Pressing the esc button does not automatically exit the soft fullscreen "
+"mode. To return to windowed presentation mode, manually call the function :c:"
+"func:`emscripten_exit_soft_fullscreen`."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1290
+msgid ""
+"Returns back to windowed browsing mode from a soft fullscreen mode. Do not "
+"call this function to attempt to return to windowed browsing mode from a "
+"real fullscreen mode, or vice versa."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1293
+msgid "Pointerlock"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1300
+msgid ""
+"Emscripten `pointerlockchange <http://www.w3.org/TR/pointerlock/"
+"#pointerlockchange-and-pointerlockerror-events>`_ event."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1304
+msgid ""
+"Emscripten `pointerlockerror <http://www.w3.org/TR/pointerlock/"
+"#pointerlockchange-and-pointerlockerror-events>`_ event."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1311
+msgid ""
+"The event structure passed in the `pointerlockchange <http://www.w3.org/TR/"
+"pointerlock/#pointerlockchange-and-pointerlockerror-events>`_ event."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1316
+msgid ""
+"Specifies whether an element on the browser page currently has pointer lock "
+"enabled."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1320
+msgid ""
+"The `nodeName <https://developer.mozilla.org/en-US/docs/Web/API/Node."
+"nodeName>`_ of the target HTML Element that has the pointer lock active."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1326
+msgid "The ID of the target HTML element that has the pointer lock active."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1336
+msgid ""
+"Function pointer for the :c:func:`pointerlockchange event callback functions "
+"<emscripten_set_pointerlockchange_callback>`, defined as:"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1342
+msgid ""
+"The type of pointerlockchange event (:c:data:"
+"`EMSCRIPTEN_EVENT_POINTERLOCKCHANGE`)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:0
+msgid "param pointerlockChangeEvent"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1343
+msgid "Information about the pointerlockchange event that occurred."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:0
+msgid "type pointerlockChangeEvent"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1344
+msgid "const EmscriptenPointerlockChangeEvent*"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1351
+msgid ""
+"Function pointer for the :c:func:`pointerlockerror event callback functions "
+"<emscripten_set_pointerlockerror_callback>`, defined as:"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1357
+msgid ""
+"The type of pointerlockerror event (:c:data:"
+"`EMSCRIPTEN_EVENT_POINTERLOCKERROR`)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:0
+msgid "param const void* reserved"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1358
+#: ../../../source/docs/api_reference/html5.h.rst:1928
+#: ../../../source/docs/api_reference/html5.h.rst:2066
+msgid "Reserved for future use; pass in 0."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1370
+msgid ""
+"Registers a callback function for receiving the `pointerlockchange <http://"
+"www.w3.org/TR/pointerlock/#pointerlockchange-and-pointerlockerror-events>`_ "
+"event."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1372
+msgid ""
+"Pointer lock hides the mouse cursor and exclusively gives the target element "
+"relative mouse movement events via the `mousemove <https://dvcs.w3.org/hg/"
+"dom3events/raw-file/tip/html/DOM3-Events.html#event-type-mousemove>`_ event."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1386
+msgid ""
+"Registers a callback function for receiving the `pointerlockerror <http://"
+"www.w3.org/TR/pointerlock/#pointerlockchange-and-pointerlockerror-events>`_ "
+"event."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1400
+msgid "Returns the current page pointerlock state."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1402
+msgid "The most recently received pointerlock state."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1409
+msgid "Requests the given target element to grab pointerlock."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1423
+msgid ""
+"Exits pointer lock state and restores the mouse cursor to be visible again."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1431
+msgid "Visibility"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1438
+msgid ""
+"Emscripten `visibilitychange <http://www.w3.org/TR/page-visibility>`__ event."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1442
+msgid ""
+"The document is `hidden <http://www.w3.org/TR/page-visibility/#pv-page-"
+"hidden>`_ (not visible)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1446
+msgid ""
+"The document is at least partially `visible <http://www.w3.org/TR/page-"
+"visibility/#pv-page-visible>`_."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1450
+msgid ""
+"The document is loaded off screen and not visible (`prerender <http://www.w3."
+"org/TR/page-visibility/#pv-prerender>`_)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1454
+msgid ""
+"The document is to be `unloaded <http://www.w3.org/TR/page-visibility/#pv-"
+"unloaded>`_."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1462
+msgid ""
+"The event structure passed in the `visibilitychange <http://www.w3.org/TR/"
+"page-visibility/>`__ event."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1466
+msgid "If true, the current browser page is now hidden."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1471
+msgid ""
+"Specifies a more fine-grained state of the current page visibility status. "
+"One of the :c:type:`EMSCRIPTEN_VISIBILITY_ <EMSCRIPTEN_VISIBILITY_HIDDEN>` "
+"values."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1479
+msgid ""
+"Function pointer for the :c:func:`visibilitychange event callback functions "
+"<emscripten_set_visibilitychange_callback>`, defined as:"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1485
+msgid ""
+"The type of ``visibilitychange`` event (:c:data:"
+"`EMSCRIPTEN_VISIBILITY_HIDDEN`)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:0
+msgid "param visibilityChangeEvent"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1486
+msgid "Information about the ``visibilitychange`` event that occurred."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:0
+msgid "type visibilityChangeEvent"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1487
+msgid "const EmscriptenVisibilityChangeEvent*"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1498
+msgid ""
+"Registers a callback function for receiving the `visibilitychange <http://"
+"www.w3.org/TR/page-visibility/>`_ event."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1509
+msgid "Returns the current page visibility state."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1511
+msgid "The most recently received page visibility state."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1518
+msgid "Touch"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1528
+msgid "Emscripten touch events."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1536
+msgid ""
+"Specifies the status of a single `touch point <http://www.w3.org/TR/touch-"
+"events/#touch-interface>`_ on the page."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1540
+msgid "An identification number for each touch point."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1545
+msgid "The touch coordinate relative to the whole screen origin, in pixels."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1550
+msgid "The touch coordinate relative to the viewport, in pixels."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1555
+msgid ""
+"The touch coordinate relative to the viewport, in pixels, and including any "
+"scroll offset."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1559
+msgid "Specifies whether the touch point changed during this event."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1563
+msgid ""
+"Specifies whether this touch point is still above the original target on "
+"which it was initially pressed."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1568
+msgid ""
+"These fields give the touch coordinates mapped relative to the coordinate "
+"space of the target DOM element receiving the input events (Emscripten-"
+"specific extension)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1573
+msgid ""
+"The touch coordinates mapped to the Emscripten canvas client area, in pixels "
+"(Emscripten-specific extension)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1579
+msgid ""
+"Specifies the data of a single `touchevent <http://www.w3.org/TR/touch-"
+"events/#touchevent-interface>`_."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1587
+msgid "The number of valid elements in the touches array."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1595
+msgid "Specifies which modifiers were active during the touch event."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1599
+msgid "An array of currently active touches, one for each finger."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1609
+msgid ""
+"Function pointer for the :c:func:`touch event callback functions "
+"<emscripten_set_touchstart_callback>`, defined as:"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1615
+msgid "The type of touch event (:c:data:`EMSCRIPTEN_EVENT_TOUCHSTART`)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:0
+msgid "param touchEvent"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1616
+msgid "Information about the touch event that occurred."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:0
+msgid "type touchEvent"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1617
+msgid "const EmscriptenTouchEvent*"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1632
+msgid ""
+"Registers a callback function for receiving `touch events <http://www.w3.org/"
+"TR/touch-events/)>`__ : `touchstart <http://www.w3.org/TR/touch-events/#the-"
+"touchstart-event>`_, `touchend <http://www.w3.org/TR/touch-events/#dfn-"
+"touchend>`_, `touchmove <http://www.w3.org/TR/touch-events/#dfn-touchmove>`_ "
+"and `touchcancel <http://www.w3.org/TR/touch-events/#dfn-touchcancel>`_."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1645
+msgid "Gamepad"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1653
+msgid "Emscripten gamepad_ events."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1661
+msgid "Represents the current snapshot state of a gamepad_."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1670
+msgid "The number of valid axis entries in the ``axis`` array."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1674
+msgid ""
+"The number of valid button entries in the analogButton and digitalButton "
+"arrays."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1678
+msgid "The analog state of the gamepad axes, in the range [-1, 1]."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1683
+msgid "The analog state of the gamepad buttons, in the range [0, 1]."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1688
+msgid "The digital state of the gamepad buttons, either 0 or 1."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1692
+msgid "Specifies whether this gamepad is connected to the browser page."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1696
+msgid "An ordinal associated with this gamepad, zero-based."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1700
+msgid ""
+"An ID for the brand or style of the connected gamepad device. Typically, "
+"this will include the USB vendor and a product ID."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1702
+msgid "Maximum size 64 ``char`` (i.e. ``EM_UTF8 id[64]``)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1706
+msgid "A string that identifies the layout or control mapping of this device."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1708
+msgid "Maximum size 64 ``char`` (i.e. ``EM_UTF8 mapping[64]``)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1717
+msgid ""
+"Function pointer for the :c:func:`gamepad event callback functions "
+"<emscripten_set_gamepadconnected_callback>`, defined as:"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1723
+msgid ""
+"The type of gamepad event (:c:data:`EMSCRIPTEN_EVENT_GAMEPADCONNECTED`)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:0
+msgid "param gamepadEvent"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1724
+msgid "Information about the gamepad event that occurred."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:0
+msgid "type gamepadEvent"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1725
+msgid "const EmscriptenGamepadEvent*"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1738
+msgid ""
+"Registers a callback function for receiving the gamepad_ events: "
+"`gamepadconnected <http://www.w3.org/TR/gamepad/#the-gamepadconnected-"
+"event>`_ and `gamepaddisconnected <http://www.w3.org/TR/gamepad/#the-"
+"gamepaddisconnected-event>`_."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1749
+msgid ""
+"This function samples a new state of connected Gamepad data, and returns "
+"either EMSCRIPTEN_RESULT_SUCCESS if Gamepad API is supported by the current "
+"browser, or EMSCRIPTEN_RESULT_NOT_SUPPORTED if Gamepad API is not supported. "
+"Note that even if EMSCRIPTEN_RESULT_SUCCESS is returned, there may not be "
+"any gamepads connected yet to the current browser tab."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1755
+msgid ""
+"Call this function before calling either of the functions "
+"emscripten_get_num_gamepads() or emscripten_get_gamepad_status()."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1760
+msgid ""
+"After having called emscripten_sample_gamepad_data(), this function returns "
+"the number of gamepads connected to the system or :c:type:"
+"`EMSCRIPTEN_RESULT_NOT_SUPPORTED` if the current browser does not support "
+"gamepads."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1765
+msgid ""
+"A gamepad does not show up as connected until a button on it is pressed."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1769
+msgid ""
+"Gamepad API uses an array of gamepad state objects to return the state of "
+"each device. The devices are identified via the index they are present in "
+"this array. Because of that, if one first connects gamepad A, then gamepad "
+"B, and then disconnects gamepad A, the gamepad B shall not take the place of "
+"gamepad A, so in this scenario, this function will still keep returning two "
+"for the count of connected gamepads, even though gamepad A is no longer "
+"present. To find the actual number of connected gamepads, listen for the "
+"gamepadconnected and gamepaddisconnected events.  Consider the return value "
+"of function emscripten_get_num_gamepads() minus one to be the largest index "
+"value that can be passed to the function emscripten_get_gamepad_status()."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1780
+msgid "The number of gamepads connected to the browser tab."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1781
+msgid "int"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1786
+msgid ""
+"After having called emscripten_sample_gamepad_data(), this function returns "
+"a snapshot of the current gamepad state for the gamepad controller located "
+"at given index of the controllers array."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1790
+msgid ""
+"The index of the gamepad to check (in the `array of connected gamepads "
+"<https://developer.mozilla.org/en-US/docs/Web/API/Navigator.getGamepads>`_)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1791
+msgid "The most recently received gamepad state."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1798
+msgid "Battery"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1806
+msgid ""
+"Emscripten `BatteryManager <http://www.w3.org/TR/battery-status/"
+"#batterymanager-interface>`_ events."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1814
+msgid ""
+"The event structure passed in the `BatteryManager <http://www.w3.org/TR/"
+"battery-status/#batterymanager-interface>`_ events: ``chargingchange`` and "
+"``levelchange``."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1819
+msgid "Time remaining until the battery is fully charged (seconds)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1823
+msgid ""
+"Time remaining until the battery is empty and the system will be suspended "
+"(seconds)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1827
+msgid "Current battery level, on a scale of 0 to 1.0."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1831
+msgid "``true`` if the battery is charging, ``false`` otherwise."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1839
+msgid ""
+"Function pointer for the :c:func:`BatteryManager event callback functions "
+"<emscripten_set_batterychargingchange_callback>`, defined as:"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1845
+msgid ""
+"The type of ``BatteryManager`` event (:c:data:"
+"`EMSCRIPTEN_EVENT_BATTERYCHARGINGCHANGE`)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:0
+msgid "param batteryEvent"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1846
+msgid "Information about the ``BatteryManager`` event that occurred."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:0
+msgid "type batteryEvent"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1847
+msgid "const EmscriptenBatteryEvent*"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1860
+msgid ""
+"Registers a callback function for receiving the `BatteryManager <http://www."
+"w3.org/TR/battery-status/#batterymanager-interface>`_ events: "
+"``chargingchange`` and ``levelchange``."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1870
+msgid "Returns the current battery status."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1872
+msgid "The most recently received battery state."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1880
+msgid "Vibration"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1888
+msgid ""
+"Produces a `vibration <http://dev.w3.org/2009/dap/vibration/>`_ for the "
+"specified time, in milliseconds."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1890
+msgid "The amount of time for which the vibration is required (milliseconds)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1897
+msgid "Produces a complex vibration feedback pattern."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1899
+msgid ""
+"An array of timing entries [on, off, on, off, on, off, ...] where every "
+"second one specifies a duration of vibration, and every other one specifies "
+"a duration of silence."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1900
+msgid "The number of integers in the array ``msecsArray``."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1906
+msgid "Page unload"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1913
+msgid ""
+"Emscripten `beforeunload <http://www.whatwg.org/specs/web-apps/current-work/"
+"multipage/history.html#beforeunloadevent>`_ event."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1921
+msgid ""
+"Function pointer for the :c:func:`beforeunload event callback functions "
+"<emscripten_set_beforeunload_callback>`, defined as:"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1927
+msgid ""
+"The type of ``beforeunload`` event (:c:data:`EMSCRIPTEN_EVENT_BEFOREUNLOAD`)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:0
+msgid "param reserved"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:0
+msgid "type reserved"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1929
+#: ../../../source/docs/api_reference/html5.h.rst:2067
+msgid "const void*"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1931
+msgid "Return a string to be displayed to the user."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1932
+msgid "char*"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1942
+msgid ""
+"Registers a callback function for receiving the page `beforeunload <http://"
+"www.whatwg.org/specs/web-apps/current-work/multipage/history."
+"html#beforeunloadevent>`_ event."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1944
+msgid ""
+"Hook into this event to perform actions immediately prior to page close (for "
+"example, to display a notification to ask if the user really wants to leave "
+"the page)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1954
+msgid "WebGL context"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1962
+msgid "Emscripten `WebGL context`_ events."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1966
+msgid ""
+"Represents a handle to an Emscripten WebGL context object. The value 0 "
+"denotes an invalid/no context (this is a typedef to an ``intptr_t``)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1974
+msgid ""
+"Specifies `WebGL context creation parameters <http://www.khronos.org/"
+"registry/webgl/specs/latest/1.0/#5.2>`_."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1978
+msgid ""
+"If ``true``, request an alpha channel for the context. If you create an "
+"alpha channel, you can blend the canvas rendering with the underlying web "
+"page contents. Default value: ``true``."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1982
+msgid ""
+"If ``true``, request a depth buffer of at least 16 bits. If ``false``, no "
+"depth buffer will be initialized. Default value: ``true``."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1986
+msgid ""
+"If ``true``, request a stencil buffer of at least 8 bits. If ``false``, no "
+"stencil buffer will be initialized. Default value: ``false``."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1990
+msgid ""
+"If ``true``, antialiasing will be initialized with a browser-specified "
+"algorithm and quality level. If ``false``, antialiasing is disabled. Default "
+"value: ``true``."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:1995
+msgid ""
+"If ``true``, the alpha channel of the rendering context will be treated as "
+"representing premultiplied alpha values. If ``false``, the alpha channel "
+"represents non-premultiplied alpha. Default value: ``true``."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2000
+msgid ""
+"If ``true``, the contents of the drawing buffer are preserved between "
+"consecutive ``requestAnimationFrame()`` calls. If ``false``, color, depth "
+"and stencil are cleared at the beginning of each "
+"``requestAnimationFrame()``. Generally setting this to ``false`` gives "
+"better performance. Default value: ``false``."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2005
+msgid ""
+"Specifies a hint to the WebGL canvas implementation to how it should choose "
+"the use of available GPU resources. One of "
+"EM_WEBGL_POWER_PREFERENCE_DEFAULT, EM_WEBGL_POWER_PREFERENCE_LOW_POWER, "
+"EM_WEBGL_POWER_PREFERENCE_HIGH_PERFORMANCE."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2009
+msgid ""
+"If ``true``, requests context creation to abort if the browser is only able "
+"to create a context that does not give good hardware-accelerated "
+"performance. Default value: ``false``."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2015
+msgid ""
+"Emscripten-specific extensions which specify the WebGL context version to "
+"initialize."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2017
+msgid ""
+"For example, pass in ``majorVersion=1``, ``minorVersion=0`` to request a "
+"WebGL 1.0 context, and ``majorVersion=2``, ``minorVersion=0`` to request a "
+"WebGL 2.0 context."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2019
+msgid "Default value: ``majorVersion=1``, ``minorVersion=0``"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2024
+msgid ""
+"If ``true``, all GLES2-compatible non-performance-impacting WebGL extensions "
+"will automatically be enabled for you after the context has been created. If "
+"``false``, no extensions are enabled by default, and you need to manually "
+"call :c:func:`emscripten_webgl_enable_extension` to enable each extension "
+"that you want to use. Default value: ``true``."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2029
+msgid ""
+"By default, when ``explicitSwapControl`` is in its default state ``false``, "
+"rendered WebGL content is implicitly presented (displayed to the user) on "
+"the canvas when the event handler that renders with WebGL returns back to "
+"the browser event loop. If ``explicitSwapControl`` is set to ``true``, "
+"rendered content will not be displayed on screen automatically when event "
+"handler function finishes, but the control of swapping is given to the user "
+"to manage, via the ``emscripten_webgl_commit_frame()`` function."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2031
+msgid ""
+"In order to be able to set ``explicitSwapControl==true``, support for it "
+"must explicitly be enabled either 1) via adding the ``-"
+"sOFFSCREEN_FRAMEBUFFER`` Emscripten linker flag, and enabling "
+"``renderViaOffscreenBackBuffer==1``, or 2) via adding the linker flag ``-"
+"sOFFSCREENCANVAS_SUPPORT``, and running in a browser that supports "
+"OffscreenCanvas."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2036
+msgid ""
+"If ``true``, an extra intermediate backbuffer (offscreen render target) is "
+"allocated to the created WebGL context, and rendering occurs to this "
+"backbuffer instead of directly onto the WebGL \"default backbuffer\". This "
+"is required to be enabled if 1) ``explicitSwapControl==true`` and the "
+"browser does not support OffscreenCanvas, 2) when performing WebGL rendering "
+"in a worker thread and the browser does not support OffscreenCanvas, and 3) "
+"when performing WebGL context accesses from multiple threads simultaneously "
+"(independent of whether OffscreenCanvas is supported or not)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2038
+msgid ""
+"Because supporting offscreen framebuffer adds some amount of extra code to "
+"the compiled output, support for it must explicitly be enabled via the ``-"
+"sOFFSCREEN_FRAMEBUFFER`` Emscripten linker flag. When building "
+"simultaneously with both ``-sOFFSCREEN_FRAMEBUFFER`` and ``-"
+"sOFFSCREENCANVAS_SUPPORT`` linker flags enabled, offscreen backbuffer can be "
+"used as a polyfill-like compatibility fallback to enable rendering WebGL "
+"from a pthread when the browser does not support the OffscreenCanvas API."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2043
+msgid ""
+"This member specifies the threading model that will be used for the created "
+"WebGL context, when the WebGL context is created in a pthread. Three values "
+"are possible: ``EMSCRIPTEN_WEBGL_CONTEXT_PROXY_DISALLOW``, "
+"``EMSCRIPTEN_WEBGL_CONTEXT_PROXY_FALLBACK`` or "
+"``EMSCRIPTEN_WEBGL_CONTEXT_PROXY_ALWAYS``. If "
+"``EMSCRIPTEN_WEBGL_CONTEXT_PROXY_DISALLOW`` is specified, the "
+"WebGLRenderingContext object will be created inside the pthread that is "
+"calling the ``emscripten_webgl_create_context()`` function as an "
+"OffscreenCanvas-based rendering context. This is only possible if 1) current "
+"browser supports OffscreenCanvas specification, 2) code was compiled with ``-"
+"sOFFSCREENCANVAS_SUPPORT`` linker flag enabled, 3) the Canvas object that "
+"the context is being created on was transferred over to the calling pthread "
+"with function ``emscripten_pthread_attr_settransferredcanvases()`` when the "
+"pthread was originally created, and 4) no OffscreenCanvas-based context "
+"already exists from the given Canvas at the same time."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2045
+msgid ""
+"If a WebGL rendering context is created as an OffscreenCanvas-based context, "
+"it will have the limitation that only the pthread that created the context "
+"can enable access to it (via ``emscripten_webgl_make_context_current()`` "
+"function). Other threads will not be able to activate rendering to the "
+"context, i.e. OffscreenCanvas-based contexts are essentially \"pinned\" to "
+"the pthread that created them."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2047
+msgid ""
+"If the current browser does not support OffscreenCanvas, you can specify the "
+"``EMSCRIPTEN_WEBGL_CONTEXT_PROXY_ALWAYS`` WebGL context creation flag. If "
+"this flag is passed, and code was compiled with ``-sOFFSCREEN_FRAMEBUFFER`` "
+"enabled, the WebGL context will be created as a \"proxied context\". In this "
+"context mode, the WebGLRenderingContext object will actually be created on "
+"the main browser thread, and all WebGL API calls will be proxied as "
+"asynchronous messages from the pthread into the main thread. This will have "
+"a performance and latency impact in comparison to OffscreenCanvas contexts, "
+"however unlike OffscreenCanvas-based contexts, proxied contexts can be "
+"shared across any number of pthreads: you can use the "
+"``emscripten_webgl_make_context_current()`` function in any pthread to "
+"activate and deactivate access to the WebGL context: for example, you could "
+"have one WebGL loading thread, and another WebGL rendering thread that "
+"coordinate shared access to the WebGL rendering context by cooperatively "
+"acquiring and releasing access to the WebGL rendering context via the "
+"``emscripten_webgl_make_context_current()`` function. Proxied contexts do "
+"not require any special support from the browser, so any WebGL capable "
+"browser can create a proxied WebGL context."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2049
+msgid ""
+"The ``EMSCRIPTEN_WEBGL_CONTEXT_PROXY_ALWAYS`` WebGL context creation flag "
+"will always create a proxied context, even if the browser did support "
+"OffscreenCanvas. If you would like to prefer to create a higher performance "
+"OffscreenCanvas context whenever supported by the browser, but only fall "
+"back to a proxied WebGL context to keep compatibility with browsers that do "
+"not yet have OffscreenCanvas support, you can specify the "
+"``EMSCRIPTEN_WEBGL_CONTEXT_PROXY_FALLBACK`` context creation flag. In order "
+"to use this flag, code should be compiled with both ``-"
+"sOFFSCREEN_FRAMEBUFFER`` and ``-sOFFSCREENCANVAS_SUPPORT`` linker flags."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2051
+msgid ""
+"Default value of ``proxyContextToMainThread`` after calling "
+"``emscripten_webgl_init_context_attributes()`` is "
+"``EMSCRIPTEN_WEBGL_CONTEXT_PROXY_DISALLOW``, if the WebGL context is being "
+"created on the main thread. This means that by default WebGL contexts "
+"created on the main thread are not shareable between multiple threads (to "
+"avoid accidental performance loss from enabling proxying when/if it is not "
+"needed). To create a context that can be shared between multiple pthreads, "
+"set the ``proxyContextToMainThread`` flag "
+"``EMSCRIPTEN_WEBGL_CONTEXT_PROXY_ALWAYS``."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2059
+msgid ""
+"Function pointer for the :c:func:`WebGL Context event callback functions "
+"<emscripten_set_webglcontextlost_callback>`, defined as:"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2065
+msgid ""
+"The type of :c:data:`WebGL context event "
+"<EMSCRIPTEN_EVENT_WEBGLCONTEXTLOST>`."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2081
+msgid ""
+"Registers a callback function for the canvas `WebGL context`_ events: "
+"``webglcontextlost`` and ``webglcontextrestored``."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2094
+msgid "Queries the given WebGL context if it is in a lost context state."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2096
+msgid "Specifies a handle to the context to test."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2098
+msgid ""
+"``true`` if the WebGL context is in a lost state (or the context does not "
+"exist)"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2104
+msgid ""
+"Populates all fields of the given :c:type:`EmscriptenWebGLContextAttributes` "
+"structure to their default values for use with WebGL 1.0."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2106
+msgid ""
+"Call this function as a forward-compatible way to ensure that if there are "
+"new fields added to the ``EmscriptenWebGLContextAttributes`` structure in "
+"the future, that they also will get default-initialized without having to "
+"change any code."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2108
+msgid "The structure to be populated."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2115
+msgid ""
+"Creates and returns a new `WebGL context <http://www.khronos.org/registry/"
+"webgl/specs/latest/1.0/#2.1>`_."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2119
+msgid ""
+"A successful call to this function will not immediately make that rendering "
+"context active. Call :c:func:`emscripten_webgl_make_context_current` after "
+"creating a context to activate it."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2120
+msgid ""
+"A word of caution about :c:type:`EmscriptenWebGLContextAttributes."
+"majorVersion`:"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2122
+msgid ""
+"When no (WEBGL) linker flags are set, then this attribute is ignored and the "
+"context returned is WebGL 1.0"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2123
+msgid ""
+"When the linker flag ``-sMIN_WEBGL_VERSION=2`` is set, then this attribute "
+"is ignored and the context returned is WebGL 2.0"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2124
+msgid ""
+"When the linker flag ``-sMAX_WEBGL_VERSION=2`` is set, then this attribute "
+"is used and the context returned matches the value of this attribute"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2126
+msgid "The DOM canvas element in which to initialize the WebGL context."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2128
+msgid "The attributes of the requested context version."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2130
+msgid ""
+"On success, a non-zero value that represents a handle to the created "
+"context. On failure, 0."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2131
+#: ../../../source/docs/api_reference/html5.h.rst:2148
+msgid "|EMSCRIPTEN_WEBGL_CONTEXT_HANDLE|"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2136
+msgid ""
+"Activates the given WebGL context for rendering. After calling this "
+"function, all OpenGL functions (``glBindBuffer()``, ``glDrawArrays()``, "
+"etc.) can be applied to the given GL context."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2138
+msgid "The WebGL context to activate."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2145
+msgid ""
+"Returns the currently active WebGL rendering context, or 0 if no context is "
+"active. Calling any WebGL functions when there is no active rendering "
+"context is undefined and may throw a JavaScript exception."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2147
+msgid ""
+"The currently active WebGL rendering context, or 0 if no context is active."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2153
+msgid ""
+"Fetches the context creation attributes that were used to initialize the "
+"given WebGL context."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2155
+msgid "The WebGL context to query."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2156
+msgid ""
+"The context creation attributes of the specified context will be filled in "
+"here. This pointer cannot be null."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2157
+msgid "On success, EMSCRIPTEN_RESULT_SUCCESS."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2162
+msgid ""
+"Presents (\"swaps\") the content rendered on the currently active WebGL "
+"context to be visible on the canvas. This function is available on WebGL "
+"contexts that were created with the ``explicitSwapControl==true`` context "
+"creation attribute. If ``explicitSwapControl==false``, then the rendered "
+"content is displayed on the screen \"implicitly\" when yielding back to the "
+"browser from the calling event handler."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2164
+msgid ""
+":c:data:`EMSCRIPTEN_RESULT_SUCCESS`, or one of the other result values, "
+"denoting a reason for failure."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2170
+msgid ""
+"Gets the ``drawingBufferWidth`` and ``drawingBufferHeight`` of the specified "
+"WebGL context."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2172
+msgid "The WebGL context to get width/height of."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2173
+msgid "The context's ``drawingBufferWidth``."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2174
+msgid "The context's ``drawingBufferHeight``."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2181
+msgid ""
+"Deletes the given WebGL context. If that context was active, then the no "
+"context is set to active."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2183
+msgid "The WebGL context to delete."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2190
+msgid "Enables the given extension on the given context."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2192
+msgid "The WebGL context on which the extension is to be enabled."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2193
+msgid ""
+"A string identifying the `WebGL extension <http://www.khronos.org/registry/"
+"webgl/extensions/>`_. For example \"OES_texture_float\"."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2195
+msgid ""
+"true if the given extension is supported by the context, and false if the "
+"extension was not available."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2201
+msgid ""
+"Resizes the pixel width and height of the given Canvas element in the DOM."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2203
+#: ../../../source/docs/api_reference/html5.h.rst:2213
+msgid "Specifies a selector for the canvas to resize."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2204
+msgid "New pixel width of canvas element."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2205
+msgid "New pixel height of canvas element."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2206
+msgid ""
+"EMSCRIPTEN_RESULT_SUCCESS if resizing succeeded, and one of the "
+"EMSCRIPTEN_RESULT_* error values on failure."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2211
+msgid ""
+"Gets the current pixel width and height of the given Canvas element in the "
+"DOM."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2214
+msgid ""
+"A pointer to memory location where the width of the canvas element is "
+"received. This pointer may not be null."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2215
+msgid ""
+"A pointer to memory location where the height of the canvas element is "
+"received. This pointer may not be null."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2216
+msgid ""
+"EMSCRIPTEN_RESULT_SUCCESS if width and height retrieval succeeded, and one "
+"of the EMSCRIPTEN_RESULT_* error values on failure."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2220
+msgid "CSS"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2228
+msgid ""
+"Resizes the CSS width and height of the element specified by ``target`` on "
+"the Emscripten web page."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2230
+msgid "Element to resize."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2232
+msgid "New width of the element."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2233
+msgid "New height of the element."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2240
+msgid ""
+"Gets the current CSS width and height of the element specified by ``target``."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2242
+msgid "Element to get size of."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2244
+msgid "Width of the element."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2245
+msgid "Height of the element."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2272
+msgid "Animation and Timing"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2274
+msgid ""
+"The API provided here are low-level functions that directly call the "
+"relevant Web APIs and nothing more. They don't integrate with the emscripten "
+"runtime, such as checking if the program has halted and cancelling a "
+"callback if so. For that purpose, see the function :c:func:"
+"`emscripten_set_main_loop()`."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2282
+msgid ""
+"Performs a ``setTimeout()`` callback call on the given function on the "
+"calling thread."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2284
+#: ../../../source/docs/api_reference/html5.h.rst:2306
+#: ../../../source/docs/api_reference/html5.h.rst:2350
+#: ../../../source/docs/api_reference/html5.h.rst:2370
+#: ../../../source/docs/api_reference/html5.h.rst:2382
+msgid "The callback function to call."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2285
+msgid "Millisecond delay until the callback should fire."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2286
+#: ../../../source/docs/api_reference/html5.h.rst:2308
+#: ../../../source/docs/api_reference/html5.h.rst:2317
+#: ../../../source/docs/api_reference/html5.h.rst:2340
+#: ../../../source/docs/api_reference/html5.h.rst:2351
+#: ../../../source/docs/api_reference/html5.h.rst:2371
+#: ../../../source/docs/api_reference/html5.h.rst:2384
+msgid ""
+"Specifies a pointer sized field of custom data that will be passed in to the "
+"callback function."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2287
+msgid ""
+"An ID to the ``setTimeout()`` call that can be passed to :c:func:"
+"`emscripten_clear_timeout()` to cancel the pending timeout timer."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2292
+msgid ""
+"Cancels a pending ``setTimeout()`` call on the calling thread. This function "
+"must be called on the same thread as the :c:func:`emscripten_set_timeout()` "
+"call that registered the callback."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2295
+msgid "An ID returned by function :c:func:`emscripten_set_timeout()`."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2300
+msgid ""
+"Initializes a ``setTimeout()`` loop on the given function on the calling "
+"thread. The specified callback function 'cb' needs to keep returning "
+"``true`` as long as the animation loop should continue to run. When the "
+"function returns false, the ``setTimeout()`` loop will stop. Note: The loop "
+"will start immediately with a 0 msecs delay - the passed in intervalMsecs "
+"time specifies the interval that the consecutive callback calls should fire "
+"at."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2307
+#: ../../../source/docs/api_reference/html5.h.rst:2383
+msgid "Millisecond interval at which the callback should keep firing."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2313
+msgid ""
+"Performs a single ``requestAnimationFrame()`` callback call on the given "
+"function on the calling thread."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2315
+#: ../../../source/docs/api_reference/html5.h.rst:2338
+msgid ""
+"The callback function to call. This function will receive the current high "
+"precision timer value (value of ``performance.now()``) at the time of the "
+"call."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2318
+msgid ""
+"An ID to the ``requestAnimationFrame()`` call that can be passed to :c:func:"
+"`emscripten_cancel_animation_frame()` to cancel the pending "
+"``requestAnimationFrame`` timer."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2325
+msgid ""
+"Cancels a registered ``requestAnimationFrame()`` callback on the calling "
+"thread before it is run. This function must be called on the same thread as "
+"the :c:func:`emscripten_request_animation_frame()` call that registered the "
+"callback."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2329
+msgid ""
+"An ID returned by function :c:func:`emscripten_request_animation_frame()`."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2334
+msgid ""
+"Initializes a ``requestAnimationFrame()`` loop on the given function on the "
+"calling thread. The specified callback function 'cb' needs to keep returning "
+"``true`` as long as the animation loop should continue to run. When the "
+"function returns false, the animation frame loop will stop."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2345
+msgid ""
+"Performs a ``setImmediate()`` callback call on the given function on the "
+"calling thread. Returns an ID to the ``setImmediate()`` call that can be "
+"passed to :c:func:`emscripten_clear_immediate()` function to cancel a "
+"pending ``setImmediate()`` invocation. TODO: Currently the polyfill of "
+"``setImmediate()`` only works in the main browser thread, but not in "
+"pthreads."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2352
+msgid ""
+"An ID to the ``setImmediate()`` call that can be passed to :c:func:"
+"`emscripten_clear_immediate()` to cancel the pending callback."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2357
+msgid ""
+"Cancels a pending ``setImmediate()`` call on the calling thread. This "
+"function must be called on the same thread as the :c:func:"
+"`emscripten_set_immediate()` call that registered the callback."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2360
+msgid "An ID returned by function :c:func:`emscripten_set_immediate()`."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2365
+msgid ""
+"Initializes a ``setImmediate()`` loop on the given function on the calling "
+"thread. The specified callback function 'cb' needs to keep returning "
+"``true`` as long as the loop should continue to run. When the function "
+"returns false, the ``setImmediate()`` loop will stop. TODO: Currently the "
+"polyfill of ``setImmediate()`` only works in the main browser thread, but "
+"not in pthreads."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2376
+msgid ""
+"Initializes a ``setInterval()`` loop on the given function on the calling "
+"thread. Returns an ID to the initialized loop. Call :c:func:"
+"`emscripten_clear_interval()` with this ID to terminate the loop. Note that "
+"this function will cause the given callback to be called repeatedly. Do not "
+"call ``emscripten_set_interval()`` again on the same callback function from "
+"inside the callback, as that would register multiple loops to run "
+"simultaneously."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2385
+msgid ""
+"An ID to the setInterval() call that can be passed to "
+"emscripten_clear_interval() to cancel the currently executing interval timer."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2391
+msgid ""
+"Cancels a currently executing ``setInterval()`` loop on the calling thread. "
+"This function must be called on the same thread as the :c:func:"
+"`emscripten_set_interval()` call that registered the callback."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2394
+msgid "An ID returned by function :c:func:`emscripten_set_interval()`."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2399
+msgid "Calls JavaScript ``Date.now()`` function in the current thread."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2401
+msgid ""
+"The number of msecs elapsed since the UNIX epoch. (00:00:00 Thursday, 1 "
+"January 1970)"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2406
+msgid ""
+"Calls JavaScript ``performance.now()`` function in the current thread. Note "
+"that the returned value of this function is based on different time offset "
+"depending on which thread this function is called in. That is, do not "
+"compare absolute time values returned by performance.now() across threads. "
+"(comparing relative timing values is ok). On the main thread this function "
+"returns the number of milliseconds elapsed since page startup time. In a Web "
+"Worker/pthread, this function returns the number of milliseconds since the "
+"Worker hosting that pthread started up. (Workers are generally not torn down "
+"when a pthread quits and a second one starts, but they are kept alive in a "
+"pool, so this function is not guaranteed to start counting time from 0 at "
+"the time when a pthread starts)"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2415
+msgid "A high precision wallclock time value in msecs."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2419
+msgid "Throw"
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2426
+msgid "Invokes JavaScript throw statement and throws a number."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2431
+msgid "Invokes JavaScript throw statement and throws a string."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2435
+msgid ""
+"Throws a JavaScript exception that unwinds the stack and yields execution "
+"back to the browser event loop. This function does not return execution back "
+"to calling code."
+msgstr ""
+
+#: ../../../source/docs/api_reference/html5.h.rst:2438
+msgid ""
+"This function can be useful when porting code that would enter an infinite "
+"loop. Instead of actually running an infinite loop, which is not allowed on "
+"the Web, we can set up the body of the loop to execute asynchronously "
+"(using :c:func:`emscripten_set_main_loop` or something else), and call this "
+"function to halt execution, which is important as we do not want execution "
+"to continue normally."
+msgstr ""

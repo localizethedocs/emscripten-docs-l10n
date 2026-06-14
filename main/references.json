@@ -13,22 +13,22 @@
     },
     "zh_CN" : 
     {
-      "branch" : "",
+      "branch" : "main",
       "commit" : 
       {
-        "date" : "",
-        "hash" : "",
-        "title" : ""
+        "date" : "2026-06-13 11:08:55 -0700",
+        "hash" : "12a6403a4fa02808abc09e5e779166f00dd82d03",
+        "title" : "[wasm64] Keep nfds_t 32-bit. NFC (#27115)"
       }
     },
     "zh_TW" : 
     {
-      "branch" : "",
+      "branch" : "main",
       "commit" : 
       {
-        "date" : "",
-        "hash" : "",
-        "title" : ""
+        "date" : "2026-06-13 11:08:55 -0700",
+        "hash" : "12a6403a4fa02808abc09e5e779166f00dd82d03",
+        "title" : "[wasm64] Keep nfds_t 32-bit. NFC (#27115)"
       }
     }
   },

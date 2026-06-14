@@ -1,0 +1,256 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) Copyright &copy; 2015, Emscripten Contributors.
+# This file is distributed under the same license as the Emscripten package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Emscripten main\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-14 14:25+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: zh_TW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../../source/docs/compiling/Modularized-Output.rst:5
+msgid "Modularized Output"
+msgstr ""
+
+#: ../../../source/docs/compiling/Modularized-Output.rst:7
+msgid ""
+"By default, emscripten outputs regular JS scripts which can be loaded on the "
+"Web via a ``script`` tag, or on the command line using Node or other JS "
+"runtime."
+msgstr ""
+
+#: ../../../source/docs/compiling/Modularized-Output.rst:10
+msgid ""
+"In this default configuration the generated :ref:`module` variable (and "
+"indeed all of the emscripten internal symbols) are added to the global "
+"scope.  This means that only one emscripten-built program can be loaded in a "
+"given scope (since multiple modules would clobber each other's state)."
+msgstr ""
+
+#: ../../../source/docs/compiling/Modularized-Output.rst:15
+msgid ""
+"The :ref:`modularize` setting (along with other related settings) can be "
+"used to isolate the generated module within its own private scope and/or "
+"allow multiple instances of the same module to be created."
+msgstr ""
+
+#: ../../../source/docs/compiling/Modularized-Output.rst:19
+msgid ""
+"This section covers the various modularization options available and how to "
+"use them."
+msgstr ""
+
+#: ../../../source/docs/compiling/Modularized-Output.rst:24
+msgid "Using -sMODULARIZE"
+msgstr ""
+
+#: ../../../source/docs/compiling/Modularized-Output.rst:26
+msgid ""
+"The :ref:`modularize` setting has two primary functions.  Firstly, it puts "
+"all of the generated code inside its own scope so that the global namespace "
+"is not polluted when the JS is loaded (for example, via ``script`` tag). "
+"Secondly, it allows multiple instances of the module to be created."
+msgstr ""
+
+#: ../../../source/docs/compiling/Modularized-Output.rst:31
+msgid ""
+"The generated factory function is async and it returns a promise of an "
+"instance of the program.  It can be called any number of times to create "
+"multiple separate and isolated instances of the same program."
+msgstr ""
+
+#: ../../../source/docs/compiling/Modularized-Output.rst:35
+msgid ""
+"By default, the factory function is called ``Module``, but it can be given a "
+"unique name via the ``-sEXPORT_NAME`` setting."
+msgstr ""
+
+#: ../../../source/docs/compiling/Modularized-Output.rst:38
+msgid ""
+"For example, a program built using ``-sMODULARIZE -sEXPORT_NAME=Foo`` can be "
+"instantiated using:"
+msgstr ""
+
+#: ../../../source/docs/compiling/Modularized-Output.rst:47
+msgid "or:"
+msgstr ""
+
+#: ../../../source/docs/compiling/Modularized-Output.rst:55
+msgid ""
+"If node is included in the ``-sENVIRONMENT`` setting then the generated "
+"module also acts as a ``CommonJS`` module under node."
+msgstr ""
+
+#: ../../../source/docs/compiling/Modularized-Output.rst:58
+msgid ""
+"Because there is no global ``Module`` object in this case any parameters to "
+"the module creation are passed via the optional parameter to the factory "
+"function. For example, if you wanted to use a custom ``print`` method you "
+"could write:"
+msgstr ""
+
+#: ../../../source/docs/compiling/Modularized-Output.rst:68
+msgid "Generating ES6 Modules"
+msgstr ""
+
+#: ../../../source/docs/compiling/Modularized-Output.rst:70
+msgid ""
+"The :ref:`EXPORT_ES6` setting can be used to instead output JavaScript in "
+"the form of an ES module.  (The ES module format did not exist at time when "
+"the `MODULARIZE` setting was first created otherwise this would likely be "
+"the default)."
+msgstr ""
+
+#: ../../../source/docs/compiling/Modularized-Output.rst:75
+msgid ""
+"Using an output filename that ends in `.mjs` will automatically enable this "
+"setting."
+msgstr ""
+
+#: ../../../source/docs/compiling/Modularized-Output.rst:78
+msgid ""
+"In this mode the module has a single default export which is the factory "
+"function for creating new instances of the module.  For example:"
+msgstr ""
+
+#: ../../../source/docs/compiling/Modularized-Output.rst:86
+msgid ""
+"The name ``Foo`` here can be whatever you choose and will always be assigned "
+"to the default export of the module."
+msgstr ""
+
+#: ../../../source/docs/compiling/Modularized-Output.rst:91
+msgid "Using -sMODULARIZE=instance (experimental)"
+msgstr ""
+
+#: ../../../source/docs/compiling/Modularized-Output.rst:93
+msgid ""
+"Emscripten has experimental support for performing only the encapsulation "
+"part of modularization, and not the ability to create multiple instances.  "
+"In this mode a module is created that exports a single instance of the "
+"program rather than a factory function."
+msgstr ""
+
+#: ../../../source/docs/compiling/Modularized-Output.rst:98
+#: ../../../source/docs/compiling/Modularized-Output.rst:141
+msgid ""
+"This setting implicitly enables :ref:`export_es6` and will not work when :"
+"ref:`export_es6` is explictly disabled."
+msgstr ""
+
+#: ../../../source/docs/compiling/Modularized-Output.rst:101
+msgid ""
+"In this mode the default export of the module is an initializer function "
+"which allows input parameters to be passed to the instance.  Other elements "
+"normally found on the module object are instead exported directly.  For "
+"example:"
+msgstr ""
+
+#: ../../../source/docs/compiling/Modularized-Output.rst:113
+#: ../../../source/docs/compiling/Modularized-Output.rst:155
+msgid "Limitations"
+msgstr ""
+
+#: ../../../source/docs/compiling/Modularized-Output.rst:115
+msgid ""
+"Some major features still do not work in this mode.  Many of these we hope "
+"to fix in future releases.  Current limitations include:"
+msgstr ""
+
+#: ../../../source/docs/compiling/Modularized-Output.rst:118
+msgid ""
+"Internal usage (e.g. usage within EM_JS / JS library code) of the ``Module`` "
+"global does not work.  This is because symbols are exported directly using "
+"ES6 module syntax rather than using the ``Module`` global."
+msgstr ""
+
+#: ../../../source/docs/compiling/Modularized-Output.rst:122
+msgid "The ``wasmExports`` internal global does not exist."
+msgstr ""
+
+#: ../../../source/docs/compiling/Modularized-Output.rst:124
+msgid "`ccall`/`cwrap` are not supported (depends on the ``Module`` global)."
+msgstr ""
+
+#: ../../../source/docs/compiling/Modularized-Output.rst:126
+msgid ":ref:`minimal_runtime` is not supported."
+msgstr ""
+
+#: ../../../source/docs/compiling/Modularized-Output.rst:128
+msgid ""
+"The output of file_packager is not compatible so :ref:`emcc-preload-file` "
+"and :ref:`emcc-embed-file` do not work."
+msgstr ""
+
+#: ../../../source/docs/compiling/Modularized-Output.rst:133
+msgid "Source Phase Imports (experimental)"
+msgstr ""
+
+#: ../../../source/docs/compiling/Modularized-Output.rst:135
+msgid ""
+"`Source phase imports`_ is a JavaScript proposal that adds support for "
+"importing Wasm modules via ES import statements.  This allows Emscripten to "
+"elide some of the auto-generated code for finding and fetching the Wasm "
+"binary."
+msgstr ""
+
+#: ../../../source/docs/compiling/Modularized-Output.rst:139
+msgid "See :ref:`source_phase_imports`."
+msgstr ""
+
+#: ../../../source/docs/compiling/Modularized-Output.rst:146
+msgid "ES Module Integration (experimental)"
+msgstr ""
+
+#: ../../../source/docs/compiling/Modularized-Output.rst:148
+msgid ""
+"`Wasm ESM integration`_ is a WebAssembly proposal that allows Wasm instances "
+"to be imported directly as ES modules.  This allows Emscripten to elide a "
+"lot of boilerplate code for linking up Wasm and JavaScript."
+msgstr ""
+
+#: ../../../source/docs/compiling/Modularized-Output.rst:152
+msgid "See :ref:`wasm_esm_integration`."
+msgstr ""
+
+#: ../../../source/docs/compiling/Modularized-Output.rst:157
+msgid ""
+"This setting implicitly enables :ref:`export_es6` and sets :ref:`MODULARIZE` "
+"to ``instance``.  Because of this all the same limitations mentioned above "
+"for ``-sMODULARIZE=instance`` apply."
+msgstr ""
+
+#: ../../../source/docs/compiling/Modularized-Output.rst:161
+msgid "Some additional limitations are:"
+msgstr ""
+
+#: ../../../source/docs/compiling/Modularized-Output.rst:163
+msgid ":ref:`wasm_workers` is not yet supported."
+msgstr ""
+
+#: ../../../source/docs/compiling/Modularized-Output.rst:165
+msgid ""
+":ref:`abort_on_wasm_exceptions` is not supported (requires wrapping wasm "
+"exports)."
+msgstr ""
+
+#: ../../../source/docs/compiling/Modularized-Output.rst:168
+msgid ":ref:`asyncify` is not supported (depends on ``wasmExports`` global)"
+msgstr ""
+
+#: ../../../source/docs/compiling/Modularized-Output.rst:170
+msgid "Setting :ref:`wasm` to ``0`` is not supported."
+msgstr ""
+
+#: ../../../source/docs/compiling/Modularized-Output.rst:172
+msgid "Setting :ref:`wasm_async_compilation` to ``0`` is not supported."
+msgstr ""

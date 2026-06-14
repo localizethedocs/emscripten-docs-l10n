@@ -1,0 +1,76 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) Copyright &copy; 2015, Emscripten Contributors.
+# This file is distributed under the same license as the Emscripten package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Emscripten main\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-14 14:25+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../../source/docs/contributing/contributing.rst:5
+msgid "Contributing"
+msgstr ""
+
+#: ../../../source/docs/contributing/contributing.rst:7
+msgid ""
+"Anyone can contribute to Emscripten — if you find it useful and want to help "
+"improve the project, follow the suggestions below."
+msgstr ""
+
+#: ../../../source/docs/contributing/contributing.rst:10
+msgid ""
+"Feel free to file :ref:`bug reports <bug-reports>`, :ref:`join the "
+"discussion <contact>` and share your own ideas with the community!"
+msgstr ""
+
+#: ../../../source/docs/contributing/contributing.rst:15
+msgid "Getting started"
+msgstr ""
+
+#: ../../../source/docs/contributing/contributing.rst:17
+msgid ""
+"A good starting point is to work on the `open issues on GitHub <https://"
+"github.com/emscripten-core/emscripten/issues?state=open>`_. Many issues can "
+"be resolved without an in-depth knowledge of compiler internals, and this is "
+"a great way to learn more about the project."
+msgstr ""
+
+#: ../../../source/docs/contributing/contributing.rst:22
+msgid ""
+"We really appreciate your help. Every existing issue closed means more time "
+"for the core contributors to work on new features, optimizations and other "
+"enhancements."
+msgstr ""
+
+#: ../../../source/docs/contributing/contributing.rst:26
+msgid ""
+"In addition to improving the toolchain, you can also :ref:`review and update "
+"this documentation <about-this-site-contributing>`."
+msgstr ""
+
+#: ../../../source/docs/contributing/contributing.rst:31
+msgid "Next steps"
+msgstr ""
+
+#: ../../../source/docs/contributing/contributing.rst:33
+msgid ""
+"As a new contributor you should read the :ref:`Developer's-Guide`. You may "
+"also need to :ref:`install Emscripten from source <installing-from-source>` "
+"and become familiar with :ref:`Debugging` and :ref:`Building-Projects`."
+msgstr ""
+
+#: ../../../source/docs/contributing/contributing.rst:37
+msgid ""
+"Please :ref:`get in touch with the community <contact>` to share your ideas "
+"and work out where you can make the most difference."
+msgstr ""

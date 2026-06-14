@@ -1,0 +1,89 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) Copyright &copy; 2015, Emscripten Contributors.
+# This file is distributed under the same license as the Emscripten package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Emscripten main\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-14 14:25+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../../source/docs/porting/guidelines/api_limitations.rst:5
+msgid "API Limitations"
+msgstr ""
+
+#: ../../../source/docs/porting/guidelines/api_limitations.rst:7
+msgid ""
+"The browser environment and JavaScript are different from the native "
+"environments that C and C++ typically run in. These differences impose some "
+"limitations on how native APIs can be called and used. This section lists "
+"some of the more obvious limitations."
+msgstr ""
+
+#: ../../../source/docs/porting/guidelines/api_limitations.rst:10
+msgid "Networking"
+msgstr ""
+
+#: ../../../source/docs/porting/guidelines/api_limitations.rst:12
+msgid ""
+"Emscripten supports *libc* networking functions but you must limit yourself "
+"to asynchronous (non-blocking) operations. This is required because the "
+"underlying JavaScript networking functions are asynchronous."
+msgstr ""
+
+#: ../../../source/docs/porting/guidelines/api_limitations.rst:15
+msgid "File Systems"
+msgstr ""
+
+#: ../../../source/docs/porting/guidelines/api_limitations.rst:17
+msgid ""
+"Emscripten supports *libc* file system functions and C/C++ code can be "
+"written in the normal way."
+msgstr ""
+
+#: ../../../source/docs/porting/guidelines/api_limitations.rst:19
+msgid ""
+"Code run in a :ref:`browser environment <emscripten-runtime-environment>` is "
+"sandboxed, and does not have direct access to the local file system. "
+"Instead, Emscripten creates a virtual file system that may be preloaded with "
+"data or linked to URLs for lazy loading. This affects when synchronous file "
+"system functions can be called and how a project is compiled. See the :ref:"
+"`file-system-overview` for more information."
+msgstr ""
+
+#: ../../../source/docs/porting/guidelines/api_limitations.rst:23
+msgid "Application Main Loop"
+msgstr ""
+
+#: ../../../source/docs/porting/guidelines/api_limitations.rst:25
+msgid ""
+"The browser event model uses *co-operative multitasking* — each event has a "
+"\"turn\" to run, and must then return control to the browser event loop so "
+"that other events can be processed. A common cause of HTML pages hanging is "
+"JavaScript that does not complete and return control to the browser."
+msgstr ""
+
+#: ../../../source/docs/porting/guidelines/api_limitations.rst:27
+msgid ""
+"This can affect how an application using an infinite main loop is written. "
+"See :ref:`emscripten-runtime-environment` for more information."
+msgstr ""
+
+#: ../../../source/docs/porting/guidelines/api_limitations.rst:30
+msgid "Other APIs"
+msgstr ""
+
+#: ../../../source/docs/porting/guidelines/api_limitations.rst:32
+msgid ""
+"Support for other **portable** C/C++ code is :ref:`fairly comprehensive "
+"<about-emscripten-porting-code>`."
+msgstr ""

@@ -1,0 +1,4811 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) Copyright &copy; 2015, Emscripten Contributors.
+# This file is distributed under the same license as the Emscripten package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Emscripten main\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-14 14:25+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: zh_TW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../../source/docs/porting/simd.rst:8
+msgid "Using SIMD with WebAssembly"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:10
+msgid ""
+"Emscripten supports the `WebAssembly SIMD <https://github.com/webassembly/"
+"simd/>`_ feature. There are five different ways to leverage WebAssembly SIMD "
+"in your C/C++ programs:"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:12
+msgid ""
+"Enable LLVM/Clang SIMD autovectorizer to automatically target WebAssembly "
+"SIMD, without requiring changes to C/C++ source code."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:13
+msgid ""
+"Write SIMD code using the GCC/Clang SIMD Vector Extensions "
+"(``__attribute__((vector_size(16)))``)"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:14
+msgid ""
+"Write SIMD code using the WebAssembly SIMD intrinsics (``#include "
+"<wasm_simd128.h>``)"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:15
+msgid ""
+"Compile existing SIMD code that uses the x86 SSE, SSE2, SSE3, SSSE3, SSE4.1, "
+"SSE4.2, AVX or AVX2 intrinsics (``#include <*mmintrin.h>``)"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:16
+msgid ""
+"Compile existing SIMD code that uses the ARM NEON intrinsics (``#include "
+"<arm_neon.h>``)"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:18
+msgid "These techniques can be freely combined in a single program."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:20
+msgid ""
+"To enable any of the five types of SIMD above, pass the WebAssembly-specific "
+"``-msimd128`` flag at compile time. This will also turn on LLVM's "
+"autovectorization passes. If that is not desirable, additionally pass flags "
+"``-fno-vectorize -fno-slp-vectorize`` to disable the autovectorizer. See "
+"`Auto-Vectorization in LLVM <https://llvm.org/docs/Vectorizers.html>`_ for "
+"more information."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:22
+msgid "WebAssembly SIMD is supported by"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:24
+msgid "Chrome ≥ 91 (May 2021),"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:26
+msgid "Firefox ≥ 89 (June 2021),"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:28
+msgid "Safari ≥ 16.4 (March 2023) and"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:30
+msgid "Node.js ≥ 16.4 (June 2021)."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:32
+msgid ""
+"See `WebAssembly Roadmap <https://webassembly.org/roadmap/>`_ for details "
+"about other VMs."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:34
+msgid ""
+"An upcoming `Relaxed SIMD proposal <https://github.com/WebAssembly/relaxed-"
+"simd/tree/main/proposals/relaxed-simd>`_ will add more SIMD instructions to "
+"WebAssembly."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:38
+msgid "GCC/Clang SIMD Vector Extensions"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:40
+msgid ""
+"At the source level, the GCC/Clang `SIMD Vector Extensions <https://gcc.gnu."
+"org/onlinedocs/gcc/Vector-Extensions.html>`_ can be used and will be lowered "
+"to WebAssembly SIMD instructions where possible."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:42
+msgid ""
+"This enables developers to create custom wide vector types via typedefs, and "
+"use arithmetic operators (+,-,*,/) on the vectorized types, as well as allow "
+"individual lane access via the vector[i] notation. However, the `GCC vector "
+"built-in functions <https://gcc.gnu.org/onlinedocs/gcc/x86-Built-in-"
+"Functions.html>`_ are not available. Instead, use the WebAssembly SIMD "
+"Intrinsics functions below."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:46
+msgid "WebAssembly SIMD Intrinsics"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:48
+msgid ""
+"LLVM maintains a WebAssembly SIMD Intrinsics header file that is provided "
+"with Emscripten, and adds type definitions for the different supported "
+"vector types."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:69
+msgid ""
+"The Wasm SIMD header can be browsed online at `wasm_simd128.h <https://"
+"github.com/llvm/llvm-project/blob/main/clang/lib/Headers/wasm_simd128.h>`_."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:71
+msgid ""
+"Pass flag ``-msimd128`` at compile time to enable targeting WebAssembly SIMD "
+"Intrinsics. C/C++ code can use the built-in preprocessor define ``#ifdef "
+"__wasm_simd128__`` to detect when building with WebAssembly SIMD enabled."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:73
+msgid ""
+"Pass ``-mrelaxed-simd`` to target WebAssembly Relaxed SIMD Intrinsics. C/C++ "
+"code can use the built-in preprocessor define ``#ifdef "
+"__wasm_relaxed_simd__`` to detect when this target is active."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:77
+msgid "Limitations and behavioral differences"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:79
+msgid ""
+"When porting native SIMD code, it should be noted that because of "
+"portability concerns, the WebAssembly SIMD specification does not expose "
+"access to all of the native x86/ARM SIMD instructions. In particular the "
+"following changes exist:"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:81
+msgid ""
+"Emscripten does not support x86 or any other native inline SIMD assembly or "
+"building .s assembly files, so all code should be written to use SIMD "
+"intrinsic functions or compiler vector extensions."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:83
+msgid ""
+"WebAssembly SIMD does not have control over managing floating point rounding "
+"modes or handling denormals."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:85
+msgid ""
+"Cache line prefetch instructions are not available, and calls to these "
+"functions will compile, but are treated as no-ops."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:87
+msgid ""
+"Asymmetric memory fence operations are not available, but will be "
+"implemented as fully synchronous memory fences when SharedArrayBuffer is "
+"enabled (-pthread) or as no-ops when multithreading is not enabled (the "
+"default)."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:89
+msgid ""
+"SIMD-related bug reports are tracked in the `Emscripten bug tracker with the "
+"label SIMD <https://github.com/emscripten-core/emscripten/issues?"
+"q=is%3Aopen+is%3Aissue+label%3ASIMD>`_."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:93
+msgid "Optimization considerations"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:95
+msgid ""
+"When developing SIMD code to use WebAssembly SIMD, implementors should be "
+"aware of semantic differences between the host hardware and WebAssembly "
+"semantics; as acknowledged in the WebAssembly design documentation, \"`this "
+"sometimes will lead to poor performance <https://github.com/WebAssembly/"
+"design/blob/master/Portability.md#assumptions-for-efficient-execution>`_.\" "
+"The following list outlines some WebAssembly SIMD instructions to look out "
+"for when performance tuning:"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:97
+msgid "WebAssembly SIMD instructions with performance implications"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:102
+msgid "WebAssembly SIMD instruction"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:103
+msgid "Arch"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:104
+msgid "Considerations"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:106
+msgid "[i8x16|i16x8|i32x4|i64x2].[shl|shr_s|shr_u]"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:107
+msgid "x86, arm"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:108
+msgid ""
+"Use a constant shift amount to avoid extra instructions checking that it is "
+"in bounds."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:110
+msgid "i8x16.[shl|shr_s|shr_u]"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:111
+#: ../../../source/docs/porting/simd.rst:115
+#: ../../../source/docs/porting/simd.rst:119
+#: ../../../source/docs/porting/simd.rst:123
+#: ../../../source/docs/porting/simd.rst:127
+#: ../../../source/docs/porting/simd.rst:131
+#: ../../../source/docs/porting/simd.rst:135
+#: ../../../source/docs/porting/simd.rst:139
+msgid "x86"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:112
+msgid ""
+"Included for orthogonality, these instructions have no equivalent x86 "
+"instruction and are emulated with `5-11 x86 instructions in v8 <https://"
+"github.com/v8/v8/blob/c8672adeebb105c7636334b9931831bf1945f4ec/src/codegen/"
+"shared-ia32-x64/macro-assembler-shared-ia32-x64.cc#L427-L552>`_ (i.e. using "
+"16x8 shifts)."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:114
+msgid "i64x2.shr_s"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:116
+msgid ""
+"Included for orthogonality, this instruction has no equivalent x86 "
+"instruction and is emulated with `6-12 x86 instructions in v8 <https://"
+"github.com/v8/v8/blob/c8672adeebb105c7636334b9931831bf1945f4ec/src/codegen/"
+"shared-ia32-x64/macro-assembler-shared-ia32-x64.cc#L996-L1057>`_."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:118
+msgid "i8x16.swizzle"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:120
+msgid ""
+"The zeroing behavior does not match x86 (i.e. this instruction zeroes when "
+"an index is out-of-range instead of when the most significant bit is 1); use "
+"a constant swizzle amount (or i8x16.shuffle) to avoid 3 extra x86 "
+"instructions in some runtimes."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:122
+msgid "[f32x4|f64x2].[min|max]"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:124
+msgid ""
+"As with the scalar versions, the NaN propagation semantics force runtimes to "
+"emulate with 7-10 x86 instructions (e.g., see `v8's emulation <https://"
+"github.com/v8/v8/blob/c8672adeebb105c7636334b9931831bf1945f4ec/src/codegen/"
+"shared-ia32-x64/macro-assembler-shared-ia32-x64.cc#L202-L339>`_; if "
+"possible, use [f32x4|f64x2].[pmin|pmax] instead (1 x86 instruction)."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:126
+msgid "i32x4.trunc_sat_f32x4_[u|s]"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:128
+msgid ""
+"No equivalent x86 semantics; `emulated with 8-14 x86 instructions in v8 "
+"<https://github.com/v8/v8/blob/b6520eda5eafc3b007a5641b37136dfc9d92f63d/src/"
+"compiler/backend/x64/code-generator-x64.cc#L3035-L3062>`_."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:130
+msgid "i32x4.trunc_sat_f64x2_[u|s]_zero"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:132
+msgid ""
+"No equivalent x86 semantics; `emulated with 5-6 x86 instructions in v8 "
+"<https://github.com/v8/v8/blob/b6520eda5eafc3b007a5641b37136dfc9d92f63d/src/"
+"codegen/x64/macro-assembler-x64.cc#L2241-L2311>`_."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:134
+msgid "f32x4.convert_f32x4_u"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:136
+msgid ""
+"No equivalent x86 semantics; `emulated with 8 x86 instructions in v8 "
+"<https://github.com/v8/v8/blob/b6520eda5eafc3b007a5641b37136dfc9d92f63d/src/"
+"compiler/backend/x64/code-generator-x64.cc#L2591-L2604>`_."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:138
+msgid "[i8x16|i64x2].mul"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:140
+msgid ""
+"Included for orthogonality, these instructions have no equivalent x86 "
+"instruction and are `emulated with 10 x86 instructions in v8 <https://github."
+"com/v8/v8/blob/b6520eda5eafc3b007a5641b37136dfc9d92f63d/src/compiler/backend/"
+"x64/code-generator-x64.cc#L2834-L2858>`_."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:145
+msgid "Compiling SIMD code targeting x86 SSE* instruction sets"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:147
+msgid ""
+"Emscripten supports compiling existing codebases that use x86 SSE "
+"instructions by passing the ``-msimd128`` flag, and additionally one of the "
+"following:"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:149
+msgid ""
+"**SSE**: pass ``-msse`` and ``#include <xmmintrin.h>``. Use ``#ifdef "
+"__SSE__`` to gate code."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:150
+msgid ""
+"**SSE2**: pass ``-msse2`` and ``#include <emmintrin.h>``. Use ``#ifdef "
+"__SSE2__`` to gate code."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:151
+msgid ""
+"**SSE3**: pass ``-msse3`` and ``#include <pmmintrin.h>``. Use ``#ifdef "
+"__SSE3__`` to gate code."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:152
+msgid ""
+"**SSSE3**: pass ``-mssse3`` and ``#include <tmmintrin.h>``. Use ``#ifdef "
+"__SSSE3__`` to gate code."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:153
+msgid ""
+"**SSE4.1**: pass ``-msse4.1`` and ``#include <smmintrin.h>``. Use ``#ifdef "
+"__SSE4_1__`` to gate code."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:154
+msgid ""
+"**SSE4.2**: pass ``-msse4.2`` and ``#include <nmmintrin.h>``. Use ``#ifdef "
+"__SSE4_2__`` to gate code."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:155
+msgid ""
+"**AVX**: pass ``-mavx`` and ``#include <immintrin.h>``. Use ``#ifdef "
+"__AVX__`` to gate code."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:156
+msgid ""
+"**AVX2**: pass ``-mavx2`` and ``#include <immintrin.h>``. Use ``#ifdef "
+"__AVX2__`` to gate code."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:158
+msgid ""
+"Currently only the SSE1, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, and AVX "
+"instruction sets are supported. Each of these instruction sets add on top of "
+"the previous ones, so e.g. when targeting SSE3, the instruction sets SSE1 "
+"and SSE2 are also available."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:160
+msgid ""
+"The following tables highlight the availability and expected performance of "
+"different SSE* intrinsics. This can be useful for understanding the "
+"performance limitations that the Wasm SIMD specification has when running on "
+"x86 hardware."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:162
+msgid ""
+"For detailed information on each SSE intrinsic function, visit the excellent "
+"`Intel Intrinsics Guide on SSE1 <https://software.intel.com/sites/"
+"landingpage/IntrinsicsGuide/#techs=SSE>`_."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:164
+msgid ""
+"The following legend is used to highlight the expected performance of "
+"various instructions:"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:165
+msgid ""
+"✅ Wasm SIMD has a native opcode that matches the x86 SSE instruction, "
+"should yield native performance"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:166
+msgid ""
+"💡 while the Wasm SIMD spec does not provide a proper performance guarantee, "
+"given a suitably smart enough compiler and a runtime VM path, this intrinsic "
+"should be able to generate the identical native SSE instruction."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:167
+msgid ""
+"🟡 there is some information missing (e.g. type or alignment information) "
+"for a Wasm VM to be guaranteed to be able to reconstruct the intended x86 "
+"SSE opcode. This might cause a penalty depending on the target CPU hardware "
+"family, especially on older CPU generations."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:168
+msgid ""
+"⚠️ the underlying x86 SSE instruction is not available, but it is emulated "
+"via at most few other Wasm SIMD instructions, causing a small penalty."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:169
+msgid ""
+"❌ the underlying x86 SSE instruction is not exposed by the Wasm SIMD "
+"specification, so it must be emulated via a slow path, e.g. a sequence of "
+"several slower SIMD instructions, or a scalar implementation."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:170
+msgid ""
+"💣 the underlying x86 SSE opcode is not available in Wasm SIMD, and the "
+"implementation must resort to such a slow emulated path, that a workaround "
+"rethinking the algorithm at a higher level is advised."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:171
+msgid ""
+"💭 the given SSE intrinsic is available to let applications compile, but "
+"does nothing."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:172
+msgid ""
+"⚫ the given SSE intrinsic is not available. Referencing the intrinsic will "
+"cause a compiler error."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:174
+msgid ""
+"Certain intrinsics in the table below are marked \"virtual\". This means "
+"that there does not actually exist a native x86 SSE instruction set opcode "
+"to implement them, but native compilers offer the function as a convenience. "
+"Different compilers might generate a different instruction sequence for "
+"these."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:176
+msgid ""
+"In addition to consulting the tables below, you can turn on diagnostics for "
+"slow, emulated functions by defining the macro ``#define "
+"WASM_SIMD_COMPAT_SLOW``. This will print out warnings if you attempt to use "
+"any of the slow paths (corresponding to ❌ or 💣 in the legend)."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:178
+msgid "x86 SSE intrinsics available via #include <xmmintrin.h> and -msse"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:183
+#: ../../../source/docs/porting/simd.rst:418
+#: ../../../source/docs/porting/simd.rst:871
+#: ../../../source/docs/porting/simd.rst:911
+#: ../../../source/docs/porting/simd.rst:958
+#: ../../../source/docs/porting/simd.rst:1089
+#: ../../../source/docs/porting/simd.rst:1106
+#: ../../../source/docs/porting/simd.rst:1155
+#: ../../../source/docs/porting/simd.rst:1272
+msgid "Intrinsic name"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:184
+#: ../../../source/docs/porting/simd.rst:419
+#: ../../../source/docs/porting/simd.rst:872
+#: ../../../source/docs/porting/simd.rst:912
+#: ../../../source/docs/porting/simd.rst:959
+#: ../../../source/docs/porting/simd.rst:1090
+#: ../../../source/docs/porting/simd.rst:1107
+#: ../../../source/docs/porting/simd.rst:1156
+msgid "WebAssembly SIMD support"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:185
+msgid "_mm_set_ps"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:186
+#: ../../../source/docs/porting/simd.rst:188
+msgid "✅ wasm_f32x4_make"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:187
+msgid "_mm_setr_ps"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:189
+msgid "_mm_set_ss"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:190
+msgid "💡 emulated with wasm_f32x4_make"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:191
+msgid "_mm_set_ps1 (_mm_set1_ps)"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:192
+msgid "✅ wasm_f32x4_splat"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:193
+msgid "_mm_setzero_ps"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:194
+msgid "💡 emulated with wasm_f32x4_const(0)"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:195
+msgid "_mm_load_ps"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:196
+#: ../../../source/docs/porting/simd.rst:599
+#: ../../../source/docs/porting/simd.rst:605
+#: ../../../source/docs/porting/simd.rst:1069
+msgid ""
+"🟡 wasm_v128_load. VM must guess type. :raw-html:`<br />` Unaligned load on "
+"x86 CPUs."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:196
+#: ../../../source/docs/porting/simd.rst:198
+#: ../../../source/docs/porting/simd.rst:200
+#: ../../../source/docs/porting/simd.rst:214
+#: ../../../source/docs/porting/simd.rst:216
+#: ../../../source/docs/porting/simd.rst:226
+#: ../../../source/docs/porting/simd.rst:264
+#: ../../../source/docs/porting/simd.rst:266
+#: ../../../source/docs/porting/simd.rst:272
+#: ../../../source/docs/porting/simd.rst:274
+#: ../../../source/docs/porting/simd.rst:392
+#: ../../../source/docs/porting/simd.rst:599
+#: ../../../source/docs/porting/simd.rst:605
+#: ../../../source/docs/porting/simd.rst:607
+#: ../../../source/docs/porting/simd.rst:609
+#: ../../../source/docs/porting/simd.rst:611
+#: ../../../source/docs/porting/simd.rst:731
+#: ../../../source/docs/porting/simd.rst:733
+#: ../../../source/docs/porting/simd.rst:735
+#: ../../../source/docs/porting/simd.rst:747
+#: ../../../source/docs/porting/simd.rst:749
+#: ../../../source/docs/porting/simd.rst:757
+#: ../../../source/docs/porting/simd.rst:759
+#: ../../../source/docs/porting/simd.rst:761
+#: ../../../source/docs/porting/simd.rst:765
+#: ../../../source/docs/porting/simd.rst:769
+#: ../../../source/docs/porting/simd.rst:771
+#: ../../../source/docs/porting/simd.rst:791
+#: ../../../source/docs/porting/simd.rst:793
+#: ../../../source/docs/porting/simd.rst:795
+#: ../../../source/docs/porting/simd.rst:797
+#: ../../../source/docs/porting/simd.rst:1069
+msgid ":raw-html:`<br />`"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:197
+msgid "_mm_loadl_pi"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:198
+#: ../../../source/docs/porting/simd.rst:200
+#: ../../../source/docs/porting/simd.rst:607
+#: ../../../source/docs/porting/simd.rst:609
+#: ../../../source/docs/porting/simd.rst:611
+msgid ""
+"❌ No Wasm SIMD support. :raw-html:`<br />` Emulated with scalar loads + "
+"shuffle."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:199
+msgid "_mm_loadh_pi"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:201
+msgid "_mm_loadr_ps"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:202
+#: ../../../source/docs/porting/simd.rst:613
+msgid "💡 Virtual. Simd load + shuffle."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:203
+msgid "_mm_loadu_ps"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:204
+#: ../../../source/docs/porting/simd.rst:615
+#: ../../../source/docs/porting/simd.rst:617
+msgid "🟡 wasm_v128_load. VM must guess type."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:205
+msgid "_mm_load_ps1 (_mm_load1_ps)"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:206
+msgid "🟡 Virtual. Simd load + shuffle."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:207
+msgid "_mm_load_ss"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:208
+msgid "❌ emulated with wasm_f32x4_make"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:209
+msgid "_mm_storel_pi"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:210
+msgid "❌ scalar stores"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:211
+msgid "_mm_storeh_pi"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:212
+#: ../../../source/docs/porting/simd.rst:773
+#: ../../../source/docs/porting/simd.rst:779
+msgid "❌ shuffle + scalar stores"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:213
+msgid "_mm_store_ps"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:214
+#: ../../../source/docs/porting/simd.rst:765
+#: ../../../source/docs/porting/simd.rst:769
+msgid ""
+"🟡 wasm_v128_store. VM must guess type. :raw-html:`<br />` Unaligned store "
+"on x86 CPUs."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:215
+msgid "_mm_stream_ps"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:216
+#: ../../../source/docs/porting/simd.rst:791
+#: ../../../source/docs/porting/simd.rst:793
+#: ../../../source/docs/porting/simd.rst:795
+#: ../../../source/docs/porting/simd.rst:797
+msgid ""
+"🟡 wasm_v128_store. VM must guess type. :raw-html:`<br />` No cache control "
+"in Wasm SIMD."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:217
+msgid "_mm_prefetch"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:218
+#: ../../../source/docs/porting/simd.rst:677
+msgid "💭 No-op."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:219
+msgid "_mm_sfence"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:220
+#: ../../../source/docs/porting/simd.rst:597
+#: ../../../source/docs/porting/simd.rst:637
+msgid "⚠️ A full barrier in multithreaded builds."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:221
+msgid "_mm_shuffle_ps"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:222
+msgid "🟡 wasm_i32x4_shuffle. VM must guess type."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:223
+msgid "_mm_storer_ps"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:224
+msgid "💡 Virtual. Shuffle + Simd store."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:225
+msgid "_mm_store_ps1 (_mm_store1_ps)"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:226
+#: ../../../source/docs/porting/simd.rst:771
+msgid ""
+"🟡 Virtual. Emulated with shuffle. :raw-html:`<br />` Unaligned store on x86 "
+"CPUs."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:227
+msgid "_mm_store_ss"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:228
+#: ../../../source/docs/porting/simd.rst:232
+#: ../../../source/docs/porting/simd.rst:234
+#: ../../../source/docs/porting/simd.rst:767
+msgid "💡 emulated with scalar store"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:229
+msgid "_mm_storeu_ps"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:230
+#: ../../../source/docs/porting/simd.rst:781
+#: ../../../source/docs/porting/simd.rst:783
+msgid "🟡 wasm_v128_store. VM must guess type."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:231
+#: ../../../source/docs/porting/simd.rst:788
+msgid "_mm_storeu_si16"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:233
+#: ../../../source/docs/porting/simd.rst:784
+msgid "_mm_storeu_si64"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:235
+msgid "_mm_movemask_ps"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:236
+msgid "✅ wasm_i32x4_bitmask"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:237
+msgid "_mm_move_ss"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:238
+#: ../../../source/docs/porting/simd.rst:647
+#: ../../../source/docs/porting/simd.rst:649
+msgid "💡 emulated with a shuffle. VM must guess type."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:239
+msgid "_mm_add_ps"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:240
+msgid "✅ wasm_f32x4_add"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:241
+msgid "_mm_add_ss"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:242
+#: ../../../source/docs/porting/simd.rst:246
+#: ../../../source/docs/porting/simd.rst:250
+#: ../../../source/docs/porting/simd.rst:254
+#: ../../../source/docs/porting/simd.rst:258
+#: ../../../source/docs/porting/simd.rst:262
+#: ../../../source/docs/porting/simd.rst:270
+#: ../../../source/docs/porting/simd.rst:288
+#: ../../../source/docs/porting/simd.rst:292
+#: ../../../source/docs/porting/simd.rst:296
+#: ../../../source/docs/porting/simd.rst:300
+#: ../../../source/docs/porting/simd.rst:304
+#: ../../../source/docs/porting/simd.rst:324
+#: ../../../source/docs/porting/simd.rst:431
+#: ../../../source/docs/porting/simd.rst:475
+#: ../../../source/docs/porting/simd.rst:479
+#: ../../../source/docs/porting/simd.rst:489
+#: ../../../source/docs/porting/simd.rst:493
+#: ../../../source/docs/porting/simd.rst:503
+#: ../../../source/docs/porting/simd.rst:507
+#: ../../../source/docs/porting/simd.rst:591
+#: ../../../source/docs/porting/simd.rst:635
+#: ../../../source/docs/porting/simd.rst:645
+#: ../../../source/docs/porting/simd.rst:659
+#: ../../../source/docs/porting/simd.rst:741
+#: ../../../source/docs/porting/simd.rst:809
+#: ../../../source/docs/porting/simd.rst:977
+#: ../../../source/docs/porting/simd.rst:979
+#: ../../../source/docs/porting/simd.rst:1023
+#: ../../../source/docs/porting/simd.rst:1025
+#: ../../../source/docs/porting/simd.rst:1065
+#: ../../../source/docs/porting/simd.rst:1067
+msgid "⚠️ emulated with a shuffle"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:243
+msgid "_mm_sub_ps"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:244
+msgid "✅ wasm_f32x4_sub"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:245
+msgid "_mm_sub_ss"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:247
+msgid "_mm_mul_ps"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:248
+msgid "✅ wasm_f32x4_mul"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:249
+msgid "_mm_mul_ss"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:251
+msgid "_mm_div_ps"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:252
+msgid "✅ wasm_f32x4_div"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:253
+msgid "_mm_div_ss"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:255
+msgid "_mm_min_ps"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:256
+msgid "TODO: pmin once it works"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:257
+msgid "_mm_min_ss"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:259
+msgid "_mm_max_ps"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:260
+msgid "TODO: pmax once it works"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:261
+msgid "_mm_max_ss"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:263
+msgid "_mm_rcp_ps"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:264
+msgid ""
+"❌ No Wasm SIMD support. :raw-html:`<br />` Emulated with full precision "
+"div. `simd/#3 <https://github.com/WebAssembly/simd/issues/3>`_"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:265
+msgid "_mm_rcp_ss"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:266
+msgid ""
+"❌ No Wasm SIMD support. :raw-html:`<br />` Emulated with full precision "
+"div+shuffle `simd/#3 <https://github.com/WebAssembly/simd/issues/3>`_"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:267
+msgid "_mm_sqrt_ps"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:268
+msgid "✅ wasm_f32x4_sqrt"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:269
+msgid "_mm_sqrt_ss"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:271
+msgid "_mm_rsqrt_ps"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:272
+msgid ""
+"❌ No Wasm SIMD support. :raw-html:`<br />` Emulated with full precision "
+"div+sqrt. `simd/#3 <https://github.com/WebAssembly/simd/issues/3>`_"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:273
+msgid "_mm_rsqrt_ss"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:274
+msgid ""
+"❌ No Wasm SIMD support. :raw-html:`<br />` Emulated with full precision "
+"div+sqrt+shuffle. `simd/#3 <https://github.com/WebAssembly/simd/issues/3>`_"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:275
+msgid "_mm_unpackhi_ps"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:276
+#: ../../../source/docs/porting/simd.rst:278
+#: ../../../source/docs/porting/simd.rst:280
+#: ../../../source/docs/porting/simd.rst:282
+#: ../../../source/docs/porting/simd.rst:284
+#: ../../../source/docs/porting/simd.rst:835
+#: ../../../source/docs/porting/simd.rst:837
+#: ../../../source/docs/porting/simd.rst:839
+#: ../../../source/docs/porting/simd.rst:841
+#: ../../../source/docs/porting/simd.rst:843
+#: ../../../source/docs/porting/simd.rst:845
+#: ../../../source/docs/porting/simd.rst:847
+#: ../../../source/docs/porting/simd.rst:849
+#: ../../../source/docs/porting/simd.rst:851
+#: ../../../source/docs/porting/simd.rst:853
+msgid "💡 emulated with a shuffle"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:277
+msgid "_mm_unpacklo_ps"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:279
+msgid "_mm_movehl_ps"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:281
+msgid "_mm_movelh_ps"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:283
+msgid "_MM_TRANSPOSE4_PS"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:285
+msgid "_mm_cmplt_ps"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:286
+msgid "✅ wasm_f32x4_lt"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:287
+msgid "_mm_cmplt_ss"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:289
+msgid "_mm_cmple_ps"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:290
+msgid "✅ wasm_f32x4_le"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:291
+msgid "_mm_cmple_ss"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:293
+msgid "_mm_cmpeq_ps"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:294
+msgid "✅ wasm_f32x4_eq"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:295
+msgid "_mm_cmpeq_ss"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:297
+msgid "_mm_cmpge_ps"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:298
+msgid "✅ wasm_f32x4_ge"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:299
+msgid "_mm_cmpge_ss"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:301
+msgid "_mm_cmpgt_ps"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:302
+msgid "✅ wasm_f32x4_gt"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:303
+msgid "_mm_cmpgt_ss"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:305
+msgid "_mm_cmpord_ps"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:306
+#: ../../../source/docs/porting/simd.rst:525
+msgid "❌ emulated with 2xcmp+and"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:307
+msgid "_mm_cmpord_ss"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:308
+#: ../../../source/docs/porting/simd.rst:527
+msgid "❌ emulated with 2xcmp+and+shuffle"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:309
+msgid "_mm_cmpunord_ps"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:310
+#: ../../../source/docs/porting/simd.rst:529
+msgid "❌ emulated with 2xcmp+or"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:311
+msgid "_mm_cmpunord_ss"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:312
+#: ../../../source/docs/porting/simd.rst:531
+msgid "❌ emulated with 2xcmp+or+shuffle"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:313
+msgid "_mm_and_ps"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:314
+#: ../../../source/docs/porting/simd.rst:441
+#: ../../../source/docs/porting/simd.rst:443
+msgid "🟡 wasm_v128_and. VM must guess type."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:315
+msgid "_mm_andnot_ps"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:316
+#: ../../../source/docs/porting/simd.rst:445
+#: ../../../source/docs/porting/simd.rst:447
+msgid "🟡 wasm_v128_andnot. VM must guess type."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:317
+msgid "_mm_or_ps"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:318
+#: ../../../source/docs/porting/simd.rst:667
+#: ../../../source/docs/porting/simd.rst:669
+msgid "🟡 wasm_v128_or. VM must guess type."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:319
+msgid "_mm_xor_ps"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:320
+#: ../../../source/docs/porting/simd.rst:855
+#: ../../../source/docs/porting/simd.rst:857
+msgid "🟡 wasm_v128_xor. VM must guess type."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:321
+msgid "_mm_cmpneq_ps"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:322
+msgid "✅ wasm_f32x4_ne"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:323
+msgid "_mm_cmpneq_ss"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:325
+msgid "_mm_cmpnge_ps"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:326
+#: ../../../source/docs/porting/simd.rst:509
+msgid "⚠️ emulated with not+ge"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:327
+msgid "_mm_cmpnge_ss"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:328
+#: ../../../source/docs/porting/simd.rst:511
+msgid "⚠️ emulated with not+ge+shuffle"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:329
+msgid "_mm_cmpngt_ps"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:330
+#: ../../../source/docs/porting/simd.rst:513
+msgid "⚠️ emulated with not+gt"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:331
+msgid "_mm_cmpngt_ss"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:332
+#: ../../../source/docs/porting/simd.rst:515
+msgid "⚠️ emulated with not+gt+shuffle"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:333
+msgid "_mm_cmpnle_ps"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:334
+#: ../../../source/docs/porting/simd.rst:517
+msgid "⚠️ emulated with not+le"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:335
+msgid "_mm_cmpnle_ss"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:336
+#: ../../../source/docs/porting/simd.rst:519
+msgid "⚠️ emulated with not+le+shuffle"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:337
+msgid "_mm_cmpnlt_ps"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:338
+#: ../../../source/docs/porting/simd.rst:521
+msgid "⚠️ emulated with not+lt"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:339
+msgid "_mm_cmpnlt_ss"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:340
+#: ../../../source/docs/porting/simd.rst:523
+msgid "⚠️ emulated with not+lt+shuffle"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:341
+msgid "_mm_comieq_ss"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:342
+#: ../../../source/docs/porting/simd.rst:344
+#: ../../../source/docs/porting/simd.rst:346
+#: ../../../source/docs/porting/simd.rst:348
+#: ../../../source/docs/porting/simd.rst:350
+#: ../../../source/docs/porting/simd.rst:352
+#: ../../../source/docs/porting/simd.rst:354
+#: ../../../source/docs/porting/simd.rst:356
+#: ../../../source/docs/porting/simd.rst:358
+#: ../../../source/docs/porting/simd.rst:360
+#: ../../../source/docs/porting/simd.rst:362
+#: ../../../source/docs/porting/simd.rst:364
+#: ../../../source/docs/porting/simd.rst:366
+#: ../../../source/docs/porting/simd.rst:372
+#: ../../../source/docs/porting/simd.rst:533
+#: ../../../source/docs/porting/simd.rst:535
+#: ../../../source/docs/porting/simd.rst:537
+#: ../../../source/docs/porting/simd.rst:539
+#: ../../../source/docs/porting/simd.rst:541
+#: ../../../source/docs/porting/simd.rst:543
+#: ../../../source/docs/porting/simd.rst:549
+#: ../../../source/docs/porting/simd.rst:553
+#: ../../../source/docs/porting/simd.rst:559
+#: ../../../source/docs/porting/simd.rst:561
+#: ../../../source/docs/porting/simd.rst:563
+#: ../../../source/docs/porting/simd.rst:565
+#: ../../../source/docs/porting/simd.rst:571
+#: ../../../source/docs/porting/simd.rst:575
+#: ../../../source/docs/porting/simd.rst:579
+#: ../../../source/docs/porting/simd.rst:581
+#: ../../../source/docs/porting/simd.rst:583
+#: ../../../source/docs/porting/simd.rst:585
+#: ../../../source/docs/porting/simd.rst:587
+#: ../../../source/docs/porting/simd.rst:627
+#: ../../../source/docs/porting/simd.rst:725
+#: ../../../source/docs/porting/simd.rst:727
+#: ../../../source/docs/porting/simd.rst:729
+#: ../../../source/docs/porting/simd.rst:743
+#: ../../../source/docs/porting/simd.rst:745
+#: ../../../source/docs/porting/simd.rst:751
+#: ../../../source/docs/porting/simd.rst:753
+#: ../../../source/docs/porting/simd.rst:755
+#: ../../../source/docs/porting/simd.rst:819
+#: ../../../source/docs/porting/simd.rst:821
+#: ../../../source/docs/porting/simd.rst:823
+#: ../../../source/docs/porting/simd.rst:825
+#: ../../../source/docs/porting/simd.rst:827
+#: ../../../source/docs/porting/simd.rst:829
+#: ../../../source/docs/porting/simd.rst:1071
+#: ../../../source/docs/porting/simd.rst:1073
+#: ../../../source/docs/porting/simd.rst:1075
+#: ../../../source/docs/porting/simd.rst:1077
+#: ../../../source/docs/porting/simd.rst:1079
+#: ../../../source/docs/porting/simd.rst:1081
+#: ../../../source/docs/porting/simd.rst:1123
+#: ../../../source/docs/porting/simd.rst:1125
+#: ../../../source/docs/porting/simd.rst:1172
+#: ../../../source/docs/porting/simd.rst:1176
+#: ../../../source/docs/porting/simd.rst:1180
+#: ../../../source/docs/porting/simd.rst:1182
+#: ../../../source/docs/porting/simd.rst:1184
+#: ../../../source/docs/porting/simd.rst:1186
+#: ../../../source/docs/porting/simd.rst:1188
+#: ../../../source/docs/porting/simd.rst:1190
+#: ../../../source/docs/porting/simd.rst:1192
+#: ../../../source/docs/porting/simd.rst:1194
+#: ../../../source/docs/porting/simd.rst:1196
+#: ../../../source/docs/porting/simd.rst:1198
+#: ../../../source/docs/porting/simd.rst:1200
+#: ../../../source/docs/porting/simd.rst:1202
+#: ../../../source/docs/porting/simd.rst:1204
+#: ../../../source/docs/porting/simd.rst:1206
+#: ../../../source/docs/porting/simd.rst:1208
+#: ../../../source/docs/porting/simd.rst:1210
+#: ../../../source/docs/porting/simd.rst:1212
+#: ../../../source/docs/porting/simd.rst:1214
+#: ../../../source/docs/porting/simd.rst:1216
+#: ../../../source/docs/porting/simd.rst:1218
+#: ../../../source/docs/porting/simd.rst:1220
+#: ../../../source/docs/porting/simd.rst:1222
+#: ../../../source/docs/porting/simd.rst:1224
+#: ../../../source/docs/porting/simd.rst:1226
+#: ../../../source/docs/porting/simd.rst:1228
+msgid "❌ scalarized"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:343
+msgid "_mm_comige_ss"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:345
+msgid "_mm_comigt_ss"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:347
+msgid "_mm_comile_ss"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:349
+msgid "_mm_comilt_ss"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:351
+msgid "_mm_comineq_ss"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:353
+msgid "_mm_ucomieq_ss"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:355
+msgid "_mm_ucomige_ss"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:357
+msgid "_mm_ucomigt_ss"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:359
+msgid "_mm_ucomile_ss"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:361
+msgid "_mm_ucomilt_ss"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:363
+msgid "_mm_ucomineq_ss"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:365
+msgid "_mm_cvtsi32_ss (_mm_cvt_si2ss)"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:367
+msgid "_mm_cvtss_si32 (_mm_cvt_ss2si)"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:368
+#: ../../../source/docs/porting/simd.rst:370
+#: ../../../source/docs/porting/simd.rst:374
+#: ../../../source/docs/porting/simd.rst:376
+msgid "💣 scalar with complex emulated semantics"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:369
+msgid "_mm_cvttss_si32 (_mm_cvtt_ss2si)"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:371
+msgid "_mm_cvtsi64_ss"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:373
+msgid "_mm_cvtss_si64"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:375
+msgid "_mm_cvttss_si64"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:377
+msgid "_mm_cvtss_f32"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:378
+msgid "💡 scalar get"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:379
+msgid "_mm_malloc"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:380
+msgid "✅ Allocates memory with specified alignment."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:381
+msgid "_mm_free"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:382
+msgid "✅ Aliases to free()."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:383
+msgid "_MM_GET_EXCEPTION_MASK"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:384
+msgid "✅ Always returns all exceptions masked (0x1f80)."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:385
+msgid "_MM_GET_EXCEPTION_STATE"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:386
+msgid "❌ Exception state is not tracked. Always returns 0."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:387
+msgid "_MM_GET_FLUSH_ZERO_MODE"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:388
+msgid "✅ Always returns _MM_FLUSH_ZERO_OFF."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:389
+msgid "_MM_GET_ROUNDING_MODE"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:390
+msgid "✅ Always returns _MM_ROUND_NEAREST."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:391
+msgid "_mm_getcsr"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:392
+msgid ""
+"✅ Always returns _MM_FLUSH_ZERO_OFF :raw-html:`<br />` | _MM_ROUND_NEAREST "
+"| all exceptions masked (0x1f80)."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:393
+msgid "_MM_SET_EXCEPTION_MASK"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:394
+msgid "⚫ Not available. Fixed to all exceptions masked."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:395
+msgid "_MM_SET_EXCEPTION_STATE"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:396
+msgid "⚫ Not available. Fixed to zero/clear state."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:397
+msgid "_MM_SET_FLUSH_ZERO_MODE"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:398
+msgid "⚫ Not available. Fixed to _MM_FLUSH_ZERO_OFF."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:399
+msgid "_MM_SET_ROUNDING_MODE"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:400
+msgid "⚫ Not available. Fixed to _MM_ROUND_NEAREST."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:401
+msgid "_mm_setcsr"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:402
+#: ../../../source/docs/porting/simd.rst:900
+#: ../../../source/docs/porting/simd.rst:902
+msgid "⚫ Not available."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:403
+msgid "_mm_undefined_ps"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:404
+#: ../../../source/docs/porting/simd.rst:831
+#: ../../../source/docs/porting/simd.rst:833
+msgid "✅ Virtual"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:406
+msgid ""
+"⚫ The following extensions that SSE1 instruction set brought to 64-bit wide "
+"MMX registers are not available:"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:407
+msgid ""
+"_mm_avg_pu8, _mm_avg_pu16, _mm_cvt_pi2ps, _mm_cvt_ps2pi, _mm_cvt_pi16_ps, "
+"_mm_cvt_pi32_ps, _mm_cvt_pi32x2_ps, _mm_cvt_pi8_ps, _mm_cvt_ps_pi16, "
+"_mm_cvt_ps_pi32, _mm_cvt_ps_pi8, _mm_cvt_pu16_ps, _mm_cvt_pu8_ps, "
+"_mm_cvtt_ps2pi, _mm_cvtt_pi16_ps, _mm_cvttps_pi32, _mm_extract_pi16, "
+"_mm_insert_pi16, _mm_maskmove_si64, _m_maskmovq, _mm_max_pi16, _mm_max_pu8, "
+"_mm_min_pi16, _mm_min_pu8, _mm_movemask_pi8, _mm_mulhi_pu16, _m_pavgb, "
+"_m_pavgw, _m_pextrw, _m_pinsrw, _m_pmaxsw, _m_pmaxub, _m_pminsw, _m_pminub, "
+"_m_pmovmskb, _m_pmulhuw, _m_psadbw, _m_pshufw, _mm_sad_pu8, _mm_shuffle_pi16 "
+"and _mm_stream_pi."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:409
+#: ../../../source/docs/porting/simd.rst:862
+#: ../../../source/docs/porting/simd.rst:949
+#: ../../../source/docs/porting/simd.rst:1097
+msgid "Any code referencing these intrinsics will not compile."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:411
+msgid ""
+"The following table highlights the availability and expected performance of "
+"different SSE2 intrinsics. Refer to `Intel Intrinsics Guide on SSE2 <https://"
+"software.intel.com/sites/landingpage/IntrinsicsGuide/#techs=SSE2>`_."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:413
+msgid "x86 SSE2 intrinsics available via #include <emmintrin.h> and -msse2"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:420
+msgid "_mm_add_epi16"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:421
+msgid "✅ wasm_i16x8_add"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:422
+msgid "_mm_add_epi32"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:423
+msgid "✅ wasm_i32x4_add"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:424
+msgid "_mm_add_epi64"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:425
+msgid "✅ wasm_i64x2_add"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:426
+msgid "_mm_add_epi8"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:427
+msgid "✅ wasm_i8x16_add"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:428
+msgid "_mm_add_pd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:429
+msgid "✅ wasm_f64x2_add"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:430
+msgid "_mm_add_sd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:432
+msgid "_mm_adds_epi16"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:433
+msgid "✅ wasm_i16x8_add_sat"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:434
+msgid "_mm_adds_epi8"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:435
+msgid "✅ wasm_i8x16_add_sat"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:436
+msgid "_mm_adds_epu16"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:437
+msgid "✅ wasm_u16x8_add_sat"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:438
+msgid "_mm_adds_epu8"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:439
+msgid "✅ wasm_u8x16_add_sat"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:440
+msgid "_mm_and_pd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:442
+msgid "_mm_and_si128"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:444
+msgid "_mm_andnot_pd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:446
+msgid "_mm_andnot_si128"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:448
+msgid "_mm_avg_epu16"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:449
+msgid "✅ wasm_u16x8_avgr"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:450
+msgid "_mm_avg_epu8"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:451
+msgid "✅ wasm_u8x16_avgr"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:452
+msgid "_mm_castpd_ps"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:453
+#: ../../../source/docs/porting/simd.rst:455
+#: ../../../source/docs/porting/simd.rst:457
+#: ../../../source/docs/porting/simd.rst:459
+#: ../../../source/docs/porting/simd.rst:461
+#: ../../../source/docs/porting/simd.rst:463
+msgid "✅ no-op"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:454
+msgid "_mm_castpd_si128"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:456
+msgid "_mm_castps_pd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:458
+msgid "_mm_castps_si128"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:460
+msgid "_mm_castsi128_pd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:462
+msgid "_mm_castsi128_ps"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:464
+msgid "_mm_clflush"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:465
+msgid "💭 No-op. No cache hinting in Wasm SIMD."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:466
+msgid "_mm_cmpeq_epi16"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:467
+msgid "✅ wasm_i16x8_eq"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:468
+msgid "_mm_cmpeq_epi32"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:469
+msgid "✅ wasm_i32x4_eq"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:470
+msgid "_mm_cmpeq_epi8"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:471
+msgid "✅ wasm_i8x16_eq"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:472
+msgid "_mm_cmpeq_pd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:473
+msgid "✅ wasm_f64x2_eq"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:474
+msgid "_mm_cmpeq_sd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:476
+msgid "_mm_cmpge_pd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:477
+msgid "✅ wasm_f64x2_ge"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:478
+msgid "_mm_cmpge_sd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:480
+msgid "_mm_cmpgt_epi16"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:481
+msgid "✅ wasm_i16x8_gt"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:482
+msgid "_mm_cmpgt_epi32"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:483
+msgid "✅ wasm_i32x4_gt"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:484
+msgid "_mm_cmpgt_epi8"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:485
+msgid "✅ wasm_i8x16_gt"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:486
+msgid "_mm_cmpgt_pd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:487
+msgid "✅ wasm_f64x2_gt"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:488
+msgid "_mm_cmpgt_sd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:490
+msgid "_mm_cmple_pd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:491
+msgid "✅ wasm_f64x2_le"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:492
+msgid "_mm_cmple_sd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:494
+msgid "_mm_cmplt_epi16"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:495
+msgid "✅ wasm_i16x8_lt"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:496
+msgid "_mm_cmplt_epi32"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:497
+msgid "✅ wasm_i32x4_lt"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:498
+msgid "_mm_cmplt_epi8"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:499
+msgid "✅ wasm_i8x16_lt"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:500
+msgid "_mm_cmplt_pd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:501
+msgid "✅ wasm_f64x2_lt"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:502
+msgid "_mm_cmplt_sd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:504
+msgid "_mm_cmpneq_pd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:505
+msgid "✅ wasm_f64x2_ne"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:506
+msgid "_mm_cmpneq_sd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:508
+msgid "_mm_cmpnge_pd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:510
+msgid "_mm_cmpnge_sd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:512
+msgid "_mm_cmpngt_pd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:514
+msgid "_mm_cmpngt_sd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:516
+msgid "_mm_cmpnle_pd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:518
+msgid "_mm_cmpnle_sd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:520
+msgid "_mm_cmpnlt_pd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:522
+msgid "_mm_cmpnlt_sd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:524
+msgid "_mm_cmpord_pd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:526
+msgid "_mm_cmpord_sd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:528
+msgid "_mm_cmpunord_pd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:530
+msgid "_mm_cmpunord_sd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:532
+msgid "_mm_comieq_sd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:534
+msgid "_mm_comige_sd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:536
+msgid "_mm_comigt_sd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:538
+msgid "_mm_comile_sd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:540
+msgid "_mm_comilt_sd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:542
+msgid "_mm_comineq_sd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:544
+msgid "_mm_cvtepi32_pd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:545
+msgid "✅ wasm_f64x2_convert_low_i32x4"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:546
+msgid "_mm_cvtepi32_ps"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:547
+msgid "✅ wasm_f32x4_convert_i32x4"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:548
+msgid "_mm_cvtpd_epi32"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:550
+msgid "_mm_cvtpd_ps"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:551
+msgid "✅ wasm_f32x4_demote_f64x2_zero"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:552
+msgid "_mm_cvtps_epi32"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:554
+msgid "_mm_cvtps_pd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:555
+msgid "✅ wasm_f64x2_promote_low_f32x4"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:556
+msgid "_mm_cvtsd_f64"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:557
+msgid "✅ wasm_f64x2_extract_lane"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:558
+msgid "_mm_cvtsd_si32"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:560
+msgid "_mm_cvtsd_si64"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:562
+msgid "_mm_cvtsd_si64x"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:564
+msgid "_mm_cvtsd_ss"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:566
+msgid "_mm_cvtsi128_si32"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:567
+#: ../../../source/docs/porting/simd.rst:1011
+#: ../../../source/docs/porting/simd.rst:1017
+msgid "✅ wasm_i32x4_extract_lane"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:568
+msgid "_mm_cvtsi128_si64 (_mm_cvtsi128_si64x)"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:569
+#: ../../../source/docs/porting/simd.rst:1013
+msgid "✅ wasm_i64x2_extract_lane"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:570
+msgid "_mm_cvtsi32_sd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:572
+msgid "_mm_cvtsi32_si128"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:573
+msgid "💡 emulated with wasm_i32x4_make"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:574
+msgid "_mm_cvtsi64_sd (_mm_cvtsi64x_sd)"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:576
+msgid "_mm_cvtsi64_si128 (_mm_cvtsi64x_si128)"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:577
+msgid "💡 emulated with wasm_i64x2_make"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:578
+msgid "_mm_cvtss_sd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:580
+msgid "_mm_cvttpd_epi32"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:582
+msgid "_mm_cvttps_epi32"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:584
+msgid "_mm_cvttsd_si32"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:586
+msgid "_mm_cvttsd_si64 (_mm_cvttsd_si64x)"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:588
+msgid "_mm_div_pd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:589
+msgid "✅ wasm_f64x2_div"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:590
+msgid "_mm_div_sd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:592
+msgid "_mm_extract_epi16"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:593
+msgid "✅ wasm_u16x8_extract_lane"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:594
+msgid "_mm_insert_epi16"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:595
+msgid "✅ wasm_i16x8_replace_lane"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:596
+msgid "_mm_lfence"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:598
+msgid "_mm_load_pd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:600
+msgid "_mm_load1_pd (_mm_load_pd1)"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:601
+#: ../../../source/docs/porting/simd.rst:892
+msgid "🟡 Virtual. wasm_v64x2_load_splat, VM must guess type."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:602
+msgid "_mm_load_sd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:603
+msgid "❌ emulated with wasm_f64x2_make"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:604
+msgid "_mm_load_si128"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:606
+msgid "_mm_loadh_pd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:608
+msgid "_mm_loadl_epi64"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:610
+msgid "_mm_loadl_pd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:612
+msgid "_mm_loadr_pd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:614
+msgid "_mm_loadu_pd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:616
+msgid "_mm_loadu_si128"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:618
+msgid "_mm_loadu_si64"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:619
+#: ../../../source/docs/porting/simd.rst:621
+#: ../../../source/docs/porting/simd.rst:623
+msgid "❌ emulated with const+scalar load+replace lane"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:620
+msgid "_mm_loadu_si32"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:622
+msgid "_mm_loadu_si16"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:624
+msgid "_mm_madd_epi16"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:625
+msgid "✅ wasm_i32x4_dot_i16x8"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:626
+msgid "_mm_maskmoveu_si128"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:628
+msgid "_mm_max_epi16"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:629
+msgid "✅ wasm_i16x8_max"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:630
+msgid "_mm_max_epu8"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:631
+msgid "✅ wasm_u8x16_max"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:632
+msgid "_mm_max_pd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:633
+msgid "TODO: migrate to wasm_f64x2_pmax"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:634
+msgid "_mm_max_sd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:636
+msgid "_mm_mfence"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:638
+msgid "_mm_min_epi16"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:639
+msgid "✅ wasm_i16x8_min"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:640
+msgid "_mm_min_epu8"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:641
+msgid "✅ wasm_u8x16_min"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:642
+msgid "_mm_min_pd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:643
+msgid "TODO: migrate to wasm_f64x2_pmin"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:644
+msgid "_mm_min_sd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:646
+msgid "_mm_move_epi64"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:648
+msgid "_mm_move_sd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:650
+msgid "_mm_movemask_epi8"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:651
+msgid "✅ wasm_i8x16_bitmask"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:652
+msgid "_mm_movemask_pd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:653
+msgid "✅ wasm_i64x2_bitmask"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:654
+msgid "_mm_mul_epu32"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:655
+msgid "⚠️ emulated with wasm_u64x2_extmul_low_u32x4 + 2 shuffles"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:656
+msgid "_mm_mul_pd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:657
+msgid "✅ wasm_f64x2_mul"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:658
+msgid "_mm_mul_sd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:660
+msgid "_mm_mulhi_epi16"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:661
+#: ../../../source/docs/porting/simd.rst:663
+msgid "⚠️ emulated with a 2x SIMD extmul+generic shuffle"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:662
+msgid "_mm_mulhi_epu16"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:664
+msgid "_mm_mullo_epi16"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:665
+msgid "✅ wasm_i16x8_mul"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:666
+msgid "_mm_or_pd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:668
+msgid "_mm_or_si128"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:670
+msgid "_mm_packs_epi16"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:671
+msgid "✅ wasm_i8x16_narrow_i16x8"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:672
+msgid "_mm_packs_epi32"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:673
+msgid "✅ wasm_i16x8_narrow_i32x4"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:674
+msgid "_mm_packus_epi16"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:675
+msgid "✅ wasm_u8x16_narrow_i16x8"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:676
+msgid "_mm_pause"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:678
+msgid "_mm_sad_epu8"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:679
+msgid "⚠️ emulated with eleven SIMD instructions+const"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:680
+msgid "_mm_set_epi16"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:681
+#: ../../../source/docs/porting/simd.rst:703
+msgid "✅ wasm_i16x8_make"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:682
+msgid "_mm_set_epi32"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:683
+#: ../../../source/docs/porting/simd.rst:705
+msgid "✅ wasm_i32x4_make"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:684
+msgid "_mm_set_epi64 (_mm_set_epi64x)"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:685
+#: ../../../source/docs/porting/simd.rst:707
+msgid "✅ wasm_i64x2_make"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:686
+msgid "_mm_set_epi8"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:687
+#: ../../../source/docs/porting/simd.rst:709
+msgid "✅ wasm_i8x16_make"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:688
+msgid "_mm_set_pd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:689
+#: ../../../source/docs/porting/simd.rst:711
+msgid "✅ wasm_f64x2_make"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:690
+msgid "_mm_set_sd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:691
+msgid "💡 emulated with wasm_f64x2_make"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:692
+msgid "_mm_set1_epi16"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:693
+msgid "✅ wasm_i16x8_splat"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:694
+msgid "_mm_set1_epi32"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:695
+msgid "✅ wasm_i32x4_splat"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:696
+msgid "_mm_set1_epi64 (_mm_set1_epi64x)"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:697
+msgid "✅ wasm_i64x2_splat"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:698
+msgid "_mm_set1_epi8"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:699
+msgid "✅ wasm_i8x16_splat"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:700
+msgid "_mm_set1_pd (_mm_set_pd1)"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:701
+msgid "✅ wasm_f64x2_splat"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:702
+msgid "_mm_setr_epi16"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:704
+msgid "_mm_setr_epi32"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:706
+msgid "_mm_setr_epi64"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:708
+msgid "_mm_setr_epi8"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:710
+msgid "_mm_setr_pd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:712
+msgid "_mm_setzero_pd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:713
+msgid "💡 emulated with wasm_f64x2_const"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:714
+msgid "_mm_setzero_si128"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:715
+msgid "💡 emulated with wasm_i64x2_const"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:716
+msgid "_mm_shuffle_epi32"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:717
+#: ../../../source/docs/porting/simd.rst:719
+#: ../../../source/docs/porting/simd.rst:721
+#: ../../../source/docs/porting/simd.rst:723
+#: ../../../source/docs/porting/simd.rst:737
+#: ../../../source/docs/porting/simd.rst:763
+#: ../../../source/docs/porting/simd.rst:882
+#: ../../../source/docs/porting/simd.rst:884
+#: ../../../source/docs/porting/simd.rst:894
+#: ../../../source/docs/porting/simd.rst:961
+#: ../../../source/docs/porting/simd.rst:963
+#: ../../../source/docs/porting/simd.rst:965
+#: ../../../source/docs/porting/simd.rst:1127
+#: ../../../source/docs/porting/simd.rst:1129
+#: ../../../source/docs/porting/simd.rst:1158
+#: ../../../source/docs/porting/simd.rst:1160
+#: ../../../source/docs/porting/simd.rst:1162
+#: ../../../source/docs/porting/simd.rst:1164
+#: ../../../source/docs/porting/simd.rst:1166
+#: ../../../source/docs/porting/simd.rst:1168
+#: ../../../source/docs/porting/simd.rst:1170
+msgid "💡 emulated with a general shuffle"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:718
+msgid "_mm_shuffle_pd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:720
+msgid "_mm_shufflehi_epi16"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:722
+msgid "_mm_shufflelo_epi16"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:724
+msgid "_mm_sll_epi16"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:726
+msgid "_mm_sll_epi32"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:728
+msgid "_mm_sll_epi64"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:730
+msgid "_mm_slli_epi16"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:731
+msgid ""
+"💡 wasm_i16x8_shl :raw-html:`<br />` ✅ if shift count is immediate constant."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:732
+msgid "_mm_slli_epi32"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:733
+msgid ""
+"💡 wasm_i32x4_shl :raw-html:`<br />` ✅ if shift count is immediate constant."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:734
+msgid "_mm_slli_epi64"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:735
+msgid ""
+"💡 wasm_i64x2_shl :raw-html:`<br />` ✅ if shift count is immediate constant."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:736
+msgid "_mm_slli_si128 (_mm_bslli_si128)"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:738
+msgid "_mm_sqrt_pd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:739
+msgid "✅ wasm_f64x2_sqrt"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:740
+msgid "_mm_sqrt_sd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:742
+msgid "_mm_sra_epi16"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:744
+msgid "_mm_sra_epi32"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:746
+msgid "_mm_srai_epi16"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:747
+msgid ""
+"💡 wasm_i16x8_shr :raw-html:`<br />` ✅ if shift count is immediate constant."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:748
+msgid "_mm_srai_epi32"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:749
+msgid ""
+"💡 wasm_i32x4_shr :raw-html:`<br />` ✅ if shift count is immediate constant."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:750
+msgid "_mm_srl_epi16"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:752
+msgid "_mm_srl_epi32"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:754
+msgid "_mm_srl_epi64"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:756
+msgid "_mm_srli_epi16"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:757
+msgid ""
+"💡 wasm_u16x8_shr :raw-html:`<br />` ✅ if shift count is immediate constant."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:758
+msgid "_mm_srli_epi32"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:759
+msgid ""
+"💡 wasm_u32x4_shr :raw-html:`<br />` ✅ if shift count is immediate constant."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:760
+msgid "_mm_srli_epi64"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:761
+msgid ""
+"💡 wasm_u64x2_shr :raw-html:`<br />` ✅ if shift count is immediate constant."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:762
+msgid "_mm_srli_si128 (_mm_bsrli_si128)"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:764
+msgid "_mm_store_pd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:766
+msgid "_mm_store_sd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:768
+msgid "_mm_store_si128"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:770
+msgid "_mm_store1_pd (_mm_store_pd1)"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:772
+msgid "_mm_storeh_pd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:774
+msgid "_mm_storel_epi64"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:775
+#: ../../../source/docs/porting/simd.rst:777
+msgid "❌ scalar store"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:776
+msgid "_mm_storel_pd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:778
+msgid "_mm_storer_pd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:780
+msgid "_mm_storeu_pd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:782
+msgid "_mm_storeu_si128"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:785
+#: ../../../source/docs/porting/simd.rst:787
+#: ../../../source/docs/porting/simd.rst:789
+msgid "💡 emulated with extract lane+scalar store"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:786
+msgid "_mm_storeu_si32"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:790
+msgid "_mm_stream_pd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:792
+msgid "_mm_stream_si128"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:794
+msgid "_mm_stream_si32"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:796
+msgid "_mm_stream_si64"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:798
+msgid "_mm_sub_epi16"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:799
+msgid "✅ wasm_i16x8_sub"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:800
+msgid "_mm_sub_epi32"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:801
+msgid "✅ wasm_i32x4_sub"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:802
+msgid "_mm_sub_epi64"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:803
+msgid "✅ wasm_i64x2_sub"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:804
+msgid "_mm_sub_epi8"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:805
+msgid "✅ wasm_i8x16_sub"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:806
+msgid "_mm_sub_pd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:807
+msgid "✅ wasm_f64x2_sub"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:808
+msgid "_mm_sub_sd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:810
+msgid "_mm_subs_epi16"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:811
+msgid "✅ wasm_i16x8_sub_sat"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:812
+msgid "_mm_subs_epi8"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:813
+msgid "✅ wasm_i8x16_sub_sat"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:814
+msgid "_mm_subs_epu16"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:815
+msgid "✅ wasm_u16x8_sub_sat"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:816
+msgid "_mm_subs_epu8"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:817
+msgid "✅ wasm_u8x16_sub_sat"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:818
+msgid "_mm_ucomieq_sd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:820
+msgid "_mm_ucomige_sd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:822
+msgid "_mm_ucomigt_sd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:824
+msgid "_mm_ucomile_sd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:826
+msgid "_mm_ucomilt_sd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:828
+msgid "_mm_ucomineq_sd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:830
+msgid "_mm_undefined_pd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:832
+msgid "_mm_undefined_si128"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:834
+msgid "_mm_unpackhi_epi16"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:836
+msgid "_mm_unpackhi_epi32"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:838
+msgid "_mm_unpackhi_epi64"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:840
+msgid "_mm_unpackhi_epi8"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:842
+msgid "_mm_unpachi_pd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:844
+msgid "_mm_unpacklo_epi16"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:846
+msgid "_mm_unpacklo_epi32"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:848
+msgid "_mm_unpacklo_epi64"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:850
+msgid "_mm_unpacklo_epi8"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:852
+msgid "_mm_unpacklo_pd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:854
+msgid "_mm_xor_pd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:856
+msgid "_mm_xor_si128"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:859
+msgid ""
+"⚫ The following extensions that SSE2 instruction set brought to 64-bit wide "
+"MMX registers are not available:"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:860
+msgid ""
+"_mm_add_si64, _mm_movepi64_pi64, _mm_movpi64_epi64, _mm_mul_su32, "
+"_mm_sub_si64, _mm_cvtpd_pi32, _mm_cvtpi32_pd, _mm_cvttpd_pi32"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:864
+msgid ""
+"The following table highlights the availability and expected performance of "
+"different SSE3 intrinsics. Refer to `Intel Intrinsics Guide on SSE3 <https://"
+"software.intel.com/sites/landingpage/IntrinsicsGuide/#techs=SSE3>`_."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:866
+msgid "x86 SSE3 intrinsics available via #include <pmmintrin.h> and -msse3"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:873
+msgid "_mm_lddqu_si128"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:874
+msgid "✅ wasm_v128_load."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:875
+msgid "_mm_addsub_ps"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:876
+#: ../../../source/docs/porting/simd.rst:886
+msgid "⚠️ emulated with a SIMD add+mul+const"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:877
+msgid "_mm_hadd_ps"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:878
+#: ../../../source/docs/porting/simd.rst:888
+#: ../../../source/docs/porting/simd.rst:890
+#: ../../../source/docs/porting/simd.rst:922
+#: ../../../source/docs/porting/simd.rst:924
+msgid "⚠️ emulated with a SIMD add+two shuffles"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:879
+msgid "_mm_hsub_ps"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:880
+#: ../../../source/docs/porting/simd.rst:928
+#: ../../../source/docs/porting/simd.rst:930
+msgid "⚠️ emulated with a SIMD sub+two shuffles"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:881
+msgid "_mm_movehdup_ps"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:883
+msgid "_mm_moveldup_ps"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:885
+msgid "_mm_addsub_pd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:887
+msgid "_mm_hadd_pd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:889
+msgid "_mm_hsub_pd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:891
+msgid "_mm_loaddup_pd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:893
+msgid "_mm_movedup_pd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:895
+msgid "_MM_GET_DENORMALS_ZERO_MODE"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:896
+msgid "✅ Always returns _MM_DENORMALS_ZERO_ON. I.e. denormals are available."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:897
+msgid "_MM_SET_DENORMALS_ZERO_MODE"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:898
+msgid "⚫ Not available. Fixed to _MM_DENORMALS_ZERO_ON."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:899
+msgid "_mm_monitor"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:901
+msgid "_mm_mwait"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:904
+msgid ""
+"The following table highlights the availability and expected performance of "
+"different SSSE3 intrinsics. Refer to `Intel Intrinsics Guide on SSSE3 "
+"<https://software.intel.com/sites/landingpage/IntrinsicsGuide/"
+"#techs=SSSE3>`_."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:906
+msgid "x86 SSSE3 intrinsics available via #include <tmmintrin.h> and -mssse3"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:913
+msgid "_mm_abs_epi8"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:914
+msgid "✅ wasm_i8x16_abs"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:915
+msgid "_mm_abs_epi16"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:916
+msgid "✅ wasm_i16x8_abs"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:917
+msgid "_mm_abs_epi32"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:918
+msgid "✅ wasm_i32x4_abs"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:919
+msgid "_mm_alignr_epi8"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:920
+msgid "⚠️ emulated with a SIMD or+two shifts"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:921
+msgid "_mm_hadd_epi16"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:923
+msgid "_mm_hadd_epi32"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:925
+msgid "_mm_hadds_epi16"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:926
+msgid "⚠️ emulated with a SIMD adds+two shuffles"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:927
+msgid "_mm_hsub_epi16"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:929
+msgid "_mm_hsub_epi32"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:931
+msgid "_mm_hsubs_epi16"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:932
+msgid "⚠️ emulated with a SIMD subs+two shuffles"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:933
+msgid "_mm_maddubs_epi16"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:934
+msgid "⚠️ emulated with SIMD saturated add+four shifts+two muls+and+const"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:935
+msgid "_mm_mulhrs_epi16"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:936
+msgid ""
+"⚠️ emulated with SIMD four widen+two muls+four adds+complex shuffle+const"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:937
+msgid "_mm_shuffle_epi8"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:938
+msgid "⚠️ emulated with a SIMD swizzle+and+const"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:939
+msgid "_mm_sign_epi8"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:940
+#: ../../../source/docs/porting/simd.rst:942
+#: ../../../source/docs/porting/simd.rst:944
+msgid "⚠️ emulated with SIMD two cmp+two logical+add"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:941
+msgid "_mm_sign_epi16"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:943
+msgid "_mm_sign_epi32"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:946
+msgid ""
+"⚫ The SSSE3 functions that deal with 64-bit wide MMX registers are not "
+"available:"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:947
+msgid ""
+"_mm_abs_pi8, _mm_abs_pi16, _mm_abs_pi32, _mm_alignr_pi8, _mm_hadd_pi16, "
+"_mm_hadd_pi32, _mm_hadds_pi16, _mm_hsub_pi16, _mm_hsub_pi32, _mm_hsubs_pi16, "
+"_mm_maddubs_pi16, _mm_mulhrs_pi16, _mm_shuffle_pi8, _mm_sign_pi8, "
+"_mm_sign_pi16 and _mm_sign_pi32"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:951
+msgid ""
+"The following table highlights the availability and expected performance of "
+"different SSE4.1 intrinsics. Refer to `Intel Intrinsics Guide on SSE4.1 "
+"<https://software.intel.com/sites/landingpage/IntrinsicsGuide/"
+"#techs=SSE4_1>`_."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:953
+msgid "x86 SSE4.1 intrinsics available via #include <smmintrin.h> and -msse4.1"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:960
+msgid "_mm_blend_epi16"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:962
+msgid "_mm_blend_pd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:964
+msgid "_mm_blend_ps"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:966
+msgid "_mm_blendv_epi8"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:967
+#: ../../../source/docs/porting/simd.rst:969
+#: ../../../source/docs/porting/simd.rst:971
+msgid "⚠️ emulated with a SIMD shr+and+andnot+or"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:968
+msgid "_mm_blendv_pd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:970
+msgid "_mm_blendv_ps"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:972
+msgid "_mm_ceil_pd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:973
+msgid "✅ wasm_f64x2_ceil"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:974
+msgid "_mm_ceil_ps"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:975
+msgid "✅ wasm_f32x4_ceil"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:976
+msgid "_mm_ceil_sd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:978
+msgid "_mm_ceil_ss"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:980
+msgid "_mm_cmpeq_epi64"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:981
+msgid "⚠️ emulated with a SIMD cmp+and+shuffle"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:982
+msgid "_mm_cvtepi16_epi32"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:983
+msgid "✅ wasm_i32x4_widen_low_i16x8"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:984
+msgid "_mm_cvtepi16_epi64"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:985
+msgid "⚠️ emulated with a SIMD widen+const+cmp+shuffle"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:986
+msgid "_mm_cvtepi32_epi64"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:987
+msgid "⚠️ emulated with SIMD const+cmp+shuffle"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:988
+msgid "_mm_cvtepi8_epi16"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:989
+msgid "✅ wasm_i16x8_widen_low_i8x16"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:990
+msgid "_mm_cvtepi8_epi32"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:991
+#: ../../../source/docs/porting/simd.rst:1003
+msgid "⚠️ emulated with two SIMD widens"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:992
+msgid "_mm_cvtepi8_epi64"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:993
+msgid "⚠️ emulated with two SIMD widens+const+cmp+shuffle"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:994
+msgid "_mm_cvtepu16_epi32"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:995
+msgid "✅ wasm_u32x4_extend_low_u16x8"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:996
+msgid "_mm_cvtepu16_epi64"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:997
+msgid "⚠️ emulated with SIMD const+two shuffles"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:998
+msgid "_mm_cvtepu32_epi64"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:999
+msgid "⚠️ emulated with SIMD const+shuffle"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1000
+msgid "_mm_cvtepu8_epi16"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1001
+msgid "✅ wasm_u16x8_extend_low_u8x16"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1002
+msgid "_mm_cvtepu8_epi32"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1004
+msgid "_mm_cvtepu8_epi64"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1005
+msgid "⚠️ emulated with SIMD const+three shuffles"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1006
+msgid "_mm_dp_pd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1007
+#: ../../../source/docs/porting/simd.rst:1009
+msgid "⚠️ emulated with SIMD mul+add+setzero+2xblend"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1008
+msgid "_mm_dp_ps"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1010
+msgid "_mm_extract_epi32"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1012
+msgid "_mm_extract_epi64"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1014
+msgid "_mm_extract_epi8"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1015
+msgid "✅ wasm_u8x16_extract_lane"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1016
+msgid "_mm_extract_ps"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1018
+msgid "_mm_floor_pd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1019
+msgid "✅ wasm_f64x2_floor"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1020
+msgid "_mm_floor_ps"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1021
+msgid "✅ wasm_f32x4_floor"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1022
+msgid "_mm_floor_sd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1024
+msgid "_mm_floor_ss"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1026
+msgid "_mm_insert_epi32"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1027
+msgid "✅ wasm_i32x4_replace_lane"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1028
+msgid "_mm_insert_epi64"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1029
+msgid "✅ wasm_i64x2_replace_lane"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1030
+msgid "_mm_insert_epi8"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1031
+msgid "✅ wasm_i8x16_replace_lane"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1032
+msgid "_mm_insert_ps"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1033
+msgid "⚠️ emulated with generic non-SIMD-mapping shuffles"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1034
+msgid "_mm_max_epi32"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1035
+msgid "✅ wasm_i32x4_max"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1036
+msgid "_mm_max_epi8"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1037
+msgid "✅ wasm_i8x16_max"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1038
+msgid "_mm_max_epu16"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1039
+msgid "✅ wasm_u16x8_max"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1040
+msgid "_mm_max_epu32"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1041
+msgid "✅ wasm_u32x4_max"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1042
+msgid "_mm_min_epi32"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1043
+msgid "✅ wasm_i32x4_min"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1044
+msgid "_mm_min_epi8"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1045
+msgid "✅ wasm_i8x16_min"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1046
+msgid "_mm_min_epu16"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1047
+msgid "✅ wasm_u16x8_min"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1048
+msgid "_mm_min_epu32"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1049
+msgid "✅ wasm_u32x4_min"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1050
+msgid "_mm_minpos_epu16"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1051
+#: ../../../source/docs/porting/simd.rst:1053
+#: ../../../source/docs/porting/simd.rst:1131
+#: ../../../source/docs/porting/simd.rst:1133
+msgid "💣 scalarized"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1052
+msgid "_mm_mpsadbw_epu8"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1054
+msgid "_mm_mul_epi32"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1055
+msgid "⚠️ emulated with wasm_i64x2_extmul_low_i32x4 + 2 shuffles"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1056
+msgid "_mm_mullo_epi32"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1057
+msgid "✅ wasm_i32x4_mul"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1058
+msgid "_mm_packus_epi32"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1059
+msgid "✅ wasm_u16x8_narrow_i32x4"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1060
+msgid "_mm_round_pd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1061
+msgid ""
+"✅ wasm_f64x2_ceil, wasm_f64x2_floor, wasm_f64x2_nearest, wasm_f64x2_trunc"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1062
+msgid "_mm_round_ps"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1063
+msgid ""
+"✅ wasm_f32x4_ceil, wasm_f32x4_floor, wasm_f32x4_nearest, wasm_f32x4_trunc"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1064
+msgid "_mm_round_sd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1066
+msgid "_mm_round_ss"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1068
+msgid "_mm_stream_load_si128"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1070
+msgid "_mm_test_all_ones"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1072
+msgid "_mm_test_all_zeros"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1074
+msgid "_mm_test_mix_ones_zeros"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1076
+msgid "_mm_testc_si128"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1078
+msgid "_mm_testnzc_si128"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1080
+msgid "_mm_testz_si128"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1083
+msgid ""
+"The following table highlights the availability and expected performance of "
+"different SSE4.2 intrinsics. Refer to `Intel Intrinsics Guide on SSE4.2 "
+"<https://software.intel.com/sites/landingpage/IntrinsicsGuide/"
+"#techs=SSE4_2>`_."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1085
+msgid "x86 SSE4.2 intrinsics available via #include <nmmintrin.h> and -msse4.2"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1091
+msgid "_mm_cmpgt_epi64"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1092
+msgid "✅ wasm_i64x2_gt"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1094
+msgid ""
+"⚫ The SSE4.2 functions that deal with string comparisons and CRC "
+"calculations are not available:"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1095
+msgid ""
+"_mm_cmpestra, _mm_cmpestrc, _mm_cmpestri, _mm_cmpestrm, _mm_cmpestro, "
+"_mm_cmpestrs, _mm_cmpestrz, _mm_cmpistra, _mm_cmpistrc, _mm_cmpistri, "
+"_mm_cmpistrm, _mm_cmpistro, _mm_cmpistrs, _mm_cmpistrz, _mm_crc32_u16, "
+"_mm_crc32_u32, _mm_crc32_u64, _mm_crc32_u8"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1099
+msgid ""
+"The following table highlights the availability and expected performance of "
+"different AVX intrinsics. Refer to `Intel Intrinsics Guide on AVX <https://"
+"software.intel.com/sites/landingpage/IntrinsicsGuide/#techs=AVX>`_."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1101
+msgid "x86 AVX intrinsics available via #include <immintrin.h> and -mavx"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1108
+msgid "_mm_broadcast_ss"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1109
+msgid "✅ wasm_v32x4_load_splat"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1110
+msgid "_mm_cmp_pd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1111
+#: ../../../source/docs/porting/simd.rst:1113
+msgid "⚠️ emulated with 1-2 SIMD cmp+and/or"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1112
+msgid "_mm_cmp_ps"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1114
+msgid "_mm_cmp_sd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1115
+#: ../../../source/docs/porting/simd.rst:1117
+msgid "⚠️ emulated with 1-2 SIMD cmp+and/or+move"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1116
+msgid "_mm_cmp_ss"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1118
+msgid "_mm_maskload_pd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1119
+#: ../../../source/docs/porting/simd.rst:1121
+msgid "⚠️ emulated with SIMD load+shift+and"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1120
+msgid "_mm_maskload_ps"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1122
+msgid "_mm_maskstore_pd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1124
+msgid "_mm_maskstore_ps"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1126
+msgid "_mm_permute_pd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1128
+msgid "_mm_permute_ps"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1130
+msgid "_mm_permutevar_pd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1132
+msgid "_mm_permutevar_ps"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1134
+msgid "_mm_testc_pd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1135
+#: ../../../source/docs/porting/simd.rst:1137
+#: ../../../source/docs/porting/simd.rst:1139
+#: ../../../source/docs/porting/simd.rst:1141
+#: ../../../source/docs/porting/simd.rst:1143
+#: ../../../source/docs/porting/simd.rst:1145
+msgid "💣 emulated with complex SIMD+scalar sequence"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1136
+msgid "_mm_testc_ps"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1138
+msgid "_mm_testnzc_pd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1140
+msgid "_mm_testnzc_ps"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1142
+msgid "_mm_testz_pd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1144
+msgid "_mm_testz_ps"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1147
+msgid ""
+"Only the 128-bit wide instructions from AVX instruction set are listed. The "
+"256-bit wide AVX instructions are emulated by two 128-bit wide instructions."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1149
+msgid ""
+"The following table highlights the availability and expected performance of "
+"different AVX2 intrinsics. Refer to `Intel Intrinsics Guide on AVX2 <https://"
+"www.intel.com/content/www/us/en/docs/intrinsics-guide/index."
+"html#avxnewtechs=AVX2>`_."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1151
+msgid "x86 AVX2 intrinsics available via #include <immintrin.h> and -mavx2"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1157
+msgid "_mm_broadcastss_ps"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1159
+msgid "_mm_broadcastsd_pd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1161
+msgid "_mm_blend_epi32"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1163
+msgid "_mm_broadcastb_epi8"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1165
+msgid "_mm_broadcastw_epi16"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1167
+msgid "_mm_broadcastd_epi32"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1169
+msgid "_mm_broadcastq_epi64"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1171
+msgid "_mm256_permutevar8x32_epi32"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1173
+msgid "_mm256_permute4x64_pd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1174
+#: ../../../source/docs/porting/simd.rst:1178
+msgid "💡 emulated with two general shuffle"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1175
+msgid "_mm256_permutevar8x32_ps"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1177
+msgid "_mm256_permute4x64_epi64"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1179
+msgid "_mm_maskload_epi32"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1181
+msgid "_mm_maskload_epi64"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1183
+msgid "_mm_maskstore_epi32"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1185
+msgid "_mm_maskstore_epi64"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1187
+msgid "_mm_sllv_epi32"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1189
+msgid "_mm_sllv_epi64"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1191
+msgid "_mm_srav_epi32"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1193
+msgid "_mm_srlv_epi32"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1195
+msgid "_mm_srlv_epi64"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1197
+msgid "_mm_mask_i32gather_pd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1199
+msgid "_mm_mask_i64gather_pd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1201
+msgid "_mm_mask_i32gather_ps"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1203
+msgid "_mm_mask_i64gather_ps"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1205
+msgid "_mm_mask_i32gather_epi32"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1207
+msgid "_mm_mask_i64gather_epi32"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1209
+msgid "_mm_mask_i32gather_epi64"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1211
+msgid "_mm_mask_i64gather_epi64"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1213
+msgid "_mm_i32gather_pd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1215
+msgid "_mm_i64gather_pd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1217
+msgid "_mm_i32gather_ps"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1219
+msgid "_mm_i64gather_ps"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1221
+msgid "_mm_i32gather_epi32"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1223
+msgid "_mm_i64gather_epi32"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1225
+msgid "_mm_i32gather_epi64"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1227
+msgid "_mm_i64gather_epi64"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1230
+msgid ""
+"All the 128-bit wide instructions from AVX2 instruction set are listed. Only "
+"a small part of the 256-bit AVX2 instruction set are listed, most of the 256-"
+"bit wide AVX2 instructions are emulated by two 128-bit wide instructions."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1236
+msgid "Compiling SIMD code targeting ARM NEON instruction set"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1238
+msgid ""
+"Emscripten supports compiling existing codebases that use ARM NEON by "
+"passing the `-mfpu=neon` directive to the compiler, and including the header "
+"`<arm_neon.h>`."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1242
+msgid ""
+"In terms of performance, it is very important to note that only instructions "
+"which operate on 128-bit wide vectors are supported cleanly. This means that "
+"nearly any instruction which is not of a \"q\" variant (i.e. \"vaddq\" as "
+"opposed to \"vadd\") will be scalarized."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1247
+msgid ""
+"These are pulled from `SIMDe repository on GitHub <https://github.com/simd-"
+"everywhere/simde>`_. To update emscripten with the latest SIMDe version, run "
+"`tools/simde_update.py`."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1251
+msgid ""
+"The following table highlights the availability of various 128-bit wide "
+"intrinsics."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1254
+msgid "Similarly to above, the following legend is used:"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1255
+msgid ""
+"✅ Wasm SIMD has a native opcode that matches the NEON instruction, should "
+"yield native performance"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1256
+msgid ""
+"💡 while the Wasm SIMD spec does not provide a proper performance guarantee, "
+"given a suitably smart enough compiler and a runtime VM path, this intrinsic "
+"should be able to generate the identical native NEON instruction."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1257
+msgid ""
+"⚠️ the underlying NEON instruction is not available, but it is emulated via "
+"at most few other Wasm SIMD instructions, causing a small penalty."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1258
+msgid ""
+"❌ the underlying NEON instruction is not exposed by the Wasm SIMD "
+"specification, so it must be emulated via a slow path, e.g. a sequence of "
+"several slower SIMD instructions, or a scalar implementation."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1259
+msgid ""
+"⚫ the given NEON intrinsic is not available. Referencing the intrinsic will "
+"cause a compiler error."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1261
+msgid ""
+"For detailed information on each intrinsic function, refer to `NEON "
+"Intrinsics Reference <https://developer.arm.com/architectures/instruction-"
+"sets/simd-isas/neon/intrinsics>`_."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1264
+msgid ""
+"For the latest NEON intrinsics implementation status, refer to the `SIMDe "
+"implementation status <https://github.com/simd-everywhere/implementation-"
+"status/blob/main/neon.md>`_."
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1267
+msgid "NEON Intrinsics"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1273
+msgid "Wasm SIMD Support"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1274
+msgid "vaba"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1275
+#: ../../../source/docs/porting/simd.rst:1285
+#: ../../../source/docs/porting/simd.rst:1287
+#: ../../../source/docs/porting/simd.rst:1291
+#: ../../../source/docs/porting/simd.rst:1297
+#: ../../../source/docs/porting/simd.rst:1299
+#: ../../../source/docs/porting/simd.rst:1301
+#: ../../../source/docs/porting/simd.rst:1303
+#: ../../../source/docs/porting/simd.rst:1309
+#: ../../../source/docs/porting/simd.rst:1315
+#: ../../../source/docs/porting/simd.rst:1335
+#: ../../../source/docs/porting/simd.rst:1341
+#: ../../../source/docs/porting/simd.rst:1345
+#: ../../../source/docs/porting/simd.rst:1349
+#: ../../../source/docs/porting/simd.rst:1351
+#: ../../../source/docs/porting/simd.rst:1353
+#: ../../../source/docs/porting/simd.rst:1355
+#: ../../../source/docs/porting/simd.rst:1357
+#: ../../../source/docs/porting/simd.rst:1359
+#: ../../../source/docs/porting/simd.rst:1361
+#: ../../../source/docs/porting/simd.rst:1367
+#: ../../../source/docs/porting/simd.rst:1371
+#: ../../../source/docs/porting/simd.rst:1375
+#: ../../../source/docs/porting/simd.rst:1377
+#: ../../../source/docs/porting/simd.rst:1381
+#: ../../../source/docs/porting/simd.rst:1387
+#: ../../../source/docs/porting/simd.rst:1391
+#: ../../../source/docs/porting/simd.rst:1395
+#: ../../../source/docs/porting/simd.rst:1399
+#: ../../../source/docs/porting/simd.rst:1401
+#: ../../../source/docs/porting/simd.rst:1403
+#: ../../../source/docs/porting/simd.rst:1405
+#: ../../../source/docs/porting/simd.rst:1407
+#: ../../../source/docs/porting/simd.rst:1409
+#: ../../../source/docs/porting/simd.rst:1411
+#: ../../../source/docs/porting/simd.rst:1413
+#: ../../../source/docs/porting/simd.rst:1415
+#: ../../../source/docs/porting/simd.rst:1429
+#: ../../../source/docs/porting/simd.rst:1431
+#: ../../../source/docs/porting/simd.rst:1439
+#: ../../../source/docs/porting/simd.rst:1443
+#: ../../../source/docs/porting/simd.rst:1445
+#: ../../../source/docs/porting/simd.rst:1447
+#: ../../../source/docs/porting/simd.rst:1449
+#: ../../../source/docs/porting/simd.rst:1451
+#: ../../../source/docs/porting/simd.rst:1453
+#: ../../../source/docs/porting/simd.rst:1455
+#: ../../../source/docs/porting/simd.rst:1457
+#: ../../../source/docs/porting/simd.rst:1461
+#: ../../../source/docs/porting/simd.rst:1463
+#: ../../../source/docs/porting/simd.rst:1465
+#: ../../../source/docs/porting/simd.rst:1467
+#: ../../../source/docs/porting/simd.rst:1469
+#: ../../../source/docs/porting/simd.rst:1471
+#: ../../../source/docs/porting/simd.rst:1473
+#: ../../../source/docs/porting/simd.rst:1475
+#: ../../../source/docs/porting/simd.rst:1477
+#: ../../../source/docs/porting/simd.rst:1479
+#: ../../../source/docs/porting/simd.rst:1481
+#: ../../../source/docs/porting/simd.rst:1483
+#: ../../../source/docs/porting/simd.rst:1487
+#: ../../../source/docs/porting/simd.rst:1497
+#: ../../../source/docs/porting/simd.rst:1499
+#: ../../../source/docs/porting/simd.rst:1501
+#: ../../../source/docs/porting/simd.rst:1503
+#: ../../../source/docs/porting/simd.rst:1507
+#: ../../../source/docs/porting/simd.rst:1509
+#: ../../../source/docs/porting/simd.rst:1521
+#: ../../../source/docs/porting/simd.rst:1523
+#: ../../../source/docs/porting/simd.rst:1525
+#: ../../../source/docs/porting/simd.rst:1527
+#: ../../../source/docs/porting/simd.rst:1529
+#: ../../../source/docs/porting/simd.rst:1531
+#: ../../../source/docs/porting/simd.rst:1533
+#: ../../../source/docs/porting/simd.rst:1539
+#: ../../../source/docs/porting/simd.rst:1541
+#: ../../../source/docs/porting/simd.rst:1547
+#: ../../../source/docs/porting/simd.rst:1549
+#: ../../../source/docs/porting/simd.rst:1551
+#: ../../../source/docs/porting/simd.rst:1557
+#: ../../../source/docs/porting/simd.rst:1559
+#: ../../../source/docs/porting/simd.rst:1563
+#: ../../../source/docs/porting/simd.rst:1567
+#: ../../../source/docs/porting/simd.rst:1575
+#: ../../../source/docs/porting/simd.rst:1577
+#: ../../../source/docs/porting/simd.rst:1579
+#: ../../../source/docs/porting/simd.rst:1581
+#: ../../../source/docs/porting/simd.rst:1583
+#: ../../../source/docs/porting/simd.rst:1585
+#: ../../../source/docs/porting/simd.rst:1587
+#: ../../../source/docs/porting/simd.rst:1589
+#: ../../../source/docs/porting/simd.rst:1591
+#: ../../../source/docs/porting/simd.rst:1593
+#: ../../../source/docs/porting/simd.rst:1595
+#: ../../../source/docs/porting/simd.rst:1597
+#: ../../../source/docs/porting/simd.rst:1599
+#: ../../../source/docs/porting/simd.rst:1601
+#: ../../../source/docs/porting/simd.rst:1603
+#: ../../../source/docs/porting/simd.rst:1605
+#: ../../../source/docs/porting/simd.rst:1607
+#: ../../../source/docs/porting/simd.rst:1609
+#: ../../../source/docs/porting/simd.rst:1611
+#: ../../../source/docs/porting/simd.rst:1613
+#: ../../../source/docs/porting/simd.rst:1615
+#: ../../../source/docs/porting/simd.rst:1617
+#: ../../../source/docs/porting/simd.rst:1619
+msgid "❌ Will be emulated with slow instructions, or scalarized"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1276
+msgid "vabaq"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1277
+#: ../../../source/docs/porting/simd.rst:1279
+#: ../../../source/docs/porting/simd.rst:1281
+#: ../../../source/docs/porting/simd.rst:1307
+#: ../../../source/docs/porting/simd.rst:1317
+#: ../../../source/docs/porting/simd.rst:1321
+#: ../../../source/docs/porting/simd.rst:1325
+#: ../../../source/docs/porting/simd.rst:1329
+#: ../../../source/docs/porting/simd.rst:1333
+#: ../../../source/docs/porting/simd.rst:1339
+#: ../../../source/docs/porting/simd.rst:1397
+#: ../../../source/docs/porting/simd.rst:1423
+#: ../../../source/docs/porting/simd.rst:1425
+#: ../../../source/docs/porting/simd.rst:1427
+#: ../../../source/docs/porting/simd.rst:1489
+#: ../../../source/docs/porting/simd.rst:1491
+#: ../../../source/docs/porting/simd.rst:1493
+#: ../../../source/docs/porting/simd.rst:1495
+#: ../../../source/docs/porting/simd.rst:1505
+#: ../../../source/docs/porting/simd.rst:1519
+#: ../../../source/docs/porting/simd.rst:1571
+#: ../../../source/docs/porting/simd.rst:1573
+msgid ""
+"⚠️ Does not have direct implementation, but is emulated using fast NEON "
+"instructions"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1278
+msgid "vabal"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1280
+msgid "vabd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1282
+msgid "vabdq"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1283
+#: ../../../source/docs/porting/simd.rst:1289
+#: ../../../source/docs/porting/simd.rst:1293
+#: ../../../source/docs/porting/simd.rst:1305
+#: ../../../source/docs/porting/simd.rst:1311
+#: ../../../source/docs/porting/simd.rst:1313
+#: ../../../source/docs/porting/simd.rst:1323
+#: ../../../source/docs/porting/simd.rst:1327
+#: ../../../source/docs/porting/simd.rst:1331
+#: ../../../source/docs/porting/simd.rst:1337
+#: ../../../source/docs/porting/simd.rst:1343
+#: ../../../source/docs/porting/simd.rst:1347
+#: ../../../source/docs/porting/simd.rst:1363
+#: ../../../source/docs/porting/simd.rst:1365
+#: ../../../source/docs/porting/simd.rst:1369
+#: ../../../source/docs/porting/simd.rst:1373
+#: ../../../source/docs/porting/simd.rst:1379
+#: ../../../source/docs/porting/simd.rst:1389
+#: ../../../source/docs/porting/simd.rst:1393
+#: ../../../source/docs/porting/simd.rst:1417
+#: ../../../source/docs/porting/simd.rst:1419
+#: ../../../source/docs/porting/simd.rst:1433
+#: ../../../source/docs/porting/simd.rst:1435
+#: ../../../source/docs/porting/simd.rst:1437
+#: ../../../source/docs/porting/simd.rst:1441
+#: ../../../source/docs/porting/simd.rst:1485
+#: ../../../source/docs/porting/simd.rst:1513
+#: ../../../source/docs/porting/simd.rst:1515
+#: ../../../source/docs/porting/simd.rst:1517
+#: ../../../source/docs/porting/simd.rst:1535
+#: ../../../source/docs/porting/simd.rst:1553
+#: ../../../source/docs/porting/simd.rst:1569
+msgid "✅ native"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1284
+msgid "vabdl"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1286
+msgid "vabs"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1288
+msgid "vabq"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1290
+msgid "vadd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1292
+msgid "vaddq_s & vaddq_f"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1294
+msgid "vaddhn"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1295
+#: ../../../source/docs/porting/simd.rst:1319
+#: ../../../source/docs/porting/simd.rst:1383
+#: ../../../source/docs/porting/simd.rst:1385
+#: ../../../source/docs/porting/simd.rst:1459
+#: ../../../source/docs/porting/simd.rst:1511
+#: ../../../source/docs/porting/simd.rst:1555
+#: ../../../source/docs/porting/simd.rst:1561
+#: ../../../source/docs/porting/simd.rst:1565
+msgid "💡 Depends on a smart enough compiler, but should be near native"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1296
+msgid "vaddl"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1298
+msgid "vaddlv"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1300
+msgid "vaddv"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1302
+msgid "vaddw"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1304
+msgid "vand"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1306
+msgid "vbcaxq"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1308
+msgid "vbic"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1310
+msgid "vbiq"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1312
+msgid "vbsl"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1314
+msgid "vcage"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1316
+msgid "vcagt"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1318
+msgid "vceq"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1320
+msgid "vceqz"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1322
+msgid "vcge"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1324
+msgid "vcgez"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1326
+msgid "vcgt"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1328
+msgid "vcgtz"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1330
+msgid "vcle"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1332
+msgid "vclez"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1334
+msgid "vcls"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1336
+msgid "vclt"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1338
+msgid "vcltz"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1340
+msgid "vcmla, vcmla_rot90, vcmla_rot180, vcmla_rot270"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1342
+msgid "vcmlaq"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1344
+msgid "vcmlaq_rot90, vcmlaq_rot180, vcmlaq_rot270"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1346
+msgid "vcmlq"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1348
+msgid "vcnt"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1350
+msgid "vclz"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1352
+msgid "vcombine"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1354
+msgid "vcreate"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1356
+msgid "vdot"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1358
+msgid "vdot_lane"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1360
+msgid "vdup"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1362
+msgid "vdup_n"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1364
+msgid "veor"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1366
+msgid "vext"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1368
+msgid "vextq"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1370
+msgid "vfma, vfma_lane, vfma_n"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1372
+msgid "vget_lane"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1374
+msgid "vhadd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1376
+msgid "vhsub"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1378
+msgid "vld1"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1380
+msgid "vld2"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1382
+msgid "vld3"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1384
+msgid "vld4"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1386
+msgid "vld4_lane"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1388
+msgid "vmax"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1390
+msgid "vmaxv"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1392
+msgid "vmin"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1394
+msgid "vminv"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1396
+msgid "vmla"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1398
+msgid "vmlal"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1400
+msgid "vmlal_high_n"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1402
+msgid "vmlal_lane"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1404
+msgid "vmls"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1406
+msgid "vmls_n"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1408
+msgid "vmlsl"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1410
+msgid "vmlsl_high"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1412
+msgid "vmlsl_high_n"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1414
+msgid "vmlsl_lane"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1416
+msgid "vmovl"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1418
+msgid "vmul"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1420
+msgid "vmulq"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1421
+msgid ""
+"✅ native for 32 & 64 bit floats & ints, otherwise ❌ Will be emulated with "
+"slow instructions, or scalarized"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1422
+msgid "vmul_n"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1424
+msgid "vmull"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1426
+msgid "vmull_n"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1428
+msgid "vmull_lane"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1430
+msgid "vmull_high"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1432
+msgid "vmvn"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1434
+msgid "vneg"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1436
+msgid "vnegq"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1438
+msgid "vorn"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1440
+msgid "vorr"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1442
+msgid "vpadal"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1444
+msgid "vpadd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1446
+msgid "vpaddl"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1448
+msgid "vpmax"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1450
+msgid "vpmin"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1452
+msgid "vpminnm"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1454
+msgid "vqabs"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1456
+msgid "vqabsb"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1458
+msgid "vqadd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1460
+msgid "vqaddb"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1462
+msgid "vqdmulh"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1464
+msgid "vqdmulh_lane"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1466
+msgid "vqneg"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1468
+msgid "vqnegb"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1470
+msgid "vqrdmulh"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1472
+msgid "vqrdmulh_lane"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1474
+msgid "vqshl"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1476
+msgid "vqshlb"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1478
+msgid "vqshrn_n"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1480
+msgid "vqshrun_n"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1482
+msgid "vqsub"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1484
+msgid "vqsubq"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1486
+msgid "vqsubb"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1488
+msgid "vqtbl1"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1490
+msgid "vqtbl2"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1492
+msgid "vqtbl3"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1494
+msgid "vqtbl4"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1496
+msgid "vqtbx1"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1498
+msgid "vqtbx2"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1500
+msgid "vqtbx3"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1502
+msgid "vqtbx4"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1504
+msgid "vrbit"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1506
+msgid "vrecpe"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1508
+msgid "vrecps"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1510
+msgid "vreinterpret"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1512
+msgid "vrev16"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1514
+msgid "vrev32"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1516
+msgid "vrev64"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1518
+msgid "vrhadd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1520
+msgid "vrsh_n"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1522
+msgid "vrshn_n"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1524
+msgid "vrsqrte"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1526
+msgid "vrsqrts"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1528
+msgid "vrshl"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1530
+msgid "vrshr_n"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1532
+msgid "vrsra_n"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1534
+msgid "vset_lane"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1536
+msgid "vshl"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1537
+msgid "scalarized"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1538
+msgid "vshl_n"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1540
+msgid "vshll_n"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1542
+msgid "vshr_n"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1543
+#: ../../../source/docs/porting/simd.rst:1545
+msgid ""
+"⚠️ does not have direct implementation, but is emulated using fast neon "
+"instructions"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1544
+msgid "vshrn_n"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1546
+msgid "vsqadd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1548
+msgid "vsra_n"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1550
+msgid "vsri_n"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1552
+msgid "vst1"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1554
+msgid "vst1_lane"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1556
+msgid "vst2"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1558
+msgid "vst2_lane"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1560
+msgid "vst3"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1562
+msgid "vst3_lane"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1564
+msgid "vst4"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1566
+msgid "vst4_lane"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1568
+msgid "vsub"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1570
+msgid "vsubl"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1572
+msgid "vsubl_high"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1574
+msgid "vsubn"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1576
+msgid "vsubw"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1578
+msgid "vtbl1"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1580
+msgid "vtbl2"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1582
+msgid "vtbl3"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1584
+msgid "vtbl4"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1586
+msgid "vtbx1"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1588
+msgid "vtbx2"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1590
+msgid "vtbx3"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1592
+msgid "vtbx4"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1594
+msgid "vtrn"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1596
+msgid "vtrn1"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1598
+msgid "vtrn2"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1600
+msgid "vtst"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1602
+msgid "vuqadd"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1604
+msgid "vuqaddb"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1606
+msgid "vuzp"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1608
+msgid "vuzp1"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1610
+msgid "vuzp2"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1612
+msgid "vxar"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1614
+msgid "vzip"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1616
+msgid "vzip1"
+msgstr ""
+
+#: ../../../source/docs/porting/simd.rst:1618
+msgid "vzip2"
+msgstr ""

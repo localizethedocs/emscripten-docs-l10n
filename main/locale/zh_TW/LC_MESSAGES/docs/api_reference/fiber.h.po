@@ -1,0 +1,224 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) Copyright &copy; 2015, Emscripten Contributors.
+# This file is distributed under the same license as the Emscripten package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Emscripten main\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-14 14:25+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: zh_TW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../../source/docs/api_reference/fiber.h.rst:5
+msgid "fiber.h"
+msgstr ""
+
+#: ../../../source/docs/api_reference/fiber.h.rst:7
+msgid ""
+"`Fibers <https://en.wikipedia.org/wiki/Fiber_(computer_science)>`_ are "
+"light, co-operative threads of execution. The `fiber.h <https://github.com/"
+"emscripten-core/emscripten/blob/main/system/include/emscripten/fiber.h>`_ "
+"header defines a low-level API for manipulating Fibers in Emscripten. Fibers "
+"are implemented with :ref:`asyncify section`, so you must link your program "
+"with :ref:`ASYNCIFY` if you intend to use them."
+msgstr ""
+
+#: ../../../source/docs/api_reference/fiber.h.rst:9
+msgid ""
+"Fibers are intended as a building block for asynchronous control flow "
+"constructs, such as coroutines. They supersede the legacy coroutine API that "
+"was available in the fastcomp backend. This API is similar to, but distinct "
+"from, POSIX `ucontext <https://en.wikipedia.org/wiki/Setcontext>`_."
+msgstr ""
+
+#: ../../../source/docs/api_reference/fiber.h.rst:16
+msgid "Table of Contents"
+msgstr ""
+
+#: ../../../source/docs/api_reference/fiber.h.rst:19
+msgid "API Reference"
+msgstr ""
+
+#: ../../../source/docs/api_reference/fiber.h.rst:22
+msgid "Types"
+msgstr ""
+
+#: ../../../source/docs/api_reference/fiber.h.rst:26
+msgid ""
+"This structure represents a Fiber context `continuation <https://en."
+"wikipedia.org/wiki/Continuation>`_. The runtime does not keep references to "
+"these objects, they only contain information needed to perform the context "
+"switch. The switch operation updates some of the contents, however."
+msgstr ""
+
+#: ../../../source/docs/api_reference/fiber.h.rst:30
+msgid ""
+"Upper limit of the C stack region. The stack grows down, so this is the "
+"initial position of the stack pointer. Must be at least 16-byte aligned."
+msgstr ""
+
+#: ../../../source/docs/api_reference/fiber.h.rst:34
+msgid ""
+"Lower limit of the C stack region. Must be below :c:member:"
+"`emscripten_fiber_t.stack_base`."
+msgstr ""
+
+#: ../../../source/docs/api_reference/fiber.h.rst:38
+msgid ""
+"Current position of the stack pointer. Must be between :c:member:"
+"`emscripten_fiber_t.stack_base` and :c:member:`emscripten_fiber_t."
+"stack_limit`."
+msgstr ""
+
+#: ../../../source/docs/api_reference/fiber.h.rst:42
+msgid ""
+"Entry point. If not NULL, this function will be called when the fiber is "
+"switched into. Otherwise, :c:member:`emscripten_fiber_t.asyncify_data` is "
+"used to rewind the call stack."
+msgstr ""
+
+#: ../../../source/docs/api_reference/fiber.h.rst:46
+msgid "Opaque pointer, passed as-is to :c:member:`emscripten_fiber_t.entry`."
+msgstr ""
+
+#: ../../../source/docs/api_reference/fiber.h.rst:50
+msgid ""
+"Asyncify data structure. Used to unwind and rewind the call stack when "
+"switching fibers."
+msgstr ""
+
+#: ../../../source/docs/api_reference/fiber.h.rst:56
+msgid "Current position of the Asyncify stack pointer."
+msgstr ""
+
+#: ../../../source/docs/api_reference/fiber.h.rst:58
+msgid ""
+"The Asyncify stack is distinct from the C stack. It contains the call stack "
+"as well as the state of WASM locals. Unlike the C stack, it grows up."
+msgstr ""
+
+#: ../../../source/docs/api_reference/fiber.h.rst:62
+msgid "Upper limit of the Asyncify stack region."
+msgstr ""
+
+#: ../../../source/docs/api_reference/fiber.h.rst:66
+msgid ""
+"Opaque handle to the function that needs to be called in order to rewind the "
+"call stack. This value is only meaningful to the runtime."
+msgstr ""
+
+#: ../../../source/docs/api_reference/fiber.h.rst:68
+msgid ""
+"Rewind IDs are currently thread-specific. This makes it impossible to resume "
+"a fiber that has been started from a different thread."
+msgstr ""
+
+#: ../../../source/docs/api_reference/fiber.h.rst:72
+msgid "Functions"
+msgstr ""
+
+#: ../../../source/docs/api_reference/fiber.h.rst:76
+msgid ""
+"Initializes a fiber context. It can then be entered by calling :c:func:"
+"`emscripten_fiber_swap`."
+msgstr ""
+
+#: ../../../source/docs/api_reference/fiber.h.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../../source/docs/api_reference/fiber.h.rst:78
+#: ../../../source/docs/api_reference/fiber.h.rst:96
+msgid "Pointer to the fiber structure."
+msgstr ""
+
+#: ../../../source/docs/api_reference/fiber.h.rst:79
+msgid ""
+"Entry point function, called when the fiber is entered for the first time."
+msgstr ""
+
+#: ../../../source/docs/api_reference/fiber.h.rst:80
+msgid "Opaque pointer passed to `entry_func`."
+msgstr ""
+
+#: ../../../source/docs/api_reference/fiber.h.rst:81
+msgid ""
+"Pointer to memory region to use for the C stack. Must be at least 16-byte "
+"aligned. This points to the lower bound of the stack, regardless of growth "
+"direction."
+msgstr ""
+
+#: ../../../source/docs/api_reference/fiber.h.rst:82
+msgid "Size of the C stack memory region, in bytes."
+msgstr ""
+
+#: ../../../source/docs/api_reference/fiber.h.rst:83
+#: ../../../source/docs/api_reference/fiber.h.rst:97
+msgid ""
+"Pointer to memory region to use for the Asyncify stack. No special alignment "
+"requirements."
+msgstr ""
+
+#: ../../../source/docs/api_reference/fiber.h.rst:84
+#: ../../../source/docs/api_reference/fiber.h.rst:98
+msgid "Size of the Asyncify stack memory region, in bytes."
+msgstr ""
+
+#: ../../../source/docs/api_reference/fiber.h.rst:86
+msgid ""
+"If `entry_func` returns, the entire program will end, as if `main` had "
+"returned. To avoid this, you can use :c:func:`emscripten_fiber_swap` to jump "
+"to another fiber."
+msgstr ""
+
+#: ../../../source/docs/api_reference/fiber.h.rst:90
+msgid ""
+"Partially initializes a fiber based on the currently active context. This is "
+"needed in order to switch back from a fiber into the thread's original "
+"context."
+msgstr ""
+
+#: ../../../source/docs/api_reference/fiber.h.rst:92
+msgid ""
+"This function sets up :c:member:`emscripten_fiber_t.stack_base` and :c:"
+"member:`emscripten_fiber_t.stack_limit` to refer to the current stack "
+"boundaries, sets :c:member:`emscripten_fiber_t.entry` to `NULL`, and makes :"
+"c:member:`emscripten_fiber_t.asyncify_data` refer to the provided Asyncify "
+"stack memory. Other fields are not changed."
+msgstr ""
+
+#: ../../../source/docs/api_reference/fiber.h.rst:94
+msgid ""
+"Fibers initialized by this function are not complete. They are only suitable "
+"to pass as the first argument to :c:func:`emscripten_fiber_swap`. Doing that "
+"completes the continuation, making it possible to switch back to the "
+"original context with another :c:func:`emscripten_fiber_swap`, as with a "
+"normal fiber."
+msgstr ""
+
+#: ../../../source/docs/api_reference/fiber.h.rst:102
+msgid "Performs a fiber context switch."
+msgstr ""
+
+#: ../../../source/docs/api_reference/fiber.h.rst:104
+msgid ""
+"Fiber representing the current context. It will be partially updated, such "
+"as that switching back into it via another call to :c:func:"
+"`emscripten_fiber_swap` would appear to return from the original call."
+msgstr ""
+
+#: ../../../source/docs/api_reference/fiber.h.rst:105
+msgid ""
+"Fiber representing the target context. If the fiber has an entry point, it "
+"will be called in the new context and set to `NULL`. Otherwise, :c:member:"
+"`emscripten_fiber_t.asyncify_data` is used to rewind the call stack. If the "
+"fiber is invalid or incomplete, the behavior is undefined."
+msgstr ""

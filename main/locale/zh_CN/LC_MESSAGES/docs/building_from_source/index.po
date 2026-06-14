@@ -1,0 +1,104 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) Copyright &copy; 2015, Emscripten Contributors.
+# This file is distributed under the same license as the Emscripten package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Emscripten main\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-14 14:25+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../../source/docs/building_from_source/index.rst:5
+msgid "Building Emscripten from Source"
+msgstr ""
+
+#: ../../../source/docs/building_from_source/index.rst:7
+msgid ""
+"Building Emscripten yourself is an alternative to getting binaries using the "
+"emsdk."
+msgstr ""
+
+#: ../../../source/docs/building_from_source/index.rst:10
+msgid ""
+"Emscripten itself is written in Python and JavaScript so it does not need to "
+"be compiled.  However, after checkout you will need to run the top level "
+"``bootstrap.py`` script before the toolchain is usable.  This performs "
+"various steps including ``npm install`` and the creation of compiler entry "
+"points (e.g. `.bat` files on windows)."
+msgstr ""
+
+#: ../../../source/docs/building_from_source/index.rst:16
+msgid ""
+"Emscripten comes with its own versions of some C/C++ system libraries which "
+"``emcc`` builds automatically as and when needed (in the emsdk builds, these "
+"are precompiled). You can also build them manually with the ``embuilder`` "
+"tool - see ``embuilder --help`` for more information."
+msgstr ""
+
+#: ../../../source/docs/building_from_source/index.rst:21
+msgid ""
+"In addition to the main emscripten repository you will also need to checkout "
+"and build LLVM and Binaryen (as detailed below).  After compiling these, you "
+"will need to edit your ``.emscripten`` file to point to their corresponding "
+"locations."
+msgstr ""
+
+#: ../../../source/docs/building_from_source/index.rst:26
+msgid ""
+"Use the ``main`` branches of each of these repositories, or check the "
+"`Packaging <https://github.com/emscripten-core/emscripten/blob/main/docs/"
+"packaging.md>`_ instructions to identify precise commits used in a specific "
+"release."
+msgstr ""
+
+#: ../../../source/docs/building_from_source/index.rst:32
+msgid "Building LLVM"
+msgstr ""
+
+#: ../../../source/docs/building_from_source/index.rst:34
+msgid ""
+"Build LLVM from the `git repo <https://github.com/llvm/llvm-project>`_. "
+"Include clang and wasm-ld (using something like ``-"
+"DLLVM_ENABLE_PROJECTS='lld;clang'``) and the Wasm backend (which is included "
+"by default; just don't disable it), following `that project's instructions "
+"<http://llvm.org/docs/CMake.html>`_. For example, something like this can "
+"work:"
+msgstr ""
+
+#: ../../../source/docs/building_from_source/index.rst:45
+msgid ""
+"Then set the environment variable ``EM_LLVM_ROOT`` to ``<llvm_src>/build/"
+"bin`` (no need to install)."
+msgstr ""
+
+#: ../../../source/docs/building_from_source/index.rst:47
+msgid ""
+"If you need to match the emsdk releases of LLVM, `review the emscripten-"
+"release build and test scripts <https://chromium.googlesource.com/emscripten-"
+"releases/+/refs/heads/main#build-and-test-scripts-in>`_. Specifically `src/"
+"build.py <https://chromium.googlesource.com/emscripten-releases/+/refs/heads/"
+"main/src/build.py>`_."
+msgstr ""
+
+#: ../../../source/docs/building_from_source/index.rst:51
+msgid "Please refer to the upstream docs for more detail."
+msgstr ""
+
+#: ../../../source/docs/building_from_source/index.rst:54
+msgid "Building Binaryen"
+msgstr ""
+
+#: ../../../source/docs/building_from_source/index.rst:56
+msgid ""
+"See the `Binaryen build instructions <https://github.com/WebAssembly/"
+"binaryen#building>`_."
+msgstr ""
