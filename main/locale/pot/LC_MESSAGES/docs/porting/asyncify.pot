@@ -1,0 +1,540 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) Copyright &copy; 2015, Emscripten Contributors.
+# This file is distributed under the same license as the Emscripten package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Emscripten main\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-14 14:25+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../../source/docs/porting/asyncify.rst:5
+msgid "Asynchronous Code"
+msgstr ""
+
+#: ../../../source/docs/porting/asyncify.rst:7
+msgid ""
+"Emscripten supports two ways (Asyncify and JSPI) that let **synchronous** C "
+"or C++ code interact with **asynchronous** JavaScript. This allows things "
+"like:"
+msgstr ""
+
+#: ../../../source/docs/porting/asyncify.rst:10
+msgid ""
+"A synchronous call in C that yields to the event loop, which allows browser "
+"events to be handled."
+msgstr ""
+
+#: ../../../source/docs/porting/asyncify.rst:12
+msgid ""
+"A synchronous call in C that waits for an asynchronous operation in JS to "
+"complete."
+msgstr ""
+
+#: ../../../source/docs/porting/asyncify.rst:15
+msgid ""
+"In general the two options are very similar, but rely on different "
+"underlying mechanisms to work."
+msgstr ""
+
+#: ../../../source/docs/porting/asyncify.rst:18
+msgid ""
+"`Asyncify` - Asyncify automatically transforms your compiled code into a "
+"form that can be paused and resumed, and handles pausing and resuming for "
+"you, so that it is asynchronous (hence the name \"Asyncify\") even though "
+"you wrote it in a normal synchronous way. This works in most environments, "
+"but can cause the Wasm output to be much larger."
+msgstr ""
+
+#: ../../../source/docs/porting/asyncify.rst:23
+msgid ""
+"`JSPI` (experimental) - Uses the VM's support for JavaScript Promise "
+"Integration (JSPI) for interacting with async JavaScript. The code size will "
+"remain the same, but support for this feature is still experimental."
+msgstr ""
+
+#: ../../../source/docs/porting/asyncify.rst:27
+msgid ""
+"For more on Asyncify see the `Asyncify introduction blogpost <https://"
+"kripken.github.io/blog/wasm/2019/07/16/asyncify.html>`_ for general "
+"background and details of how it works internally (you can also view `this "
+"talk about Asyncify <https://www.youtube.com/watch?v=qQOP6jqZqf8>`_). The "
+"following expands on the Emscripten examples from that post."
+msgstr ""
+
+#: ../../../source/docs/porting/asyncify.rst:36
+msgid "Sleeping / yielding to the event loop"
+msgstr ""
+
+#: ../../../source/docs/porting/asyncify.rst:38
+msgid "Let's begin with the example from that blogpost:"
+msgstr ""
+
+#: ../../../source/docs/porting/asyncify.rst:72
+msgid "You can compile that using either `-sASYNCIFY` or `-sJSPI`"
+msgstr ""
+
+#: ../../../source/docs/porting/asyncify.rst:78
+msgid ""
+"It's very important to optimize (``-O3`` here) when using Asyncify, as "
+"unoptimized builds are very large."
+msgstr ""
+
+#: ../../../source/docs/porting/asyncify.rst:81
+msgid "And you can run it with"
+msgstr ""
+
+#: ../../../source/docs/porting/asyncify.rst:87
+msgid "Or with JSPI"
+msgstr ""
+
+#: ../../../source/docs/porting/asyncify.rst:93
+msgid "You should then see something like this:"
+msgstr ""
+
+#: ../../../source/docs/porting/asyncify.rst:104
+msgid ""
+"The code is written with a straightforward loop, which does not exit while "
+"it is running, which normally would not allow async events to be handled by "
+"the browser. With Asyncify/JSPI, those sleeps actually yield to the "
+"browser's main event loop, and the timer can happen!"
+msgstr ""
+
+#: ../../../source/docs/porting/asyncify.rst:110
+msgid "Making async Web APIs behave as if they were synchronous"
+msgstr ""
+
+#: ../../../source/docs/porting/asyncify.rst:112
+msgid ""
+"Aside from ``emscripten_sleep`` and the other standard sync APIs Asyncify "
+"supports, you can also add your own functions. To do so, you must create a "
+"JS function that is called from Wasm (since Emscripten controls pausing and "
+"resuming the Wasm from the JS runtime)."
+msgstr ""
+
+#: ../../../source/docs/porting/asyncify.rst:117
+msgid ""
+"One way to do that is with a JS library function. Another is to use "
+"``EM_ASYNC_JS``, which we'll use in this next example:"
+msgstr ""
+
+#: ../../../source/docs/porting/asyncify.rst:140
+msgid ""
+"In this example the async operation is a ``fetch``, which means we need to "
+"wait for a Promise. While that operation is async, note how the C code in "
+"``main()`` is completely synchronous!"
+msgstr ""
+
+#: ../../../source/docs/porting/asyncify.rst:144
+msgid "To run this example, first compile it with"
+msgstr ""
+
+#: ../../../source/docs/porting/asyncify.rst:150
+msgid ""
+"To run this, you must run a :ref:`local webserver <faq-local-webserver>` and "
+"then browse to ``http://localhost:8000/a.html``. You will see something like "
+"this:"
+msgstr ""
+
+#: ../../../source/docs/porting/asyncify.rst:161
+msgid ""
+"That shows that the C code only continued to execute after the async JS "
+"completed."
+msgstr ""
+
+#: ../../../source/docs/porting/asyncify.rst:167
+msgid "Marking JS library functions as async"
+msgstr ""
+
+#: ../../../source/docs/porting/asyncify.rst:169
+msgid ""
+"If you mark a JS library function as async using the ``__async`` decorator "
+"then the compiler will take a care of all the details of using the "
+"``Asyncify`` API for you.  The function will also automatically be included "
+"in :ref:`ASYNCIFY_IMPORTS`.  All you need to do is write normal async JS "
+"function (either using the explict ``async`` JS keyword or returning a "
+"``Promise`` object).  For example:"
+msgstr ""
+
+#: ../../../source/docs/porting/asyncify.rst:194
+msgid ""
+"This JS library file contains two JS functions (``fetch_v1`` and "
+"``fetch_v2``) which do exactly the same thing, one using the JS ``async`` "
+"keyword and one using promise chaining.  They are both marked as ``__async: "
+"'auto'`` which means they will automatically suspend Wasm executation when "
+"called and resume when the resulting promise resolves."
+msgstr ""
+
+#: ../../../source/docs/porting/asyncify.rst:200
+msgid ""
+"You can use ``__async: 1`` if you just want to include the function in :ref:"
+"`ASYNCIFY_IMPORTS` or ``__async: 'auto'`` if you also want the function to "
+"wrapper in ``Asyncify.handleAsync``."
+msgstr ""
+
+#: ../../../source/docs/porting/asyncify.rst:206
+msgid "Ways to use Asyncify APIs in older engines"
+msgstr ""
+
+#: ../../../source/docs/porting/asyncify.rst:208
+msgid ""
+"If your target JS engine doesn't support the modern ``async/await`` JS "
+"syntax, you can desugar the above implementation of ``do_fetch`` to use "
+"Promises directly with ``EM_JS`` and ``Asyncify.handleAsync`` instead:"
+msgstr ""
+
+#: ../../../source/docs/porting/asyncify.rst:225
+msgid ""
+"When using this form, the compiler doesn't statically know that ``do_fetch`` "
+"is asynchronous anymore. Instead, you must tell the compiler that "
+"``do_fetch()`` can do an asynchronous operation using :ref:"
+"`ASYNCIFY_IMPORTS`, otherwise it won't instrument the code to allow pausing "
+"and resuming (see more details later down):"
+msgstr ""
+
+#: ../../../source/docs/porting/asyncify.rst:235
+msgid ""
+"Finally, if you can't use Promises either, you can desugar the example to "
+"use ``Asyncify.handleSleep``, which will pass a ``wakeUp`` callback to your "
+"function implementation. When this ``wakeUp`` callback is invoked, the C/C++ "
+"code will resume:"
+msgstr ""
+
+#: ../../../source/docs/porting/asyncify.rst:253
+msgid ""
+"Note that when using this form, you can't return a value from the function "
+"itself. Instead, you need to pass it as an argument to the ``wakeUp`` "
+"callback and propagate it by returning the result of ``Asyncify."
+"handleSleep`` in ``do_fetch`` itself."
+msgstr ""
+
+#: ../../../source/docs/porting/asyncify.rst:259
+msgid "More on ``ASYNCIFY_IMPORTS``"
+msgstr ""
+
+#: ../../../source/docs/porting/asyncify.rst:261
+msgid ""
+"As in the above example, you can add JS functions that do an async operation "
+"but look synchronous from the perspective of C. If you don't use "
+"``EM_ASYNC_JS``, it's vital to add such methods to :ref:`ASYNCIFY_IMPORTS`. "
+"That list of imports is the list of imports to the Wasm module that the "
+"Asyncify instrumentation must be aware of. Giving it that list tells it that "
+"all other JS calls will **not** do an async operation, which lets it not add "
+"overhead where it isn't needed."
+msgstr ""
+
+#: ../../../source/docs/porting/asyncify.rst:268
+msgid ""
+"If the import is not inside ``env`` the full path must be specified, for "
+"example, ``ASYNCIFY_IMPORTS=wasi_snapshot_preview1.fd_write``"
+msgstr ""
+
+#: ../../../source/docs/porting/asyncify.rst:271
+msgid "Asyncify with Dynamic Linking"
+msgstr ""
+
+#: ../../../source/docs/porting/asyncify.rst:273
+msgid ""
+"If you want to use Asyncify in dynamic libraries, those methods which are "
+"imported from other linked modules (and that will be on the stack in an "
+"async operation) should be listed in :ref:`ASYNCIFY_IMPORTS`."
+msgstr ""
+
+#: ../../../source/docs/porting/asyncify.rst:286
+msgid ""
+"In the side module, you can compile sleep.cpp in the ordinal emscripten "
+"dynamic linking manner:"
+msgstr ""
+
+#: ../../../source/docs/porting/asyncify.rst:305
+msgid ""
+"In the main module, the compiler doesn’t statically know that "
+"``sleep_for_seconds`` is asynchronous. Therefore, you must add "
+"``sleep_for_seconds`` to the :ref:`ASYNCIFY_IMPORTS` list."
+msgstr ""
+
+#: ../../../source/docs/porting/asyncify.rst:314
+msgid "Usage with Embind"
+msgstr ""
+
+#: ../../../source/docs/porting/asyncify.rst:316
+msgid ""
+"If you're using :ref:`Embind<embind-val-guide>` for interaction with "
+"JavaScript and want to ``await`` a dynamically retrieved ``Promise``, you "
+"can call an ``await()`` method directly on the ``val`` instance:"
+msgstr ""
+
+#: ../../../source/docs/porting/asyncify.rst:325
+msgid ""
+"In this case you don't need to worry about :ref:`ASYNCIFY_IMPORTS` or :ref:"
+"`JSPI_IMPORTS`, since it's an internal implementation detail of ``val::"
+"await`` and Emscripten takes care of it automatically."
+msgstr ""
+
+#: ../../../source/docs/porting/asyncify.rst:329
+msgid ""
+"Note that when using Embind exports, Asyncify and JSPI behave differently. "
+"When Asyncify is used with Embind and the code is invoked from JavaScript, "
+"then the function will return a ``Promise`` if the export calls any "
+"suspending functions, otherwise the result will be returned synchronously. "
+"However, with JSPI, the parameter ``emscripten::async()`` must be used to "
+"mark the function as asynchronous and the export will always return a "
+"``Promise`` regardless if the export suspended."
+msgstr ""
+
+#: ../../../source/docs/porting/asyncify.rst:356
+msgid "Build with ::"
+msgstr ""
+
+#: ../../../source/docs/porting/asyncify.rst:361
+msgid "Then invoke from JavaScript (using Asyncify)"
+msgstr ""
+
+#: ../../../source/docs/porting/asyncify.rst:373
+msgid ""
+"In contrast to JavaScript ``async`` functions which always return a "
+"``Promise``, the return value is determined at run time, and a ``Promise`` "
+"is only returned if Asyncify calls are encountered (such as "
+"``emscripten_sleep()``, ``val::await()``, etc)."
+msgstr ""
+
+#: ../../../source/docs/porting/asyncify.rst:378
+msgid ""
+"If the code path is undetermined, the caller may either check if the "
+"returned value is an ``instanceof Promise`` or simply ``await`` on the "
+"returned value."
+msgstr ""
+
+#: ../../../source/docs/porting/asyncify.rst:381
+msgid ""
+"When using JSPI the return values will always be a ``Promise`` as seen below"
+msgstr ""
+
+#: ../../../source/docs/porting/asyncify.rst:395
+msgid "Usage with ``ccall``"
+msgstr ""
+
+#: ../../../source/docs/porting/asyncify.rst:397
+msgid ""
+"To make use of an Asyncify-using Wasm export from Javascript, you can use "
+"the ``Module.ccall`` function and pass ``async: true`` to its call options "
+"object. ``ccall`` will then return a Promise, which will resolve with the "
+"result of the function once the computation completes."
+msgstr ""
+
+#: ../../../source/docs/porting/asyncify.rst:402
+msgid "In this example, a function \"func\" is called which returns a Number."
+msgstr ""
+
+#: ../../../source/docs/porting/asyncify.rst:412
+msgid "Differences Between Asyncify and JSPI"
+msgstr ""
+
+#: ../../../source/docs/porting/asyncify.rst:414
+msgid ""
+"Besides using different underlying mechanisms, Asyncify and JSPI also handle "
+"async imports and exports differently. Asyncify will automatically determine "
+"what exports will become async based on what could potentially call an an "
+"async import (:ref:`ASYNCIFY_IMPORTS`). However, with JSPI, the async "
+"imports and exports must be explicitly set using :ref:`JSPI_IMPORTS` and :"
+"ref:`JSPI_EXPORTS` settings."
+msgstr ""
+
+#: ../../../source/docs/porting/asyncify.rst:421
+msgid ""
+"``<JSPI/ASYNCIFY>_IMPORTS`` and ``JSPI_EXPORTS`` aren't needed when using "
+"various helpers mentioned above such as: ``EM_ASYNC_JS``, Embind's Async "
+"support, ``ccall``, etc..."
+msgstr ""
+
+#: ../../../source/docs/porting/asyncify.rst:426
+msgid "Optimizing Asyncify"
+msgstr ""
+
+#: ../../../source/docs/porting/asyncify.rst:428
+msgid "This section does not apply to JSPI."
+msgstr ""
+
+#: ../../../source/docs/porting/asyncify.rst:430
+msgid ""
+"As mentioned earlier, unoptimized builds with Asyncify can be large and "
+"slow. Build with optimizations (say, ``-O3``) to get good results."
+msgstr ""
+
+#: ../../../source/docs/porting/asyncify.rst:433
+msgid ""
+"Asyncify adds overhead, both code size and slowness, because it instruments "
+"code to allow unwinding and rewinding. That overhead is usually not extreme, "
+"something like 50% or so. Asyncify achieves that by doing a whole-program "
+"analysis to find functions need to be instrumented and which do not - "
+"basically, which can call something that reaches one of :ref:"
+"`ASYNCIFY_IMPORTS`. That analysis avoids a lot of unnecessary overhead, "
+"however, it is limited by **indirect calls**, since it can't tell where they "
+"go - it could be anything in the function table (with the same type)."
+msgstr ""
+
+#: ../../../source/docs/porting/asyncify.rst:442
+msgid ""
+"If you know that indirect calls are never on the stack when unwinding, then "
+"you can tell Asyncify to ignore indirect calls using :ref:"
+"`ASYNCIFY_IGNORE_INDIRECT`."
+msgstr ""
+
+#: ../../../source/docs/porting/asyncify.rst:446
+msgid ""
+"If you know that some indirect calls matter and others do not, then you can "
+"provide a manual list of functions to Asyncify:"
+msgstr ""
+
+#: ../../../source/docs/porting/asyncify.rst:449
+msgid ""
+":ref:`ASYNCIFY_REMOVE` is a list of functions that do not unwind the stack. "
+"As Asyncify processes the call tree, functions in this list will be removed, "
+"and neither they nor their callers will be instrumented (unless their "
+"callers need to be instrumented for other reasons.)"
+msgstr ""
+
+#: ../../../source/docs/porting/asyncify.rst:453
+msgid ""
+":ref:`ASYNCIFY_ADD` is a list of functions that do unwind the stack, and "
+"will be processed like the imports. This is mostly useful if you use :ref:"
+"`ASYNCIFY_IGNORE_INDIRECT` but want to also mark some additional functions "
+"that need to unwind. If the :ref:`ASYNCIFY_PROPAGATE_ADD` setting is "
+"disabled however, then this list will only be added after the whole-program "
+"analysis. If :ref:`ASYNCIFY_PROPAGATE_ADD` is disabled then you must also "
+"add their callers, their callers' callers, and so on."
+msgstr ""
+
+#: ../../../source/docs/porting/asyncify.rst:460
+msgid ""
+":ref:`ASYNCIFY_ONLY` is a list of the **only** functions that can unwind the "
+"stack. Asyncify will instrument exactly those and no others."
+msgstr ""
+
+#: ../../../source/docs/porting/asyncify.rst:463
+msgid ""
+"You can enable the :ref:`ASYNCIFY_ADVISE` setting, which will tell the "
+"compiler to output which functions it is currently instrumenting and why. "
+"You can then determine whether you should add any functions to :ref:"
+"`ASYNCIFY_REMOVE` or whether it would be safe to enable :ref:"
+"`ASYNCIFY_IGNORE_INDIRECT`. Note that this phase of the compiler happens "
+"after many optimization phases, and several functions maybe be inlined "
+"already. To be safe, run it with `-O0`."
+msgstr ""
+
+#: ../../../source/docs/porting/asyncify.rst:470
+msgid ""
+"For more details see :ref:`settings-reference`. Note that the manual "
+"settings mentioned here are error-prone - if you don't get things exactly "
+"right, your application can break. If you don't absolutely need maximal "
+"performance, it's usually ok to use the defaults."
+msgstr ""
+
+#: ../../../source/docs/porting/asyncify.rst:476
+msgid "Potential problems"
+msgstr ""
+
+#: ../../../source/docs/porting/asyncify.rst:479
+msgid "Stack overflows (Asyncify)"
+msgstr ""
+
+#: ../../../source/docs/porting/asyncify.rst:481
+msgid ""
+"If you see an exception thrown from an ``asyncify_*`` API, then it may be a "
+"stack overflow. You can increase the stack size with the :ref:"
+"`ASYNCIFY_STACK_SIZE` option."
+msgstr ""
+
+#: ../../../source/docs/porting/asyncify.rst:486
+msgid "Reentrancy"
+msgstr ""
+
+#: ../../../source/docs/porting/asyncify.rst:488
+msgid ""
+"While waiting on an asynchronous operation browser events can happen. That "
+"is often the point of using Asyncify, but unexpected events can happen too. "
+"For example, if you just want to pause for 100ms then you can call "
+"``emscripten_sleep(100)``, but if you have any event listeners, say for a "
+"keypress, then if a key is pressed the handler will fire. If that handler "
+"calls into compiled code, then it can be confusing, since it starts to look "
+"like coroutines or multithreading, with multiple executions interleaved."
+msgstr ""
+
+#: ../../../source/docs/porting/asyncify.rst:496
+msgid ""
+"It is *not* safe to start an async operation while another is already "
+"running. The first must complete before the second begins."
+msgstr ""
+
+#: ../../../source/docs/porting/asyncify.rst:499
+msgid ""
+"Such interleaving may also break assumptions in your codebase. For example, "
+"if a function uses a global and assumes nothing else can modify it until it "
+"returns, but if that function sleeps and an event causes other code to "
+"change that global, then bad things can happen."
+msgstr ""
+
+#: ../../../source/docs/porting/asyncify.rst:505
+msgid "Starting to rewind with compiled code on the stack (Asyncify)"
+msgstr ""
+
+#: ../../../source/docs/porting/asyncify.rst:507
+msgid ""
+"The examples above show `wakeUp()` being called from JS (after a callback, "
+"typically), and without any compiled code on the stack. If there *were* "
+"compiled code on the stack, then that could interfere with properly "
+"rewinding and resuming execution, in confusing ways, and therefore an "
+"assertion will be thrown in a build with :ref:`ASSERTIONS`."
+msgstr ""
+
+#: ../../../source/docs/porting/asyncify.rst:513
+msgid ""
+"(Specifically, the problem there is that while rewinding will work properly, "
+"if you later unwind again, that unwinding will also unwind through that "
+"extra compiled code that was on the stack - causing a later rewind to behave "
+"badly.)"
+msgstr ""
+
+#: ../../../source/docs/porting/asyncify.rst:517
+msgid ""
+"A simple workaround you may find useful is to do a setTimeout of 0, "
+"replacing ``wakeUp()`` with ``setTimeout(wakeUp, 0);``. That will run "
+"``wakeUp`` in a later callback, when nothing else is on the stack."
+msgstr ""
+
+#: ../../../source/docs/porting/asyncify.rst:522
+msgid "Migrating from older Asyncify APIs"
+msgstr ""
+
+#: ../../../source/docs/porting/asyncify.rst:524
+msgid ""
+"If you have code that uses the old Emterpreter-Async API, or the old "
+"Asyncify, then almost everything should just work when you replace ``-"
+"sEMTERPRETIFY`` usage with ``-sASYNCIFY``. In particular all the things like "
+"``emscripten_wget`` should just work as they did before."
+msgstr ""
+
+#: ../../../source/docs/porting/asyncify.rst:529
+msgid "Some minor differences include:"
+msgstr ""
+
+#: ../../../source/docs/porting/asyncify.rst:531
+msgid ""
+"The Emterpreter had \"yielding\" as a concept, but it isn't needed in "
+"Asyncify. You can replace ``emscripten_sleep_with_yield()`` calls with "
+"``emscripten_sleep()``."
+msgstr ""
+
+#: ../../../source/docs/porting/asyncify.rst:533
+msgid ""
+"The internal JS API is different. See notes above on ``Asyncify."
+"handleSleep()``, and see ``src/library_async.js`` for more examples."
+msgstr ""

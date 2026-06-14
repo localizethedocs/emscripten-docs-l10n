@@ -1,0 +1,48 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) Copyright &copy; 2015, Emscripten Contributors.
+# This file is distributed under the same license as the Emscripten package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Emscripten main\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-14 14:25+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../../source/docs/contributing/index.rst:5
+msgid "Contributing to Emscripten"
+msgstr ""
+
+#: ../../../source/docs/contributing/index.rst:7
+msgid ""
+"This section contains articles that are relevant to anyone who wants to "
+"contribute to Emscripten and help improve the project."
+msgstr ""
+
+#: ../../../source/docs/contributing/index.rst:9
+msgid ""
+":ref:`contributing` provides an introduction to contributing, along with a "
+"few ideas for how you can help."
+msgstr ""
+
+#: ../../../source/docs/contributing/index.rst:10
+msgid ""
+"The :ref:`Developer's-Guide` contains contributor-relevant information, "
+"covering compiler operation and submitting patches to the Emscripten "
+"repositories."
+msgstr ""
+
+#: ../../../source/docs/contributing/index.rst:11
+msgid ""
+":ref:`emscripten-authors` is a partial list of Emscripten contributors, "
+"which used to be updated manually. The git log has the full list of all "
+"contributors, and for that reason it is not necessary to add to the AUTHORS "
+"file manually any more (but it is optional)."
+msgstr ""
