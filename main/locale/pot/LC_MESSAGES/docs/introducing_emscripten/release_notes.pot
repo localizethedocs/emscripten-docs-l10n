@@ -1,0 +1,32 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) Copyright &copy; 2015, Emscripten Contributors.
+# This file is distributed under the same license as the Emscripten package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Emscripten main\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-14 14:25+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../../source/docs/introducing_emscripten/release_notes.rst:5
+msgid "Release Notes"
+msgstr ""
+
+#: ../../../source/docs/introducing_emscripten/release_notes.rst:7
+msgid ""
+"Changes between tagged Emscripten versions are recorded in the `ChangeLog "
+"<https://github.com/emscripten-core/emscripten/blob/main/ChangeLog.md>`_ "
+"(``ChangeLog.md`` in the source repo). This log includes high-level "
+"information about new features, user-oriented fixes, options, command-line "
+"parameters, usage changes, deprecations, significant internal modifications, "
+"optimizations, etc. The log for each version links to a detailed diff "
+"report, which lists all the incremental changes since the previous release."
+msgstr ""

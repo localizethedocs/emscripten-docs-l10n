@@ -1,0 +1,163 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) Copyright &copy; 2015, Emscripten Contributors.
+# This file is distributed under the same license as the Emscripten package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Emscripten main\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-14 14:25+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../../source/docs/building_from_source/toolchain_what_is_needed.rst:5
+msgid "Emscripten Toolchain Requirements"
+msgstr ""
+
+#: ../../../source/docs/building_from_source/toolchain_what_is_needed.rst:7
+msgid ""
+"The instructions below list the main tools and dependencies in an Emscripten "
+"environment, along with instructions on how to test which dependencies are "
+"installed."
+msgstr ""
+
+#: ../../../source/docs/building_from_source/toolchain_what_is_needed.rst:9
+msgid ""
+"The :ref:`SDK <sdk-download-and-install>` provides the **easiest** and "
+"**most reliable** method for getting, using, updating and managing "
+"Emscripten environments. If you're using the SDK you won't *need* these "
+"instructions — they are provided for information only."
+msgstr ""
+
+#: ../../../source/docs/building_from_source/toolchain_what_is_needed.rst:11
+msgid ""
+"The instructions below are useful if you're :ref:`manually <installing-from-"
+"source>` building from source."
+msgstr ""
+
+#: ../../../source/docs/building_from_source/toolchain_what_is_needed.rst:16
+msgid "What you'll need"
+msgstr ""
+
+#: ../../../source/docs/building_from_source/toolchain_what_is_needed.rst:21
+msgid "Emscripten tools and dependencies"
+msgstr ""
+
+#: ../../../source/docs/building_from_source/toolchain_what_is_needed.rst:23
+msgid ""
+"In general a complete Emscripten environment requires the following tools. "
+"First test to see if they are already installed using the :ref:`instructions "
+"below <toolchain-test-which-dependencies-are-installed>`."
+msgstr ""
+
+#: ../../../source/docs/building_from_source/toolchain_what_is_needed.rst:25
+msgid ":term:`Node.js` (18.3.0 or above)"
+msgstr ""
+
+#: ../../../source/docs/building_from_source/toolchain_what_is_needed.rst:26
+msgid ":term:`Python` (3.8 or above)"
+msgstr ""
+
+#: ../../../source/docs/building_from_source/toolchain_what_is_needed.rst:27
+msgid ""
+":term:`Java` (1.6.0_31 or later). Java is optional. It can be used to run "
+"the java version of term:`Closure Compiler`."
+msgstr ""
+
+#: ../../../source/docs/building_from_source/toolchain_what_is_needed.rst:28
+msgid ":term:`Git` client. Git is required if building tools from source."
+msgstr ""
+
+#: ../../../source/docs/building_from_source/toolchain_what_is_needed.rst:29
+msgid ":term:`LLVM` (LLVM, including clang and wasm-ld)"
+msgstr ""
+
+#: ../../../source/docs/building_from_source/toolchain_what_is_needed.rst:30
+msgid ""
+":term:`Binaryen` (Binaryen, including wasm-opt, wasm-emscripten-finalize, "
+"etc.)"
+msgstr ""
+
+#: ../../../source/docs/building_from_source/toolchain_what_is_needed.rst:31
+msgid ""
+"The `Emscripten code <https://github.com/emscripten-core/emscripten>`_, from "
+"GitHub"
+msgstr ""
+
+#: ../../../source/docs/building_from_source/toolchain_what_is_needed.rst:35
+msgid ""
+"The `d8 shell <https://v8.dev/docs/d8>`_ is also required if you want to run "
+"**100%** of the tests in the test suite (in particular, tests for extremely "
+"new features that are only present in d8 so far). Most developers will not "
+"need this, and should instead use *node.js*."
+msgstr ""
+
+#: ../../../source/docs/building_from_source/toolchain_what_is_needed.rst:40
+msgid "Compiler toolchain"
+msgstr ""
+
+#: ../../../source/docs/building_from_source/toolchain_what_is_needed.rst:42
+msgid ""
+"When building Emscripten from source code, whether \"manually\" or using the "
+"SDK, you will need a *compiler toolchain*:"
+msgstr ""
+
+#: ../../../source/docs/building_from_source/toolchain_what_is_needed.rst:44
+msgid ""
+"Windows: Install `Visual Studio 2017 <http://go.microsoft.com/?"
+"linkid=9709949>`_ and `cmake <http://www.cmake.org/cmake/resources/software."
+"html>`_."
+msgstr ""
+
+#: ../../../source/docs/building_from_source/toolchain_what_is_needed.rst:48
+msgid ""
+"SDK users can also install and activate the MinGW compiler toolchain in "
+"order to build their own projects:"
+msgstr ""
+
+#: ../../../source/docs/building_from_source/toolchain_what_is_needed.rst:56
+msgid "Linux: Install *gcc* and *cmake*:"
+msgstr ""
+
+#: ../../../source/docs/building_from_source/toolchain_what_is_needed.rst:65
+msgid "macOS: Install the *Xcode Command Line Tools*:"
+msgstr ""
+
+#: ../../../source/docs/building_from_source/toolchain_what_is_needed.rst:67
+msgid ""
+"Install Xcode from the `macOS App Store <http://superuser.com/"
+"questions/455214/where-is-svn-on-os-x-mountain-lion>`_."
+msgstr ""
+
+#: ../../../source/docs/building_from_source/toolchain_what_is_needed.rst:68
+msgid "In **Xcode | Preferences | Downloads**, install *Command Line Tools*."
+msgstr ""
+
+#: ../../../source/docs/building_from_source/toolchain_what_is_needed.rst:70
+msgid ""
+"Building LLVM and Clang from source can require a lot of memory and hard "
+"drive space. The specific requirements change from LLVM version to another, "
+"but you probably need at least 2GB of RAM, preferably 4GB or more. Debug "
+"builds or builds with assertions can require even more memory."
+msgstr ""
+
+#: ../../../source/docs/building_from_source/toolchain_what_is_needed.rst:75
+msgid "Test which tools are installed"
+msgstr ""
+
+#: ../../../source/docs/building_from_source/toolchain_what_is_needed.rst:77
+msgid ""
+"Some of the tools are pre-installed on the various platforms (for example, "
+"Python is always available on Linux builds)."
+msgstr ""
+
+#: ../../../source/docs/building_from_source/toolchain_what_is_needed.rst:79
+msgid ""
+"You can check which tools are already present using the following commands:"
+msgstr ""
