@@ -19,39 +19,39 @@ msgstr ""
 
 #: conf.py:149
 msgid "Documentation"
-msgstr ""
+msgstr "文件"
 
 #: conf.py:153
 msgid "Downloads"
-msgstr ""
+msgstr "下載"
 
 #: conf.py:157
 msgid "Report Bug"
-msgstr ""
+msgstr "回報臭蟲"
 
 #: conf.py:161
 msgid "Licensing"
-msgstr ""
+msgstr "授權條款"
 
 #: conf.py:165
 msgid "Contributing"
-msgstr ""
+msgstr "參與貢獻"
 
 #: conf.py:169
 msgid "Release Notes"
-msgstr ""
+msgstr "發行備註"
 
 #: conf.py:175
 msgid "Community"
-msgstr ""
+msgstr "社群"
 
 #: conf.py:179
 msgid "Mailing List"
-msgstr ""
+msgstr "郵件列表"
 
 #: conf.py:184
 msgid "Wiki"
-msgstr ""
+msgstr "維基"
 
 #: sphinx/application.py:181
 #, python-format

@@ -29,23 +29,27 @@ msgstr ""
 
 #: ../../../source/index.rst:13
 msgid "Emscripten logo"
-msgstr ""
+msgstr "Emscripten 標誌"
 
 #: ../../../source/index.rst:19
 msgid ""
 "Emscripten is a complete compiler toolchain to WebAssembly, using LLVM, with "
 "a special focus on speed, size, and the Web platform."
 msgstr ""
+"Emscripten 是一套完整的編譯器工具鏈，能將程式編譯為 WebAssembly，使用 LLVM，"
+"特別強調速度、大小以及 Web 平台。"
 
 #: ../../../source/index.rst:23
 msgid ""
 ":doc:`Docs <docs/index>` `GitHub <https://github.com/emscripten-core/"
 "emscripten>`_"
 msgstr ""
+":doc:`文件 <docs/index>` `GitHub <https://github.com/emscripten-core/"
+"emscripten>`_"
 
 #: ../../../source/index.rst:29
 msgid "Porting"
-msgstr ""
+msgstr "移植"
 
 #: ../../../source/index.rst:31
 msgid ""
@@ -54,20 +58,25 @@ msgid ""
 "org/>`_, or `wasm runtimes <https://v8.dev/blog/emscripten-standalone-"
 "wasm#running-in-wasm-runtimes>`_."
 msgstr ""
+"將您現有以 C 或 C++ 撰寫的專案（或任何使用 `LLVM <https://llvm.org/>`_ 的語"
+"言）編譯到瀏覽器、`Node.js <https://nodejs.org/>`_ 或 `wasm 執行環境 "
+"<https://v8.dev/blog/emscripten-standalone-wasm#running-in-wasm-runtimes>`_。"
 
 #: ../../../source/index.rst:33
 msgid "APIs"
-msgstr ""
+msgstr "API"
 
 #: ../../../source/index.rst:35
 msgid ""
 "Emscripten converts OpenGL into WebGL, and has support for familiar APIs "
 "like SDL, pthreads, and POSIX, as well as Web APIs and JavaScript."
 msgstr ""
+"Emscripten 將 OpenGL 轉換為 WebGL，並支援像 SDL、pthreads 和 POSIX 等常見 "
+"API，以及 Web API 和 JavaScript。"
 
 #: ../../../source/index.rst:37
 msgid "Fast"
-msgstr ""
+msgstr "快速"
 
 #: ../../../source/index.rst:39
 msgid ""
@@ -75,22 +84,29 @@ msgid ""
 "WebAssembly/binaryen>`_, and `WebAssembly <https://webassembly.org/>`_, the "
 "output is compact and runs at near-native speed."
 msgstr ""
+"得益於 LLVM、Emscripten、`Binaryen <https://github.com/WebAssembly/"
+"binaryen>`_ 與 `WebAssembly <https://webassembly.org/>`_ 的組合，輸出結果體積"
+"精簡且執行速度接近原生。"
 
 #: ../../../source/index.rst:41
 msgid "Interested to learn more?"
-msgstr ""
+msgstr "想進一步了解嗎？"
 
 #: ../../../source/index.rst:43
 msgid ""
 "Read our :doc:`About page <docs/introducing_emscripten/about_emscripten>`!"
 msgstr ""
+"閱讀我們的\\ :doc:`關於頁面 <docs/introducing_emscripten/"
+"about_emscripten>`\\ ！"
 
 #: ../../../source/index.rst:45
 msgid "Ready to get started?"
-msgstr ""
+msgstr "準備好開始了嗎？"
 
 #: ../../../source/index.rst:47
 msgid ""
 ":doc:`Download and install the SDK <docs/getting_started/downloads>` and "
 "then proceed to the :doc:`Tutorial <docs/getting_started/Tutorial>`!"
 msgstr ""
+":doc:`下載並安裝 SDK <docs/getting_started/downloads>`，然後繼續閱讀\\ :doc:`"
+"教學 <docs/getting_started/Tutorial>`！"
