@@ -16,9 +16,9 @@
       "branch" : "main",
       "commit" : 
       {
-        "date" : "2026-06-13 11:08:55 -0700",
-        "hash" : "12a6403a4fa02808abc09e5e779166f00dd82d03",
-        "title" : "[wasm64] Keep nfds_t 32-bit. NFC (#27115)"
+        "date" : "2026-06-17 22:58:27 -0700",
+        "hash" : "f6acdcc86d6a754fdc71cc386eb42ef740e8ecee",
+        "title" : "[Docs] Rename and crop the logo file (#27132)"
       }
     },
     "zh_TW" : 
@@ -26,9 +26,9 @@
       "branch" : "main",
       "commit" : 
       {
-        "date" : "2026-06-13 11:08:55 -0700",
-        "hash" : "12a6403a4fa02808abc09e5e779166f00dd82d03",
-        "title" : "[wasm64] Keep nfds_t 32-bit. NFC (#27115)"
+        "date" : "2026-06-17 22:58:27 -0700",
+        "hash" : "f6acdcc86d6a754fdc71cc386eb42ef740e8ecee",
+        "title" : "[Docs] Rename and crop the logo file (#27132)"
       }
     }
   },
