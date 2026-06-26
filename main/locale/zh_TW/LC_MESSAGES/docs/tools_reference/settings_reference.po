@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Emscripten main\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-18 07:11+0000\n"
+"POT-Creation-Date: 2026-06-22 13:32+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -290,8 +290,9 @@ msgstr ""
 #: ../../../source/docs/tools_reference/settings_reference.rst:3338
 #: ../../../source/docs/tools_reference/settings_reference.rst:3349
 #: ../../../source/docs/tools_reference/settings_reference.rst:3361
-#: ../../../source/docs/tools_reference/settings_reference.rst:3374
-#: ../../../source/docs/tools_reference/settings_reference.rst:3386
+#: ../../../source/docs/tools_reference/settings_reference.rst:3384
+#: ../../../source/docs/tools_reference/settings_reference.rst:3417
+#: ../../../source/docs/tools_reference/settings_reference.rst:3429
 msgid "Default value: false"
 msgstr ""
 
@@ -823,6 +824,7 @@ msgstr ""
 #: ../../../source/docs/tools_reference/settings_reference.rst:3310
 #: ../../../source/docs/tools_reference/settings_reference.rst:3322
 #: ../../../source/docs/tools_reference/settings_reference.rst:3336
+#: ../../../source/docs/tools_reference/settings_reference.rst:3382
 msgid "This is an experimental setting"
 msgstr ""
 
@@ -3985,10 +3987,65 @@ msgid ""
 msgstr ""
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:3366
-msgid "FAKE_DYLIBS"
+msgid "CROSS_ORIGIN_STORAGE"
 msgstr ""
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:3368
+msgid ""
+"Enables Cross-Origin Storage (COS) API support for Wasm loading on the Web "
+"target. At link time Emscripten computes the SHA-256 hash of the final ``."
+"wasm`` binary and embeds it in the generated JS. At runtime the COS API is "
+"used as a progressive enhancement: the binary is fetched from the shared "
+"cross-origin cache on a hit, or stored there after a network fetch on a "
+"miss; when the API is absent or errors the runtime falls through to the "
+"standard fetch path."
+msgstr ""
+
+#: ../../../source/docs/tools_reference/settings_reference.rst:3376
+msgid ""
+"Requires the Web environment; using it without ``-sENVIRONMENT=web`` is a "
+"hard link-time error. Incompatible with SINGLE_FILE and "
+"WASM_ASYNC_COMPILATION=0 (both produce hard link-time errors)."
+msgstr ""
+
+#: ../../../source/docs/tools_reference/settings_reference.rst:3380
+msgid "See :ref:`CrossOriginStorage` for the full guide."
+msgstr ""
+
+#: ../../../source/docs/tools_reference/settings_reference.rst:3389
+msgid "CROSS_ORIGIN_STORAGE_ORIGINS"
+msgstr ""
+
+#: ../../../source/docs/tools_reference/settings_reference.rst:3391
+msgid ""
+"Controls which origins may read the Wasm binary from the COS cache. Only "
+"meaningful when ``-sCROSS_ORIGIN_STORAGE`` is set. Applied only during the "
+"write (cache-miss) path, not the read (cache-hit) path."
+msgstr ""
+
+#: ../../../source/docs/tools_reference/settings_reference.rst:3395
+msgid ""
+"``['*']`` (default) — any origin can retrieve the file. Explicit HTTPS "
+"origin list — restricted to those origins only::"
+msgstr ""
+
+#: ../../../source/docs/tools_reference/settings_reference.rst:3400
+msgid "``[]`` — same-site only (omits the ``origins`` field entirely)."
+msgstr ""
+
+#: ../../../source/docs/tools_reference/settings_reference.rst:3402
+msgid "Mixing ``'*'`` with explicit origins is a link-time error."
+msgstr ""
+
+#: ../../../source/docs/tools_reference/settings_reference.rst:3404
+msgid "Default value: ['*']"
+msgstr ""
+
+#: ../../../source/docs/tools_reference/settings_reference.rst:3409
+msgid "FAKE_DYLIBS"
+msgstr ""
+
+#: ../../../source/docs/tools_reference/settings_reference.rst:3411
 msgid ""
 "This setting changes the behaviour of the ``-shared`` flag.  When set to "
 "true you get the old emscripten behaviour where the ``-shared`` flag "
@@ -3997,11 +4054,11 @@ msgid ""
 "will produce a Wasn dynamic library."
 msgstr ""
 
-#: ../../../source/docs/tools_reference/settings_reference.rst:3379
+#: ../../../source/docs/tools_reference/settings_reference.rst:3422
 msgid "EXECUTABLE"
 msgstr ""
 
-#: ../../../source/docs/tools_reference/settings_reference.rst:3381
+#: ../../../source/docs/tools_reference/settings_reference.rst:3424
 msgid ""
 "Add a #! line to generated JS file and make it executable.  This is useful "
 "for building command line tools that run under node. This setting can also "
@@ -4009,11 +4066,11 @@ msgid ""
 "command to embed in the generated file."
 msgstr ""
 
-#: ../../../source/docs/tools_reference/settings_reference.rst:3392
+#: ../../../source/docs/tools_reference/settings_reference.rst:3435
 msgid "Deprecated Settings"
 msgstr ""
 
-#: ../../../source/docs/tools_reference/settings_reference.rst:3394
+#: ../../../source/docs/tools_reference/settings_reference.rst:3437
 msgid ""
 "The following settings have been proposed for removal from emscripten.  "
 "These settings still function but may be removed in a future version.  If "
@@ -4021,33 +4078,33 @@ msgid ""
 "one of the existing bugs)."
 msgstr ""
 
-#: ../../../source/docs/tools_reference/settings_reference.rst:3398
+#: ../../../source/docs/tools_reference/settings_reference.rst:3441
 msgid ""
 "``RUNTIME_LINKED_LIBS``: you can simply list the libraries directly on the "
 "commandline now"
 msgstr ""
 
-#: ../../../source/docs/tools_reference/settings_reference.rst:3399
+#: ../../../source/docs/tools_reference/settings_reference.rst:3442
 msgid "``CLOSURE_WARNINGS``: use -Wclosure/-Wno-closure instead"
 msgstr ""
 
-#: ../../../source/docs/tools_reference/settings_reference.rst:3400
+#: ../../../source/docs/tools_reference/settings_reference.rst:3443
 msgid ""
 "``LEGALIZE_JS_FFI``: to disable JS type legalization use `-sWASM_BIGINT` or "
 "`-sSTANDALONE_WASM`"
 msgstr ""
 
-#: ../../../source/docs/tools_reference/settings_reference.rst:3401
+#: ../../../source/docs/tools_reference/settings_reference.rst:3444
 msgid "``ASYNCIFY_EXPORTS``: please use JSPI_EXPORTS instead"
 msgstr ""
 
-#: ../../../source/docs/tools_reference/settings_reference.rst:3402
+#: ../../../source/docs/tools_reference/settings_reference.rst:3445
 msgid ""
 "``LINKABLE``: under consideration for removal (https://github.com/emscripten-"
 "core/emscripten/issues/25262)"
 msgstr ""
 
-#: ../../../source/docs/tools_reference/settings_reference.rst:3403
+#: ../../../source/docs/tools_reference/settings_reference.rst:3446
 msgid ""
 "``EXPORT_EXCEPTION_HANDLING_HELPERS``: getExceptionMessage is exported "
 "anyway when ASSERTIONS or EXCEPTION_STACK_TRACES is set, which are set by "
@@ -4055,97 +4112,97 @@ msgid ""
 "sEXPORTED_RUNTIME_METHODS=getExceptionMessage,decrementExceptionRefcount."
 msgstr ""
 
-#: ../../../source/docs/tools_reference/settings_reference.rst:3404
+#: ../../../source/docs/tools_reference/settings_reference.rst:3447
 msgid ""
 "``DETERMINISTIC``: under consideration for removal (https://github.com/"
 "emscripten-core/emscripten/issues/26647)"
 msgstr ""
 
-#: ../../../source/docs/tools_reference/settings_reference.rst:3405
+#: ../../../source/docs/tools_reference/settings_reference.rst:3448
 msgid "``USE_PTHREADS``: prefer the standard -pthread flag"
 msgstr ""
 
-#: ../../../source/docs/tools_reference/settings_reference.rst:3406
+#: ../../../source/docs/tools_reference/settings_reference.rst:3449
 msgid "``MEMORY64``: prefer the standard -m64 or --target=wasm64 flags"
 msgstr ""
 
-#: ../../../source/docs/tools_reference/settings_reference.rst:3412
+#: ../../../source/docs/tools_reference/settings_reference.rst:3455
 msgid "Legacy Settings"
 msgstr ""
 
-#: ../../../source/docs/tools_reference/settings_reference.rst:3414
+#: ../../../source/docs/tools_reference/settings_reference.rst:3457
 msgid ""
 "The following settings no longer have any effect but are still accepted by "
 "emscripten for backwards compatibility with older versions:"
 msgstr ""
 
-#: ../../../source/docs/tools_reference/settings_reference.rst:3417
+#: ../../../source/docs/tools_reference/settings_reference.rst:3460
 msgid "``BINARYEN``: Valid values: WASM"
 msgstr ""
 
-#: ../../../source/docs/tools_reference/settings_reference.rst:3418
+#: ../../../source/docs/tools_reference/settings_reference.rst:3461
 msgid "``TOTAL_STACK``: Valid values: STACK_SIZE"
 msgstr ""
 
-#: ../../../source/docs/tools_reference/settings_reference.rst:3419
+#: ../../../source/docs/tools_reference/settings_reference.rst:3462
 msgid "``BINARYEN_ASYNC_COMPILATION``: Valid values: WASM_ASYNC_COMPILATION"
 msgstr ""
 
-#: ../../../source/docs/tools_reference/settings_reference.rst:3420
+#: ../../../source/docs/tools_reference/settings_reference.rst:3463
 msgid ""
 "``UNALIGNED_MEMORY``: forced unaligned memory not supported in fastcomp "
 "(Valid values: [0])"
 msgstr ""
 
-#: ../../../source/docs/tools_reference/settings_reference.rst:3421
+#: ../../../source/docs/tools_reference/settings_reference.rst:3464
 msgid ""
 "``FORCE_ALIGNED_MEMORY``: forced aligned memory is not supported in fastcomp "
 "(Valid values: [0])"
 msgstr ""
 
-#: ../../../source/docs/tools_reference/settings_reference.rst:3422
+#: ../../../source/docs/tools_reference/settings_reference.rst:3465
 msgid "``PGO``: pgo no longer supported (Valid values: [0])"
 msgstr ""
 
-#: ../../../source/docs/tools_reference/settings_reference.rst:3423
+#: ../../../source/docs/tools_reference/settings_reference.rst:3466
 msgid ""
 "``QUANTUM_SIZE``: altering the QUANTUM_SIZE is not supported (Valid values: "
 "[4])"
 msgstr ""
 
-#: ../../../source/docs/tools_reference/settings_reference.rst:3424
+#: ../../../source/docs/tools_reference/settings_reference.rst:3467
 msgid ""
 "``FUNCTION_POINTER_ALIGNMENT``: Starting from Emscripten 1.37.29, no longer "
 "available (https://github.com/emscripten-core/emscripten/pull/6091) (Valid "
 "values: [2])"
 msgstr ""
 
-#: ../../../source/docs/tools_reference/settings_reference.rst:3425
+#: ../../../source/docs/tools_reference/settings_reference.rst:3468
 msgid "``RESERVED_FUNCTION_POINTERS``: Valid values: ALLOW_TABLE_GROWTH"
 msgstr ""
 
-#: ../../../source/docs/tools_reference/settings_reference.rst:3426
+#: ../../../source/docs/tools_reference/settings_reference.rst:3469
 msgid ""
 "``BUILD_AS_SHARED_LIB``: Starting from Emscripten 1.38.16, no longer "
 "available (https://github.com/emscripten-core/emscripten/pull/7433) (Valid "
 "values: [0])"
 msgstr ""
 
-#: ../../../source/docs/tools_reference/settings_reference.rst:3427
+#: ../../../source/docs/tools_reference/settings_reference.rst:3470
 msgid ""
 "``SAFE_SPLIT_MEMORY``: Starting from Emscripten 1.38.19, SAFE_SPLIT_MEMORY "
 "codegen is no longer available (https://github.com/emscripten-core/"
 "emscripten/pull/7465) (Valid values: [0])"
 msgstr ""
 
-#: ../../../source/docs/tools_reference/settings_reference.rst:3428
+#: ../../../source/docs/tools_reference/settings_reference.rst:3471
 msgid ""
 "``SPLIT_MEMORY``: Starting from Emscripten 1.38.19, SPLIT_MEMORY codegen is "
 "no longer available (https://github.com/emscripten-core/emscripten/"
 "pull/7465) (Valid values: [0])"
 msgstr ""
 
-#: ../../../source/docs/tools_reference/settings_reference.rst:3429
+#: ../../../source/docs/tools_reference/settings_reference.rst:3472
 msgid ""
 "``BINARYEN_METHOD``: Starting from Emscripten 1.38.23, Emscripten now always "
 "builds either to Wasm (-sWASM - default), or to JavaScript (-sWASM=0), other "
@@ -4153,20 +4210,20 @@ msgid ""
 "pull/7836) (Valid values: ['native-wasm'])"
 msgstr ""
 
-#: ../../../source/docs/tools_reference/settings_reference.rst:3430
+#: ../../../source/docs/tools_reference/settings_reference.rst:3473
 msgid ""
 "``BINARYEN_TRAP_MODE``: The wasm backend does not support a trap mode (it "
 "always clamps, in effect) (Valid values: [-1])"
 msgstr ""
 
-#: ../../../source/docs/tools_reference/settings_reference.rst:3431
+#: ../../../source/docs/tools_reference/settings_reference.rst:3474
 msgid ""
 "``PRECISE_I64_MATH``: Starting from Emscripten 1.38.26, PRECISE_I64_MATH is "
 "always enabled (https://github.com/emscripten-core/emscripten/pull/7935) "
 "(Valid values: [1, 2])"
 msgstr ""
 
-#: ../../../source/docs/tools_reference/settings_reference.rst:3432
+#: ../../../source/docs/tools_reference/settings_reference.rst:3475
 msgid ""
 "``MEMFS_APPEND_TO_TYPED_ARRAYS``: Starting from Emscripten 1.38.26, "
 "MEMFS_APPEND_TO_TYPED_ARRAYS=0 is no longer supported. MEMFS no longer "
@@ -4174,336 +4231,336 @@ msgid ""
 "emscripten/pull/7918) (Valid values: [1])"
 msgstr ""
 
-#: ../../../source/docs/tools_reference/settings_reference.rst:3433
+#: ../../../source/docs/tools_reference/settings_reference.rst:3476
 msgid ""
 "``ERROR_ON_MISSING_LIBRARIES``: missing libraries are always an error now "
 "(Valid values: [1])"
 msgstr ""
 
-#: ../../../source/docs/tools_reference/settings_reference.rst:3434
+#: ../../../source/docs/tools_reference/settings_reference.rst:3477
 msgid ""
 "``EMITTING_JS``: The new STANDALONE_WASM flag replaces this (replace "
 "EMITTING_JS=0 with STANDALONE_WASM=1) (Valid values: [1])"
 msgstr ""
 
-#: ../../../source/docs/tools_reference/settings_reference.rst:3435
+#: ../../../source/docs/tools_reference/settings_reference.rst:3478
 msgid ""
 "``SKIP_STACK_IN_SMALL``: SKIP_STACK_IN_SMALL is no longer needed as the "
 "backend can optimize it directly (Valid values: [0, 1])"
 msgstr ""
 
-#: ../../../source/docs/tools_reference/settings_reference.rst:3436
+#: ../../../source/docs/tools_reference/settings_reference.rst:3479
 msgid ""
 "``SAFE_STACK``: Replace SAFE_STACK=1 with STACK_OVERFLOW_CHECK=2 (Valid "
 "values: [0])"
 msgstr ""
 
-#: ../../../source/docs/tools_reference/settings_reference.rst:3437
+#: ../../../source/docs/tools_reference/settings_reference.rst:3480
 msgid "``MEMORY_GROWTH_STEP``: Valid values: MEMORY_GROWTH_LINEAR_STEP"
 msgstr ""
 
-#: ../../../source/docs/tools_reference/settings_reference.rst:3438
+#: ../../../source/docs/tools_reference/settings_reference.rst:3481
 msgid ""
 "``ELIMINATE_DUPLICATE_FUNCTIONS``: Duplicate function elimination for wasm "
 "is handled automatically by binaryen (Valid values: [0, 1])"
 msgstr ""
 
-#: ../../../source/docs/tools_reference/settings_reference.rst:3439
+#: ../../../source/docs/tools_reference/settings_reference.rst:3482
 msgid ""
 "``ELIMINATE_DUPLICATE_FUNCTIONS_DUMP_EQUIVALENT_FUNCTIONS``: Duplicate "
 "function elimination for wasm is handled automatically by binaryen (Valid "
 "values: [0])"
 msgstr ""
 
-#: ../../../source/docs/tools_reference/settings_reference.rst:3440
+#: ../../../source/docs/tools_reference/settings_reference.rst:3483
 msgid ""
 "``ELIMINATE_DUPLICATE_FUNCTIONS_PASSES``: Duplicate function elimination for "
 "wasm is handled automatically by binaryen (Valid values: [5])"
 msgstr ""
 
-#: ../../../source/docs/tools_reference/settings_reference.rst:3441
+#: ../../../source/docs/tools_reference/settings_reference.rst:3484
 msgid ""
 "``WASM_OBJECT_FILES``: For LTO, use -flto or -fto=thin instead. Otherwise, "
 "Wasm object files are the default (Valid values: [1])"
 msgstr ""
 
-#: ../../../source/docs/tools_reference/settings_reference.rst:3442
+#: ../../../source/docs/tools_reference/settings_reference.rst:3485
 msgid "``TOTAL_MEMORY``: Valid values: INITIAL_MEMORY"
 msgstr ""
 
-#: ../../../source/docs/tools_reference/settings_reference.rst:3443
+#: ../../../source/docs/tools_reference/settings_reference.rst:3486
 msgid "``WASM_MEM_MAX``: Valid values: MAXIMUM_MEMORY"
 msgstr ""
 
-#: ../../../source/docs/tools_reference/settings_reference.rst:3444
+#: ../../../source/docs/tools_reference/settings_reference.rst:3487
 msgid "``BINARYEN_MEM_MAX``: Valid values: MAXIMUM_MEMORY"
 msgstr ""
 
-#: ../../../source/docs/tools_reference/settings_reference.rst:3445
+#: ../../../source/docs/tools_reference/settings_reference.rst:3488
 msgid ""
 "``BINARYEN_PASSES``: Use BINARYEN_EXTRA_PASSES to add additional passes "
 "(Valid values: [''])"
 msgstr ""
 
-#: ../../../source/docs/tools_reference/settings_reference.rst:3446
+#: ../../../source/docs/tools_reference/settings_reference.rst:3489
 msgid ""
 "``SWAPPABLE_ASM_MODULE``: Fully swappable asm modules are no longer "
 "supported (Valid values: [0])"
 msgstr ""
 
-#: ../../../source/docs/tools_reference/settings_reference.rst:3447
+#: ../../../source/docs/tools_reference/settings_reference.rst:3490
 msgid "``ASM_JS``: asm.js output is not supported anymore (Valid values: [1])"
 msgstr ""
 
-#: ../../../source/docs/tools_reference/settings_reference.rst:3448
+#: ../../../source/docs/tools_reference/settings_reference.rst:3491
 msgid ""
 "``FINALIZE_ASM_JS``: asm.js output is not supported anymore (Valid values: "
 "[0, 1])"
 msgstr ""
 
-#: ../../../source/docs/tools_reference/settings_reference.rst:3449
+#: ../../../source/docs/tools_reference/settings_reference.rst:3492
 msgid "``ASYNCIFY_WHITELIST``: Valid values: ASYNCIFY_ONLY"
 msgstr ""
 
-#: ../../../source/docs/tools_reference/settings_reference.rst:3450
+#: ../../../source/docs/tools_reference/settings_reference.rst:3493
 msgid "``ASYNCIFY_BLACKLIST``: Valid values: ASYNCIFY_REMOVE"
 msgstr ""
 
-#: ../../../source/docs/tools_reference/settings_reference.rst:3451
+#: ../../../source/docs/tools_reference/settings_reference.rst:3494
 msgid ""
 "``EXCEPTION_CATCHING_WHITELIST``: Valid values: EXCEPTION_CATCHING_ALLOWED"
 msgstr ""
 
-#: ../../../source/docs/tools_reference/settings_reference.rst:3452
+#: ../../../source/docs/tools_reference/settings_reference.rst:3495
 msgid ""
 "``SEPARATE_ASM``: Separate asm.js only made sense for fastcomp with asm.js "
 "output (Valid values: [0])"
 msgstr ""
 
-#: ../../../source/docs/tools_reference/settings_reference.rst:3453
+#: ../../../source/docs/tools_reference/settings_reference.rst:3496
 msgid ""
 "``SEPARATE_ASM_MODULE_NAME``: Separate asm.js only made sense for fastcomp "
 "with asm.js output (Valid values: [''])"
 msgstr ""
 
-#: ../../../source/docs/tools_reference/settings_reference.rst:3454
+#: ../../../source/docs/tools_reference/settings_reference.rst:3497
 msgid ""
 "``FAST_UNROLLED_MEMCPY_AND_MEMSET``: The wasm backend implements memcpy/"
 "memset in C (Valid values: [0, 1])"
 msgstr ""
 
-#: ../../../source/docs/tools_reference/settings_reference.rst:3455
+#: ../../../source/docs/tools_reference/settings_reference.rst:3498
 msgid ""
 "``DOUBLE_MODE``: The wasm backend always implements doubles normally (Valid "
 "values: [0, 1])"
 msgstr ""
 
-#: ../../../source/docs/tools_reference/settings_reference.rst:3456
+#: ../../../source/docs/tools_reference/settings_reference.rst:3499
 msgid ""
 "``PRECISE_F32``: The wasm backend always implements floats normally (Valid "
 "values: [0, 1, 2])"
 msgstr ""
 
-#: ../../../source/docs/tools_reference/settings_reference.rst:3457
+#: ../../../source/docs/tools_reference/settings_reference.rst:3500
 msgid ""
 "``ALIASING_FUNCTION_POINTERS``: The wasm backend always uses a single index "
 "space for function pointers, in a single Table (Valid values: [0, 1])"
 msgstr ""
 
-#: ../../../source/docs/tools_reference/settings_reference.rst:3458
+#: ../../../source/docs/tools_reference/settings_reference.rst:3501
 msgid ""
 "``AGGRESSIVE_VARIABLE_ELIMINATION``: Wasm ignores asm.js-specific "
 "optimization flags (Valid values: [0, 1])"
 msgstr ""
 
-#: ../../../source/docs/tools_reference/settings_reference.rst:3459
+#: ../../../source/docs/tools_reference/settings_reference.rst:3502
 msgid ""
 "``SIMPLIFY_IFS``: Wasm ignores asm.js-specific optimization flags (Valid "
 "values: [1])"
 msgstr ""
 
-#: ../../../source/docs/tools_reference/settings_reference.rst:3460
+#: ../../../source/docs/tools_reference/settings_reference.rst:3503
 msgid ""
 "``DEAD_FUNCTIONS``: The wasm backend does not support dead function removal "
 "(Valid values: [[]])"
 msgstr ""
 
-#: ../../../source/docs/tools_reference/settings_reference.rst:3461
+#: ../../../source/docs/tools_reference/settings_reference.rst:3504
 msgid ""
 "``WASM_BACKEND``: Only the wasm backend is now supported (note that setting "
 "it as -s has never been allowed anyhow) (Valid values: [-1])"
 msgstr ""
 
-#: ../../../source/docs/tools_reference/settings_reference.rst:3462
+#: ../../../source/docs/tools_reference/settings_reference.rst:3505
 msgid "``EXPORT_BINDINGS``: No longer needed (Valid values: [0, 1])"
 msgstr ""
 
-#: ../../../source/docs/tools_reference/settings_reference.rst:3463
+#: ../../../source/docs/tools_reference/settings_reference.rst:3506
 msgid ""
 "``RUNNING_JS_OPTS``: Fastcomp cared about running JS which could alter asm."
 "js validation, but not upstream (Valid values: [0])"
 msgstr ""
 
-#: ../../../source/docs/tools_reference/settings_reference.rst:3464
+#: ../../../source/docs/tools_reference/settings_reference.rst:3507
 msgid "``EXPORT_FUNCTION_TABLES``: No longer needed (Valid values: [0])"
 msgstr ""
 
-#: ../../../source/docs/tools_reference/settings_reference.rst:3465
+#: ../../../source/docs/tools_reference/settings_reference.rst:3508
 msgid "``BINARYEN_SCRIPTS``: No longer needed (Valid values: [''])"
 msgstr ""
 
-#: ../../../source/docs/tools_reference/settings_reference.rst:3466
+#: ../../../source/docs/tools_reference/settings_reference.rst:3509
 msgid "``WARN_UNALIGNED``: No longer needed (Valid values: [0, 1])"
 msgstr ""
 
-#: ../../../source/docs/tools_reference/settings_reference.rst:3467
+#: ../../../source/docs/tools_reference/settings_reference.rst:3510
 msgid "``ASM_PRIMITIVE_VARS``: No longer needed (Valid values: [[]])"
 msgstr ""
 
-#: ../../../source/docs/tools_reference/settings_reference.rst:3468
+#: ../../../source/docs/tools_reference/settings_reference.rst:3511
 msgid ""
 "``WORKAROUND_IOS_9_RIGHT_SHIFT_BUG``: Wasm2JS does not support iPhone 4s, "
 "iPad 2, iPad 3, iPad Mini 1, Pod Touch 5 (devices with end-of-life at iOS "
 "9.3.5) and older (Valid values: [0])"
 msgstr ""
 
-#: ../../../source/docs/tools_reference/settings_reference.rst:3469
+#: ../../../source/docs/tools_reference/settings_reference.rst:3512
 msgid "``RUNTIME_FUNCS_TO_IMPORT``: No longer needed (Valid values: [[]])"
 msgstr ""
 
-#: ../../../source/docs/tools_reference/settings_reference.rst:3470
+#: ../../../source/docs/tools_reference/settings_reference.rst:3513
 msgid "``LIBRARY_DEPS_TO_AUTOEXPORT``: No longer needed (Valid values: [[]])"
 msgstr ""
 
-#: ../../../source/docs/tools_reference/settings_reference.rst:3471
+#: ../../../source/docs/tools_reference/settings_reference.rst:3514
 msgid "``EMIT_EMSCRIPTEN_METADATA``: No longer supported (Valid values: [0])"
 msgstr ""
 
-#: ../../../source/docs/tools_reference/settings_reference.rst:3472
+#: ../../../source/docs/tools_reference/settings_reference.rst:3515
 msgid "``SHELL_FILE``: No longer supported (Valid values: [''])"
 msgstr ""
 
-#: ../../../source/docs/tools_reference/settings_reference.rst:3473
+#: ../../../source/docs/tools_reference/settings_reference.rst:3516
 msgid ""
 "``LLD_REPORT_UNDEFINED``: Disabling is no longer supported (Valid values: "
 "[1])"
 msgstr ""
 
-#: ../../../source/docs/tools_reference/settings_reference.rst:3474
+#: ../../../source/docs/tools_reference/settings_reference.rst:3517
 msgid "``MEM_INIT_METHOD``: No longer supported (Valid values: [0])"
 msgstr ""
 
-#: ../../../source/docs/tools_reference/settings_reference.rst:3475
+#: ../../../source/docs/tools_reference/settings_reference.rst:3518
 msgid ""
 "``USE_PTHREADS``: No longer needed. Use -pthread instead (Valid values: [0, "
 "1])"
 msgstr ""
 
-#: ../../../source/docs/tools_reference/settings_reference.rst:3476
+#: ../../../source/docs/tools_reference/settings_reference.rst:3519
 msgid ""
 "``USES_DYNAMIC_ALLOC``: No longer supported. Use -sMALLOC=none (Valid "
 "values: [1])"
 msgstr ""
 
-#: ../../../source/docs/tools_reference/settings_reference.rst:3477
+#: ../../../source/docs/tools_reference/settings_reference.rst:3520
 msgid ""
 "``REVERSE_DEPS``: No longer needed (Valid values: ['auto', 'all', 'none'])"
 msgstr ""
 
-#: ../../../source/docs/tools_reference/settings_reference.rst:3478
+#: ../../../source/docs/tools_reference/settings_reference.rst:3521
 msgid "``RUNTIME_LOGGING``: Valid values: RUNTIME_DEBUG"
 msgstr ""
 
-#: ../../../source/docs/tools_reference/settings_reference.rst:3479
+#: ../../../source/docs/tools_reference/settings_reference.rst:3522
 msgid "``MIN_EDGE_VERSION``: No longer supported (Valid values: [2147483647])"
 msgstr ""
 
-#: ../../../source/docs/tools_reference/settings_reference.rst:3480
+#: ../../../source/docs/tools_reference/settings_reference.rst:3523
 msgid "``MIN_IE_VERSION``: No longer supported (Valid values: [2147483647])"
 msgstr ""
 
-#: ../../../source/docs/tools_reference/settings_reference.rst:3481
+#: ../../../source/docs/tools_reference/settings_reference.rst:3524
 msgid ""
 "``WORKAROUND_OLD_WEBGL_UNIFORM_UPLOAD_IGNORED_OFFSET_BUG``: No longer "
 "supported (Valid values: [0])"
 msgstr ""
 
-#: ../../../source/docs/tools_reference/settings_reference.rst:3482
+#: ../../../source/docs/tools_reference/settings_reference.rst:3525
 msgid "``AUTO_ARCHIVE_INDEXES``: No longer needed (Valid values: [0, 1])"
 msgstr ""
 
-#: ../../../source/docs/tools_reference/settings_reference.rst:3483
+#: ../../../source/docs/tools_reference/settings_reference.rst:3526
 msgid ""
 "``USE_ES6_IMPORT_META``: Disabling is no longer supported (Valid values: [1])"
 msgstr ""
 
-#: ../../../source/docs/tools_reference/settings_reference.rst:3484
+#: ../../../source/docs/tools_reference/settings_reference.rst:3527
 msgid ""
 "``EXTRA_EXPORTED_RUNTIME_METHODS``: No longer supported, use "
 "EXPORTED_RUNTIME_METHODS (Valid values: [[]])"
 msgstr ""
 
-#: ../../../source/docs/tools_reference/settings_reference.rst:3485
+#: ../../../source/docs/tools_reference/settings_reference.rst:3528
 msgid "``SUPPORT_ERRNO``: No longer supported (Valid values: [0])"
 msgstr ""
 
-#: ../../../source/docs/tools_reference/settings_reference.rst:3486
+#: ../../../source/docs/tools_reference/settings_reference.rst:3529
 msgid "``DEMANGLE_SUPPORT``: No longer supported (Valid values: [0])"
 msgstr ""
 
-#: ../../../source/docs/tools_reference/settings_reference.rst:3487
+#: ../../../source/docs/tools_reference/settings_reference.rst:3530
 msgid ""
 "``MAYBE_WASM2JS``: No longer supported (use -sWASM=2) (Valid values: [0])"
 msgstr ""
 
-#: ../../../source/docs/tools_reference/settings_reference.rst:3488
+#: ../../../source/docs/tools_reference/settings_reference.rst:3531
 msgid ""
 "``HEADLESS``: No longer supported, use headless browsers or Node.js with "
 "JSDOM (Valid values: [0])"
 msgstr ""
 
-#: ../../../source/docs/tools_reference/settings_reference.rst:3489
+#: ../../../source/docs/tools_reference/settings_reference.rst:3532
 msgid ""
 "``USE_OFFSET_COVERTER``: No longer supported, not needed with modern v8 "
 "versions (Valid values: [0])"
 msgstr ""
 
-#: ../../../source/docs/tools_reference/settings_reference.rst:3490
+#: ../../../source/docs/tools_reference/settings_reference.rst:3533
 msgid "``ASYNCIFY_LAZY_LOAD_CODE``: No longer supported (Valid values: [0])"
 msgstr ""
 
-#: ../../../source/docs/tools_reference/settings_reference.rst:3491
+#: ../../../source/docs/tools_reference/settings_reference.rst:3534
 msgid ""
 "``USE_WEBGPU``: No longer supported; replaced by --use-port=emdawnwebgpu, "
 "which implements a newer (but incompatible) version of webgpu.h - see tools/"
 "ports/emdawnwebgpu.py (Valid values: [0])"
 msgstr ""
 
-#: ../../../source/docs/tools_reference/settings_reference.rst:3492
+#: ../../../source/docs/tools_reference/settings_reference.rst:3535
 msgid "``PROXY_TO_WORKER``: No longer supported (Valid values: [0])"
 msgstr ""
 
-#: ../../../source/docs/tools_reference/settings_reference.rst:3493
+#: ../../../source/docs/tools_reference/settings_reference.rst:3536
 msgid "``NODEJS_CATCH_EXIT``: No longer supported (Valid values: [0])"
 msgstr ""
 
-#: ../../../source/docs/tools_reference/settings_reference.rst:3494
+#: ../../../source/docs/tools_reference/settings_reference.rst:3537
 msgid "``NODEJS_CATCH_REJECTION``: No longer supported (Valid values: [0])"
 msgstr ""
 
-#: ../../../source/docs/tools_reference/settings_reference.rst:3495
+#: ../../../source/docs/tools_reference/settings_reference.rst:3538
 msgid ""
 "``POLYFILL_OLD_MATH_FUNCTIONS``: No longer supported (Valid values: [0])"
 msgstr ""
 
-#: ../../../source/docs/tools_reference/settings_reference.rst:3496
+#: ../../../source/docs/tools_reference/settings_reference.rst:3539
 msgid "``RELOCATABLE``: No longer supported (Valid values: [0])"
 msgstr ""
 
-#: ../../../source/docs/tools_reference/settings_reference.rst:3497
+#: ../../../source/docs/tools_reference/settings_reference.rst:3540
 msgid "``WASM_JS_TYPES``: No longer supported (Valid values: [0])"
 msgstr ""
 
-#: ../../../source/docs/tools_reference/settings_reference.rst:3498
+#: ../../../source/docs/tools_reference/settings_reference.rst:3541
 msgid "``DETERMINISTIC``: No longer supported (Valid values: [0])"
 msgstr ""
