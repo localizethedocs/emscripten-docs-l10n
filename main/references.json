@@ -37,9 +37,9 @@
     "branch" : "main",
     "commit" : 
     {
-      "date" : "2026-06-17 22:58:27 -0700",
-      "hash" : "f6acdcc86d6a754fdc71cc386eb42ef740e8ecee",
-      "title" : "[Docs] Rename and crop the logo file (#27132)"
+      "date" : "2026-06-19 09:26:21 -0700",
+      "hash" : "8484a7b66c2c1a26cc6d3281ace2c36e78a2a417",
+      "title" : "Avoid varargs in socket syscall layer. NFC (#27153)"
     }
   },
   "type" : "branch",

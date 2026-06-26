@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Emscripten main\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-18 07:11+0000\n"
+"POT-Creation-Date: 2026-06-22 13:32+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -62,4 +62,10 @@ msgstr ""
 
 #: ../../../source/docs/compiling/index.rst:15
 msgid ":ref:`Contrib-Ports` contains information about contrib ports."
+msgstr ""
+
+#: ../../../source/docs/compiling/index.rst:16
+msgid ""
+":ref:`CrossOriginStorage` explains how to enable the experimental Cross-"
+"Origin Storage integration for sharing Wasm modules across origins."
 msgstr ""
