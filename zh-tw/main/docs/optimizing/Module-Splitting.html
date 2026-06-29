@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="zh-TW" data-accent-color="violet" data-content_root="../../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Module Splitting - Emscripten 6.0.1-git (dev) 說明文件</title><link rel="shortcut icon" href="../../_static/emscripten.ico"/><link rel="index" title="索引" href="../../genindex.html" /><link rel="search" title="搜尋" href="../../search.html" />
+      <link rel="canonical" href="https://projects.localizethedocs.org/emscripten-docs-l10n/docs/optimizing/Module-Splitting.html" /><script>
+    function setColorMode(t){let e=document.documentElement;e.setAttribute("data-color-mode",t);let a=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,s=t;"auto"===t&&(s=a?"dark":"light"),"light"===s?(e.classList.remove("dark"),e.classList.add("light")):(e.classList.remove("light"),e.classList.add("dark"))}
+    setColorMode(localStorage._theme||"auto");
+  </script><link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=ad592e98" />
+    <link rel="stylesheet" type="text/css" href="../../_static/shibuya.css?v=9454f7d5" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link media="print" rel="stylesheet" type="text/css" href="../../_static/print.css?v=20ff2c19" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sy-f-text: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+  --sy-f-heading: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+}
+</style>
+    
+
+<script type="text/javascript" src="../../ltd-provenance.js"></script>
+<script type="text/javascript" src="../../ltd-current.js"></script>
+<script type="text/javascript" src="../../../../ltd-config.js"></script>
+<script type="text/javascript" src="../../../../ltd-flyout.js"></script>
+
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://projects.localizethedocs.org/emscripten-docs-l10n/docs/optimizing/Module-Splitting.html"/>
+  <meta property="og:title" content="Module Splitting"/>
+    <meta name="twitter:card" content="summary"/>
+  </head>
+<body><div class="sy-head">
+  <div class="sy-head-blur"></div>
+  <div class="sy-head-inner sy-container mx-auto">
+    <a class="sy-head-brand" href="../../index.html">
+      <img class="light-logo" src="../../_static/emscripten_logo_full.svg" alt="Emscripten" height="28" loading="lazy" />
+      <img class="dark-logo" src="../../_static/emscripten_logo_full.svg" alt="Emscripten" height="28" loading="lazy" />
+      <strong>Emscripten</strong>
+    </a>
+    <div class="sy-head-nav" id="head-nav">
+      <nav class="sy-head-links"><ul>
+      <li class="link"><a class="js-menu" href="../index.html" id="nav-trigger-1" aria-controls="nav-children-1">
+            <span>文件</span>
+            <i class="i-lucide chevron-down"></i>
+          </a>
+        <ul id="nav-children-1" aria-labelledby="nav-trigger-1"><li><a href="../getting_started/downloads.html">下載</a></li><li><a href="../getting_started/bug_reports.html">回報臭蟲</a></li><li><a href="../introducing_emscripten/emscripten_license.html">授權條款</a></li><li><a href="../contributing/contributing.html">參與貢獻</a></li><li><a href="../introducing_emscripten/release_notes.html">發行備註</a></li></ul>
+      </li>
+      <li class="link"><a class="js-menu" href="../introducing_emscripten/community.html" id="nav-trigger-2" aria-controls="nav-children-2">
+            <span>社群</span>
+            <i class="i-lucide chevron-down"></i>
+          </a>
+        <ul id="nav-children-2" aria-labelledby="nav-trigger-2"><li><a href="https://groups.google.com/forum/#!forum/emscripten-discuss">郵件列表</a></li><li><a href="https://github.com/emscripten-core/emscripten/wiki">維基</a></li></ul>
+      </li></ul></nav>
+      <div class="sy-head-extra flex items-center print:hidden"><form class="searchbox flex items-center" action="../../search.html" method="get">
+  <input type="text" name="q" placeholder="搜尋" />
+  <kbd>/</kbd>
+</form><div class="sy-head-socials">
+  <a href="https://github.com/emscripten-core/emscripten" aria-label="GitHub">
+    <iconify-icon icon="simple-icons:github"></iconify-icon>
+  </a>
+  <a href="https://discord.gg/53u3EKq" aria-label="Discord">
+    <iconify-icon icon="simple-icons:discord"></iconify-icon>
+  </a></div></div>
+    </div>
+    <div class="sy-head-actions flex items-center shrink-0 print:hidden"><button class="js-theme theme-switch flex items-center"
+data-aria-auto="切換到亮色模式"
+data-aria-light="切換到暗黑模式"
+data-aria-dark="切換到自動模式">
+<i class="i-lucide theme-icon"></i>
+</button><button class="md:hidden flex items-center js-menu" aria-label="Menu" type="button" aria-controls="head-nav" aria-expanded="false">
+        <div class="hamburger">
+          <span class="hamburger_1"></span>
+          <span class="hamburger_2"></span>
+          <span class="hamburger_3"></span>
+        </div>
+      </button>
+    </div>
+  </div>
+</div>
+<div class="sy-page sy-container flex mx-auto">
+  <aside id="lside" class="sy-lside md:w-72 md:shrink-0 print:hidden">
+    <div class="sy-lside-inner md:sticky">
+      <div class="sy-scrollbar p-6"><div class="sidebar-links">
+  <ul>
+    <li><a class="icon-link" href="https://github.com/emscripten-core/emscripten/discussions">
+  <span class="icon">
+    <svg viewBox="0 0 24 24" fill="none">
+      <path fill="var(--accent-9)" fill-rule="evenodd" clip-rule="evenodd" d="M11 5a6 6 0 0 0-4.687 9.746c.215.27.315.62.231.954l-.514 2.058a1 1 0 0 0 1.485 1.1l2.848-1.71c.174-.104.374-.15.576-.148H13a6 6 0 0 0 0-12h-2Z"/>
+      <circle fill="white" cx="12" cy="11" r="1"/>
+      <circle fill="white" cx="9" cy="11" r="1"/>
+      <circle fill="white" cx="15" cy="11" r="1"/>
+    </svg>
+  </span>
+  <span class="text">討論</span>
+</a></li>
+  </ul>
+</div>
+        <div class="globaltoc" data-expand-depth="0"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../introducing_emscripten/index.html">Introducing Emscripten</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../introducing_emscripten/about_emscripten.html">關於 Emscripten</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../introducing_emscripten/community.html">Community</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../introducing_emscripten/emscripten_license.html">Open Source License</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../introducing_emscripten/release_notes.html">Release Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../introducing_emscripten/Talks-and-Publications.html">Talks and Publications</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/downloads.html">Download and install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/Tutorial.html">Emscripten Tutorial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/test-suite.html">Emscripten Test Suite</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/bug_reports.html">Bug Reporting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/FAQ.html">FAQ</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../compiling/index.html">Compiling and Running Projects</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../compiling/Building-Projects.html">建置專案</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../compiling/WebAssembly.html">Building to WebAssembly</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../compiling/Modularized-Output.html">Modularized Output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../compiling/Dynamic-Linking.html">動態連結</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../compiling/Running-html-files-with-emrun.html">Running HTML files with emrun</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../compiling/Deploying-Pages.html">Deploying Emscripten Compiled Pages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../compiling/GitLab.html">Building and Deploying on GitLab</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../compiling/Contrib-Ports.html">Emscripten Contrib Ports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../compiling/CrossOriginStorage.html">Cross-Origin Storage (COS)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../porting/index.html">Porting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../porting/guidelines/index.html">Code Portability and Limitations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../porting/guidelines/portability_guidelines.html">Portability Guidelines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../porting/guidelines/api_limitations.html">API Limitations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../porting/guidelines/function_pointer_issues.html">Function Pointer Issues</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../porting/guidelines/browser_limitations.html">Specific Browser Limitations</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/emscripten-runtime-environment.html">Emscripten Runtime Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/connecting_cpp_and_javascript/index.html">Connecting C++ and JavaScript</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../porting/connecting_cpp_and_javascript/Interacting-with-code.html">Interacting with code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../porting/connecting_cpp_and_javascript/embind.html">Embind</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../porting/connecting_cpp_and_javascript/WebIDL-Binder.html">WebIDL Binder</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/files/index.html">Files and File Systems</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../porting/files/file_systems_overview.html">File System Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../porting/files/packaging_files.html">Packaging Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../porting/files/Synchronous-Virtual-XHR-Backed-File-System-Usage.html">Synchronous Virtual XHR Backed File System Usage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/multimedia_and_graphics/index.html">Multimedia and Graphics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../porting/multimedia_and_graphics/WebGPU-support.html">Using WebGPU in Emscripten</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../porting/multimedia_and_graphics/EGL-Support-in-Emscripten.html">EGL Support in Emscripten</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../porting/multimedia_and_graphics/OpenGL-support.html">OpenGL support in Emscripten</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/Audio.html">Audio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/Debugging.html">Debugging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/pthreads.html">Pthreads support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/networking.html">Networking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/simd.html">Using SIMD with WebAssembly</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/exceptions.html">C++ Exceptions Support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/setjmp-longjmp.html">C setjmp-longjmp Support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/asyncify.html">Asynchronous Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../compiling/Building-Projects.html">建置專案</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api_reference/index.html">API 參考</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/emscripten.h.html">emscripten.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/html5.h.html">html5.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/console.h.html">console.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/preamble.js.html">preamble.js</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/Filesystem-API.html">File System API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/fetch.html">Fetch API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/module.html">Module object</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/val.h.html">val.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/bind.h.html">bind.h (under-construction)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/trace.h.html">trace.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/fiber.h.html">fiber.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/proxying.h.html">proxying.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/stack.h.html">stack.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/wasm_workers.html">Wasm Workers API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/wasm_audio_worklets.html">Wasm Audio Worklets API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/advanced-apis.html">Advanced APIs</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tools_reference/index.html">Tools Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tools_reference/emsdk.html">Emscripten SDK (emsdk)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools_reference/emcc.html">Emscripten Compiler Frontend (emcc)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools_reference/emcmdprompt.html">Emscripten Windows Command Prompt (emcmdprompt.bat)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools_reference/settings_reference.html">Emscripten Compiler Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools_reference/settings_reference.html#deprecated-settings">Deprecated Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools_reference/settings_reference.html#legacy-settings">Legacy Settings</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Optimizing-Code.html">Optimizing Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Optimizing-WebGL.html">Optimizing WebGL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debugging/Sanitizers.html">Debugging with Sanitizers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../building_from_source/index.html">Building Emscripten from Source</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../building_from_source/toolchain_what_is_needed.html">Emscripten Toolchain Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../building_from_source/configuring_emscripten_settings.html">Configuring Emscripten Settings when Manually Building from Source</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../building_from_source/verify_emscripten_environment.html">Verifying the Emscripten Development Environment</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing to Emscripten</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/contributing.html">Contributing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/developers_guide.html">Developer’s Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/AUTHORS.html">AUTHORS</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Profiling-Toolchain.html">Profiling the Toolchain</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../site/about.html">About this site</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../genindex.html">索引</a></li>
+</ul>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="lside-overlay js-menu" role="button" aria-label="Close left sidebar" aria-controls="lside" aria-expanded="false"></div>
+  <aside id="rside" class="sy-rside pb-3 w-64 shrink-0 order-last">
+    <button class="rside-close js-menu xl:hidden" aria-label="Close Table of Contents" type="button" aria-controls="rside" aria-expanded="false">
+      <i class="i-lucide close"></i>
+    </button>
+    <div class="sy-scrollbar sy-rside-inner px-6 xl:top-16 xl:sticky xl:pl-0 pt-6 pb-4"><div class="localtoc"><h3>該頁內容</h3><ul>
+<li><a class="reference internal" href="#basic-example">Basic Example</a></li>
+<li><a class="reference internal" href="#profiling-multiple-workloads">Profiling Multiple Workloads</a></li>
+<li><a class="reference internal" href="#multithreaded-programs">Multithreaded Programs</a></li>
+<li><a class="reference internal" href="#running-on-the-web">Running on the Web</a></li>
+<li><a class="reference internal" href="#usage-with-dynamic-linking">Usage with Dynamic Linking</a></li>
+<li><a class="reference internal" href="#custom-loading-of-the-secondary-module">Custom Loading of the Secondary Module</a></li>
+<li><a class="reference internal" href="#debugging">Debugging</a></li>
+<li><a class="reference internal" href="#upcoming-changes">Upcoming Changes</a></li>
+</ul>
+</div><a class="js-repo-stats repo-stats flex items-center" href="https://github.com/emscripten-core/emscripten"
+  data-type="github" data-user="emscripten-core" data-repo="emscripten">
+  <span class="w-8 flex items-center justify-around shrink-0 text-3xl">
+    <iconify-icon icon="simple-icons:github"></iconify-icon>
+  </span>
+  <span class="flex-grow px-2 break-all">
+    
+    
+      <span>emscripten</span>
+    
+    <span class="flex text-sm repo-stats-count">
+      <span class="flex items-center pr-3">
+        <iconify-icon icon="lucide:star"></iconify-icon>
+        <strong class="js-repo-stars ml-1">0</strong>
+      </span>
+      <span class="flex items-center">
+        <iconify-icon icon="lucide:git-fork"></iconify-icon>
+        <strong class="js-repo-forks ml-1">0</strong>
+      </span>
+    </span>
+  </span>
+</a><div class="edit-this-page">
+  <a href="https://github.com/emscripten-core/emscripten/blob/main/site/source/docs/optimizing/Module-Splitting.rst">編輯此頁面</a>
+</div><div id="ethical-ad-placement" data-ea-publisher="readthedocs"></div></div>
+  </aside>
+  <div class="rside-overlay js-menu" role="button" aria-label="Close Table of Contents" aria-controls="rside" aria-expanded="false"></div>
+  <main class="sy-main w-full max-sm:max-w-full print:pt-6">
+<div class="sy-breadcrumbs" role="navigation">
+  <div class="sy-breadcrumbs-inner flex items-center">
+    <div class="md:hidden mr-3">
+      <button class="js-menu" aria-label="Menu" type="button" aria-controls="lside" aria-expanded="false">
+        <i class="i-lucide menu"></i>
+      </button>
+    </div>
+    <ol class="flex-1" itemscope itemtype="https://schema.org/BreadcrumbList"><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="../../index.html"><span itemprop="name">Emscripten</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="1" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <strong itemprop="name">Module Splitting</strong>
+        <meta itemprop="position" content="2" />
+      </li></ol>
+    <div class="xl:hidden ml-1">
+      <button class="js-menu" aria-label="Show table of contents" type="button" aria-controls="rside"
+        aria-expanded="false">
+        <i class="i-lucide outdent"></i>
+      </button>
+    </div>
+  </div>
+</div><div class="flex flex-col break-words justify-between">
+      <div class="relative min-w-0 max-w-6xl px-6 pb-6 pt-8 xl:px-12">
+  <article class="yue" role="main">
+          <section id="module-splitting">
+<span id="id1"></span><h1>Module Splitting<a class="headerlink" href="#module-splitting" title="連結到這個標頭">¶</a></h1>
+<p><em>wasm-split and the SPLIT_MODULE Emscripten integration are both in active
+development and may change and gain new features frequently. This page will be
+kept up-to-date with the latest changes.</em></p>
+<p>Large codebases often contain a lot of code that is very rarely used in practice
+or is never used early in the application’s life cycle. Loading that unused code
+can noticeably delay application startup, so it would be good to defer loading
+that code until after the application has already started. One excellent
+solution for this is to use dynamic linking, but that requires refactoring an
+application into shared libraries and also comes with some performance overhead,
+so it is not always feasible. Module splitting is another approach where a
+module is split into separate pieces, the primary and secondary modules, after
+it is built normally. The primary module is loaded first and contains the code
+necessary to start the application, while the secondary module contains code
+that will be needed later or not at all. The secondary module will automatically
+be loaded on demand.</p>
+<p>wasm-split is a Binaryen tool that performs module splitting. After running
+wasm-split, the primary module has all the same imports and exports as the
+original module and is meant to be a drop-in replacement for it. However, it
+also imports a placeholder function for each secondary function that was split
+out into the secondary module. Before the secondary module is loaded, calls of
+secondary functions will call the appropriate placeholder function instead. The
+placeholder functions are responsible for loading and instantiating the
+secondary module, which automatically replaces all the placeholder functions
+with the original secondary functions when it is instantiated. After the
+secondary module is loaded, the placeholder function that loaded it is also
+responsible for calling its corresponding newly-loaded secondary function and
+returning the result to its caller. The loading of the secondary module is
+therefore completely transparent to the primary module; it just looks like a
+function call took a long time to return.</p>
+<p>Currently the only workflow for splitting modules involves instrumenting the
+original module to collect a profile of what functions are run, running that
+instrumented module with a number of interesting workloads, and using the
+resulting profiles to determine how to split the module. wasm-split will leave
+any function that was run during any of the profiled workloads in the primary
+module and will split all other functions out into the secondary module.</p>
+<p>Emscripten has a prototype integration with wasm-split enabled by the
+<code class="docutils literal notranslate"><span class="pre">-sSPLIT_MODULE</span></code> option. This option will emit the original module with the
+wasm-split instrumentation applied so it is ready to collect profiles. It will
+also insert the placeholder functions responsible for loading a secondary module
+into the emitted JS. The developer is then responsible for running appropriate
+workloads, collecting the profiles, and using the wasm-split tool to perform the
+splitting. After the module is split, everything will work correctly with no
+further changes to the JS produced by the initial compilation.</p>
+<section id="basic-example">
+<h2>Basic Example<a class="headerlink" href="#basic-example" title="連結到這個標頭">¶</a></h2>
+<p>Let’s run through a basic example of using SPLIT_MODULE with Node. Later in the
+「Running on the Web」 section we will discuss how to adapt the example to run on
+the Web as well.</p>
+<p>Here’s our application code:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="o">//</span> <span class="n">application</span><span class="o">.</span><span class="n">c</span>
+</span><span data-line="2">
+</span><span data-line="3"><span class="c1">#include &lt;stdio.h&gt;</span>
+</span><span data-line="4"><span class="c1">#include &lt;emscripten.h&gt;</span>
+</span><span data-line="5">
+</span><span data-line="6"><span class="n">void</span> <span class="n">foo</span><span class="p">()</span> <span class="p">{</span>
+</span><span data-line="7">  <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;foo</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">);</span>
+</span><span data-line="8"><span class="p">}</span>
+</span><span data-line="9">
+</span><span data-line="10"><span class="n">void</span> <span class="n">bar</span><span class="p">()</span> <span class="p">{</span>
+</span><span data-line="11">  <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;bar</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">);</span>
+</span><span data-line="12"><span class="p">}</span>
+</span><span data-line="13">
+</span><span data-line="14"><span class="n">void</span> <span class="n">unsupported</span><span class="p">(</span><span class="nb">int</span> <span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+</span><span data-line="15">  <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%d</span><span class="s2"> is not supported!</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
+</span><span data-line="16"><span class="p">}</span>
+</span><span data-line="17">
+</span><span data-line="18"><span class="n">EM_JS</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">get_number</span><span class="p">,</span> <span class="p">(),</span> <span class="p">{</span>
+</span><span data-line="19">  <span class="k">if</span> <span class="p">(</span><span class="n">typeof</span> <span class="n">prompt</span> <span class="o">===</span> <span class="s1">&#39;undefined&#39;</span><span class="p">)</span> <span class="p">{</span>
+</span><span data-line="20">    <span class="n">prompt</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s1">&#39;prompt-sync&#39;</span><span class="p">)();</span>
+</span><span data-line="21">  <span class="p">}</span>
+</span><span data-line="22">  <span class="k">return</span> <span class="n">parseInt</span><span class="p">(</span><span class="n">prompt</span><span class="p">(</span><span class="s1">&#39;Give me 0 or 1: &#39;</span><span class="p">));</span>
+</span><span data-line="23"><span class="p">});</span>
+</span><span data-line="24">
+</span><span data-line="25"><span class="nb">int</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
+</span><span data-line="26">  <span class="nb">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">get_number</span><span class="p">();</span>
+</span><span data-line="27">  <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span><span data-line="28">    <span class="n">foo</span><span class="p">();</span>
+</span><span data-line="29">  <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+</span><span data-line="30">    <span class="n">bar</span><span class="p">();</span>
+</span><span data-line="31">  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span><span data-line="32">    <span class="n">unsupported</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+</span><span data-line="33">  <span class="p">}</span>
+</span><span data-line="34"><span class="p">}</span>
+</span></pre></div>
+</div>
+<p>This application prompts the user for some input and executes different
+functions depending on what the user provides. It uses the prompt-sync npm
+module to make the prompting behavior portable between Node and the Web. We will
+see that the input we provide during profiling will determine how our functions
+are split between the primary and secondary modules.</p>
+<p>We can compile our application with <code class="docutils literal notranslate"><span class="pre">-sSPLIT_MODULE</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span data-line="1">$ emcc application.c -o application.js -sSPLIT_MODULE
+</span></pre></div>
+</div>
+<p>In addition to the typical application.wasm and application.js files, this also
+produces an application.wasm.orig file. application.wasm.orig is the original,
+unmodified module that a normal Emscripten build would produce, while
+application.wasm has been instrumented by wasm-split to collect profiles.</p>
+<p>The instrumented module has an additional exported function,
+<code class="docutils literal notranslate"><span class="pre">__write_profile</span></code>, that takes as arguments a pointer and length for an
+in-memory buffer to which it will write the profile. <code class="docutils literal notranslate"><span class="pre">__write_profile</span></code> returns
+the length of the profile, and only writes the data if the supplied buffer is
+large enough. <code class="docutils literal notranslate"><span class="pre">__write_profile</span></code> can be called externally from JS or
+internally, from the application itself. For simplicity, we will just call it at
+the end of our main function here, but note that this will mean that any
+functions called after main, such as destructors for global objects, will not be
+included in the profile.</p>
+<p>Here’s the function to write the profile and our new main function:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span data-line="1">EM_JS(void, write_profile, (), {
+</span><span data-line="2">  var __write_profile = wasmExports.__write_profile;
+</span><span data-line="3">  if (!__write_profile) {
+</span><span data-line="4">    return;
+</span><span data-line="5">  }
+</span><span data-line="6">
+</span><span data-line="7">  // Get the size of the profile and allocate a buffer for it.
+</span><span data-line="8">  var len = __write_profile(0, 0);
+</span><span data-line="9">  var ptr = _malloc(len);
+</span><span data-line="10">
+</span><span data-line="11">  // Write the profile data to the buffer.
+</span><span data-line="12">  __write_profile(ptr, len);
+</span><span data-line="13">
+</span><span data-line="14">  // Write the profile file.
+</span><span data-line="15">  var profile_data = HEAPU8.subarray(ptr, ptr + len);
+</span><span data-line="16">  const fs = require(&quot;fs&quot;);
+</span><span data-line="17">  fs.writeFileSync(&#39;profile.data&#39;, profile_data);
+</span><span data-line="18">
+</span><span data-line="19">  // Free the buffer.
+</span><span data-line="20">  _free(ptr);
+</span><span data-line="21">});
+</span><span data-line="22">
+</span><span data-line="23">int main() {
+</span><span data-line="24">  int i = get_number();
+</span><span data-line="25">  if (i == 0) {
+</span><span data-line="26">    foo();
+</span><span data-line="27">  } else if (i == 1) {
+</span><span data-line="28">    bar();
+</span><span data-line="29">  } else {
+</span><span data-line="30">    unsupported(i);
+</span><span data-line="31">  }
+</span><span data-line="32">  write_profile();
+</span><span data-line="33">}
+</span></pre></div>
+</div>
+<p>Note that we only try to write the profile if the <code class="docutils literal notranslate"><span class="pre">__write_profile</span></code> export
+exists. This is important because only the instrumented, unsplit module exports
+<code class="docutils literal notranslate"><span class="pre">__write_profile</span></code>. The split modules will not include the profiling
+instrumentation or this export.</p>
+<p>Our new write_profile function depends on malloc and free being available to JS,
+so we need to explicitly export them on the command line:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span data-line="1">$ emcc application.c -o application.js -sSPLIT_MODULE -sEXPORTED_FUNCTIONS=_malloc,_free,_main
+</span></pre></div>
+</div>
+<p>Now we can run our application, which produces a profile.data file. The next
+step is to use wasm-split and the profile to split the original module,
+application.wasm:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span data-line="1">$ wasm-split --enable-mutable-globals --export-prefix=% application.wasm.orig -o1 application.wasm -o2 application.deferred.wasm --profile=profile.data
+</span></pre></div>
+</div>
+<p>Let’s break down what all those options are for.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">--enable-mutable-globals</span></code></dt><dd><p>This option enables the mutable-global target feature, which allows mutable
+Wasm globals (as opposed to C/C++ globals) to be imported and exported.
+wasm-split has to share mutable globals between the primary and secondary
+modules, so it requires this feature to be enabled.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--export-prefix=%</span></code></dt><dd><p>This is a prefix added to all the new exports wasm-split creates to share
+module elements from the primary module to the secondary module. The prefix
+can be used to differentiate 「true」 exports from those that only exist to be
+consumed by the secondary module. Emscripten’s wasm-split integration expects
+“%” in particular to be used as the prefix.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">-o1</span> <span class="pre">application.wasm</span></code></dt><dd><p>Write the primary module to application.wasm. Note that this will overwrite
+the instrumented module previously produced by Emscripten, so the application
+will now use the split modules rather than the instrumented module.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">-o2</span> <span class="pre">application.deferred.wasm</span></code></dt><dd><p>Write the secondary module to application.deferred.wasm. Emscripten expects
+the name of the secondary module to be the same as the name of the primary
+module with “.wasm” replaced with “.deferred.wasm”.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--profile=profile.data</span></code></dt><dd><p>Directs wasm-split to use the profile in profile.data to guide the splitting.</p>
+</dd>
+</dl>
+<p>Running application.js in node again, we can see that the application works just
+as it did before, but if we execute any code path besides the one used in the
+profiled workload, the application will print a console message about a
+placeholder function being called and the deferred module being loaded.</p>
+</section>
+<section id="profiling-multiple-workloads">
+<h2>Profiling Multiple Workloads<a class="headerlink" href="#profiling-multiple-workloads" title="連結到這個標頭">¶</a></h2>
+<p>wasm-split supports merging profiles from multiple profiling workloads into a
+single profile to guide splitting. Any function that was run in any of the
+workloads will be kept in the primary module and all other functions will be
+split out into the secondary module.</p>
+<p>This command will merge any number of profiles (here just profile1.data and
+profile2.data) into a single profile:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span data-line="1">$ wasm-split --merge-profiles profile1.data profile2.data -o profile.data
+</span></pre></div>
+</div>
+</section>
+<section id="multithreaded-programs">
+<h2>Multithreaded Programs<a class="headerlink" href="#multithreaded-programs" title="連結到這個標頭">¶</a></h2>
+<p>By default, the data gathered by the wasm-split instrumentation is stored in
+Wasm globals, so it is thread local. But in a multithreaded program, it is
+important to collect profile information from all threads. To do so, you can
+tell wasm-split to collect shared profile information in shared memory using the
+<code class="docutils literal notranslate"><span class="pre">--in-memory</span></code> wasm-split flag. This will use memory starting at address zero
+to store the profile information, so you must also pass <code class="docutils literal notranslate"><span class="pre">-sGLOBAL_BASE=N</span></code> to
+Emscripten, where <code class="docutils literal notranslate"><span class="pre">N</span></code> is at least the number of functions in the module, to
+prevent the program from clobbering that memory region.</p>
+<p>After splitting, multithreaded applications will currently fetch and compile the
+secondary module separately on each thread. The compiled secondary module is not
+postmessaged to each thread the way the Emscripten postmessages the primary
+module to the threads. This is not as bad as it sounds because downloads of the
+secondary module from workers will be serviced from the cache if the appropriate
+Cache-Control headers are set, but improving this is an area for future work.</p>
+</section>
+<section id="running-on-the-web">
+<h2>Running on the Web<a class="headerlink" href="#running-on-the-web" title="連結到這個標頭">¶</a></h2>
+<p>One complication to keep in mind when using SPLIT_MODULE for Web applications is
+that the secondary module cannot be loaded both lazily and asynchronously, which
+means it cannot be loaded lazily on the main browser thread. The reason is that
+the placeholder functions need to be completely transparent to the functions in
+the primary module, so they can’t return until they have synchronously loaded
+and called the correct secondary function.</p>
+<p>One workaround for this limitation would be to eagerly load and instantiate the
+secondary module and ensure that no secondary functions can possibly be called
+before it has been instantiated on the main browser thread. This may be
+difficult to ensure, though. Another fix would be to run the Asyncify
+transformation on the primary module to allow placeholder functions to return to
+the JS event loop while waiting for the secondary module to load asynchronously.
+This is on the wasm-split roadmap, although we do not yet know what the size and
+performance overhead of this solution will be.</p>
+<p>This limitation on lazy loading means that the best way to run applications with
+SPLIT_MODULE is in a worker thread, for example using <code class="docutils literal notranslate"><span class="pre">-sPROXY_TO_PTHREAD</span></code>. In
+PROXY_TO_PTHREAD mode, it is important to collect a profile for the browser main
+thread in addition to the application main thread because the browser main
+thread runs some functions not run in the application main thread, such as the
+shim that wraps the proxied main function and the functions involved in handling
+calls proxied back to the main browser thread. See the previous section for how
+to collect profiles from multiple threads.</p>
+<p>Another minor complication is that the profile data cannot be immediately
+written to a file from inside the browser. The data must instead be transmitted
+to developer machines some other way, such as posting it to the dev server or
+copying a base64 encoding of it from the console.</p>
+<p>Here’s code implementing the base64 solution:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">var</span> <span class="n">profile_data</span> <span class="o">=</span> <span class="n">HEAPU8</span><span class="o">.</span><span class="n">subarray</span><span class="p">(</span><span class="n">ptr</span><span class="p">,</span> <span class="n">ptr</span> <span class="o">+</span> <span class="nb">len</span><span class="p">);</span>
+</span><span data-line="2"><span class="n">var</span> <span class="n">binary</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+</span><span data-line="3"><span class="k">for</span> <span class="p">(</span><span class="n">var</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">profile_data</span><span class="o">.</span><span class="n">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span><span data-line="4">    <span class="n">binary</span> <span class="o">+=</span> <span class="n">String</span><span class="o">.</span><span class="n">fromCharCode</span><span class="p">(</span><span class="n">profile_data</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+</span><span data-line="5"><span class="p">}</span>
+</span><span data-line="6"><span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;===BEGIN===&quot;</span><span class="p">);</span>
+</span><span data-line="7"><span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">window</span><span class="o">.</span><span class="n">btoa</span><span class="p">(</span><span class="n">binary</span><span class="p">));</span>
+</span><span data-line="8"><span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;===END===&quot;</span><span class="p">);</span>
+</span></pre></div>
+</div>
+<p>Then the profile file can be created by by running:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span data-line="1">$ echo [pasted base64] | base64 --decode &gt; profile.data
+</span></pre></div>
+</div>
+<p>or:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span data-line="1">$ base64 --decode [base64 file] &gt; profile.data
+</span></pre></div>
+</div>
+</section>
+<section id="usage-with-dynamic-linking">
+<h2>Usage with Dynamic Linking<a class="headerlink" href="#usage-with-dynamic-linking" title="連結到這個標頭">¶</a></h2>
+<p>Module splitting can be used in conjunction with dynamic linking, but making the
+two features work correctly together requires some developer intervention.
+wasm-split often needs to grow the table to make space for placeholder
+functions, but that means that the instrumented and split modules would have
+different table sizes. Normally this is not a problem, but
+MAIN_MODULE/SIDE_MODULE dynamic linking support currently requires the table
+size to be baked into the JS Emscripten emits, so the table size needs to be
+stable.</p>
+<p>To ensure that the table size is the same between the instrumented module and
+the split modules, use the <code class="docutils literal notranslate"><span class="pre">-sINITIAL_TABLE=N</span></code> Emscripten setting, where <code class="docutils literal notranslate"><span class="pre">N</span></code>
+is the desired table size. Then, when using wasm-split to perform the splitting,
+pass <code class="docutils literal notranslate"><span class="pre">--initial-table=N</span></code> to wasm-split to ensure that the split modules have
+the correct table size as well.</p>
+<p>If the specified table size is too small, you will get an error message when the
+primary module is loaded after splitting. Adjust the table size you specify
+until it is large enough. Besides taking up extra space at runtime, there is no
+downside to specifying a table size that is larger than necessary.</p>
+</section>
+<section id="custom-loading-of-the-secondary-module">
+<h2>Custom Loading of the Secondary Module<a class="headerlink" href="#custom-loading-of-the-secondary-module" title="連結到這個標頭">¶</a></h2>
+<p>The default logic for lazily loading the secondary module can be overridden by
+implementing the 「loadSplitModule」 custom hook function. The hook is called from
+placeholder functions and is responsible for returning the [instance, module]
+pair for the secondary module. The hook takes as arguments the name of the file
+to load (e.g. “my_program.deferred.wasm”), the imports object to instantiate the
+module with, and the property corresponding to the called placeholder function.
+Here is an example implementation that does the same thing as the default
+implementation with some extra logging:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">Module</span><span class="p">[</span><span class="s2">&quot;loadSplitModule&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">function</span><span class="p">(</span><span class="n">deferred</span><span class="p">,</span> <span class="n">imports</span><span class="p">,</span> <span class="n">prop</span><span class="p">)</span> <span class="p">{</span>
+</span><span data-line="2">    <span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s1">&#39;Custom handler for loading split module.&#39;</span><span class="p">);</span>
+</span><span data-line="3">    <span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s1">&#39;Called with placeholder &#39;</span><span class="p">,</span> <span class="n">prop</span><span class="p">);</span>
+</span><span data-line="4">
+</span><span data-line="5">    <span class="k">return</span> <span class="n">instantiateSync</span><span class="p">(</span><span class="n">deferred</span><span class="p">,</span> <span class="n">imports</span><span class="p">);</span>
+</span><span data-line="6"><span class="p">}</span>
+</span></pre></div>
+</div>
+<p>If the module was eagerly loaded, then this hook could simply instantiate the
+module rather than fetching and compiling it as well. However, if the eagerly
+loaded module is instantiated eagerly as well, the placeholder functions will be
+patched out and never called in the first place, so this custom hook will never
+be called either.</p>
+<p>When eagerly instantiating the secondary module, the imports object should be:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="p">{</span><span class="s1">&#39;primary&#39;</span><span class="p">:</span> <span class="n">wasmExports</span><span class="p">}</span>
+</span></pre></div>
+</div>
+</section>
+<section id="debugging">
+<h2>Debugging<a class="headerlink" href="#debugging" title="連結到這個標頭">¶</a></h2>
+<p>wasm-split has several options to make debugging split modules easier.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">-v</span></code></dt><dd><p>When splitting, print the primary and secondary functions. When merging
+profiles, print profiles that do not contribute to the merged profile.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">-g</span></code></dt><dd><p>Preserve names in both the primary and secondary modules. Without this option,
+wasm-split will strip the names instead.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--emit-module-names</span></code></dt><dd><p>Generate and emit module names to differentiate the primary and secondary
+module in stack traces, even if -g is not used.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--symbolmap</span></code></dt><dd><p>Emit separate map files for the primary and secondary modules, mapping
+function indices to function names. When combined with –emit-module-names,
+these maps can be used to re-symbolify stack traces. To ensure that the
+function names are available for wasm-split to emit into the maps,
+pass –profiling-funcs to Emscripten.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--placeholdermap</span></code></dt><dd><p>Emit a map file mapping placeholder function indices to their corresponding
+secondary functions. This can be useful for figuring out what function caused
+the secondary module to be loaded.</p>
+</dd>
+</dl>
+</section>
+<section id="upcoming-changes">
+<h2>Upcoming Changes<a class="headerlink" href="#upcoming-changes" title="連結到這個標頭">¶</a></h2>
+<p><em>A list of changes and new features that have not yet been incorporated into
+this documentation.</em></p>
+<p>Work is planned on an integration with the Asyncify instrumentation that will
+allow the secondary module to be asynchronously loaded on the main browser
+thread.</p>
+</section>
+</section>
+
+        </article><button class="back-to-top" type="button">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+  </svg>
+  <span>回到頂部</span>
+</button><div class="navigation flex print:hidden"></div></div>
+    </div>
+  </main>
+</div>
+<footer class="sy-foot">
+  <div class="sy-foot-inner sy-container mx-auto">
+    <div class="sy-foot-reserved md:flex justify-between items-center">
+      <div class="sy-foot-copyright"><p>Copyright &copy; 2015, Emscripten Contributors.</p>
+  
+  <p>
+    Made with
+    
+    <a href="https://www.sphinx-doc.org/">Sphinx</a> and
+    
+    <a href="https://shibuya.lepture.com">Shibuya theme</a>.
+  </p>
+</div>
+      <div class="sy-foot-socials">
+<a href="https://github.com/emscripten-core/emscripten" aria-label="GitHub">
+  <iconify-icon icon="simple-icons:github"></iconify-icon>
+</a>
+<a href="https://discord.gg/53u3EKq" aria-label="Discord">
+  <iconify-icon icon="simple-icons:discord"></iconify-icon>
+</a></div>
+    </div>
+  </div>
+</footer>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=b46623cf"></script>
+      <script src="../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/translations.js?v=f1e884e3"></script>
+      <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../../_static/shibuya.js?v=50760d75"></script></body>
+</html>

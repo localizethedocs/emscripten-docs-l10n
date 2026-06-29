@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="zh-TW" data-accent-color="violet" data-content_root="../../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>動態連結 - Emscripten 6.0.1-git (dev) 說明文件</title><link rel="shortcut icon" href="../../_static/emscripten.ico"/><link rel="index" title="索引" href="../../genindex.html" /><link rel="search" title="搜尋" href="../../search.html" /><link rel="next" title="Running HTML files with emrun" href="Running-html-files-with-emrun.html" /><link rel="prev" title="Modularized Output" href="Modularized-Output.html" />
+      <link rel="canonical" href="https://projects.localizethedocs.org/emscripten-docs-l10n/docs/compiling/Dynamic-Linking.html" /><script>
+    function setColorMode(t){let e=document.documentElement;e.setAttribute("data-color-mode",t);let a=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,s=t;"auto"===t&&(s=a?"dark":"light"),"light"===s?(e.classList.remove("dark"),e.classList.add("light")):(e.classList.remove("light"),e.classList.add("dark"))}
+    setColorMode(localStorage._theme||"auto");
+  </script><link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=ad592e98" />
+    <link rel="stylesheet" type="text/css" href="../../_static/shibuya.css?v=9454f7d5" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link media="print" rel="stylesheet" type="text/css" href="../../_static/print.css?v=20ff2c19" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sy-f-text: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+  --sy-f-heading: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+}
+</style>
+    
+
+<script type="text/javascript" src="../../ltd-provenance.js"></script>
+<script type="text/javascript" src="../../ltd-current.js"></script>
+<script type="text/javascript" src="../../../../ltd-config.js"></script>
+<script type="text/javascript" src="../../../../ltd-flyout.js"></script>
+
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://projects.localizethedocs.org/emscripten-docs-l10n/docs/compiling/Dynamic-Linking.html"/>
+  <meta property="og:title" content="動態連結"/>
+    <meta name="twitter:card" content="summary"/>
+  </head>
+<body><div class="sy-head">
+  <div class="sy-head-blur"></div>
+  <div class="sy-head-inner sy-container mx-auto">
+    <a class="sy-head-brand" href="../../index.html">
+      <img class="light-logo" src="../../_static/emscripten_logo_full.svg" alt="Emscripten" height="28" loading="lazy" />
+      <img class="dark-logo" src="../../_static/emscripten_logo_full.svg" alt="Emscripten" height="28" loading="lazy" />
+      <strong>Emscripten</strong>
+    </a>
+    <div class="sy-head-nav" id="head-nav">
+      <nav class="sy-head-links"><ul>
+      <li class="link"><a class="js-menu" href="../index.html" id="nav-trigger-1" aria-controls="nav-children-1">
+            <span>文件</span>
+            <i class="i-lucide chevron-down"></i>
+          </a>
+        <ul id="nav-children-1" aria-labelledby="nav-trigger-1"><li><a href="../getting_started/downloads.html">下載</a></li><li><a href="../getting_started/bug_reports.html">回報臭蟲</a></li><li><a href="../introducing_emscripten/emscripten_license.html">授權條款</a></li><li><a href="../contributing/contributing.html">參與貢獻</a></li><li><a href="../introducing_emscripten/release_notes.html">發行備註</a></li></ul>
+      </li>
+      <li class="link"><a class="js-menu" href="../introducing_emscripten/community.html" id="nav-trigger-2" aria-controls="nav-children-2">
+            <span>社群</span>
+            <i class="i-lucide chevron-down"></i>
+          </a>
+        <ul id="nav-children-2" aria-labelledby="nav-trigger-2"><li><a href="https://groups.google.com/forum/#!forum/emscripten-discuss">郵件列表</a></li><li><a href="https://github.com/emscripten-core/emscripten/wiki">維基</a></li></ul>
+      </li></ul></nav>
+      <div class="sy-head-extra flex items-center print:hidden"><form class="searchbox flex items-center" action="../../search.html" method="get">
+  <input type="text" name="q" placeholder="搜尋" />
+  <kbd>/</kbd>
+</form><div class="sy-head-socials">
+  <a href="https://github.com/emscripten-core/emscripten" aria-label="GitHub">
+    <iconify-icon icon="simple-icons:github"></iconify-icon>
+  </a>
+  <a href="https://discord.gg/53u3EKq" aria-label="Discord">
+    <iconify-icon icon="simple-icons:discord"></iconify-icon>
+  </a></div></div>
+    </div>
+    <div class="sy-head-actions flex items-center shrink-0 print:hidden"><button class="js-theme theme-switch flex items-center"
+data-aria-auto="切換到亮色模式"
+data-aria-light="切換到暗黑模式"
+data-aria-dark="切換到自動模式">
+<i class="i-lucide theme-icon"></i>
+</button><button class="md:hidden flex items-center js-menu" aria-label="Menu" type="button" aria-controls="head-nav" aria-expanded="false">
+        <div class="hamburger">
+          <span class="hamburger_1"></span>
+          <span class="hamburger_2"></span>
+          <span class="hamburger_3"></span>
+        </div>
+      </button>
+    </div>
+  </div>
+</div>
+<div class="sy-page sy-container flex mx-auto">
+  <aside id="lside" class="sy-lside md:w-72 md:shrink-0 print:hidden">
+    <div class="sy-lside-inner md:sticky">
+      <div class="sy-scrollbar p-6"><div class="sidebar-links">
+  <ul>
+    <li><a class="icon-link" href="https://github.com/emscripten-core/emscripten/discussions">
+  <span class="icon">
+    <svg viewBox="0 0 24 24" fill="none">
+      <path fill="var(--accent-9)" fill-rule="evenodd" clip-rule="evenodd" d="M11 5a6 6 0 0 0-4.687 9.746c.215.27.315.62.231.954l-.514 2.058a1 1 0 0 0 1.485 1.1l2.848-1.71c.174-.104.374-.15.576-.148H13a6 6 0 0 0 0-12h-2Z"/>
+      <circle fill="white" cx="12" cy="11" r="1"/>
+      <circle fill="white" cx="9" cy="11" r="1"/>
+      <circle fill="white" cx="15" cy="11" r="1"/>
+    </svg>
+  </span>
+  <span class="text">討論</span>
+</a></li>
+  </ul>
+</div>
+        <div class="globaltoc" data-expand-depth="0"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introducing_emscripten/index.html">Introducing Emscripten</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../introducing_emscripten/about_emscripten.html">關於 Emscripten</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../introducing_emscripten/community.html">Community</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../introducing_emscripten/emscripten_license.html">Open Source License</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../introducing_emscripten/release_notes.html">Release Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../introducing_emscripten/Talks-and-Publications.html">Talks and Publications</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/downloads.html">Download and install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/Tutorial.html">Emscripten Tutorial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/test-suite.html">Emscripten Test Suite</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/bug_reports.html">Bug Reporting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/FAQ.html">FAQ</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Compiling and Running Projects</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Building-Projects.html">建置專案</a></li>
+<li class="toctree-l2"><a class="reference internal" href="WebAssembly.html">Building to WebAssembly</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Modularized-Output.html">Modularized Output</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">動態連結</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Running-html-files-with-emrun.html">Running HTML files with emrun</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Deploying-Pages.html">Deploying Emscripten Compiled Pages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GitLab.html">Building and Deploying on GitLab</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Contrib-Ports.html">Emscripten Contrib Ports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CrossOriginStorage.html">Cross-Origin Storage (COS)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../porting/index.html">Porting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../porting/guidelines/index.html">Code Portability and Limitations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../porting/guidelines/portability_guidelines.html">Portability Guidelines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../porting/guidelines/api_limitations.html">API Limitations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../porting/guidelines/function_pointer_issues.html">Function Pointer Issues</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../porting/guidelines/browser_limitations.html">Specific Browser Limitations</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/emscripten-runtime-environment.html">Emscripten Runtime Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/connecting_cpp_and_javascript/index.html">Connecting C++ and JavaScript</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../porting/connecting_cpp_and_javascript/Interacting-with-code.html">Interacting with code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../porting/connecting_cpp_and_javascript/embind.html">Embind</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../porting/connecting_cpp_and_javascript/WebIDL-Binder.html">WebIDL Binder</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/files/index.html">Files and File Systems</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../porting/files/file_systems_overview.html">File System Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../porting/files/packaging_files.html">Packaging Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../porting/files/Synchronous-Virtual-XHR-Backed-File-System-Usage.html">Synchronous Virtual XHR Backed File System Usage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/multimedia_and_graphics/index.html">Multimedia and Graphics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../porting/multimedia_and_graphics/WebGPU-support.html">Using WebGPU in Emscripten</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../porting/multimedia_and_graphics/EGL-Support-in-Emscripten.html">EGL Support in Emscripten</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../porting/multimedia_and_graphics/OpenGL-support.html">OpenGL support in Emscripten</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/Audio.html">Audio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/Debugging.html">Debugging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/pthreads.html">Pthreads support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/networking.html">Networking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/simd.html">Using SIMD with WebAssembly</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/exceptions.html">C++ Exceptions Support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/setjmp-longjmp.html">C setjmp-longjmp Support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/asyncify.html">Asynchronous Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Building-Projects.html">建置專案</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api_reference/index.html">API 參考</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/emscripten.h.html">emscripten.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/html5.h.html">html5.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/console.h.html">console.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/preamble.js.html">preamble.js</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/Filesystem-API.html">File System API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/fetch.html">Fetch API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/module.html">Module object</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/val.h.html">val.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/bind.h.html">bind.h (under-construction)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/trace.h.html">trace.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/fiber.h.html">fiber.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/proxying.h.html">proxying.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/stack.h.html">stack.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/wasm_workers.html">Wasm Workers API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/wasm_audio_worklets.html">Wasm Audio Worklets API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/advanced-apis.html">Advanced APIs</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tools_reference/index.html">Tools Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tools_reference/emsdk.html">Emscripten SDK (emsdk)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools_reference/emcc.html">Emscripten Compiler Frontend (emcc)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools_reference/emcmdprompt.html">Emscripten Windows Command Prompt (emcmdprompt.bat)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools_reference/settings_reference.html">Emscripten Compiler Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools_reference/settings_reference.html#deprecated-settings">Deprecated Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools_reference/settings_reference.html#legacy-settings">Legacy Settings</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../optimizing/Optimizing-Code.html">Optimizing Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../optimizing/Optimizing-WebGL.html">Optimizing WebGL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debugging/Sanitizers.html">Debugging with Sanitizers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../building_from_source/index.html">Building Emscripten from Source</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../building_from_source/toolchain_what_is_needed.html">Emscripten Toolchain Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../building_from_source/configuring_emscripten_settings.html">Configuring Emscripten Settings when Manually Building from Source</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../building_from_source/verify_emscripten_environment.html">Verifying the Emscripten Development Environment</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing to Emscripten</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/contributing.html">Contributing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/developers_guide.html">Developer’s Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/AUTHORS.html">AUTHORS</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../optimizing/Profiling-Toolchain.html">Profiling the Toolchain</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../site/about.html">About this site</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../genindex.html">索引</a></li>
+</ul>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="lside-overlay js-menu" role="button" aria-label="Close left sidebar" aria-controls="lside" aria-expanded="false"></div>
+  <aside id="rside" class="sy-rside pb-3 w-64 shrink-0 order-last">
+    <button class="rside-close js-menu xl:hidden" aria-label="Close Table of Contents" type="button" aria-controls="rside" aria-expanded="false">
+      <i class="i-lucide close"></i>
+    </button>
+    <div class="sy-scrollbar sy-rside-inner px-6 xl:top-16 xl:sticky xl:pl-0 pt-6 pb-4"><div class="localtoc"><h3>該頁內容</h3><ul>
+<li><a class="reference internal" href="#background">Background</a></li>
+<li><a class="reference internal" href="#overview-of-dynamic-linking">Overview of Dynamic Linking</a></li>
+<li><a class="reference internal" href="#practical-details">Practical Details</a><ul>
+<li><a class="reference internal" href="#load-time-dynamic-linking">Load-time Dynamic Linking</a></li>
+<li><a class="reference internal" href="#runtime-dynamic-linking-with-dlopen">Runtime Dynamic Linking with <code class="docutils literal notranslate"><span class="pre">dlopen()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#building-dynamic-libraries-using-shared">Building Dynamic Libraries using <code class="docutils literal notranslate"><span class="pre">-shared</span></code></a></li>
+<li><a class="reference internal" href="#code-size">Code Size</a></li>
+<li><a class="reference internal" href="#system-libraries">System Libraries</a></li>
+<li><a class="reference internal" href="#miscellaneous-notes">Miscellaneous Notes</a><ul>
+<li><a class="reference internal" href="#dynamic-checks">Dynamic Checks</a></li>
+<li><a class="reference internal" href="#limitations">Limitations</a></li>
+<li><a class="reference internal" href="#pthreads-support">Pthreads support</a></li>
+</ul>
+</li>
+</ul>
+</div><a class="js-repo-stats repo-stats flex items-center" href="https://github.com/emscripten-core/emscripten"
+  data-type="github" data-user="emscripten-core" data-repo="emscripten">
+  <span class="w-8 flex items-center justify-around shrink-0 text-3xl">
+    <iconify-icon icon="simple-icons:github"></iconify-icon>
+  </span>
+  <span class="flex-grow px-2 break-all">
+    
+    
+      <span>emscripten</span>
+    
+    <span class="flex text-sm repo-stats-count">
+      <span class="flex items-center pr-3">
+        <iconify-icon icon="lucide:star"></iconify-icon>
+        <strong class="js-repo-stars ml-1">0</strong>
+      </span>
+      <span class="flex items-center">
+        <iconify-icon icon="lucide:git-fork"></iconify-icon>
+        <strong class="js-repo-forks ml-1">0</strong>
+      </span>
+    </span>
+  </span>
+</a><div class="edit-this-page">
+  <a href="https://github.com/emscripten-core/emscripten/blob/main/site/source/docs/compiling/Dynamic-Linking.rst">編輯此頁面</a>
+</div><div id="ethical-ad-placement" data-ea-publisher="readthedocs"></div></div>
+  </aside>
+  <div class="rside-overlay js-menu" role="button" aria-label="Close Table of Contents" aria-controls="rside" aria-expanded="false"></div>
+  <main class="sy-main w-full max-sm:max-w-full print:pt-6">
+<div class="sy-breadcrumbs" role="navigation">
+  <div class="sy-breadcrumbs-inner flex items-center">
+    <div class="md:hidden mr-3">
+      <button class="js-menu" aria-label="Menu" type="button" aria-controls="lside" aria-expanded="false">
+        <i class="i-lucide menu"></i>
+      </button>
+    </div>
+    <ol class="flex-1" itemscope itemtype="https://schema.org/BreadcrumbList"><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="../../index.html"><span itemprop="name">Emscripten</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="1" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="index.html"><span itemprop="name">Compiling and Running Projects</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="2" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <strong itemprop="name">動態連結</strong>
+        <meta itemprop="position" content="3" />
+      </li></ol>
+    <div class="xl:hidden ml-1">
+      <button class="js-menu" aria-label="Show table of contents" type="button" aria-controls="rside"
+        aria-expanded="false">
+        <i class="i-lucide outdent"></i>
+      </button>
+    </div>
+  </div>
+</div><div class="flex flex-col break-words justify-between">
+      <div class="relative min-w-0 max-w-6xl px-6 pb-6 pt-8 xl:px-12">
+  <article class="yue" role="main">
+          <section id="dynamic-linking">
+<span id="id1"></span><h1>動態連結<a class="headerlink" href="#dynamic-linking" title="連結到這個標頭">¶</a></h1>
+<div class="admonition note">
+<p class="admonition-title">備註</p>
+<p>This documentation is somewhat outdated and is in the process of being refreshed.</p>
+</div>
+<p>Emscripten supports linking object files (and <code class="docutils literal notranslate"><span class="pre">ar</span></code> archives that contain
+object files) statically.  This lets most build systems work with Emscripten
+with little or no changes (see <a class="reference internal" href="Building-Projects.html#building-projects"><span class="std std-ref">建置專案</span></a>).</p>
+<p>In addition, Emscripten also has support for <strong>dynamic</strong> linking of
+WebAssembly modules.  This can add overhead, so for best performance static
+linking should still be preferred.  However, this overhead can be reduced
+with the use of certain command line flags. See below for details.</p>
+<section id="background">
+<h2>Background<a class="headerlink" href="#background" title="連結到這個標頭">¶</a></h2>
+<p>Before we get to dynamic linking, let’s talk about static linking.
+Emscripten’s linking model is a little different than most native
+platforms. To understand it, consider that native linking models work in
+a setting where the following facts are true:</p>
+<ol class="arabic simple">
+<li><p>The application runs directly on the local system, and has access to
+local system libraries, like C and C++ standard libraries, and
+others.</p></li>
+<li><p>Code size is not a big concern. In part this is because the system
+libraries already exist on the system, so “hello world” in C++ can be
+small, even if it uses a large amount of iostream code in the C++
+standard library. But also, code size is perhaps a matter that
+influences cold startup times, in that more code takes longer to load
+from disk, but the cost is general not significant, and modern OSes
+mitigate it in various ways, like caching apps they expect to be
+loaded.</p></li>
+</ol>
+<p>In Emscripten’s case, code is typically going to run on the web. That
+means the following:</p>
+<ol class="arabic simple">
+<li><p>The application is running in a sandbox. It has no local system
+libraries to dynamically link to; it must ship its own system library
+code.</p></li>
+<li><p>Code size is a major concern, as the application’s code is being
+downloaded over the internet, which is many orders of magnitude
+slower than an installed native app on one’s local machine.</p></li>
+</ol>
+<p>For that reason, Emscripten automatically handles system libraries for
+you and automatically does dead code elimination etc. to do the best
+possible job it can at getting them small.</p>
+<p>An additional factor here is that Emscripten has “js libraries” - system
+libraries written in JavaScript. Such system libraries are the way we
+access APIs on the web. It’s also a convenient way for people to connect
+compiled code and handwritten code on the same page. This is another
+reason for Emscripten to handle system libraries in a special way, and
+in particular, in a way that lets it strip out as much of those js
+libraries as it can, leaving only what is actually used, and again, that
+works best in the context of statically linking a standalone app with no
+external dependencies.</p>
+</section>
+<section id="overview-of-dynamic-linking">
+<h2>Overview of Dynamic Linking<a class="headerlink" href="#overview-of-dynamic-linking" title="連結到這個標頭">¶</a></h2>
+<p>Emscripten’s dynamic linking is fairly simple: you build several
+separate code “modules” from your source code, and can link them at
+runtime. The linking basically connects up the undefined symbols in
+each module with the defined symbols in the others, in the simplest
+of ways. It does not currently support some corner cases.</p>
+<p>System libraries do utilize some more advanced linking features that
+include such corner cases. For that reason, Emscripten tries to simplify
+the problem as follows: There are two types of shared modules:</p>
+<ol class="arabic simple">
+<li><p><strong>Main modules</strong>, which have system libraries linked in.</p></li>
+<li><p><strong>Side modules</strong>, which do not have system libraries linked in.</p></li>
+</ol>
+<p>A project should contain <strong>exactly one</strong> main module. It can then be
+linked at runtime to multiple side modules. This model also makes other
+things simpler.  For example, only the singleton main module includes the
+JavaScript environment and side modules are pure WebAssembly modules.</p>
+<p>The one tricky aspect to this design is that a side module might depend on a
+system library that the main module did not depend on. See the section on
+system libraries, below, for how to handle that.</p>
+<p>Note that the “main module” doesn’t need to contain the <code class="docutils literal notranslate"><span class="pre">main()</span></code>
+function. It could just as easily be in a side module. What makes the
+main module the “main” module is that there is only one main module, and
+only it has system libraries linked in.</p>
+<p>(Note that system libraries are linked in to the main module
+<em>statically</em>. We still have some optimizations from doing it that way,
+even if we can’t dead code eliminate as well as we’d like.)</p>
+</section>
+<section id="practical-details">
+<h2>Practical Details<a class="headerlink" href="#practical-details" title="連結到這個標頭">¶</a></h2>
+<p>If you want to jump to see running code, you can look in the test suite.
+There are <code class="docutils literal notranslate"><span class="pre">test_dylink_*</span></code> tests that test dynamic linking in general, and
+<code class="docutils literal notranslate"><span class="pre">test_dlfcn_*</span></code> tests that test <code class="docutils literal notranslate"><span class="pre">dlopen()</span></code> specifically. Otherwise,
+we describe the procedure now.</p>
+<section id="load-time-dynamic-linking">
+<h3>Load-time Dynamic Linking<a class="headerlink" href="#load-time-dynamic-linking" title="連結到這個標頭">¶</a></h3>
+<p>Load-time dynamic linking refers to the case when the side modules are loaded
+along with the main module, during startup and they are linked together
+before your application starts to run.</p>
+<ul class="simple">
+<li><p>Build one part of your code as the main module, linking it using
+<code class="docutils literal notranslate"><span class="pre">-sMAIN_MODULE</span></code> (See <a class="reference internal" href="../tools_reference/settings_reference.html#main-module"><span class="std std-ref">MAIN_MODULE</span></a>).</p></li>
+<li><p>Build other parts of your code as side modules, linking it using
+<code class="docutils literal notranslate"><span class="pre">-shared</span></code>.  You can also used the emscripten-specific <a class="reference internal" href="../tools_reference/settings_reference.html#side-module"><span class="std std-ref">SIDE_MODULE</span></a>
+setting which does the same thing by default.</p></li>
+</ul>
+<p>For the main module the output suffix should be <code class="docutils literal notranslate"><span class="pre">.js</span></code> (the WebAssembly
+file will be generated alongside it just like normal).  For the side
+module the output will be just a WebAssembly module we recommend the
+output suffix <code class="docutils literal notranslate"><span class="pre">.wasm</span></code> or <code class="docutils literal notranslate"><span class="pre">.so</span></code> (which is the shared libraries suffix used by
+UNIX systems).</p>
+<p>In order to have the side modules loaded at startup you need to tell the
+main module about their existence.  You can do this by specifying them on
+the command line when you link the main module. e.g.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">emcc</span> <span class="o">-</span><span class="n">sMAIN_MODULE</span> <span class="n">main</span><span class="o">.</span><span class="n">c</span> <span class="n">libsomething</span><span class="o">.</span><span class="n">wasm</span>
+</span></pre></div>
+</div>
+<p>At runtime, the JavaScript loading code will load <code class="docutils literal notranslate"><span class="pre">libsomething.wasm</span></code> (along
+with any other side modules) along with the main module before the application
+starts to run.  The running application then can access code from any of the
+modules linked together.</p>
+</section>
+<section id="runtime-dynamic-linking-with-dlopen">
+<h3>Runtime Dynamic Linking with <code class="docutils literal notranslate"><span class="pre">dlopen()</span></code><a class="headerlink" href="#runtime-dynamic-linking-with-dlopen" title="連結到這個標頭">¶</a></h3>
+<p>Runtime dynamic linking can be performed by the calling the <code class="docutils literal notranslate"><span class="pre">dlopen()</span></code>
+function to load side modules after the program is already running. The
+procedure begins in the same way, with the same flags used to build the main and
+side modules.  The difference is that you do not specify the side modules on the
+command line when linking the main module; instead, you must load the side
+module into the filesystem, so that <code class="docutils literal notranslate"><span class="pre">dlopen</span></code> (or <code class="docutils literal notranslate"><span class="pre">fopen</span></code>, etc.) can access
+it (except for <code class="docutils literal notranslate"><span class="pre">dlopen(NULL)</span></code> which means to open the current executable,
+which just works without filesystem integration). That’s basically it - you can
+then use <code class="docutils literal notranslate"><span class="pre">dlopen(),</span> <span class="pre">dlsym()</span></code>, etc. normally.</p>
+</section>
+</section>
+<section id="building-dynamic-libraries-using-shared">
+<h2>Building Dynamic Libraries using <code class="docutils literal notranslate"><span class="pre">-shared</span></code><a class="headerlink" href="#building-dynamic-libraries-using-shared" title="連結到這個標頭">¶</a></h2>
+<p>In traditional toolchains the <code class="docutils literal notranslate"><span class="pre">-shared</span></code> flag is used to generated dynamic
+libraries.  Historically, due to early limitations, Emscripten would produce a
+fake dynamic library (along with a warning) when the <code class="docutils literal notranslate"><span class="pre">-shared</span></code> flag was used.
+When your main program is linked against these fake dynamic library they would
+be linked into your main program like regular static other object files.</p>
+<p>These days Emscripten will produce real dynamic libraries by default and
+<code class="docutils literal notranslate"><span class="pre">-shared</span></code> is essentially the same as <code class="docutils literal notranslate"><span class="pre">-sSIDE_MODULE</span></code>.</p>
+<p>This behaviour can be controlled using the <a class="reference internal" href="../tools_reference/settings_reference.html#fake-dylibs"><span class="std std-ref">FAKE_DYLIBS</span></a> settings.  If you
+prefer the older behaviour with fake dynamic libraryies you can enable this
+setting.</p>
+</section>
+<section id="code-size">
+<h2>Code Size<a class="headerlink" href="#code-size" title="連結到這個標頭">¶</a></h2>
+<p>By default, main modules disable dead code elimination. That means that
+all the code compiled remains in the output, including all system
+libraries linked in, and also all the JS library code.</p>
+<p>That is the default behavior since it is the least surprising. But it is also
+possible to use normal dead code elimination, by building with
+<code class="docutils literal notranslate"><span class="pre">-sMAIN_MODULE=2</span></code> (instead of 1). In that mode, the main module is built
+normally, with no special behavior for keeping code alive. It is then your
+responsibility to make sure that code that side modules need is kept alive. You
+can do this either by adding to <a class="reference internal" href="../tools_reference/settings_reference.html#exported-functions"><span class="std std-ref">EXPORTED_FUNCTIONS</span></a> or tagging the symbol
+<code class="docutils literal notranslate"><span class="pre">EMSCRIPTEN_KEEPALIVE</span></code> in the source code. See <code class="docutils literal notranslate"><span class="pre">other.test_minimal_dynamic</span></code>
+for an example of this in action.</p>
+<p>If you are doing load time dynamic linking then any symbols needed by
+the side modules specified on the command line will be kept alive
+automatically. For this reason we strongly recommend using <code class="docutils literal notranslate"><span class="pre">MAIN_MODULE=2</span></code>
+when doing load time dynamic linking.</p>
+<p>There is also the corresponding <code class="docutils literal notranslate"><span class="pre">-sSIDE_MODULE=2</span></code> for side modules.</p>
+</section>
+<section id="system-libraries">
+<h2>System Libraries<a class="headerlink" href="#system-libraries" title="連結到這個標頭">¶</a></h2>
+<p>As mentioned earlier, system libraries are handled in a special way by the
+Emscripten linker, and in dynamic linking, only the main module is linked
+against system libraries. When linking the main module it is possible to pass
+the side modules on the command line, in which case any system library
+dependencies are automatically handled.</p>
+<p>However when linking a main module without its side modules (Usually with
+<code class="docutils literal notranslate"><span class="pre">-sMAIN_MODULE=1</span></code>) it is possible that required system libraries are not
+included.  This section explains what to do to fix that by forcing the main
+module to be linked against certain libraries.</p>
+<p>You can build the main module with <code class="docutils literal notranslate"><span class="pre">EMCC_FORCE_STDLIBS=1</span></code> in the environment
+to force inclusion of all standard libs.  A more refined approach is to name the
+system libraries that you want to explicitly include.  For example, with
+something like <code class="docutils literal notranslate"><span class="pre">EMCC_FORCE_STDLIBS=libcxx,libcxxabi</span></code> (if you need those two
+libs).</p>
+</section>
+<section id="miscellaneous-notes">
+<h2>Miscellaneous Notes<a class="headerlink" href="#miscellaneous-notes" title="連結到這個標頭">¶</a></h2>
+<section id="dynamic-checks">
+<h3>Dynamic Checks<a class="headerlink" href="#dynamic-checks" title="連結到這個標頭">¶</a></h3>
+<p>Native linkers generally only run code when all symbols are resolved.
+Emscripten’s dynamic linker hooks up symbols to unresolved references to
+those symbols <strong>dynamically</strong>. As a result, we don’t check if any
+symbols remain unresolved, and code can start to run even if there are.
+It will run successfully if they are not called in practice. If they
+are, you will get a runtime error. What went wrong should be clear from
+the stack trace (in an unminified build); building with
+<a class="reference internal" href="../tools_reference/settings_reference.html#assertions"><span class="std std-ref">ASSERTIONS</span></a> can help some more.</p>
+</section>
+<section id="limitations">
+<h3>Limitations<a class="headerlink" href="#limitations" title="連結到這個標頭">¶</a></h3>
+<ul class="simple">
+<li><p>Chromium does not support synchronous compiling of Wasm modules over 8Mb on
+the main thread.  You could run into this limit when using the synchronous
+<code class="docutils literal notranslate"><span class="pre">dlopen</span></code> API to load large side modules.   Emscripten has async versions of
+<code class="docutils literal notranslate"><span class="pre">dlopen</span></code> that can work around this issue (See <a class="reference internal" href="../api_reference/emscripten.h.html#c.emscripten_dlopen" title="emscripten_dlopen"><code class="xref c c-func docutils literal notranslate"><span class="pre">emscripten_dlopen()</span></code></a>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">EM_ASM</span></code> and <code class="docutils literal notranslate"><span class="pre">EM_JS</span></code> code defined within side modules depends on <code class="docutils literal notranslate"><span class="pre">eval</span></code>
+support and are therefore incompatible with <code class="docutils literal notranslate"><span class="pre">-sDYNAMIC_EXECUTION=0</span></code> (See
+<a class="reference internal" href="../tools_reference/settings_reference.html#dynamic-execution"><span class="std std-ref">DYNAMIC_EXECUTION</span></a>).</p></li>
+</ul>
+</section>
+<section id="pthreads-support">
+<h3>Pthreads support<a class="headerlink" href="#pthreads-support" title="連結到這個標頭">¶</a></h3>
+<p>Dynamic linking + pthreads is still experimental.  As such, linking with both
+<a class="reference internal" href="../tools_reference/settings_reference.html#main-module"><span class="std std-ref">MAIN_MODULE</span></a> and <code class="docutils literal notranslate"><span class="pre">-pthread</span></code> will produce a warning.</p>
+<p>While load-time dynamic linking works without any complications, runtime dynamic
+linking via <code class="docutils literal notranslate"><span class="pre">dlopen</span></code>/<code class="docutils literal notranslate"><span class="pre">dlsym</span></code> can require some extra consideration.  The
+reason for this is that keeping the indirection function pointer table in sync
+between threads has to be done by emscripten library code.  Each time a new
+library is loaded or a new symbol is requested via <code class="docutils literal notranslate"><span class="pre">dlsym</span></code>, table slots can be
+added and these changes need to be mirrored on every thread in the process.</p>
+<p>Changes to the table are protected by a mutex, and before any thread returns
+from <code class="docutils literal notranslate"><span class="pre">dlopen</span></code> or <code class="docutils literal notranslate"><span class="pre">dlsym</span></code> it will wait until all other threads are sync.  In
+order to make this synchronization as seamless as possible, we hook into the
+low level primitives of <cite>emscripten_futex_wait</cite> and <cite>emscripten_yield</cite>.</p>
+<p>For most use cases all this happens under hood and no special action is needed.
+However, there there is one class of application that currently may require
+modification.  If your applications busy waits, or directly uses the
+<code class="docutils literal notranslate"><span class="pre">atomic.waitXX</span></code> instructions (or the clang
+<code class="docutils literal notranslate"><span class="pre">__builtin_wasm_memory_atomic_waitXX</span></code> builtins) you maybe need to switch it
+to use <code class="docutils literal notranslate"><span class="pre">emscripten_futex_wait</span></code> in order to avoid deadlocks.  If you don’t use
+<code class="docutils literal notranslate"><span class="pre">emscripten_futex_wait</span></code> while you block, you could potentially block other
+threads that are calling <code class="docutils literal notranslate"><span class="pre">dlopen</span></code> and/or <code class="docutils literal notranslate"><span class="pre">dlsym</span></code>.</p>
+</section>
+</section>
+</section>
+
+        </article><button class="back-to-top" type="button">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+  </svg>
+  <span>回到頂部</span>
+</button><div class="navigation flex print:hidden"><div class="navigation-prev">
+    <a href="Modularized-Output.html">
+      <i class="i-lucide chevron-left"></i>
+      <div class="page-info">
+        <span>上一頁</span><div class="title">Modularized Output</div></div>
+    </a>
+  </div><div class="navigation-next">
+    <a href="Running-html-files-with-emrun.html">
+      <div class="page-info">
+        <span>下一頁</span>
+        <div class="title">Running HTML files with emrun</div>
+      </div>
+      <i class="i-lucide chevron-right"></i>
+    </a>
+  </div></div></div>
+    </div>
+  </main>
+</div>
+<footer class="sy-foot">
+  <div class="sy-foot-inner sy-container mx-auto">
+    <div class="sy-foot-reserved md:flex justify-between items-center">
+      <div class="sy-foot-copyright"><p>Copyright &copy; 2015, Emscripten Contributors.</p>
+  
+  <p>
+    Made with
+    
+    <a href="https://www.sphinx-doc.org/">Sphinx</a> and
+    
+    <a href="https://shibuya.lepture.com">Shibuya theme</a>.
+  </p>
+</div>
+      <div class="sy-foot-socials">
+<a href="https://github.com/emscripten-core/emscripten" aria-label="GitHub">
+  <iconify-icon icon="simple-icons:github"></iconify-icon>
+</a>
+<a href="https://discord.gg/53u3EKq" aria-label="Discord">
+  <iconify-icon icon="simple-icons:discord"></iconify-icon>
+</a></div>
+    </div>
+  </div>
+</footer>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=b46623cf"></script>
+      <script src="../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/translations.js?v=f1e884e3"></script>
+      <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../../_static/shibuya.js?v=50760d75"></script></body>
+</html>

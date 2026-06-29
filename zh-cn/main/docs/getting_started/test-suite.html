@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-accent-color="violet" data-content_root="../../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Emscripten Test Suite - Emscripten 6.0.1-git (dev) 文档</title><link rel="shortcut icon" href="../../_static/emscripten.ico"/><link rel="index" title="索引" href="../../genindex.html" /><link rel="search" title="搜索" href="../../search.html" /><link rel="next" title="Bug Reporting" href="bug_reports.html" /><link rel="prev" title="Emscripten Tutorial" href="Tutorial.html" />
+      <link rel="canonical" href="https://projects.localizethedocs.org/emscripten-docs-l10n/docs/getting_started/test-suite.html" /><script>
+    function setColorMode(t){let e=document.documentElement;e.setAttribute("data-color-mode",t);let a=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,s=t;"auto"===t&&(s=a?"dark":"light"),"light"===s?(e.classList.remove("dark"),e.classList.add("light")):(e.classList.remove("light"),e.classList.add("dark"))}
+    setColorMode(localStorage._theme||"auto");
+  </script><link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=ad592e98" />
+    <link rel="stylesheet" type="text/css" href="../../_static/shibuya.css?v=9454f7d5" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link media="print" rel="stylesheet" type="text/css" href="../../_static/print.css?v=20ff2c19" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sy-f-text: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+  --sy-f-heading: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+}
+</style>
+    
+
+<script type="text/javascript" src="../../ltd-provenance.js"></script>
+<script type="text/javascript" src="../../ltd-current.js"></script>
+<script type="text/javascript" src="../../../../ltd-config.js"></script>
+<script type="text/javascript" src="../../../../ltd-flyout.js"></script>
+
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://projects.localizethedocs.org/emscripten-docs-l10n/docs/getting_started/test-suite.html"/>
+  <meta property="og:title" content="Emscripten Test Suite"/>
+    <meta name="twitter:card" content="summary"/>
+  </head>
+<body><div class="sy-head">
+  <div class="sy-head-blur"></div>
+  <div class="sy-head-inner sy-container mx-auto">
+    <a class="sy-head-brand" href="../../index.html">
+      <img class="light-logo" src="../../_static/emscripten_logo_full.svg" alt="Emscripten" height="28" loading="lazy" />
+      <img class="dark-logo" src="../../_static/emscripten_logo_full.svg" alt="Emscripten" height="28" loading="lazy" />
+      <strong>Emscripten</strong>
+    </a>
+    <div class="sy-head-nav" id="head-nav">
+      <nav class="sy-head-links"><ul>
+      <li class="link"><a class="js-menu" href="../index.html" id="nav-trigger-1" aria-controls="nav-children-1">
+            <span>Documentation</span>
+            <i class="i-lucide chevron-down"></i>
+          </a>
+        <ul id="nav-children-1" aria-labelledby="nav-trigger-1"><li><a href="downloads.html">Downloads</a></li><li><a href="bug_reports.html">Report Bug</a></li><li><a href="../introducing_emscripten/emscripten_license.html">Licensing</a></li><li><a href="../contributing/contributing.html">Contributing</a></li><li><a href="../introducing_emscripten/release_notes.html">Release Notes</a></li></ul>
+      </li>
+      <li class="link"><a class="js-menu" href="../introducing_emscripten/community.html" id="nav-trigger-2" aria-controls="nav-children-2">
+            <span>Community</span>
+            <i class="i-lucide chevron-down"></i>
+          </a>
+        <ul id="nav-children-2" aria-labelledby="nav-trigger-2"><li><a href="https://groups.google.com/forum/#!forum/emscripten-discuss">Mailing List</a></li><li><a href="https://github.com/emscripten-core/emscripten/wiki">Wiki</a></li></ul>
+      </li></ul></nav>
+      <div class="sy-head-extra flex items-center print:hidden"><form class="searchbox flex items-center" action="../../search.html" method="get">
+  <input type="text" name="q" placeholder="搜索" />
+  <kbd>/</kbd>
+</form><div class="sy-head-socials">
+  <a href="https://github.com/emscripten-core/emscripten" aria-label="GitHub">
+    <iconify-icon icon="simple-icons:github"></iconify-icon>
+  </a>
+  <a href="https://discord.gg/53u3EKq" aria-label="Discord">
+    <iconify-icon icon="simple-icons:discord"></iconify-icon>
+  </a></div></div>
+    </div>
+    <div class="sy-head-actions flex items-center shrink-0 print:hidden"><button class="js-theme theme-switch flex items-center"
+data-aria-auto="切换到亮色模式"
+data-aria-light="切换到暗色模式"
+data-aria-dark="切换到自动模式">
+<i class="i-lucide theme-icon"></i>
+</button><button class="md:hidden flex items-center js-menu" aria-label="Menu" type="button" aria-controls="head-nav" aria-expanded="false">
+        <div class="hamburger">
+          <span class="hamburger_1"></span>
+          <span class="hamburger_2"></span>
+          <span class="hamburger_3"></span>
+        </div>
+      </button>
+    </div>
+  </div>
+</div>
+<div class="sy-page sy-container flex mx-auto">
+  <aside id="lside" class="sy-lside md:w-72 md:shrink-0 print:hidden">
+    <div class="sy-lside-inner md:sticky">
+      <div class="sy-scrollbar p-6"><div class="sidebar-links">
+  <ul>
+    <li><a class="icon-link" href="https://github.com/emscripten-core/emscripten/discussions">
+  <span class="icon">
+    <svg viewBox="0 0 24 24" fill="none">
+      <path fill="var(--accent-9)" fill-rule="evenodd" clip-rule="evenodd" d="M11 5a6 6 0 0 0-4.687 9.746c.215.27.315.62.231.954l-.514 2.058a1 1 0 0 0 1.485 1.1l2.848-1.71c.174-.104.374-.15.576-.148H13a6 6 0 0 0 0-12h-2Z"/>
+      <circle fill="white" cx="12" cy="11" r="1"/>
+      <circle fill="white" cx="9" cy="11" r="1"/>
+      <circle fill="white" cx="15" cy="11" r="1"/>
+    </svg>
+  </span>
+  <span class="text">讨论</span>
+</a></li>
+  </ul>
+</div>
+        <div class="globaltoc" data-expand-depth="0"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introducing_emscripten/index.html">Introducing Emscripten</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../introducing_emscripten/about_emscripten.html">About Emscripten</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../introducing_emscripten/community.html">Community</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../introducing_emscripten/emscripten_license.html">Open Source License</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../introducing_emscripten/release_notes.html">Release Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../introducing_emscripten/Talks-and-Publications.html">Talks and Publications</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Getting Started</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="downloads.html">Download and install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Tutorial.html">Emscripten Tutorial</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Emscripten Test Suite</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bug_reports.html">Bug Reporting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="FAQ.html">FAQ</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../compiling/index.html">Compiling and Running Projects</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../compiling/Building-Projects.html">Building Projects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../compiling/WebAssembly.html">Building to WebAssembly</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../compiling/Modularized-Output.html">Modularized Output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../compiling/Dynamic-Linking.html">Dynamic Linking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../compiling/Running-html-files-with-emrun.html">Running HTML files with emrun</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../compiling/Deploying-Pages.html">Deploying Emscripten Compiled Pages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../compiling/GitLab.html">Building and Deploying on GitLab</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../compiling/Contrib-Ports.html">Emscripten Contrib Ports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../compiling/CrossOriginStorage.html">Cross-Origin Storage (COS)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../porting/index.html">Porting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../porting/guidelines/index.html">Code Portability and Limitations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../porting/guidelines/portability_guidelines.html">Portability Guidelines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../porting/guidelines/api_limitations.html">API Limitations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../porting/guidelines/function_pointer_issues.html">Function Pointer Issues</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../porting/guidelines/browser_limitations.html">Specific Browser Limitations</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/emscripten-runtime-environment.html">Emscripten Runtime Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/connecting_cpp_and_javascript/index.html">Connecting C++ and JavaScript</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../porting/connecting_cpp_and_javascript/Interacting-with-code.html">Interacting with code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../porting/connecting_cpp_and_javascript/embind.html">Embind</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../porting/connecting_cpp_and_javascript/WebIDL-Binder.html">WebIDL Binder</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/files/index.html">Files and File Systems</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../porting/files/file_systems_overview.html">File System Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../porting/files/packaging_files.html">Packaging Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../porting/files/Synchronous-Virtual-XHR-Backed-File-System-Usage.html">Synchronous Virtual XHR Backed File System Usage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/multimedia_and_graphics/index.html">Multimedia and Graphics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../porting/multimedia_and_graphics/WebGPU-support.html">Using WebGPU in Emscripten</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../porting/multimedia_and_graphics/EGL-Support-in-Emscripten.html">EGL Support in Emscripten</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../porting/multimedia_and_graphics/OpenGL-support.html">OpenGL support in Emscripten</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/Audio.html">Audio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/Debugging.html">Debugging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/pthreads.html">Pthreads support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/networking.html">Networking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/simd.html">Using SIMD with WebAssembly</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/exceptions.html">C++ Exceptions Support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/setjmp-longjmp.html">C setjmp-longjmp Support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/asyncify.html">Asynchronous Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../compiling/Building-Projects.html">Building Projects</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api_reference/index.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/emscripten.h.html">emscripten.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/html5.h.html">html5.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/console.h.html">console.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/preamble.js.html">preamble.js</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/Filesystem-API.html">File System API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/fetch.html">Fetch API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/module.html">Module object</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/val.h.html">val.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/bind.h.html">bind.h (under-construction)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/trace.h.html">trace.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/fiber.h.html">fiber.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/proxying.h.html">proxying.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/stack.h.html">stack.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/wasm_workers.html">Wasm Workers API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/wasm_audio_worklets.html">Wasm Audio Worklets API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/advanced-apis.html">Advanced APIs</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tools_reference/index.html">Tools Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tools_reference/emsdk.html">Emscripten SDK (emsdk)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools_reference/emcc.html">Emscripten Compiler Frontend (emcc)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools_reference/emcmdprompt.html">Emscripten Windows Command Prompt (emcmdprompt.bat)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools_reference/settings_reference.html">Emscripten Compiler Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools_reference/settings_reference.html#deprecated-settings">Deprecated Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools_reference/settings_reference.html#legacy-settings">Legacy Settings</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../optimizing/Optimizing-Code.html">Optimizing Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../optimizing/Optimizing-WebGL.html">Optimizing WebGL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debugging/Sanitizers.html">Debugging with Sanitizers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../building_from_source/index.html">Building Emscripten from Source</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../building_from_source/toolchain_what_is_needed.html">Emscripten Toolchain Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../building_from_source/configuring_emscripten_settings.html">Configuring Emscripten Settings when Manually Building from Source</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../building_from_source/verify_emscripten_environment.html">Verifying the Emscripten Development Environment</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing to Emscripten</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/contributing.html">Contributing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/developers_guide.html">Developer’s Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/AUTHORS.html">AUTHORS</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../optimizing/Profiling-Toolchain.html">Profiling the Toolchain</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../site/about.html">About this site</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../genindex.html">索引</a></li>
+</ul>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="lside-overlay js-menu" role="button" aria-label="Close left sidebar" aria-controls="lside" aria-expanded="false"></div>
+  <aside id="rside" class="sy-rside pb-3 w-64 shrink-0 order-last">
+    <button class="rside-close js-menu xl:hidden" aria-label="Close Table of Contents" type="button" aria-controls="rside" aria-expanded="false">
+      <i class="i-lucide close"></i>
+    </button>
+    <div class="sy-scrollbar sy-rside-inner px-6 xl:top-16 xl:sticky xl:pl-0 pt-6 pb-4"><div class="localtoc"><h3>该页内容</h3><ul>
+<li><a class="reference internal" href="#setting-up">Setting up</a></li>
+<li><a class="reference internal" href="#running-tests">Running tests</a></li>
+<li><a class="reference internal" href="#skipping-tests">Skipping Tests</a></li>
+<li><a class="reference internal" href="#exiting-on-first-failure">Exiting on first failure</a></li>
+<li><a class="reference internal" href="#running-a-bunch-of-random-tests">Running a bunch of random tests</a></li>
+<li><a class="reference internal" href="#important-tests">Important Tests</a></li>
+<li><a class="reference internal" href="#benchmarking">Benchmarking</a></li>
+<li><a class="reference internal" href="#debugging-test-failures">Debugging test failures</a></li>
+</ul>
+</div><a class="js-repo-stats repo-stats flex items-center" href="https://github.com/emscripten-core/emscripten"
+  data-type="github" data-user="emscripten-core" data-repo="emscripten">
+  <span class="w-8 flex items-center justify-around shrink-0 text-3xl">
+    <iconify-icon icon="simple-icons:github"></iconify-icon>
+  </span>
+  <span class="flex-grow px-2 break-all">
+    
+    
+      <span>emscripten</span>
+    
+    <span class="flex text-sm repo-stats-count">
+      <span class="flex items-center pr-3">
+        <iconify-icon icon="lucide:star"></iconify-icon>
+        <strong class="js-repo-stars ml-1">0</strong>
+      </span>
+      <span class="flex items-center">
+        <iconify-icon icon="lucide:git-fork"></iconify-icon>
+        <strong class="js-repo-forks ml-1">0</strong>
+      </span>
+    </span>
+  </span>
+</a><div class="edit-this-page">
+  <a href="https://github.com/emscripten-core/emscripten/blob/main/site/source/docs/getting_started/test-suite.rst">编辑此页面</a>
+</div><div id="ethical-ad-placement" data-ea-publisher="readthedocs"></div></div>
+  </aside>
+  <div class="rside-overlay js-menu" role="button" aria-label="Close Table of Contents" aria-controls="rside" aria-expanded="false"></div>
+  <main class="sy-main w-full max-sm:max-w-full print:pt-6">
+<div class="sy-breadcrumbs" role="navigation">
+  <div class="sy-breadcrumbs-inner flex items-center">
+    <div class="md:hidden mr-3">
+      <button class="js-menu" aria-label="Menu" type="button" aria-controls="lside" aria-expanded="false">
+        <i class="i-lucide menu"></i>
+      </button>
+    </div>
+    <ol class="flex-1" itemscope itemtype="https://schema.org/BreadcrumbList"><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="../../index.html"><span itemprop="name">Emscripten</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="1" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="index.html"><span itemprop="name">Getting Started</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="2" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <strong itemprop="name">Emscripten Test Suite</strong>
+        <meta itemprop="position" content="3" />
+      </li></ol>
+    <div class="xl:hidden ml-1">
+      <button class="js-menu" aria-label="Show table of contents" type="button" aria-controls="rside"
+        aria-expanded="false">
+        <i class="i-lucide outdent"></i>
+      </button>
+    </div>
+  </div>
+</div><div class="flex flex-col break-words justify-between">
+      <div class="relative min-w-0 max-w-6xl px-6 pb-6 pt-8 xl:px-12">
+  <article class="yue" role="main">
+          <section id="emscripten-test-suite">
+<span id="id1"></span><h1>Emscripten Test Suite<a class="headerlink" href="#emscripten-test-suite" title="Link to this heading">¶</a></h1>
+<p>Emscripten has a comprehensive test suite, which covers virtually all Emscripten
+functionality. These tests are an excellent resource for developers as they
+provide practical examples of most features, and are known to pass on the
+<code class="docutils literal notranslate"><span class="pre">main</span></code> branch. In addition to correctness tests, there are also benchmarks
+that you can run.</p>
+<p>This article explains how to run the test and benchmark suite, and provides an
+overview of what tests are available.</p>
+<section id="setting-up">
+<h2>Setting up<a class="headerlink" href="#setting-up" title="Link to this heading">¶</a></h2>
+<p>To run the tests, you need an emscripten setup, as it will run <code class="docutils literal notranslate"><span class="pre">emcc</span></code> and other
+commands. See the <a class="reference internal" href="../contributing/developers_guide.html#developers-guide-setting-up"><span class="std std-ref">developer’s guide</span></a> for
+how best to do that.</p>
+</section>
+<section id="running-tests">
+<h2>Running tests<a class="headerlink" href="#running-tests" title="Link to this heading">¶</a></h2>
+<p>Run the test suite runner (<a class="reference external" href="https://github.com/emscripten-core/emscripten/blob/main/test/runner.py">test/runner</a>) with <code class="docutils literal notranslate"><span class="pre">--help</span></code> to see the help message:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span data-line="1">test/runner<span class="w"> </span>--help
+</span></pre></div>
+</div>
+<p>The tests are divided into <em>modes</em>. You can run either an entire mode or an
+individual test, or use wildcards to run some tests in some modes. For example:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1"># run one test (in the default mode)</span>
+</span><span data-line="2">test/runner<span class="w"> </span>test_foo
+</span><span data-line="3">
+</span><span data-line="4"><span class="c1"># run a bunch of tests in one mode (here, all i64 tests in -O3)</span>
+</span><span data-line="5">test/runner<span class="w"> </span>core3.test_*i64*
+</span><span data-line="6">
+</span><span data-line="7"><span class="c1"># run all tests in a specific mode (here, wasm2gs -O1)</span>
+</span><span data-line="8">test/runner<span class="w"> </span>wasm2js1
+</span></pre></div>
+</div>
+<p>The <em>core</em> test modes (defined at the bottom of <a class="reference external" href="https://github.com/emscripten-core/emscripten/blob/main/test/test_core.py">test/test_core.py</a>)
+let you run the tests in variety of different configurations and with different
+optimization flags.  For example, wasm2js or wasm64.  There are also non-core
+test suites, that run tests in more special manner (in particular, in those tests
+it is not possible to say “run the test with a different optimization flag” -
+that is what the core tests are for).  The non-core test suites include</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><cite>other</cite>: Non-core tests running in the shell.</p></li>
+<li><p><cite>browser</cite>: Tests that run in a browser.</p></li>
+<li><p><cite>sockets</cite>: Networking tests that run in a browser.</p></li>
+<li><p><cite>interactive</cite>: Browser tests that are not fully automated, and require user interaction (these should be automated eventually).</p></li>
+<li><p><cite>sanity</cite>: Tests for emscripten setting itself up. This modifies your <cite>.emscripten</cite> file temporarily.</p></li>
+<li><p><cite>benchmark</cite>: Runs benchmarks, measuring speed and code size.</p></li>
+</ul>
+</div></blockquote>
+<p>The wildcards we mentioned above work for non-core test modes too, for example:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1"># run one browser test</span>
+</span><span data-line="2">test/runner<span class="w"> </span>browser.test_sdl_image
+</span><span data-line="3">
+</span><span data-line="4"><span class="c1"># run all SDL2 browser tests</span>
+</span><span data-line="5">test/runner<span class="w"> </span>browser.test_sdl2*
+</span><span data-line="6">
+</span><span data-line="7"><span class="c1"># run all browser tests</span>
+</span><span data-line="8">test/runner<span class="w"> </span>browser
+</span></pre></div>
+</div>
+</section>
+<section id="skipping-tests">
+<h2>Skipping Tests<a class="headerlink" href="#skipping-tests" title="Link to this heading">¶</a></h2>
+<p>An individual test can be skipped by passing the “skip:” prefix. E.g.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span data-line="1">test/runner<span class="w"> </span>other<span class="w"> </span>skip:other.test_cmake
+</span></pre></div>
+</div>
+<p>Wildcards can also be passed in skip, so</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span data-line="1">test/runner<span class="w"> </span>browser<span class="w"> </span>skip:browser.test_pthread_*
+</span></pre></div>
+</div>
+<p>will run the whole browser suite except for all the pthread tests in it.</p>
+</section>
+<section id="exiting-on-first-failure">
+<h2>Exiting on first failure<a class="headerlink" href="#exiting-on-first-failure" title="Link to this heading">¶</a></h2>
+<p>Sometimes it is useful to be able to iteratively fix one test at a time.  In
+this case the <code class="docutils literal notranslate"><span class="pre">--failfast</span></code> option can be used to exit the test runner after
+the first failure.</p>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>This option only works with the serial test runner.  For test suites
+that are normally run in parallel you can force them to run serially using
+<code class="docutils literal notranslate"><span class="pre">-j1</span></code>.</p>
+</div>
+<p>Once a test is fixed, you continue where you left off using <code class="docutils literal notranslate"><span class="pre">--start-at</span></code> option:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span data-line="1">test/runner<span class="w"> </span>browser<span class="w"> </span>--start-at<span class="w"> </span>test_foo<span class="w"> </span>--failfast
+</span></pre></div>
+</div>
+</section>
+<section id="running-a-bunch-of-random-tests">
+<h2>Running a bunch of random tests<a class="headerlink" href="#running-a-bunch-of-random-tests" title="Link to this heading">¶</a></h2>
+<p>You can run a random subset of the test suite, using something like</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span data-line="1">test/runner<span class="w"> </span>random100
+</span></pre></div>
+</div>
+<p>Replace <code class="docutils literal notranslate"><span class="pre">100</span></code> with another number as you prefer. This will run that number of
+random tests, and tell you the statistical likelihood of almost all the test
+suite passing assuming those tests do. This works just like election surveys do
+- given a small sample, we can predict fairly well that so-and-so percent of the
+public will vote for candidate A. In our case, the “candidates” are pass or
+fail, and we can predict how much of the test suite will pass given that
+sample. Assuming the sample tests all pass, we can say with high likelihood that
+most of the test suite will in fact pass. (Of course, this is no guarantee, and
+even a single test failure is serious, however, this gives a quick estimate that
+your patch does not cause significant and obvious breakage.)</p>
+</section>
+<section id="important-tests">
+<h2>Important Tests<a class="headerlink" href="#important-tests" title="Link to this heading">¶</a></h2>
+<p>Please see the bottom the file <a class="reference external" href="https://github.com/emscripten-core/emscripten/blob/main/test/test_core.py">test/test_core.py</a>
+for the current test modes, as they may change slowly over time.  When you want
+to run the entire test suite locally, these are currently the important
+commands:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1"># Run all core tests</span>
+</span><span data-line="2">test/runner<span class="w"> </span>core*
+</span><span data-line="3">
+</span><span data-line="4"><span class="c1"># Run &quot;other&quot; test suite</span>
+</span><span data-line="5">test/runner<span class="w"> </span>other
+</span><span data-line="6">
+</span><span data-line="7"><span class="c1"># Run &quot;browser&quot; test suite - this requires a web browser</span>
+</span><span data-line="8">test/runner<span class="w"> </span>browser
+</span><span data-line="9">
+</span><span data-line="10"><span class="c1"># Run &quot;sockets&quot; test suite - this requires a web browser too</span>
+</span><span data-line="11">test/runner<span class="w"> </span>sockets
+</span><span data-line="12">
+</span><span data-line="13"><span class="c1"># Run &quot;sanity&quot; test suite - this tests setting up emscripten during</span>
+</span><span data-line="14"><span class="c1"># first run, etc., and so it modifies your .emscripten file temporarily.</span>
+</span><span data-line="15">test/runner<span class="w"> </span>sanity
+</span><span data-line="16">
+</span><span data-line="17"><span class="c1"># Optionally, also run benchmarks to check for regressions</span>
+</span><span data-line="18">test/runner<span class="w"> </span>benchmark
+</span></pre></div>
+</div>
+</section>
+<section id="benchmarking">
+<span id="id3"></span><h2>Benchmarking<a class="headerlink" href="#benchmarking" title="Link to this heading">¶</a></h2>
+<p>Emscripten has a benchmark suite that measures both speed and code size, which
+includes several interesting real-world codebases, from physics engines to
+compression libraries to virtual machines. It also includes some existing
+benchmarks such as CoreMark and LINPACK. See for example
+<a class="reference external" href="https://kripken.github.io/blog/wasm/2020/07/27/wasmboxc.html">this post’s section on speed</a>
+which gives an overview.</p>
+<p>To run the benchmark suite, do:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1"># Run all benchmarks</span>
+</span><span data-line="2">test/runner<span class="w"> </span>benchmark
+</span></pre></div>
+</div>
+<p>As with all the test suites, you can also run a specific benchmark:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1"># Run one specific benchmark</span>
+</span><span data-line="2">test/runner<span class="w"> </span>benchmark.test_skinning
+</span></pre></div>
+</div>
+<p>You can also specify which benchmarkers are run by using the environment
+variable <cite>EMTEST_BENCHMARKERS</cite>. It accepts a comma separated list of named
+benchmarkers (names can be found in <cite>named_benchmarkers</cite> in
+<cite>test/test_benchmark.py</cite>).</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1"># Run one specific benchmark and with clang and v8.</span>
+</span><span data-line="2"><span class="nv">EMTEST_BENCHMARKERS</span><span class="o">=</span>clang,v8<span class="w"> </span>test/runner<span class="w"> </span>benchmark.test_skinning
+</span></pre></div>
+</div>
+<p>To further customize how the benchmarks are run, you will want to edit the file
+<cite>test/test_benchmark.py</cite>. Some of the options include:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">DEFAULT_ARG</span></code> is how long the benchmark should run (they all try to run for
+a similar amount of time for consistency).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TEST_REPS</span></code> is how many times to repeat each run (more will take longer, but
+should have less noise).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PROFILING</span></code> controls whether the builds are set up for profiling (which can
+increase code size, so it’s not done by default).</p></li>
+</ul>
+</section>
+<section id="debugging-test-failures">
+<h2>Debugging test failures<a class="headerlink" href="#debugging-test-failures" title="Link to this heading">¶</a></h2>
+<p>By default the test runner will hide all test output and use a single terminal
+line to show test results.</p>
+<p>If you want to see more information you can run with <code class="docutils literal notranslate"><span class="pre">-v/--verbose</span></code> to show the
+stdout / stderr / logging produced during each test.</p>
+<p>If you add a second <code class="docutils literal notranslate"><span class="pre">-v/--verbose</span></code> then then test runner will output even more
+information.  For example it will show all the subcommands that it runs, as it
+runs them.</p>
+<p>For even more debugging info, you can set <a class="reference internal" href="../porting/Debugging.html#debugging-emcc-debug"><span class="std std-ref">Debugging the compiler driver</span></a> which will
+cause the emscripten compiler itself to output a lot of debug info.  This will
+also tell the compiler to leave all its temporary files behind after it runs
+(the files go in <code class="docutils literal notranslate"><span class="pre">/tmp/emscripten_temp/</span></code>):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1"># On Windows, use &quot;set&quot; to set and un-set the EMCC_DEBUG environment variable:</span>
+</span><span data-line="2"><span class="nb">set</span><span class="w"> </span><span class="nv">EMCC_DEBUG</span><span class="o">=</span><span class="m">1</span>
+</span><span data-line="3">test/runner<span class="w"> </span>test_hello_world
+</span><span data-line="4"><span class="nb">set</span><span class="w"> </span><span class="nv">EMCC_DEBUG</span><span class="o">=</span><span class="m">0</span>
+</span><span data-line="5">
+</span><span data-line="6"><span class="c1"># On Linux, you can do this all in one line</span>
+</span><span data-line="7"><span class="nv">EMCC_DEBUG</span><span class="o">=</span><span class="m">1</span><span class="w"> </span>test/runner<span class="w"> </span>test_hello_world
+</span><span data-line="8">
+</span><span data-line="9"><span class="c1"># EMCC_DEBUG=2 generates additional debug information.</span>
+</span><span data-line="10"><span class="nv">EMCC_DEBUG</span><span class="o">=</span><span class="m">2</span><span class="w"> </span>test/runner<span class="w"> </span>test_hello_world
+</span></pre></div>
+</div>
+<p>If you run just one a single test (or one test at at time using <code class="docutils literal notranslate"><span class="pre">-j1</span></code>) the test
+output can always be found in <code class="docutils literal notranslate"><span class="pre">out/test</span></code>.  This is useful for inspecting test
+outputs as well as temporary files generated by the test.  By default, the temporary
+directory will be cleaned between each test run, but you can add <code class="docutils literal notranslate"><span class="pre">--no-clean</span></code> to
+avoid this.</p>
+<p>The <a class="reference internal" href="../porting/Debugging.html#debugging"><span class="std std-ref">Debugging</span></a> topic provides more guidance on how to debug
+Emscripten-generated code.</p>
+</section>
+</section>
+
+        </article><button class="back-to-top" type="button">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+  </svg>
+  <span>回到顶部</span>
+</button><div class="navigation flex print:hidden"><div class="navigation-prev">
+    <a href="Tutorial.html">
+      <i class="i-lucide chevron-left"></i>
+      <div class="page-info">
+        <span>上一章</span><div class="title">Emscripten Tutorial</div></div>
+    </a>
+  </div><div class="navigation-next">
+    <a href="bug_reports.html">
+      <div class="page-info">
+        <span>下一章</span>
+        <div class="title">Bug Reporting</div>
+      </div>
+      <i class="i-lucide chevron-right"></i>
+    </a>
+  </div></div></div>
+    </div>
+  </main>
+</div>
+<footer class="sy-foot">
+  <div class="sy-foot-inner sy-container mx-auto">
+    <div class="sy-foot-reserved md:flex justify-between items-center">
+      <div class="sy-foot-copyright"><p>Copyright &copy; 2015, Emscripten Contributors.</p>
+  
+  <p>
+    Made with
+    
+    <a href="https://www.sphinx-doc.org/">Sphinx</a> and
+    
+    <a href="https://shibuya.lepture.com">Shibuya theme</a>.
+  </p>
+</div>
+      <div class="sy-foot-socials">
+<a href="https://github.com/emscripten-core/emscripten" aria-label="GitHub">
+  <iconify-icon icon="simple-icons:github"></iconify-icon>
+</a>
+<a href="https://discord.gg/53u3EKq" aria-label="Discord">
+  <iconify-icon icon="simple-icons:discord"></iconify-icon>
+</a></div>
+    </div>
+  </div>
+</footer>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=c4790338"></script>
+      <script src="../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/translations.js?v=beaddf03"></script>
+      <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../../_static/shibuya.js?v=50760d75"></script></body>
+</html>

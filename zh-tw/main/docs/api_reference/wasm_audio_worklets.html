@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="zh-TW" data-accent-color="violet" data-content_root="../../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Wasm Audio Worklets API - Emscripten 6.0.1-git (dev) 說明文件</title><link rel="shortcut icon" href="../../_static/emscripten.ico"/><link rel="index" title="索引" href="../../genindex.html" /><link rel="search" title="搜尋" href="../../search.html" /><link rel="next" title="Advanced APIs" href="advanced-apis.html" /><link rel="prev" title="Wasm Workers API" href="wasm_workers.html" />
+      <link rel="canonical" href="https://projects.localizethedocs.org/emscripten-docs-l10n/docs/api_reference/wasm_audio_worklets.html" /><script>
+    function setColorMode(t){let e=document.documentElement;e.setAttribute("data-color-mode",t);let a=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,s=t;"auto"===t&&(s=a?"dark":"light"),"light"===s?(e.classList.remove("dark"),e.classList.add("light")):(e.classList.remove("light"),e.classList.add("dark"))}
+    setColorMode(localStorage._theme||"auto");
+  </script><link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=ad592e98" />
+    <link rel="stylesheet" type="text/css" href="../../_static/shibuya.css?v=9454f7d5" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link media="print" rel="stylesheet" type="text/css" href="../../_static/print.css?v=20ff2c19" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sy-f-text: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+  --sy-f-heading: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+}
+</style>
+    
+
+<script type="text/javascript" src="../../ltd-provenance.js"></script>
+<script type="text/javascript" src="../../ltd-current.js"></script>
+<script type="text/javascript" src="../../../../ltd-config.js"></script>
+<script type="text/javascript" src="../../../../ltd-flyout.js"></script>
+
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://projects.localizethedocs.org/emscripten-docs-l10n/docs/api_reference/wasm_audio_worklets.html"/>
+  <meta property="og:title" content="Wasm Audio Worklets API"/>
+    <meta name="twitter:card" content="summary"/>
+  </head>
+<body><div class="sy-head">
+  <div class="sy-head-blur"></div>
+  <div class="sy-head-inner sy-container mx-auto">
+    <a class="sy-head-brand" href="../../index.html">
+      <img class="light-logo" src="../../_static/emscripten_logo_full.svg" alt="Emscripten" height="28" loading="lazy" />
+      <img class="dark-logo" src="../../_static/emscripten_logo_full.svg" alt="Emscripten" height="28" loading="lazy" />
+      <strong>Emscripten</strong>
+    </a>
+    <div class="sy-head-nav" id="head-nav">
+      <nav class="sy-head-links"><ul>
+      <li class="link"><a class="js-menu" href="../index.html" id="nav-trigger-1" aria-controls="nav-children-1">
+            <span>文件</span>
+            <i class="i-lucide chevron-down"></i>
+          </a>
+        <ul id="nav-children-1" aria-labelledby="nav-trigger-1"><li><a href="../getting_started/downloads.html">下載</a></li><li><a href="../getting_started/bug_reports.html">回報臭蟲</a></li><li><a href="../introducing_emscripten/emscripten_license.html">授權條款</a></li><li><a href="../contributing/contributing.html">參與貢獻</a></li><li><a href="../introducing_emscripten/release_notes.html">發行備註</a></li></ul>
+      </li>
+      <li class="link"><a class="js-menu" href="../introducing_emscripten/community.html" id="nav-trigger-2" aria-controls="nav-children-2">
+            <span>社群</span>
+            <i class="i-lucide chevron-down"></i>
+          </a>
+        <ul id="nav-children-2" aria-labelledby="nav-trigger-2"><li><a href="https://groups.google.com/forum/#!forum/emscripten-discuss">郵件列表</a></li><li><a href="https://github.com/emscripten-core/emscripten/wiki">維基</a></li></ul>
+      </li></ul></nav>
+      <div class="sy-head-extra flex items-center print:hidden"><form class="searchbox flex items-center" action="../../search.html" method="get">
+  <input type="text" name="q" placeholder="搜尋" />
+  <kbd>/</kbd>
+</form><div class="sy-head-socials">
+  <a href="https://github.com/emscripten-core/emscripten" aria-label="GitHub">
+    <iconify-icon icon="simple-icons:github"></iconify-icon>
+  </a>
+  <a href="https://discord.gg/53u3EKq" aria-label="Discord">
+    <iconify-icon icon="simple-icons:discord"></iconify-icon>
+  </a></div></div>
+    </div>
+    <div class="sy-head-actions flex items-center shrink-0 print:hidden"><button class="js-theme theme-switch flex items-center"
+data-aria-auto="切換到亮色模式"
+data-aria-light="切換到暗黑模式"
+data-aria-dark="切換到自動模式">
+<i class="i-lucide theme-icon"></i>
+</button><button class="md:hidden flex items-center js-menu" aria-label="Menu" type="button" aria-controls="head-nav" aria-expanded="false">
+        <div class="hamburger">
+          <span class="hamburger_1"></span>
+          <span class="hamburger_2"></span>
+          <span class="hamburger_3"></span>
+        </div>
+      </button>
+    </div>
+  </div>
+</div>
+<div class="sy-page sy-container flex mx-auto">
+  <aside id="lside" class="sy-lside md:w-72 md:shrink-0 print:hidden">
+    <div class="sy-lside-inner md:sticky">
+      <div class="sy-scrollbar p-6"><div class="sidebar-links">
+  <ul>
+    <li><a class="icon-link" href="https://github.com/emscripten-core/emscripten/discussions">
+  <span class="icon">
+    <svg viewBox="0 0 24 24" fill="none">
+      <path fill="var(--accent-9)" fill-rule="evenodd" clip-rule="evenodd" d="M11 5a6 6 0 0 0-4.687 9.746c.215.27.315.62.231.954l-.514 2.058a1 1 0 0 0 1.485 1.1l2.848-1.71c.174-.104.374-.15.576-.148H13a6 6 0 0 0 0-12h-2Z"/>
+      <circle fill="white" cx="12" cy="11" r="1"/>
+      <circle fill="white" cx="9" cy="11" r="1"/>
+      <circle fill="white" cx="15" cy="11" r="1"/>
+    </svg>
+  </span>
+  <span class="text">討論</span>
+</a></li>
+  </ul>
+</div>
+        <div class="globaltoc" data-expand-depth="0"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introducing_emscripten/index.html">Introducing Emscripten</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../introducing_emscripten/about_emscripten.html">關於 Emscripten</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../introducing_emscripten/community.html">Community</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../introducing_emscripten/emscripten_license.html">Open Source License</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../introducing_emscripten/release_notes.html">Release Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../introducing_emscripten/Talks-and-Publications.html">Talks and Publications</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/downloads.html">Download and install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/Tutorial.html">Emscripten Tutorial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/test-suite.html">Emscripten Test Suite</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/bug_reports.html">Bug Reporting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/FAQ.html">FAQ</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../compiling/index.html">Compiling and Running Projects</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../compiling/Building-Projects.html">建置專案</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../compiling/WebAssembly.html">Building to WebAssembly</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../compiling/Modularized-Output.html">Modularized Output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../compiling/Dynamic-Linking.html">動態連結</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../compiling/Running-html-files-with-emrun.html">Running HTML files with emrun</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../compiling/Deploying-Pages.html">Deploying Emscripten Compiled Pages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../compiling/GitLab.html">Building and Deploying on GitLab</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../compiling/Contrib-Ports.html">Emscripten Contrib Ports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../compiling/CrossOriginStorage.html">Cross-Origin Storage (COS)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../porting/index.html">Porting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../porting/guidelines/index.html">Code Portability and Limitations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../porting/guidelines/portability_guidelines.html">Portability Guidelines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../porting/guidelines/api_limitations.html">API Limitations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../porting/guidelines/function_pointer_issues.html">Function Pointer Issues</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../porting/guidelines/browser_limitations.html">Specific Browser Limitations</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/emscripten-runtime-environment.html">Emscripten Runtime Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/connecting_cpp_and_javascript/index.html">Connecting C++ and JavaScript</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../porting/connecting_cpp_and_javascript/Interacting-with-code.html">Interacting with code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../porting/connecting_cpp_and_javascript/embind.html">Embind</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../porting/connecting_cpp_and_javascript/WebIDL-Binder.html">WebIDL Binder</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/files/index.html">Files and File Systems</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../porting/files/file_systems_overview.html">File System Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../porting/files/packaging_files.html">Packaging Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../porting/files/Synchronous-Virtual-XHR-Backed-File-System-Usage.html">Synchronous Virtual XHR Backed File System Usage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/multimedia_and_graphics/index.html">Multimedia and Graphics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../porting/multimedia_and_graphics/WebGPU-support.html">Using WebGPU in Emscripten</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../porting/multimedia_and_graphics/EGL-Support-in-Emscripten.html">EGL Support in Emscripten</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../porting/multimedia_and_graphics/OpenGL-support.html">OpenGL support in Emscripten</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/Audio.html">Audio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/Debugging.html">Debugging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/pthreads.html">Pthreads support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/networking.html">Networking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/simd.html">Using SIMD with WebAssembly</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/exceptions.html">C++ Exceptions Support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/setjmp-longjmp.html">C setjmp-longjmp Support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/asyncify.html">Asynchronous Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../compiling/Building-Projects.html">建置專案</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">API 參考</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="emscripten.h.html">emscripten.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="html5.h.html">html5.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="console.h.html">console.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="preamble.js.html">preamble.js</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Filesystem-API.html">File System API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fetch.html">Fetch API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module.html">Module object</a></li>
+<li class="toctree-l2"><a class="reference internal" href="val.h.html">val.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bind.h.html">bind.h (under-construction)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trace.h.html">trace.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fiber.h.html">fiber.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="proxying.h.html">proxying.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stack.h.html">stack.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wasm_workers.html">Wasm Workers API</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Wasm Audio Worklets API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="advanced-apis.html">Advanced APIs</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tools_reference/index.html">Tools Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tools_reference/emsdk.html">Emscripten SDK (emsdk)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools_reference/emcc.html">Emscripten Compiler Frontend (emcc)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools_reference/emcmdprompt.html">Emscripten Windows Command Prompt (emcmdprompt.bat)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools_reference/settings_reference.html">Emscripten Compiler Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools_reference/settings_reference.html#deprecated-settings">Deprecated Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools_reference/settings_reference.html#legacy-settings">Legacy Settings</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../optimizing/Optimizing-Code.html">Optimizing Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../optimizing/Optimizing-WebGL.html">Optimizing WebGL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debugging/Sanitizers.html">Debugging with Sanitizers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../building_from_source/index.html">Building Emscripten from Source</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../building_from_source/toolchain_what_is_needed.html">Emscripten Toolchain Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../building_from_source/configuring_emscripten_settings.html">Configuring Emscripten Settings when Manually Building from Source</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../building_from_source/verify_emscripten_environment.html">Verifying the Emscripten Development Environment</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing to Emscripten</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/contributing.html">Contributing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/developers_guide.html">Developer’s Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/AUTHORS.html">AUTHORS</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../optimizing/Profiling-Toolchain.html">Profiling the Toolchain</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../site/about.html">About this site</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../genindex.html">索引</a></li>
+</ul>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="lside-overlay js-menu" role="button" aria-label="Close left sidebar" aria-controls="lside" aria-expanded="false"></div>
+  <aside id="rside" class="sy-rside pb-3 w-64 shrink-0 order-last">
+    <button class="rside-close js-menu xl:hidden" aria-label="Close Table of Contents" type="button" aria-controls="rside" aria-expanded="false">
+      <i class="i-lucide close"></i>
+    </button>
+    <div class="sy-scrollbar sy-rside-inner px-6 xl:top-16 xl:sticky xl:pl-0 pt-6 pb-4"><div class="localtoc"><h3>該頁內容</h3><ul>
+<li><a class="reference internal" href="#development-overview">Development Overview</a></li>
+<li><a class="reference internal" href="#programming-example">Programming Example</a></li>
+<li><a class="reference internal" href="#synchronizing-audio-thread-with-the-main-thread">Synchronizing audio thread with the main thread</a></li>
+<li><a class="reference internal" href="#more-examples">More Examples</a></li>
+</ul>
+</div><a class="js-repo-stats repo-stats flex items-center" href="https://github.com/emscripten-core/emscripten"
+  data-type="github" data-user="emscripten-core" data-repo="emscripten">
+  <span class="w-8 flex items-center justify-around shrink-0 text-3xl">
+    <iconify-icon icon="simple-icons:github"></iconify-icon>
+  </span>
+  <span class="flex-grow px-2 break-all">
+    
+    
+      <span>emscripten</span>
+    
+    <span class="flex text-sm repo-stats-count">
+      <span class="flex items-center pr-3">
+        <iconify-icon icon="lucide:star"></iconify-icon>
+        <strong class="js-repo-stars ml-1">0</strong>
+      </span>
+      <span class="flex items-center">
+        <iconify-icon icon="lucide:git-fork"></iconify-icon>
+        <strong class="js-repo-forks ml-1">0</strong>
+      </span>
+    </span>
+  </span>
+</a><div class="edit-this-page">
+  <a href="https://github.com/emscripten-core/emscripten/blob/main/site/source/docs/api_reference/wasm_audio_worklets.rst">編輯此頁面</a>
+</div><div id="ethical-ad-placement" data-ea-publisher="readthedocs"></div></div>
+  </aside>
+  <div class="rside-overlay js-menu" role="button" aria-label="Close Table of Contents" aria-controls="rside" aria-expanded="false"></div>
+  <main class="sy-main w-full max-sm:max-w-full print:pt-6">
+<div class="sy-breadcrumbs" role="navigation">
+  <div class="sy-breadcrumbs-inner flex items-center">
+    <div class="md:hidden mr-3">
+      <button class="js-menu" aria-label="Menu" type="button" aria-controls="lside" aria-expanded="false">
+        <i class="i-lucide menu"></i>
+      </button>
+    </div>
+    <ol class="flex-1" itemscope itemtype="https://schema.org/BreadcrumbList"><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="../../index.html"><span itemprop="name">Emscripten</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="1" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="index.html"><span itemprop="name">API 參考</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="2" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <strong itemprop="name">Wasm Audio Worklets API</strong>
+        <meta itemprop="position" content="3" />
+      </li></ol>
+    <div class="xl:hidden ml-1">
+      <button class="js-menu" aria-label="Show table of contents" type="button" aria-controls="rside"
+        aria-expanded="false">
+        <i class="i-lucide outdent"></i>
+      </button>
+    </div>
+  </div>
+</div><div class="flex flex-col break-words justify-between">
+      <div class="relative min-w-0 max-w-6xl px-6 pb-6 pt-8 xl:px-12">
+  <article class="yue" role="main">
+          <section id="wasm-audio-worklets-api">
+<span id="wasm-audio-worklets"></span><h1>Wasm Audio Worklets API<a class="headerlink" href="#wasm-audio-worklets-api" title="連結到這個標頭">¶</a></h1>
+<p>The AudioWorklet extension to the <a class="reference external" href="https://webaudio.github.io/web-audio-api/#AudioWorklet">Web Audio API specification</a> enables web sites
+to implement custom AudioWorkletProcessor Web Audio graph node types.</p>
+<p>These custom processor nodes process audio data in real-time as part of the
+audio graph processing flow, and enable developers to write low latency
+sensitive audio processing code in JavaScript.</p>
+<p>The Emscripten Wasm Audio Worklets API is an Emscripten-specific integration
+of these AudioWorklet nodes to WebAssembly. Wasm Audio Worklets enables
+developers to implement AudioWorklet processing nodes in C/C++ code that
+compile down to WebAssembly, rather than using JavaScript for the task.</p>
+<p>Developing AudioWorkletProcessors in WebAssembly provides the benefit of
+improved performance compared to JavaScript, and the Emscripten
+Wasm Audio Worklets system runtime has been carefully developed to guarantee
+that no temporary JavaScript level VM garbage will be generated, eliminating
+the possibility of GC pauses from impacting audio synthesis performance.</p>
+<p>Audio Worklets API is based on the Wasm Workers feature. It is possible to
+also enable the <cite>-pthread</cite> option while targeting Audio Worklets, but the
+audio worklets will always run in a Wasm Worker, and not in a Pthread.</p>
+<div class="admonition note">
+<p class="admonition-title">備註</p>
+<p>If you want to load an emscripten-generated program into an AudioContext that
+you have created yourself, without depending on shared memory or
+<a class="reference internal" href="../tools_reference/settings_reference.html#wasm-workers"><span class="std std-ref">WASM_WORKERS</span></a> you can add <code class="docutils literal notranslate"><span class="pre">worklet</span></code> to <a class="reference internal" href="../tools_reference/settings_reference.html#environment"><span class="std std-ref">ENVIRONMENT</span></a>.  In this
+mode, because Audio Worklets do not have any kind of fetch API, you will need
+either use <cite>-sSINGLE_FILE</cite> (to embed the Wasm file), or use a custom
+<cite>instantiateWasm</cite> to supply the Wasm module yourself (e.g. via <cite>postMessage</cite>).</p>
+</div>
+<section id="development-overview">
+<h2>Development Overview<a class="headerlink" href="#development-overview" title="連結到這個標頭">¶</a></h2>
+<p>Authoring Wasm Audio Worklets is similar to developing Audio Worklets
+API based applications in JS (see <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API/Using_AudioWorklet">MDN: Using AudioWorklets</a>), with the exception that users will not manually implement
+the JS code for the ScriptProcessorNode files in the AudioWorkletGlobalScope.
+This is managed automatically by the Emscripten Wasm AudioWorklets runtime.</p>
+<p>Instead, application developers will need to implement a small amount of JS &lt;-&gt; Wasm
+(C/C++) interop to interact with the AudioContext and AudioNodes from Wasm.</p>
+<p>Audio Worklets operate on a two layer 「class type &amp; its instance」 design:
+first one defines one or more node types (or classes) called AudioWorkletProcessors,
+and then, these processors are instantiated one or more times in the audio
+processing graph as AudioWorkletNodes.</p>
+<p>Once a class type is instantiated on the Web Audio graph and the graph is
+running, a C/C++ function pointer callback will be invoked for each N samples
+of the processed audio stream that flows through the node (where N is is the
+number of samples per channel, exposed as <code class="docutils literal notranslate"><span class="pre">AudioSampleFrame</span></code>’s
+<code class="docutils literal notranslate"><span class="pre">samplesPerChannel</span></code>, always 128 in the 1.0 Web Audio API, though with the 1.1
+API <code class="docutils literal notranslate"><span class="pre">emscripten_create_audio_context()</span></code> accepts a <code class="docutils literal notranslate"><span class="pre">renderSizeHint</span></code> option).</p>
+<p>This callback will be executed on a dedicated separate audio processing
+thread with real-time processing priority. Each Web Audio context will
+utilize only a single audio processing thread. That is, even if there are
+multiple audio node instances (maybe from multiple different audio processors),
+these will all share the same dedicated audio thread on the AudioContext,
+and will not run in a separate thread of their own each.</p>
+<p>Note: the audio worklet node processing is pull-mode callback based. Audio
+Worklets do not allow the creation of general purpose real-time prioritized
+threads. The audio callback code should execute as quickly as possible and
+be non-blocking. In other words, spinning a custom <cite>for(;;)</cite> loop is not
+possible.</p>
+</section>
+<section id="programming-example">
+<h2>Programming Example<a class="headerlink" href="#programming-example" title="連結到這個標頭">¶</a></h2>
+<p>To get hands-on experience with programming Wasm Audio Worklets, let’s create a
+simple audio node that outputs random noise through its output channels.</p>
+<p>1. First, we will create a Web Audio context in C/C++ code. This is achieved
+via the <code class="docutils literal notranslate"><span class="pre">emscripten_create_audio_context()</span></code> function. In a larger application
+that integrates existing Web Audio libraries, you may already have an
+<code class="docutils literal notranslate"><span class="pre">AudioContext</span></code> created via some other library, in which case you would instead
+register that context to be visible to WebAssembly by calling the function
+<code class="docutils literal notranslate"><span class="pre">emscriptenRegisterAudioObject()</span></code>.</p>
+<p>Then, we will instruct the Emscripten runtime to initialize a Wasm Audio Worklet
+thread scope on this context. The code to achieve these tasks looks like:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;emscripten/webaudio.h&gt;</span>
+</span><span data-line="2">
+</span><span data-line="3"><span class="kt">uint8_t</span><span class="w"> </span><span class="n">audioThreadStack</span><span class="p">[</span><span class="mi">4096</span><span class="p">];</span>
+</span><span data-line="4">
+</span><span data-line="5"><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span>
+</span><span data-line="6"><span class="p">{</span>
+</span><span data-line="7"><span class="w">  </span><span class="n">EMSCRIPTEN_WEBAUDIO_T</span><span class="w"> </span><span class="n">context</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">emscripten_create_audio_context</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span><span data-line="8">
+</span><span data-line="9"><span class="w">  </span><span class="n">emscripten_start_wasm_audio_worklet_thread_async</span><span class="p">(</span><span class="n">context</span><span class="p">,</span><span class="w"> </span><span class="n">audioThreadStack</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">audioThreadStack</span><span class="p">),</span>
+</span><span data-line="10"><span class="w">                                                   </span><span class="o">&amp;</span><span class="n">AudioThreadInitialized</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+</span><span data-line="11"><span class="p">}</span>
+</span></pre></div>
+</div>
+<p>2. When the worklet thread context has been initialized, we are ready to define our
+own noise generator AudioWorkletProcessor node type:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kt">void</span><span class="w"> </span><span class="nf">AudioThreadInitialized</span><span class="p">(</span><span class="n">EMSCRIPTEN_WEBAUDIO_T</span><span class="w"> </span><span class="n">audioContext</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">success</span><span class="p">,</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">userData</span><span class="p">)</span>
+</span><span data-line="2"><span class="p">{</span>
+</span><span data-line="3"><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">success</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="p">;</span><span class="w"> </span><span class="c1">// Check browser console in a debug build for detailed errors</span>
+</span><span data-line="4"><span class="w">  </span><span class="n">WebAudioWorkletProcessorCreateOptions</span><span class="w"> </span><span class="n">opts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="5"><span class="w">    </span><span class="p">.</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;noise-generator&quot;</span><span class="p">,</span>
+</span><span data-line="6"><span class="w">  </span><span class="p">};</span>
+</span><span data-line="7"><span class="w">  </span><span class="n">emscripten_create_wasm_audio_worklet_processor_async</span><span class="p">(</span><span class="n">audioContext</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">opts</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">AudioWorkletProcessorCreated</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+</span><span data-line="8"><span class="p">}</span>
+</span></pre></div>
+</div>
+<p>3. After the processor has initialized, we can now instantiate and connect it as a node on the graph. Since on
+web pages audio playback can only be initiated as a response to user input, we will also register an event handler
+which resumes the audio context when the user clicks on the DOM Canvas element that exists on the page.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kt">void</span><span class="w"> </span><span class="nf">AudioWorkletProcessorCreated</span><span class="p">(</span><span class="n">EMSCRIPTEN_WEBAUDIO_T</span><span class="w"> </span><span class="n">audioContext</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">success</span><span class="p">,</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">userData</span><span class="p">)</span>
+</span><span data-line="2"><span class="p">{</span>
+</span><span data-line="3"><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">success</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="p">;</span><span class="w"> </span><span class="c1">// Check browser console in a debug build for detailed errors</span>
+</span><span data-line="4">
+</span><span data-line="5"><span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">outputChannelCounts</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">};</span>
+</span><span data-line="6"><span class="w">  </span><span class="n">EmscriptenAudioWorkletNodeCreateOptions</span><span class="w"> </span><span class="n">options</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="7"><span class="w">    </span><span class="p">.</span><span class="n">numberOfInputs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+</span><span data-line="8"><span class="w">    </span><span class="p">.</span><span class="n">numberOfOutputs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+</span><span data-line="9"><span class="w">    </span><span class="p">.</span><span class="n">outputChannelCounts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">outputChannelCounts</span>
+</span><span data-line="10"><span class="w">  </span><span class="p">};</span>
+</span><span data-line="11">
+</span><span data-line="12"><span class="w">  </span><span class="c1">// Create node</span>
+</span><span data-line="13"><span class="w">  </span><span class="n">EMSCRIPTEN_WEBAUDIO_T</span><span class="w"> </span><span class="n">wasmAudioWorklet</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">emscripten_create_wasm_audio_worklet_node</span><span class="p">(</span><span class="n">audioContext</span><span class="p">,</span>
+</span><span data-line="14"><span class="w">                                                  </span><span class="s">&quot;noise-generator&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">options</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">GenerateNoise</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+</span><span data-line="15">
+</span><span data-line="16"><span class="w">  </span><span class="c1">// Connect it to audio context destination</span>
+</span><span data-line="17"><span class="w">  </span><span class="n">emscripten_audio_node_connect</span><span class="p">(</span><span class="n">wasmAudioWorklet</span><span class="p">,</span><span class="w"> </span><span class="n">audioContext</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+</span><span data-line="18">
+</span><span data-line="19"><span class="w">  </span><span class="c1">// Resume context on mouse click</span>
+</span><span data-line="20"><span class="w">  </span><span class="n">emscripten_set_click_callback</span><span class="p">(</span><span class="s">&quot;canvas&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="p">)</span><span class="n">audioContext</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">OnCanvasClick</span><span class="p">);</span>
+</span><span data-line="21"><span class="p">}</span>
+</span></pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>The code to resume the audio context on click looks like this:</p></li>
+</ol>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kt">bool</span><span class="w"> </span><span class="nf">OnCanvasClick</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">eventType</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">EmscriptenMouseEvent</span><span class="w"> </span><span class="o">*</span><span class="n">mouseEvent</span><span class="p">,</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">userData</span><span class="p">)</span>
+</span><span data-line="2"><span class="p">{</span>
+</span><span data-line="3"><span class="w">  </span><span class="n">EMSCRIPTEN_WEBAUDIO_T</span><span class="w"> </span><span class="n">audioContext</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">EMSCRIPTEN_WEBAUDIO_T</span><span class="p">)</span><span class="n">userData</span><span class="p">;</span>
+</span><span data-line="4"><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">emscripten_audio_context_state</span><span class="p">(</span><span class="n">audioContext</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">AUDIO_CONTEXT_STATE_RUNNING</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="5"><span class="w">    </span><span class="n">emscripten_resume_audio_context_sync</span><span class="p">(</span><span class="n">audioContext</span><span class="p">);</span>
+</span><span data-line="6"><span class="w">  </span><span class="p">}</span>
+</span><span data-line="7"><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+</span><span data-line="8"><span class="p">}</span>
+</span></pre></div>
+</div>
+<ol class="arabic simple" start="5">
+<li><p>Finally we can implement the audio callback that is to generate the noise:</p></li>
+</ol>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;emscripten/em_math.h&gt;</span>
+</span><span data-line="2">
+</span><span data-line="3"><span class="kt">bool</span><span class="w"> </span><span class="nf">GenerateNoise</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">numInputs</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">AudioSampleFrame</span><span class="w"> </span><span class="o">*</span><span class="n">inputs</span><span class="p">,</span>
+</span><span data-line="4"><span class="w">                      </span><span class="kt">int</span><span class="w"> </span><span class="n">numOutputs</span><span class="p">,</span><span class="w"> </span><span class="n">AudioSampleFrame</span><span class="w"> </span><span class="o">*</span><span class="n">outputs</span><span class="p">,</span>
+</span><span data-line="5"><span class="w">                      </span><span class="kt">int</span><span class="w"> </span><span class="n">numParams</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">AudioParamFrame</span><span class="w"> </span><span class="o">*</span><span class="n">params</span><span class="p">,</span>
+</span><span data-line="6"><span class="w">                      </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">userData</span><span class="p">)</span>
+</span><span data-line="7"><span class="p">{</span>
+</span><span data-line="8"><span class="w">  </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">numOutputs</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span>
+</span><span data-line="9"><span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">outputs</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">samplesPerChannel</span><span class="o">*</span><span class="n">outputs</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">numberOfChannels</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">j</span><span class="p">)</span>
+</span><span data-line="10"><span class="w">      </span><span class="n">outputs</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">data</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">emscripten_random</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">0.2</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">0.1</span><span class="p">;</span><span class="w"> </span><span class="c1">// Warning: scale down audio volume by factor of 0.2, raw noise can be really loud otherwise</span>
+</span><span data-line="11">
+</span><span data-line="12"><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"> </span><span class="c1">// Keep the graph output going</span>
+</span><span data-line="13"><span class="p">}</span>
+</span></pre></div>
+</div>
+<p>And that’s it! Compile the code with the linker flags <code class="docutils literal notranslate"><span class="pre">-sAUDIO_WORKLET</span> <span class="pre">-sWASM_WORKERS</span></code> to enable targeting AudioWorklets.</p>
+</section>
+<section id="synchronizing-audio-thread-with-the-main-thread">
+<h2>Synchronizing audio thread with the main thread<a class="headerlink" href="#synchronizing-audio-thread-with-the-main-thread" title="連結到這個標頭">¶</a></h2>
+<p>Wasm Audio Worklets API builds on top of the Emscripten Wasm Workers feature. This means that the Wasm Audio Worklet thread is modeled as if it was a Wasm Worker thread.</p>
+<p>To synchronize information between an Audio Worklet Node and other threads in the application, there are three options:</p>
+<ol class="arabic">
+<li><p>Leverage the Web Audio 「AudioParams」 model. Each Audio Worklet Processor type is instantiated with a custom defined set of audio parameters that can affect the audio computation at sample precise accuracy. These parameters are passed in the <code class="docutils literal notranslate"><span class="pre">params</span></code> array into the audio processing function.</p>
+<p>The main browser thread that created the Web Audio context can adjust the values of these parameters whenever desired. See <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/API/AudioParam/setValueAtTime">MDN function: setValueAtTime</a>.</p>
+</li>
+<li><p>Data can be shared with the Audio Worklet thread using GCC/Clang lock-free atomics operations, Emscripten atomics operations and the Wasm Worker API thread synchronization primitives. See <a class="reference internal" href="../tools_reference/settings_reference.html#wasm-workers"><span class="std std-ref">WASM_WORKERS</span></a> for more information.</p></li>
+<li><p>Utilize the <code class="docutils literal notranslate"><span class="pre">emscripten_audio_worklet_post_function_*()</span></code> family of event passing functions. These functions operate similar to the <code class="docutils literal notranslate"><span class="pre">emscripten_wasm_worker_post_function_*()</span></code> functions. They enable a <code class="docutils literal notranslate"><span class="pre">postMessage()</span></code> style of communication, where the audio worklet thread and the main browser thread can send messages (function call dispatches) to each other.</p></li>
+</ol>
+</section>
+<section id="more-examples">
+<h2>More Examples<a class="headerlink" href="#more-examples" title="連結到這個標頭">¶</a></h2>
+<p>See the directory tests/webaudio/ for more code examples on Web Audio API and Wasm AudioWorklets.</p>
+</section>
+</section>
+
+        </article><button class="back-to-top" type="button">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+  </svg>
+  <span>回到頂部</span>
+</button><div class="navigation flex print:hidden"><div class="navigation-prev">
+    <a href="wasm_workers.html">
+      <i class="i-lucide chevron-left"></i>
+      <div class="page-info">
+        <span>上一頁</span><div class="title">Wasm Workers API</div></div>
+    </a>
+  </div><div class="navigation-next">
+    <a href="advanced-apis.html">
+      <div class="page-info">
+        <span>下一頁</span>
+        <div class="title">Advanced APIs</div>
+      </div>
+      <i class="i-lucide chevron-right"></i>
+    </a>
+  </div></div></div>
+    </div>
+  </main>
+</div>
+<footer class="sy-foot">
+  <div class="sy-foot-inner sy-container mx-auto">
+    <div class="sy-foot-reserved md:flex justify-between items-center">
+      <div class="sy-foot-copyright"><p>Copyright &copy; 2015, Emscripten Contributors.</p>
+  
+  <p>
+    Made with
+    
+    <a href="https://www.sphinx-doc.org/">Sphinx</a> and
+    
+    <a href="https://shibuya.lepture.com">Shibuya theme</a>.
+  </p>
+</div>
+      <div class="sy-foot-socials">
+<a href="https://github.com/emscripten-core/emscripten" aria-label="GitHub">
+  <iconify-icon icon="simple-icons:github"></iconify-icon>
+</a>
+<a href="https://discord.gg/53u3EKq" aria-label="Discord">
+  <iconify-icon icon="simple-icons:discord"></iconify-icon>
+</a></div>
+    </div>
+  </div>
+</footer>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=b46623cf"></script>
+      <script src="../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/translations.js?v=f1e884e3"></script>
+      <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../../_static/shibuya.js?v=50760d75"></script></body>
+</html>

@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-accent-color="violet" data-content_root="../../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Fetch API - Emscripten 6.0.1-git (dev) 文档</title><link rel="shortcut icon" href="../../_static/emscripten.ico"/><link rel="index" title="索引" href="../../genindex.html" /><link rel="search" title="搜索" href="../../search.html" /><link rel="next" title="Module object" href="module.html" /><link rel="prev" title="File System API" href="Filesystem-API.html" />
+      <link rel="canonical" href="https://projects.localizethedocs.org/emscripten-docs-l10n/docs/api_reference/fetch.html" /><script>
+    function setColorMode(t){let e=document.documentElement;e.setAttribute("data-color-mode",t);let a=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,s=t;"auto"===t&&(s=a?"dark":"light"),"light"===s?(e.classList.remove("dark"),e.classList.add("light")):(e.classList.remove("light"),e.classList.add("dark"))}
+    setColorMode(localStorage._theme||"auto");
+  </script><link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=ad592e98" />
+    <link rel="stylesheet" type="text/css" href="../../_static/shibuya.css?v=9454f7d5" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link media="print" rel="stylesheet" type="text/css" href="../../_static/print.css?v=20ff2c19" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sy-f-text: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+  --sy-f-heading: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+}
+</style>
+    
+
+<script type="text/javascript" src="../../ltd-provenance.js"></script>
+<script type="text/javascript" src="../../ltd-current.js"></script>
+<script type="text/javascript" src="../../../../ltd-config.js"></script>
+<script type="text/javascript" src="../../../../ltd-flyout.js"></script>
+
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://projects.localizethedocs.org/emscripten-docs-l10n/docs/api_reference/fetch.html"/>
+  <meta property="og:title" content="Fetch API"/>
+    <meta name="twitter:card" content="summary"/>
+  </head>
+<body><div class="sy-head">
+  <div class="sy-head-blur"></div>
+  <div class="sy-head-inner sy-container mx-auto">
+    <a class="sy-head-brand" href="../../index.html">
+      <img class="light-logo" src="../../_static/emscripten_logo_full.svg" alt="Emscripten" height="28" loading="lazy" />
+      <img class="dark-logo" src="../../_static/emscripten_logo_full.svg" alt="Emscripten" height="28" loading="lazy" />
+      <strong>Emscripten</strong>
+    </a>
+    <div class="sy-head-nav" id="head-nav">
+      <nav class="sy-head-links"><ul>
+      <li class="link"><a class="js-menu" href="../index.html" id="nav-trigger-1" aria-controls="nav-children-1">
+            <span>Documentation</span>
+            <i class="i-lucide chevron-down"></i>
+          </a>
+        <ul id="nav-children-1" aria-labelledby="nav-trigger-1"><li><a href="../getting_started/downloads.html">Downloads</a></li><li><a href="../getting_started/bug_reports.html">Report Bug</a></li><li><a href="../introducing_emscripten/emscripten_license.html">Licensing</a></li><li><a href="../contributing/contributing.html">Contributing</a></li><li><a href="../introducing_emscripten/release_notes.html">Release Notes</a></li></ul>
+      </li>
+      <li class="link"><a class="js-menu" href="../introducing_emscripten/community.html" id="nav-trigger-2" aria-controls="nav-children-2">
+            <span>Community</span>
+            <i class="i-lucide chevron-down"></i>
+          </a>
+        <ul id="nav-children-2" aria-labelledby="nav-trigger-2"><li><a href="https://groups.google.com/forum/#!forum/emscripten-discuss">Mailing List</a></li><li><a href="https://github.com/emscripten-core/emscripten/wiki">Wiki</a></li></ul>
+      </li></ul></nav>
+      <div class="sy-head-extra flex items-center print:hidden"><form class="searchbox flex items-center" action="../../search.html" method="get">
+  <input type="text" name="q" placeholder="搜索" />
+  <kbd>/</kbd>
+</form><div class="sy-head-socials">
+  <a href="https://github.com/emscripten-core/emscripten" aria-label="GitHub">
+    <iconify-icon icon="simple-icons:github"></iconify-icon>
+  </a>
+  <a href="https://discord.gg/53u3EKq" aria-label="Discord">
+    <iconify-icon icon="simple-icons:discord"></iconify-icon>
+  </a></div></div>
+    </div>
+    <div class="sy-head-actions flex items-center shrink-0 print:hidden"><button class="js-theme theme-switch flex items-center"
+data-aria-auto="切换到亮色模式"
+data-aria-light="切换到暗色模式"
+data-aria-dark="切换到自动模式">
+<i class="i-lucide theme-icon"></i>
+</button><button class="md:hidden flex items-center js-menu" aria-label="Menu" type="button" aria-controls="head-nav" aria-expanded="false">
+        <div class="hamburger">
+          <span class="hamburger_1"></span>
+          <span class="hamburger_2"></span>
+          <span class="hamburger_3"></span>
+        </div>
+      </button>
+    </div>
+  </div>
+</div>
+<div class="sy-page sy-container flex mx-auto">
+  <aside id="lside" class="sy-lside md:w-72 md:shrink-0 print:hidden">
+    <div class="sy-lside-inner md:sticky">
+      <div class="sy-scrollbar p-6"><div class="sidebar-links">
+  <ul>
+    <li><a class="icon-link" href="https://github.com/emscripten-core/emscripten/discussions">
+  <span class="icon">
+    <svg viewBox="0 0 24 24" fill="none">
+      <path fill="var(--accent-9)" fill-rule="evenodd" clip-rule="evenodd" d="M11 5a6 6 0 0 0-4.687 9.746c.215.27.315.62.231.954l-.514 2.058a1 1 0 0 0 1.485 1.1l2.848-1.71c.174-.104.374-.15.576-.148H13a6 6 0 0 0 0-12h-2Z"/>
+      <circle fill="white" cx="12" cy="11" r="1"/>
+      <circle fill="white" cx="9" cy="11" r="1"/>
+      <circle fill="white" cx="15" cy="11" r="1"/>
+    </svg>
+  </span>
+  <span class="text">讨论</span>
+</a></li>
+  </ul>
+</div>
+        <div class="globaltoc" data-expand-depth="0"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introducing_emscripten/index.html">Introducing Emscripten</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../introducing_emscripten/about_emscripten.html">About Emscripten</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../introducing_emscripten/community.html">Community</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../introducing_emscripten/emscripten_license.html">Open Source License</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../introducing_emscripten/release_notes.html">Release Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../introducing_emscripten/Talks-and-Publications.html">Talks and Publications</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/downloads.html">Download and install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/Tutorial.html">Emscripten Tutorial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/test-suite.html">Emscripten Test Suite</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/bug_reports.html">Bug Reporting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/FAQ.html">FAQ</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../compiling/index.html">Compiling and Running Projects</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../compiling/Building-Projects.html">Building Projects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../compiling/WebAssembly.html">Building to WebAssembly</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../compiling/Modularized-Output.html">Modularized Output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../compiling/Dynamic-Linking.html">Dynamic Linking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../compiling/Running-html-files-with-emrun.html">Running HTML files with emrun</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../compiling/Deploying-Pages.html">Deploying Emscripten Compiled Pages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../compiling/GitLab.html">Building and Deploying on GitLab</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../compiling/Contrib-Ports.html">Emscripten Contrib Ports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../compiling/CrossOriginStorage.html">Cross-Origin Storage (COS)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../porting/index.html">Porting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../porting/guidelines/index.html">Code Portability and Limitations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../porting/guidelines/portability_guidelines.html">Portability Guidelines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../porting/guidelines/api_limitations.html">API Limitations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../porting/guidelines/function_pointer_issues.html">Function Pointer Issues</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../porting/guidelines/browser_limitations.html">Specific Browser Limitations</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/emscripten-runtime-environment.html">Emscripten Runtime Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/connecting_cpp_and_javascript/index.html">Connecting C++ and JavaScript</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../porting/connecting_cpp_and_javascript/Interacting-with-code.html">Interacting with code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../porting/connecting_cpp_and_javascript/embind.html">Embind</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../porting/connecting_cpp_and_javascript/WebIDL-Binder.html">WebIDL Binder</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/files/index.html">Files and File Systems</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../porting/files/file_systems_overview.html">File System Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../porting/files/packaging_files.html">Packaging Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../porting/files/Synchronous-Virtual-XHR-Backed-File-System-Usage.html">Synchronous Virtual XHR Backed File System Usage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/multimedia_and_graphics/index.html">Multimedia and Graphics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../porting/multimedia_and_graphics/WebGPU-support.html">Using WebGPU in Emscripten</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../porting/multimedia_and_graphics/EGL-Support-in-Emscripten.html">EGL Support in Emscripten</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../porting/multimedia_and_graphics/OpenGL-support.html">OpenGL support in Emscripten</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/Audio.html">Audio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/Debugging.html">Debugging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/pthreads.html">Pthreads support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/networking.html">Networking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/simd.html">Using SIMD with WebAssembly</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/exceptions.html">C++ Exceptions Support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/setjmp-longjmp.html">C setjmp-longjmp Support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/asyncify.html">Asynchronous Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../compiling/Building-Projects.html">Building Projects</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="emscripten.h.html">emscripten.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="html5.h.html">html5.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="console.h.html">console.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="preamble.js.html">preamble.js</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Filesystem-API.html">File System API</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Fetch API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module.html">Module object</a></li>
+<li class="toctree-l2"><a class="reference internal" href="val.h.html">val.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bind.h.html">bind.h (under-construction)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trace.h.html">trace.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fiber.h.html">fiber.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="proxying.h.html">proxying.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stack.h.html">stack.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wasm_workers.html">Wasm Workers API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wasm_audio_worklets.html">Wasm Audio Worklets API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="advanced-apis.html">Advanced APIs</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tools_reference/index.html">Tools Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tools_reference/emsdk.html">Emscripten SDK (emsdk)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools_reference/emcc.html">Emscripten Compiler Frontend (emcc)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools_reference/emcmdprompt.html">Emscripten Windows Command Prompt (emcmdprompt.bat)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools_reference/settings_reference.html">Emscripten Compiler Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools_reference/settings_reference.html#deprecated-settings">Deprecated Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools_reference/settings_reference.html#legacy-settings">Legacy Settings</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../optimizing/Optimizing-Code.html">Optimizing Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../optimizing/Optimizing-WebGL.html">Optimizing WebGL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debugging/Sanitizers.html">Debugging with Sanitizers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../building_from_source/index.html">Building Emscripten from Source</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../building_from_source/toolchain_what_is_needed.html">Emscripten Toolchain Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../building_from_source/configuring_emscripten_settings.html">Configuring Emscripten Settings when Manually Building from Source</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../building_from_source/verify_emscripten_environment.html">Verifying the Emscripten Development Environment</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing to Emscripten</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/contributing.html">Contributing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/developers_guide.html">Developer’s Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/AUTHORS.html">AUTHORS</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../optimizing/Profiling-Toolchain.html">Profiling the Toolchain</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../site/about.html">About this site</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../genindex.html">索引</a></li>
+</ul>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="lside-overlay js-menu" role="button" aria-label="Close left sidebar" aria-controls="lside" aria-expanded="false"></div>
+  <aside id="rside" class="sy-rside pb-3 w-64 shrink-0 order-last">
+    <button class="rside-close js-menu xl:hidden" aria-label="Close Table of Contents" type="button" aria-controls="rside" aria-expanded="false">
+      <i class="i-lucide close"></i>
+    </button>
+    <div class="sy-scrollbar sy-rside-inner px-6 xl:top-16 xl:sticky xl:pl-0 pt-6 pb-4"><div class="localtoc"><h3>该页内容</h3><ul>
+<li><a class="reference internal" href="#introduction">Introduction</a></li>
+<li><a class="reference internal" href="#persisting-data">Persisting data</a><ul>
+<li><a class="reference internal" href="#persisting-data-bytes-from-memory">Persisting data bytes from memory</a></li>
+<li><a class="reference internal" href="#deleting-a-file-from-indexeddb">Deleting a file from IndexedDB</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#synchronous-fetches">Synchronous Fetches</a></li>
+<li><a class="reference internal" href="#tracking-progress">Tracking Progress</a></li>
+<li><a class="reference internal" href="#managing-large-files">Managing Large Files</a><ul>
+<li><a class="reference internal" href="#downloading-directly-to-indexeddb">Downloading directly to IndexedDB</a></li>
+<li><a class="reference internal" href="#streaming-downloads">Streaming Downloads</a></li>
+<li><a class="reference internal" href="#byte-range-downloads">Byte Range Downloads</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#redirections">Redirections</a></li>
+<li><a class="reference internal" href="#todo-to-document">TODO To Document</a></li>
+</ul>
+</div><a class="js-repo-stats repo-stats flex items-center" href="https://github.com/emscripten-core/emscripten"
+  data-type="github" data-user="emscripten-core" data-repo="emscripten">
+  <span class="w-8 flex items-center justify-around shrink-0 text-3xl">
+    <iconify-icon icon="simple-icons:github"></iconify-icon>
+  </span>
+  <span class="flex-grow px-2 break-all">
+    
+    
+      <span>emscripten</span>
+    
+    <span class="flex text-sm repo-stats-count">
+      <span class="flex items-center pr-3">
+        <iconify-icon icon="lucide:star"></iconify-icon>
+        <strong class="js-repo-stars ml-1">0</strong>
+      </span>
+      <span class="flex items-center">
+        <iconify-icon icon="lucide:git-fork"></iconify-icon>
+        <strong class="js-repo-forks ml-1">0</strong>
+      </span>
+    </span>
+  </span>
+</a><div class="edit-this-page">
+  <a href="https://github.com/emscripten-core/emscripten/blob/main/site/source/docs/api_reference/fetch.rst">编辑此页面</a>
+</div><div id="ethical-ad-placement" data-ea-publisher="readthedocs"></div></div>
+  </aside>
+  <div class="rside-overlay js-menu" role="button" aria-label="Close Table of Contents" aria-controls="rside" aria-expanded="false"></div>
+  <main class="sy-main w-full max-sm:max-w-full print:pt-6">
+<div class="sy-breadcrumbs" role="navigation">
+  <div class="sy-breadcrumbs-inner flex items-center">
+    <div class="md:hidden mr-3">
+      <button class="js-menu" aria-label="Menu" type="button" aria-controls="lside" aria-expanded="false">
+        <i class="i-lucide menu"></i>
+      </button>
+    </div>
+    <ol class="flex-1" itemscope itemtype="https://schema.org/BreadcrumbList"><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="../../index.html"><span itemprop="name">Emscripten</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="1" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="index.html"><span itemprop="name">API Reference</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="2" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <strong itemprop="name">Fetch API</strong>
+        <meta itemprop="position" content="3" />
+      </li></ol>
+    <div class="xl:hidden ml-1">
+      <button class="js-menu" aria-label="Show table of contents" type="button" aria-controls="rside"
+        aria-expanded="false">
+        <i class="i-lucide outdent"></i>
+      </button>
+    </div>
+  </div>
+</div><div class="flex flex-col break-words justify-between">
+      <div class="relative min-w-0 max-w-6xl px-6 pb-6 pt-8 xl:px-12">
+  <article class="yue" role="main">
+          <section id="fetch-api">
+<span id="id1"></span><h1>Fetch API<a class="headerlink" href="#fetch-api" title="Link to this heading">¶</a></h1>
+<p>The Emscripten Fetch API allows native code to transfer files via XHR (HTTP GET,
+PUT, POST) from remote servers, and to persist the downloaded files locally in
+browser’s IndexedDB storage, so that they can be reaccessed locally on
+subsequent page visits. The Fetch API is callable from multiple threads, and the
+network requests can be run either synchronously or asynchronously as desired.</p>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>In order to use the Fetch API, you would need to compile your code with
+<code class="docutils literal notranslate"><span class="pre">-sFETCH</span></code>.</p>
+</div>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">¶</a></h2>
+<p>The use of the Fetch API is quick to illustrate via an example. The following
+application downloads a file from a web server asynchronously to memory inside
+the application heap.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+</span><span data-line="2"><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string.h&gt;</span>
+</span><span data-line="3"><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;emscripten/fetch.h&gt;</span>
+</span><span data-line="4">
+</span><span data-line="5"><span class="kt">void</span><span class="w"> </span><span class="nf">downloadSucceeded</span><span class="p">(</span><span class="n">emscripten_fetch_t</span><span class="w"> </span><span class="o">*</span><span class="n">fetch</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="6"><span class="w">  </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Finished downloading %llu bytes from URL %s.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">fetch</span><span class="o">-&gt;</span><span class="n">numBytes</span><span class="p">,</span><span class="w"> </span><span class="n">fetch</span><span class="o">-&gt;</span><span class="n">url</span><span class="p">);</span>
+</span><span data-line="7"><span class="w">  </span><span class="c1">// The data is now available at fetch-&gt;data[0] through fetch-&gt;data[fetch-&gt;numBytes-1];</span>
+</span><span data-line="8"><span class="w">  </span><span class="n">emscripten_fetch_close</span><span class="p">(</span><span class="n">fetch</span><span class="p">);</span><span class="w"> </span><span class="c1">// Free data associated with the fetch.</span>
+</span><span data-line="9"><span class="p">}</span>
+</span><span data-line="10">
+</span><span data-line="11"><span class="kt">void</span><span class="w"> </span><span class="nf">downloadFailed</span><span class="p">(</span><span class="n">emscripten_fetch_t</span><span class="w"> </span><span class="o">*</span><span class="n">fetch</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="12"><span class="w">  </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Downloading %s failed, HTTP failure status code: %d.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">fetch</span><span class="o">-&gt;</span><span class="n">url</span><span class="p">,</span><span class="w"> </span><span class="n">fetch</span><span class="o">-&gt;</span><span class="n">status</span><span class="p">);</span>
+</span><span data-line="13"><span class="w">  </span><span class="n">emscripten_fetch_close</span><span class="p">(</span><span class="n">fetch</span><span class="p">);</span><span class="w"> </span><span class="c1">// Also free data on failure.</span>
+</span><span data-line="14"><span class="p">}</span>
+</span><span data-line="15">
+</span><span data-line="16"><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="17"><span class="w">  </span><span class="n">emscripten_fetch_attr_t</span><span class="w"> </span><span class="n">attr</span><span class="p">;</span>
+</span><span data-line="18"><span class="w">  </span><span class="n">emscripten_fetch_attr_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">attr</span><span class="p">);</span>
+</span><span data-line="19"><span class="w">  </span><span class="n">strcpy</span><span class="p">(</span><span class="n">attr</span><span class="p">.</span><span class="n">requestMethod</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;GET&quot;</span><span class="p">);</span>
+</span><span data-line="20"><span class="w">  </span><span class="n">attr</span><span class="p">.</span><span class="n">attributes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">EMSCRIPTEN_FETCH_LOAD_TO_MEMORY</span><span class="p">;</span>
+</span><span data-line="21"><span class="w">  </span><span class="n">attr</span><span class="p">.</span><span class="n">onsuccess</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">downloadSucceeded</span><span class="p">;</span>
+</span><span data-line="22"><span class="w">  </span><span class="n">attr</span><span class="p">.</span><span class="n">onerror</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">downloadFailed</span><span class="p">;</span>
+</span><span data-line="23"><span class="w">  </span><span class="n">emscripten_fetch</span><span class="p">(</span><span class="o">&amp;</span><span class="n">attr</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;myfile.dat&quot;</span><span class="p">);</span>
+</span><span data-line="24"><span class="p">}</span>
+</span></pre></div>
+</div>
+<p>If a relative pathname is specified to a call to emscripten_fetch, like in the
+above example, the XHR is performed relative to the href (URL) of the current
+page. Passing a fully qualified absolute URL allows downloading files across
+domains, however these are subject to <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS">HTTP access control (CORS) rules</a>.</p>
+<p>By default the Fetch API runs asynchronously, which means that the
+emscripten_fetch() function call returns immediately and the operation will
+continue to occur on the background. When the operation finishes, either the
+success or the failure callback will be invoked.</p>
+</section>
+<section id="persisting-data">
+<h2>Persisting data<a class="headerlink" href="#persisting-data" title="Link to this heading">¶</a></h2>
+<p>The XHR requests issued by the Fetch API are subject to the usual browser
+caching behavior. These caches are transient (temporary) so there is no
+guarantee that the data will persist in the cache for a given period of time.
+Additionally, if the files are somewhat large (multiple megabytes), browsers
+typically don’t cache the downloads at all.</p>
+<p>To enable a more explicit control for persisting the downloaded files, the Fetch
+API interacts with the browser’s IndexedDB API, which can load and store large
+data files that are available on subsequent visits to the page. To enable
+IndexedDB storage, pass the EMSCRIPTEN_FETCH_PERSIST_FILE flag in the fetch
+attributes:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="2"><span class="w">  </span><span class="n">emscripten_fetch_attr_t</span><span class="w"> </span><span class="n">attr</span><span class="p">;</span>
+</span><span data-line="3"><span class="w">  </span><span class="n">emscripten_fetch_attr_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">attr</span><span class="p">);</span>
+</span><span data-line="4"><span class="w">  </span><span class="p">...</span>
+</span><span data-line="5"><span class="w">  </span><span class="n">attr</span><span class="p">.</span><span class="n">attributes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">EMSCRIPTEN_FETCH_LOAD_TO_MEMORY</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">EMSCRIPTEN_FETCH_PERSIST_FILE</span><span class="p">;</span>
+</span><span data-line="6"><span class="w">  </span><span class="p">...</span>
+</span><span data-line="7"><span class="w">  </span><span class="n">emscripten_fetch</span><span class="p">(</span><span class="o">&amp;</span><span class="n">attr</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;myfile.dat&quot;</span><span class="p">);</span>
+</span><span data-line="8"><span class="p">}</span>
+</span></pre></div>
+</div>
+<p>For a full example, see the file
+<code class="docutils literal notranslate"><span class="pre">test/fetch/test_fetch_persist.c</span></code>.</p>
+<section id="persisting-data-bytes-from-memory">
+<h3>Persisting data bytes from memory<a class="headerlink" href="#persisting-data-bytes-from-memory" title="Link to this heading">¶</a></h3>
+<p>Sometimes it is useful to persist a range of bytes from application memory to
+IndexedDB (without having to perform any XHRs). This is possible with the
+Emscripten Fetch API by passing the special HTTP action verb “EM_IDB_STORE” to
+the Emscripten Fetch operation.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kt">void</span><span class="w"> </span><span class="nf">success</span><span class="p">(</span><span class="n">emscripten_fetch_t</span><span class="w"> </span><span class="o">*</span><span class="n">fetch</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="2"><span class="w">  </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;IDB store succeeded.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+</span><span data-line="3"><span class="w">  </span><span class="n">emscripten_fetch_close</span><span class="p">(</span><span class="n">fetch</span><span class="p">);</span>
+</span><span data-line="4"><span class="p">}</span>
+</span><span data-line="5">
+</span><span data-line="6"><span class="kt">void</span><span class="w"> </span><span class="nf">failure</span><span class="p">(</span><span class="n">emscripten_fetch_t</span><span class="w"> </span><span class="o">*</span><span class="n">fetch</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="7"><span class="w">  </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;IDB store failed.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+</span><span data-line="8"><span class="w">  </span><span class="n">emscripten_fetch_close</span><span class="p">(</span><span class="n">fetch</span><span class="p">);</span>
+</span><span data-line="9"><span class="p">}</span>
+</span><span data-line="10">
+</span><span data-line="11"><span class="kt">void</span><span class="w"> </span><span class="nf">persistFileToIndexedDB</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">outputFilename</span><span class="p">,</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="o">*</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">numBytes</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="12"><span class="w">  </span><span class="n">emscripten_fetch_attr_t</span><span class="w"> </span><span class="n">attr</span><span class="p">;</span>
+</span><span data-line="13"><span class="w">  </span><span class="n">emscripten_fetch_attr_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">attr</span><span class="p">);</span>
+</span><span data-line="14"><span class="w">  </span><span class="n">strcpy</span><span class="p">(</span><span class="n">attr</span><span class="p">.</span><span class="n">requestMethod</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;EM_IDB_STORE&quot;</span><span class="p">);</span>
+</span><span data-line="15"><span class="w">  </span><span class="n">attr</span><span class="p">.</span><span class="n">attributes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">EMSCRIPTEN_FETCH_REPLACE</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">EMSCRIPTEN_FETCH_PERSIST_FILE</span><span class="p">;</span>
+</span><span data-line="16"><span class="w">  </span><span class="n">attr</span><span class="p">.</span><span class="n">requestData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">data</span><span class="p">;</span>
+</span><span data-line="17"><span class="w">  </span><span class="n">attr</span><span class="p">.</span><span class="n">requestDataSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">numBytes</span><span class="p">;</span>
+</span><span data-line="18"><span class="w">  </span><span class="n">attr</span><span class="p">.</span><span class="n">onsuccess</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">success</span><span class="p">;</span>
+</span><span data-line="19"><span class="w">  </span><span class="n">attr</span><span class="p">.</span><span class="n">onerror</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">failure</span><span class="p">;</span>
+</span><span data-line="20"><span class="w">  </span><span class="n">emscripten_fetch</span><span class="p">(</span><span class="o">&amp;</span><span class="n">attr</span><span class="p">,</span><span class="w"> </span><span class="n">outputFilename</span><span class="p">);</span>
+</span><span data-line="21"><span class="p">}</span>
+</span><span data-line="22">
+</span><span data-line="23"><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="24"><span class="w">  </span><span class="c1">// Create data</span>
+</span><span data-line="25"><span class="w">  </span><span class="kt">uint8_t</span><span class="w"> </span><span class="o">*</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">uint8_t</span><span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="mi">10240</span><span class="p">);</span>
+</span><span data-line="26"><span class="w">  </span><span class="n">srand</span><span class="p">(</span><span class="n">time</span><span class="p">(</span><span class="nb">NULL</span><span class="p">));</span>
+</span><span data-line="27"><span class="w">  </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">10240</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">uint8_t</span><span class="p">)</span><span class="n">rand</span><span class="p">();</span>
+</span><span data-line="28">
+</span><span data-line="29"><span class="w">  </span><span class="n">persistFileToIndexedDB</span><span class="p">(</span><span class="s">&quot;outputfile.dat&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="mi">10240</span><span class="p">);</span>
+</span><span data-line="30"><span class="p">}</span>
+</span></pre></div>
+</div>
+</section>
+<section id="deleting-a-file-from-indexeddb">
+<h3>Deleting a file from IndexedDB<a class="headerlink" href="#deleting-a-file-from-indexeddb" title="Link to this heading">¶</a></h3>
+<p>Files can be cleaned up from IndexedDB by using the HTTP action verb “EM_IDB_DELETE”:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kt">void</span><span class="w"> </span><span class="nf">success</span><span class="p">(</span><span class="n">emscripten_fetch_t</span><span class="w"> </span><span class="o">*</span><span class="n">fetch</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="2"><span class="w">  </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Deleting file from IDB succeeded.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+</span><span data-line="3"><span class="w">  </span><span class="n">emscripten_fetch_close</span><span class="p">(</span><span class="n">fetch</span><span class="p">);</span>
+</span><span data-line="4"><span class="p">}</span>
+</span><span data-line="5">
+</span><span data-line="6"><span class="kt">void</span><span class="w"> </span><span class="nf">failure</span><span class="p">(</span><span class="n">emscripten_fetch_t</span><span class="w"> </span><span class="o">*</span><span class="n">fetch</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="7"><span class="w">  </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Deleting file from IDB failed.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+</span><span data-line="8"><span class="w">  </span><span class="n">emscripten_fetch_close</span><span class="p">(</span><span class="n">fetch</span><span class="p">);</span>
+</span><span data-line="9"><span class="p">}</span>
+</span><span data-line="10">
+</span><span data-line="11"><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="12"><span class="w">  </span><span class="n">emscripten_fetch_attr_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">attr</span><span class="p">);</span>
+</span><span data-line="13"><span class="w">  </span><span class="n">strcpy</span><span class="p">(</span><span class="n">attr</span><span class="p">.</span><span class="n">requestMethod</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;EM_IDB_DELETE&quot;</span><span class="p">);</span>
+</span><span data-line="14"><span class="w">  </span><span class="n">emscripten_fetch</span><span class="p">(</span><span class="o">&amp;</span><span class="n">attr</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;filename_to_delete.dat&quot;</span><span class="p">);</span>
+</span><span data-line="15"><span class="p">}</span>
+</span></pre></div>
+</div>
+</section>
+</section>
+<section id="synchronous-fetches">
+<h2>Synchronous Fetches<a class="headerlink" href="#synchronous-fetches" title="Link to this heading">¶</a></h2>
+<p>In some scenarios, it would be nice to be able to perform an XHR request or an
+IndexedDB file operation synchronously in the calling thread. This can make
+porting applications easier and simplify code flow by avoiding the need to pass
+a callback.</p>
+<p>All types of Emscripten Fetch API operations (XHRs, IndexedDB accesses) can be
+performed synchronously by passing the EMSCRIPTEN_FETCH_SYNCHRONOUS flag. When
+this flag is passed, the calling thread will block to sleep until the fetch
+operation finishes. See the following example.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="2"><span class="w">  </span><span class="n">emscripten_fetch_attr_t</span><span class="w"> </span><span class="n">attr</span><span class="p">;</span>
+</span><span data-line="3"><span class="w">  </span><span class="n">emscripten_fetch_attr_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">attr</span><span class="p">);</span>
+</span><span data-line="4"><span class="w">  </span><span class="n">strcpy</span><span class="p">(</span><span class="n">attr</span><span class="p">.</span><span class="n">requestMethod</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;GET&quot;</span><span class="p">);</span>
+</span><span data-line="5"><span class="w">  </span><span class="n">attr</span><span class="p">.</span><span class="n">attributes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">EMSCRIPTEN_FETCH_LOAD_TO_MEMORY</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">EMSCRIPTEN_FETCH_SYNCHRONOUS</span><span class="p">;</span>
+</span><span data-line="6"><span class="w">  </span><span class="n">emscripten_fetch_t</span><span class="w"> </span><span class="o">*</span><span class="n">fetch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">emscripten_fetch</span><span class="p">(</span><span class="o">&amp;</span><span class="n">attr</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;file.dat&quot;</span><span class="p">);</span><span class="w"> </span><span class="c1">// Blocks here until the operation is complete.</span>
+</span><span data-line="7"><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">fetch</span><span class="o">-&gt;</span><span class="n">status</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">200</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="8"><span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Finished downloading %llu bytes from URL %s.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">fetch</span><span class="o">-&gt;</span><span class="n">numBytes</span><span class="p">,</span><span class="w"> </span><span class="n">fetch</span><span class="o">-&gt;</span><span class="n">url</span><span class="p">);</span>
+</span><span data-line="9"><span class="w">    </span><span class="c1">// The data is now available at fetch-&gt;data[0] through fetch-&gt;data[fetch-&gt;numBytes-1];</span>
+</span><span data-line="10"><span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="11"><span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Downloading %s failed, HTTP failure status code: %d.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">fetch</span><span class="o">-&gt;</span><span class="n">url</span><span class="p">,</span><span class="w"> </span><span class="n">fetch</span><span class="o">-&gt;</span><span class="n">status</span><span class="p">);</span>
+</span><span data-line="12"><span class="w">  </span><span class="p">}</span>
+</span><span data-line="13"><span class="w">  </span><span class="n">emscripten_fetch_close</span><span class="p">(</span><span class="n">fetch</span><span class="p">);</span>
+</span><span data-line="14"><span class="p">}</span>
+</span></pre></div>
+</div>
+<p>In the above code sample, the success and failure callback functions are not
+used. However, if specified, they will be synchronously called before
+emscripten_fetch() returns.</p>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>Synchronous Emscripten Fetch operations are subject to a number of
+restrictions, depending on which Emscripten build mode (linker flags) is used:</p>
+<ul class="simple">
+<li><p><strong>No flags</strong>: Only asynchronous Fetch operations are available.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--proxy-to-worker</span></code>: Synchronous Fetch operations are allowed for fetches
+that only do an XHR but do not interact with IndexedDB.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-pthread</span></code>: Synchronous Fetch operations are available on
+pthreads, but not on the main thread.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--proxy-to-worker</span></code> + <code class="docutils literal notranslate"><span class="pre">-pthread</span></code>: Synchronous Synchronous Fetch operations
+are available both on the main thread and pthreads.</p></li>
+</ul>
+</div>
+</section>
+<section id="tracking-progress">
+<h2>Tracking Progress<a class="headerlink" href="#tracking-progress" title="Link to this heading">¶</a></h2>
+<p>For robust fetch management, there are several fields available to track the
+status of an XHR.</p>
+<p>The onprogress callback is called whenever new data has been received. This
+allows one to measure the download speed and compute an ETA for completion.
+Additionally, the emscripten_fetch_t structure passes the XHR object fields
+readyState, status and statusText, which give information about the HTTP loading
+state of the request.</p>
+<p>The emscripten_fetch_attr_t object has a timeoutMSecs field which allows
+specifying a timeout duration for the transfer. Additionally,
+emscripten_fetch_close() can be called at any time for asynchronous and waitable
+fetches to abort the download.
+The following example illustrates these fields
+and the onprogress handler.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kt">void</span><span class="w"> </span><span class="nf">downloadProgress</span><span class="p">(</span><span class="n">emscripten_fetch_t</span><span class="w"> </span><span class="o">*</span><span class="n">fetch</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="2"><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">fetch</span><span class="o">-&gt;</span><span class="n">totalBytes</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="3"><span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Downloading %s.. %.2f%% complete.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">fetch</span><span class="o">-&gt;</span><span class="n">url</span><span class="p">,</span><span class="w"> </span><span class="n">fetch</span><span class="o">-&gt;</span><span class="n">dataOffset</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">100.0</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">fetch</span><span class="o">-&gt;</span><span class="n">totalBytes</span><span class="p">);</span>
+</span><span data-line="4"><span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="5"><span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Downloading %s.. %lld bytes complete.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">fetch</span><span class="o">-&gt;</span><span class="n">url</span><span class="p">,</span><span class="w"> </span><span class="n">fetch</span><span class="o">-&gt;</span><span class="n">dataOffset</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">fetch</span><span class="o">-&gt;</span><span class="n">numBytes</span><span class="p">);</span>
+</span><span data-line="6"><span class="w">  </span><span class="p">}</span>
+</span><span data-line="7"><span class="p">}</span>
+</span><span data-line="8">
+</span><span data-line="9"><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="10"><span class="w">  </span><span class="n">emscripten_fetch_attr_t</span><span class="w"> </span><span class="n">attr</span><span class="p">;</span>
+</span><span data-line="11"><span class="w">  </span><span class="n">emscripten_fetch_attr_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">attr</span><span class="p">);</span>
+</span><span data-line="12"><span class="w">  </span><span class="n">strcpy</span><span class="p">(</span><span class="n">attr</span><span class="p">.</span><span class="n">requestMethod</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;GET&quot;</span><span class="p">);</span>
+</span><span data-line="13"><span class="w">  </span><span class="n">attr</span><span class="p">.</span><span class="n">attributes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">EMSCRIPTEN_FETCH_LOAD_TO_MEMORY</span><span class="p">;</span>
+</span><span data-line="14"><span class="w">  </span><span class="n">attr</span><span class="p">.</span><span class="n">onsuccess</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">downloadSucceeded</span><span class="p">;</span>
+</span><span data-line="15"><span class="w">  </span><span class="n">attr</span><span class="p">.</span><span class="n">onprogress</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">downloadProgress</span><span class="p">;</span>
+</span><span data-line="16"><span class="w">  </span><span class="n">attr</span><span class="p">.</span><span class="n">onerror</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">downloadFailed</span><span class="p">;</span>
+</span><span data-line="17"><span class="w">  </span><span class="n">emscripten_fetch</span><span class="p">(</span><span class="o">&amp;</span><span class="n">attr</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;myfile.dat&quot;</span><span class="p">);</span>
+</span><span data-line="18"><span class="p">}</span>
+</span></pre></div>
+</div>
+</section>
+<section id="managing-large-files">
+<h2>Managing Large Files<a class="headerlink" href="#managing-large-files" title="Link to this heading">¶</a></h2>
+<p>Particular attention should be paid to the memory usage strategy of a fetch.
+Previous examples have all passed the EMSCRIPTEN_FETCH_LOAD_TO_MEMORY flag,
+which causes emscripten_fetch() to populate the downloaded file in full in
+memory in the onsuccess() callback. This is convenient when the whole file is to
+be immediately accessed afterwards, but for large files, this can be a wasteful
+strategy in terms of memory usage. If the file is very large, it might not even
+fit inside the application’s heap area.</p>
+<p>The following subsections provide ways to manage large fetches in a memory
+efficient manner.</p>
+<section id="downloading-directly-to-indexeddb">
+<h3>Downloading directly to IndexedDB<a class="headerlink" href="#downloading-directly-to-indexeddb" title="Link to this heading">¶</a></h3>
+<p>If an application wants to download a file for local access, but does not
+immediately need to use the file, e.g. when preloading data up front for later
+access, it is a good idea to avoid the EMSCRIPTEN_FETCH_LOAD_TO_MEMORY flag
+altogether, and only pass the EMSCRIPTEN_FETCH_PERSIST_FILE flag instead. This
+causes the fetch to download the file directly to IndexedDB, which avoids
+temporarily populating the file in memory after the download finishes. In this
+scenario, the onsuccess() handler will only report the total downloaded file
+size, but will not contain the data bytes to the file.</p>
+</section>
+<section id="streaming-downloads">
+<h3>Streaming Downloads<a class="headerlink" href="#streaming-downloads" title="Link to this heading">¶</a></h3>
+<p>Note: This currently only works in Firefox as it uses ‘moz-chunked-arraybuffer’.</p>
+<p>If the application does not need random seek access to the file, but is able to
+process the file in a streaming manner, it can use the
+EMSCRIPTEN_FETCH_STREAM_DATA flag to stream through the bytes in the file as
+they are downloaded. If this flag is passed, the downloaded data chunks are
+passed into the onprogress() callback in coherent file sequential order. See the
+following snippet for an example.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kt">void</span><span class="w"> </span><span class="nf">downloadProgress</span><span class="p">(</span><span class="n">emscripten_fetch_t</span><span class="w"> </span><span class="o">*</span><span class="n">fetch</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="2"><span class="w">  </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Downloading %s.. %.2f%%s complete. HTTP readyState: %d. HTTP status: %d.</span><span class="se">\n</span><span class="s">&quot;</span>
+</span><span data-line="3"><span class="w">    </span><span class="s">&quot;HTTP statusText: %s. Received chunk [%llu, %llu[</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span>
+</span><span data-line="4"><span class="w">    </span><span class="n">fetch</span><span class="o">-&gt;</span><span class="n">url</span><span class="p">,</span><span class="w"> </span><span class="n">fetch</span><span class="o">-&gt;</span><span class="n">totalBytes</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="p">(</span><span class="n">fetch</span><span class="o">-&gt;</span><span class="n">dataOffset</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">fetch</span><span class="o">-&gt;</span><span class="n">numBytes</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">100.0</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">fetch</span><span class="o">-&gt;</span><span class="n">totalBytes</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="n">fetch</span><span class="o">-&gt;</span><span class="n">dataOffset</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">fetch</span><span class="o">-&gt;</span><span class="n">numBytes</span><span class="p">),</span>
+</span><span data-line="5"><span class="w">    </span><span class="n">fetch</span><span class="o">-&gt;</span><span class="n">totalBytes</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="s">&quot;%&quot;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s">&quot; bytes&quot;</span><span class="p">,</span>
+</span><span data-line="6"><span class="w">    </span><span class="n">fetch</span><span class="o">-&gt;</span><span class="n">readyState</span><span class="p">,</span><span class="w"> </span><span class="n">fetch</span><span class="o">-&gt;</span><span class="n">status</span><span class="p">,</span><span class="w"> </span><span class="n">fetch</span><span class="o">-&gt;</span><span class="n">statusText</span><span class="p">,</span>
+</span><span data-line="7"><span class="w">    </span><span class="n">fetch</span><span class="o">-&gt;</span><span class="n">dataOffset</span><span class="p">,</span><span class="w"> </span><span class="n">fetch</span><span class="o">-&gt;</span><span class="n">dataOffset</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">fetch</span><span class="o">-&gt;</span><span class="n">numBytes</span><span class="p">);</span>
+</span><span data-line="8">
+</span><span data-line="9"><span class="w">  </span><span class="c1">// Process the partial data stream fetch-&gt;data[0] thru fetch-&gt;data[fetch-&gt;numBytes-1]</span>
+</span><span data-line="10"><span class="w">  </span><span class="c1">// This buffer represents the file at offset fetch-&gt;dataOffset.</span>
+</span><span data-line="11"><span class="w">  </span><span class="k">for</span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">fetch</span><span class="o">-&gt;</span><span class="n">numBytes</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span>
+</span><span data-line="12"><span class="w">    </span><span class="p">;</span><span class="w"> </span><span class="c1">// Process fetch-&gt;data[i];</span>
+</span><span data-line="13"><span class="p">}</span>
+</span><span data-line="14">
+</span><span data-line="15"><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="16"><span class="w">  </span><span class="n">emscripten_fetch_attr_t</span><span class="w"> </span><span class="n">attr</span><span class="p">;</span>
+</span><span data-line="17"><span class="w">  </span><span class="n">emscripten_fetch_attr_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">attr</span><span class="p">);</span>
+</span><span data-line="18"><span class="w">  </span><span class="n">strcpy</span><span class="p">(</span><span class="n">attr</span><span class="p">.</span><span class="n">requestMethod</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;GET&quot;</span><span class="p">);</span>
+</span><span data-line="19"><span class="w">  </span><span class="n">attr</span><span class="p">.</span><span class="n">attributes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">EMSCRIPTEN_FETCH_STREAM_DATA</span><span class="p">;</span>
+</span><span data-line="20"><span class="w">  </span><span class="n">attr</span><span class="p">.</span><span class="n">onsuccess</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">downloadSucceeded</span><span class="p">;</span>
+</span><span data-line="21"><span class="w">  </span><span class="n">attr</span><span class="p">.</span><span class="n">onprogress</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">downloadProgress</span><span class="p">;</span>
+</span><span data-line="22"><span class="w">  </span><span class="n">attr</span><span class="p">.</span><span class="n">onerror</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">downloadFailed</span><span class="p">;</span>
+</span><span data-line="23"><span class="w">  </span><span class="n">attr</span><span class="p">.</span><span class="n">timeoutMSecs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="o">*</span><span class="mi">60</span><span class="p">;</span>
+</span><span data-line="24"><span class="w">  </span><span class="n">emscripten_fetch</span><span class="p">(</span><span class="o">&amp;</span><span class="n">attr</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;myfile.dat&quot;</span><span class="p">);</span>
+</span><span data-line="25"><span class="p">}</span>
+</span></pre></div>
+</div>
+<p>In this case, the onsuccess() handler will not receive the final file buffer at
+all so memory usage will remain at a minimum.</p>
+</section>
+<section id="byte-range-downloads">
+<h3>Byte Range Downloads<a class="headerlink" href="#byte-range-downloads" title="Link to this heading">¶</a></h3>
+<p>Large files can also be managed in smaller chunks by performing Byte Range
+downloads on them. This initiates an XHR or IndexedDB transfer that only fetches
+the desired subrange of the whole file. This is useful for example when a large
+package file contains multiple smaller ones at certain seek offsets, which can
+be dealt with separately.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+</span><span data-line="2"><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string.h&gt;</span>
+</span><span data-line="3"><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;emscripten/fetch.h&gt;</span>
+</span><span data-line="4">
+</span><span data-line="5"><span class="kt">void</span><span class="w"> </span><span class="nf">downloadSucceeded</span><span class="p">(</span><span class="n">emscripten_fetch_t</span><span class="w"> </span><span class="o">*</span><span class="n">fetch</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="6"><span class="w">  </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Finished downloading %llu bytes from URL %s.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">fetch</span><span class="o">-&gt;</span><span class="n">numBytes</span><span class="p">,</span><span class="w"> </span><span class="n">fetch</span><span class="o">-&gt;</span><span class="n">url</span><span class="p">);</span>
+</span><span data-line="7"><span class="w">  </span><span class="c1">// The data is now available at fetch-&gt;data[0] through fetch-&gt;data[fetch-&gt;numBytes-1];</span>
+</span><span data-line="8"><span class="w">  </span><span class="n">emscripten_fetch_close</span><span class="p">(</span><span class="n">fetch</span><span class="p">);</span><span class="w"> </span><span class="c1">// Free data associated with the fetch.</span>
+</span><span data-line="9"><span class="p">}</span>
+</span><span data-line="10">
+</span><span data-line="11"><span class="kt">void</span><span class="w"> </span><span class="nf">downloadFailed</span><span class="p">(</span><span class="n">emscripten_fetch_t</span><span class="w"> </span><span class="o">*</span><span class="n">fetch</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="12"><span class="w">  </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Downloading %s failed, HTTP failure status code: %d.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">fetch</span><span class="o">-&gt;</span><span class="n">url</span><span class="p">,</span><span class="w"> </span><span class="n">fetch</span><span class="o">-&gt;</span><span class="n">status</span><span class="p">);</span>
+</span><span data-line="13"><span class="w">  </span><span class="n">emscripten_fetch_close</span><span class="p">(</span><span class="n">fetch</span><span class="p">);</span><span class="w"> </span><span class="c1">// Also free data on failure.</span>
+</span><span data-line="14"><span class="p">}</span>
+</span><span data-line="15">
+</span><span data-line="16"><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="17"><span class="w">  </span><span class="n">emscripten_fetch_attr_t</span><span class="w"> </span><span class="n">attr</span><span class="p">;</span>
+</span><span data-line="18"><span class="w">  </span><span class="n">emscripten_fetch_attr_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">attr</span><span class="p">);</span>
+</span><span data-line="19"><span class="w">  </span><span class="n">strcpy</span><span class="p">(</span><span class="n">attr</span><span class="p">.</span><span class="n">requestMethod</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;GET&quot;</span><span class="p">);</span>
+</span><span data-line="20"><span class="w">  </span><span class="n">attr</span><span class="p">.</span><span class="n">attributes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">EMSCRIPTEN_FETCH_LOAD_TO_MEMORY</span><span class="p">;</span>
+</span><span data-line="21"><span class="w">  </span><span class="c1">// Make a Range request to only fetch bytes 10 to 20</span>
+</span><span data-line="22"><span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">headers</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;Range&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;bytes=10-20&quot;</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">};</span>
+</span><span data-line="23"><span class="w">  </span><span class="n">attr</span><span class="p">.</span><span class="n">requestHeaders</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">headers</span><span class="p">;</span>
+</span><span data-line="24"><span class="w">  </span><span class="n">attr</span><span class="p">.</span><span class="n">onsuccess</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">downloadSucceeded</span><span class="p">;</span>
+</span><span data-line="25"><span class="w">  </span><span class="n">attr</span><span class="p">.</span><span class="n">onerror</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">downloadFailed</span><span class="p">;</span>
+</span><span data-line="26"><span class="w">  </span><span class="n">emscripten_fetch</span><span class="p">(</span><span class="o">&amp;</span><span class="n">attr</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;myfile.dat&quot;</span><span class="p">);</span>
+</span><span data-line="27"><span class="p">}</span>
+</span></pre></div>
+</div>
+</section>
+</section>
+<section id="redirections">
+<h2>Redirections<a class="headerlink" href="#redirections" title="Link to this heading">¶</a></h2>
+<p>The XHR requests issued by the Fetch API are subject to the usual browser
+redirection behavior (transparently followed except when infinitely looping).
+When this happens, the <cite>emscripten_fetch_t</cite> structure will contain the final URL
+after the redirection in the <cite>responseUrl</cite> field. Many HTTP status codes in the 3xx
+range are used for redirection, and the Fetch API will follow these, in particular
+the 301 (Moved Permanently), 302 (Found), 303 (See Other), 307 (Temporary Redirect),
+and 308 (Permanent Redirect) status codes.</p>
+</section>
+<section id="todo-to-document">
+<h2>TODO To Document<a class="headerlink" href="#todo-to-document" title="Link to this heading">¶</a></h2>
+<p>Emscripten_fetch() supports the following operations as well, that need
+documenting:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Emscripten_fetch can be used to upload files to remote servers via HTTP PUT</p></li>
+<li><p>Emscripten_fetch_attr_t allows setting custom HTTP request headers (e.g. for
+cache control)</p></li>
+<li><p>Document HTTP simple auth fields in Emscripten_fetch_attr_t.</p></li>
+<li><p>Document overriddenMimeType attribute in Emscripten_fetch_attr_t.</p></li>
+<li><p>Reference documentation of the individual fields in Emscripten_fetch_attr_t,
+Emscripten_fetch_t and #defines.</p></li>
+<li><p>Example about loading only from IndexedDB without XHRing.</p></li>
+<li><p>Example about overriding an existing file in IndexedDB with a new XHR.</p></li>
+<li><p>Example how to preload a whole filesystem to IndexedDB for easy replacement
+of –preload-file.</p></li>
+<li><p>Example how to persist content as gzipped to IndexedDB and decompress on
+load.</p></li>
+<li><p>Example how to abort and resume partial transfers to IndexedDB.</p></li>
+</ul>
+</div></blockquote>
+</section>
+</section>
+
+        </article><button class="back-to-top" type="button">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+  </svg>
+  <span>回到顶部</span>
+</button><div class="navigation flex print:hidden"><div class="navigation-prev">
+    <a href="Filesystem-API.html">
+      <i class="i-lucide chevron-left"></i>
+      <div class="page-info">
+        <span>上一章</span><div class="title">File System API</div></div>
+    </a>
+  </div><div class="navigation-next">
+    <a href="module.html">
+      <div class="page-info">
+        <span>下一章</span>
+        <div class="title">Module object</div>
+      </div>
+      <i class="i-lucide chevron-right"></i>
+    </a>
+  </div></div></div>
+    </div>
+  </main>
+</div>
+<footer class="sy-foot">
+  <div class="sy-foot-inner sy-container mx-auto">
+    <div class="sy-foot-reserved md:flex justify-between items-center">
+      <div class="sy-foot-copyright"><p>Copyright &copy; 2015, Emscripten Contributors.</p>
+  
+  <p>
+    Made with
+    
+    <a href="https://www.sphinx-doc.org/">Sphinx</a> and
+    
+    <a href="https://shibuya.lepture.com">Shibuya theme</a>.
+  </p>
+</div>
+      <div class="sy-foot-socials">
+<a href="https://github.com/emscripten-core/emscripten" aria-label="GitHub">
+  <iconify-icon icon="simple-icons:github"></iconify-icon>
+</a>
+<a href="https://discord.gg/53u3EKq" aria-label="Discord">
+  <iconify-icon icon="simple-icons:discord"></iconify-icon>
+</a></div>
+    </div>
+  </div>
+</footer>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=c4790338"></script>
+      <script src="../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/translations.js?v=beaddf03"></script>
+      <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../../_static/shibuya.js?v=50760d75"></script></body>
+</html>

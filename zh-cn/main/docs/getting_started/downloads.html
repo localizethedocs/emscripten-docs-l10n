@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-accent-color="violet" data-content_root="../../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Download and install - Emscripten 6.0.1-git (dev) 文档</title><link rel="shortcut icon" href="../../_static/emscripten.ico"/><link rel="index" title="索引" href="../../genindex.html" /><link rel="search" title="搜索" href="../../search.html" /><link rel="next" title="Emscripten Tutorial" href="Tutorial.html" /><link rel="prev" title="Getting Started" href="index.html" />
+      <link rel="canonical" href="https://projects.localizethedocs.org/emscripten-docs-l10n/docs/getting_started/downloads.html" /><script>
+    function setColorMode(t){let e=document.documentElement;e.setAttribute("data-color-mode",t);let a=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,s=t;"auto"===t&&(s=a?"dark":"light"),"light"===s?(e.classList.remove("dark"),e.classList.add("light")):(e.classList.remove("light"),e.classList.add("dark"))}
+    setColorMode(localStorage._theme||"auto");
+  </script><link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=ad592e98" />
+    <link rel="stylesheet" type="text/css" href="../../_static/shibuya.css?v=9454f7d5" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link media="print" rel="stylesheet" type="text/css" href="../../_static/print.css?v=20ff2c19" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sy-f-text: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+  --sy-f-heading: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+}
+</style>
+    
+
+<script type="text/javascript" src="../../ltd-provenance.js"></script>
+<script type="text/javascript" src="../../ltd-current.js"></script>
+<script type="text/javascript" src="../../../../ltd-config.js"></script>
+<script type="text/javascript" src="../../../../ltd-flyout.js"></script>
+
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://projects.localizethedocs.org/emscripten-docs-l10n/docs/getting_started/downloads.html"/>
+  <meta property="og:title" content="Download and install"/>
+    <meta name="twitter:card" content="summary"/>
+  </head>
+<body><div class="sy-head">
+  <div class="sy-head-blur"></div>
+  <div class="sy-head-inner sy-container mx-auto">
+    <a class="sy-head-brand" href="../../index.html">
+      <img class="light-logo" src="../../_static/emscripten_logo_full.svg" alt="Emscripten" height="28" loading="lazy" />
+      <img class="dark-logo" src="../../_static/emscripten_logo_full.svg" alt="Emscripten" height="28" loading="lazy" />
+      <strong>Emscripten</strong>
+    </a>
+    <div class="sy-head-nav" id="head-nav">
+      <nav class="sy-head-links"><ul>
+      <li class="link"><a class="js-menu" href="../index.html" id="nav-trigger-1" aria-controls="nav-children-1">
+            <span>Documentation</span>
+            <i class="i-lucide chevron-down"></i>
+          </a>
+        <ul id="nav-children-1" aria-labelledby="nav-trigger-1"><li><a href="#">Downloads</a></li><li><a href="bug_reports.html">Report Bug</a></li><li><a href="../introducing_emscripten/emscripten_license.html">Licensing</a></li><li><a href="../contributing/contributing.html">Contributing</a></li><li><a href="../introducing_emscripten/release_notes.html">Release Notes</a></li></ul>
+      </li>
+      <li class="link"><a class="js-menu" href="../introducing_emscripten/community.html" id="nav-trigger-2" aria-controls="nav-children-2">
+            <span>Community</span>
+            <i class="i-lucide chevron-down"></i>
+          </a>
+        <ul id="nav-children-2" aria-labelledby="nav-trigger-2"><li><a href="https://groups.google.com/forum/#!forum/emscripten-discuss">Mailing List</a></li><li><a href="https://github.com/emscripten-core/emscripten/wiki">Wiki</a></li></ul>
+      </li></ul></nav>
+      <div class="sy-head-extra flex items-center print:hidden"><form class="searchbox flex items-center" action="../../search.html" method="get">
+  <input type="text" name="q" placeholder="搜索" />
+  <kbd>/</kbd>
+</form><div class="sy-head-socials">
+  <a href="https://github.com/emscripten-core/emscripten" aria-label="GitHub">
+    <iconify-icon icon="simple-icons:github"></iconify-icon>
+  </a>
+  <a href="https://discord.gg/53u3EKq" aria-label="Discord">
+    <iconify-icon icon="simple-icons:discord"></iconify-icon>
+  </a></div></div>
+    </div>
+    <div class="sy-head-actions flex items-center shrink-0 print:hidden"><button class="js-theme theme-switch flex items-center"
+data-aria-auto="切换到亮色模式"
+data-aria-light="切换到暗色模式"
+data-aria-dark="切换到自动模式">
+<i class="i-lucide theme-icon"></i>
+</button><button class="md:hidden flex items-center js-menu" aria-label="Menu" type="button" aria-controls="head-nav" aria-expanded="false">
+        <div class="hamburger">
+          <span class="hamburger_1"></span>
+          <span class="hamburger_2"></span>
+          <span class="hamburger_3"></span>
+        </div>
+      </button>
+    </div>
+  </div>
+</div>
+<div class="sy-page sy-container flex mx-auto">
+  <aside id="lside" class="sy-lside md:w-72 md:shrink-0 print:hidden">
+    <div class="sy-lside-inner md:sticky">
+      <div class="sy-scrollbar p-6"><div class="sidebar-links">
+  <ul>
+    <li><a class="icon-link" href="https://github.com/emscripten-core/emscripten/discussions">
+  <span class="icon">
+    <svg viewBox="0 0 24 24" fill="none">
+      <path fill="var(--accent-9)" fill-rule="evenodd" clip-rule="evenodd" d="M11 5a6 6 0 0 0-4.687 9.746c.215.27.315.62.231.954l-.514 2.058a1 1 0 0 0 1.485 1.1l2.848-1.71c.174-.104.374-.15.576-.148H13a6 6 0 0 0 0-12h-2Z"/>
+      <circle fill="white" cx="12" cy="11" r="1"/>
+      <circle fill="white" cx="9" cy="11" r="1"/>
+      <circle fill="white" cx="15" cy="11" r="1"/>
+    </svg>
+  </span>
+  <span class="text">讨论</span>
+</a></li>
+  </ul>
+</div>
+        <div class="globaltoc" data-expand-depth="0"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introducing_emscripten/index.html">Introducing Emscripten</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../introducing_emscripten/about_emscripten.html">About Emscripten</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../introducing_emscripten/community.html">Community</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../introducing_emscripten/emscripten_license.html">Open Source License</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../introducing_emscripten/release_notes.html">Release Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../introducing_emscripten/Talks-and-Publications.html">Talks and Publications</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Getting Started</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Download and install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Tutorial.html">Emscripten Tutorial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test-suite.html">Emscripten Test Suite</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bug_reports.html">Bug Reporting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="FAQ.html">FAQ</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../compiling/index.html">Compiling and Running Projects</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../compiling/Building-Projects.html">Building Projects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../compiling/WebAssembly.html">Building to WebAssembly</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../compiling/Modularized-Output.html">Modularized Output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../compiling/Dynamic-Linking.html">Dynamic Linking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../compiling/Running-html-files-with-emrun.html">Running HTML files with emrun</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../compiling/Deploying-Pages.html">Deploying Emscripten Compiled Pages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../compiling/GitLab.html">Building and Deploying on GitLab</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../compiling/Contrib-Ports.html">Emscripten Contrib Ports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../compiling/CrossOriginStorage.html">Cross-Origin Storage (COS)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../porting/index.html">Porting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../porting/guidelines/index.html">Code Portability and Limitations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../porting/guidelines/portability_guidelines.html">Portability Guidelines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../porting/guidelines/api_limitations.html">API Limitations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../porting/guidelines/function_pointer_issues.html">Function Pointer Issues</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../porting/guidelines/browser_limitations.html">Specific Browser Limitations</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/emscripten-runtime-environment.html">Emscripten Runtime Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/connecting_cpp_and_javascript/index.html">Connecting C++ and JavaScript</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../porting/connecting_cpp_and_javascript/Interacting-with-code.html">Interacting with code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../porting/connecting_cpp_and_javascript/embind.html">Embind</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../porting/connecting_cpp_and_javascript/WebIDL-Binder.html">WebIDL Binder</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/files/index.html">Files and File Systems</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../porting/files/file_systems_overview.html">File System Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../porting/files/packaging_files.html">Packaging Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../porting/files/Synchronous-Virtual-XHR-Backed-File-System-Usage.html">Synchronous Virtual XHR Backed File System Usage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/multimedia_and_graphics/index.html">Multimedia and Graphics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../porting/multimedia_and_graphics/WebGPU-support.html">Using WebGPU in Emscripten</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../porting/multimedia_and_graphics/EGL-Support-in-Emscripten.html">EGL Support in Emscripten</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../porting/multimedia_and_graphics/OpenGL-support.html">OpenGL support in Emscripten</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/Audio.html">Audio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/Debugging.html">Debugging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/pthreads.html">Pthreads support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/networking.html">Networking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/simd.html">Using SIMD with WebAssembly</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/exceptions.html">C++ Exceptions Support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/setjmp-longjmp.html">C setjmp-longjmp Support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/asyncify.html">Asynchronous Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../compiling/Building-Projects.html">Building Projects</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api_reference/index.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/emscripten.h.html">emscripten.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/html5.h.html">html5.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/console.h.html">console.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/preamble.js.html">preamble.js</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/Filesystem-API.html">File System API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/fetch.html">Fetch API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/module.html">Module object</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/val.h.html">val.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/bind.h.html">bind.h (under-construction)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/trace.h.html">trace.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/fiber.h.html">fiber.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/proxying.h.html">proxying.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/stack.h.html">stack.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/wasm_workers.html">Wasm Workers API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/wasm_audio_worklets.html">Wasm Audio Worklets API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/advanced-apis.html">Advanced APIs</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tools_reference/index.html">Tools Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tools_reference/emsdk.html">Emscripten SDK (emsdk)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools_reference/emcc.html">Emscripten Compiler Frontend (emcc)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools_reference/emcmdprompt.html">Emscripten Windows Command Prompt (emcmdprompt.bat)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools_reference/settings_reference.html">Emscripten Compiler Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools_reference/settings_reference.html#deprecated-settings">Deprecated Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools_reference/settings_reference.html#legacy-settings">Legacy Settings</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../optimizing/Optimizing-Code.html">Optimizing Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../optimizing/Optimizing-WebGL.html">Optimizing WebGL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debugging/Sanitizers.html">Debugging with Sanitizers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../building_from_source/index.html">Building Emscripten from Source</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../building_from_source/toolchain_what_is_needed.html">Emscripten Toolchain Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../building_from_source/configuring_emscripten_settings.html">Configuring Emscripten Settings when Manually Building from Source</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../building_from_source/verify_emscripten_environment.html">Verifying the Emscripten Development Environment</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing to Emscripten</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/contributing.html">Contributing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/developers_guide.html">Developer’s Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/AUTHORS.html">AUTHORS</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../optimizing/Profiling-Toolchain.html">Profiling the Toolchain</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../site/about.html">About this site</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../genindex.html">索引</a></li>
+</ul>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="lside-overlay js-menu" role="button" aria-label="Close left sidebar" aria-controls="lside" aria-expanded="false"></div>
+  <aside id="rside" class="sy-rside pb-3 w-64 shrink-0 order-last">
+    <button class="rside-close js-menu xl:hidden" aria-label="Close Table of Contents" type="button" aria-controls="rside" aria-expanded="false">
+      <i class="i-lucide close"></i>
+    </button>
+    <div class="sy-scrollbar sy-rside-inner px-6 xl:top-16 xl:sticky xl:pl-0 pt-6 pb-4"><div class="localtoc"><h3>该页内容</h3><ul>
+<li><a class="reference internal" href="#installation-instructions-using-the-emsdk-recommended">Installation instructions using the emsdk (recommended)</a><ul>
+<li><a class="reference internal" href="#emsdk-install-targets">Emsdk install targets</a></li>
+<li><a class="reference internal" href="#platform-specific-notes">Platform-specific notes</a><ul>
+<li><a class="reference internal" href="#windows">Windows</a></li>
+<li><a class="reference internal" href="#macos">macOS</a></li>
+<li><a class="reference internal" href="#linux">Linux</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#verifying-the-installation">Verifying the installation</a></li>
+<li><a class="reference internal" href="#updating-the-sdk">Updating the SDK</a></li>
+<li><a class="reference internal" href="#uninstalling-the-emscripten-sdk">Uninstalling the Emscripten SDK</a></li>
+<li><a class="reference internal" href="#using-the-docker-image">Using the Docker image</a></li>
+<li><a class="reference internal" href="#installation-using-unofficial-packages">Installation using unofficial packages</a></li>
+</ul>
+</div><a class="js-repo-stats repo-stats flex items-center" href="https://github.com/emscripten-core/emscripten"
+  data-type="github" data-user="emscripten-core" data-repo="emscripten">
+  <span class="w-8 flex items-center justify-around shrink-0 text-3xl">
+    <iconify-icon icon="simple-icons:github"></iconify-icon>
+  </span>
+  <span class="flex-grow px-2 break-all">
+    
+    
+      <span>emscripten</span>
+    
+    <span class="flex text-sm repo-stats-count">
+      <span class="flex items-center pr-3">
+        <iconify-icon icon="lucide:star"></iconify-icon>
+        <strong class="js-repo-stars ml-1">0</strong>
+      </span>
+      <span class="flex items-center">
+        <iconify-icon icon="lucide:git-fork"></iconify-icon>
+        <strong class="js-repo-forks ml-1">0</strong>
+      </span>
+    </span>
+  </span>
+</a><div class="edit-this-page">
+  <a href="https://github.com/emscripten-core/emscripten/blob/main/site/source/docs/getting_started/downloads.rst">编辑此页面</a>
+</div><div id="ethical-ad-placement" data-ea-publisher="readthedocs"></div></div>
+  </aside>
+  <div class="rside-overlay js-menu" role="button" aria-label="Close Table of Contents" aria-controls="rside" aria-expanded="false"></div>
+  <main class="sy-main w-full max-sm:max-w-full print:pt-6">
+<div class="sy-breadcrumbs" role="navigation">
+  <div class="sy-breadcrumbs-inner flex items-center">
+    <div class="md:hidden mr-3">
+      <button class="js-menu" aria-label="Menu" type="button" aria-controls="lside" aria-expanded="false">
+        <i class="i-lucide menu"></i>
+      </button>
+    </div>
+    <ol class="flex-1" itemscope itemtype="https://schema.org/BreadcrumbList"><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="../../index.html"><span itemprop="name">Emscripten</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="1" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="index.html"><span itemprop="name">Getting Started</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="2" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <strong itemprop="name">Download and install</strong>
+        <meta itemprop="position" content="3" />
+      </li></ol>
+    <div class="xl:hidden ml-1">
+      <button class="js-menu" aria-label="Show table of contents" type="button" aria-controls="rside"
+        aria-expanded="false">
+        <i class="i-lucide outdent"></i>
+      </button>
+    </div>
+  </div>
+</div><div class="flex flex-col break-words justify-between">
+      <div class="relative min-w-0 max-w-6xl px-6 pb-6 pt-8 xl:px-12">
+  <article class="yue" role="main">
+          <section id="download-and-install">
+<span id="sdk-download-and-install"></span><h1>Download and install<a class="headerlink" href="#download-and-install" title="Link to this heading">¶</a></h1>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>You can also <a class="reference internal" href="../building_from_source/index.html#installing-from-source"><span class="std std-ref">build Emscripten from source</span></a> if you prefer that to downloading binaries using
+the emsdk.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">小技巧</p>
+<p>If you’d like to install emscripten using the <strong>unofficial</strong> packages
+instead of the <strong>officially supported</strong> emsdk, see the bottom of the page.</p>
+</div>
+<section id="installation-instructions-using-the-emsdk-recommended">
+<span id="sdk-installation-instructions"></span><h2>Installation instructions using the emsdk (recommended)<a class="headerlink" href="#installation-instructions-using-the-emsdk-recommended" title="Link to this heading">¶</a></h2>
+<p>First, check the <a class="reference internal" href="#platform-notes-installation-instructions-sdk"><span class="std std-ref">Platform-specific notes</span></a> below and install any
+prerequisites.</p>
+<p>The core Emscripten SDK (emsdk) driver is a Python script. You can get it for
+the first time with:</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1"># Get the emsdk repo</span>
+</span><span data-line="2"><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">emscripten</span><span class="o">-</span><span class="n">core</span><span class="o">/</span><span class="n">emsdk</span><span class="o">.</span><span class="n">git</span>
+</span><span data-line="3">
+</span><span data-line="4"><span class="c1"># Enter that directory</span>
+</span><span data-line="5"><span class="n">cd</span> <span class="n">emsdk</span>
+</span></pre></div>
+</div>
+</div></blockquote>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>You can also get the emsdk without git, by selecting “Clone or
+download =&gt; Download ZIP” on the <a class="reference external" href="https://github.com/emscripten-core/emsdk">emsdk GitHub page</a>.</p>
+</div>
+<p>Run the following <a class="reference internal" href="../tools_reference/emsdk.html#emsdk"><span class="std std-ref">emsdk</span></a> commands to get the latest tools from
+GitHub and set them as <a class="reference internal" href="../site/glossary.html#term-Active-Tool-SDK"><span class="xref std std-term">active</span></a>:</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1"># Fetch the latest version of the emsdk (not needed the first time you clone)</span>
+</span><span data-line="2"><span class="n">git</span> <span class="n">pull</span>
+</span><span data-line="3">
+</span><span data-line="4"><span class="c1"># Download and install the latest SDK tools.</span>
+</span><span data-line="5"><span class="o">./</span><span class="n">emsdk</span> <span class="n">install</span> <span class="n">latest</span>
+</span><span data-line="6">
+</span><span data-line="7"><span class="c1"># Make the &quot;latest&quot; SDK &quot;active&quot; for the current user. (writes .emscripten file)</span>
+</span><span data-line="8"><span class="o">./</span><span class="n">emsdk</span> <span class="n">activate</span> <span class="n">latest</span>
+</span><span data-line="9">
+</span><span data-line="10"><span class="c1"># Activate PATH and other environment variables in the current terminal</span>
+</span><span data-line="11"><span class="n">source</span> <span class="o">./</span><span class="n">emsdk_env</span><span class="o">.</span><span class="n">sh</span>
+</span></pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">小技巧</p>
+<p>If you want to avoid executing <cite>source ./emsdk_env.sh</cite> every time you open a new terminal, you can follow the instructions given by the <cite>emsdk activate</cite> command above to add this command to your startup scripts.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>On Windows, run <code class="docutils literal notranslate"><span class="pre">emsdk.bat</span></code> instead of <code class="docutils literal notranslate"><span class="pre">./emsdk</span></code>, and <code class="docutils literal notranslate"><span class="pre">emsdk_env.bat</span></code> instead of <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">./emsdk_env.sh</span></code>.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>On Windows, if you use the <code class="docutils literal notranslate"><span class="pre">activate</span></code> command, the step of <code class="docutils literal notranslate"><span class="pre">emsdk_env.bat</span></code> is optional. If you want to know more, see <a class="reference internal" href="../tools_reference/emsdk.html#emsdk-set-active-tools"><span class="std std-ref">activate SDK version</span></a>.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span></code> will fetch the current list of tags, but very recent ones may not yet be present there. You can run <code class="docutils literal notranslate"><span class="pre">./emsdk</span> <span class="pre">update-tags</span></code> to update the list of tags directly.</p>
+</div>
+</div></blockquote>
+<p>If you change the location of the SDK (e.g. take it to another computer on a
+USB), re-run the <code class="docutils literal notranslate"><span class="pre">./emsdk</span> <span class="pre">activate</span> <span class="pre">latest</span></code> and <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">./emsdk_env.sh</span></code>
+commands.</p>
+<section id="emsdk-install-targets">
+<h3>Emsdk install targets<a class="headerlink" href="#emsdk-install-targets" title="Link to this heading">¶</a></h3>
+<p>In the description above, we asked the emsdk to install and activate <code class="docutils literal notranslate"><span class="pre">latest</span></code>,
+which is the latest tagged release. That is often what you want.</p>
+<p>You can also install a specific version by specifying it, for example,</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="o">./</span><span class="n">emsdk</span> <span class="n">install</span> <span class="mf">1.38.45</span>
+</span></pre></div>
+</div>
+</div></blockquote>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>When installing old versions from before the build infrastructure
+rewrite (anything before <code class="docutils literal notranslate"><span class="pre">1.38.33</span></code>), you need to write something like
+<code class="docutils literal notranslate"><span class="pre">./emsdk</span> <span class="pre">install</span> <span class="pre">sdk-1.38.20-64bit</span></code> (add <code class="docutils literal notranslate"><span class="pre">sdk-</span></code> and <code class="docutils literal notranslate"><span class="pre">-64bit</span></code>) as that
+was the naming convention at the time.</p>
+</div>
+<p>There are also “tip-of-tree builds”, which are the very latest code that passes
+integration tests on <a class="reference external" href="https://ci.chromium.org/p/emscripten-releases">Chromium CI</a>. This is updated much more
+frequently than tagged releases, but may be less stable (we <a class="reference external" href="https://github.com/emscripten-core/emscripten/blob/main/docs/process.md#minor-version-updates-1xy-to-1xy1">tag releases
+manually</a>
+using a more careful procedure). Tip-of-tree builds may be useful for continuous
+integration that uses the emsdk (as Emscripten’s GitHub CI does), and you may
+want to use it in your own CI as well, so that if you find a regression on your
+project you can report it and prevent it from reaching a tagged release.
+Tip-of-tree builds may also be useful if you want to test a feature that just landed
+but didn’t reach a release yet. To use a tip-of-tree build, use the <code class="docutils literal notranslate"><span class="pre">tot</span></code>
+target, and note that you must specify the backend explicitly,</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1"># Get a tip-of-tree</span>
+</span><span data-line="2"><span class="o">./</span><span class="n">emsdk</span> <span class="n">install</span> <span class="n">tot</span>
+</span></pre></div>
+</div>
+</div></blockquote>
+<p>(In the above examples, we installed the various targets; remember to also
+<code class="docutils literal notranslate"><span class="pre">activate</span></code> them as in the full example from earlier.)</p>
+</section>
+<section id="platform-specific-notes">
+<span id="platform-notes-installation-instructions-sdk"></span><h3>Platform-specific notes<a class="headerlink" href="#platform-specific-notes" title="Link to this heading">¶</a></h3>
+<section id="windows">
+<h4>Windows<a class="headerlink" href="#windows" title="Link to this heading">¶</a></h4>
+<ol class="arabic simple">
+<li><p>Install Python 3.8 or newer.</p></li>
+</ol>
+<blockquote>
+<div><div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>Instead of running emscripten on Windows directly, you can use the
+Windows Subsystem for Linux to run it in a Linux environment.</p>
+</div>
+</div></blockquote>
+</section>
+<section id="macos">
+<h4>macOS<a class="headerlink" href="#macos" title="Link to this heading">¶</a></h4>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>Emscripten requires macOS 10.14 Mojave or above.</p>
+</div>
+<p>If you use the Emscripten SDK, it includes a bundled version of Python 3.
+Otherwise, you will need to manually install and use Python 3.8 or newer.</p>
+<p>These instructions explain how to install <strong>all</strong> the <a class="reference internal" href="../building_from_source/toolchain_what_is_needed.html#toolchain-what-you-need"><span class="std std-ref">required tools</span></a>. You can <a class="reference internal" href="../building_from_source/toolchain_what_is_needed.html#toolchain-test-which-dependencies-are-installed"><span class="std std-ref">test whether some of these are already
+installed</span></a> on the platform and
+skip those steps.</p>
+<ol class="arabic simple">
+<li><p>Install the <em>Xcode Command Line Tools</em>. These are a precondition for <em>git</em>.</p></li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li><p>Install Xcode from the <a class="reference external" href="http://superuser.com/questions/455214/where-is-svn-on-os-x-mountain-lion">macOS App Store</a>.</p></li>
+<li><p>In <strong>Xcode | Preferences | Downloads</strong>, install <em>Command Line Tools</em>.</p></li>
+</ul>
+</div></blockquote>
+<ol class="arabic simple">
+<li><p>Install <em>git</em>:</p></li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference external" href="https://support.apple.com/en-gb/HT202491">Make sure the OS allows installing git</a>.</p></li>
+<li><p>Install Xcode and the Xcode Command Line Tools (should already have been done). This will provide <em>git</em> to the system PATH (see <a class="reference external" href="http://stackoverflow.com/questions/9329243/xcode-4-4-command-line-tools">this stackoverflow post</a>).</p></li>
+<li><p>Download and install git directly from <a class="reference external" href="http://git-scm.com/">http://git-scm.com/</a>.</p></li>
+</ul>
+</div></blockquote>
+<ol class="arabic simple">
+<li><p>Install <em>cmake</em> if you do not have it yet:</p></li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li><p>Download and install latest CMake from <a class="reference external" href="http://www.cmake.org/download/">Kitware CMake downloads</a>.</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="linux">
+<h4>Linux<a class="headerlink" href="#linux" title="Link to this heading">¶</a></h4>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p><em>Emsdk</em> does not install any tools to the system, or otherwise
+interact with Linux package managers. All file changes are done inside the
+<strong>emsdk/</strong> directory.</p>
+</div>
+<ul>
+<li><p><em>Python</em> is not provided by <em>emsdk</em>. The user is expected to install this
+beforehand with the <em>system package manager</em>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1"># Install Python</span>
+</span><span data-line="2"><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">python3</span>
+</span><span data-line="3">
+</span><span data-line="4"><span class="c1"># Install CMake (optional, only needed for tests and building Binaryen or LLVM)</span>
+</span><span data-line="5"><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">cmake</span>
+</span></pre></div>
+</div>
+</li>
+<li><p><em>Git</em> is not installed automatically. Git is only needed if you want to use tools from a development branch.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1"># Install git</span>
+</span><span data-line="2"><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">git</span>
+</span></pre></div>
+</div>
+</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="verifying-the-installation">
+<h2>Verifying the installation<a class="headerlink" href="#verifying-the-installation" title="Link to this heading">¶</a></h2>
+<p>The easiest way to verify the installation is to compile some code using
+Emscripten.</p>
+<p>You can jump ahead to the <a class="reference internal" href="Tutorial.html#tutorial"><span class="std std-ref">Emscripten Tutorial</span></a>, but if you have any problems building
+you should run through the basic tests and troubleshooting instructions in
+<a class="reference internal" href="../building_from_source/verify_emscripten_environment.html#verifying-the-emscripten-environment"><span class="std std-ref">Verifying the Emscripten Development Environment</span></a>.</p>
+</section>
+<section id="updating-the-sdk">
+<span id="updating-the-emscripten-sdk"></span><h2>Updating the SDK<a class="headerlink" href="#updating-the-sdk" title="Link to this heading">¶</a></h2>
+<div class="admonition tip">
+<p class="admonition-title">小技巧</p>
+<p>You only need to install the SDK once! After that you can update to the
+latest SDK at any time using <a class="reference internal" href="../tools_reference/emsdk.html#emsdk"><span class="std std-ref">Emscripten SDK (emsdk)</span></a>.</p>
+</div>
+<p>Type the following in a command prompt</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1"># Fetch the latest registry of available tools.</span>
+</span><span data-line="2"><span class="o">./</span><span class="n">emsdk</span> <span class="n">update</span>
+</span><span data-line="3">
+</span><span data-line="4"><span class="c1"># Download and install the latest SDK tools.</span>
+</span><span data-line="5"><span class="o">./</span><span class="n">emsdk</span> <span class="n">install</span> <span class="n">latest</span>
+</span><span data-line="6">
+</span><span data-line="7"><span class="c1"># Set up the compiler configuration to point to the &quot;latest&quot; SDK.</span>
+</span><span data-line="8"><span class="o">./</span><span class="n">emsdk</span> <span class="n">activate</span> <span class="n">latest</span>
+</span><span data-line="9">
+</span><span data-line="10"><span class="c1"># Activate PATH and other environment variables in the current terminal</span>
+</span><span data-line="11"><span class="n">source</span> <span class="o">./</span><span class="n">emsdk_env</span><span class="o">.</span><span class="n">sh</span>
+</span></pre></div>
+</div>
+<p>The package manager can do many other maintenance tasks ranging from fetching
+specific old versions of the SDK through to using the <a class="reference internal" href="../tools_reference/emsdk.html#emsdk-dev-sdk"><span class="std std-ref">versions of the
+tools on GitHub</span></a> (or even your own fork). Check out all the
+possibilities in the <a class="reference internal" href="../tools_reference/emsdk.html#emsdk-howto"><span class="std std-ref">“How to” guides</span></a>.</p>
+</section>
+<section id="uninstalling-the-emscripten-sdk">
+<span id="downloads-uninstall-the-sdk"></span><h2>Uninstalling the Emscripten SDK<a class="headerlink" href="#uninstalling-the-emscripten-sdk" title="Link to this heading">¶</a></h2>
+<p>If you want to remove the whole SDK, just delete the directory containing the
+SDK.</p>
+<p>It is also possible to <a class="reference internal" href="../tools_reference/emsdk.html#emsdk-remove-tool-sdk"><span class="std std-ref">remove specific tools in the SDK using emsdk</span></a>.</p>
+</section>
+<section id="using-the-docker-image">
+<h2>Using the Docker image<a class="headerlink" href="#using-the-docker-image" title="Link to this heading">¶</a></h2>
+<p>The entire Emscripten SDK is also available in the form of a <a class="reference external" href="https://hub.docker.com/r/emscripten/emsdk">docker image</a>.  For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span data-line="1">docker run --rm -v $(pwd):/src -u $(id -u):$(id -g) \
+</span><span data-line="2">  emscripten/emsdk emcc helloworld.cpp -o helloworld.js
+</span></pre></div>
+</div>
+<p>See the Docker Hub page for more details and examples.</p>
+</section>
+<section id="installation-using-unofficial-packages">
+<h2>Installation using unofficial packages<a class="headerlink" href="#installation-using-unofficial-packages" title="Link to this heading">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>The <cite>emsdk</cite> is the only officially supported way to use
+Emscripten that is supported by the Emscripten project, and the only one
+that we constantly test
+(<a class="reference external" href="https://github.com/emscripten-core/emsdk/blob/main/.circleci/config.yml">emsdk CI</a>,
+<a class="reference external" href="https://github.com/emscripten-core/emscripten/blob/main/.circleci/config.yml">Emscripten GitHub CI</a>,
+<a class="reference external" href="https://ci.chromium.org/p/emscripten-releases">Chromium CI</a>).</p>
+</div>
+<p>While we don’t officially support other ways of getting Emscripten, we definitely
+appreciate the efforts by third parties to
+<a class="reference external" href="https://github.com/emscripten-core/emscripten/blob/main/docs/packaging.md">package Emscripten</a>
+for users’ convenience, and we’d like to help out, please get in touch if
+you are such a packager!</p>
+<p>The following is a partial list of such unofficial emscripten packages:</p>
+<dl class="simple">
+<dt><strong>Windows</strong></dt><dd><ul class="simple">
+<li><p>package info: <cite>emscripten</cite> in <a class="reference external" href="https://chocolatey.org/packages/emscripten">chocolatey</a></p></li>
+<li><p>maintainer: &#64;aminya</p></li>
+</ul>
+</dd>
+<dt><strong>Homebrew</strong></dt><dd><ul class="simple">
+<li><p>package info: <a class="reference external" href="https://formulae.brew.sh/formula/emscripten">https://formulae.brew.sh/formula/emscripten</a></p></li>
+<li><p>maintainer: &#64;chenrui333</p></li>
+</ul>
+</dd>
+<dt><strong>Arch Linux</strong></dt><dd><ul class="simple">
+<li><p>package info: <a class="reference external" href="https://archlinux.org/packages/extra/x86_64/emscripten">https://archlinux.org/packages/extra/x86_64/emscripten</a></p></li>
+<li><p>maintainer: Sven-Hendrik Haase &lt;<a class="reference external" href="mailto:svenstaro&#37;&#52;&#48;archlinux&#46;org">svenstaro<span>&#64;</span>archlinux<span>&#46;</span>org</a>&gt;</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+</section>
+
+        </article><button class="back-to-top" type="button">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+  </svg>
+  <span>回到顶部</span>
+</button><div class="navigation flex print:hidden"><div class="navigation-prev">
+    <a href="index.html">
+      <i class="i-lucide chevron-left"></i>
+      <div class="page-info">
+        <span>上一章</span><div class="title">Getting Started</div></div>
+    </a>
+  </div><div class="navigation-next">
+    <a href="Tutorial.html">
+      <div class="page-info">
+        <span>下一章</span>
+        <div class="title">Emscripten Tutorial</div>
+      </div>
+      <i class="i-lucide chevron-right"></i>
+    </a>
+  </div></div></div>
+    </div>
+  </main>
+</div>
+<footer class="sy-foot">
+  <div class="sy-foot-inner sy-container mx-auto">
+    <div class="sy-foot-reserved md:flex justify-between items-center">
+      <div class="sy-foot-copyright"><p>Copyright &copy; 2015, Emscripten Contributors.</p>
+  
+  <p>
+    Made with
+    
+    <a href="https://www.sphinx-doc.org/">Sphinx</a> and
+    
+    <a href="https://shibuya.lepture.com">Shibuya theme</a>.
+  </p>
+</div>
+      <div class="sy-foot-socials">
+<a href="https://github.com/emscripten-core/emscripten" aria-label="GitHub">
+  <iconify-icon icon="simple-icons:github"></iconify-icon>
+</a>
+<a href="https://discord.gg/53u3EKq" aria-label="Discord">
+  <iconify-icon icon="simple-icons:discord"></iconify-icon>
+</a></div>
+    </div>
+  </div>
+</footer>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=c4790338"></script>
+      <script src="../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/translations.js?v=beaddf03"></script>
+      <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../../_static/shibuya.js?v=50760d75"></script></body>
+</html>

@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="en-US" data-accent-color="violet" data-content_root="../../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Asynchronous Code - Emscripten 6.0.1-git (dev) documentation</title><link rel="shortcut icon" href="../../_static/emscripten.ico"/><link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="API Reference" href="../api_reference/index.html" /><link rel="prev" title="C setjmp-longjmp Support" href="setjmp-longjmp.html" />
+      <link rel="canonical" href="https://projects.localizethedocs.org/emscripten-docs-l10n/docs/porting/asyncify.html" /><script>
+    function setColorMode(t){let e=document.documentElement;e.setAttribute("data-color-mode",t);let a=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,s=t;"auto"===t&&(s=a?"dark":"light"),"light"===s?(e.classList.remove("dark"),e.classList.add("light")):(e.classList.remove("light"),e.classList.add("dark"))}
+    setColorMode(localStorage._theme||"auto");
+  </script><link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=ad592e98" />
+    <link rel="stylesheet" type="text/css" href="../../_static/shibuya.css?v=9454f7d5" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link media="print" rel="stylesheet" type="text/css" href="../../_static/print.css?v=20ff2c19" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sy-f-text: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+  --sy-f-heading: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+}
+</style>
+    
+
+<script type="text/javascript" src="../../ltd-provenance.js"></script>
+<script type="text/javascript" src="../../ltd-current.js"></script>
+<script type="text/javascript" src="../../../../ltd-config.js"></script>
+<script type="text/javascript" src="../../../../ltd-flyout.js"></script>
+
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://projects.localizethedocs.org/emscripten-docs-l10n/docs/porting/asyncify.html"/>
+  <meta property="og:title" content="Asynchronous Code"/>
+    <meta name="twitter:card" content="summary"/>
+  </head>
+<body><div class="sy-head">
+  <div class="sy-head-blur"></div>
+  <div class="sy-head-inner sy-container mx-auto">
+    <a class="sy-head-brand" href="../../index.html">
+      <img class="light-logo" src="../../_static/emscripten_logo_full.svg" alt="Emscripten" height="28" loading="lazy" />
+      <img class="dark-logo" src="../../_static/emscripten_logo_full.svg" alt="Emscripten" height="28" loading="lazy" />
+      <strong>Emscripten</strong>
+    </a>
+    <div class="sy-head-nav" id="head-nav">
+      <nav class="sy-head-links"><ul>
+      <li class="link"><a class="js-menu" href="../index.html" id="nav-trigger-1" aria-controls="nav-children-1">
+            <span>Documentation</span>
+            <i class="i-lucide chevron-down"></i>
+          </a>
+        <ul id="nav-children-1" aria-labelledby="nav-trigger-1"><li><a href="../getting_started/downloads.html">Downloads</a></li><li><a href="../getting_started/bug_reports.html">Report Bug</a></li><li><a href="../introducing_emscripten/emscripten_license.html">Licensing</a></li><li><a href="../contributing/contributing.html">Contributing</a></li><li><a href="../introducing_emscripten/release_notes.html">Release Notes</a></li></ul>
+      </li>
+      <li class="link"><a class="js-menu" href="../introducing_emscripten/community.html" id="nav-trigger-2" aria-controls="nav-children-2">
+            <span>Community</span>
+            <i class="i-lucide chevron-down"></i>
+          </a>
+        <ul id="nav-children-2" aria-labelledby="nav-trigger-2"><li><a href="https://groups.google.com/forum/#!forum/emscripten-discuss">Mailing List</a></li><li><a href="https://github.com/emscripten-core/emscripten/wiki">Wiki</a></li></ul>
+      </li></ul></nav>
+      <div class="sy-head-extra flex items-center print:hidden"><form class="searchbox flex items-center" action="../../search.html" method="get">
+  <input type="text" name="q" placeholder="Search" />
+  <kbd>/</kbd>
+</form><div class="sy-head-socials">
+  <a href="https://github.com/emscripten-core/emscripten" aria-label="GitHub">
+    <iconify-icon icon="simple-icons:github"></iconify-icon>
+  </a>
+  <a href="https://discord.gg/53u3EKq" aria-label="Discord">
+    <iconify-icon icon="simple-icons:discord"></iconify-icon>
+  </a></div></div>
+    </div>
+    <div class="sy-head-actions flex items-center shrink-0 print:hidden"><button class="js-theme theme-switch flex items-center"
+data-aria-auto="Switch to light color mode"
+data-aria-light="Switch to dark color mode"
+data-aria-dark="Switch to auto color mode">
+<i class="i-lucide theme-icon"></i>
+</button><button class="md:hidden flex items-center js-menu" aria-label="Menu" type="button" aria-controls="head-nav" aria-expanded="false">
+        <div class="hamburger">
+          <span class="hamburger_1"></span>
+          <span class="hamburger_2"></span>
+          <span class="hamburger_3"></span>
+        </div>
+      </button>
+    </div>
+  </div>
+</div>
+<div class="sy-page sy-container flex mx-auto">
+  <aside id="lside" class="sy-lside md:w-72 md:shrink-0 print:hidden">
+    <div class="sy-lside-inner md:sticky">
+      <div class="sy-scrollbar p-6"><div class="sidebar-links">
+  <ul>
+    <li><a class="icon-link" href="https://github.com/emscripten-core/emscripten/discussions">
+  <span class="icon">
+    <svg viewBox="0 0 24 24" fill="none">
+      <path fill="var(--accent-9)" fill-rule="evenodd" clip-rule="evenodd" d="M11 5a6 6 0 0 0-4.687 9.746c.215.27.315.62.231.954l-.514 2.058a1 1 0 0 0 1.485 1.1l2.848-1.71c.174-.104.374-.15.576-.148H13a6 6 0 0 0 0-12h-2Z"/>
+      <circle fill="white" cx="12" cy="11" r="1"/>
+      <circle fill="white" cx="9" cy="11" r="1"/>
+      <circle fill="white" cx="15" cy="11" r="1"/>
+    </svg>
+  </span>
+  <span class="text">Discussion</span>
+</a></li>
+  </ul>
+</div>
+        <div class="globaltoc" data-expand-depth="0"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introducing_emscripten/index.html">Introducing Emscripten</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../introducing_emscripten/about_emscripten.html">About Emscripten</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../introducing_emscripten/community.html">Community</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../introducing_emscripten/emscripten_license.html">Open Source License</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../introducing_emscripten/release_notes.html">Release Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../introducing_emscripten/Talks-and-Publications.html">Talks and Publications</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/downloads.html">Download and install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/Tutorial.html">Emscripten Tutorial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/test-suite.html">Emscripten Test Suite</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/bug_reports.html">Bug Reporting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/FAQ.html">FAQ</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../compiling/index.html">Compiling and Running Projects</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../compiling/Building-Projects.html">Building Projects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../compiling/WebAssembly.html">Building to WebAssembly</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../compiling/Modularized-Output.html">Modularized Output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../compiling/Dynamic-Linking.html">Dynamic Linking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../compiling/Running-html-files-with-emrun.html">Running HTML files with emrun</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../compiling/Deploying-Pages.html">Deploying Emscripten Compiled Pages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../compiling/GitLab.html">Building and Deploying on GitLab</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../compiling/Contrib-Ports.html">Emscripten Contrib Ports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../compiling/CrossOriginStorage.html">Cross-Origin Storage (COS)</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Porting</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="guidelines/index.html">Code Portability and Limitations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="guidelines/portability_guidelines.html">Portability Guidelines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="guidelines/api_limitations.html">API Limitations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="guidelines/function_pointer_issues.html">Function Pointer Issues</a></li>
+<li class="toctree-l3"><a class="reference internal" href="guidelines/browser_limitations.html">Specific Browser Limitations</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="emscripten-runtime-environment.html">Emscripten Runtime Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="connecting_cpp_and_javascript/index.html">Connecting C++ and JavaScript</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="connecting_cpp_and_javascript/Interacting-with-code.html">Interacting with code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="connecting_cpp_and_javascript/embind.html">Embind</a></li>
+<li class="toctree-l3"><a class="reference internal" href="connecting_cpp_and_javascript/WebIDL-Binder.html">WebIDL Binder</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="files/index.html">Files and File Systems</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="files/file_systems_overview.html">File System Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="files/packaging_files.html">Packaging Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="files/Synchronous-Virtual-XHR-Backed-File-System-Usage.html">Synchronous Virtual XHR Backed File System Usage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="multimedia_and_graphics/index.html">Multimedia and Graphics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="multimedia_and_graphics/WebGPU-support.html">Using WebGPU in Emscripten</a></li>
+<li class="toctree-l3"><a class="reference internal" href="multimedia_and_graphics/EGL-Support-in-Emscripten.html">EGL Support in Emscripten</a></li>
+<li class="toctree-l3"><a class="reference internal" href="multimedia_and_graphics/OpenGL-support.html">OpenGL support in Emscripten</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Audio.html">Audio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Debugging.html">Debugging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pthreads.html">Pthreads support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html">Networking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simd.html">Using SIMD with WebAssembly</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html">C++ Exceptions Support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setjmp-longjmp.html">C setjmp-longjmp Support</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Asynchronous Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../compiling/Building-Projects.html">Building Projects</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api_reference/index.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/emscripten.h.html">emscripten.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/html5.h.html">html5.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/console.h.html">console.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/preamble.js.html">preamble.js</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/Filesystem-API.html">File System API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/fetch.html">Fetch API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/module.html">Module object</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/val.h.html">val.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/bind.h.html">bind.h (under-construction)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/trace.h.html">trace.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/fiber.h.html">fiber.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/proxying.h.html">proxying.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/stack.h.html">stack.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/wasm_workers.html">Wasm Workers API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/wasm_audio_worklets.html">Wasm Audio Worklets API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/advanced-apis.html">Advanced APIs</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tools_reference/index.html">Tools Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tools_reference/emsdk.html">Emscripten SDK (emsdk)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools_reference/emcc.html">Emscripten Compiler Frontend (emcc)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools_reference/emcmdprompt.html">Emscripten Windows Command Prompt (emcmdprompt.bat)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools_reference/settings_reference.html">Emscripten Compiler Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools_reference/settings_reference.html#deprecated-settings">Deprecated Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools_reference/settings_reference.html#legacy-settings">Legacy Settings</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../optimizing/Optimizing-Code.html">Optimizing Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../optimizing/Optimizing-WebGL.html">Optimizing WebGL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debugging/Sanitizers.html">Debugging with Sanitizers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../building_from_source/index.html">Building Emscripten from Source</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../building_from_source/toolchain_what_is_needed.html">Emscripten Toolchain Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../building_from_source/configuring_emscripten_settings.html">Configuring Emscripten Settings when Manually Building from Source</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../building_from_source/verify_emscripten_environment.html">Verifying the Emscripten Development Environment</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing to Emscripten</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/contributing.html">Contributing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/developers_guide.html">Developer’s Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/AUTHORS.html">AUTHORS</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../optimizing/Profiling-Toolchain.html">Profiling the Toolchain</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../site/about.html">About this site</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../genindex.html">Index</a></li>
+</ul>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="lside-overlay js-menu" role="button" aria-label="Close left sidebar" aria-controls="lside" aria-expanded="false"></div>
+  <aside id="rside" class="sy-rside pb-3 w-64 shrink-0 order-last">
+    <button class="rside-close js-menu xl:hidden" aria-label="Close Table of Contents" type="button" aria-controls="rside" aria-expanded="false">
+      <i class="i-lucide close"></i>
+    </button>
+    <div class="sy-scrollbar sy-rside-inner px-6 xl:top-16 xl:sticky xl:pl-0 pt-6 pb-4"><div class="localtoc"><h3>On this page</h3><ul>
+<li><a class="reference internal" href="#sleeping-yielding-to-the-event-loop">Sleeping / yielding to the event loop</a></li>
+<li><a class="reference internal" href="#making-async-web-apis-behave-as-if-they-were-synchronous">Making async Web APIs behave as if they were synchronous</a></li>
+<li><a class="reference internal" href="#marking-js-library-functions-as-async">Marking JS library functions as async</a></li>
+<li><a class="reference internal" href="#ways-to-use-asyncify-apis-in-older-engines">Ways to use Asyncify APIs in older engines</a></li>
+<li><a class="reference internal" href="#more-on-asyncify-imports">More on <code class="docutils literal notranslate"><span class="pre">ASYNCIFY_IMPORTS</span></code></a></li>
+<li><a class="reference internal" href="#asyncify-with-dynamic-linking">Asyncify with Dynamic Linking</a></li>
+<li><a class="reference internal" href="#usage-with-embind">Usage with Embind</a></li>
+<li><a class="reference internal" href="#usage-with-ccall">Usage with <code class="docutils literal notranslate"><span class="pre">ccall</span></code></a></li>
+<li><a class="reference internal" href="#differences-between-asyncify-and-jspi">Differences Between Asyncify and JSPI</a></li>
+<li><a class="reference internal" href="#optimizing-asyncify">Optimizing Asyncify</a></li>
+<li><a class="reference internal" href="#potential-problems">Potential problems</a><ul>
+<li><a class="reference internal" href="#stack-overflows-asyncify">Stack overflows (Asyncify)</a></li>
+<li><a class="reference internal" href="#reentrancy">Reentrancy</a></li>
+<li><a class="reference internal" href="#starting-to-rewind-with-compiled-code-on-the-stack-asyncify">Starting to rewind with compiled code on the stack (Asyncify)</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#migrating-from-older-asyncify-apis">Migrating from older Asyncify APIs</a></li>
+</ul>
+</div><a class="js-repo-stats repo-stats flex items-center" href="https://github.com/emscripten-core/emscripten"
+  data-type="github" data-user="emscripten-core" data-repo="emscripten">
+  <span class="w-8 flex items-center justify-around shrink-0 text-3xl">
+    <iconify-icon icon="simple-icons:github"></iconify-icon>
+  </span>
+  <span class="flex-grow px-2 break-all">
+    
+    
+      <span>emscripten</span>
+    
+    <span class="flex text-sm repo-stats-count">
+      <span class="flex items-center pr-3">
+        <iconify-icon icon="lucide:star"></iconify-icon>
+        <strong class="js-repo-stars ml-1">0</strong>
+      </span>
+      <span class="flex items-center">
+        <iconify-icon icon="lucide:git-fork"></iconify-icon>
+        <strong class="js-repo-forks ml-1">0</strong>
+      </span>
+    </span>
+  </span>
+</a><div class="edit-this-page">
+  <a href="https://github.com/emscripten-core/emscripten/blob/main/site/source/docs/porting/asyncify.rst">Edit this page</a>
+</div><div id="ethical-ad-placement" data-ea-publisher="readthedocs"></div></div>
+  </aside>
+  <div class="rside-overlay js-menu" role="button" aria-label="Close Table of Contents" aria-controls="rside" aria-expanded="false"></div>
+  <main class="sy-main w-full max-sm:max-w-full print:pt-6">
+<div class="sy-breadcrumbs" role="navigation">
+  <div class="sy-breadcrumbs-inner flex items-center">
+    <div class="md:hidden mr-3">
+      <button class="js-menu" aria-label="Menu" type="button" aria-controls="lside" aria-expanded="false">
+        <i class="i-lucide menu"></i>
+      </button>
+    </div>
+    <ol class="flex-1" itemscope itemtype="https://schema.org/BreadcrumbList"><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="../../index.html"><span itemprop="name">Emscripten</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="1" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="index.html"><span itemprop="name">Porting</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="2" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <strong itemprop="name">Asynchronous Code</strong>
+        <meta itemprop="position" content="3" />
+      </li></ol>
+    <div class="xl:hidden ml-1">
+      <button class="js-menu" aria-label="Show table of contents" type="button" aria-controls="rside"
+        aria-expanded="false">
+        <i class="i-lucide outdent"></i>
+      </button>
+    </div>
+  </div>
+</div><div class="flex flex-col break-words justify-between">
+      <div class="relative min-w-0 max-w-6xl px-6 pb-6 pt-8 xl:px-12">
+  <article class="yue" role="main">
+          <section id="asynchronous-code">
+<span id="asyncify-section"></span><h1>Asynchronous Code<a class="headerlink" href="#asynchronous-code" title="Link to this heading">¶</a></h1>
+<p>Emscripten supports two ways (Asyncify and JSPI) that let <strong>synchronous</strong> C or
+C++ code interact with <strong>asynchronous</strong> JavaScript. This allows things like:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>A synchronous call in C that yields to the event loop, which
+allows browser events to be handled.</p></li>
+<li><p>A synchronous call in C that waits for an asynchronous operation in JS to
+complete.</p></li>
+</ul>
+</div></blockquote>
+<p>In general the two options are very similar, but rely on different underlying
+mechanisms to work.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><cite>Asyncify</cite> - Asyncify automatically transforms your compiled code into a
+form that can be paused and resumed, and handles pausing and resuming for
+you, so that it is asynchronous (hence the name “Asyncify”) even though you
+wrote it in a normal synchronous way. This works in most environments, but
+can cause the Wasm output to be much larger.</p></li>
+<li><p><cite>JSPI</cite> (experimental) - Uses the VM’s support for JavaScript Promise
+Integration (JSPI) for interacting with async JavaScript. The code size will
+remain the same, but support for this feature is still experimental.</p></li>
+</ul>
+</div></blockquote>
+<p>For more on Asyncify see the
+<a class="reference external" href="https://kripken.github.io/blog/wasm/2019/07/16/asyncify.html">Asyncify introduction blogpost</a>
+for general background and details of how it works internally (you can also view
+<a class="reference external" href="https://www.youtube.com/watch?v=qQOP6jqZqf8">this talk about Asyncify</a>).
+The following expands on the Emscripten examples from that post.</p>
+<section id="sleeping-yielding-to-the-event-loop">
+<span id="yielding-to-main-loop"></span><h2>Sleeping / yielding to the event loop<a class="headerlink" href="#sleeping-yielding-to-the-event-loop" title="Link to this heading">¶</a></h2>
+<p>Let’s begin with the example from that blogpost:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1">// example.cpp</span>
+</span><span data-line="2"><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;emscripten.h&gt;</span>
+</span><span data-line="3"><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+</span><span data-line="4">
+</span><span data-line="5"><span class="c1">// start_timer(): call JS to set an async timer for 500ms</span>
+</span><span data-line="6"><span class="n">EM_JS</span><span class="p">(</span><span class="kt">void</span><span class="p">,</span><span class="w"> </span><span class="n">start_timer</span><span class="p">,</span><span class="w"> </span><span class="p">(),</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="7"><span class="w">  </span><span class="n">Module</span><span class="p">.</span><span class="n">timer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+</span><span data-line="8"><span class="w">  </span><span class="n">setTimeout</span><span class="p">(</span><span class="n">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="9"><span class="w">    </span><span class="n">Module</span><span class="p">.</span><span class="n">timer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+</span><span data-line="10"><span class="w">  </span><span class="p">},</span><span class="w"> </span><span class="mi">500</span><span class="p">);</span>
+</span><span data-line="11"><span class="p">});</span>
+</span><span data-line="12">
+</span><span data-line="13"><span class="c1">// check_timer(): check if that timer occurred</span>
+</span><span data-line="14"><span class="n">EM_JS</span><span class="p">(</span><span class="kt">bool</span><span class="p">,</span><span class="w"> </span><span class="n">check_timer</span><span class="p">,</span><span class="w"> </span><span class="p">(),</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="15"><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">Module</span><span class="p">.</span><span class="n">timer</span><span class="p">;</span>
+</span><span data-line="16"><span class="p">});</span>
+</span><span data-line="17">
+</span><span data-line="18"><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="19"><span class="w">  </span><span class="n">start_timer</span><span class="p">();</span>
+</span><span data-line="20"><span class="w">  </span><span class="c1">// Continuously loop while synchronously polling for the timer.</span>
+</span><span data-line="21"><span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="22"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">check_timer</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="23"><span class="w">      </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;timer happened!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+</span><span data-line="24"><span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+</span><span data-line="25"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="26"><span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;sleeping...</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+</span><span data-line="27"><span class="w">    </span><span class="n">emscripten_sleep</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+</span><span data-line="28"><span class="w">  </span><span class="p">}</span>
+</span><span data-line="29"><span class="p">}</span>
+</span></pre></div>
+</div>
+<p>You can compile that using either <cite>-sASYNCIFY</cite> or <cite>-sJSPI</cite></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">emcc</span> <span class="o">-</span><span class="n">O3</span> <span class="n">example</span><span class="o">.</span><span class="n">cpp</span> <span class="o">-</span><span class="n">s</span><span class="o">&lt;</span><span class="n">ASYNCIFY</span> <span class="ow">or</span> <span class="n">JSPI</span><span class="o">&gt;</span>
+</span></pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It’s very important to optimize (<code class="docutils literal notranslate"><span class="pre">-O3</span></code> here) when using Asyncify, as
+unoptimized builds are very large.</p>
+</div>
+<p>And you can run it with</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">node</span> <span class="n">a</span><span class="o">.</span><span class="n">out</span><span class="o">.</span><span class="n">js</span>
+</span></pre></div>
+</div>
+<p>Or with JSPI</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">node</span> <span class="o">--</span><span class="n">experimental</span><span class="o">-</span><span class="n">wasm</span><span class="o">-</span><span class="n">stack</span><span class="o">-</span><span class="n">switching</span> <span class="n">a</span><span class="o">.</span><span class="n">out</span><span class="o">.</span><span class="n">js</span>
+</span></pre></div>
+</div>
+<p>You should then see something like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span data-line="1">sleeping...
+</span><span data-line="2">sleeping...
+</span><span data-line="3">sleeping...
+</span><span data-line="4">sleeping...
+</span><span data-line="5">sleeping...
+</span><span data-line="6">timer happened!
+</span></pre></div>
+</div>
+<p>The code is written with a straightforward loop, which does not exit while
+it is running, which normally would not allow async events to be handled by the
+browser. With Asyncify/JSPI, those sleeps actually yield to the browser’s main event
+loop, and the timer can happen!</p>
+</section>
+<section id="making-async-web-apis-behave-as-if-they-were-synchronous">
+<h2>Making async Web APIs behave as if they were synchronous<a class="headerlink" href="#making-async-web-apis-behave-as-if-they-were-synchronous" title="Link to this heading">¶</a></h2>
+<p>Aside from <code class="docutils literal notranslate"><span class="pre">emscripten_sleep</span></code> and the other standard sync APIs Asyncify
+supports, you can also add your own functions. To do so, you must create a JS
+function that is called from Wasm (since Emscripten controls pausing and
+resuming the Wasm from the JS runtime).</p>
+<p>One way to do that is with a JS library function. Another is to use
+<code class="docutils literal notranslate"><span class="pre">EM_ASYNC_JS</span></code>, which we’ll use in this next example:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1">// example.c</span>
+</span><span data-line="2"><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;emscripten.h&gt;</span>
+</span><span data-line="3"><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+</span><span data-line="4">
+</span><span data-line="5"><span class="n">EM_ASYNC_JS</span><span class="p">(</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="n">do_fetch</span><span class="p">,</span><span class="w"> </span><span class="p">(),</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="6"><span class="w">  </span><span class="n">out</span><span class="p">(</span><span class="s">&quot;waiting for a fetch&quot;</span><span class="p">);</span>
+</span><span data-line="7"><span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="n">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">await</span><span class="w"> </span><span class="n">fetch</span><span class="p">(</span><span class="s">&quot;a.html&quot;</span><span class="p">);</span>
+</span><span data-line="8"><span class="w">  </span><span class="n">out</span><span class="p">(</span><span class="s">&quot;got the fetch response&quot;</span><span class="p">);</span>
+</span><span data-line="9"><span class="w">  </span><span class="c1">// (normally you would do something with the fetch here)</span>
+</span><span data-line="10"><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">42</span><span class="p">;</span>
+</span><span data-line="11"><span class="p">});</span>
+</span><span data-line="12">
+</span><span data-line="13"><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="14"><span class="w">  </span><span class="n">puts</span><span class="p">(</span><span class="s">&quot;before&quot;</span><span class="p">);</span>
+</span><span data-line="15"><span class="w">  </span><span class="n">do_fetch</span><span class="p">();</span>
+</span><span data-line="16"><span class="w">  </span><span class="n">puts</span><span class="p">(</span><span class="s">&quot;after&quot;</span><span class="p">);</span>
+</span><span data-line="17"><span class="p">}</span>
+</span></pre></div>
+</div>
+<p>In this example the async operation is a <code class="docutils literal notranslate"><span class="pre">fetch</span></code>, which means we need to wait
+for a Promise. While that operation is async, note how the C code in <code class="docutils literal notranslate"><span class="pre">main()</span></code>
+is completely synchronous!</p>
+<p>To run this example, first compile it with</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">emcc</span> <span class="n">example</span><span class="o">.</span><span class="n">c</span> <span class="o">-</span><span class="n">O3</span> <span class="o">-</span><span class="n">o</span> <span class="n">a</span><span class="o">.</span><span class="n">html</span> <span class="o">-</span><span class="n">s</span><span class="o">&lt;</span><span class="n">ASYNCIFY</span> <span class="ow">or</span> <span class="n">JSPI</span><span class="o">&gt;</span>
+</span></pre></div>
+</div>
+<p>To run this, you must run a <a class="reference internal" href="../getting_started/FAQ.html#faq-local-webserver"><span class="std std-ref">local webserver</span></a>
+and then browse to <code class="docutils literal notranslate"><span class="pre">http://localhost:8000/a.html</span></code>.
+You will see something like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">before</span>
+</span><span data-line="2"><span class="n">waiting</span> <span class="k">for</span> <span class="n">a</span> <span class="n">fetch</span>
+</span><span data-line="3"><span class="n">got</span> <span class="n">the</span> <span class="n">fetch</span> <span class="n">response</span>
+</span><span data-line="4"><span class="n">after</span>
+</span></pre></div>
+</div>
+<p>That shows that the C code only continued to execute after the async JS
+completed.</p>
+</section>
+<section id="marking-js-library-functions-as-async">
+<span id="marking-async-functions"></span><h2>Marking JS library functions as async<a class="headerlink" href="#marking-js-library-functions-as-async" title="Link to this heading">¶</a></h2>
+<p>If you mark a JS library function as async using the <code class="docutils literal notranslate"><span class="pre">__async</span></code> decorator then
+the compiler will take a care of all the details of using the <code class="docutils literal notranslate"><span class="pre">Asyncify</span></code> API
+for you.  The function will also automatically be included in
+<a class="reference internal" href="../tools_reference/settings_reference.html#asyncify-imports"><span class="std std-ref">ASYNCIFY_IMPORTS</span></a>.  All you need to do is write normal async JS function
+(either using the explict <code class="docutils literal notranslate"><span class="pre">async</span></code> JS keyword or returning a <code class="docutils literal notranslate"><span class="pre">Promise</span></code>
+object).  For example:</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="nx">addToLibrary</span><span class="p">({</span>
+</span><span data-line="2"><span class="w">  </span><span class="nx">fetch_v1__async</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;auto&#39;</span><span class="p">,</span>
+</span><span data-line="3"><span class="w">  </span><span class="nx">fetch_v1</span><span class="o">:</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">(</span><span class="nx">url</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="4"><span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">fetch</span><span class="p">(</span><span class="nx">UTF8ToString</span><span class="p">(</span><span class="nx">url</span><span class="p">);</span>
+</span><span data-line="5"><span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">json_data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
+</span><span data-line="6"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">stringToNewUTF8</span><span class="p">(</span><span class="nx">json_data</span><span class="p">);</span>
+</span><span data-line="7"><span class="w">  </span><span class="p">},</span>
+</span><span data-line="8">
+</span><span data-line="9"><span class="w">  </span><span class="nx">fetch_v2__async</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;auto&#39;</span><span class="p">,</span>
+</span><span data-line="10"><span class="w">  </span><span class="nx">fetch_v2</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">url</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="11"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">fetch</span><span class="p">(</span><span class="nx">UTF8ToString</span><span class="p">(</span><span class="nx">url</span><span class="p">))</span>
+</span><span data-line="12"><span class="w">      </span><span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">rsp</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">())</span>
+</span><span data-line="13"><span class="w">      </span><span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">json_data</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">stringToNewUTF8</span><span class="p">(</span><span class="nx">json_data</span><span class="p">));</span>
+</span><span data-line="14"><span class="w">  </span><span class="p">},</span>
+</span><span data-line="15"><span class="p">});</span>
+</span></pre></div>
+</div>
+<p>This JS library file contains two JS functions (<code class="docutils literal notranslate"><span class="pre">fetch_v1</span></code> and <code class="docutils literal notranslate"><span class="pre">fetch_v2</span></code>)
+which do exactly the same thing, one using the JS <code class="docutils literal notranslate"><span class="pre">async</span></code> keyword and one
+using promise chaining.  They are both marked as <code class="docutils literal notranslate"><span class="pre">__async:</span> <span class="pre">'auto'</span></code> which means
+they will automatically suspend Wasm executation when called and resume when the
+resulting promise resolves.</p>
+<p>You can use <code class="docutils literal notranslate"><span class="pre">__async:</span> <span class="pre">1</span></code> if you just want to include the function in
+<a class="reference internal" href="../tools_reference/settings_reference.html#asyncify-imports"><span class="std std-ref">ASYNCIFY_IMPORTS</span></a> or <code class="docutils literal notranslate"><span class="pre">__async:</span> <span class="pre">'auto'</span></code> if you also want the function to
+wrapper in <code class="docutils literal notranslate"><span class="pre">Asyncify.handleAsync</span></code>.</p>
+</section>
+<section id="ways-to-use-asyncify-apis-in-older-engines">
+<h2>Ways to use Asyncify APIs in older engines<a class="headerlink" href="#ways-to-use-asyncify-apis-in-older-engines" title="Link to this heading">¶</a></h2>
+<p>If your target JS engine doesn’t support the modern <code class="docutils literal notranslate"><span class="pre">async/await</span></code> JS
+syntax, you can desugar the above implementation of <code class="docutils literal notranslate"><span class="pre">do_fetch</span></code> to use Promises
+directly with <code class="docutils literal notranslate"><span class="pre">EM_JS</span></code> and <code class="docutils literal notranslate"><span class="pre">Asyncify.handleAsync</span></code> instead:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">EM_JS</span><span class="p">(</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="n">do_fetch</span><span class="p">,</span><span class="w"> </span><span class="p">(),</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="2"><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">Asyncify</span><span class="p">.</span><span class="n">handleAsync</span><span class="p">(</span><span class="n">function</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="3"><span class="w">    </span><span class="n">out</span><span class="p">(</span><span class="s">&quot;waiting for a fetch&quot;</span><span class="p">);</span>
+</span><span data-line="4"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">fetch</span><span class="p">(</span><span class="s">&quot;a.html&quot;</span><span class="p">).</span><span class="n">then</span><span class="p">(</span><span class="n">function</span><span class="w"> </span><span class="p">(</span><span class="n">response</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="5"><span class="w">      </span><span class="n">out</span><span class="p">(</span><span class="s">&quot;got the fetch response&quot;</span><span class="p">);</span>
+</span><span data-line="6"><span class="w">      </span><span class="c1">// (normally you would do something with the fetch here)</span>
+</span><span data-line="7"><span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="mi">42</span><span class="p">;</span>
+</span><span data-line="8"><span class="w">    </span><span class="p">});</span>
+</span><span data-line="9"><span class="w">  </span><span class="p">});</span>
+</span><span data-line="10"><span class="p">});</span>
+</span></pre></div>
+</div>
+<p>When using this form, the compiler doesn’t statically know that <code class="docutils literal notranslate"><span class="pre">do_fetch</span></code> is
+asynchronous anymore. Instead, you must tell the compiler that <code class="docutils literal notranslate"><span class="pre">do_fetch()</span></code>
+can do an asynchronous operation using <a class="reference internal" href="../tools_reference/settings_reference.html#asyncify-imports"><span class="std std-ref">ASYNCIFY_IMPORTS</span></a>, otherwise it
+won’t instrument the code to allow pausing and resuming (see more details later
+down):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">emcc</span> <span class="n">example</span><span class="o">.</span><span class="n">c</span> <span class="o">-</span><span class="n">O3</span> <span class="o">-</span><span class="n">o</span> <span class="n">a</span><span class="o">.</span><span class="n">html</span> <span class="o">-</span><span class="n">sASYNCIFY</span> <span class="o">-</span><span class="n">sASYNCIFY_IMPORTS</span><span class="o">=</span><span class="n">do_fetch</span>
+</span></pre></div>
+</div>
+<p>Finally, if you can’t use Promises either, you can desugar the example to use
+<code class="docutils literal notranslate"><span class="pre">Asyncify.handleSleep</span></code>, which will pass a <code class="docutils literal notranslate"><span class="pre">wakeUp</span></code> callback to your
+function implementation. When this <code class="docutils literal notranslate"><span class="pre">wakeUp</span></code> callback is invoked, the C/C++
+code will resume:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">EM_JS</span><span class="p">(</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="n">do_fetch</span><span class="p">,</span><span class="w"> </span><span class="p">(),</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="2"><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">Asyncify</span><span class="p">.</span><span class="n">handleSleep</span><span class="p">((</span><span class="n">wakeUp</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="3"><span class="w">    </span><span class="n">out</span><span class="p">(</span><span class="s">&quot;waiting for a fetch&quot;</span><span class="p">);</span>
+</span><span data-line="4"><span class="w">    </span><span class="n">fetch</span><span class="p">(</span><span class="s">&quot;a.html&quot;</span><span class="p">).</span><span class="n">then</span><span class="p">(</span><span class="n">function</span><span class="w"> </span><span class="p">(</span><span class="n">response</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="5"><span class="w">      </span><span class="n">out</span><span class="p">(</span><span class="s">&quot;got the fetch response&quot;</span><span class="p">);</span>
+</span><span data-line="6"><span class="w">      </span><span class="c1">// (normally you would do something with the fetch here)</span>
+</span><span data-line="7"><span class="w">      </span><span class="n">wakeUp</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span>
+</span><span data-line="8"><span class="w">    </span><span class="p">});</span>
+</span><span data-line="9"><span class="w">  </span><span class="p">});</span>
+</span><span data-line="10"><span class="p">});</span>
+</span></pre></div>
+</div>
+<p>Note that when using this form, you can’t return a value from the function itself.
+Instead, you need to pass it as an argument to the <code class="docutils literal notranslate"><span class="pre">wakeUp</span></code> callback and
+propagate it by returning the result of <code class="docutils literal notranslate"><span class="pre">Asyncify.handleSleep</span></code> in <code class="docutils literal notranslate"><span class="pre">do_fetch</span></code>
+itself.</p>
+</section>
+<section id="more-on-asyncify-imports">
+<h2>More on <code class="docutils literal notranslate"><span class="pre">ASYNCIFY_IMPORTS</span></code><a class="headerlink" href="#more-on-asyncify-imports" title="Link to this heading">¶</a></h2>
+<p>As in the above example, you can add JS functions that do an async operation but
+look synchronous from the perspective of C. If you don’t use <code class="docutils literal notranslate"><span class="pre">EM_ASYNC_JS</span></code>,
+it’s vital to add such methods to <a class="reference internal" href="../tools_reference/settings_reference.html#asyncify-imports"><span class="std std-ref">ASYNCIFY_IMPORTS</span></a>. That list of imports
+is the list of imports to the Wasm module that the Asyncify instrumentation must
+be aware of. Giving it that list tells it that all other JS calls will <strong>not</strong>
+do an async operation, which lets it not add overhead where it isn’t needed.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If the import is not inside <code class="docutils literal notranslate"><span class="pre">env</span></code> the full path must be specified, for example, <code class="docutils literal notranslate"><span class="pre">ASYNCIFY_IMPORTS=wasi_snapshot_preview1.fd_write</span></code></p>
+</div>
+</section>
+<section id="asyncify-with-dynamic-linking">
+<h2>Asyncify with Dynamic Linking<a class="headerlink" href="#asyncify-with-dynamic-linking" title="Link to this heading">¶</a></h2>
+<p>If you want to use Asyncify in dynamic libraries, those methods which are imported
+from other linked modules (and that will be on the stack in an async operation)
+should be listed in <a class="reference internal" href="../tools_reference/settings_reference.html#asyncify-imports"><span class="std std-ref">ASYNCIFY_IMPORTS</span></a>.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1">// sleep.cpp</span>
+</span><span data-line="2"><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;emscripten.h&gt;</span>
+</span><span data-line="3">
+</span><span data-line="4"><span class="k">extern</span><span class="w"> </span><span class="s">&quot;C&quot;</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">sleep_for_seconds</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="5"><span class="w">  </span><span class="n">emscripten_sleep</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+</span><span data-line="6"><span class="p">}</span>
+</span></pre></div>
+</div>
+<p>In the side module, you can compile sleep.cpp in the ordinal emscripten dynamic
+linking manner:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">emcc</span> <span class="n">sleep</span><span class="o">.</span><span class="n">cpp</span> <span class="o">-</span><span class="n">O3</span> <span class="o">-</span><span class="n">o</span> <span class="n">libsleep</span><span class="o">.</span><span class="n">wasm</span> <span class="o">-</span><span class="n">sASYNCIFY</span> <span class="o">-</span><span class="n">sSIDE_MODULE</span>
+</span></pre></div>
+</div>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1">// main.cpp</span>
+</span><span data-line="2"><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;emscripten.h&gt;</span>
+</span><span data-line="3">
+</span><span data-line="4"><span class="k">extern</span><span class="w"> </span><span class="s">&quot;C&quot;</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">sleep_for_seconds</span><span class="p">();</span>
+</span><span data-line="5">
+</span><span data-line="6"><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="7"><span class="w">  </span><span class="n">sleep_for_seconds</span><span class="p">();</span>
+</span><span data-line="8"><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+</span><span data-line="9"><span class="p">}</span>
+</span></pre></div>
+</div>
+<p>In the main module, the compiler doesn’t statically know that <code class="docutils literal notranslate"><span class="pre">sleep_for_seconds</span></code> is
+asynchronous. Therefore, you must add <code class="docutils literal notranslate"><span class="pre">sleep_for_seconds</span></code> to the
+<a class="reference internal" href="../tools_reference/settings_reference.html#asyncify-imports"><span class="std std-ref">ASYNCIFY_IMPORTS</span></a> list.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">emcc</span> <span class="n">main</span><span class="o">.</span><span class="n">cpp</span> <span class="n">libsleep</span><span class="o">.</span><span class="n">wasm</span> <span class="o">-</span><span class="n">O3</span> <span class="o">-</span><span class="n">sASYNCIFY</span> <span class="o">-</span><span class="n">sASYNCIFY_IMPORTS</span><span class="o">=</span><span class="n">sleep_for_seconds</span> <span class="o">-</span><span class="n">sMAIN_MODULE</span>
+</span></pre></div>
+</div>
+</section>
+<section id="usage-with-embind">
+<h2>Usage with Embind<a class="headerlink" href="#usage-with-embind" title="Link to this heading">¶</a></h2>
+<p>If you’re using <a class="reference internal" href="connecting_cpp_and_javascript/embind.html#embind-val-guide"><span class="std std-ref">Embind</span></a> for interaction with JavaScript
+and want to <code class="docutils literal notranslate"><span class="pre">await</span></code> a dynamically retrieved <code class="docutils literal notranslate"><span class="pre">Promise</span></code>, you can call an
+<code class="docutils literal notranslate"><span class="pre">await()</span></code> method directly on the <code class="docutils literal notranslate"><span class="pre">val</span></code> instance:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">val</span><span class="w"> </span><span class="n">my_object</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="cm">/* ... */</span><span class="p">;</span>
+</span><span data-line="2"><span class="n">val</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">my_object</span><span class="p">.</span><span class="n">call</span><span class="o">&lt;</span><span class="n">val</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;someAsyncMethod&quot;</span><span class="p">).</span><span class="n">await</span><span class="p">();</span>
+</span></pre></div>
+</div>
+<p>In this case you don’t need to worry about <a class="reference internal" href="../tools_reference/settings_reference.html#asyncify-imports"><span class="std std-ref">ASYNCIFY_IMPORTS</span></a> or
+<a class="reference internal" href="../tools_reference/settings_reference.html#jspi-imports"><span class="std std-ref">JSPI_IMPORTS</span></a>, since it’s an internal implementation detail of
+<code class="docutils literal notranslate"><span class="pre">val::await</span></code> and Emscripten takes care of it automatically.</p>
+<p>Note that when using Embind exports, Asyncify and JSPI behave differently. When
+Asyncify is used with Embind and the code is invoked from JavaScript, then the
+function will return a <code class="docutils literal notranslate"><span class="pre">Promise</span></code> if the export calls any suspending functions,
+otherwise the result will be returned synchronously. However, with JSPI, the
+parameter <code class="docutils literal notranslate"><span class="pre">emscripten::async()</span></code> must be used to mark the function as
+asynchronous and the export will always return a <code class="docutils literal notranslate"><span class="pre">Promise</span></code> regardless if the
+export suspended.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;emscripten/bind.h&gt;</span>
+</span><span data-line="2"><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;emscripten.h&gt;</span>
+</span><span data-line="3">
+</span><span data-line="4"><span class="k">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">delayAndReturn</span><span class="p">(</span><span class="kt">bool</span><span class="w"> </span><span class="n">sleep</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="5"><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sleep</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="6"><span class="w">    </span><span class="n">emscripten_sleep</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span><span data-line="7"><span class="w">  </span><span class="p">}</span>
+</span><span data-line="8"><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">42</span><span class="p">;</span>
+</span><span data-line="9"><span class="p">}</span>
+</span><span data-line="10">
+</span><span data-line="11"><span class="n">EMSCRIPTEN_BINDINGS</span><span class="p">(</span><span class="n">example</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="12"><span class="w">  </span><span class="c1">// Asyncify</span>
+</span><span data-line="13"><span class="w">  </span><span class="n">emscripten</span><span class="o">::</span><span class="n">function</span><span class="p">(</span><span class="s">&quot;delayAndReturn&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">delayAndReturn</span><span class="p">);</span>
+</span><span data-line="14"><span class="w">  </span><span class="c1">// JSPI</span>
+</span><span data-line="15"><span class="w">  </span><span class="n">emscripten</span><span class="o">::</span><span class="n">function</span><span class="p">(</span><span class="s">&quot;delayAndReturn&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">delayAndReturn</span><span class="p">,</span><span class="w"> </span><span class="n">emscripten</span><span class="o">::</span><span class="n">async</span><span class="p">());</span>
+</span><span data-line="16"><span class="p">}</span>
+</span></pre></div>
+</div>
+<p>Build with</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">emcc</span> <span class="o">-</span><span class="n">O3</span> <span class="n">example</span><span class="o">.</span><span class="n">cpp</span> <span class="o">-</span><span class="n">lembind</span> <span class="o">-</span><span class="n">s</span><span class="o">&lt;</span><span class="n">ASYNCIFY</span> <span class="ow">or</span> <span class="n">JSPI</span><span class="o">&gt;</span>
+</span></pre></div>
+</div>
+<p>Then invoke from JavaScript (using Asyncify)</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kd">let</span><span class="w"> </span><span class="nx">syncResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">Module</span><span class="p">.</span><span class="nx">delayAndReturn</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+</span><span data-line="2"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">syncResult</span><span class="p">);</span><span class="w"> </span><span class="c1">// 42</span>
+</span><span data-line="3"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">await</span><span class="w"> </span><span class="nx">syncResult</span><span class="p">);</span><span class="w"> </span><span class="c1">// also 42 because `await` is no-op</span>
+</span><span data-line="4">
+</span><span data-line="5"><span class="kd">let</span><span class="w"> </span><span class="nx">asyncResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">Module</span><span class="p">.</span><span class="nx">delayAndReturn</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+</span><span data-line="6"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">asyncResult</span><span class="p">);</span><span class="w"> </span><span class="c1">// Promise { &lt;pending&gt; }</span>
+</span><span data-line="7"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">await</span><span class="w"> </span><span class="nx">asyncResult</span><span class="p">);</span><span class="w"> </span><span class="c1">// 42</span>
+</span></pre></div>
+</div>
+<p>In contrast to JavaScript <code class="docutils literal notranslate"><span class="pre">async</span></code> functions which always return a <code class="docutils literal notranslate"><span class="pre">Promise</span></code>,
+the return value is determined at run time, and a <code class="docutils literal notranslate"><span class="pre">Promise</span></code> is only returned
+if Asyncify calls are encountered (such as <code class="docutils literal notranslate"><span class="pre">emscripten_sleep()</span></code>,
+<code class="docutils literal notranslate"><span class="pre">val::await()</span></code>, etc).</p>
+<p>If the code path is undetermined, the caller may either check if the returned
+value is an <code class="docutils literal notranslate"><span class="pre">instanceof</span> <span class="pre">Promise</span></code> or simply <code class="docutils literal notranslate"><span class="pre">await</span></code> on the returned value.</p>
+<p>When using JSPI the return values will always be a <code class="docutils literal notranslate"><span class="pre">Promise</span></code> as seen below</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kd">let</span><span class="w"> </span><span class="nx">syncResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">Module</span><span class="p">.</span><span class="nx">delayAndReturn</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+</span><span data-line="2"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">syncResult</span><span class="p">);</span><span class="w"> </span><span class="c1">// Promise { &lt;pending&gt; }</span>
+</span><span data-line="3"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">await</span><span class="w"> </span><span class="nx">syncResult</span><span class="p">);</span><span class="w"> </span><span class="c1">// 42</span>
+</span><span data-line="4">
+</span><span data-line="5"><span class="kd">let</span><span class="w"> </span><span class="nx">asyncResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">Module</span><span class="p">.</span><span class="nx">delayAndReturn</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+</span><span data-line="6"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">asyncResult</span><span class="p">);</span><span class="w"> </span><span class="c1">// Promise { &lt;pending&gt; }</span>
+</span><span data-line="7"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">await</span><span class="w"> </span><span class="nx">asyncResult</span><span class="p">);</span><span class="w"> </span><span class="c1">// 42</span>
+</span></pre></div>
+</div>
+</section>
+<section id="usage-with-ccall">
+<h2>Usage with <code class="docutils literal notranslate"><span class="pre">ccall</span></code><a class="headerlink" href="#usage-with-ccall" title="Link to this heading">¶</a></h2>
+<p>To make use of an Asyncify-using Wasm export from Javascript, you can use the
+<code class="docutils literal notranslate"><span class="pre">Module.ccall</span></code> function and pass <code class="docutils literal notranslate"><span class="pre">async:</span> <span class="pre">true</span></code> to its call options object.
+<code class="docutils literal notranslate"><span class="pre">ccall</span></code> will then return a Promise, which will resolve with the result of the
+function once the computation completes.</p>
+<p>In this example, a function “func” is called which returns a Number.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="nx">Module</span><span class="p">.</span><span class="nx">ccall</span><span class="p">(</span><span class="s2">&quot;func&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;number&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">[],</span><span class="w"> </span><span class="p">[],</span><span class="w"> </span><span class="p">{</span><span class="k">async</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="nx">result</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="2"><span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;js_func: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">result</span><span class="p">);</span>
+</span><span data-line="3"><span class="p">});</span>
+</span></pre></div>
+</div>
+</section>
+<section id="differences-between-asyncify-and-jspi">
+<h2>Differences Between Asyncify and JSPI<a class="headerlink" href="#differences-between-asyncify-and-jspi" title="Link to this heading">¶</a></h2>
+<p>Besides using different underlying mechanisms, Asyncify and JSPI also handle
+async imports and exports differently. Asyncify will automatically determine
+what exports will become async based on what could potentially call an
+an async import (<a class="reference internal" href="../tools_reference/settings_reference.html#asyncify-imports"><span class="std std-ref">ASYNCIFY_IMPORTS</span></a>). However, with JSPI, the async imports
+and exports must be explicitly set using <a class="reference internal" href="../tools_reference/settings_reference.html#jspi-imports"><span class="std std-ref">JSPI_IMPORTS</span></a> and
+<a class="reference internal" href="../tools_reference/settings_reference.html#jspi-exports"><span class="std std-ref">JSPI_EXPORTS</span></a> settings.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">&lt;JSPI/ASYNCIFY&gt;_IMPORTS</span></code> and <code class="docutils literal notranslate"><span class="pre">JSPI_EXPORTS</span></code> aren’t needed when
+using various helpers mentioned above such as: <code class="docutils literal notranslate"><span class="pre">EM_ASYNC_JS</span></code>,
+Embind’s Async support, <code class="docutils literal notranslate"><span class="pre">ccall</span></code>, etc…</p>
+</div>
+</section>
+<section id="optimizing-asyncify">
+<h2>Optimizing Asyncify<a class="headerlink" href="#optimizing-asyncify" title="Link to this heading">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This section does not apply to JSPI.</p>
+</div>
+<p>As mentioned earlier, unoptimized builds with Asyncify can be large and slow.
+Build with optimizations (say, <code class="docutils literal notranslate"><span class="pre">-O3</span></code>) to get good results.</p>
+<p>Asyncify adds overhead, both code size and slowness, because it instruments
+code to allow unwinding and rewinding. That overhead is usually not extreme,
+something like 50% or so. Asyncify achieves that by doing a whole-program
+analysis to find functions need to be instrumented and which do not -
+basically, which can call something that reaches one of
+<a class="reference internal" href="../tools_reference/settings_reference.html#asyncify-imports"><span class="std std-ref">ASYNCIFY_IMPORTS</span></a>. That analysis avoids a lot of unnecessary overhead,
+however, it is limited by <strong>indirect calls</strong>, since it can’t tell where
+they go - it could be anything in the function table (with the same type).</p>
+<p>If you know that indirect calls are never on the stack when unwinding, then
+you can tell Asyncify to ignore indirect calls using
+<a class="reference internal" href="../tools_reference/settings_reference.html#asyncify-ignore-indirect"><span class="std std-ref">ASYNCIFY_IGNORE_INDIRECT</span></a>.</p>
+<p>If you know that some indirect calls matter and others do not, then you
+can provide a manual list of functions to Asyncify:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../tools_reference/settings_reference.html#asyncify-remove"><span class="std std-ref">ASYNCIFY_REMOVE</span></a> is a list of functions that do not unwind the stack.
+As Asyncify processes the call tree, functions in this list will be removed,
+and neither they nor their callers will be instrumented (unless their callers
+need to be instrumented for other reasons.)</p></li>
+<li><p><a class="reference internal" href="../tools_reference/settings_reference.html#asyncify-add"><span class="std std-ref">ASYNCIFY_ADD</span></a> is a list of functions that do unwind the stack, and will be
+processed like the imports. This is mostly useful
+if you use <a class="reference internal" href="../tools_reference/settings_reference.html#asyncify-ignore-indirect"><span class="std std-ref">ASYNCIFY_IGNORE_INDIRECT</span></a> but want to also mark some additional
+functions that need to unwind. If the <a class="reference internal" href="../tools_reference/settings_reference.html#asyncify-propagate-add"><span class="std std-ref">ASYNCIFY_PROPAGATE_ADD</span></a> setting is
+disabled however, then this list will only be added after the whole-program
+analysis. If <a class="reference internal" href="../tools_reference/settings_reference.html#asyncify-propagate-add"><span class="std std-ref">ASYNCIFY_PROPAGATE_ADD</span></a> is disabled then you must also add
+their callers, their callers’ callers, and so on.</p></li>
+<li><p><a class="reference internal" href="../tools_reference/settings_reference.html#asyncify-only"><span class="std std-ref">ASYNCIFY_ONLY</span></a> is a list of the <strong>only</strong> functions that can unwind
+the stack. Asyncify will instrument exactly those and no others.</p></li>
+</ul>
+<p>You can enable the <a class="reference internal" href="../tools_reference/settings_reference.html#asyncify-advise"><span class="std std-ref">ASYNCIFY_ADVISE</span></a> setting, which will tell the compiler to
+output which functions it is currently instrumenting and why. You can then
+determine whether you should add any functions to <a class="reference internal" href="../tools_reference/settings_reference.html#asyncify-remove"><span class="std std-ref">ASYNCIFY_REMOVE</span></a> or
+whether it would be safe to enable <a class="reference internal" href="../tools_reference/settings_reference.html#asyncify-ignore-indirect"><span class="std std-ref">ASYNCIFY_IGNORE_INDIRECT</span></a>. Note that this
+phase of the compiler happens after many optimization phases, and several
+functions maybe be inlined already. To be safe, run it with <cite>-O0</cite>.</p>
+<p>For more details see <a class="reference internal" href="../tools_reference/settings_reference.html#settings-reference"><span class="std std-ref">Emscripten Compiler Settings</span></a>. Note that the manual settings
+mentioned here are error-prone - if you don’t get things exactly right,
+your application can break. If you don’t absolutely need maximal performance,
+it’s usually ok to use the defaults.</p>
+</section>
+<section id="potential-problems">
+<h2>Potential problems<a class="headerlink" href="#potential-problems" title="Link to this heading">¶</a></h2>
+<section id="stack-overflows-asyncify">
+<h3>Stack overflows (Asyncify)<a class="headerlink" href="#stack-overflows-asyncify" title="Link to this heading">¶</a></h3>
+<p>If you see an exception thrown from an <code class="docutils literal notranslate"><span class="pre">asyncify_*</span></code> API, then it may be
+a stack overflow. You can increase the stack size with the
+<a class="reference internal" href="../tools_reference/settings_reference.html#asyncify-stack-size"><span class="std std-ref">ASYNCIFY_STACK_SIZE</span></a> option.</p>
+</section>
+<section id="reentrancy">
+<h3>Reentrancy<a class="headerlink" href="#reentrancy" title="Link to this heading">¶</a></h3>
+<p>While waiting on an asynchronous operation browser events can happen. That
+is often the point of using Asyncify, but unexpected events can happen too.
+For example, if you just want to pause for 100ms then you can call
+<code class="docutils literal notranslate"><span class="pre">emscripten_sleep(100)</span></code>, but if you have any event listeners, say for a
+keypress, then if a key is pressed the handler will fire. If that handler
+calls into compiled code, then it can be confusing, since it starts to look
+like coroutines or multithreading, with multiple executions interleaved.</p>
+<p>It is <em>not</em> safe to start an async operation while another is already running.
+The first must complete before the second begins.</p>
+<p>Such interleaving may also break assumptions in your codebase. For example,
+if a function uses a global and assumes nothing else can modify it until it
+returns, but if that function sleeps and an event causes other code to
+change that global, then bad things can happen.</p>
+</section>
+<section id="starting-to-rewind-with-compiled-code-on-the-stack-asyncify">
+<h3>Starting to rewind with compiled code on the stack (Asyncify)<a class="headerlink" href="#starting-to-rewind-with-compiled-code-on-the-stack-asyncify" title="Link to this heading">¶</a></h3>
+<p>The examples above show <cite>wakeUp()</cite> being called from JS (after a callback,
+typically), and without any compiled code on the stack. If there <em>were</em> compiled
+code on the stack, then that could interfere with properly rewinding and
+resuming execution, in confusing ways, and therefore an assertion will be
+thrown in a build with <a class="reference internal" href="../tools_reference/settings_reference.html#assertions"><span class="std std-ref">ASSERTIONS</span></a>.</p>
+<p>(Specifically, the problem there is that while rewinding will work properly,
+if you later unwind again, that unwinding will also unwind through that extra
+compiled code that was on the stack - causing a later rewind to behave badly.)</p>
+<p>A simple workaround you may find useful is to do a setTimeout of 0, replacing
+<code class="docutils literal notranslate"><span class="pre">wakeUp()</span></code> with <code class="docutils literal notranslate"><span class="pre">setTimeout(wakeUp,</span> <span class="pre">0);</span></code>. That will run <code class="docutils literal notranslate"><span class="pre">wakeUp</span></code> in a
+later callback, when nothing else is on the stack.</p>
+</section>
+</section>
+<section id="migrating-from-older-asyncify-apis">
+<h2>Migrating from older Asyncify APIs<a class="headerlink" href="#migrating-from-older-asyncify-apis" title="Link to this heading">¶</a></h2>
+<p>If you have code that uses the old Emterpreter-Async API, or the old Asyncify, then
+almost everything should just work when you replace <code class="docutils literal notranslate"><span class="pre">-sEMTERPRETIFY</span></code> usage
+with <code class="docutils literal notranslate"><span class="pre">-sASYNCIFY</span></code>. In particular all the things like <code class="docutils literal notranslate"><span class="pre">emscripten_wget</span></code>
+should just work as they did before.</p>
+<p>Some minor differences include:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>The Emterpreter had “yielding” as a concept, but it isn’t needed in Asyncify.
+You can replace <code class="docutils literal notranslate"><span class="pre">emscripten_sleep_with_yield()</span></code> calls with <code class="docutils literal notranslate"><span class="pre">emscripten_sleep()</span></code>.</p></li>
+<li><p>The internal JS API is different. See notes above on
+<code class="docutils literal notranslate"><span class="pre">Asyncify.handleSleep()</span></code>, and see <code class="docutils literal notranslate"><span class="pre">src/library_async.js</span></code> for more
+examples.</p></li>
+</ul>
+</div></blockquote>
+</section>
+</section>
+
+        </article><button class="back-to-top" type="button">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+  </svg>
+  <span>Back to top</span>
+</button><div class="navigation flex print:hidden"><div class="navigation-prev">
+    <a href="setjmp-longjmp.html">
+      <i class="i-lucide chevron-left"></i>
+      <div class="page-info">
+        <span>Previous</span><div class="title">C setjmp-longjmp Support</div></div>
+    </a>
+  </div><div class="navigation-next">
+    <a href="../api_reference/index.html">
+      <div class="page-info">
+        <span>Next</span>
+        <div class="title">API Reference</div>
+      </div>
+      <i class="i-lucide chevron-right"></i>
+    </a>
+  </div></div></div>
+    </div>
+  </main>
+</div>
+<footer class="sy-foot">
+  <div class="sy-foot-inner sy-container mx-auto">
+    <div class="sy-foot-reserved md:flex justify-between items-center">
+      <div class="sy-foot-copyright"><p>Copyright &copy; 2015, Emscripten Contributors.</p>
+  
+  <p>
+    Made with
+    
+    <a href="https://www.sphinx-doc.org/">Sphinx</a> and
+    
+    <a href="https://shibuya.lepture.com">Shibuya theme</a>.
+  </p>
+</div>
+      <div class="sy-foot-socials">
+<a href="https://github.com/emscripten-core/emscripten" aria-label="GitHub">
+  <iconify-icon icon="simple-icons:github"></iconify-icon>
+</a>
+<a href="https://discord.gg/53u3EKq" aria-label="Discord">
+  <iconify-icon icon="simple-icons:discord"></iconify-icon>
+</a></div>
+    </div>
+  </div>
+</footer>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=752e413b"></script>
+      <script src="../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../../_static/shibuya.js?v=50760d75"></script></body>
+</html>

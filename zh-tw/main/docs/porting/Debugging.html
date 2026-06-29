@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="zh-TW" data-accent-color="violet" data-content_root="../../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Debugging - Emscripten 6.0.1-git (dev) 說明文件</title><link rel="shortcut icon" href="../../_static/emscripten.ico"/><link rel="index" title="索引" href="../../genindex.html" /><link rel="search" title="搜尋" href="../../search.html" /><link rel="next" title="Pthreads support" href="pthreads.html" /><link rel="prev" title="Audio" href="Audio.html" />
+      <link rel="canonical" href="https://projects.localizethedocs.org/emscripten-docs-l10n/docs/porting/Debugging.html" /><script>
+    function setColorMode(t){let e=document.documentElement;e.setAttribute("data-color-mode",t);let a=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,s=t;"auto"===t&&(s=a?"dark":"light"),"light"===s?(e.classList.remove("dark"),e.classList.add("light")):(e.classList.remove("light"),e.classList.add("dark"))}
+    setColorMode(localStorage._theme||"auto");
+  </script><link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=ad592e98" />
+    <link rel="stylesheet" type="text/css" href="../../_static/shibuya.css?v=9454f7d5" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link media="print" rel="stylesheet" type="text/css" href="../../_static/print.css?v=20ff2c19" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sy-f-text: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+  --sy-f-heading: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+}
+</style>
+    
+
+<script type="text/javascript" src="../../ltd-provenance.js"></script>
+<script type="text/javascript" src="../../ltd-current.js"></script>
+<script type="text/javascript" src="../../../../ltd-config.js"></script>
+<script type="text/javascript" src="../../../../ltd-flyout.js"></script>
+
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://projects.localizethedocs.org/emscripten-docs-l10n/docs/porting/Debugging.html"/>
+  <meta property="og:title" content="Debugging"/>
+    <meta name="twitter:card" content="summary"/>
+  </head>
+<body><div class="sy-head">
+  <div class="sy-head-blur"></div>
+  <div class="sy-head-inner sy-container mx-auto">
+    <a class="sy-head-brand" href="../../index.html">
+      <img class="light-logo" src="../../_static/emscripten_logo_full.svg" alt="Emscripten" height="28" loading="lazy" />
+      <img class="dark-logo" src="../../_static/emscripten_logo_full.svg" alt="Emscripten" height="28" loading="lazy" />
+      <strong>Emscripten</strong>
+    </a>
+    <div class="sy-head-nav" id="head-nav">
+      <nav class="sy-head-links"><ul>
+      <li class="link"><a class="js-menu" href="../index.html" id="nav-trigger-1" aria-controls="nav-children-1">
+            <span>文件</span>
+            <i class="i-lucide chevron-down"></i>
+          </a>
+        <ul id="nav-children-1" aria-labelledby="nav-trigger-1"><li><a href="../getting_started/downloads.html">下載</a></li><li><a href="../getting_started/bug_reports.html">回報臭蟲</a></li><li><a href="../introducing_emscripten/emscripten_license.html">授權條款</a></li><li><a href="../contributing/contributing.html">參與貢獻</a></li><li><a href="../introducing_emscripten/release_notes.html">發行備註</a></li></ul>
+      </li>
+      <li class="link"><a class="js-menu" href="../introducing_emscripten/community.html" id="nav-trigger-2" aria-controls="nav-children-2">
+            <span>社群</span>
+            <i class="i-lucide chevron-down"></i>
+          </a>
+        <ul id="nav-children-2" aria-labelledby="nav-trigger-2"><li><a href="https://groups.google.com/forum/#!forum/emscripten-discuss">郵件列表</a></li><li><a href="https://github.com/emscripten-core/emscripten/wiki">維基</a></li></ul>
+      </li></ul></nav>
+      <div class="sy-head-extra flex items-center print:hidden"><form class="searchbox flex items-center" action="../../search.html" method="get">
+  <input type="text" name="q" placeholder="搜尋" />
+  <kbd>/</kbd>
+</form><div class="sy-head-socials">
+  <a href="https://github.com/emscripten-core/emscripten" aria-label="GitHub">
+    <iconify-icon icon="simple-icons:github"></iconify-icon>
+  </a>
+  <a href="https://discord.gg/53u3EKq" aria-label="Discord">
+    <iconify-icon icon="simple-icons:discord"></iconify-icon>
+  </a></div></div>
+    </div>
+    <div class="sy-head-actions flex items-center shrink-0 print:hidden"><button class="js-theme theme-switch flex items-center"
+data-aria-auto="切換到亮色模式"
+data-aria-light="切換到暗黑模式"
+data-aria-dark="切換到自動模式">
+<i class="i-lucide theme-icon"></i>
+</button><button class="md:hidden flex items-center js-menu" aria-label="Menu" type="button" aria-controls="head-nav" aria-expanded="false">
+        <div class="hamburger">
+          <span class="hamburger_1"></span>
+          <span class="hamburger_2"></span>
+          <span class="hamburger_3"></span>
+        </div>
+      </button>
+    </div>
+  </div>
+</div>
+<div class="sy-page sy-container flex mx-auto">
+  <aside id="lside" class="sy-lside md:w-72 md:shrink-0 print:hidden">
+    <div class="sy-lside-inner md:sticky">
+      <div class="sy-scrollbar p-6"><div class="sidebar-links">
+  <ul>
+    <li><a class="icon-link" href="https://github.com/emscripten-core/emscripten/discussions">
+  <span class="icon">
+    <svg viewBox="0 0 24 24" fill="none">
+      <path fill="var(--accent-9)" fill-rule="evenodd" clip-rule="evenodd" d="M11 5a6 6 0 0 0-4.687 9.746c.215.27.315.62.231.954l-.514 2.058a1 1 0 0 0 1.485 1.1l2.848-1.71c.174-.104.374-.15.576-.148H13a6 6 0 0 0 0-12h-2Z"/>
+      <circle fill="white" cx="12" cy="11" r="1"/>
+      <circle fill="white" cx="9" cy="11" r="1"/>
+      <circle fill="white" cx="15" cy="11" r="1"/>
+    </svg>
+  </span>
+  <span class="text">討論</span>
+</a></li>
+  </ul>
+</div>
+        <div class="globaltoc" data-expand-depth="0"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introducing_emscripten/index.html">Introducing Emscripten</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../introducing_emscripten/about_emscripten.html">關於 Emscripten</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../introducing_emscripten/community.html">Community</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../introducing_emscripten/emscripten_license.html">Open Source License</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../introducing_emscripten/release_notes.html">Release Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../introducing_emscripten/Talks-and-Publications.html">Talks and Publications</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/downloads.html">Download and install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/Tutorial.html">Emscripten Tutorial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/test-suite.html">Emscripten Test Suite</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/bug_reports.html">Bug Reporting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/FAQ.html">FAQ</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../compiling/index.html">Compiling and Running Projects</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../compiling/Building-Projects.html">建置專案</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../compiling/WebAssembly.html">Building to WebAssembly</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../compiling/Modularized-Output.html">Modularized Output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../compiling/Dynamic-Linking.html">動態連結</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../compiling/Running-html-files-with-emrun.html">Running HTML files with emrun</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../compiling/Deploying-Pages.html">Deploying Emscripten Compiled Pages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../compiling/GitLab.html">Building and Deploying on GitLab</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../compiling/Contrib-Ports.html">Emscripten Contrib Ports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../compiling/CrossOriginStorage.html">Cross-Origin Storage (COS)</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Porting</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="guidelines/index.html">Code Portability and Limitations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="guidelines/portability_guidelines.html">Portability Guidelines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="guidelines/api_limitations.html">API Limitations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="guidelines/function_pointer_issues.html">Function Pointer Issues</a></li>
+<li class="toctree-l3"><a class="reference internal" href="guidelines/browser_limitations.html">Specific Browser Limitations</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="emscripten-runtime-environment.html">Emscripten Runtime Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="connecting_cpp_and_javascript/index.html">Connecting C++ and JavaScript</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="connecting_cpp_and_javascript/Interacting-with-code.html">Interacting with code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="connecting_cpp_and_javascript/embind.html">Embind</a></li>
+<li class="toctree-l3"><a class="reference internal" href="connecting_cpp_and_javascript/WebIDL-Binder.html">WebIDL Binder</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="files/index.html">Files and File Systems</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="files/file_systems_overview.html">File System Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="files/packaging_files.html">Packaging Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="files/Synchronous-Virtual-XHR-Backed-File-System-Usage.html">Synchronous Virtual XHR Backed File System Usage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="multimedia_and_graphics/index.html">Multimedia and Graphics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="multimedia_and_graphics/WebGPU-support.html">Using WebGPU in Emscripten</a></li>
+<li class="toctree-l3"><a class="reference internal" href="multimedia_and_graphics/EGL-Support-in-Emscripten.html">EGL Support in Emscripten</a></li>
+<li class="toctree-l3"><a class="reference internal" href="multimedia_and_graphics/OpenGL-support.html">OpenGL support in Emscripten</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Audio.html">Audio</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Debugging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pthreads.html">Pthreads support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html">Networking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simd.html">Using SIMD with WebAssembly</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html">C++ Exceptions Support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setjmp-longjmp.html">C setjmp-longjmp Support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="asyncify.html">Asynchronous Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../compiling/Building-Projects.html">建置專案</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api_reference/index.html">API 參考</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/emscripten.h.html">emscripten.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/html5.h.html">html5.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/console.h.html">console.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/preamble.js.html">preamble.js</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/Filesystem-API.html">File System API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/fetch.html">Fetch API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/module.html">Module object</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/val.h.html">val.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/bind.h.html">bind.h (under-construction)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/trace.h.html">trace.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/fiber.h.html">fiber.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/proxying.h.html">proxying.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/stack.h.html">stack.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/wasm_workers.html">Wasm Workers API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/wasm_audio_worklets.html">Wasm Audio Worklets API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/advanced-apis.html">Advanced APIs</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tools_reference/index.html">Tools Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tools_reference/emsdk.html">Emscripten SDK (emsdk)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools_reference/emcc.html">Emscripten Compiler Frontend (emcc)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools_reference/emcmdprompt.html">Emscripten Windows Command Prompt (emcmdprompt.bat)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools_reference/settings_reference.html">Emscripten Compiler Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools_reference/settings_reference.html#deprecated-settings">Deprecated Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools_reference/settings_reference.html#legacy-settings">Legacy Settings</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../optimizing/Optimizing-Code.html">Optimizing Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../optimizing/Optimizing-WebGL.html">Optimizing WebGL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debugging/Sanitizers.html">Debugging with Sanitizers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../building_from_source/index.html">Building Emscripten from Source</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../building_from_source/toolchain_what_is_needed.html">Emscripten Toolchain Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../building_from_source/configuring_emscripten_settings.html">Configuring Emscripten Settings when Manually Building from Source</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../building_from_source/verify_emscripten_environment.html">Verifying the Emscripten Development Environment</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing to Emscripten</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/contributing.html">Contributing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/developers_guide.html">Developer’s Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/AUTHORS.html">AUTHORS</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../optimizing/Profiling-Toolchain.html">Profiling the Toolchain</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../site/about.html">About this site</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../genindex.html">索引</a></li>
+</ul>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="lside-overlay js-menu" role="button" aria-label="Close left sidebar" aria-controls="lside" aria-expanded="false"></div>
+  <aside id="rside" class="sy-rside pb-3 w-64 shrink-0 order-last">
+    <button class="rside-close js-menu xl:hidden" aria-label="Close Table of Contents" type="button" aria-controls="rside" aria-expanded="false">
+      <i class="i-lucide close"></i>
+    </button>
+    <div class="sy-scrollbar sy-rside-inner px-6 xl:top-16 xl:sticky xl:pl-0 pt-6 pb-4"><div class="localtoc"><h3>該頁內容</h3><ul>
+<li><a class="reference internal" href="#overview-emitting-and-controlling-debug-information">Overview: Emitting and Controlling Debug Information</a></li>
+<li><a class="reference internal" href="#interactive-source-level-debugging">Interactive, Source-Level Debugging</a><ul>
+<li><a class="reference internal" href="#dwarf">DWARF</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#symbolizing-production-crash-logs">Symbolizing Production Crash Logs</a></li>
+<li><a class="reference internal" href="#fast-edit-compile-with-minimal-debug-information">Fast Edit+Compile with minimal debug information</a></li>
+<li><a class="reference internal" href="#detecting-memory-errors-and-undefined-behavior">Detecting Memory Errors and Undefined Behavior</a></li>
+<li><a class="reference internal" href="#profiling-performance">Profiling Performance</a><ul>
+<li><a class="reference internal" href="#speed">Speed</a></li>
+<li><a class="reference internal" href="#memory">Memory</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#manual-print-debugging">Manual print debugging</a></li>
+<li><a class="reference internal" href="#emscripten-specific-issues">Emscripten-Specific Issues</a><ul>
+<li><a class="reference internal" href="#memory-alignment-issues">Memory Alignment Issues</a></li>
+<li><a class="reference internal" href="#function-pointer-issues">Function Pointer Issues</a></li>
+<li><a class="reference internal" href="#infinite-loops">Infinite loops</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#debugging-emscripten">Debugging Emscripten</a><ul>
+<li><a class="reference internal" href="#debugging-the-compiler-driver">Debugging the compiler driver</a></li>
+<li><a class="reference internal" href="#autodebugger">AutoDebugger</a></li>
+<li><a class="reference internal" href="#autodebugger-regression-workflow">AutoDebugger Regression Workflow</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#useful-links">Useful Links</a></li>
+<li><a class="reference internal" href="#need-help">Need help?</a></li>
+</ul>
+</div><a class="js-repo-stats repo-stats flex items-center" href="https://github.com/emscripten-core/emscripten"
+  data-type="github" data-user="emscripten-core" data-repo="emscripten">
+  <span class="w-8 flex items-center justify-around shrink-0 text-3xl">
+    <iconify-icon icon="simple-icons:github"></iconify-icon>
+  </span>
+  <span class="flex-grow px-2 break-all">
+    
+    
+      <span>emscripten</span>
+    
+    <span class="flex text-sm repo-stats-count">
+      <span class="flex items-center pr-3">
+        <iconify-icon icon="lucide:star"></iconify-icon>
+        <strong class="js-repo-stars ml-1">0</strong>
+      </span>
+      <span class="flex items-center">
+        <iconify-icon icon="lucide:git-fork"></iconify-icon>
+        <strong class="js-repo-forks ml-1">0</strong>
+      </span>
+    </span>
+  </span>
+</a><div class="edit-this-page">
+  <a href="https://github.com/emscripten-core/emscripten/blob/main/site/source/docs/porting/Debugging.rst">編輯此頁面</a>
+</div><div id="ethical-ad-placement" data-ea-publisher="readthedocs"></div></div>
+  </aside>
+  <div class="rside-overlay js-menu" role="button" aria-label="Close Table of Contents" aria-controls="rside" aria-expanded="false"></div>
+  <main class="sy-main w-full max-sm:max-w-full print:pt-6">
+<div class="sy-breadcrumbs" role="navigation">
+  <div class="sy-breadcrumbs-inner flex items-center">
+    <div class="md:hidden mr-3">
+      <button class="js-menu" aria-label="Menu" type="button" aria-controls="lside" aria-expanded="false">
+        <i class="i-lucide menu"></i>
+      </button>
+    </div>
+    <ol class="flex-1" itemscope itemtype="https://schema.org/BreadcrumbList"><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="../../index.html"><span itemprop="name">Emscripten</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="1" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="index.html"><span itemprop="name">Porting</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="2" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <strong itemprop="name">Debugging</strong>
+        <meta itemprop="position" content="3" />
+      </li></ol>
+    <div class="xl:hidden ml-1">
+      <button class="js-menu" aria-label="Show table of contents" type="button" aria-controls="rside"
+        aria-expanded="false">
+        <i class="i-lucide outdent"></i>
+      </button>
+    </div>
+  </div>
+</div><div class="flex flex-col break-words justify-between">
+      <div class="relative min-w-0 max-w-6xl px-6 pb-6 pt-8 xl:px-12">
+  <article class="yue" role="main">
+          <section id="debugging">
+<span id="id1"></span><h1>Debugging<a class="headerlink" href="#debugging" title="連結到這個標頭">¶</a></h1>
+<p>One of the main advantages of debugging cross-platform Emscripten code is that
+the same cross-platform source code can be debugged on either the native
+platform or using the web browser’s increasingly powerful toolset — including a
+debugger, profiler, and other tools.</p>
+<p>This article describes the main tools and settings provided by Emscripten for
+debugging, organized by common developer use cases.</p>
+<section id="overview-emitting-and-controlling-debug-information">
+<h2>Overview: Emitting and Controlling Debug Information<a class="headerlink" href="#overview-emitting-and-controlling-debug-information" title="連結到這個標頭">¶</a></h2>
+<p>Debugging-related information comes in several forms: in Wasm object and binary
+files (as DWARF sections or Wasm name section), side output files (as source
+maps, symbol maps, or DWARF sidecar or package files), and even in the code
+itself (as assertions or instrumentation, or JS whitespace and comments). For
+information on DWARF, see <a class="reference internal" href="#debugging-dwarf"><span class="std std-ref">below</span></a>. In addition to DWARF,
+wasm files may contain a <a class="reference external" href="https://webassembly.github.io/spec/core/appendix/custom.html#name-section">name section</a>
+which includes names for each function; these function names are displayed by
+browsers when they generate <a class="reference external" href="https://webassembly.github.io/spec/web-api/index.html#conventions">stack traces</a> and in
+developer tools. Source maps are also supported by Emscripten and by browser
+DevTools (see <a class="reference internal" href="#debugging-symbolization"><span class="std std-ref">below</span></a>).</p>
+<p>This document contains an overview of the flags used to emit and control
+debugging behavior, and use-case-based examples.</p>
+<p>Unlike traditional Unix-style C toolchains, flags must be passed at link time to
+preserve or generate debug information (these defaults aim to avoid unintended
+bloat in production builds). The most common of these are the <a class="reference internal" href="../tools_reference/emcc.html#emcc-gn"><span class="std std-ref">-g flags</span></a>; see the flag documentation or the use cases below for more detail.</p>
+<p>Flags that cause DWARF generation (e.g. <code class="docutils literal notranslate"><span class="pre">-g3</span></code>, <code class="docutils literal notranslate"><span class="pre">-gline-tables-only</span></code>) also
+generate a name section in the binary and suppress minification of the JS glue
+file (since most DWARF use cases are for interactive debugging or where the
+binary will be stripped). Other flags (e.g. <code class="docutils literal notranslate"><span class="pre">-g2</span></code>, <code class="docutils literal notranslate"><span class="pre">-gsource-map</span></code>) should
+affect only a specific behavior or type of debug info, and are generally
+composable.</p>
+</section>
+<section id="interactive-source-level-debugging">
+<span id="debugging-interactive"></span><h2>Interactive, Source-Level Debugging<a class="headerlink" href="#interactive-source-level-debugging" title="連結到這個標頭">¶</a></h2>
+<p>For stepping through C/C++ source code in a browser’s debugger, you can use
+debug information in either DWARF or source map format.</p>
+<p>DWARF offers the best debugging experience and is supported in Chrome with an
+<a class="reference external" href="https://goo.gle/wasm-debugging-extension">extension</a>. See <a class="reference external" href="https://developer.chrome.com/blog/wasm-debugging-2020/">here</a> for a detailed usage
+guide. Source maps are more widely supported, but they provide only location
+mapping and cannot be used easily to inspect variables.</p>
+<section id="dwarf">
+<span id="debugging-dwarf"></span><h3>DWARF<a class="headerlink" href="#dwarf" title="連結到這個標頭">¶</a></h3>
+<p>In a traditional Unix-style C toolchain, flags such as <code class="docutils literal notranslate"><span class="pre">-g</span></code> are passed to the
+compiler, placing DWARF sections in the object files. This DWARF info is
+combined by the linker and appears in the output, independently of any
+optimization settings. In contrast, although <a class="reference internal" href="../tools_reference/emcc.html#emccdoc"><span class="std std-ref">emcc</span></a> supports many
+of the common <a class="reference external" href="https://clang.llvm.org/docs/ClangCommandLineReference.html#debug-information-generation">clang flags</a>
+to generate DWARF into the object files, final debug output is also controlled
+by link-time flags, and is more affected by optimization. For example <code class="docutils literal notranslate"><span class="pre">emcc</span></code>
+strips out most of the debug information after linking if a debugging-related
+flag is not provided at link time, even if the input object files contain DWARF.</p>
+<p>DWARF can be produced at compile time with the <em>emcc</em> <a class="reference internal" href="../tools_reference/emcc.html#emcc-g"><span class="std std-ref">-g flag</span></a>.
+Optimization levels above <a class="reference internal" href="../tools_reference/emcc.html#emcc-o1"><span class="std std-ref">-O1</span></a> or <a class="reference internal" href="../tools_reference/emcc.html#emcc-og"><span class="std std-ref">-Og</span></a>
+increasingly degrade LLVM debug information (as with other architectures), and
+optimization flags at link time also disable Emscripten’s runtime
+<a class="reference internal" href="#debugging-assertions"><span class="std std-ref">ASSERTIONS</span></a> checks. Passing a <code class="docutils literal notranslate"><span class="pre">-g</span></code> flag at link
+time also affects the generated JavaScript code (preserving white-space,
+function names, and variable names, which makes the JavaScript debuggable).</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">-g</span></code> flag can also be specified with integer levels: <a class="reference internal" href="../tools_reference/emcc.html#emcc-g0"><span class="std std-ref">-g0</span></a>,
+<a class="reference internal" href="../tools_reference/emcc.html#emcc-g1"><span class="std std-ref">-g1</span></a>, <a class="reference internal" href="../tools_reference/emcc.html#emcc-g2"><span class="std std-ref">-g2</span></a>, and <a class="reference internal" href="../tools_reference/emcc.html#emcc-g3"><span class="std std-ref">-g3</span></a> (equivalent
+to <code class="docutils literal notranslate"><span class="pre">-g</span></code>).  At compile time these flags control the amount of DWARF in the
+object files. At link time, each adds successively more kinds of information in
+the wasm and JS files (DWARF is only retained after linking when using <code class="docutils literal notranslate"><span class="pre">-g</span></code> or
+<code class="docutils literal notranslate"><span class="pre">-g3</span></code>).</p>
+<p>Example:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span data-line="1">emcc<span class="w"> </span>source.c<span class="w"> </span>-c<span class="w"> </span>-o<span class="w"> </span>source.o<span class="w"> </span>-g<span class="w"> </span><span class="c1"># source.o has DWARF sections emcc source.o -o</span>
+</span><span data-line="2">program.js<span class="w"> </span>-g<span class="w"> </span><span class="c1"># program.wasm has DWARF and a name section</span>
+</span></pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">小訣竅</p>
+<p>Even for medium-sized projects, DWARF debug information can be large.
+Debug information can be emitted in a separate file with the
+<a class="reference internal" href="../tools_reference/emcc.html#emcc-gseparate-dwarf"><span class="std std-ref">-gseparate-dwarf</span></a> option. To speed up linking,
+the <a class="reference internal" href="../tools_reference/emcc.html#emcc-gsplit-dwarf"><span class="std std-ref">-gsplit-dwarf</span></a> option can be used at compile
+time. See <a class="reference external" href="https://developer.chrome.com/blog/faster-wasm-debugging/#scalable_debugging">this article</a>
+for more details on debugging large files, and see <a class="reference internal" href="#debugging-symbolization"><span class="std std-ref">the next section</span></a> for more ways to reduce debug info size.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">備註</p>
+<p>Because Binaryen optimization degrades the quality of DWARF info
+further, higher link-time optimization settings are
+not recommended. The <code class="docutils literal notranslate"><span class="pre">-O1</span></code> setting will skip running the Binaryen optimizer
+(<code class="docutils literal notranslate"><span class="pre">wasm-opt</span></code>) entirely unless required by other options. You can also add the
+<code class="docutils literal notranslate"><span class="pre">-sERROR_ON_WASM_CHANGES_AFTER_LINK</span></code> option if you want to ensure the debug
+info is preserved. See <a class="reference external" href="https://developer.chrome.com/blog/faster-wasm-debugging/#skipping-binaryen">Skipping Binaryen</a>
+for more details.</p>
+</div>
+</section>
+</section>
+<section id="symbolizing-production-crash-logs">
+<span id="debugging-symbolization"></span><h2>Symbolizing Production Crash Logs<a class="headerlink" href="#symbolizing-production-crash-logs" title="連結到這個標頭">¶</a></h2>
+<p>Even when not using an interactive debugger, it’s valuable to have source
+information for compiled code locations, particularly for stack traces or crash
+logs. This is also true for fully-optimized production builds.</p>
+<p><a class="reference external" href="https://web.dev/articles/source-maps">Source maps</a> are commonly used for
+languages that compile to JavaScript (mapping locations in the compiled JS
+output to locations in the original source code), but WebAssembly is also
+supported. Emscripten can emit source maps with the <a class="reference internal" href="../tools_reference/emcc.html#emcc-gsource-map"><span class="std std-ref">-gsource-map</span></a> link-time flag. Source maps are preserved even with full
+post-link optimizations, so they work well for this use case. Source maps are
+generated by Emscripten from DWARF information. Therefore the linked object
+files must have DWARF. The final linked output will not have DWARF unless <cite>-g</cite>
+is also passed at link time.</p>
+<p>DWARF can also be used for this purpose. Typically a binary containing DWARF
+would be generated at build time, and then stripped. The stripped copy would be
+served to users, and the original would be saved for symbolication purposes. For
+this use case, full information about types and variables from the sources
+isn’t needed; the <a class="reference external" href="https://clang.llvm.org/docs/ClangCommandLineReference.html#cmdoption-clang-gline-tables-only">-gline-tables-only</a>
+compile-time flag causes clang to generate only the line table information,
+saving DWARF size and compile/linking time.</p>
+<p>Source maps are easier to parse and more widely supported by ecosystem tooling.
+And as noted above, preserving DWARF inhibits some Binaryen optimizations.
+However DWARF has the advantage that it includes information about inlining,
+which can result in more accurate stack traces.</p>
+<p>Examples:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span data-line="1">emcc<span class="w"> </span>source.c<span class="w"> </span>-c<span class="w"> </span>-o<span class="w"> </span>source.o<span class="w"> </span>-g<span class="w"> </span><span class="c1"># source.o has DWARF sections (-gsource-map also works here)</span>
+</span><span data-line="2">emcc<span class="w"> </span>source.o<span class="w"> </span>-o<span class="w"> </span>program.js<span class="w"> </span>-gsource-map<span class="w"> </span><span class="c1"># program.wasm.map contains a source map</span>
+</span><span data-line="3">
+</span><span data-line="4">emcc<span class="w"> </span>source.o<span class="w"> </span>-o<span class="w"> </span>program2.js<span class="w"> </span>-g<span class="w"> </span><span class="c1"># program2.wasm has DWARF</span>
+</span><span data-line="5">llvm-strip<span class="w"> </span>program2.wasm<span class="w"> </span>-o<span class="w"> </span>program2_stripped.wasm<span class="w"> </span><span class="c1"># program2_stripped.wasm has no debug info</span>
+</span></pre></div>
+</div>
+<p>Emscripten includes a tool called <code class="docutils literal notranslate"><span class="pre">emsymbolizer</span></code> that can map wasm code
+addresses to sources using several different kinds of debug info, including
+DWARF (in wasm object or linked files) and source maps for line/column info, and
+symbol maps (see <a class="reference internal" href="../tools_reference/emcc.html#emcc-emit-symbol-map"><span class="std std-ref">--emit-symbol-map</span></a>), name sections and object file
+symbol tables for function names.</p>
+</section>
+<section id="fast-edit-compile-with-minimal-debug-information">
+<h2>Fast Edit+Compile with minimal debug information<a class="headerlink" href="#fast-edit-compile-with-minimal-debug-information" title="連結到這個標頭">¶</a></h2>
+<p>When you want the fastest builds, you generally want to avoid generating large
+debug information during compile, because it takes time to link into the final
+binary. It is still worthwhile to use the <code class="docutils literal notranslate"><span class="pre">-g2</span></code> flag (at link time only)
+because browsers understand the name section even when devtools are not in use,
+resulting in more useful stack traces at minimal cost.</p>
+<p>Example:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span data-line="1">emcc<span class="w"> </span>source.c<span class="w"> </span>-c<span class="w"> </span>-o<span class="w"> </span>source.o<span class="w"> </span><span class="c1"># source.o has no debug info</span>
+</span><span data-line="2">emcc<span class="w"> </span>source.o<span class="w"> </span>-o<span class="w"> </span>program.js<span class="w"> </span>-g2<span class="w"> </span><span class="c1"># program.wasm has a name section, program.js is unminified</span>
+</span></pre></div>
+</div>
+<p>Sometimes the use of the <code class="docutils literal notranslate"><span class="pre">-O1</span></code> or <code class="docutils literal notranslate"><span class="pre">-Og</span></code> flag at compile time can also result
+in faster builds, because optimizations early in the pipeline can reduce the
+amount of IR that is processed by later phases such as instruction selection and
+linking. It also of course reduces test runtime.</p>
+</section>
+<section id="detecting-memory-errors-and-undefined-behavior">
+<span id="debugging-memory-safety"></span><h2>Detecting Memory Errors and Undefined Behavior<a class="headerlink" href="#detecting-memory-errors-and-undefined-behavior" title="連結到這個標頭">¶</a></h2>
+<p>The best tools for detecting memory safety and undefined behavior issues are
+Clang’s sanitizers, such as the Undefined Behavior Sanitizer (UBSan) and the
+Address Sanitizer (ASan). For more information, see <a class="reference internal" href="../debugging/Sanitizers.html#sanitizers"><span class="std std-ref">Debugging with Sanitizers</span></a>.</p>
+<p>Emscripten has several other compiler settings that can be useful for catching
+errors at runtime. These are set using the <a class="reference internal" href="../tools_reference/emcc.html#emcc-s-option-value"><span class="std std-ref">emcc -s</span></a>
+option. For example:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span data-line="1">emcc<span class="w"> </span>-O1<span class="w"> </span>-sASSERTIONS<span class="w"> </span>test/hello_world.c
+</span></pre></div>
+</div>
+<p>Some important settings are:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p id="debugging-assertions"><code class="docutils literal notranslate"><span class="pre">ASSERTIONS=1</span></code> is used to enable runtime checks for many types of common
+errors. It also defines how Emscripten should handle errors in program flow.
+The value can be set to <code class="docutils literal notranslate"><span class="pre">ASSERTIONS=2</span></code> in order to run additional tests.
+<code class="docutils literal notranslate"><span class="pre">ASSERTIONS=1</span></code> is enabled by default at <code class="docutils literal notranslate"><span class="pre">-O0</span></code> and disabled at higher
+optimization levels, but can be overridden.</p>
+</li>
+<li><p id="debugging-safe-heap"><code class="docutils literal notranslate"><span class="pre">SAFE_HEAP=1</span></code> adds additional memory access checks with a Binaryen pass,
+and will give clear errors for problems like dereferencing 0 and memory
+alignment issues. You can also set <code class="docutils literal notranslate"><span class="pre">SAFE_HEAP_LOG</span></code> to log <code class="docutils literal notranslate"><span class="pre">SAFE_HEAP</span></code>
+operations. <a class="reference internal" href="../debugging/Sanitizers.html#sanitizer-asan"><span class="std std-ref">ASan</span></a> provides most of the functionality
+of this pass (plus some extras) and is generally preferred to try first
+unless <a class="reference internal" href="#debugging-emscripten-specific-issues"><span class="std std-ref">alignment issues</span></a> are
+important for your platform.</p>
+</li>
+<li><p id="debugging-stack-overflow-check"><code class="docutils literal notranslate"><span class="pre">STACK_OVERFLOW_CHECK=1</span></code> adds a runtime magic token value at the end of
+the stack, which is checked in certain locations to verify that the user
+code does not accidentally write past the end of the stack. While
+overrunning the Emscripten stack is not a security issue for JavaScript
+(which is unaffected), writing past the stack causes memory corruption in
+global data and dynamically allocated memory sections in the Emscripten
+HEAP, which makes the application fail in unexpected ways. The value
+<code class="docutils literal notranslate"><span class="pre">STACK_OVERFLOW_CHECK=2</span></code> enables slightly more detailed stack guard
+checks, which can give a more precise callstack at the expense of some
+performance. Default value is 1 if <code class="docutils literal notranslate"><span class="pre">ASSERTIONS=1</span></code> is set, and disabled
+otherwise.</p>
+</li>
+</ul>
+</div></blockquote>
+<p>A number of other useful debug settings are defined in <a class="reference external" href="https://github.com/emscripten-core/emscripten/blob/main/src/settings.js">src/settings.js</a>. For
+more information, search that file for the keywords 「check」 and 「debug」.</p>
+</section>
+<section id="profiling-performance">
+<span id="debugging-profiling"></span><h2>Profiling Performance<a class="headerlink" href="#profiling-performance" title="連結到這個標頭">¶</a></h2>
+<section id="speed">
+<h3>Speed<a class="headerlink" href="#speed" title="連結到這個標頭">¶</a></h3>
+<p>To profile your code for speed, build with <a class="reference internal" href="../tools_reference/emcc.html#emcc-profiling"><span class="std std-ref">profiling info</span></a> using <code class="docutils literal notranslate"><span class="pre">--profiling</span></code>, (which is currently the same as
+<a class="reference internal" href="../tools_reference/emcc.html#emcc-g2"><span class="std std-ref">-g2</span></a>), and then run the code in the browser’s devtools profiler.
+You should then be able to see in which functions most of the time is spent.</p>
+</section>
+<section id="memory">
+<h3>Memory<a class="headerlink" href="#memory" title="連結到這個標頭">¶</a></h3>
+<p>The browser’s memory profiling tools generally only understand allocations at
+the JavaScript level. From that perspective, the entire linear memory that the
+emscripten-compiled application uses is a single big allocation (of a
+<code class="docutils literal notranslate"><span class="pre">WebAssembly.Memory</span></code>). To get information about usage inside that object, you
+need other tools:</p>
+<ul class="simple">
+<li><p>Emscripten supports the <a class="reference external" href="https://man7.org/linux/man-pages/man3/mallinfo.3.html">mallinfo()</a>, API, which gives
+you information from <code class="docutils literal notranslate"><span class="pre">dlmalloc</span></code> about current allocations.</p></li>
+<li><p>Emscripten also has a <code class="docutils literal notranslate"><span class="pre">--memoryprofiler</span></code> option that displays memory usage
+in a visual manner. Note that you need to emit HTML (e.g. with a command like
+<code class="docutils literal notranslate"><span class="pre">emcc</span> <span class="pre">test/hello_world.c</span> <span class="pre">--memoryprofiler</span> <span class="pre">-o</span> <span class="pre">page.html</span></code>) as the memory
+profiler output is rendered onto the page. To view it, load <code class="docutils literal notranslate"><span class="pre">page.html</span></code> in
+your browser (remember to use a <a class="reference internal" href="../getting_started/FAQ.html#faq-local-webserver"><span class="std std-ref">local webserver</span></a>).
+The display auto-updates, so you can open the devtools console and run a
+command like <code class="docutils literal notranslate"><span class="pre">_malloc(1024</span> <span class="pre">*</span> <span class="pre">1024)</span></code>. That will allocate 1MB of memory, which
+will then show up on the memory profiler display.</p></li>
+</ul>
+</section>
+</section>
+<section id="manual-print-debugging">
+<span id="debugging-manual-debugging"></span><h2>Manual print debugging<a class="headerlink" href="#manual-print-debugging" title="連結到這個標頭">¶</a></h2>
+<p>You can also manually instrument the source code with <code class="docutils literal notranslate"><span class="pre">printf()</span></code> statements,
+then compile and run the code to investigate issues. The output from the
+<cite>stdout</cite> and <cite>stderr</cite> streams is copied to the browser console by default. Note
+that <code class="docutils literal notranslate"><span class="pre">printf()</span></code> is line-buffered, so make sure to add <code class="docutils literal notranslate"><span class="pre">\n</span></code> to see output in
+the console. The functions in the <a class="reference internal" href="../api_reference/console.h.html#console-h"><span class="std std-ref">console.h</span></a> header can also
+be used to access the console more directly.</p>
+</section>
+<section id="emscripten-specific-issues">
+<span id="debugging-emscripten-specific-issues"></span><h2>Emscripten-Specific Issues<a class="headerlink" href="#emscripten-specific-issues" title="連結到這個標頭">¶</a></h2>
+<section id="memory-alignment-issues">
+<h3>Memory Alignment Issues<a class="headerlink" href="#memory-alignment-issues" title="連結到這個標頭">¶</a></h3>
+<p>The <a class="reference internal" href="emscripten-runtime-environment.html#emscripten-memory-model"><span class="std std-ref">Emscripten memory representation</span></a> is
+compatible with C and C++. In WebAssembly, unaligned loads and stores will work;
+each may be annotated with its expected alignment. However if the actual
+alignment does not match, it may be very slow on some systems.</p>
+<div class="admonition tip">
+<p class="admonition-title">小訣竅</p>
+<p><a class="reference internal" href="#debugging-safe-heap"><span class="std std-ref">SAFE_HEAP</span></a> can be used to reveal memory alignment issues.</p>
+</div>
+<p>Generally it is best to avoid unaligned reads and writes. Often they occur as
+the result of undefined behavior. In some cases, however, they are unavoidable —
+for example if the code to be ported reads an <code class="docutils literal notranslate"><span class="pre">int</span></code> from a packed structure in
+some pre-existing data format. In that case, to make it as fast as possible in
+WebAssembly, you can make sure that the compiler knows the load or store is
+unaligned. To do so you can:</p>
+<ul class="simple">
+<li><p>Manually read individual bytes and reconstruct the full value</p></li>
+<li><p>Use the <a class="reference internal" href="../api_reference/emscripten.h.html#c.emscripten_align1_short" title="emscripten_align1_short"><code class="xref c c-type docutils literal notranslate"><span class="pre">emscripten_align*</span></code></a> typedefs, which
+define unaligned versions of the basic types (<code class="docutils literal notranslate"><span class="pre">short</span></code>, <code class="docutils literal notranslate"><span class="pre">int</span></code>, <code class="docutils literal notranslate"><span class="pre">float</span></code>,
+<code class="docutils literal notranslate"><span class="pre">double</span></code>). All operations on those types are not fully aligned (use the
+<code class="docutils literal notranslate"><span class="pre">1</span></code> variants in most cases, which mean no alignment whatsoever).</p></li>
+</ul>
+</section>
+<section id="function-pointer-issues">
+<h3>Function Pointer Issues<a class="headerlink" href="#function-pointer-issues" title="連結到這個標頭">¶</a></h3>
+<p>If you get</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="ne">RuntimeError</span><span class="p">:</span> <span class="n">null</span> <span class="n">function</span> <span class="ow">or</span> <span class="n">function</span> <span class="n">signature</span> <span class="n">mismatch</span>
+</span></pre></div>
+</div>
+<p>(or, in certain build types, an <code class="docutils literal notranslate"><span class="pre">abort()</span></code> or an error of 「incorrect function
+pointer」), the problem is that a function of the correct type was not found in
+the function pointer table when called.</p>
+<p>There are several possible causes:</p>
+<ul class="simple">
+<li><p>Your code is calling a function pointer that has been cast from another type
+(this is undefined behavior but it does happen in real-world code). In
+optimized Emscripten output, each function pointer type is stored in a
+separate table based on its original signature, so you <em>must</em> call a function
+pointer with that same signature to get the right behavior (see
+<a class="reference internal" href="guidelines/function_pointer_issues.html#portability-function-pointer-issues"><span class="std std-ref">Function Pointer Issues</span></a> in the code portability section for
+more information).</p></li>
+<li><p>Your code is calling a method on a <code class="docutils literal notranslate"><span class="pre">NULL</span></code> pointer or dereferencing 0. This
+sort of bug can be caused by any sort of coding error, but manifests as a
+function pointer error because the function can’t be found in the expected
+table at runtime.</p></li>
+</ul>
+<p>To debug these sorts of issues:</p>
+<ul class="simple">
+<li><p>Compile with <code class="docutils literal notranslate"><span class="pre">-Werror</span></code> (or otherwise fix warnings, many of which highlight
+undefined behavior).</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">-sASSERTIONS=2</span></code> to get some useful information about the function
+pointer being called, and its type.</p></li>
+<li><p>Look at the browser stack trace to see where the error occurs and which
+function should have been called.</p></li>
+<li><p>Enable clang warnings on dangerous function pointer casts using
+<code class="docutils literal notranslate"><span class="pre">-Wcast-function-type</span></code>.</p></li>
+<li><p>Build with <a class="reference internal" href="#debugging-safe-heap"><span class="std std-ref">SAFE_HEAP=1</span></a>.</p></li>
+<li><p><a class="reference internal" href="../debugging/Sanitizers.html#sanitizers"><span class="std std-ref">Debugging with Sanitizers</span></a> can help here, in particular UBSan.</p></li>
+</ul>
+</section>
+<section id="infinite-loops">
+<h3>Infinite loops<a class="headerlink" href="#infinite-loops" title="連結到這個標頭">¶</a></h3>
+<p>Infinite loops cause your page to hang. After a period the browser will notify
+the user that the page is stuck and offer to halt or close it. If your code hits
+an infinite loop, one easy way to find the problem code is to use a <em>JavaScript
+profiler</em>. In the Firefox profiler, if the code enters an infinite loop you will
+see a block of code doing the same thing repeatedly near the end of the profile.</p>
+<div class="admonition note">
+<p class="admonition-title">備註</p>
+<p>The <a class="reference internal" href="emscripten-runtime-environment.html#emscripten-runtime-environment-main-loop"><span class="std std-ref">Browser main loop</span></a> may need to be
+re-coded if your application uses an infinite main loop.</p>
+</div>
+</section>
+</section>
+<section id="debugging-emscripten">
+<span id="other-debugging-tools"></span><h2>Debugging Emscripten<a class="headerlink" href="#debugging-emscripten" title="連結到這個標頭">¶</a></h2>
+<section id="debugging-the-compiler-driver">
+<span id="debugging-emcc-debug"></span><h3>Debugging the compiler driver<a class="headerlink" href="#debugging-the-compiler-driver" title="連結到這個標頭">¶</a></h3>
+<p>Compiling with the <a class="reference internal" href="../tools_reference/emcc.html#emcc-verbose"><span class="std std-ref">emcc -v</span></a> will cause emcc to output the
+sub-commands that it runs as well as passes <code class="docutils literal notranslate"><span class="pre">-v</span></code> to Clang. The <code class="docutils literal notranslate"><span class="pre">EMCC_DEBUG</span></code>
+environment variable can be set to emit even more debug output and generate
+intermediate files for the compiler’s various stages.</p>
+</section>
+<section id="autodebugger">
+<span id="debugging-autodebugger"></span><h3>AutoDebugger<a class="headerlink" href="#autodebugger" title="連結到這個標頭">¶</a></h3>
+<p>The <em>AutoDebugger</em> is the 『nuclear option』 for debugging Emscripten code. It
+will rewrite the output so it prints out each store to memory. This is useful
+for comparing the output for different compiler settings in order to detect
+regressions. To run the <em>AutoDebugger</em>, compile with the environment variable
+<code class="docutils literal notranslate"><span class="pre">EMCC_AUTODEBUG=1</span></code> set.</p>
+<div class="admonition warning">
+<p class="admonition-title">警告</p>
+<p>This option is primarily intended for Emscripten core developers.</p>
+</div>
+<p>The <em>AutoDebugger</em> will rewrite the output so it prints out each store to
+memory. This is useful because you can compare the output for different compiler
+settings in order to detect regressions.</p>
+<p>The <em>AutoDebugger</em> can potentially find <strong>any</strong> problem in the generated code,
+so it is strictly more powerful than the <code class="docutils literal notranslate"><span class="pre">CHECK_*</span></code> settings and <code class="docutils literal notranslate"><span class="pre">SAFE_HEAP</span></code>.
+One use of the <em>AutoDebugger</em> is to quickly emit lots of logging output, which
+can then be reviewed for odd behavior. The <em>AutoDebugger</em> is also particularly
+useful for <a class="reference internal" href="#debugging-autodebugger-regressions"><span class="std std-ref">debugging regressions</span></a>.</p>
+<p>The <em>AutoDebugger</em> has some limitations:</p>
+<ul class="simple">
+<li><p>It generates a lot of output. Using <em>diff</em> can be very helpful for
+identifying changes.</p></li>
+<li><p>It prints out simple numerical values rather than pointer addresses (because
+pointer addresses change between runs, and hence can’t be compared). This is
+a limitation because sometimes inspection of addresses can show errors where
+the pointer address is 0 or impossibly large. It is possible to modify the
+tool to print out addresses as integers in <code class="docutils literal notranslate"><span class="pre">tools/autodebugger.py</span></code>.</p></li>
+</ul>
+<p>To run the <em>AutoDebugger</em>, compile with the environment variable
+<code class="docutils literal notranslate"><span class="pre">EMCC_AUTODEBUG=1</span></code> set. For example:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1"># Linux or macOS</span>
+</span><span data-line="2"><span class="nv">EMCC_AUTODEBUG</span><span class="o">=</span><span class="m">1</span><span class="w"> </span>emcc<span class="w"> </span>test/hello_world.cpp<span class="w"> </span>-o<span class="w"> </span>hello.html
+</span><span data-line="3"><span class="c1"># Windows</span>
+</span><span data-line="4"><span class="nb">set</span><span class="w"> </span><span class="nv">EMCC_AUTODEBUG</span><span class="o">=</span><span class="m">1</span>
+</span><span data-line="5">emcc<span class="w"> </span>test/hello_world.cpp<span class="w"> </span>-o<span class="w"> </span>hello.html
+</span><span data-line="6"><span class="nb">set</span><span class="w"> </span><span class="nv">EMCC_AUTODEBUG</span><span class="o">=</span><span class="m">0</span>
+</span></pre></div>
+</div>
+</section>
+<section id="autodebugger-regression-workflow">
+<span id="debugging-autodebugger-regressions"></span><h3>AutoDebugger Regression Workflow<a class="headerlink" href="#autodebugger-regression-workflow" title="連結到這個標頭">¶</a></h3>
+<p>Use the following workflow to find regressions with the <em>AutoDebugger</em>:</p>
+<ul class="simple">
+<li><p>Compile the working code with <code class="docutils literal notranslate"><span class="pre">EMCC_AUTODEBUG=1</span></code> set in the environment.</p></li>
+<li><p>Compile the code using <code class="docutils literal notranslate"><span class="pre">EMCC_AUTODEBUG=1</span></code> in the environment again, but this
+time with the settings that cause the regression. Following this step we have
+one build before the regression and one after.</p></li>
+<li><p>Run both versions of the compiled code and save their output.</p></li>
+<li><p>Compare the output using a <em>diff</em> tool.</p></li>
+</ul>
+<p>Any difference between the outputs is likely to be caused by the bug.</p>
+<div class="admonition note">
+<p class="admonition-title">備註</p>
+<p>You may want to use <code class="docutils literal notranslate"><span class="pre">-sDETERMINISTIC</span></code> which will ensure that timing
+and other issues don’t cause false positives.</p>
+</div>
+</section>
+</section>
+<section id="useful-links">
+<h2>Useful Links<a class="headerlink" href="#useful-links" title="連結到這個標頭">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://web.dev/webassembly/#webassembly-debugging">Links to Wasm debugging-related documents</a></p></li>
+</ul>
+</section>
+<section id="need-help">
+<h2>Need help?<a class="headerlink" href="#need-help" title="連結到這個標頭">¶</a></h2>
+<p>The <a class="reference internal" href="../getting_started/test-suite.html#emscripten-test-suite"><span class="std std-ref">Emscripten Test Suite</span></a> contains good examples
+of almost all functionality offered by Emscripten. If you have a problem, it is
+a good idea to search the suite to determine whether test code with similar
+behavior is able to run.</p>
+<p>If you’ve tried the ideas here and you need more help, please <a class="reference internal" href="../introducing_emscripten/community.html#contact"><span class="std std-ref">Get in touch</span></a>.</p>
+</section>
+</section>
+
+        </article><button class="back-to-top" type="button">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+  </svg>
+  <span>回到頂部</span>
+</button><div class="navigation flex print:hidden"><div class="navigation-prev">
+    <a href="Audio.html">
+      <i class="i-lucide chevron-left"></i>
+      <div class="page-info">
+        <span>上一頁</span><div class="title">Audio</div></div>
+    </a>
+  </div><div class="navigation-next">
+    <a href="pthreads.html">
+      <div class="page-info">
+        <span>下一頁</span>
+        <div class="title">Pthreads support</div>
+      </div>
+      <i class="i-lucide chevron-right"></i>
+    </a>
+  </div></div></div>
+    </div>
+  </main>
+</div>
+<footer class="sy-foot">
+  <div class="sy-foot-inner sy-container mx-auto">
+    <div class="sy-foot-reserved md:flex justify-between items-center">
+      <div class="sy-foot-copyright"><p>Copyright &copy; 2015, Emscripten Contributors.</p>
+  
+  <p>
+    Made with
+    
+    <a href="https://www.sphinx-doc.org/">Sphinx</a> and
+    
+    <a href="https://shibuya.lepture.com">Shibuya theme</a>.
+  </p>
+</div>
+      <div class="sy-foot-socials">
+<a href="https://github.com/emscripten-core/emscripten" aria-label="GitHub">
+  <iconify-icon icon="simple-icons:github"></iconify-icon>
+</a>
+<a href="https://discord.gg/53u3EKq" aria-label="Discord">
+  <iconify-icon icon="simple-icons:discord"></iconify-icon>
+</a></div>
+    </div>
+  </div>
+</footer>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=b46623cf"></script>
+      <script src="../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/translations.js?v=f1e884e3"></script>
+      <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../../_static/shibuya.js?v=50760d75"></script></body>
+</html>

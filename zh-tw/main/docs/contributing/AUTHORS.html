@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="zh-TW" data-accent-color="violet" data-content_root="../../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>AUTHORS - Emscripten 6.0.1-git (dev) 說明文件</title><link rel="shortcut icon" href="../../_static/emscripten.ico"/><link rel="index" title="索引" href="../../genindex.html" /><link rel="search" title="搜尋" href="../../search.html" /><link rel="next" title="Profiling the Toolchain" href="../optimizing/Profiling-Toolchain.html" /><link rel="prev" title="Developer’s Guide" href="developers_guide.html" />
+      <link rel="canonical" href="https://projects.localizethedocs.org/emscripten-docs-l10n/docs/contributing/AUTHORS.html" /><script>
+    function setColorMode(t){let e=document.documentElement;e.setAttribute("data-color-mode",t);let a=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,s=t;"auto"===t&&(s=a?"dark":"light"),"light"===s?(e.classList.remove("dark"),e.classList.add("light")):(e.classList.remove("light"),e.classList.add("dark"))}
+    setColorMode(localStorage._theme||"auto");
+  </script><link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=ad592e98" />
+    <link rel="stylesheet" type="text/css" href="../../_static/shibuya.css?v=9454f7d5" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link media="print" rel="stylesheet" type="text/css" href="../../_static/print.css?v=20ff2c19" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sy-f-text: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+  --sy-f-heading: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+}
+</style>
+    
+
+<script type="text/javascript" src="../../ltd-provenance.js"></script>
+<script type="text/javascript" src="../../ltd-current.js"></script>
+<script type="text/javascript" src="../../../../ltd-config.js"></script>
+<script type="text/javascript" src="../../../../ltd-flyout.js"></script>
+
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://projects.localizethedocs.org/emscripten-docs-l10n/docs/contributing/AUTHORS.html"/>
+  <meta property="og:title" content="AUTHORS"/>
+    <meta name="twitter:card" content="summary"/>
+  </head>
+<body><div class="sy-head">
+  <div class="sy-head-blur"></div>
+  <div class="sy-head-inner sy-container mx-auto">
+    <a class="sy-head-brand" href="../../index.html">
+      <img class="light-logo" src="../../_static/emscripten_logo_full.svg" alt="Emscripten" height="28" loading="lazy" />
+      <img class="dark-logo" src="../../_static/emscripten_logo_full.svg" alt="Emscripten" height="28" loading="lazy" />
+      <strong>Emscripten</strong>
+    </a>
+    <div class="sy-head-nav" id="head-nav">
+      <nav class="sy-head-links"><ul>
+      <li class="link"><a class="js-menu" href="../index.html" id="nav-trigger-1" aria-controls="nav-children-1">
+            <span>文件</span>
+            <i class="i-lucide chevron-down"></i>
+          </a>
+        <ul id="nav-children-1" aria-labelledby="nav-trigger-1"><li><a href="../getting_started/downloads.html">下載</a></li><li><a href="../getting_started/bug_reports.html">回報臭蟲</a></li><li><a href="../introducing_emscripten/emscripten_license.html">授權條款</a></li><li><a href="contributing.html">參與貢獻</a></li><li><a href="../introducing_emscripten/release_notes.html">發行備註</a></li></ul>
+      </li>
+      <li class="link"><a class="js-menu" href="../introducing_emscripten/community.html" id="nav-trigger-2" aria-controls="nav-children-2">
+            <span>社群</span>
+            <i class="i-lucide chevron-down"></i>
+          </a>
+        <ul id="nav-children-2" aria-labelledby="nav-trigger-2"><li><a href="https://groups.google.com/forum/#!forum/emscripten-discuss">郵件列表</a></li><li><a href="https://github.com/emscripten-core/emscripten/wiki">維基</a></li></ul>
+      </li></ul></nav>
+      <div class="sy-head-extra flex items-center print:hidden"><form class="searchbox flex items-center" action="../../search.html" method="get">
+  <input type="text" name="q" placeholder="搜尋" />
+  <kbd>/</kbd>
+</form><div class="sy-head-socials">
+  <a href="https://github.com/emscripten-core/emscripten" aria-label="GitHub">
+    <iconify-icon icon="simple-icons:github"></iconify-icon>
+  </a>
+  <a href="https://discord.gg/53u3EKq" aria-label="Discord">
+    <iconify-icon icon="simple-icons:discord"></iconify-icon>
+  </a></div></div>
+    </div>
+    <div class="sy-head-actions flex items-center shrink-0 print:hidden"><button class="js-theme theme-switch flex items-center"
+data-aria-auto="切換到亮色模式"
+data-aria-light="切換到暗黑模式"
+data-aria-dark="切換到自動模式">
+<i class="i-lucide theme-icon"></i>
+</button><button class="md:hidden flex items-center js-menu" aria-label="Menu" type="button" aria-controls="head-nav" aria-expanded="false">
+        <div class="hamburger">
+          <span class="hamburger_1"></span>
+          <span class="hamburger_2"></span>
+          <span class="hamburger_3"></span>
+        </div>
+      </button>
+    </div>
+  </div>
+</div>
+<div class="sy-page sy-container flex mx-auto">
+  <aside id="lside" class="sy-lside md:w-72 md:shrink-0 print:hidden">
+    <div class="sy-lside-inner md:sticky">
+      <div class="sy-scrollbar p-6"><div class="sidebar-links">
+  <ul>
+    <li><a class="icon-link" href="https://github.com/emscripten-core/emscripten/discussions">
+  <span class="icon">
+    <svg viewBox="0 0 24 24" fill="none">
+      <path fill="var(--accent-9)" fill-rule="evenodd" clip-rule="evenodd" d="M11 5a6 6 0 0 0-4.687 9.746c.215.27.315.62.231.954l-.514 2.058a1 1 0 0 0 1.485 1.1l2.848-1.71c.174-.104.374-.15.576-.148H13a6 6 0 0 0 0-12h-2Z"/>
+      <circle fill="white" cx="12" cy="11" r="1"/>
+      <circle fill="white" cx="9" cy="11" r="1"/>
+      <circle fill="white" cx="15" cy="11" r="1"/>
+    </svg>
+  </span>
+  <span class="text">討論</span>
+</a></li>
+  </ul>
+</div>
+        <div class="globaltoc" data-expand-depth="0"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introducing_emscripten/index.html">Introducing Emscripten</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../introducing_emscripten/about_emscripten.html">關於 Emscripten</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../introducing_emscripten/community.html">Community</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../introducing_emscripten/emscripten_license.html">Open Source License</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../introducing_emscripten/release_notes.html">Release Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../introducing_emscripten/Talks-and-Publications.html">Talks and Publications</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/downloads.html">Download and install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/Tutorial.html">Emscripten Tutorial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/test-suite.html">Emscripten Test Suite</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/bug_reports.html">Bug Reporting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/FAQ.html">FAQ</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../compiling/index.html">Compiling and Running Projects</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../compiling/Building-Projects.html">建置專案</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../compiling/WebAssembly.html">Building to WebAssembly</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../compiling/Modularized-Output.html">Modularized Output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../compiling/Dynamic-Linking.html">動態連結</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../compiling/Running-html-files-with-emrun.html">Running HTML files with emrun</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../compiling/Deploying-Pages.html">Deploying Emscripten Compiled Pages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../compiling/GitLab.html">Building and Deploying on GitLab</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../compiling/Contrib-Ports.html">Emscripten Contrib Ports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../compiling/CrossOriginStorage.html">Cross-Origin Storage (COS)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../porting/index.html">Porting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../porting/guidelines/index.html">Code Portability and Limitations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../porting/guidelines/portability_guidelines.html">Portability Guidelines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../porting/guidelines/api_limitations.html">API Limitations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../porting/guidelines/function_pointer_issues.html">Function Pointer Issues</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../porting/guidelines/browser_limitations.html">Specific Browser Limitations</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/emscripten-runtime-environment.html">Emscripten Runtime Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/connecting_cpp_and_javascript/index.html">Connecting C++ and JavaScript</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../porting/connecting_cpp_and_javascript/Interacting-with-code.html">Interacting with code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../porting/connecting_cpp_and_javascript/embind.html">Embind</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../porting/connecting_cpp_and_javascript/WebIDL-Binder.html">WebIDL Binder</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/files/index.html">Files and File Systems</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../porting/files/file_systems_overview.html">File System Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../porting/files/packaging_files.html">Packaging Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../porting/files/Synchronous-Virtual-XHR-Backed-File-System-Usage.html">Synchronous Virtual XHR Backed File System Usage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/multimedia_and_graphics/index.html">Multimedia and Graphics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../porting/multimedia_and_graphics/WebGPU-support.html">Using WebGPU in Emscripten</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../porting/multimedia_and_graphics/EGL-Support-in-Emscripten.html">EGL Support in Emscripten</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../porting/multimedia_and_graphics/OpenGL-support.html">OpenGL support in Emscripten</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/Audio.html">Audio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/Debugging.html">Debugging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/pthreads.html">Pthreads support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/networking.html">Networking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/simd.html">Using SIMD with WebAssembly</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/exceptions.html">C++ Exceptions Support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/setjmp-longjmp.html">C setjmp-longjmp Support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/asyncify.html">Asynchronous Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../compiling/Building-Projects.html">建置專案</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api_reference/index.html">API 參考</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/emscripten.h.html">emscripten.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/html5.h.html">html5.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/console.h.html">console.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/preamble.js.html">preamble.js</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/Filesystem-API.html">File System API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/fetch.html">Fetch API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/module.html">Module object</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/val.h.html">val.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/bind.h.html">bind.h (under-construction)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/trace.h.html">trace.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/fiber.h.html">fiber.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/proxying.h.html">proxying.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/stack.h.html">stack.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/wasm_workers.html">Wasm Workers API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/wasm_audio_worklets.html">Wasm Audio Worklets API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/advanced-apis.html">Advanced APIs</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tools_reference/index.html">Tools Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tools_reference/emsdk.html">Emscripten SDK (emsdk)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools_reference/emcc.html">Emscripten Compiler Frontend (emcc)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools_reference/emcmdprompt.html">Emscripten Windows Command Prompt (emcmdprompt.bat)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools_reference/settings_reference.html">Emscripten Compiler Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools_reference/settings_reference.html#deprecated-settings">Deprecated Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools_reference/settings_reference.html#legacy-settings">Legacy Settings</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../optimizing/Optimizing-Code.html">Optimizing Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../optimizing/Optimizing-WebGL.html">Optimizing WebGL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debugging/Sanitizers.html">Debugging with Sanitizers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../building_from_source/index.html">Building Emscripten from Source</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../building_from_source/toolchain_what_is_needed.html">Emscripten Toolchain Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../building_from_source/configuring_emscripten_settings.html">Configuring Emscripten Settings when Manually Building from Source</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../building_from_source/verify_emscripten_environment.html">Verifying the Emscripten Development Environment</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Contributing to Emscripten</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developers_guide.html">Developer’s Guide</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">AUTHORS</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../optimizing/Profiling-Toolchain.html">Profiling the Toolchain</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../site/about.html">About this site</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../genindex.html">索引</a></li>
+</ul>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="lside-overlay js-menu" role="button" aria-label="Close left sidebar" aria-controls="lside" aria-expanded="false"></div>
+  <aside id="rside" class="sy-rside pb-3 w-64 shrink-0 order-last">
+    <button class="rside-close js-menu xl:hidden" aria-label="Close Table of Contents" type="button" aria-controls="rside" aria-expanded="false">
+      <i class="i-lucide close"></i>
+    </button>
+    <div class="sy-scrollbar sy-rside-inner px-6 xl:top-16 xl:sticky xl:pl-0 pt-6 pb-4"><a class="js-repo-stats repo-stats flex items-center" href="https://github.com/emscripten-core/emscripten"
+  data-type="github" data-user="emscripten-core" data-repo="emscripten">
+  <span class="w-8 flex items-center justify-around shrink-0 text-3xl">
+    <iconify-icon icon="simple-icons:github"></iconify-icon>
+  </span>
+  <span class="flex-grow px-2 break-all">
+    
+    
+      <span>emscripten</span>
+    
+    <span class="flex text-sm repo-stats-count">
+      <span class="flex items-center pr-3">
+        <iconify-icon icon="lucide:star"></iconify-icon>
+        <strong class="js-repo-stars ml-1">0</strong>
+      </span>
+      <span class="flex items-center">
+        <iconify-icon icon="lucide:git-fork"></iconify-icon>
+        <strong class="js-repo-forks ml-1">0</strong>
+      </span>
+    </span>
+  </span>
+</a><div class="edit-this-page">
+  <a href="https://github.com/emscripten-core/emscripten/blob/main/site/source/docs/contributing/AUTHORS.rst">編輯此頁面</a>
+</div><div id="ethical-ad-placement" data-ea-publisher="readthedocs"></div></div>
+  </aside>
+  <div class="rside-overlay js-menu" role="button" aria-label="Close Table of Contents" aria-controls="rside" aria-expanded="false"></div>
+  <main class="sy-main w-full max-sm:max-w-full print:pt-6">
+<div class="sy-breadcrumbs" role="navigation">
+  <div class="sy-breadcrumbs-inner flex items-center">
+    <div class="md:hidden mr-3">
+      <button class="js-menu" aria-label="Menu" type="button" aria-controls="lside" aria-expanded="false">
+        <i class="i-lucide menu"></i>
+      </button>
+    </div>
+    <ol class="flex-1" itemscope itemtype="https://schema.org/BreadcrumbList"><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="../../index.html"><span itemprop="name">Emscripten</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="1" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="index.html"><span itemprop="name">Contributing to Emscripten</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="2" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <strong itemprop="name">AUTHORS</strong>
+        <meta itemprop="position" content="3" />
+      </li></ol>
+    <div class="xl:hidden ml-1">
+      <button class="js-menu" aria-label="Show table of contents" type="button" aria-controls="rside"
+        aria-expanded="false">
+        <i class="i-lucide outdent"></i>
+      </button>
+    </div>
+  </div>
+</div><div class="flex flex-col break-words justify-between">
+      <div class="relative min-w-0 max-w-6xl px-6 pb-6 pt-8 xl:px-12">
+  <article class="yue" role="main">
+          <section id="authors">
+<span id="emscripten-authors"></span><h1>AUTHORS<a class="headerlink" href="#authors" title="連結到這個標頭">¶</a></h1>
+<p>The <a class="reference external" href="https://github.com/emscripten-core/emscripten/blob/main/AUTHORS">AUTHORS</a> file lists everyone who has contributed to Emscripten.
+It is optional for a contributor to add themselves to the <a class="reference external" href="https://github.com/emscripten-core/emscripten/blob/main/AUTHORS">AUTHORS</a> file before <a class="reference internal" href="contributing.html"><span class="doc">contributing</span></a>.</p>
+<p>The contributors for releases up to Emscripten 6.0.1-git (dev) inclusive are listed below.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span data-line="1">Contributors to Emscripten may optionally add themselves to this list of
+</span><span data-line="2">authors if they choose to do so. This is optional because the git history is
+</span><span data-line="3">good enough for that purpose, and in fact most projects do not maintain such a
+</span><span data-line="4">manual list.
+</span><span data-line="5">
+</span><span data-line="6">While the file is not necessary, to preserve the history of the project we are
+</span><span data-line="7">not removing it.
+</span><span data-line="8">
+</span><span data-line="9">(Authors keep copyright of their contributions, of course; they just grant
+</span><span data-line="10">a license to everyone to use it as detailed in LICENSE.)
+</span><span data-line="11">
+</span><span data-line="12">* Alon Zakai &lt;alonzakai@gmail.com&gt; (copyright owned by Mozilla Foundation)
+</span><span data-line="13">* Tim Dawborn &lt;tim.dawborn@gmail.com&gt;
+</span><span data-line="14">* Max Shawabkeh &lt;max99x@gmail.com&gt;
+</span><span data-line="15">* Sigmund Vik &lt;sigmund_vik@yahoo.com&gt;
+</span><span data-line="16">* Jeff Terrace &lt;jterrace@gmail.com&gt;
+</span><span data-line="17">* Benoit Tremblay &lt;trembl.ben@gmail.com&gt;
+</span><span data-line="18">* Andreas Bergmeier &lt;abergmeier@gmx.net&gt;
+</span><span data-line="19">* Ben Schwartz &lt;bens@alum.mit.edu&gt;
+</span><span data-line="20">* David Claughton &lt;dave@eclecticdave.com&gt;
+</span><span data-line="21">* David Yip &lt;yipdw@member.fsf.org&gt;
+</span><span data-line="22">* Julien Hamaide &lt;julien.hamaide@gmail.com&gt;
+</span><span data-line="23">* Ehsan Akhgari &lt;ehsan.akhgari@gmail.com&gt; (copyright owned by Mozilla Foundation)
+</span><span data-line="24">* Adrian Taylor &lt;adrian@macrobug.com&gt;
+</span><span data-line="25">* Richard Assar &lt;richard.assar@gmail.com&gt;
+</span><span data-line="26">* Nathan Hammond &lt;emscripten@nathanhammond.com&gt;
+</span><span data-line="27">* Behdad Esfahbod &lt;behdad@behdad.org&gt;
+</span><span data-line="28">* David Benjamin &lt;davidben@mit.edu&gt;
+</span><span data-line="29">* Pierre Renaux &lt;pierre@talansoft.com&gt;
+</span><span data-line="30">* Brian Anderson &lt;banderson@mozilla.com&gt;
+</span><span data-line="31">* Jon Bardin &lt;diclophis@gmail.com&gt;
+</span><span data-line="32">* Jukka Jylänki &lt;jujjyl@gmail.com&gt;
+</span><span data-line="33">* Aleksander Guryanov &lt;caiiiycuk@gmail.com&gt;
+</span><span data-line="34">* Chad Austin &lt;chad@chadaustin.me&gt; (copyright owned by IMVU)
+</span><span data-line="35">* nandhp &lt;nandhp@gmail.com&gt;
+</span><span data-line="36">* YeZhongWen &lt;linghuye2.0@gmail.com&gt;
+</span><span data-line="37">* Xingxing Pan &lt;forandom@gmail.com&gt;
+</span><span data-line="38">* Justin Kerk &lt;dopefishjustin@gmail.com&gt;
+</span><span data-line="39">* Andrea Bedini &lt;andrea.bedini@gmail.com&gt;
+</span><span data-line="40">* James Pike &lt;totoro.friend@chilon.net&gt;
+</span><span data-line="41">* Mokhtar Naamani &lt;mokhtar.naamani@gmail.com&gt;
+</span><span data-line="42">* Benjamin Stover &lt;benjamin.stover@gmail.com&gt;
+</span><span data-line="43">* Riccardo Magliocchetti &lt;riccardo.magliocchetti@gmail.com&gt;
+</span><span data-line="44">* Janus Troelsen &lt;janus.troelsen@stud.tu-darmstadt.de&gt;
+</span><span data-line="45">* Lars Schneider &lt;lars.schneider@autodesk.com&gt; (copyright owned by Autodesk, Inc.)
+</span><span data-line="46">* Joel Martin &lt;github@martintribe.org&gt;
+</span><span data-line="47">* Manuel Wellmann &lt;manuel.wellmann@autodesk.com&gt; (copyright owned by Autodesk, Inc.)
+</span><span data-line="48">* Xuejie Xiao &lt;xxuejie@gmail.com&gt;
+</span><span data-line="49">* Dominic Wong &lt;dom@slowbunyip.org&gt;
+</span><span data-line="50">* Alan Kligman &lt;alan.kligman@gmail.com&gt; (copyright owned by Mozilla Foundation)
+</span><span data-line="51">* Anthony Liot &lt;wolfviking0@yahoo.com&gt;
+</span><span data-line="52">* Michael Riss &lt;Michael.Riss@gmx.de&gt;
+</span><span data-line="53">* Jasper St. Pierre &lt;jstpierre@mecheye.net&gt;
+</span><span data-line="54">* Manuel Schölling &lt;manuel.schoelling@gmx.de&gt;
+</span><span data-line="55">* Bruce Mitchener, Jr. &lt;bruce.mitchener@gmail.com&gt;
+</span><span data-line="56">* Michael Bishop &lt;mbtyke@gmail.com&gt;
+</span><span data-line="57">* Roger Braun &lt;roger@rogerbraun.net&gt;
+</span><span data-line="58">* Vladimir Vukicevic &lt;vladimir@pobox.com&gt; (copyright owned by Mozilla Foundation)
+</span><span data-line="59">* Lorant Pinter &lt;lorant.pinter@prezi.com&gt;
+</span><span data-line="60">* Tobias Doerffel &lt;tobias.doerffel@gmail.com&gt;
+</span><span data-line="61">* Martin von Gagern &lt;martin@von-gagern.net&gt;
+</span><span data-line="62">* Ting-Yuan Huang &lt;thuang@mozilla.com&gt;
+</span><span data-line="63">* Joshua Granick &lt;jgranick@blackberry.com&gt;
+</span><span data-line="64">* Felix H. Dahlke &lt;fhd@ubercode.de&gt;
+</span><span data-line="65">* Éloi Rivard &lt;azmeuk@gmail.com&gt;
+</span><span data-line="66">* Alexander Gladysh &lt;ag@logiceditor.com&gt;
+</span><span data-line="67">* Arlo Breault &lt;arlolra@gmail.com&gt;
+</span><span data-line="68">* Jacob Lee &lt;artdent@gmail.com&gt; (copyright owned by Google, Inc.)
+</span><span data-line="69">* Joe Lee &lt;jlee@imvu.com&gt; (copyright owned by IMVU)
+</span><span data-line="70">* Andy Friesen &lt;andy@imvu.com&gt; (copyright owned by IMVU)
+</span><span data-line="71">* Bill Welden &lt;bwelden@imvu.com&gt; (copyright owned by IMVU)
+</span><span data-line="72">* Michael Ey &lt;mey@imvu.com&gt; (copyright owned by IMVU)
+</span><span data-line="73">* Llorens Marti Garcia &lt;lgarcia@imvu.com&gt; (copyright owned by IMVU)
+</span><span data-line="74">* Jinsuck Kim &lt;jkim@imvu.com&gt; (copyright owned by IMVU)
+</span><span data-line="75">* Todd Lee &lt;tlee@imvu.com&gt; (copyright owned by IMVU)
+</span><span data-line="76">* Anthony Pesch &lt;inolen@gmail.com&gt;
+</span><span data-line="77">* Robert Bragg &lt;robert.bragg@intel.com&gt; (copyright owned by Intel Corporation)
+</span><span data-line="78">* Sylvestre Ledru &lt;sylvestre@debian.org&gt;
+</span><span data-line="79">* Tom Fairfield &lt;fairfield@cs.xu.edu&gt;
+</span><span data-line="80">* Anthony J. Thibault &lt;ajt@hyperlogic.org&gt;
+</span><span data-line="81">* John Allwine &lt;jallwine86@gmail.com&gt;
+</span><span data-line="82">* Martin Gerhardy &lt;martin.gerhardy@gmail.com&gt;
+</span><span data-line="83">* James Gregory &lt;jgregory@zynga.com&gt; (copyright owned by Zynga, Inc.)
+</span><span data-line="84">* Dan Gohman &lt;sunfish@google.com&gt; (copyright owned by Google, Inc.)
+</span><span data-line="85">* Jeff Gilbert &lt;jgilbert@mozilla.com&gt; (copyright owned by Mozilla Foundation)
+</span><span data-line="86">* Frits Talbot &lt;frits@metapathy.com&gt;
+</span><span data-line="87">* Onno Jongbloed &lt;hey@onnoj.net&gt;
+</span><span data-line="88">* Jez Ng &lt;me@jezng.com&gt;
+</span><span data-line="89">* Marc Feeley &lt;mfeeley@mozilla.com&gt; (copyright owned by Mozilla Foundation)
+</span><span data-line="90">* Ludovic Perrine &lt;jazzzz@gmail.com&gt;
+</span><span data-line="91">* David Barksdale &lt;david.barksdale@adcedosolutions.com&gt;
+</span><span data-line="92">* Manfred Manik Nerurkar &lt;nerurkar*at*made-apps.biz&gt; (copyright owned by MADE, GmbH)
+</span><span data-line="93">* Joseph Gentle &lt;me@josephg.com&gt;
+</span><span data-line="94">* Douglas T. Crosher &lt;dtc-moz@scieneer.com&gt; (copyright owned by Mozilla Foundation)
+</span><span data-line="95">* Douglas T. Crosher &lt;info@jsstats.com&gt; (copyright owned by Scieneer Pty Ltd.)
+</span><span data-line="96">* Soeren Balko &lt;soeren.balko@gmail.com&gt; (copyright owned by Clipchamp Pty Ltd.)
+</span><span data-line="97">* Ryan Kelly (ryan@rfk.id.au)
+</span><span data-line="98">* Michael Lelli &lt;toadking@toadking.com&gt;
+</span><span data-line="99">* Yu Kobayashi &lt;yukoba@accelart.jp&gt;
+</span><span data-line="100">* Pin Zhang &lt;zhangpin04@gmail.com&gt;
+</span><span data-line="101">* Nick Bray &lt;ncbray@chromium.org&gt; (copyright owned by Google, Inc.)
+</span><span data-line="102">* Aidan Hobson Sayers &lt;aidanhs@cantab.net&gt;
+</span><span data-line="103">* Charlie Birks &lt;admin@daftgames.net&gt;
+</span><span data-line="104">* Ranger Harke &lt;ranger.harke@autodesk.com&gt; (copyright owned by Autodesk, Inc.)
+</span><span data-line="105">* Tobias Vrinssen &lt;tobias@vrinssen.de&gt;
+</span><span data-line="106">* Patrick R. Martin &lt;patrick.martin.r@gmail.com&gt;
+</span><span data-line="107">* Richard Quirk &lt;richard.quirk@gmail.com&gt;
+</span><span data-line="108">* Marcos Scriven &lt;marcos@scriven.org&gt;
+</span><span data-line="109">* Antoine Lambert &lt;antoine.lambert33@gmail.com&gt;
+</span><span data-line="110">* Daniel Aquino &lt;mr.danielaquino@gmail.com&gt;
+</span><span data-line="111">* Remi Papillie &lt;remi.papillie@gmail.com&gt;
+</span><span data-line="112">* Fraser Adams &lt;fraser.adams@blueyonder.co.uk&gt;
+</span><span data-line="113">* Michael Tirado &lt;icetooth333@gmail.com&gt;
+</span><span data-line="114">* Ben Noordhuis &lt;info@bnoordhuis.nl&gt;
+</span><span data-line="115">* Bob Roberts &lt;bobroberts177@gmail.com&gt;
+</span><span data-line="116">* John Vilk &lt;jvilk@cs.umass.edu&gt;
+</span><span data-line="117">* Daniel Baulig &lt;dbaulig@fb.com&gt; (copyright owned by Facebook, Inc.)
+</span><span data-line="118">* Lu Wang &lt;coolwanglu@gmail.com&gt;
+</span><span data-line="119">* Heidi Pan &lt;heidi.pan@intel.com&gt; (copyright owned by Intel)
+</span><span data-line="120">* Vasilis Kalintiris &lt;ehostunreach@gmail.com&gt;
+</span><span data-line="121">* Adam C. Clifton &lt;adam@hulkamaniac.com&gt;
+</span><span data-line="122">* Volo Zyko &lt;volo.zyko@gmail.com&gt;
+</span><span data-line="123">* Andre Weissflog &lt;floooh@gmail.com&gt;
+</span><span data-line="124">* Alexandre Perrot &lt;alexandre.perrot@gmail.com&gt;
+</span><span data-line="125">* Emerson José Silveira da Costa &lt;emerson.costa@gmail.com&gt;
+</span><span data-line="126">* Jari Vetoniemi &lt;mailroxas@gmail.com&gt;
+</span><span data-line="127">* Sindre Sorhus &lt;sindresorhus@gmail.com&gt;
+</span><span data-line="128">* James S Urquhart &lt;jamesu@gmail.com&gt;
+</span><span data-line="129">* Boris Gjenero &lt;boris.gjenero@gmail.com&gt;
+</span><span data-line="130">* jonas echterhoff &lt;jonas@unity3d.com&gt;
+</span><span data-line="131">* Sami Vaarala &lt;sami.vaarala@iki.fi&gt;
+</span><span data-line="132">* Jack A. Arrington &lt;jack@epicpineapple.com&gt;
+</span><span data-line="133">* Richard Janicek &lt;r@janicek.co&gt;
+</span><span data-line="134">* Joel Croteau &lt;jcroteau@gmail.com&gt;
+</span><span data-line="135">* Haneef Mubarak &lt;haneef503@gmail.com&gt;
+</span><span data-line="136">* Nicolas Peri &lt;nicox@shivaengine.com&gt; (copyright owned by ShiVa Technologies, SAS)
+</span><span data-line="137">* Bernhard Fey &lt;e-male@web.de&gt;
+</span><span data-line="138">* Dave Nicponski &lt;dave.nicponski@gmail.com&gt;
+</span><span data-line="139">* Jonathan Jarri &lt;noxalus@gmail.com&gt;
+</span><span data-line="140">* Daniele Di Proietto &lt;daniele.di.proietto@gmail.com&gt;
+</span><span data-line="141">* Dan Dascalescu &lt;dNOSPAMdascalescu@gmail.com&gt;
+</span><span data-line="142">* Thomas Borsos &lt;thomasborsos@gmail.com&gt;
+</span><span data-line="143">* Ori Avtalion &lt;ori@avtalion.name&gt;
+</span><span data-line="144">* Guillaume Blanc &lt;guillaumeblanc.sc@gmail.com&gt;
+</span><span data-line="145">* Usagi Ito &lt;usagi@WonderRabbitProject.net&gt;
+</span><span data-line="146">* Camilo Polymeris &lt;cpolymeris@gmail.com&gt;
+</span><span data-line="147">* Markus Henschel &lt;markus.henschel@yager.de&gt;
+</span><span data-line="148">* Ophir Lojkine &lt;ophir.lojkine@eleves.ec-nantes.fr&gt;
+</span><span data-line="149">* Ryan Sturgell &lt;ryan.sturgell@gmail.com&gt; (copyright owned by Google, Inc.)
+</span><span data-line="150">* Jason Green &lt;jason@transgaming.com&gt; (copyright owned by TransGaming, Inc.)
+</span><span data-line="151">* Ningxin Hu &lt;ningxin.hu@intel.com&gt; (copyright owned by Intel)
+</span><span data-line="152">* Nicolas Guillemot &lt;nlguillemot@gmail.com&gt;
+</span><span data-line="153">* Sathyanarayanan Gunasekaran &lt;gsathya.ceg@gmail.com&gt; (copyright owned by Mozilla Foundation)
+</span><span data-line="154">* Nikolay Vorobyov &lt;nik.vorobyov@gmail.com&gt;
+</span><span data-line="155">* Jonas Platte &lt;mail@jonasplatte.de&gt;
+</span><span data-line="156">* Sebastien Ronsse &lt;sronsse@gmail.com&gt;
+</span><span data-line="157">* Glenn R. Wichman &lt;gwichman@zynga.com&gt;
+</span><span data-line="158">* Hamish Willee &lt;hamishwillee@gmail.com&gt; (copyright owned by Mozilla Foundation)
+</span><span data-line="159">* Sylvain Chevalier &lt;sylvain.chevalier@gmail.com&gt;
+</span><span data-line="160">* Nathan Ross &lt;nross.se@gmail.com&gt;
+</span><span data-line="161">* Zachary Pomerantz &lt;zmp@umich.edu&gt;
+</span><span data-line="162">* Boris Tsarev &lt;boristsarev@gmail.com&gt;
+</span><span data-line="163">* Mark Logan &lt;mark@artillery.com&gt; (copyright owned by Artillery Games, Inc.)
+</span><span data-line="164">* Коренберг Марк &lt;socketpair@gmail.com&gt;
+</span><span data-line="165">* Gauthier Billot &lt;gogoprog@gmail.com&gt;
+</span><span data-line="166">* Árpád Goretity &lt;h2co3@h2co3.org&gt;
+</span><span data-line="167">* Nicholas Wilson &lt;nicholas@nicholaswilson.me.uk&gt;
+</span><span data-line="168">* Aaron Mandle &lt;aaronmandle@gmail.com&gt;
+</span><span data-line="169">* Bailey Hayes &lt;Bailey.Hayes@sas.com&gt; (copyright owned by SAS Institute Inc.)
+</span><span data-line="170">* Paul Holland &lt;pholland@adobe.com&gt;
+</span><span data-line="171">* James Long &lt;longster@gmail.com&gt;
+</span><span data-line="172">* David Anderson &lt;danderson@mozilla.com&gt; (copyright owned by Mozilla Foundation)
+</span><span data-line="173">* Eric Rannaud &lt;e@nanocritical.com&gt; (copyright owned by Nanocritical Corp.)
+</span><span data-line="174">* William Furr &lt;wfurr@google.com&gt; (copyright owned by Google, Inc.)
+</span><span data-line="175">* Dan Glastonbury &lt;dglastonbury@mozilla.com&gt; (copyright owned by Mozilla Foundation)
+</span><span data-line="176">* Warren Seine &lt;warren.seine@aerys.in&gt; (copyright owned by Aerys SAS)
+</span><span data-line="177">* Petr Babicka &lt;babcca@gmail.com&gt;
+</span><span data-line="178">* Akira Takahashi &lt;faithandbrave@gmail.com&gt;
+</span><span data-line="179">* Victor Costan &lt;costan@gmail.com&gt;
+</span><span data-line="180">* Pepijn Van Eeckhoudt &lt;pepijn.vaneeckhoudt@luciad.com&gt; (copyright owned by Luciad NV)
+</span><span data-line="181">* Stevie Trujillo &lt;stevie.trujillo@gmail.com&gt;
+</span><span data-line="182">* Edward Rudd &lt;urkle@outoforder.cc&gt;
+</span><span data-line="183">* Rene Eichhorn &lt;rene.eichhorn1@gmail.com&gt;
+</span><span data-line="184">* Nick Desaulniers &lt;nick@mozilla.com&gt; (copyright owned by Mozilla Foundation)
+</span><span data-line="185">* Luke Wagner &lt;luke@mozilla.com&gt; (copyright owned by Mozilla Foundation)
+</span><span data-line="186">* Matt McCormick &lt;matt.mccormick@kitware.com&gt;
+</span><span data-line="187">* Thaddée Tyl &lt;thaddee.tyl@gmail.com&gt;
+</span><span data-line="188">* Philipp Wiesemann &lt;philipp.wiesemann@arcor.de&gt;
+</span><span data-line="189">* Jan Jongboom &lt;janjongboom@gmail.com&gt; (copyright owned by Telenor Digital AS)
+</span><span data-line="190">* Tiago Quelhas &lt;tiagoq@gmail.com&gt;
+</span><span data-line="191">* Reinier de Blois &lt;rddeblois@gmail.com&gt;
+</span><span data-line="192">* Yuichi Nishiwaki &lt;yuichi.nishiwaki@gmail.com&gt;
+</span><span data-line="193">* Jérôme Bernard &lt;jerome.bernard@ercom.fr&gt; (copyright owned by Ercom)
+</span><span data-line="194">* Chanhwi Choi &lt;ccwpc@hanmail.net&gt;
+</span><span data-line="195">* Fábio Santos &lt;fabiosantosart@gmail.com&gt;
+</span><span data-line="196">* Thibaut Despoulain &lt;thibaut@artillery.com&gt; (copyright owned by Artillery Games, Inc.)
+</span><span data-line="197">* Wei Tjong Yao &lt;weitjong@gmail.com&gt;
+</span><span data-line="198">* Tim Guan-tin Chien &lt;timdream@gmail.com&gt;
+</span><span data-line="199">* Krzysztof Jakubowski &lt;nadult@fastmail.fm&gt;
+</span><span data-line="200">* Vladimír Vondruš &lt;mosra@centrum.cz&gt;
+</span><span data-line="201">* Brion Vibber &lt;brion@pobox.com&gt;
+</span><span data-line="202">* Philip Lafleur &lt;sendsbeak@gmail.com&gt;
+</span><span data-line="203">* Javier Meseguer de Paz &lt;j.meseguer@gmail.com&gt;
+</span><span data-line="204">* Michael A. Balazs &lt;michael.balazs@gmail.com&gt;
+</span><span data-line="205">* Andreas Blixt &lt;me@blixt.nyc&gt;
+</span><span data-line="206">* Haofeng Zhang &lt;h.z@duke.edu&gt;
+</span><span data-line="207">* Cody Welsh &lt;codyw@protonmail.com&gt;
+</span><span data-line="208">* Hoong Ern Ng &lt;hoongern@gmail.com&gt;
+</span><span data-line="209">* Kagami Hiiragi &lt;kagami@genshiken.org&gt;
+</span><span data-line="210">* Jan Bölsche &lt;jan@lagomorph.de&gt;
+</span><span data-line="211">* Sebastian Matthes &lt;sebastianmatthes@outlook.com&gt; (copyright owned by Volkswagen AG)
+</span><span data-line="212">* Robert Goulet &lt;robert.goulet@autodesk.com&gt; (copyright owned by Autodesk, Inc.)
+</span><span data-line="213">* Juha Järvi &lt;befunge@gmail.com&gt;
+</span><span data-line="214">* Louis Lagrange &lt;lagrange.louis@gmail.com&gt;
+</span><span data-line="215">* Ying-Ruei Liang &lt;thumbd03803@gmail.com&gt;
+</span><span data-line="216">* Stuart Geipel &lt;lapimlu@gmail.com&gt;
+</span><span data-line="217">* Yeonjun Lim &lt;yjroot@gmail.com&gt;
+</span><span data-line="218">* Andrew Karpushin &lt;reven86@gmail.com&gt;
+</span><span data-line="219">* Felix Zimmermann &lt;fzimmermann89@gmail.com&gt;
+</span><span data-line="220">* Sven-Hendrik Haase &lt;svenstaro@gmail.com&gt;
+</span><span data-line="221">* Simon Sandström &lt;simon@nikanor.nu&gt;
+</span><span data-line="222">* Khaled Sami &lt;k.sami.mohammed@gmail.com&gt;
+</span><span data-line="223">* Omar El-Mohandes &lt;omar.elmohandes90@gmail.com&gt;
+</span><span data-line="224">* Florian Rival &lt;florian.rival@gmail.com&gt;
+</span><span data-line="225">* Mark Achée &lt;mark@achee.com&gt;
+</span><span data-line="226">* Piotr Paczkowski &lt;kontakt@trzeci.eu&gt;
+</span><span data-line="227">* Braden MacDonald &lt;braden@bradenmacdonald.com&gt;
+</span><span data-line="228">* Kevin Cheung &lt;kevin.cheung@autodesk.com&gt; (copyright owned by Autodesk, Inc.)
+</span><span data-line="229">* Josh Peterson &lt;petersonjm1@gmail.com&gt;
+</span><span data-line="230">* eska &lt;eska@eska.me&gt;
+</span><span data-line="231">* Nate Burr &lt;nate.oo@gmail.com&gt;
+</span><span data-line="232">* Paul &quot;TBBle&quot; Hampson &lt;Paul.Hampson@Pobox.com&gt;
+</span><span data-line="233">* Andreas Plesch &lt;andreasplesch@gmail.com&gt;
+</span><span data-line="234">* Brian Armstrong &lt;brian.armstrong.ece+github@gmail.com&gt;
+</span><span data-line="235">* Vincenzo Chianese &lt;vincenz.chianese@icloud.com&gt;
+</span><span data-line="236">* Noam T.Cohen &lt;noam@ecb.co.il&gt;
+</span><span data-line="237">* Nick Shin &lt;nick.shin@gmail.com&gt;
+</span><span data-line="238">* Gregg Tavares &lt;github@greggman.com&gt;
+</span><span data-line="239">* Tanner Rogalsky &lt;tanner@tannerrogalsky.com&gt;
+</span><span data-line="240">* Richard Cook &lt;rcook@tableau.com&gt; (copyright owned by Tableau Software, Inc.)
+</span><span data-line="241">* Arnab Choudhury &lt;achoudhury@tableau.com&gt; (copyright owned by Tableau Software, Inc.)
+</span><span data-line="242">* Charles Vaughn &lt;cvaughn@tableau.com&gt; (copyright owned by Tableau Software, Inc.)
+</span><span data-line="243">* Pierre Krieger &lt;pierre.krieger1708@gmail.com&gt;
+</span><span data-line="244">* Jakob Stoklund Olesen &lt;stoklund@2pi.dk&gt;
+</span><span data-line="245">* Jérémy Anger &lt;angerj.dev@gmail.com&gt;
+</span><span data-line="246">* Derek Schuff &lt;dschuff@chromium.org&gt; (copyright owned by Google, Inc.)
+</span><span data-line="247">* Ashley Sommer &lt;flubba86@gmail.com&gt;
+</span><span data-line="248">* Dave Fletcher &lt;graveyhead@gmail.com&gt;
+</span><span data-line="249">* Lars-Magnus Skog &lt;ralphtheninja@riseup.net&gt;
+</span><span data-line="250">* Pieter Vantorre &lt;pietervantorre@gmail.com&gt;
+</span><span data-line="251">* Maher Sallam &lt;maher@sallam.me&gt;
+</span><span data-line="252">* Andrey Burov &lt;burik666@gmail.com&gt;
+</span><span data-line="253">* Holland Schutte &lt;hgschutte1@gmail.com&gt;
+</span><span data-line="254">* Kerby Geffrard &lt;kerby.geffrard@gmail.com&gt;
+</span><span data-line="255">* cynecx &lt;me@cynecx.net&gt;
+</span><span data-line="256">* Chris Gibson &lt;cgibson@mrvoxel.com&gt;
+</span><span data-line="257">* Harald Reingruber &lt;code*at*h-reingruber.at&gt;
+</span><span data-line="258">* Aiden Koss &lt;madd0131@umn.edu&gt;
+</span><span data-line="259">* Dustin VanLerberghe &lt;good_ol_dv@hotmail.com&gt;
+</span><span data-line="260">* Philip Bielby &lt;pmb45-github@srcf.ucam.org&gt; (copyright owned by Jagex Ltd.)
+</span><span data-line="261">* Régis Fénéon &lt;regis.feneon@gmail.com&gt;
+</span><span data-line="262">* Dominic Chen &lt;d.c.ddcc@gmail.com&gt; (copyright owned by Google, Inc.)
+</span><span data-line="263">* Junji Hashimoto &lt;junji.hashimoto@gmail.com&gt;
+</span><span data-line="264">* Heejin Ahn &lt;aheejin@gmail.com&gt; (copyright owned by Google, Inc.)
+</span><span data-line="265">* Andras Kucsma &lt;andras.kucsma@gmail.com&gt;
+</span><span data-line="266">* Mateusz Borycki &lt;mateuszborycki@gmail.com&gt;
+</span><span data-line="267">* Franklin Ta &lt;fta2012@gmail.com&gt;
+</span><span data-line="268">* Jacob Gravelle &lt;jgravelle@google.com&gt; (copyright owned by Google, Inc.)
+</span><span data-line="269">* Kagami Sascha Rosylight &lt;saschanaz@outlook.com&gt;
+</span><span data-line="270">* Benny Jacobs &lt;benny@gmx.it&gt;
+</span><span data-line="271">* Ray Brown &lt;code@liquibits.com&gt;
+</span><span data-line="272">* Christopher Serr &lt;christopher.serr@gmail.com&gt;
+</span><span data-line="273">* Aaron Ruß &lt;aaron.russ@dfki.de&gt; (copyright owned by DFKI GmbH)
+</span><span data-line="274">* Vilibald Wanča &lt;vilibald@wvi.cz&gt;
+</span><span data-line="275">* Alex Hixon &lt;alex@alexhixon.com&gt;
+</span><span data-line="276">* Vladimir Davidovich &lt;thy.ringo@gmail.com&gt;
+</span><span data-line="277">* Yuriy Levchenko &lt;irov13@mail.ru&gt;
+</span><span data-line="278">* Dmitry Tolmachov &lt;dmitolm@gmail.com&gt;
+</span><span data-line="279">* Dylan McKay &lt;me@dylanmckay.io&gt;
+</span><span data-line="280">* Christophe Gragnic &lt;cgragnic@netc.fr&gt;
+</span><span data-line="281">* Murphy McCauley &lt;murphy.mccauley@gmail.com&gt;
+</span><span data-line="282">* Anatoly Trosinenko &lt;anatoly.trosinenko@gmail.com&gt;
+</span><span data-line="283">* Brad Grantham &lt;grantham@plunk.org&gt;
+</span><span data-line="284">* Sam Clegg &lt;sbc@chromium.org&gt; (copyright owned by Google, Inc.)
+</span><span data-line="285">* Joshua Lind &lt;joshualind007@hotmail.com&gt;
+</span><span data-line="286">* Hiroaki GOTO as &quot;GORRY&quot; &lt;gorry@hauN.org&gt;
+</span><span data-line="287">* Mikhail Kremnyov &lt;mkremnyov@gmail.com&gt; (copyright owned by XCDS International)
+</span><span data-line="288">* Tasuku SUENAGA a.k.a. gunyarakun &lt;tasuku-s-github@titech.ac&gt;
+</span><span data-line="289">* Vitorio Miguel Prieto Cilia &lt;vdrbandeiras@gmail.com&gt;
+</span><span data-line="290">* Evan Wallace &lt;evan.exe@gmail.com&gt;
+</span><span data-line="291">* Henning Pohl &lt;henning@still-hidden.de&gt;
+</span><span data-line="292">* Tim Neumann &lt;mail@timnn.me&gt;
+</span><span data-line="293">* Ondrej Stava &lt;ondrej.stava@gmail.com&gt; (copyright owned by Google, Inc.)
+</span><span data-line="294">* Jakub Jirutka &lt;jakub@jirutka.cz&gt;
+</span><span data-line="295">* Loo Rong Jie &lt;loorongjie@gmail.com&gt;
+</span><span data-line="296">* Jean-François Geyelin &lt;jfgeyelin@gmail.com&gt;
+</span><span data-line="297">* Matthew Collins &lt;thethinkofdeath@gmail.com&gt;
+</span><span data-line="298">* Satoshi N. M &lt;snmatsutake@yahoo.co.jp&gt;
+</span><span data-line="299">* Ryan Speets &lt;ryan@speets.ca&gt;
+</span><span data-line="300">* Fumiya Chiba &lt;fumiya.chiba@nifty.com&gt;
+</span><span data-line="301">* Ryan C. Gordon &lt;icculus@icculus.org&gt;
+</span><span data-line="302">* Inseok Lee &lt;dlunch@gmail.com&gt;
+</span><span data-line="303">* Yair Levinson (copyright owned by Autodesk, Inc.)
+</span><span data-line="304">* Matjaž Drolc &lt;mdrolc@gmail.com&gt;
+</span><span data-line="305">* James Swift &lt;james@3dengineer.com&gt; (copyright owned by PSPDFKit GmbH)
+</span><span data-line="306">* Ryan Lester &lt;ryan@cyph.com&gt; (copyright owned by Cyph, Inc.)
+</span><span data-line="307">* Nikolay Zapolnov &lt;zapolnov@gmail.com&gt;
+</span><span data-line="308">* Nazar Mokrynskyi &lt;nazar@mokrynskyi.com&gt;
+</span><span data-line="309">* Yury Delendik &lt;ydelendik@mozilla.com&gt; (copyright owned by Mozilla Foundation)
+</span><span data-line="310">* Kenneth Perry &lt;thothonegan@gmail.com&gt;
+</span><span data-line="311">* Jim Mussared &lt;jim.mussared@gmail.com&gt;
+</span><span data-line="312">* Dirk Vanden Boer &lt;dirk.vdb@gmail.com&gt;
+</span><span data-line="313">* Mitchell Foley &lt;mitchfoley@google.com&gt; (copyright owned by Google, Inc.)
+</span><span data-line="314">* Oleksandr Chekhovskyi &lt;oleksandr.chekhovskyi@gmail.com&gt;
+</span><span data-line="315">* Michael Siebert &lt;michael.siebert2k@gmail.com&gt;
+</span><span data-line="316">* Jonathan Hale &lt;squareys@googlemail.com&gt;
+</span><span data-line="317">* Etienne Brateau &lt;etienne.brateau@gmail.com&gt;
+</span><span data-line="318">* Zhiming Wang &lt;zmwangx@gmail.com&gt;
+</span><span data-line="319">* Jameson Ernst &lt;jameson@jpernst.com&gt;
+</span><span data-line="320">* Yoan Lecoq &lt;yoanlecoq.io@gmail.com&gt;
+</span><span data-line="321">* Jiajie Hu &lt;jiajie.hu@intel.com&gt; (copyright owned by Intel Corporation)
+</span><span data-line="322">* Kamil Klimek &lt;naresh@tlen.pl&gt;
+</span><span data-line="323">* José Carlos Pujol &lt;josecpujol(at)gmail.com&gt;
+</span><span data-line="324">* Dannii Willis &lt;curiousdannii@gmail.com&gt;
+</span><span data-line="325">* Erik Dubbelboer &lt;erik@dubbelboer.com&gt;
+</span><span data-line="326">* Sergey Tsatsulin &lt;tsatsulin@gmail.com&gt;
+</span><span data-line="327">* varkor &lt;github@varkor.com&gt;
+</span><span data-line="328">* Stuart Knightley &lt;website@stuartk.com&gt;
+</span><span data-line="329">* Amadeus Guo &lt;gliheng@foxmail.com&gt;
+</span><span data-line="330">* Nathan Froyd &lt;froydnj@gmail.com&gt; (copyright owned by Mozilla Foundation)
+</span><span data-line="331">* Daniel Wirtz &lt;dcode@dcode.io&gt;
+</span><span data-line="332">* Kibeom Kim &lt;kk1674@nyu.edu&gt;
+</span><span data-line="333">* Marcel Klammer &lt;m.klammer@tastenkunst.com&gt;
+</span><span data-line="334">* Axel Forsman &lt;axelsfor@gmail.com&gt;
+</span><span data-line="335">* Ebrahim Byagowi &lt;ebrahim@gnu.org&gt;
+</span><span data-line="336">* Thorsten Möller &lt;thorsten.moeller@sbi.ch&gt;
+</span><span data-line="337">* Michael Droettboom &lt;mdroettboom@mozilla.com&gt;
+</span><span data-line="338">* Nicolas Bouquet &lt;hgy01@hieroglyphe.net&gt;
+</span><span data-line="339">* Miguel Saldivar &lt;miguel.saldivar22@hotmail.com&gt;
+</span><span data-line="340">* Gert Van Hoey &lt;gert.vanhoey@gmail.com&gt;
+</span><span data-line="341">* Valtteri Heikkilä &lt;rnd@nic.fi&gt;
+</span><span data-line="342">* Daniel McNab &lt;daniel.mcnab6+emcc(at)gmail.com&gt;
+</span><span data-line="343">* Tyler Limkemann &lt;tslimkemann42 gmail.com&gt;
+</span><span data-line="344">* Ben Smith &lt;binji@google.com&gt; (copyright owned by Google, Inc.)
+</span><span data-line="345">* Sylvain Beucler &lt;beuc@beuc.net&gt;
+</span><span data-line="346">* Patrik Weiskircher &lt;patrik@weiskircher.name&gt;
+</span><span data-line="347">* Tobias Widlund &lt;widlundtobias(at)gmail.com&gt;
+</span><span data-line="348">* Rob Fors &lt;mail@robfors.com&gt;
+</span><span data-line="349">* Mike Frysinger &lt;vapier@chromium.org&gt; (copyright owned by Google, Inc.)
+</span><span data-line="350">* Sébasiten Crozet &lt;developer@crozet.re&gt;
+</span><span data-line="351">* Andrey Nagikh &lt;andrey@nagih.ru&gt;
+</span><span data-line="352">* Dzmitry Malyshau &lt;dmalyshau@mozilla.com&gt; (copyright owned by Mozilla Foundation)
+</span><span data-line="353">* Bjorn Swenson &lt;tie.372@gmail.com&gt;
+</span><span data-line="354">* Ryhor Spivak &lt;grisha@rusteddreams.net&gt;
+</span><span data-line="355">* Jan Schär &lt;jscissr@gmail.com&gt;
+</span><span data-line="356">* Ryhor Spivak &lt;grisha@rusteddreams.net&gt;
+</span><span data-line="357">* Alexander Bich &lt;quyse0@gmail.com&gt;
+</span><span data-line="358">* Ashleigh Thomas &lt;ashleighbcthomas@gmail.com&gt;
+</span><span data-line="359">* Veniamin Petrenko &lt;bjpbjpbjp10@gmail.com&gt;
+</span><span data-line="360">* Ian Henderson &lt;ian@ianhenderson.org&gt;
+</span><span data-line="361">* Siim Kallas &lt;siimkallas@gmail.com&gt;
+</span><span data-line="362">* Carl Woffenden &lt;cwoffenden@gmail.com&gt; (copyright owned by Numfum GmbH)
+</span><span data-line="363">* Patrick Berger &lt;patrick.berger@xmail.net&gt; (copyright owned by Compusoft Group)
+</span><span data-line="364">* Alexander Frank Lehmann &lt;alexander.frank.lehmann@compusoftgroup.com&gt; (copyright owned by Compusoft Group)
+</span><span data-line="365">* Tommy Nguyen &lt;tn0502@gmail.com&gt;
+</span><span data-line="366">* Thomas Schander &lt;info@thomasschander.com&gt; (copyright owned by Enscape GmbH)
+</span><span data-line="367">* Benjamin S. Rodgers &lt;acdimalev@gmail.com&gt;
+</span><span data-line="368">* Paul Shapiro &lt;paul@mymonero.com&gt;
+</span><span data-line="369">* Elmo Todurov &lt;elmo.todurov@eesti.ee&gt;
+</span><span data-line="370">* Zoltán Žarkov &lt;zeko@freecivweb.org&gt;
+</span><span data-line="371">* Roman Yurchak &lt;rth.yurchak@pm.me&gt;
+</span><span data-line="372">* Hampton Maxwell &lt;me@hamptonmaxwell.com&gt;
+</span><span data-line="373">* Eric Fiselier &lt;ericwf@google.com&gt; (copyright owned by Google, Inc.)
+</span><span data-line="374">* Sirapop Wongstapornpat &lt;sirapop.wongstapornpat@student.oulu.fi&gt;
+</span><span data-line="375">* Matt Kane &lt;m@mk.gg&gt;
+</span><span data-line="376">* Altan Özlü &lt;altanozlu7@gmail.com&gt;
+</span><span data-line="377">* Mary S &lt;ipadlover8322@gmail.com&gt;
+</span><span data-line="378">* Martin Birks &lt;mbirks@gmail.com&gt;
+</span><span data-line="379">* Kirill Smelkov &lt;kirr@nexedi.com&gt; (copyright owned by Nexedi)
+</span><span data-line="380">* Lutz Hören &lt;laitch383@gmail.com&gt;
+</span><span data-line="381">* Pedro K Custodio &lt;git@pedrokcustodio.com&gt;
+</span><span data-line="382">* Nicolas Allemand &lt;contact@nicolasallemand.com&gt;
+</span><span data-line="383">* Gabriel Cuvillier &lt;contact@gabrielcuvillier.pro&gt;
+</span><span data-line="384">* Thomas Lively &lt;tlively@google.com&gt; (copyright owned by Google, Inc.)
+</span><span data-line="385">* Brandon Surmanski &lt;b.surmanski@gmail.com&gt;
+</span><span data-line="386">* Rian Hunter &lt;rian@alum.mit.edu&gt;
+</span><span data-line="387">* Kai Ninomiya &lt;kainino@chromium.org&gt; (copyright owned by Google, Inc.)
+</span><span data-line="388">* Mickaël Schoentgen &lt;contact@tiger-222.fr&gt;
+</span><span data-line="389">* Renaud Leroy &lt;capitnflam@gmail.com&gt;
+</span><span data-line="390">* Florian Stellbrink &lt;florian@stellbr.ink&gt;
+</span><span data-line="391">* Shane Peelar &lt;lookatyouhacker@gmail.com&gt;
+</span><span data-line="392">* Alessandro Pignotti &lt;alessandro@leaningtech.com&gt;
+</span><span data-line="393">* Zheng Tao Lee &lt;zhengtao.lee@autodesk.com&gt; (copyright owned by Autodesk, Inc.)
+</span><span data-line="394">* Martina Kraus &lt;kraus.martina.m@googlemail.com&gt;
+</span><span data-line="395">* Jacob Adelgren &lt;jake@eevo.com&gt;
+</span><span data-line="396">* Ingvar Stepanyan &lt;me@rreverser.com&gt;
+</span><span data-line="397">* Ben Trapani &lt;ben.trapani1995@gmail.com&gt; (copyright owned by Microsoft, Inc.)
+</span><span data-line="398">* Tim Lander &lt;tim57282＠hotmail.com&gt;
+</span><span data-line="399">* Jacob Greenfield &lt;jacob@jacobgreenfield.me&gt;
+</span><span data-line="400">* Joseph Kogut &lt;joseph.kogut@gmail.com&gt;
+</span><span data-line="401">* Yi Zhang &lt;milizhang@gmail.com&gt;
+</span><span data-line="402">* Marc Abramowitz &lt;msabramo@gmail.com&gt;
+</span><span data-line="403">* Daniel Ruf &lt;daniel@daniel-ruf.de&gt;
+</span><span data-line="404">* Timothy Trindle &lt;titrindl@microsoft.com&gt; (copyright owned by Microsoft, Inc.)
+</span><span data-line="405">* Matthew Andres Moreno &lt;m.more500@gmail.com&gt;
+</span><span data-line="406">* Eric Mandel &lt;eric@cfa.harvard.edu&gt;
+</span><span data-line="407">* Anthony Catel &lt;paraboul@gmail.com&gt;
+</span><span data-line="408">* Simon Cooper &lt;simon.d.cooper@hotmail.co.uk&gt;
+</span><span data-line="409">* Amir Rasouli &lt;arasouli91@gmail.com&gt;
+</span><span data-line="410">* Nico Weber &lt;thakis@chromium.org&gt;
+</span><span data-line="411">* Bas Doorn &lt;code@keyn.app&gt; (copyright owned by Keyn B.V.)
+</span><span data-line="412">* Adam Bujalski &lt;a.bujalski@samsung.com&gt; (copyright owned by Samsung Electronics)
+</span><span data-line="413">* Guanzhong Chen &lt;gzchen@google.com&gt; (copyright owned by Google, Inc.)
+</span><span data-line="414">* Denis Serebro &lt;densilver3000@gmail.com&gt;
+</span><span data-line="415">* Lucas Ramage &lt;ramage.lucas@protonmail.com&gt;
+</span><span data-line="416">* Andy Wingo &lt;wingo@igalia.com&gt; (copyright owned by Igalia)
+</span><span data-line="417">* Philipp Gloor &lt;philipp.gloor@pdf-tools.com&gt; (copyright owned by PDF Tools AG)
+</span><span data-line="418">* Jasmine Minter &lt;jasmine@minteronline.com&gt; (copyright owned by Clipchamp Pty Ltd.)
+</span><span data-line="419">* Ferris Kwaijtaal &lt;ferrispc@hotmail.com&gt;
+</span><span data-line="420">* Konstantin Podsvirov &lt;konstantin@podsvirov.pro&gt;
+</span><span data-line="421">* Eduardo Bart &lt;edub4rt@gmail.com&gt;
+</span><span data-line="422">* Zoltan Varga &lt;vargaz@gmail.com&gt; (copyright owned by Microsoft, Inc.)
+</span><span data-line="423">* Fernando Serboncini &lt;fserb@google.com&gt;
+</span><span data-line="424">* Christian Clauss &lt;cclauss@me.com&gt; (copyright owned by IBM)
+</span><span data-line="425">* Henry Kleynhans &lt;hkleynhans@bloomberg.net&gt; (copyright owned by Bloomberg L.P.)
+</span><span data-line="426">* FUJI Goro &lt;g.psy.va@gmail.com&gt;
+</span><span data-line="427">* Egor Suvorov &lt;esuvorov@think-cell.com&gt; (copyright owned by think-cell Software GmbH)
+</span><span data-line="428">* James Kuszmaul &lt;jabukuszmaul@gmail.com&gt;
+</span><span data-line="429">* Wei Mingzhi &lt;whistler_wmz@users.sourceforge.net&gt;
+</span><span data-line="430">* Sergey karchevsky &lt;sergey.ext@gmail.com&gt;
+</span><span data-line="431">* Ajay Patel &lt;patel.ajay285@gmail.com&gt;
+</span><span data-line="432">* Adrien Devresse &lt;adev@adev.name&gt;
+</span><span data-line="433">* Petr Penzin &lt;petr.penzin@intel.com&gt; (copyright owned by Intel Corporation)
+</span><span data-line="434">* Tayeb Al Karim &lt;tay@google.com&gt; (copyright owned by Google, Inc.)
+</span><span data-line="435">* Andrei Alexeyev &lt;akari@taisei-project.org&gt;
+</span><span data-line="436">* Cesar Guirao Robles &lt;cesar@no2.es&gt;
+</span><span data-line="437">* Ricky Claven &lt;ricksterhd123@gmail.com&gt;
+</span><span data-line="438">* Mehdi Sabwat &lt;mehdisabwat@gmail.com&gt;
+</span><span data-line="439">* MinganMuon &lt;mingan-muon@outlook.com&gt;
+</span><span data-line="440">* Jonathan Feinberg &lt;feinberg@google.com&gt;
+</span><span data-line="441">* Osman Turan &lt;osman@osmanturan.com&gt;
+</span><span data-line="442">* Jaikanth J &lt;jaikanthjay46@gmail.com&gt;
+</span><span data-line="443">* Gernot Lassnig &lt;gernot.lassnig@gmail.com&gt;
+</span><span data-line="444">* Christian Boos &lt;cboos@bct-technology.com&gt;
+</span><span data-line="445">* Erik Scholz &lt;greenNO@SPAMg-s.xyz&gt;
+</span><span data-line="446">* Michael de Lang &lt;kingoipo@gmail.com&gt;
+</span><span data-line="447">* Gergely Nagy &lt;ngg@tresorit.com&gt;
+</span><span data-line="448">* Jan Habermann &lt;jan@habermann.io&gt;
+</span><span data-line="449">* John Granström &lt;granstrom.john@gmail.com&gt;
+</span><span data-line="450">* Clemens Backes &lt;clemensb@google.com&gt; (copyright owned by Google, Inc.)
+</span><span data-line="451">* Tibor Klajnscek &lt;tiborkl@numfum.com&gt;
+</span><span data-line="452">* Benjamin Golinvaux &lt;benjamin@golinvaux.com&gt;
+</span><span data-line="453">* Peter Salomonsen &lt;pjsalomonsen@gmail.com&gt;
+</span><span data-line="454">* Niklas Fiekas &lt;niklas.fiekas@backscattering.de&gt;
+</span><span data-line="455">* Martín Lucas Golini &lt;spartanj@gmail.com&gt;
+</span><span data-line="456">* Bumsik Kim &lt;k.bumsik@gmail.com&gt;
+</span><span data-line="457">* Corentin Wallez &lt;cwallez@chromium.org&gt; (copyright owned by Google, Inc.)
+</span><span data-line="458">* Austin Eng &lt;enga@chromium.org&gt; (copyright owned by Google, Inc.)
+</span><span data-line="459">* Hugo Amiard &lt;hugo.amiard@laposte.net&gt;
+</span><span data-line="460">* Diego Casorran &lt;dcasorran@gmail.com&gt;
+</span><span data-line="461">* sssooonnnggg &lt;sssooonnnggg111@gmail.com&gt;
+</span><span data-line="462">* Guillaume Racicot &lt;gufideg@gmail.com&gt;
+</span><span data-line="463">* SK Min &lt;oranke@gmail.com&gt;
+</span><span data-line="464">* Fabio Alessandrelli &lt;fabio.alessandrelli@gmail.com&gt;
+</span><span data-line="465">* Kirill Gavrilov &lt;kirill@sview.ru&gt;
+</span><span data-line="466">* Karl Semich &lt;0xloem@gmail.com&gt;
+</span><span data-line="467">* Louis DeScioli &lt;descioli@google.com&gt; (copyright owned by Google, LLC)
+</span><span data-line="468">* Kleis Auke Wolthuizen &lt;info@kleisauke.nl&gt;
+</span><span data-line="469">* Michael Potthoff &lt;michael@potthoff.eu&gt;
+</span><span data-line="470">* Abigail Bunyan &lt;abigail@bold.claims&gt; (copyright owned by Microsoft Corporation)
+</span><span data-line="471">* David García Paredes &lt;davidgparedes@gmail.com&gt;
+</span><span data-line="472">* Dan Field &lt;dfield@gmail.com&gt; (copyright owned by Google, Inc.)
+</span><span data-line="473">* Mike Swierczek &lt;mike@swierczek.io&gt;
+</span><span data-line="474">* Vasily &lt;just.one.man@yandex.ru&gt;
+</span><span data-line="475">* Jānis Rūcis &lt;parasti@gmail.com&gt;
+</span><span data-line="476">* rssqian &lt;rssqian@gmail.com&gt;
+</span><span data-line="477">* Shachar Langbeheim &lt;nihohit@gmail.com&gt;
+</span><span data-line="478">* Laurin Agostini &lt;thevolut@gmail.com&gt;
+</span><span data-line="479">* David Carlier &lt;devnexen@gmail.com&gt;
+</span><span data-line="480">* Paul Du &lt;du.paul136@gmail.com&gt; (copyright owned by ARSKAN)
+</span><span data-line="481">* Piotr Doan &lt;doanpiotr@gmail.com&gt;
+</span><span data-line="482">* Stuart Schechter &lt;stuart.schechter@gmail.com&gt;
+</span><span data-line="483">* Brett Paterson &lt;brett@fmod.com&gt;
+</span><span data-line="484">* Robert Aboukhalil &lt;robert.aboukhalil@gmail.com&gt;
+</span><span data-line="485">* Jonathan Poelen &lt;jonathan.poelen@gmail.com&gt;
+</span><span data-line="486">* Ashley Hauck &lt;github@khyperia.com&gt;
+</span><span data-line="487">* Junyue Cao &lt;junyuecao@gmail.com&gt;
+</span><span data-line="488">* Elías Serrano &lt;feserr3@gmail.com&gt;
+</span><span data-line="489">* Philip Pfaffe &lt;pfaffe@google.com&gt; (copyright owned by Google, LLC)
+</span><span data-line="490">* Troy Tae &lt;tjy970721@gmail.com&gt;
+</span><span data-line="491">* Sky Wang &lt;sky-wang@qq.com&gt;
+</span><span data-line="492">* popomen &lt;nz_nuaa@163.com&gt;
+</span><span data-line="493">* Artyom Lebedev &lt;vagran.ast@gmail.com&gt;
+</span><span data-line="494">* Sebastián Gurin (cancerberoSgx) &lt;sebastigurin@gmail.com&gt;
+</span><span data-line="495">* Benedikt Meurer &lt;bmeurer@google.com&gt; (copyright owned by Google, LLC)
+</span><span data-line="496">* Jiulong Wang &lt;jiulongw@gmail.com&gt;
+</span><span data-line="497">* pudinha &lt;rogi@skylittlesystem.org&gt;
+</span><span data-line="498">* Nicholas Phillips &lt;nwp2@illinois.edu&gt;
+</span><span data-line="499">* Colin Guyon &lt;colin.guyon@insimo.fr&gt; (copyright owned by InSimo, SAS)
+</span><span data-line="500">* Mathias Westerdahl &lt;mwesterdahl76@gmail.com&gt;
+</span><span data-line="501">* Philip Rideout &lt;prideout@google.com&gt; (copyright owned by Google, LLC)
+</span><span data-line="502">* Shrek Shao (shrekshao@google.com) (copyright owned by Google, LLC)
+</span><span data-line="503">* Arran Ireland &lt;ion92@protonmail.com&gt;
+</span><span data-line="504">* Jia Yuan Lo &lt;jylo06g@gmail.com&gt;
+</span><span data-line="505">* Philip Lassen &lt;philiplassen@gmail.com&gt;
+</span><span data-line="506">* Antoine du Hamel &lt;duhamelantoine1995@gmail.com&gt;
+</span><span data-line="507">* Alexander Köplinger &lt;alex.koeplinger@outlook.com&gt; (copyright owned by Microsoft, Inc.)
+</span><span data-line="508">* Kenneth Pouncey &lt;kepounce@microsoft.com&gt; (copyright owned by Microsoft, Inc.)
+</span><span data-line="509">* Mitchell Hwang &lt;mihw@microsoft.com&gt; (copyright owned by Microsoft, Inc.)
+</span><span data-line="510">* Sean Maher &lt;seanptmaher@gmail.com&gt; (copyright owned by Google, LLC)
+</span><span data-line="511">* Paul Peny &lt;pmpp.pub@gmail.com&gt;
+</span><span data-line="512">* Prashanth Nethi &lt;prashant@adobe.com&gt;
+</span><span data-line="513">* Max Weisel &lt;max@maxweisel.com&gt;
+</span><span data-line="514">* Georg Rottensteiner &lt;georg@georg-rottensteiner.de&gt;
+</span><span data-line="515">* Tristan Griffin &lt;tristan.griffin@hcl.com&gt; (Copyright owned by HCL)
+</span><span data-line="516">* Julien Jorge &lt;julien.jorge@gmx.fr&gt;
+</span><span data-line="517">* Benjamin Lee &lt;bnllee@ucdavis.edu&gt;
+</span><span data-line="518">* Attila Oláh &lt;atl@google.com&gt; (copyright owned by Google, LLC)
+</span><span data-line="519">* Marat Dukhan &lt;maratek@google.com&gt; (copyright owned by Google, LLC)
+</span><span data-line="520">* Raphael Siegel &lt;siegel.raphael@gmail.com&gt;
+</span><span data-line="521">* Stephan Reiter &lt;reste@google.com&gt; (copyright owned by Google, LLC)
+</span><span data-line="522">* kamenokonyokonyoko &lt;kamenokonokotan@gmail.com&gt;
+</span><span data-line="523">* Lectem &lt;lectem@gmail.com&gt;
+</span><span data-line="524">* Henrik Algestam &lt;henrik@algestam.se&gt;
+</span><span data-line="525">* Rocco Musolino &lt;roccomusolino92@gmail.com&gt;
+</span><span data-line="526">* Pawel Czarnecki &lt;pawel@8thwall.com&gt; (copyright owned by 8th Wall, Inc.)
+</span><span data-line="527">* Dhairya Bahl &lt; dhairyabahl5@gmail.com &gt;
+</span><span data-line="528">* Sam Gao &lt;gaoshan274@gmail.com&gt;
+</span><span data-line="529">* Sebastian Mayr &lt;me@sam.st&gt;
+</span><span data-line="530">* Vladimir Gamalyan &lt;vladimir.gamalyan@gmail.com&gt;
+</span><span data-line="531">* Jean-Sébastien Nadeau &lt;mundusnine@gmail.com&gt; (copyright owned by Foundry Interactive Inc.)
+</span><span data-line="532">* Wouter van Oortmerssen &lt;wvo@google.com&gt; (copyright owned by Google, LLC)
+</span><span data-line="533">* Alexey Sokolov &lt;sokolov@google.com&gt; (copyright owned by Google, LLC)
+</span><span data-line="534">* Lukas Rieger &lt;rieger@progress-psd.com&gt;
+</span><span data-line="535">* Ivan Romanovski &lt;ivan.romanovski@gmail.com&gt;
+</span><span data-line="536">* Max Brunsfeld &lt;maxbrunsfeld@gmail.com&gt;
+</span><span data-line="537">* Basil Fierz &lt;basil.fierz@hotmail.com&gt;
+</span><span data-line="538">* Rod Hyde &lt;rod@badlydrawngames.com&gt;
+</span><span data-line="539">* Aleksey Kliger &lt;aleksey@lambdageek.org&gt; (copyright owned by Microsoft, Inc.)
+</span><span data-line="540">* Nicolas Ollinger &lt;nopid@free.fr&gt;
+</span><span data-line="541">* Michael R. Crusoe &lt;crusoe@debian.org&gt;
+</span><span data-line="542">* Dexter Chua &lt;dec41@srcf.net&gt;
+</span><span data-line="543">* Thomas Ballinger &lt;thomasballinger@gmail.com&gt;
+</span><span data-line="544">* Mehdi Sadeghi &lt;mehdi@mehdix.org&gt;
+</span><span data-line="545">* Amin Yahyaabadi &lt;aminyahyaabadi74@gmail.com&gt;
+</span><span data-line="546">* Adam Leskis &lt;leskis@gmail.com&gt;
+</span><span data-line="547">* Raffaele Pertile &lt;raffarti@zoho.com&gt;
+</span><span data-line="548">* Patric Stout &lt;github@truebrain.nl&gt;
+</span><span data-line="549">* Jinoh Kang &lt;jinoh.kang.kr@gmail.com&gt;
+</span><span data-line="550">* Jorge Prendes &lt;jorge.prendes@gmail.com&gt;
+</span><span data-line="551">* Alexey Shamrin &lt;shamrin@gmail.com&gt;
+</span><span data-line="552">* Wirtos &lt;wirtos.new@gmail.com&gt;
+</span><span data-line="553">* Ben den Hollander &lt;bdenhollander@dynascape.com&gt; (copyright owned by DynaScape Software Inc.)
+</span><span data-line="554">* Akul Penugonda &lt;akulvp@gmail.com&gt;
+</span><span data-line="555">* Jan Wolff &lt;contact@jancc.de&gt;
+</span><span data-line="556">* Pawel Czarnecki &lt;pawel@8thwall.com&gt; (copyright owned by 8th Wall, Inc.)
+</span><span data-line="557">* Camil Staps &lt;info@camilstaps.nl&gt;
+</span><span data-line="558">* Michael Kircher &lt;michael.kircher.github@gmail.com&gt;
+</span><span data-line="559">* Sharad Saxena &lt;sharad.saxena@autodesk.com&gt; (copyright owned by Autodesk, Inc.)
+</span><span data-line="560">* Vasili Skurydzin &lt;vasili.skurydzin@ibm.com&gt;
+</span><span data-line="561">* Jakub Nowakowski &lt;jn925+emcc@o2.pl&gt;
+</span><span data-line="562">* Michael Taylor &lt;mitaylor@adobe.com&gt;
+</span><span data-line="563">* Andrew Brown &lt;andrew.brown@intel.com&gt; (copyright owned by Intel Corporation)
+</span><span data-line="564">* Benjamin Puzycki &lt;bpuzycki@umich.edu&gt;
+</span><span data-line="565">* Marco Buono &lt;marcobuono@invisionapp.com&gt; (copyright owned by InVisionApp, Inc.)
+</span><span data-line="566">* Philip Gossweiler &lt;philip.gossweiler@outlook.com&gt;
+</span><span data-line="567">* Rafael Brune &lt;mail@rbrune.de&gt;
+</span><span data-line="568">* Aleksi Sapon &lt;aleksi.sapon@faro.com&gt; (copyright owned by FARO Technologies, Inc.)
+</span><span data-line="569">* Radek Doulik &lt;radek.doulik@gmail.com&gt; (copyright owned by Microsoft, Inc.)
+</span><span data-line="570">* Érico Porto &lt;ericoporto2008@gmail.com&gt;
+</span><span data-line="571">* Albert Vaca Cintora &lt;albertvaka@gmail.com&gt;
+</span><span data-line="572">* Zhi An Ng &lt;zhin@google.com&gt; (copyright owned by Google, Inc.)
+</span><span data-line="573">* Ian Jackson &lt;ijackson@chiark.greenend.org.uk&gt;
+</span><span data-line="574">* Brian Gontowski &lt;brian@gontowski.com&gt;
+</span><span data-line="575">* Bobbie Chen &lt;bobbie.chen75@gmail.com&gt;
+</span><span data-line="576">* Nicholas Hollander &lt;nhollander98@gmail.com&gt;
+</span><span data-line="577">* Camillo Lugaresi &lt;camillol@google.com&gt; (copyright owned by Google LLC)
+</span><span data-line="578">* Chris Craig &lt;emscripten@goldwave.com&gt;
+</span><span data-line="579">* Le Yao &lt;le.yao@intel.com&gt; (copyright owned by Intel Corporation)
+</span><span data-line="580">* José Cadete &lt;crudelios@gmail.com&gt;
+</span><span data-line="581">* Cynthia K. Rey &lt;cynthia@cynthia.dev&gt;
+</span><span data-line="582">* Andrew Shaitorov &lt;andrew.shaitorov@gmail.com&gt;
+</span><span data-line="583">* on-keyday &lt;rokenboo47803@gmail.com&gt;
+</span><span data-line="584">* Matthew Balch &lt;matt5sean3@gmail.com&gt;
+</span><span data-line="585">* James Price &lt;jrprice@google.com&gt; (copyright owned by Google, Inc.)
+</span><span data-line="586">* Nathan Rugg &lt;nmrugg@gmail.com&gt; (copyright owned by Chess.com, LLC)
+</span><span data-line="587">* Alexander O&#39;Mara &lt;me@alexomara.com&gt;
+</span><span data-line="588">* Kamaron Peterson &lt;kamaron.peterson@gmail.com&gt;
+</span><span data-line="589">* Márton Marczell &lt;mmarczell.graphisoft@gmail.com&gt; (copyright owned by GRAPHISOFT SE)
+</span><span data-line="590">* Alexander Vestin &lt;alex.vestin@gmail.com&gt;
+</span><span data-line="591">* Xiaobing Yang &lt;yangxiaobing@jwzg.com&gt;
+</span><span data-line="592">* Alexandra Cherdantseva &lt;neluhus.vagus@gmail.com&gt;
+</span><span data-line="593">* Michael Schmuki &lt;michael@schmuki.io&gt;
+</span><span data-line="594">* Skye Gibney &lt;skyejgibney@gmail.com&gt;
+</span><span data-line="595">* Piotr Wierciński &lt;laminowany@gmail.com&gt;
+</span><span data-line="596">* 郑苏波 (Super Zheng) &lt;superzheng@tencent.com&gt;
+</span><span data-line="597">* James Hu &lt;jameshu2022@gmail.com&gt;
+</span><span data-line="598">* Jerry Zhuang &lt;jerry.zhuang@jwzg.com&gt;
+</span><span data-line="599">* Taisei Kon &lt;kinsei0916@gmail.com&gt;
+</span><span data-line="600">* YAMAMOTO Takashi &lt;yamamoto@midokura.com&gt;
+</span><span data-line="601">* Artur Gatin &lt;agatin@teladochealth.com&gt; (copyright owned by Teladoc Health, Inc.)
+</span><span data-line="602">* Christian Lloyd &lt;clloyd@teladochealth.com&gt; (copyright owned by Teladoc Health, Inc.)
+</span><span data-line="603">* Sean Morris &lt;sean@seanmorr.is&gt;
+</span><span data-line="604">* Mitchell Wills &lt;mwills@google.com&gt; (copyright owned by Google, Inc.)
+</span><span data-line="605">* Han Jiang &lt;jhcarl0814@gmail.com&gt;
+</span></pre></div>
+</div>
+</section>
+
+        </article><button class="back-to-top" type="button">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+  </svg>
+  <span>回到頂部</span>
+</button><div class="navigation flex print:hidden"><div class="navigation-prev">
+    <a href="developers_guide.html">
+      <i class="i-lucide chevron-left"></i>
+      <div class="page-info">
+        <span>上一頁</span><div class="title">Developer’s Guide</div></div>
+    </a>
+  </div><div class="navigation-next">
+    <a href="../optimizing/Profiling-Toolchain.html">
+      <div class="page-info">
+        <span>下一頁</span>
+        <div class="title">Profiling the Toolchain</div>
+      </div>
+      <i class="i-lucide chevron-right"></i>
+    </a>
+  </div></div></div>
+    </div>
+  </main>
+</div>
+<footer class="sy-foot">
+  <div class="sy-foot-inner sy-container mx-auto">
+    <div class="sy-foot-reserved md:flex justify-between items-center">
+      <div class="sy-foot-copyright"><p>Copyright &copy; 2015, Emscripten Contributors.</p>
+  
+  <p>
+    Made with
+    
+    <a href="https://www.sphinx-doc.org/">Sphinx</a> and
+    
+    <a href="https://shibuya.lepture.com">Shibuya theme</a>.
+  </p>
+</div>
+      <div class="sy-foot-socials">
+<a href="https://github.com/emscripten-core/emscripten" aria-label="GitHub">
+  <iconify-icon icon="simple-icons:github"></iconify-icon>
+</a>
+<a href="https://discord.gg/53u3EKq" aria-label="Discord">
+  <iconify-icon icon="simple-icons:discord"></iconify-icon>
+</a></div>
+    </div>
+  </div>
+</footer>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=b46623cf"></script>
+      <script src="../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/translations.js?v=f1e884e3"></script>
+      <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../../_static/shibuya.js?v=50760d75"></script></body>
+</html>

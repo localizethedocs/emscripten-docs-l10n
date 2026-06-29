@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en-US" data-accent-color="violet" data-content_root="../../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Modularized Output - Emscripten 6.0.1-git (dev) documentation</title><link rel="shortcut icon" href="../../_static/emscripten.ico"/><link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="Dynamic Linking" href="Dynamic-Linking.html" /><link rel="prev" title="Building to WebAssembly" href="WebAssembly.html" />
+      <link rel="canonical" href="https://projects.localizethedocs.org/emscripten-docs-l10n/docs/compiling/Modularized-Output.html" /><script>
+    function setColorMode(t){let e=document.documentElement;e.setAttribute("data-color-mode",t);let a=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,s=t;"auto"===t&&(s=a?"dark":"light"),"light"===s?(e.classList.remove("dark"),e.classList.add("light")):(e.classList.remove("light"),e.classList.add("dark"))}
+    setColorMode(localStorage._theme||"auto");
+  </script><link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=ad592e98" />
+    <link rel="stylesheet" type="text/css" href="../../_static/shibuya.css?v=9454f7d5" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link media="print" rel="stylesheet" type="text/css" href="../../_static/print.css?v=20ff2c19" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sy-f-text: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+  --sy-f-heading: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+}
+</style>
+    
+
+<script type="text/javascript" src="../../ltd-provenance.js"></script>
+<script type="text/javascript" src="../../ltd-current.js"></script>
+<script type="text/javascript" src="../../../../ltd-config.js"></script>
+<script type="text/javascript" src="../../../../ltd-flyout.js"></script>
+
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://projects.localizethedocs.org/emscripten-docs-l10n/docs/compiling/Modularized-Output.html"/>
+  <meta property="og:title" content="Modularized Output"/>
+    <meta name="twitter:card" content="summary"/>
+  </head>
+<body><div class="sy-head">
+  <div class="sy-head-blur"></div>
+  <div class="sy-head-inner sy-container mx-auto">
+    <a class="sy-head-brand" href="../../index.html">
+      <img class="light-logo" src="../../_static/emscripten_logo_full.svg" alt="Emscripten" height="28" loading="lazy" />
+      <img class="dark-logo" src="../../_static/emscripten_logo_full.svg" alt="Emscripten" height="28" loading="lazy" />
+      <strong>Emscripten</strong>
+    </a>
+    <div class="sy-head-nav" id="head-nav">
+      <nav class="sy-head-links"><ul>
+      <li class="link"><a class="js-menu" href="../index.html" id="nav-trigger-1" aria-controls="nav-children-1">
+            <span>Documentation</span>
+            <i class="i-lucide chevron-down"></i>
+          </a>
+        <ul id="nav-children-1" aria-labelledby="nav-trigger-1"><li><a href="../getting_started/downloads.html">Downloads</a></li><li><a href="../getting_started/bug_reports.html">Report Bug</a></li><li><a href="../introducing_emscripten/emscripten_license.html">Licensing</a></li><li><a href="../contributing/contributing.html">Contributing</a></li><li><a href="../introducing_emscripten/release_notes.html">Release Notes</a></li></ul>
+      </li>
+      <li class="link"><a class="js-menu" href="../introducing_emscripten/community.html" id="nav-trigger-2" aria-controls="nav-children-2">
+            <span>Community</span>
+            <i class="i-lucide chevron-down"></i>
+          </a>
+        <ul id="nav-children-2" aria-labelledby="nav-trigger-2"><li><a href="https://groups.google.com/forum/#!forum/emscripten-discuss">Mailing List</a></li><li><a href="https://github.com/emscripten-core/emscripten/wiki">Wiki</a></li></ul>
+      </li></ul></nav>
+      <div class="sy-head-extra flex items-center print:hidden"><form class="searchbox flex items-center" action="../../search.html" method="get">
+  <input type="text" name="q" placeholder="Search" />
+  <kbd>/</kbd>
+</form><div class="sy-head-socials">
+  <a href="https://github.com/emscripten-core/emscripten" aria-label="GitHub">
+    <iconify-icon icon="simple-icons:github"></iconify-icon>
+  </a>
+  <a href="https://discord.gg/53u3EKq" aria-label="Discord">
+    <iconify-icon icon="simple-icons:discord"></iconify-icon>
+  </a></div></div>
+    </div>
+    <div class="sy-head-actions flex items-center shrink-0 print:hidden"><button class="js-theme theme-switch flex items-center"
+data-aria-auto="Switch to light color mode"
+data-aria-light="Switch to dark color mode"
+data-aria-dark="Switch to auto color mode">
+<i class="i-lucide theme-icon"></i>
+</button><button class="md:hidden flex items-center js-menu" aria-label="Menu" type="button" aria-controls="head-nav" aria-expanded="false">
+        <div class="hamburger">
+          <span class="hamburger_1"></span>
+          <span class="hamburger_2"></span>
+          <span class="hamburger_3"></span>
+        </div>
+      </button>
+    </div>
+  </div>
+</div>
+<div class="sy-page sy-container flex mx-auto">
+  <aside id="lside" class="sy-lside md:w-72 md:shrink-0 print:hidden">
+    <div class="sy-lside-inner md:sticky">
+      <div class="sy-scrollbar p-6"><div class="sidebar-links">
+  <ul>
+    <li><a class="icon-link" href="https://github.com/emscripten-core/emscripten/discussions">
+  <span class="icon">
+    <svg viewBox="0 0 24 24" fill="none">
+      <path fill="var(--accent-9)" fill-rule="evenodd" clip-rule="evenodd" d="M11 5a6 6 0 0 0-4.687 9.746c.215.27.315.62.231.954l-.514 2.058a1 1 0 0 0 1.485 1.1l2.848-1.71c.174-.104.374-.15.576-.148H13a6 6 0 0 0 0-12h-2Z"/>
+      <circle fill="white" cx="12" cy="11" r="1"/>
+      <circle fill="white" cx="9" cy="11" r="1"/>
+      <circle fill="white" cx="15" cy="11" r="1"/>
+    </svg>
+  </span>
+  <span class="text">Discussion</span>
+</a></li>
+  </ul>
+</div>
+        <div class="globaltoc" data-expand-depth="0"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introducing_emscripten/index.html">Introducing Emscripten</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../introducing_emscripten/about_emscripten.html">About Emscripten</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../introducing_emscripten/community.html">Community</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../introducing_emscripten/emscripten_license.html">Open Source License</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../introducing_emscripten/release_notes.html">Release Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../introducing_emscripten/Talks-and-Publications.html">Talks and Publications</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/downloads.html">Download and install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/Tutorial.html">Emscripten Tutorial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/test-suite.html">Emscripten Test Suite</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/bug_reports.html">Bug Reporting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/FAQ.html">FAQ</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Compiling and Running Projects</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Building-Projects.html">Building Projects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="WebAssembly.html">Building to WebAssembly</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Modularized Output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Dynamic-Linking.html">Dynamic Linking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Running-html-files-with-emrun.html">Running HTML files with emrun</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Deploying-Pages.html">Deploying Emscripten Compiled Pages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GitLab.html">Building and Deploying on GitLab</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Contrib-Ports.html">Emscripten Contrib Ports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CrossOriginStorage.html">Cross-Origin Storage (COS)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../porting/index.html">Porting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../porting/guidelines/index.html">Code Portability and Limitations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../porting/guidelines/portability_guidelines.html">Portability Guidelines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../porting/guidelines/api_limitations.html">API Limitations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../porting/guidelines/function_pointer_issues.html">Function Pointer Issues</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../porting/guidelines/browser_limitations.html">Specific Browser Limitations</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/emscripten-runtime-environment.html">Emscripten Runtime Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/connecting_cpp_and_javascript/index.html">Connecting C++ and JavaScript</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../porting/connecting_cpp_and_javascript/Interacting-with-code.html">Interacting with code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../porting/connecting_cpp_and_javascript/embind.html">Embind</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../porting/connecting_cpp_and_javascript/WebIDL-Binder.html">WebIDL Binder</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/files/index.html">Files and File Systems</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../porting/files/file_systems_overview.html">File System Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../porting/files/packaging_files.html">Packaging Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../porting/files/Synchronous-Virtual-XHR-Backed-File-System-Usage.html">Synchronous Virtual XHR Backed File System Usage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/multimedia_and_graphics/index.html">Multimedia and Graphics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../porting/multimedia_and_graphics/WebGPU-support.html">Using WebGPU in Emscripten</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../porting/multimedia_and_graphics/EGL-Support-in-Emscripten.html">EGL Support in Emscripten</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../porting/multimedia_and_graphics/OpenGL-support.html">OpenGL support in Emscripten</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/Audio.html">Audio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/Debugging.html">Debugging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/pthreads.html">Pthreads support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/networking.html">Networking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/simd.html">Using SIMD with WebAssembly</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/exceptions.html">C++ Exceptions Support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/setjmp-longjmp.html">C setjmp-longjmp Support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/asyncify.html">Asynchronous Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Building-Projects.html">Building Projects</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api_reference/index.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/emscripten.h.html">emscripten.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/html5.h.html">html5.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/console.h.html">console.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/preamble.js.html">preamble.js</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/Filesystem-API.html">File System API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/fetch.html">Fetch API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/module.html">Module object</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/val.h.html">val.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/bind.h.html">bind.h (under-construction)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/trace.h.html">trace.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/fiber.h.html">fiber.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/proxying.h.html">proxying.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/stack.h.html">stack.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/wasm_workers.html">Wasm Workers API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/wasm_audio_worklets.html">Wasm Audio Worklets API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/advanced-apis.html">Advanced APIs</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tools_reference/index.html">Tools Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tools_reference/emsdk.html">Emscripten SDK (emsdk)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools_reference/emcc.html">Emscripten Compiler Frontend (emcc)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools_reference/emcmdprompt.html">Emscripten Windows Command Prompt (emcmdprompt.bat)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools_reference/settings_reference.html">Emscripten Compiler Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools_reference/settings_reference.html#deprecated-settings">Deprecated Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools_reference/settings_reference.html#legacy-settings">Legacy Settings</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../optimizing/Optimizing-Code.html">Optimizing Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../optimizing/Optimizing-WebGL.html">Optimizing WebGL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debugging/Sanitizers.html">Debugging with Sanitizers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../building_from_source/index.html">Building Emscripten from Source</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../building_from_source/toolchain_what_is_needed.html">Emscripten Toolchain Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../building_from_source/configuring_emscripten_settings.html">Configuring Emscripten Settings when Manually Building from Source</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../building_from_source/verify_emscripten_environment.html">Verifying the Emscripten Development Environment</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing to Emscripten</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/contributing.html">Contributing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/developers_guide.html">Developer’s Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/AUTHORS.html">AUTHORS</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../optimizing/Profiling-Toolchain.html">Profiling the Toolchain</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../site/about.html">About this site</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../genindex.html">Index</a></li>
+</ul>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="lside-overlay js-menu" role="button" aria-label="Close left sidebar" aria-controls="lside" aria-expanded="false"></div>
+  <aside id="rside" class="sy-rside pb-3 w-64 shrink-0 order-last">
+    <button class="rside-close js-menu xl:hidden" aria-label="Close Table of Contents" type="button" aria-controls="rside" aria-expanded="false">
+      <i class="i-lucide close"></i>
+    </button>
+    <div class="sy-scrollbar sy-rside-inner px-6 xl:top-16 xl:sticky xl:pl-0 pt-6 pb-4"><div class="localtoc"><h3>On this page</h3><ul>
+<li><a class="reference internal" href="#using-smodularize">Using -sMODULARIZE</a></li>
+<li><a class="reference internal" href="#generating-es6-modules">Generating ES6 Modules</a></li>
+<li><a class="reference internal" href="#using-smodularize-instance-experimental">Using -sMODULARIZE=instance (experimental)</a><ul>
+<li><a class="reference internal" href="#limitations">Limitations</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#source-phase-imports-experimental">Source Phase Imports (experimental)</a></li>
+<li><a class="reference internal" href="#es-module-integration-experimental">ES Module Integration (experimental)</a><ul>
+<li><a class="reference internal" href="#id2">Limitations</a></li>
+</ul>
+</li>
+</ul>
+</div><a class="js-repo-stats repo-stats flex items-center" href="https://github.com/emscripten-core/emscripten"
+  data-type="github" data-user="emscripten-core" data-repo="emscripten">
+  <span class="w-8 flex items-center justify-around shrink-0 text-3xl">
+    <iconify-icon icon="simple-icons:github"></iconify-icon>
+  </span>
+  <span class="flex-grow px-2 break-all">
+    
+    
+      <span>emscripten</span>
+    
+    <span class="flex text-sm repo-stats-count">
+      <span class="flex items-center pr-3">
+        <iconify-icon icon="lucide:star"></iconify-icon>
+        <strong class="js-repo-stars ml-1">0</strong>
+      </span>
+      <span class="flex items-center">
+        <iconify-icon icon="lucide:git-fork"></iconify-icon>
+        <strong class="js-repo-forks ml-1">0</strong>
+      </span>
+    </span>
+  </span>
+</a><div class="edit-this-page">
+  <a href="https://github.com/emscripten-core/emscripten/blob/main/site/source/docs/compiling/Modularized-Output.rst">Edit this page</a>
+</div><div id="ethical-ad-placement" data-ea-publisher="readthedocs"></div></div>
+  </aside>
+  <div class="rside-overlay js-menu" role="button" aria-label="Close Table of Contents" aria-controls="rside" aria-expanded="false"></div>
+  <main class="sy-main w-full max-sm:max-w-full print:pt-6">
+<div class="sy-breadcrumbs" role="navigation">
+  <div class="sy-breadcrumbs-inner flex items-center">
+    <div class="md:hidden mr-3">
+      <button class="js-menu" aria-label="Menu" type="button" aria-controls="lside" aria-expanded="false">
+        <i class="i-lucide menu"></i>
+      </button>
+    </div>
+    <ol class="flex-1" itemscope itemtype="https://schema.org/BreadcrumbList"><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="../../index.html"><span itemprop="name">Emscripten</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="1" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="index.html"><span itemprop="name">Compiling and Running Projects</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="2" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <strong itemprop="name">Modularized Output</strong>
+        <meta itemprop="position" content="3" />
+      </li></ol>
+    <div class="xl:hidden ml-1">
+      <button class="js-menu" aria-label="Show table of contents" type="button" aria-controls="rside"
+        aria-expanded="false">
+        <i class="i-lucide outdent"></i>
+      </button>
+    </div>
+  </div>
+</div><div class="flex flex-col break-words justify-between">
+      <div class="relative min-w-0 max-w-6xl px-6 pb-6 pt-8 xl:px-12">
+  <article class="yue" role="main">
+          <section id="modularized-output">
+<span id="id1"></span><h1>Modularized Output<a class="headerlink" href="#modularized-output" title="Link to this heading">¶</a></h1>
+<p>By default, emscripten outputs regular JS scripts which can be loaded on the Web
+via a <code class="docutils literal notranslate"><span class="pre">script</span></code> tag, or on the command line using Node or other JS runtime.</p>
+<p>In this default configuration the generated <a class="reference internal" href="../api_reference/module.html#module"><span class="std std-ref">Module object</span></a> variable (and indeed
+all of the emscripten internal symbols) are added to the global scope.  This
+means that only one emscripten-built program can be loaded in a given scope
+(since multiple modules would clobber each other’s state).</p>
+<p>The <a class="reference internal" href="../tools_reference/settings_reference.html#modularize"><span class="std std-ref">MODULARIZE</span></a> setting (along with other related settings) can be used to
+isolate the generated module within its own private scope and/or allow multiple
+instances of the same module to be created.</p>
+<p>This section covers the various modularization options available and how to use
+them.</p>
+<section id="using-smodularize">
+<h2>Using -sMODULARIZE<a class="headerlink" href="#using-smodularize" title="Link to this heading">¶</a></h2>
+<p>The <a class="reference internal" href="../tools_reference/settings_reference.html#modularize"><span class="std std-ref">MODULARIZE</span></a> setting has two primary functions.  Firstly, it
+puts all of the generated code inside its own scope so that the global namespace
+is not polluted when the JS is loaded (for example, via <code class="docutils literal notranslate"><span class="pre">script</span></code> tag).
+Secondly, it allows multiple instances of the module to be created.</p>
+<p>The generated factory function is async and it returns a promise of an instance
+of the program.  It can be called any number of times to create multiple
+separate and isolated instances of the same program.</p>
+<p>By default, the factory function is called <code class="docutils literal notranslate"><span class="pre">Module</span></code>, but it can be given a
+unique name via the <code class="docutils literal notranslate"><span class="pre">-sEXPORT_NAME</span></code> setting.</p>
+<p>For example, a program built using <code class="docutils literal notranslate"><span class="pre">-sMODULARIZE</span> <span class="pre">-sEXPORT_NAME=Foo</span></code> can
+be instantiated using:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">var</span> <span class="n">myFoo</span> <span class="o">=</span> <span class="k">await</span> <span class="n">Foo</span><span class="p">({</span> <span class="o">/*</span> <span class="n">optional</span> <span class="n">params</span> <span class="o">*/</span> <span class="p">});</span>
+</span><span data-line="2"><span class="n">myFoo</span><span class="o">.</span><span class="n">_nativeMethod</span><span class="p">();</span>
+</span></pre></div>
+</div>
+<p>or:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">Foo</span><span class="p">({</span> <span class="o">/*</span> <span class="n">optional</span> <span class="n">params</span> <span class="o">*/</span> <span class="p">})</span><span class="o">.</span><span class="n">then</span><span class="p">((</span><span class="n">myFoo</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span><span data-line="2">  <span class="n">myFoo</span><span class="o">.</span><span class="n">_nativeMethod</span><span class="p">();</span>
+</span><span data-line="3"><span class="p">}</span>
+</span></pre></div>
+</div>
+<p>If node is included in the <code class="docutils literal notranslate"><span class="pre">-sENVIRONMENT</span></code> setting then the generated module
+also acts as a <code class="docutils literal notranslate"><span class="pre">CommonJS</span></code> module under node.</p>
+<p>Because there is no global <code class="docutils literal notranslate"><span class="pre">Module</span></code> object in this case any parameters to the
+module creation are passed via the optional parameter to the factory function.
+For example, if you wanted to use a custom <code class="docutils literal notranslate"><span class="pre">print</span></code> method you could write:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">var</span> <span class="n">myFoo</span> <span class="o">=</span> <span class="k">await</span> <span class="n">Foo</span><span class="p">({</span> <span class="nb">print</span><span class="p">:</span> <span class="n">myPrint</span> <span class="p">});</span>
+</span></pre></div>
+</div>
+</section>
+<section id="generating-es6-modules">
+<h2>Generating ES6 Modules<a class="headerlink" href="#generating-es6-modules" title="Link to this heading">¶</a></h2>
+<p>The <a class="reference internal" href="../tools_reference/settings_reference.html#export-es6"><span class="std std-ref">EXPORT_ES6</span></a> setting can be used to instead output JavaScript in the
+form of an ES module.  (The ES module format did not exist at time when the
+<cite>MODULARIZE</cite> setting was first created otherwise this would likely be the
+default).</p>
+<p>Using an output filename that ends in <cite>.mjs</cite> will automatically enable this
+setting.</p>
+<p>In this mode the module has a single default export which is the factory
+function for creating new instances of the module.  For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kn">import</span><span class="w"> </span><span class="nn">Foo</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;./emcc-output.js&#39;</span><span class="p">;</span>
+</span><span data-line="2"><span class="n">var</span> <span class="n">myFoo</span> <span class="o">=</span> <span class="k">await</span> <span class="n">Foo</span><span class="p">({</span> <span class="nb">print</span><span class="p">:</span> <span class="n">myPrint</span> <span class="p">});</span>
+</span></pre></div>
+</div>
+<p>The name <code class="docutils literal notranslate"><span class="pre">Foo</span></code> here can be whatever you choose and will always be assigned to
+the default export of the module.</p>
+</section>
+<section id="using-smodularize-instance-experimental">
+<h2>Using -sMODULARIZE=instance (experimental)<a class="headerlink" href="#using-smodularize-instance-experimental" title="Link to this heading">¶</a></h2>
+<p>Emscripten has experimental support for performing only the encapsulation part of
+modularization, and not the ability to create multiple instances.  In this
+mode a module is created that exports a single instance of the program rather
+than a factory function.</p>
+<p>This setting implicitly enables <a class="reference internal" href="../tools_reference/settings_reference.html#export-es6"><span class="std std-ref">EXPORT_ES6</span></a> and will not work when
+<a class="reference internal" href="../tools_reference/settings_reference.html#export-es6"><span class="std std-ref">EXPORT_ES6</span></a> is explictly disabled.</p>
+<p>In this mode the default export of the module is an initializer function which
+allows input parameters to be passed to the instance.  Other elements normally
+found on the module object are instead exported directly.  For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="o">//</span> <span class="n">Import</span> <span class="n">the</span> <span class="n">default</span> <span class="n">init</span> <span class="n">function</span> <span class="ow">and</span> <span class="n">a</span> <span class="n">named</span> <span class="n">native</span> <span class="n">method</span>
+</span><span data-line="2"><span class="kn">import</span><span class="w"> </span><span class="nn">init</span><span class="o">,</span><span class="w"> </span><span class="p">{</span> <span class="n">_nativeMethod</span> <span class="p">}</span>  <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;./emcc-output.js&#39;</span><span class="p">;</span>
+</span><span data-line="3"><span class="k">await</span> <span class="n">init</span><span class="p">({</span> <span class="nb">print</span><span class="p">:</span> <span class="n">myPrint</span> <span class="p">});</span>
+</span><span data-line="4"><span class="n">_nativeMethod</span><span class="p">();</span>
+</span></pre></div>
+</div>
+<section id="limitations">
+<h3>Limitations<a class="headerlink" href="#limitations" title="Link to this heading">¶</a></h3>
+<p>Some major features still do not work in this mode.  Many of these we hope to
+fix in future releases.  Current limitations include:</p>
+<ul class="simple">
+<li><p>Internal usage (e.g. usage within EM_JS / JS library code) of the <code class="docutils literal notranslate"><span class="pre">Module</span></code>
+global does not work.  This is because symbols are exported directly using
+ES6 module syntax rather than using the <code class="docutils literal notranslate"><span class="pre">Module</span></code> global.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">wasmExports</span></code> internal global does not exist.</p></li>
+<li><p><cite>ccall</cite>/<cite>cwrap</cite> are not supported (depends on the <code class="docutils literal notranslate"><span class="pre">Module</span></code> global).</p></li>
+<li><p><a class="reference internal" href="../tools_reference/settings_reference.html#minimal-runtime"><span class="std std-ref">MINIMAL_RUNTIME</span></a> is not supported.</p></li>
+<li><p>The output of file_packager is not compatible so <a class="reference internal" href="../tools_reference/emcc.html#emcc-preload-file"><span class="std std-ref">--preload-file &lt;name&gt;</span></a> and
+<a class="reference internal" href="../tools_reference/emcc.html#emcc-embed-file"><span class="std std-ref">--embed-file &lt;file&gt;</span></a> do not work.</p></li>
+</ul>
+</section>
+</section>
+<section id="source-phase-imports-experimental">
+<h2>Source Phase Imports (experimental)<a class="headerlink" href="#source-phase-imports-experimental" title="Link to this heading">¶</a></h2>
+<p><a class="reference external" href="https://github.com/tc39/proposal-source-phase-imports">Source phase imports</a> is a JavaScript proposal that adds support for importing
+Wasm modules via ES import statements.  This allows Emscripten to elide some of
+the auto-generated code for finding and fetching the Wasm binary.</p>
+<p>See <a class="reference internal" href="../tools_reference/settings_reference.html#source-phase-imports"><span class="std std-ref">SOURCE_PHASE_IMPORTS</span></a>.</p>
+<p>This setting implicitly enables <a class="reference internal" href="../tools_reference/settings_reference.html#export-es6"><span class="std std-ref">EXPORT_ES6</span></a> and will not work when
+<a class="reference internal" href="../tools_reference/settings_reference.html#export-es6"><span class="std std-ref">EXPORT_ES6</span></a> is explictly disabled.</p>
+</section>
+<section id="es-module-integration-experimental">
+<h2>ES Module Integration (experimental)<a class="headerlink" href="#es-module-integration-experimental" title="Link to this heading">¶</a></h2>
+<p><a class="reference external" href="https://github.com/WebAssembly/esm-integration">Wasm ESM integration</a> is a WebAssembly proposal that allows Wasm instances to
+be imported directly as ES modules.  This allows Emscripten to elide a lot of
+boilerplate code for linking up Wasm and JavaScript.</p>
+<p>See <a class="reference internal" href="../tools_reference/settings_reference.html#wasm-esm-integration"><span class="std std-ref">WASM_ESM_INTEGRATION</span></a>.</p>
+<section id="id2">
+<h3>Limitations<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h3>
+<p>This setting implicitly enables <a class="reference internal" href="../tools_reference/settings_reference.html#export-es6"><span class="std std-ref">EXPORT_ES6</span></a> and sets <a class="reference internal" href="../tools_reference/settings_reference.html#modularize"><span class="std std-ref">MODULARIZE</span></a> to
+<code class="docutils literal notranslate"><span class="pre">instance</span></code>.  Because of this all the same limitations mentioned above for
+<code class="docutils literal notranslate"><span class="pre">-sMODULARIZE=instance</span></code> apply.</p>
+<p>Some additional limitations are:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../tools_reference/settings_reference.html#wasm-workers"><span class="std std-ref">WASM_WORKERS</span></a> is not yet supported.</p></li>
+<li><p><a class="reference internal" href="../tools_reference/settings_reference.html#abort-on-wasm-exceptions"><span class="std std-ref">ABORT_ON_WASM_EXCEPTIONS</span></a> is not supported (requires wrapping wasm
+exports).</p></li>
+<li><p><a class="reference internal" href="../tools_reference/settings_reference.html#asyncify"><span class="std std-ref">ASYNCIFY</span></a> is not supported (depends on <code class="docutils literal notranslate"><span class="pre">wasmExports</span></code> global)</p></li>
+<li><p>Setting <a class="reference internal" href="../tools_reference/settings_reference.html#wasm"><span class="std std-ref">WASM</span></a> to <code class="docutils literal notranslate"><span class="pre">0</span></code> is not supported.</p></li>
+<li><p>Setting <a class="reference internal" href="../tools_reference/settings_reference.html#wasm-async-compilation"><span class="std std-ref">WASM_ASYNC_COMPILATION</span></a> to <code class="docutils literal notranslate"><span class="pre">0</span></code> is not supported.</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+        </article><button class="back-to-top" type="button">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+  </svg>
+  <span>Back to top</span>
+</button><div class="navigation flex print:hidden"><div class="navigation-prev">
+    <a href="WebAssembly.html">
+      <i class="i-lucide chevron-left"></i>
+      <div class="page-info">
+        <span>Previous</span><div class="title">Building to WebAssembly</div></div>
+    </a>
+  </div><div class="navigation-next">
+    <a href="Dynamic-Linking.html">
+      <div class="page-info">
+        <span>Next</span>
+        <div class="title">Dynamic Linking</div>
+      </div>
+      <i class="i-lucide chevron-right"></i>
+    </a>
+  </div></div></div>
+    </div>
+  </main>
+</div>
+<footer class="sy-foot">
+  <div class="sy-foot-inner sy-container mx-auto">
+    <div class="sy-foot-reserved md:flex justify-between items-center">
+      <div class="sy-foot-copyright"><p>Copyright &copy; 2015, Emscripten Contributors.</p>
+  
+  <p>
+    Made with
+    
+    <a href="https://www.sphinx-doc.org/">Sphinx</a> and
+    
+    <a href="https://shibuya.lepture.com">Shibuya theme</a>.
+  </p>
+</div>
+      <div class="sy-foot-socials">
+<a href="https://github.com/emscripten-core/emscripten" aria-label="GitHub">
+  <iconify-icon icon="simple-icons:github"></iconify-icon>
+</a>
+<a href="https://discord.gg/53u3EKq" aria-label="Discord">
+  <iconify-icon icon="simple-icons:discord"></iconify-icon>
+</a></div>
+    </div>
+  </div>
+</footer>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=752e413b"></script>
+      <script src="../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../../_static/shibuya.js?v=50760d75"></script></body>
+</html>
