@@ -37,9 +37,9 @@
     "branch" : "main",
     "commit" : 
     {
-      "date" : "2026-06-19 09:26:21 -0700",
-      "hash" : "8484a7b66c2c1a26cc6d3281ace2c36e78a2a417",
-      "title" : "Avoid varargs in socket syscall layer. NFC (#27153)"
+      "date" : "2026-06-28 12:49:14 -0700",
+      "hash" : "a34c4a863d1a7f15cf6e65f2b6c9476055d8c222",
+      "title" : "[WasmFS] Skip root directory setup under NODERAWFS (#26607)"
     }
   },
   "type" : "branch",
