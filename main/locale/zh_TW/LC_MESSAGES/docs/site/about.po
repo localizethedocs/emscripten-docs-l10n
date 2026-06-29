@@ -57,7 +57,7 @@ msgstr ""
 
 #: ../../../source/docs/site/about.rst:23
 msgid "Reporting bugs"
-msgstr ""
+msgstr "回報臭蟲"
 
 #: ../../../source/docs/site/about.rst:25
 msgid ""
@@ -106,7 +106,7 @@ msgstr ""
 
 #: ../../../source/docs/site/about.rst:49
 msgid "Installing Sphinx"
-msgstr ""
+msgstr "安裝 Sphinx"
 
 #: ../../../source/docs/site/about.rst:51
 msgid ""
@@ -143,7 +143,7 @@ msgstr ""
 
 #: ../../../source/docs/site/about.rst:87
 msgid "Build version"
-msgstr ""
+msgstr "建置版本"
 
 #: ../../../source/docs/site/about.rst:89
 msgid ""
@@ -170,7 +170,7 @@ msgstr ""
 
 #: ../../../source/docs/site/about.rst:106
 msgid "Writing and updating articles"
-msgstr ""
+msgstr "撰寫並更新文章"
 
 #: ../../../source/docs/site/about.rst:108
 msgid ""
@@ -207,7 +207,7 @@ msgstr ""
 
 #: ../../../source/docs/site/about.rst:122
 msgid "Style guide"
-msgstr ""
+msgstr "風格指南"
 
 #: ../../../source/docs/site/about.rst:124
 msgid ""

@@ -19,7 +19,7 @@ msgstr ""
 
 #: ../../../source/docs/api_reference/emscripten.h.rst:5
 msgid "emscripten.h"
-msgstr ""
+msgstr "emscripten.h"
 
 #: ../../../source/docs/api_reference/emscripten.h.rst:7
 msgid ""
@@ -37,7 +37,7 @@ msgstr ""
 
 #: ../../../source/docs/api_reference/emscripten.h.rst:15
 msgid "Table of Contents"
-msgstr ""
+msgstr "目次表"
 
 #: ../../../source/docs/api_reference/emscripten.h.rst:18
 msgid "Inline assembly/JavaScript"
@@ -193,12 +193,12 @@ msgstr ""
 
 #: ../../../source/docs/api_reference/emscripten.h.rst:216
 msgid "Similar to :c:macro:`MAIN_THREAD_EM_ASM` but returns an ``int`` value."
-msgstr ""
+msgstr "與 :c:macro:`MAIN_THREAD_EM_ASM` 相似，卻回傳 ``int`` 值。"
 
 #: ../../../source/docs/api_reference/emscripten.h.rst:220
 msgid ""
 "Similar to :c:macro:`MAIN_THREAD_EM_ASM` but returns a ``double`` value."
-msgstr ""
+msgstr "與 :c:macro:`MAIN_THREAD_EM_ASM` 相似，卻回傳 ``double`` 值。"
 
 #: ../../../source/docs/api_reference/emscripten.h.rst:224
 msgid "Similar to :c:macro:`MAIN_THREAD_EM_ASM` but returns a pointer value."
@@ -280,7 +280,7 @@ msgstr ""
 #: ../../../source/docs/api_reference/emscripten.h.rst:1219
 #: ../../../source/docs/api_reference/emscripten.h.rst:1411
 msgid "Functions"
-msgstr ""
+msgstr "函數"
 
 #: ../../../source/docs/api_reference/emscripten.h.rst:281
 #: ../../../source/docs/api_reference/emscripten.h.rst:292
@@ -303,7 +303,7 @@ msgstr ""
 
 #: ../../../source/docs/api_reference/emscripten.h.rst:0
 msgid "Parameters"
-msgstr ""
+msgstr "參數"
 
 #: ../../../source/docs/api_reference/emscripten.h.rst:285
 #: ../../../source/docs/api_reference/emscripten.h.rst:296
@@ -906,7 +906,7 @@ msgstr ""
 
 #: ../../../source/docs/api_reference/emscripten.h.rst:508
 msgid "Returns the window title."
-msgstr ""
+msgstr "回傳視窗題名。"
 
 #: ../../../source/docs/api_reference/emscripten.h.rst:510
 msgid "The returned string will be valid until the next call of the function"
@@ -914,7 +914,7 @@ msgstr ""
 
 #: ../../../source/docs/api_reference/emscripten.h.rst:514
 msgid "Sets the window title."
-msgstr ""
+msgstr "設定視窗題名。"
 
 #: ../../../source/docs/api_reference/emscripten.h.rst:518
 msgid "Returns the width and height of the screen."

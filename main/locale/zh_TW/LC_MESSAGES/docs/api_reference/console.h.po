@@ -23,7 +23,7 @@ msgstr ""
 
 #: ../../../source/docs/api_reference/console.h.rst:8
 msgid "Functions"
-msgstr ""
+msgstr "函數"
 
 #: ../../../source/docs/api_reference/console.h.rst:12
 msgid "Prints a string using ``console.log()``."
@@ -31,7 +31,7 @@ msgstr ""
 
 #: ../../../source/docs/api_reference/console.h.rst:0
 msgid "Parameters"
-msgstr ""
+msgstr "參數"
 
 #: ../../../source/docs/api_reference/console.h.rst:14
 #: ../../../source/docs/api_reference/console.h.rst:21

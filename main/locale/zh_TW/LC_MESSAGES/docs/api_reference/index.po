@@ -19,7 +19,7 @@ msgstr ""
 
 #: ../../../source/docs/api_reference/index.rst:5
 msgid "API Reference"
-msgstr ""
+msgstr "API 參考"
 
 #: ../../../source/docs/api_reference/index.rst:7
 msgid ""

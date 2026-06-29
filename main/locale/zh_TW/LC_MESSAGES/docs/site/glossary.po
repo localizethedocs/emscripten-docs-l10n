@@ -19,7 +19,7 @@ msgstr ""
 
 #: ../../../source/docs/site/glossary.rst:3
 msgid "Glossary"
-msgstr ""
+msgstr "詞彙表"
 
 #: ../../../source/docs/site/glossary.rst:6
 msgid "General"

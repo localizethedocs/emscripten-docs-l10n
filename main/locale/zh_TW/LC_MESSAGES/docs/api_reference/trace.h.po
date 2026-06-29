@@ -363,11 +363,11 @@ msgstr ""
 
 #: ../../../source/docs/api_reference/trace.h.rst:288
 msgid "Functions"
-msgstr ""
+msgstr "函數"
 
 #: ../../../source/docs/api_reference/trace.h.rst:0
 msgid "Parameters"
-msgstr ""
+msgstr "參數"
 
 #: ../../../source/docs/api_reference/trace.h.rst:292
 msgid "The base URL for the collector server."

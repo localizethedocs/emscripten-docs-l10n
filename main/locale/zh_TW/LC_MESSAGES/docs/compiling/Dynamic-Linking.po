@@ -19,7 +19,7 @@ msgstr ""
 
 #: ../../../source/docs/compiling/Dynamic-Linking.rst:5
 msgid "Dynamic Linking"
-msgstr ""
+msgstr "動態連結"
 
 #: ../../../source/docs/compiling/Dynamic-Linking.rst:7
 msgid ""

@@ -19,7 +19,7 @@ msgstr ""
 
 #: ../../../source/docs/introducing_emscripten/about_emscripten.rst:5
 msgid "About Emscripten"
-msgstr ""
+msgstr "關於 Emscripten"
 
 #: ../../../source/docs/introducing_emscripten/about_emscripten.rst:7
 msgid ""
@@ -69,7 +69,7 @@ msgstr ""
 
 #: ../../../source/docs/introducing_emscripten/about_emscripten.rst:40
 msgid "Emscripten Toolchain"
-msgstr ""
+msgstr "Emscripten 工具鏈"
 
 #: ../../../source/docs/introducing_emscripten/about_emscripten.rst:42
 msgid ""

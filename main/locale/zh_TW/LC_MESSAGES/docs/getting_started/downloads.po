@@ -270,7 +270,7 @@ msgstr ""
 
 #: ../../../source/docs/getting_started/downloads.rst:188
 msgid "Updating the SDK"
-msgstr ""
+msgstr "更新 SDK"
 
 #: ../../../source/docs/getting_started/downloads.rst:190
 msgid ""
@@ -363,24 +363,24 @@ msgstr ""
 
 #: ../../../source/docs/getting_started/downloads.rst:256
 msgid "**Homebrew**"
-msgstr ""
+msgstr "**Homebrew**"
 
 #: ../../../source/docs/getting_started/downloads.rst:257
 msgid "package info: https://formulae.brew.sh/formula/emscripten"
-msgstr ""
+msgstr "軟體包資訊： https://formulae.brew.sh/formula/emscripten"
 
 #: ../../../source/docs/getting_started/downloads.rst:258
 msgid "maintainer: @chenrui333"
-msgstr ""
+msgstr "維護者： @chenrui333"
 
 #: ../../../source/docs/getting_started/downloads.rst:260
 msgid "**Arch Linux**"
-msgstr ""
+msgstr "**Arch Linux**"
 
 #: ../../../source/docs/getting_started/downloads.rst:261
 msgid "package info: https://archlinux.org/packages/extra/x86_64/emscripten"
-msgstr ""
+msgstr "軟體包資訊： https://archlinux.org/packages/extra/x86_64/emscripten"
 
 #: ../../../source/docs/getting_started/downloads.rst:262
 msgid "maintainer: Sven-Hendrik Haase <svenstaro@archlinux.org>"
-msgstr ""
+msgstr "維護者： Sven-Hendrik Haase <svenstaro@archlinux.org>"

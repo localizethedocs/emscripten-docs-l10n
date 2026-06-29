@@ -19,7 +19,7 @@ msgstr ""
 
 #: ../../../source/docs/index.rst:7
 msgid "Emscripten Documentation"
-msgstr ""
+msgstr "Emscripten 文件"
 
 #: ../../../source/docs/index.rst:10
 msgid ""

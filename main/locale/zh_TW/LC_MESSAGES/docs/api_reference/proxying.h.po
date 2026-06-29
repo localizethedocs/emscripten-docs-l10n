@@ -51,7 +51,7 @@ msgstr ""
 
 #: ../../../source/docs/api_reference/proxying.h.rst:27
 msgid "API Reference"
-msgstr ""
+msgstr "API 參考"
 
 #: ../../../source/docs/api_reference/proxying.h.rst:30
 msgid "Types"
@@ -79,11 +79,11 @@ msgstr ""
 
 #: ../../../source/docs/api_reference/proxying.h.rst:48
 msgid "Functions"
-msgstr ""
+msgstr "函數"
 
 #: ../../../source/docs/api_reference/proxying.h.rst:52
 msgid "Allocate a new proxying queue."
-msgstr ""
+msgstr "分配新的代理佇列。"
 
 #: ../../../source/docs/api_reference/proxying.h.rst:56
 msgid ""

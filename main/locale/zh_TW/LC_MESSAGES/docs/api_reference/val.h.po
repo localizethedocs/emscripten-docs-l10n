@@ -227,7 +227,7 @@ msgstr ""
 
 #: ../../../source/docs/api_reference/val.h.rst:0
 msgid "Parameters"
-msgstr ""
+msgstr "參數"
 
 #: ../../../source/docs/api_reference/val.h.rst:244
 msgid "The JavaScript array to be copied"

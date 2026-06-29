@@ -31,7 +31,7 @@ msgstr ""
 
 #: ../../../source/docs/api_reference/advanced-apis.rst:15
 msgid "Table of Contents"
-msgstr ""
+msgstr "目次表"
 
 #: ../../../source/docs/api_reference/advanced-apis.rst:20
 msgid "settings.js"

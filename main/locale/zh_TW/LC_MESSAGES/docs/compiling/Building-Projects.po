@@ -19,7 +19,7 @@ msgstr ""
 
 #: ../../../source/docs/compiling/Building-Projects.rst:5
 msgid "Building Projects"
-msgstr ""
+msgstr "建置專案"
 
 #: ../../../source/docs/compiling/Building-Projects.rst:7
 msgid ""
@@ -106,7 +106,7 @@ msgstr ""
 
 #: ../../../source/docs/compiling/Building-Projects.rst:82
 msgid "Emscripten linker output files"
-msgstr ""
+msgstr "Emscripten 連結器輸出檔案"
 
 #: ../../../source/docs/compiling/Building-Projects.rst:84
 msgid ""
@@ -448,7 +448,7 @@ msgstr ""
 
 #: ../../../source/docs/compiling/Building-Projects.rst:300
 msgid "Build system issues"
-msgstr ""
+msgstr "建置系統議題"
 
 #: ../../../source/docs/compiling/Building-Projects.rst:303
 msgid "Build system self-execution"
@@ -486,7 +486,7 @@ msgstr ""
 
 #: ../../../source/docs/compiling/Building-Projects.rst:313
 msgid "Dynamic Linking"
-msgstr ""
+msgstr "動態連結"
 
 #: ../../../source/docs/compiling/Building-Projects.rst:315
 msgid ""
@@ -675,7 +675,7 @@ msgstr ""
 
 #: ../../../source/docs/compiling/Building-Projects.rst:420
 msgid "Examples / test code"
-msgstr ""
+msgstr "範例/測試程式碼"
 
 #: ../../../source/docs/compiling/Building-Projects.rst:422
 msgid ""

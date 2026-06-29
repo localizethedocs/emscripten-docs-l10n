@@ -41,11 +41,11 @@ msgstr ""
 
 #: ../../../source/docs/api_reference/fiber.h.rst:16
 msgid "Table of Contents"
-msgstr ""
+msgstr "目次表"
 
 #: ../../../source/docs/api_reference/fiber.h.rst:19
 msgid "API Reference"
-msgstr ""
+msgstr "API 參考"
 
 #: ../../../source/docs/api_reference/fiber.h.rst:22
 msgid "Types"
@@ -123,7 +123,7 @@ msgstr ""
 
 #: ../../../source/docs/api_reference/fiber.h.rst:72
 msgid "Functions"
-msgstr ""
+msgstr "函數"
 
 #: ../../../source/docs/api_reference/fiber.h.rst:76
 msgid ""
@@ -133,7 +133,7 @@ msgstr ""
 
 #: ../../../source/docs/api_reference/fiber.h.rst:0
 msgid "Parameters"
-msgstr ""
+msgstr "參數"
 
 #: ../../../source/docs/api_reference/fiber.h.rst:78
 #: ../../../source/docs/api_reference/fiber.h.rst:96

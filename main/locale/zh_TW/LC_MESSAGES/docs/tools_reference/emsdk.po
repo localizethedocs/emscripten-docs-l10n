@@ -46,29 +46,31 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/emsdk.rst:14
 msgid "Command line syntax"
-msgstr ""
+msgstr "命令行語法"
 
 #: ../../../source/docs/tools_reference/emsdk.rst:16
 msgid ""
 "**./emsdk** [**help** | **list** [**--old**] | **update** | **install** "
 "*<tool/sdk>* | **uninstall** *<tool/sdk>* | **activate** *<tool/sdk>*]"
 msgstr ""
+"**./emsdk** [**help** | **list** [**--old**] | **update** | **install** "
+"*<tool/sdk>* | **uninstall** *<tool/sdk>* | **activate** *<tool/sdk>*]"
 
 #: ../../../source/docs/tools_reference/emsdk.rst:20
 msgid "Arguments"
-msgstr ""
+msgstr "引數"
 
 #: ../../../source/docs/tools_reference/emsdk.rst:28
 msgid "Command"
-msgstr ""
+msgstr "命令"
 
 #: ../../../source/docs/tools_reference/emsdk.rst:29
 msgid "Description"
-msgstr ""
+msgstr "描述"
 
 #: ../../../source/docs/tools_reference/emsdk.rst:30
 msgid "``list [--old]``"
-msgstr ""
+msgstr "``list [--old]``"
 
 #: ../../../source/docs/tools_reference/emsdk.rst:31
 msgid ""
@@ -78,7 +80,7 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/emsdk.rst:32
 msgid "``update``"
-msgstr ""
+msgstr "``update``"
 
 #: ../../../source/docs/tools_reference/emsdk.rst:33
 msgid ""
@@ -136,7 +138,7 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/emsdk.rst:50
 msgid "Tools and SDK targets"
-msgstr ""
+msgstr "工具與 SDK 目標"
 
 #: ../../../source/docs/tools_reference/emsdk.rst:52
 msgid ""
@@ -158,7 +160,7 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/emsdk.rst:61
 msgid "SDK concepts"
-msgstr ""
+msgstr "SDK 概念"
 
 #: ../../../source/docs/tools_reference/emsdk.rst:63
 msgid ""
@@ -284,7 +286,7 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/emsdk.rst:160
 msgid "How do I use emsdk?"
-msgstr ""
+msgstr "我要如何使用 emsdk？"
 
 #: ../../../source/docs/tools_reference/emsdk.rst:162
 msgid ""
