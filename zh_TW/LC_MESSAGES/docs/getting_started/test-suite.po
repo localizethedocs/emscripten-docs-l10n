@@ -1,0 +1,288 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) Copyright &copy; 2015, Emscripten Contributors.
+# This file is distributed under the same license as the Emscripten package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Emscripten main\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-18 07:11+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: zh_TW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../../source/docs/getting_started/test-suite.rst:5
+msgid "Emscripten Test Suite"
+msgstr ""
+
+#: ../../../source/docs/getting_started/test-suite.rst:7
+msgid ""
+"Emscripten has a comprehensive test suite, which covers virtually all "
+"Emscripten functionality. These tests are an excellent resource for "
+"developers as they provide practical examples of most features, and are "
+"known to pass on the ``main`` branch. In addition to correctness tests, "
+"there are also benchmarks that you can run."
+msgstr ""
+
+#: ../../../source/docs/getting_started/test-suite.rst:13
+msgid ""
+"This article explains how to run the test and benchmark suite, and provides "
+"an overview of what tests are available."
+msgstr ""
+
+#: ../../../source/docs/getting_started/test-suite.rst:17
+msgid "Setting up"
+msgstr ""
+
+#: ../../../source/docs/getting_started/test-suite.rst:19
+msgid ""
+"To run the tests, you need an emscripten setup, as it will run ``emcc`` and "
+"other commands. See the :ref:`developer's guide <developers-guide-setting-"
+"up>` for how best to do that."
+msgstr ""
+
+#: ../../../source/docs/getting_started/test-suite.rst:24
+msgid "Running tests"
+msgstr ""
+
+#: ../../../source/docs/getting_started/test-suite.rst:26
+msgid ""
+"Run the test suite runner (`test/runner <https://github.com/emscripten-core/"
+"emscripten/blob/main/test/runner.py>`_) with ``--help`` to see the help "
+"message:"
+msgstr ""
+
+#: ../../../source/docs/getting_started/test-suite.rst:32
+msgid ""
+"The tests are divided into *modes*. You can run either an entire mode or an "
+"individual test, or use wildcards to run some tests in some modes. For "
+"example:"
+msgstr ""
+
+#: ../../../source/docs/getting_started/test-suite.rst:46
+msgid ""
+"The *core* test modes (defined at the bottom of `test/test_core.py <https://"
+"github.com/emscripten-core/emscripten/blob/main/test/test_core.py>`_) let "
+"you run the tests in variety of different configurations and with different "
+"optimization flags.  For example, wasm2js or wasm64.  There are also non-"
+"core test suites, that run tests in more special manner (in particular, in "
+"those tests it is not possible to say \"run the test with a different "
+"optimization flag\" - that is what the core tests are for).  The non-core "
+"test suites include"
+msgstr ""
+
+#: ../../../source/docs/getting_started/test-suite.rst:54
+msgid "`other`: Non-core tests running in the shell."
+msgstr ""
+
+#: ../../../source/docs/getting_started/test-suite.rst:55
+msgid "`browser`: Tests that run in a browser."
+msgstr ""
+
+#: ../../../source/docs/getting_started/test-suite.rst:56
+msgid "`sockets`: Networking tests that run in a browser."
+msgstr ""
+
+#: ../../../source/docs/getting_started/test-suite.rst:57
+msgid ""
+"`interactive`: Browser tests that are not fully automated, and require user "
+"interaction (these should be automated eventually)."
+msgstr ""
+
+#: ../../../source/docs/getting_started/test-suite.rst:58
+msgid ""
+"`sanity`: Tests for emscripten setting itself up. This modifies your `."
+"emscripten` file temporarily."
+msgstr ""
+
+#: ../../../source/docs/getting_started/test-suite.rst:59
+msgid "`benchmark`: Runs benchmarks, measuring speed and code size."
+msgstr ""
+
+#: ../../../source/docs/getting_started/test-suite.rst:61
+msgid ""
+"The wildcards we mentioned above work for non-core test modes too, for "
+"example:"
+msgstr ""
+
+#: ../../../source/docs/getting_started/test-suite.rst:75
+msgid "Skipping Tests"
+msgstr ""
+
+#: ../../../source/docs/getting_started/test-suite.rst:77
+msgid "An individual test can be skipped by passing the \"skip:\" prefix. E.g."
+msgstr ""
+
+#: ../../../source/docs/getting_started/test-suite.rst:83
+msgid "Wildcards can also be passed in skip, so"
+msgstr ""
+
+#: ../../../source/docs/getting_started/test-suite.rst:89
+msgid ""
+"will run the whole browser suite except for all the pthread tests in it."
+msgstr ""
+
+#: ../../../source/docs/getting_started/test-suite.rst:92
+msgid "Exiting on first failure"
+msgstr ""
+
+#: ../../../source/docs/getting_started/test-suite.rst:94
+msgid ""
+"Sometimes it is useful to be able to iteratively fix one test at a time.  In "
+"this case the ``--failfast`` option can be used to exit the test runner "
+"after the first failure."
+msgstr ""
+
+#: ../../../source/docs/getting_started/test-suite.rst:98
+msgid ""
+"This option only works with the serial test runner.  For test suites that "
+"are normally run in parallel you can force them to run serially using ``-"
+"j1``."
+msgstr ""
+
+#: ../../../source/docs/getting_started/test-suite.rst:102
+msgid ""
+"Once a test is fixed, you continue where you left off using ``--start-at`` "
+"option:"
+msgstr ""
+
+#: ../../../source/docs/getting_started/test-suite.rst:109
+msgid "Running a bunch of random tests"
+msgstr ""
+
+#: ../../../source/docs/getting_started/test-suite.rst:111
+msgid "You can run a random subset of the test suite, using something like"
+msgstr ""
+
+#: ../../../source/docs/getting_started/test-suite.rst:117
+msgid ""
+"Replace ``100`` with another number as you prefer. This will run that number "
+"of random tests, and tell you the statistical likelihood of almost all the "
+"test suite passing assuming those tests do. This works just like election "
+"surveys do - given a small sample, we can predict fairly well that so-and-so "
+"percent of the public will vote for candidate A. In our case, the "
+"\"candidates\" are pass or fail, and we can predict how much of the test "
+"suite will pass given that sample. Assuming the sample tests all pass, we "
+"can say with high likelihood that most of the test suite will in fact pass. "
+"(Of course, this is no guarantee, and even a single test failure is serious, "
+"however, this gives a quick estimate that your patch does not cause "
+"significant and obvious breakage.)"
+msgstr ""
+
+#: ../../../source/docs/getting_started/test-suite.rst:129
+msgid "Important Tests"
+msgstr ""
+
+#: ../../../source/docs/getting_started/test-suite.rst:131
+msgid ""
+"Please see the bottom the file `test/test_core.py <https://github.com/"
+"emscripten-core/emscripten/blob/main/test/test_core.py>`_ for the current "
+"test modes, as they may change slowly over time.  When you want to run the "
+"entire test suite locally, these are currently the important commands:"
+msgstr ""
+
+#: ../../../source/docs/getting_started/test-suite.rst:161
+msgid "Benchmarking"
+msgstr ""
+
+#: ../../../source/docs/getting_started/test-suite.rst:163
+msgid ""
+"Emscripten has a benchmark suite that measures both speed and code size, "
+"which includes several interesting real-world codebases, from physics "
+"engines to compression libraries to virtual machines. It also includes some "
+"existing benchmarks such as CoreMark and LINPACK. See for example `this "
+"post's section on speed <https://kripken.github.io/blog/wasm/2020/07/27/"
+"wasmboxc.html>`_ which gives an overview."
+msgstr ""
+
+#: ../../../source/docs/getting_started/test-suite.rst:170
+msgid "To run the benchmark suite, do:"
+msgstr ""
+
+#: ../../../source/docs/getting_started/test-suite.rst:177
+msgid "As with all the test suites, you can also run a specific benchmark:"
+msgstr ""
+
+#: ../../../source/docs/getting_started/test-suite.rst:184
+msgid ""
+"You can also specify which benchmarkers are run by using the environment "
+"variable `EMTEST_BENCHMARKERS`. It accepts a comma separated list of named "
+"benchmarkers (names can be found in `named_benchmarkers` in `test/"
+"test_benchmark.py`)."
+msgstr ""
+
+#: ../../../source/docs/getting_started/test-suite.rst:194
+msgid ""
+"To further customize how the benchmarks are run, you will want to edit the "
+"file `test/test_benchmark.py`. Some of the options include:"
+msgstr ""
+
+#: ../../../source/docs/getting_started/test-suite.rst:197
+msgid ""
+"``DEFAULT_ARG`` is how long the benchmark should run (they all try to run "
+"for a similar amount of time for consistency)."
+msgstr ""
+
+#: ../../../source/docs/getting_started/test-suite.rst:199
+msgid ""
+"``TEST_REPS`` is how many times to repeat each run (more will take longer, "
+"but should have less noise)."
+msgstr ""
+
+#: ../../../source/docs/getting_started/test-suite.rst:201
+msgid ""
+"``PROFILING`` controls whether the builds are set up for profiling (which "
+"can increase code size, so it's not done by default)."
+msgstr ""
+
+#: ../../../source/docs/getting_started/test-suite.rst:205
+msgid "Debugging test failures"
+msgstr ""
+
+#: ../../../source/docs/getting_started/test-suite.rst:207
+msgid ""
+"By default the test runner will hide all test output and use a single "
+"terminal line to show test results."
+msgstr ""
+
+#: ../../../source/docs/getting_started/test-suite.rst:210
+msgid ""
+"If you want to see more information you can run with ``-v/--verbose`` to "
+"show the stdout / stderr / logging produced during each test."
+msgstr ""
+
+#: ../../../source/docs/getting_started/test-suite.rst:213
+msgid ""
+"If you add a second ``-v/--verbose`` then then test runner will output even "
+"more information.  For example it will show all the subcommands that it "
+"runs, as it runs them."
+msgstr ""
+
+#: ../../../source/docs/getting_started/test-suite.rst:217
+msgid ""
+"For even more debugging info, you can set :ref:`debugging-EMCC_DEBUG` which "
+"will cause the emscripten compiler itself to output a lot of debug info.  "
+"This will also tell the compiler to leave all its temporary files behind "
+"after it runs (the files go in ``/tmp/emscripten_temp/``):"
+msgstr ""
+
+#: ../../../source/docs/getting_started/test-suite.rst:236
+msgid ""
+"If you run just one a single test (or one test at at time using ``-j1``) the "
+"test output can always be found in ``out/test``.  This is useful for "
+"inspecting test outputs as well as temporary files generated by the test.  "
+"By default, the temporary directory will be cleaned between each test run, "
+"but you can add ``--no-clean`` to avoid this."
+msgstr ""
+
+#: ../../../source/docs/getting_started/test-suite.rst:242
+msgid ""
+"The :ref:`Debugging` topic provides more guidance on how to debug Emscripten-"
+"generated code."
+msgstr ""

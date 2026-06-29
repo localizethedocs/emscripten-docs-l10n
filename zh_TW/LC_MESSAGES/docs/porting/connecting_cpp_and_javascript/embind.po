@@ -1,0 +1,1130 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) Copyright &copy; 2015, Emscripten Contributors.
+# This file is distributed under the same license as the Emscripten package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Emscripten main\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-18 07:11+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: zh_TW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:5
+msgid "Embind"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:7
+msgid ""
+"*Embind* is used to bind C++ functions and classes to JavaScript, so that "
+"the compiled code can be used in a natural way by \"normal\" JavaScript. "
+"*Embind* also supports :ref:`calling JavaScript classes from C++ <embind-val-"
+"guide>`."
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:12
+msgid ""
+"Embind has support for binding most C++ constructs, including those "
+"introduced in C++11 and C++14. Its only significant limitation is that it "
+"does not currently support :ref:`raw pointers with complicated lifetime "
+"semantics <embind-raw-pointers>`."
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:17
+msgid ""
+"This article shows how to use :cpp:func:`EMSCRIPTEN_BINDINGS` blocks to "
+"create bindings for functions, classes, value types, pointers (including "
+"both raw and smart pointers), enums, and constants, and how to create "
+"bindings for abstract classes that can be overridden in JavaScript. It also "
+"briefly explains how to manage the memory of C++ object handles passed to "
+"JavaScript."
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:24
+msgid "In addition to the code in this article:"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:26
+msgid ""
+"There are many other examples of how to use *Embind* in the `Test Suite`_."
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:27
+msgid ""
+"`Connecting C++ and JavaScript on the Web with Embind`_ (slides from CppCon "
+"2014) contains more examples and information about *Embind*'s design "
+"philosophy and implementation."
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:31
+msgid ""
+"*Embind* was inspired by `Boost.Python`_ and uses a very similar approach "
+"for defining bindings."
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:36
+msgid "A quick example"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:38
+msgid ""
+"The following code uses an :cpp:func:`EMSCRIPTEN_BINDINGS` block to expose "
+"the simple C++ ``lerp()`` :cpp:func:`function` to JavaScript."
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:56
+msgid ""
+"To compile the above example using *embind*, we invoke *emcc* with the :ref:"
+"`bind <emcc-bind>` option::"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:61
+msgid ""
+"The resulting **quick_example.js** file can be loaded as a node module or "
+"via a ``<script>`` tag:"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:78
+msgid ""
+"We use the ``onRuntimeInitialized`` callback to run code when the runtime is "
+"ready, which is an asynchronous operation (in order to compile WebAssembly)."
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:79
+msgid "Open the developer tools console to see the output of ``console.log``."
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:81
+msgid ""
+"The code in an :cpp:func:`EMSCRIPTEN_BINDINGS` block runs when the "
+"JavaScript file is initially loaded (at the same time as the global "
+"constructors). The function ``lerp()``'s parameter types and return type are "
+"automatically inferred by *embind*."
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:86
+msgid ""
+"All symbols exposed by *embind* are available on the Emscripten ``Module`` "
+"object."
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:89
+msgid "Always access objects through the :ref:`module` object, as shown above."
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:92
+msgid ""
+"While the objects are also available in the global namespace by default, "
+"there are cases where they will not be (for example, if you use the :term:"
+"`closure compiler` to minify code or wrap compiled code in a function to "
+"avoid polluting the global namespace). You can of course use whatever name "
+"you like for the module by assigning it to a new variable: ``var "
+"MyModuleName = Module;``."
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:100
+msgid "Binding libraries"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:102
+msgid ""
+"Binding code is run as a static constructor and static constructors only get "
+"run if the object file is included in the link, therefore when generating "
+"bindings for library files the compiler must be explicitly instructed to "
+"include the object file."
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:107
+msgid ""
+"For example, to generate bindings for a hypothetical **library.a** compiled "
+"with Emscripten run *emcc* with ``--whole-archive`` compiler flag::"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:113
+msgid "Classes"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:115
+msgid ""
+"Exposing classes to JavaScript requires a more complicated binding "
+"statement. For example:"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:154
+msgid ""
+"The binding block defines a chain of member function calls on the temporary :"
+"cpp:class:`class_` object (this same style is used in *Boost.Python*). The "
+"functions register the class, its :cpp:func:`~class_::constructor`, member :"
+"cpp:func:`~class_::function`, :cpp:func:`~class_::class_function` (static) "
+"and :cpp:func:`~class_::property`."
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:160
+msgid ""
+"This binding block binds the class and all its methods. As a rule you should "
+"bind only those items that are actually needed, as each binding increases "
+"the code size. For example, it would be rare to bind private or internal "
+"methods."
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:165
+msgid ""
+"An instance of ``MyClass`` can then be created and used in JavaScript as "
+"shown below:"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:177
+msgid ""
+"The :term:`closure compiler` is unaware of the names of symbols that are "
+"exposed to JavaScript via *Embind*. In order to prevent such symbols from "
+"being renamed by the closure compiler in your own code (provided for example "
+"by using the ``--pre-js`` or ``--post-js`` compiler flags) it is necessary "
+"to annotate the code accordingly. Without such annotations, the resulting "
+"JavaScript code will no longer match the symbol names used in the *Embind* "
+"code and runtime errors will occur as a result."
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:185
+msgid ""
+"In order to prevent the closure compiler from renaming the symbols in the "
+"above example code it needs to be rewritten as follows:"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:197
+msgid ""
+"Note that this is only needed for code seen by the optimizer, for example as "
+"in ``--pre-js`` or ``--post-js`` as mentioned above, or on ``EM_ASM`` or "
+"``EM_JS``. For other code, that is not optimized by closure compiler, you do "
+"not need to make such changes. You also do not need it if you build without "
+"``--closure 1`` to enable the closure compiler."
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:204
+msgid "Memory management"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:206
+msgid ""
+"The :js:func:`delete()` JavaScript method is provided to manually signal "
+"that a C++ object is no longer needed and can be deleted:"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:219
+msgid ""
+"Both C++ objects constructed from the JavaScript side as well as those "
+"returned from C++ methods must be explicitly deleted, unless a ``reference`` "
+"return value policy is used (see below)."
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:224
+msgid ""
+"The ``try`` … ``finally`` JavaScript construct can be used to guarantee C++ "
+"object handles are deleted for all code paths, regardless of early returns "
+"or errors thrown."
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:244
+msgid "Automatic memory management"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:246
+msgid "Embind integrates with the `Explicit Resource Management`_ proposal."
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:248
+msgid ""
+"It allows to automatically delete short-lived C++ objects at the end of the "
+"scope when they're declared with a `using` keyword:"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:256
+msgid ""
+"At the moment of writing, this proposal is natively supported in Chromium-"
+"based browsers as well as Babel and TypeScript via transpilation."
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:259
+msgid ""
+"Embind also supports `finalizers`_, which were added in ECMAScript 2021 "
+"under a `FinalizationRegistry`_ API. Unlike the `using` keyword, finalizers "
+"are not guaranteed to be called, and even if they are, there are no "
+"guarantees about their timing or order of execution, which makes them "
+"unsuitable for general RAII-style resource management."
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:265
+msgid ""
+"Embind uses it for cleanup if available, but only for smart pointers, and "
+"only as a last resort."
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:268
+msgid ""
+"It is strongly recommended that JavaScript code explicitly deletes any C++ "
+"object handles it has received."
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:273
+msgid "Cloning and Reference Counting"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:275
+msgid ""
+"There are situations in which multiple long-lived portions of the JavaScript "
+"codebase need to hold on to the same C++ object for different amounts of "
+"time."
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:279
+msgid ""
+"To accommodate that use case, Emscripten provides a `reference counting`_ "
+"mechanism in which multiple handles can be produced for the same underlying "
+"C++ object. Only when all handles have been deleted does the object get "
+"destroyed."
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:284
+msgid ""
+"The :js:func:`clone()` JavaScript method returns a new handle. It must "
+"eventually also be disposed with :js:func:`delete()`:"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:305
+msgid "Value types"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:307
+msgid ""
+"Manual memory management for basic types is onerous, so *embind* provides "
+"support for value types. :cpp:class:`Value arrays <value_array>` are "
+"converted to and from JavaScript Arrays and :cpp:class:`value objects "
+"<value_object>` are converted to and from JavaScript Objects."
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:312
+msgid "Consider the example below:"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:357
+msgid "The JavaScript code does not need to worry about lifetime management."
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:365
+msgid ""
+"It is not recommended to use fields that correspond to regular C++ binding "
+"(such as ``class_<T>``) since those properties will obey the normal lifetime "
+"rules of their bound type and may require explicit cleanup in JavaScript. "
+"See :ref:`Object Ownership <embind-object-ownership>` for more details."
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:371
+msgid "Advanced class concepts"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:376
+msgid "Object Ownership"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:378
+msgid ""
+"JavaScript and C++ have very different memory models which can lead to it "
+"being unclear which language owns and is responsible for deleting an object "
+"when it moves between languages. To make object ownership more explicit, "
+"*embind* supports smart pointers and return value policies. Return value "
+"policies dictate what happens to a C++ object when it is returned to "
+"JavaScript."
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:384
+msgid ""
+"To use a return value policy, pass the desired policy into function, method, "
+"or property bindings. For example:"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:393
+msgid ""
+"Embind supports three return value policies that behave differently "
+"depending on the return type of the function. The policies work as follows:"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:396
+msgid ""
+"*default (no argument)* - For return by value and reference a new object "
+"will be allocated using the object's copy constructor. JS then owns the "
+"object and is responsible for deleting it. Returning a pointer is not "
+"allowed by default (use an explicit policy below)."
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:399
+msgid ""
+":cpp:type:`return_value_policy::take_ownership` - Ownership is transferred "
+"to JS."
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:400
+msgid ""
+":cpp:type:`return_value_policy::reference` - Reference an existing object "
+"but do not take ownership. Care must be taken to not delete the object while "
+"it is still in use in JS."
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:403
+msgid "More details below:"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:406
+msgid "Return Type"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:406
+msgid "Constructor"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:406
+msgid "Cleanup"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:408
+msgid "**default**"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:410
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:418
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:426
+msgid "Value (``T``)"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:410
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:412
+msgid "copy"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:410
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:412
+msgid "JS must delete the copied object."
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:412
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:420
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:428
+msgid "Reference (``T&``)"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:414
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:422
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:430
+msgid "Pointer (``T*``)"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:414
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:426
+msgid "n/a"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:414
+msgid "Pointers must explicitly use a return policy."
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:416
+msgid "**take_ownership**"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:418
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:420
+msgid "move"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:418
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:420
+msgid "JS must delete the moved object."
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:422
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:428
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:430
+msgid "none"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:422
+msgid "JS must delete the object."
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:424
+msgid "**reference**"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:426
+msgid "Reference to a value is not allowed."
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:428
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:430
+msgid "C++ must delete the object."
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:436
+msgid "Raw pointers"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:438
+msgid ""
+"Because raw pointers have unclear lifetime semantics, *embind* requires "
+"their use to be marked with either :cpp:type:`allow_raw_pointers` or with a :"
+"cpp:type:`return_value_policy`. If the function returns a pointer it is "
+"recommended to use a :cpp:type:`return_value_policy` instead of the general :"
+"cpp:type:`allow_raw_pointers`."
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:444
+msgid "For example:"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:459
+msgid ""
+"Currently allow_raw_pointers for pointer arguments only serves to allow raw "
+"pointer use, and show that you've thought about the use of the raw pointers. "
+"Eventually we hope to implement `Boost.Python-like raw pointer policies`_ "
+"for managing object ownership of arguments as well."
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:467
+msgid "External constructors"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:469
+msgid "There are two ways to specify constructors for a class."
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:471
+msgid ""
+"The :ref:`zero-argument template form <embind-class-zero-argument-"
+"constructor>` invokes the natural constructor with the arguments specified "
+"in the template. For example:"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:491
+msgid ""
+"The :ref:`second form of the constructor <embind-class-function-pointer-"
+"constructor>` takes a function pointer argument, and is used for classes "
+"that construct themselves using a factory function. For example:"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:509
+msgid ""
+"The two constructors present *exactly the same interface* for constructing "
+"the object in JavaScript. Continuing the example above:"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:519
+msgid "Smart pointers"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:521
+msgid ""
+"To manage object lifetime with smart pointers, *embind* must be told about "
+"the smart pointer type."
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:524
+msgid ""
+"For example, consider managing a class ``C``'s lifetime with ``std::"
+"shared_ptr<C>``. The best way to do this is to use :cpp:func:`~class_::"
+"smart_ptr_constructor` to register the smart pointer type:"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:537
+msgid ""
+"When an object of this type is constructed (e.g. using ``new Module.C()``) "
+"it returns a ``std::shared_ptr<C>``."
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:540
+msgid ""
+"An alternative is to use :cpp:func:`~class_::smart_ptr` in the :cpp:func:"
+"`EMSCRIPTEN_BINDINGS` block:"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:552
+msgid ""
+"Using this definition, functions can return ``std::shared_ptr<C>`` or take "
+"``std::shared_ptr<C>`` as arguments, but ``new Module.C()`` would still "
+"return a raw pointer."
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:558
+msgid "unique_ptr"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:560
+msgid ""
+"*embind* has built-in support for return values of type ``std::unique_ptr``."
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:563
+msgid "Custom smart pointers"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:565
+msgid ""
+"To teach *embind* about custom smart pointer templates, you must specialize "
+"the :cpp:type:`smart_ptr_trait` template."
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:571
+msgid "Non-member-functions on the JavaScript prototype"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:573
+msgid ""
+"Methods on the JavaScript class prototype can be non-member functions, as "
+"long as the instance handle can be converted to the first argument of the "
+"non-member function. The classic example is when the function exposed to "
+"JavaScript does not exactly match the behavior of a C++ method."
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:601
+msgid ""
+"If JavaScript calls ``Array10.prototype.get`` with an invalid index, it will "
+"return ``undefined``."
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:605
+msgid "Deriving from C++ classes in JavaScript"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:607
+msgid ""
+"If C++ classes have virtual or abstract member functions, it's possible to "
+"override them in JavaScript. Because JavaScript has no knowledge of the C++ "
+"vtable, *embind* needs a bit of glue code to convert C++ virtual function "
+"calls into JavaScript calls."
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:613
+msgid "Abstract methods"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:615
+msgid ""
+"Let's begin with a simple case: pure virtual functions that must be "
+"implemented in JavaScript."
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:639
+msgid ""
+":cpp:func:`~class_::allow_subclass` adds two special methods to the "
+"Interface binding: ``extend`` and ``implement``. ``extend`` allows "
+"JavaScript to subclass in the style exemplified by `Backbone.js`_. "
+"``implement`` is used when you have a JavaScript object, perhaps provided by "
+"the browser or some other library, and you want to use it to implement a C++ "
+"interface."
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:646
+msgid ""
+"The :cpp:type:`pure_virtual` annotation on the function binding allows "
+"JavaScript to throw a helpful error if the JavaScript class does not "
+"override ``invoke()``. Otherwise, you may run into confusing errors."
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:653
+msgid "``extend`` example"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:676
+msgid "``implement`` example"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:687
+msgid ""
+"Now ``interfaceObject`` can be passed to any function that takes an "
+"``Interface`` pointer or reference."
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:691
+msgid "Non-abstract virtual methods"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:693
+msgid ""
+"If a C++ class has a non-pure virtual function, it can be overridden — but "
+"does not have to be. This requires a slightly different wrapper "
+"implementation:"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:721
+msgid ""
+"When implementing ``Base`` with a JavaScript object, overriding ``invoke`` "
+"is optional. The special lambda binding for invoke is necessary to avoid "
+"infinite mutual recursion between the wrapper and JavaScript."
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:726
+msgid "Base classes"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:728
+msgid "Base class bindings are defined as shown:"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:737
+msgid ""
+"Any member functions defined on ``BaseClass`` are then accessible to "
+"instances of ``DerivedClass``. In addition, any function that accepts an "
+"instance of ``BaseClass`` can be given an instance of ``DerivedClass``."
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:742
+msgid "Automatic downcasting"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:744
+msgid ""
+"If a C++ class is polymorphic (that is, it has a virtual method), then "
+"*embind* supports automatic downcasting of function return values."
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:760
+msgid ""
+"Calling ``Module.getDerivedInstance`` from JavaScript will return a "
+"``Derived`` instance handle from which all of ``Derived``'s methods are "
+"available."
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:764
+msgid ""
+"*Embind* must understand the fully-derived type for automatic downcasting to "
+"work."
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:767
+msgid "*Embind* does not support this unless RTTI is enabled."
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:771
+msgid "Overloaded functions"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:773
+msgid ""
+"Constructors and functions can be overloaded on the number of arguments, but "
+"*embind* does not support overloading based on type. When specifying an "
+"overload, use the :cpp:func:`select_overload` helper function to select the "
+"appropriate signature."
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:797
+msgid "Enums"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:799
+msgid ""
+"*Embind*'s :cpp:class:`enumeration support <enum_>` works with both C++98 "
+"enums and C++11 \"enum classes\"."
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:825
+msgid ""
+"In both cases, JavaScript accesses enumeration values as properties of the "
+"type."
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:834
+msgid ""
+"You can control how C++ enums are exposed to JavaScript by specifying "
+"``enum_value_type`` when registering the enum."
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:837
+msgid ""
+"By default, enums use ``enum_value_type::object``. Enum values are bound as "
+"JavaScript objects with a ``value`` property containing the underlying C++ "
+"integer."
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:856
+msgid "Alternatively, you can use:"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:858
+msgid ""
+"``enum_value_type::number``: Enum values are bound directly as JavaScript "
+"numbers matching their C++ integer values."
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:874
+msgid ""
+"``enum_value_type::string``: Enum values are bound as JavaScript strings "
+"containing their name."
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:889
+msgid ""
+"Regardless of the ``enum_value_type`` used, enum values can always be used "
+"as arguments to functions expecting the enum type."
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:918
+msgid "Constants"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:920
+msgid "To expose a C++ :cpp:func:`constant` to JavaScript, simply write:"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:928
+msgid "``SOME_CONSTANT`` can have any type known to *embind*."
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:934
+msgid "Class Properties"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:936
+msgid ""
+"By default ``property()`` bindings to objects use ``return_value_policy::"
+"copy`` which can very easily lead to memory leaks since each access to the "
+"property will create a new object that must be deleted. Alternatively, use "
+"``return_value_policy::reference``, so a new object is not allocated and "
+"changes to the object will be reflected in the original object."
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:943
+msgid "Class properties can be defined several ways as seen below."
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:999
+msgid "Memory views"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1001
+msgid ""
+"In some cases it is valuable to expose raw binary data directly to "
+"JavaScript code as a typed array, allowing it to be used without copying. "
+"This is useful for instance for uploading large WebGL textures directly from "
+"the heap."
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1006
+msgid ""
+"Memory views should be treated like raw pointers; lifetime and validity are "
+"not managed by the runtime and it's easy to corrupt data if the underlying "
+"object is modified or deallocated."
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1028
+msgid ""
+"The calling JavaScript code will receive a typed array view into the "
+"emscripten heap:"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1037
+msgid ""
+"The typed array view will be of the appropriate matching type, such as "
+"Uint8Array for an ``unsigned char`` array or pointer."
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1044
+msgid "Using ``val`` to transliterate JavaScript to C++"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1046
+msgid ""
+"*Embind* provides a C++ class, :cpp:class:`emscripten::val`, which you can "
+"use to transliterate JavaScript code to C++. Using ``val`` you can call "
+"JavaScript objects from your C++, read and write their properties, or coerce "
+"them to C++ values like a ``bool``, ``int``, or ``std::string``."
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1053
+msgid ""
+"The example below shows how you can use ``val`` to call the JavaScript `Web "
+"Audio API`_ from C++:"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1056
+msgid ""
+"This example is based on the excellent Web Audio tutorial: `Making sine, "
+"square, sawtooth and triangle waves`_ (stuartmemo.com). There is an even "
+"simpler example in the :cpp:class:`emscripten::val` documentation."
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1061
+msgid "First consider the JavaScript below, which shows how to use the API:"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1083
+msgid "The code can be transliterated to C++ using ``val``, as shown below:"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1115
+msgid ""
+"First we use :cpp:func:`~emscripten::val::global` to get the symbol for the "
+"global ``AudioContext`` object (or ``webkitAudioContext`` if that does not "
+"exist). We then use :cpp:func:`~emscripten::val::new_` to create the "
+"context, and from this context we can create an ``oscillator``, :cpp:func:"
+"`~emscripten::val::set` its properties (again using ``val``) and then play "
+"the tone."
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1122
+msgid "The example can be compiled on the Linux/macOS terminal with::"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1128
+msgid "Built-in type conversions"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1130
+msgid ""
+"Out of the box, *embind* provides converters for many standard C++ types:"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1133
+msgid "C++ type"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1133
+msgid "JavaScript type"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1135
+msgid "``void``"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1135
+msgid "undefined"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1137
+msgid "``bool``"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1137
+msgid "true or false"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1139
+msgid "``char``"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1139
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1141
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1143
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1145
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1147
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1149
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1151
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1157
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1159
+msgid "Number"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1141
+msgid "``signed char``"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1143
+msgid "``unsigned char``"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1145
+msgid "``short``"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1147
+msgid "``unsigned short``"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1149
+msgid "``int``"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1151
+msgid "``unsigned int``"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1153
+msgid "``long``"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1153
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1155
+msgid "Number, or BigInt*"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1155
+msgid "``unsigned long``"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1157
+msgid "``float``"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1159
+msgid "``double``"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1161
+msgid "``int64_t``"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1161
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1163
+msgid "BigInt**"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1163
+msgid "``uint64_t``"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1165
+msgid "``std::string``"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1165
+msgid "ArrayBuffer, Uint8Array, Uint8ClampedArray, Int8Array, or String"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1167
+msgid "``std::wstring``"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1167
+msgid "String (UTF-16 code units)"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1169
+msgid "``emscripten::val``"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1169
+msgid "anything"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1172
+msgid "\\*BigInt when MEMORY64 is used, Number otherwise."
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1174
+msgid ""
+"\\*\\*Requires BigInt support to be enabled with the `-sWASM_BIGINT` flag."
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1176
+msgid ""
+"For convenience, *embind* provides factory functions to register ``std::"
+"vector<T, class Allocator=std::allocator<T>>`` (:cpp:func:"
+"`register_vector`), ``std::map<K, V, class Compare=std::less<K>, class "
+"Allocator=std::allocator<std::pair<const K, V>>>`` (:cpp:func:"
+"`register_map`), and ``std::optional<T>`` (:cpp:func:`register_optional`) "
+"types:"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1188
+msgid "A full example is shown below:"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1227
+msgid "The following JavaScript can be used to interact with the above C++."
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1281
+msgid "TypeScript Definitions"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1284
+msgid "Generating"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1286
+msgid ""
+"Embind supports generating TypeScript definition files from :cpp:func:"
+"`EMSCRIPTEN_BINDINGS` blocks. To generate **.d.ts** files invoke *emcc* with "
+"the :ref:`embind-emit-tsd <emcc-emit-tsd>` option::"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1292
+msgid ""
+"Running this command will build the program with an instrumented version of "
+"embind that is then run in *node* to generate the definition files. Not all "
+"of embind's features are currently supported, but many of the commonly used "
+"ones are.  Examples of input and output can be seen in `embind_tsgen.cpp`_ "
+"and `embind_tsgen.d.ts`_."
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1299
+msgid "Custom ``val`` Definitions"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1301
+msgid ""
+":cpp:class:`emscripten::val` types are mapped to TypeScript's `any` type by "
+"default, which does not provide much useful information for API's that "
+"consume or produce `val` types. To give better type information, custom "
+"`val` types can be registered using :cpp:func:`EMSCRIPTEN_DECLARE_VAL_TYPE` "
+"in combination with :cpp:class:`emscripten::register_type`. An example below:"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1307
+msgid "Two registration forms are supported:"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1309
+msgid ""
+"Single parameter: ``register_type<T>(definition)`` — the provided string is "
+"inlined"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1310
+msgid "everywhere the type appears."
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1311
+msgid ""
+"Two parameters: ``register_type<T>(name, definition)`` — creates a named "
+"TypeScript"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1312
+msgid ""
+"type alias (``type name = definition;``) and uses ``name`` at call sites."
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1333
+msgid "``nonnull`` Pointers"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1335
+msgid ""
+"C++ functions that return pointers generate TS definitions with "
+"``<SomeClass> | null`` to allow ``nullptr`` by default. If the C++ function "
+"is guaranteed to return a valid object, then a policy parameter of "
+"``nonnull<ret_val>()`` can be added to the function binding to omit ``| "
+"null`` from TS. This avoids having to handle the ``null`` case in TS."
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1342
+msgid "Performance"
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1344
+msgid ""
+"At time of writing there has been no *comprehensive* *embind* performance "
+"testing, either against standard benchmarks, or relative to :ref:`WebIDL-"
+"Binder`."
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1348
+msgid ""
+"The call overhead for simple functions has been measured at about 200 ns. "
+"While there is room for further optimisation, so far its performance in real-"
+"world applications has proved to be more than acceptable."
+msgstr ""

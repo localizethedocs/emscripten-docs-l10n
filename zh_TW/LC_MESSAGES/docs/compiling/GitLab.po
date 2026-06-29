@@ -1,0 +1,62 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) Copyright &copy; 2015, Emscripten Contributors.
+# This file is distributed under the same license as the Emscripten package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Emscripten main\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-18 07:11+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: zh_TW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../../source/docs/compiling/GitLab.rst:5
+msgid "Building and Deploying on GitLab"
+msgstr ""
+
+#: ../../../source/docs/compiling/GitLab.rst:7
+msgid ""
+"`GitLab CI/CD <https://about.gitlab.com/product/continuous-integration/>`_ "
+"is a popular continuous integration service which offers free plans to "
+"everyone. Thanks to an `Alpine Linux package by Jakub Jirutka <https://pkgs."
+"alpinelinux.org/packages?name=emscripten>`_ installing emscripten in GitLab "
+"CI/CD is literally a one line task."
+msgstr ""
+
+#: ../../../source/docs/compiling/GitLab.rst:10
+msgid "A sample .gitlab-ci.yml"
+msgstr ""
+
+#: ../../../source/docs/compiling/GitLab.rst:28
+msgid "Let's break it down:"
+msgstr ""
+
+#: ../../../source/docs/compiling/GitLab.rst:35
+msgid ""
+"In the before_script stage we download the package from the Alpine Linux "
+"testing repository."
+msgstr ""
+
+#: ../../../source/docs/compiling/GitLab.rst:37
+msgid ""
+"This step also contains the command to add an additional build tool *make*."
+msgstr ""
+
+#: ../../../source/docs/compiling/GitLab.rst:44
+msgid ""
+"In the script stage we can now run the commands we want. In this sample we "
+"are using *make*, but you can call *emcc* directly if you prefer."
+msgstr ""
+
+#: ../../../source/docs/compiling/GitLab.rst:46
+msgid ""
+"For an example of this setup in practice, see `the Example Emscripten site "
+"using GitLab Pages <https://pages.gitlab.io/emscripten>`_."
+msgstr ""

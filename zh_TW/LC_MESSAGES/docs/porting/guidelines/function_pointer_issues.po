@@ -1,0 +1,169 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) Copyright &copy; 2015, Emscripten Contributors.
+# This file is distributed under the same license as the Emscripten package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Emscripten main\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-18 07:11+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: zh_TW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../../source/docs/porting/guidelines/function_pointer_issues.rst:5
+msgid "Function Pointer Issues"
+msgstr ""
+
+#: ../../../source/docs/porting/guidelines/function_pointer_issues.rst:7
+msgid "There are two main issues with function pointers:"
+msgstr ""
+
+#: ../../../source/docs/porting/guidelines/function_pointer_issues.rst:11
+msgid "Function pointer casts can cause function pointer calls to fail."
+msgstr ""
+
+#: ../../../source/docs/porting/guidelines/function_pointer_issues.rst:13
+msgid ""
+"Function pointers must be called with the correct type: it is undefined "
+"behavior in C/C++ to cast a function pointer to another type and call it "
+"that way. This does work in most native platforms, however, despite it being "
+"UB, but in Wasm it can fail. In that case, you may see an error like this:"
+msgstr ""
+
+#: ../../../source/docs/porting/guidelines/function_pointer_issues.rst:19
+msgid "or"
+msgstr ""
+
+#: ../../../source/docs/porting/guidelines/function_pointer_issues.rst:25
+msgid "or ``abort(10)`` or some other number (depending on the type of build)."
+msgstr ""
+
+#: ../../../source/docs/porting/guidelines/function_pointer_issues.rst:27
+msgid "Rarely, you may see a compiler warning like this:"
+msgstr ""
+
+#: ../../../source/docs/porting/guidelines/function_pointer_issues.rst:33
+msgid ""
+"This may be related to a function pointer cast problem as implicit "
+"declarations may have a different type than how you call them. However, in "
+"general the compiler cannot warn about this, and you will only see a problem "
+"at runtime."
+msgstr ""
+
+#: ../../../source/docs/porting/guidelines/function_pointer_issues.rst:36
+msgid ""
+"Older versions of :term:`clang` can generate different code for C and C++ "
+"calls when a structure is passed **by value** (for completeness, one "
+"convention is ``struct byval`` and the other is ``field a, field b``). The "
+"two formats are incompatible with each other, and you may get a warning."
+msgstr ""
+
+#: ../../../source/docs/porting/guidelines/function_pointer_issues.rst:38
+msgid ""
+"The workaround is to pass the structure by reference, or simply not mix C "
+"and C++ in that location (for example, rename the **.c** file to **.cpp**)."
+msgstr ""
+
+#: ../../../source/docs/porting/guidelines/function_pointer_issues.rst:45
+msgid "Debugging function pointer issues"
+msgstr ""
+
+#: ../../../source/docs/porting/guidelines/function_pointer_issues.rst:47
+msgid ""
+"The ``SAFE_HEAP`` and ``ASSERTION`` options can catch some of these errors "
+"at runtime and provide useful information. You can also see if "
+"``EMULATE_FUNCTION_POINTER_CASTS`` fixes things for you, but see later down "
+"about the overhead."
+msgstr ""
+
+#: ../../../source/docs/porting/guidelines/function_pointer_issues.rst:49
+msgid "You can get compiler errors for some of these problems with"
+msgstr ""
+
+#: ../../../source/docs/porting/guidelines/function_pointer_issues.rst:56
+msgid "Working around function pointer issues"
+msgstr ""
+
+#: ../../../source/docs/porting/guidelines/function_pointer_issues.rst:58
+msgid "There are three solutions to this problem (the second is preferred):"
+msgstr ""
+
+#: ../../../source/docs/porting/guidelines/function_pointer_issues.rst:60
+msgid ""
+"Cast the function pointer back to the correct type before it is called. This "
+"is problematic because it requires that the caller knows the original type."
+msgstr ""
+
+#: ../../../source/docs/porting/guidelines/function_pointer_issues.rst:61
+msgid ""
+"Manually write an adapter function that does not need to be cast, and calls "
+"the original function. For example, it might ignore a parameter, and in that "
+"way bridge between the different function pointer types."
+msgstr ""
+
+#: ../../../source/docs/porting/guidelines/function_pointer_issues.rst:62
+msgid ""
+"Use ``EMULATE_FUNCTION_POINTER_CASTS``. When you build with ``-"
+"sEMULATE_FUNCTION_POINTER_CASTS``, Emscripten emits code to emulate function "
+"pointer casts at runtime, adding extra arguments/dropping them/changing "
+"their type/adding or dropping a return type/etc. This can add significant "
+"runtime overhead, so it is not recommended, but is worth trying."
+msgstr ""
+
+#: ../../../source/docs/porting/guidelines/function_pointer_issues.rst:64
+msgid "For a real-world example, consider the code below:"
+msgstr ""
+
+#: ../../../source/docs/porting/guidelines/function_pointer_issues.rst:104
+msgid ""
+"The code defines three functions with different signatures: ``voidReturn`` "
+"of type ``vi`` (``void (int)``), ``intReturn`` of type ``ii``, and "
+"``voidReturnNoParam`` of type ``v``. These function pointers are cast to "
+"type ``vi`` and added to a list. The functions are then called using the "
+"function pointers in the list."
+msgstr ""
+
+#: ../../../source/docs/porting/guidelines/function_pointer_issues.rst:106
+msgid ""
+"The code runs (and works) when compiled to native machine code (on all major "
+"platforms). You can try it by saving the code as **main.c** and executing "
+"**cc main.c** and then **./a.out**. You'll see this output:"
+msgstr ""
+
+#: ../../../source/docs/porting/guidelines/function_pointer_issues.rst:114
+msgid ""
+"However, the code fails with a runtime exception in Emscripten, and displays "
+"the console output:"
+msgstr ""
+
+#: ../../../source/docs/porting/guidelines/function_pointer_issues.rst:122
+msgid ""
+"You can try this yourself. Save the code as **main.c**, compile using ``emcc "
+"-O0 main.c -o main.html``, and then load **main.html** into a browser."
+msgstr ""
+
+#: ../../../source/docs/porting/guidelines/function_pointer_issues.rst:124
+msgid ""
+"The code fragment below shows how we can cast the function pointer back to "
+"its original signature just before calling it, so that it is found in the "
+"correct table. This requires the receiver of the table to have special "
+"knowledge about what is in the list (you can see this in the special case "
+"for index ``1`` in the while loop). Additionally, :ref:`emcc <emccdoc>` will "
+"continue to complain about the original cast taking place in ``main()`` when "
+"adding the function to ``functionList[1]``."
+msgstr ""
+
+#: ../../../source/docs/porting/guidelines/function_pointer_issues.rst:141
+msgid ""
+"The code fragment below shows how to make and use an adapter function that "
+"calls the original function. The adapter is defined with the same signature "
+"as it will have when called, and is hence available in the expected function-"
+"pointer table."
+msgstr ""
