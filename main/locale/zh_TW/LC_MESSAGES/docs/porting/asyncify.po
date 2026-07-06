@@ -358,7 +358,7 @@ msgstr ""
 
 #: ../../../source/docs/porting/asyncify.rst:426
 msgid "Optimizing Asyncify"
-msgstr ""
+msgstr "最佳化 Asyncify"
 
 #: ../../../source/docs/porting/asyncify.rst:428
 msgid "This section does not apply to JSPI."

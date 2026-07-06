@@ -1156,15 +1156,15 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/emcc.rst:618
 msgid "``-sLEGACY_GL_EMULATION``:"
-msgstr ""
+msgstr "``-sLEGACY_GL_EMULATION``："
 
 #: ../../../source/docs/tools_reference/emcc.rst:620
 msgid "``-sGL_UNSAFE_OPTS``"
-msgstr ""
+msgstr "``-sGL_UNSAFE_OPTS``"
 
 #: ../../../source/docs/tools_reference/emcc.rst:621
 msgid "``-sGL_FFP_ONLY``"
-msgstr ""
+msgstr "``-sGL_FFP_ONLY``"
 
 #: ../../../source/docs/tools_reference/emcc.rst:623
 msgid "ASSERTIONS"

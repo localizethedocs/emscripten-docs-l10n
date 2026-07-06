@@ -97,7 +97,7 @@ msgstr ""
 
 #: ../../../source/docs/index.rst:30
 msgid "**Reference:**"
-msgstr ""
+msgstr "**參考：**"
 
 #: ../../../source/docs/index.rst:32
 msgid ":ref:`api-reference-index` is a reference for the Emscripten toolchain."

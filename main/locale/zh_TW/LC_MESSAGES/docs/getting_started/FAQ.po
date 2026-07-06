@@ -372,7 +372,7 @@ msgstr ""
 
 #: ../../../source/docs/getting_started/FAQ.rst:234
 msgid "See also: :ref:`faq-my-html-app-hangs`"
-msgstr ""
+msgstr "另請參見：\\ :ref:`faq-my-html-app-hangs`"
 
 #: ../../../source/docs/getting_started/FAQ.rst:238
 msgid "Why doesn't my SDL app work?"

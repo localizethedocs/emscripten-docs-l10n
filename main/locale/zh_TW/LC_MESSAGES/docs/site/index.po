@@ -19,7 +19,7 @@ msgstr ""
 
 #: ../../../source/docs/site/index.rst:5
 msgid "Site Links"
-msgstr ""
+msgstr "網站連結"
 
 #: ../../../source/docs/site/index.rst:7
 msgid ""

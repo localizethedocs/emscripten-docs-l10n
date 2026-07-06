@@ -78,7 +78,7 @@ msgstr ""
 
 #: ../../../source/docs/compiling/Deploying-Pages.rst:21
 msgid "Optimizing Download Sizes"
-msgstr ""
+msgstr "最佳化下載大小"
 
 #: ../../../source/docs/compiling/Deploying-Pages.rst:23
 msgid ""
@@ -150,7 +150,7 @@ msgstr ""
 
 #: ../../../source/docs/compiling/Deploying-Pages.rst:36
 msgid "Optimizing Page Startup Times"
-msgstr ""
+msgstr "最佳化頁面啟動時間"
 
 #: ../../../source/docs/compiling/Deploying-Pages.rst:38
 msgid ""

@@ -30,7 +30,7 @@ msgstr ""
 
 #: ../../../source/docs/compiling/Building-Projects.rst:13
 msgid "Integrating with a build system"
-msgstr ""
+msgstr "與建置系統進行整合"
 
 #: ../../../source/docs/compiling/Building-Projects.rst:15
 msgid ""
@@ -288,7 +288,7 @@ msgstr ""
 
 #: ../../../source/docs/compiling/Building-Projects.rst:188
 msgid "Using libraries"
-msgstr ""
+msgstr "使用程式庫"
 
 #: ../../../source/docs/compiling/Building-Projects.rst:190
 msgid ""
@@ -699,7 +699,7 @@ msgstr ""
 
 #: ../../../source/docs/compiling/Building-Projects.rst:428
 msgid "Troubleshooting"
-msgstr ""
+msgstr "疑難排解"
 
 #: ../../../source/docs/compiling/Building-Projects.rst:430
 msgid ""

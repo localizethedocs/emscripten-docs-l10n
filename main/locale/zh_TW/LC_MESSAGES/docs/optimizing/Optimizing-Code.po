@@ -19,7 +19,7 @@ msgstr ""
 
 #: ../../../source/docs/optimizing/Optimizing-Code.rst:5
 msgid "Optimizing Code"
-msgstr ""
+msgstr "最佳化程式碼"
 
 #: ../../../source/docs/optimizing/Optimizing-Code.rst:7
 msgid ""
@@ -113,7 +113,7 @@ msgstr ""
 
 #: ../../../source/docs/optimizing/Optimizing-Code.rst:46
 msgid "How Emscripten optimizes"
-msgstr ""
+msgstr "Emscripten 最佳的方式"
 
 #: ../../../source/docs/optimizing/Optimizing-Code.rst:48
 msgid ""
@@ -148,7 +148,7 @@ msgstr ""
 
 #: ../../../source/docs/optimizing/Optimizing-Code.rst:55
 msgid "Link Times"
-msgstr ""
+msgstr "連結時間"
 
 #: ../../../source/docs/optimizing/Optimizing-Code.rst:57
 msgid ""
@@ -182,7 +182,7 @@ msgstr ""
 
 #: ../../../source/docs/optimizing/Optimizing-Code.rst:80
 msgid "Advanced compiler settings"
-msgstr ""
+msgstr "進階編譯器設定"
 
 #: ../../../source/docs/optimizing/Optimizing-Code.rst:82
 msgid ""
@@ -195,7 +195,7 @@ msgstr ""
 
 #: ../../../source/docs/optimizing/Optimizing-Code.rst:85
 msgid "WebAssembly"
-msgstr ""
+msgstr "WebAssembly"
 
 #: ../../../source/docs/optimizing/Optimizing-Code.rst:87
 msgid ""
@@ -320,7 +320,7 @@ msgstr ""
 
 #: ../../../source/docs/optimizing/Optimizing-Code.rst:134
 msgid "EVAL_CTORS"
-msgstr ""
+msgstr "EVAL_CTORS"
 
 #: ../../../source/docs/optimizing/Optimizing-Code.rst:136
 msgid ""

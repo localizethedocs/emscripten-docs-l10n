@@ -324,7 +324,7 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/emsdk.rst:182
 msgid "For example: ::"
-msgstr ""
+msgstr "例如：\\ ::"
 
 #: ../../../source/docs/tools_reference/emsdk.rst:186
 msgid ""

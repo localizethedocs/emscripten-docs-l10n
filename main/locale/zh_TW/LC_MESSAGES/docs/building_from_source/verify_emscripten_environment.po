@@ -32,7 +32,7 @@ msgstr ""
 
 #: ../../../source/docs/building_from_source/verify_emscripten_environment.rst:11
 msgid "Testing the environment"
-msgstr ""
+msgstr "測試環境"
 
 #: ../../../source/docs/building_from_source/verify_emscripten_environment.rst:14
 msgid "Sanity tests"
@@ -95,7 +95,7 @@ msgstr ""
 
 #: ../../../source/docs/building_from_source/verify_emscripten_environment.rst:55
 msgid "Run the full test suite"
-msgstr ""
+msgstr "執行完整的測試套件"
 
 #: ../../../source/docs/building_from_source/verify_emscripten_environment.rst:57
 msgid ""
@@ -106,7 +106,7 @@ msgstr ""
 
 #: ../../../source/docs/building_from_source/verify_emscripten_environment.rst:63
 msgid "Troubleshooting"
-msgstr ""
+msgstr "疑難排解"
 
 #: ../../../source/docs/building_from_source/verify_emscripten_environment.rst:65
 msgid ""
@@ -135,7 +135,7 @@ msgstr ""
 
 #: ../../../source/docs/building_from_source/verify_emscripten_environment.rst:88
 msgid "Other common problems"
-msgstr ""
+msgstr "其他常見問題"
 
 #: ../../../source/docs/building_from_source/verify_emscripten_environment.rst:90
 msgid "Other common problems to check for are:"

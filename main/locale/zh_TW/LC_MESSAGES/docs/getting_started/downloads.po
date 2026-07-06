@@ -98,7 +98,7 @@ msgstr ""
 
 #: ../../../source/docs/getting_started/downloads.rst:68
 msgid "Emsdk install targets"
-msgstr ""
+msgstr "Emsdk 安裝目標"
 
 #: ../../../source/docs/getting_started/downloads.rst:70
 msgid ""
@@ -198,7 +198,7 @@ msgstr ""
 
 #: ../../../source/docs/getting_started/downloads.rst:138
 msgid "Install *git*:"
-msgstr ""
+msgstr "安裝 *git*\\ ："
 
 #: ../../../source/docs/getting_started/downloads.rst:140
 msgid ""
@@ -292,7 +292,7 @@ msgstr ""
 
 #: ../../../source/docs/getting_started/downloads.rst:215
 msgid "Uninstalling the Emscripten SDK"
-msgstr ""
+msgstr "解除安裝 Emscripten SDK"
 
 #: ../../../source/docs/getting_started/downloads.rst:217
 msgid ""
@@ -322,7 +322,7 @@ msgstr ""
 
 #: ../../../source/docs/getting_started/downloads.rst:235
 msgid "Installation using unofficial packages"
-msgstr ""
+msgstr "使用非官方軟體包進行安裝"
 
 #: ../../../source/docs/getting_started/downloads.rst:237
 msgid ""

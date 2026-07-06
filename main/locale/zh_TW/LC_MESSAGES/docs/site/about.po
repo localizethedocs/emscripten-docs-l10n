@@ -200,6 +200,8 @@ msgid ""
 "`Sphinx Domains <http://sphinx-doc.org/domains.html>`_ (define and link to "
 "code items)."
 msgstr ""
+"`Sphinx 領域 <http://sphinx-doc.org/domains.html>`_\\ （定義與連結程式碼項"
+"目）。"
 
 #: ../../../source/docs/site/about.rst:117
 msgid "`Inline markup <http://sphinx-doc.org/markup/inline.html>`_."
@@ -339,7 +341,7 @@ msgstr ""
 
 #: ../../../source/docs/site/about.rst:204
 msgid "Site license"
-msgstr ""
+msgstr "網站授權條款"
 
 #: ../../../source/docs/site/about.rst:206
 msgid ""

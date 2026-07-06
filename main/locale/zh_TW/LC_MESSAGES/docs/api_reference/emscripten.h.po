@@ -403,7 +403,7 @@ msgstr ""
 
 #: ../../../source/docs/api_reference/emscripten.h.rst:344
 msgid "Browser Execution Environment"
-msgstr ""
+msgstr "瀏覽器執行環境"
 
 #: ../../../source/docs/api_reference/emscripten.h.rst:346
 msgid ""
@@ -963,7 +963,7 @@ msgstr ""
 
 #: ../../../source/docs/api_reference/emscripten.h.rst:548
 msgid "Asynchronous File System API"
-msgstr ""
+msgstr "異步檔案系統 API"
 
 #: ../../../source/docs/api_reference/emscripten.h.rst:551
 #: ../../../source/docs/api_reference/emscripten.h.rst:936
@@ -1704,7 +1704,7 @@ msgstr ""
 
 #: ../../../source/docs/api_reference/emscripten.h.rst:920
 msgid "For example: ::"
-msgstr ""
+msgstr "例如：\\ ::"
 
 #: ../../../source/docs/api_reference/emscripten.h.rst:924
 msgid ""
@@ -2552,7 +2552,7 @@ msgstr ""
 
 #: ../../../source/docs/api_reference/emscripten.h.rst:1438
 msgid "ABI functions"
-msgstr ""
+msgstr "API 函數"
 
 #: ../../../source/docs/api_reference/emscripten.h.rst:1440
 msgid ""

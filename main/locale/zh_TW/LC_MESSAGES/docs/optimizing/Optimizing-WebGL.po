@@ -19,7 +19,7 @@ msgstr ""
 
 #: ../../../source/docs/optimizing/Optimizing-WebGL.rst:5
 msgid "Optimizing WebGL"
-msgstr ""
+msgstr "最佳化 WebGL"
 
 #: ../../../source/docs/optimizing/Optimizing-WebGL.rst:7
 msgid ""
@@ -507,7 +507,7 @@ msgstr ""
 
 #: ../../../source/docs/optimizing/Optimizing-WebGL.rst:143
 msgid "Optimizing Load Times and Other Best Practices"
-msgstr ""
+msgstr "最佳化載入時間與其他最佳實踐"
 
 #: ../../../source/docs/optimizing/Optimizing-WebGL.rst:145
 msgid ""

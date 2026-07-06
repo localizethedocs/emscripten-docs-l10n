@@ -19,7 +19,7 @@ msgstr ""
 
 #: ../../../source/docs/compiling/GitLab.rst:5
 msgid "Building and Deploying on GitLab"
-msgstr ""
+msgstr "在 GitLab 上建置與部署"
 
 #: ../../../source/docs/compiling/GitLab.rst:7
 msgid ""

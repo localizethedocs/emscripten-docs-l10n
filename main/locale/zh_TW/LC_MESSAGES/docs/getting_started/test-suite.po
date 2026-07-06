@@ -49,7 +49,7 @@ msgstr ""
 
 #: ../../../source/docs/getting_started/test-suite.rst:24
 msgid "Running tests"
-msgstr ""
+msgstr "執行測試"
 
 #: ../../../source/docs/getting_started/test-suite.rst:26
 msgid ""

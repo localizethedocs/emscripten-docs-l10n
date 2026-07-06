@@ -19,7 +19,7 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:5
 msgid "Emscripten Compiler Settings"
-msgstr ""
+msgstr "Emscripten 編譯器設定"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:7
 msgid ""
@@ -61,11 +61,11 @@ msgstr ""
 #: ../../../source/docs/tools_reference/settings_reference.rst:2520
 #: ../../../source/docs/tools_reference/settings_reference.rst:2646
 msgid "Default value: 1"
-msgstr ""
+msgstr "默認值：1"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:33
 msgid "STACK_OVERFLOW_CHECK"
-msgstr ""
+msgstr "STACK_OVERFLOW_CHECK"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:35
 msgid ""
@@ -116,7 +116,7 @@ msgstr ""
 #: ../../../source/docs/tools_reference/settings_reference.rst:3263
 #: ../../../source/docs/tools_reference/settings_reference.rst:3298
 msgid "Default value: 0"
-msgstr ""
+msgstr "默認值：0"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:52
 msgid "CHECK_NULL_WRITES"
@@ -294,7 +294,7 @@ msgstr ""
 #: ../../../source/docs/tools_reference/settings_reference.rst:3417
 #: ../../../source/docs/tools_reference/settings_reference.rst:3429
 msgid "Default value: false"
-msgstr ""
+msgstr "默認值：false"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:75
 msgid "INVOKE_RUN"
@@ -359,7 +359,7 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:120
 msgid "Default value: 64*1024"
-msgstr ""
+msgstr "默認值：64*1024"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:125
 msgid "MALLOC"
@@ -424,7 +424,7 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:152
 msgid "Default value: \"dlmalloc\""
-msgstr ""
+msgstr "默認值：\"dlmalloc\""
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:157
 msgid "ABORTING_MALLOC"
@@ -480,7 +480,7 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:196
 msgid "Default value: 16777216"
-msgstr ""
+msgstr "默認值：16777216"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:201
 msgid "INITIAL_MEMORY"
@@ -510,7 +510,7 @@ msgstr ""
 #: ../../../source/docs/tools_reference/settings_reference.rst:338
 #: ../../../source/docs/tools_reference/settings_reference.rst:3049
 msgid "Default value: -1"
-msgstr ""
+msgstr "默認值：-1"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:219
 msgid "MAXIMUM_MEMORY"
@@ -554,11 +554,11 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:241
 msgid "Default value: 2147483648"
-msgstr ""
+msgstr "默認值：2147483648"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:246
 msgid "ALLOW_MEMORY_GROWTH"
-msgstr ""
+msgstr "ALLOW_MEMORY_GROWTH"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:248
 msgid ""
@@ -576,7 +576,7 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:266
 msgid "MEMORY_GROWTH_GEOMETRIC_STEP"
-msgstr ""
+msgstr "MEMORY_GROWTH_GEOMETRIC_STEP"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:268
 msgid ""
@@ -593,7 +593,7 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:277
 msgid "Default value: 0.20"
-msgstr ""
+msgstr "默認值：0.20"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:282
 msgid "MEMORY_GROWTH_GEOMETRIC_CAP"
@@ -609,7 +609,7 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:289
 msgid "Default value: 96*1024*1024"
-msgstr ""
+msgstr "默認值：96*1024*1024"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:294
 msgid "MEMORY_GROWTH_LINEAR_STEP"
@@ -691,7 +691,7 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:327
 msgid "INITIAL_TABLE"
-msgstr ""
+msgstr "INITIAL_TABLE"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:329
 msgid ""
@@ -728,11 +728,11 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:359
 msgid "Default value: 1024"
-msgstr ""
+msgstr "默認值：1024"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:364
 msgid "TABLE_BASE"
-msgstr ""
+msgstr "TABLE_BASE"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:366
 msgid ""
@@ -742,7 +742,7 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:374
 msgid "USE_CLOSURE_COMPILER"
-msgstr ""
+msgstr "USE_CLOSURE_COMPILER"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:376
 msgid "Whether closure compiling is being run on this output"
@@ -763,7 +763,7 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:393
 msgid "Default value: 'quiet'"
-msgstr ""
+msgstr "默認值：'quiet'"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:398
 msgid "IGNORE_CLOSURE_COMPILER_ERRORS"
@@ -873,7 +873,7 @@ msgstr ""
 #: ../../../source/docs/tools_reference/settings_reference.rst:494
 #: ../../../source/docs/tools_reference/settings_reference.rst:3257
 msgid "EXCEPTION_DEBUG"
-msgstr ""
+msgstr "EXCEPTION_DEBUG"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:496
 msgid "Print out exceptions in emscriptened code."
@@ -882,7 +882,7 @@ msgstr ""
 #: ../../../source/docs/tools_reference/settings_reference.rst:503
 #: ../../../source/docs/tools_reference/settings_reference.rst:3254
 msgid "LIBRARY_DEBUG"
-msgstr ""
+msgstr "LIBRARY_DEBUG"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:505
 msgid ""
@@ -894,7 +894,7 @@ msgstr ""
 #: ../../../source/docs/tools_reference/settings_reference.rst:516
 #: ../../../source/docs/tools_reference/settings_reference.rst:3258
 msgid "SYSCALL_DEBUG"
-msgstr ""
+msgstr "SYSCALL_DEBUG"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:518
 msgid ""
@@ -907,7 +907,7 @@ msgstr ""
 #: ../../../source/docs/tools_reference/settings_reference.rst:528
 #: ../../../source/docs/tools_reference/settings_reference.rst:3260
 msgid "SOCKET_DEBUG"
-msgstr ""
+msgstr "SOCKET_DEBUG"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:530
 msgid "Log out socket/network data transfer."
@@ -916,15 +916,15 @@ msgstr ""
 #: ../../../source/docs/tools_reference/settings_reference.rst:537
 #: ../../../source/docs/tools_reference/settings_reference.rst:3253
 msgid "DYLINK_DEBUG"
-msgstr ""
+msgstr "DYLINK_DEBUG"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:539
 msgid "Log dynamic linker information"
-msgstr ""
+msgstr "日誌動態連結器資訊"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:546
 msgid "FS_DEBUG"
-msgstr ""
+msgstr "FS_DEBUG"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:548
 msgid "Register file system callbacks using trackingDelegate in library_fs.js"
@@ -960,7 +960,7 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:579
 msgid "Default value: 'ws://'"
-msgstr ""
+msgstr "默認值：'ws://'"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:584
 msgid "PROXY_POSIX_SOCKETS"
@@ -985,12 +985,12 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:600
 msgid "Default value: 'binary'"
-msgstr ""
+msgstr "默認值：'binary'"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:605
 #: ../../../source/docs/tools_reference/settings_reference.rst:3256
 msgid "OPENAL_DEBUG"
-msgstr ""
+msgstr "OPENAL_DEBUG"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:607
 msgid "Print out debugging information from our OpenAL implementation."
@@ -999,7 +999,7 @@ msgstr ""
 #: ../../../source/docs/tools_reference/settings_reference.rst:614
 #: ../../../source/docs/tools_reference/settings_reference.rst:3259
 msgid "WEBSOCKET_DEBUG"
-msgstr ""
+msgstr "WEBSOCKET_DEBUG"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:616
 msgid ""
@@ -1010,7 +1010,7 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:625
 msgid "GL_ASSERTIONS"
-msgstr ""
+msgstr "GL_ASSERTIONS"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:627
 msgid ""
@@ -1020,7 +1020,7 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:635
 msgid "TRACE_WEBGL_CALLS"
-msgstr ""
+msgstr "TRACE_WEBGL_CALLS"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:637
 msgid ""
@@ -1030,7 +1030,7 @@ msgstr ""
 #: ../../../source/docs/tools_reference/settings_reference.rst:644
 #: ../../../source/docs/tools_reference/settings_reference.rst:3255
 msgid "GL_DEBUG"
-msgstr ""
+msgstr "GL_DEBUG"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:646
 msgid ""
@@ -1040,7 +1040,7 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:654
 msgid "GL_TESTING"
-msgstr ""
+msgstr "GL_TESTING"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:656
 msgid ""
@@ -1050,7 +1050,7 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:664
 msgid "GL_MAX_TEMP_BUFFER_SIZE"
-msgstr ""
+msgstr "GL_MAX_TEMP_BUFFER_SIZE"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:666
 msgid "How large GL emulation temp buffers are"
@@ -1058,11 +1058,11 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:668
 msgid "Default value: 2097152"
-msgstr ""
+msgstr "默認值：2097152"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:673
 msgid "GL_UNSAFE_OPTS"
-msgstr ""
+msgstr "GL_UNSAFE_OPTS"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:675
 msgid "Enables some potentially-unsafe optimizations in GL emulation code"
@@ -1079,7 +1079,7 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:691
 msgid "GL_EMULATE_GLES_VERSION_STRING_FORMAT"
-msgstr ""
+msgstr "GL_EMULATE_GLES_VERSION_STRING_FORMAT"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:693
 msgid ""
@@ -1094,7 +1094,7 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:706
 msgid "GL_EXTENSIONS_IN_PREFIXED_FORMAT"
-msgstr ""
+msgstr "GL_EXTENSIONS_IN_PREFIXED_FORMAT"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:708
 msgid ""
@@ -1105,7 +1105,7 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:717
 msgid "GL_SUPPORT_AUTOMATIC_ENABLE_EXTENSIONS"
-msgstr ""
+msgstr "GL_SUPPORT_AUTOMATIC_ENABLE_EXTENSIONS"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:719
 msgid ""
@@ -1116,7 +1116,7 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:728
 msgid "GL_SUPPORT_SIMPLE_ENABLE_EXTENSIONS"
-msgstr ""
+msgstr "GL_SUPPORT_SIMPLE_ENABLE_EXTENSIONS"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:730
 msgid ""
@@ -1135,7 +1135,7 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:748
 msgid "GL_TRACK_ERRORS"
-msgstr ""
+msgstr "GL_TRACK_ERRORS"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:750
 msgid ""
@@ -1146,7 +1146,7 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:759
 msgid "GL_SUPPORT_EXPLICIT_SWAP_CONTROL"
-msgstr ""
+msgstr "GL_SUPPORT_EXPLICIT_SWAP_CONTROL"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:761
 msgid ""
@@ -1156,7 +1156,7 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:769
 msgid "GL_POOL_TEMP_BUFFERS"
-msgstr ""
+msgstr "GL_POOL_TEMP_BUFFERS"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:771
 msgid ""
@@ -1170,7 +1170,7 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:783
 msgid "GL_EXPLICIT_UNIFORM_LOCATION"
-msgstr ""
+msgstr "GL_EXPLICIT_UNIFORM_LOCATION"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:785
 msgid ""
@@ -1180,7 +1180,7 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:793
 msgid "GL_EXPLICIT_UNIFORM_BINDING"
-msgstr ""
+msgstr "GL_EXPLICIT_UNIFORM_BINDING"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:795
 msgid ""
@@ -1190,7 +1190,7 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:803
 msgid "USE_WEBGL2"
-msgstr ""
+msgstr "USE_WEBGL2"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:805
 msgid "Deprecated. Pass -sMAX_WEBGL_VERSION=2 to target WebGL 2.0."
@@ -1198,7 +1198,7 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:812
 msgid "MIN_WEBGL_VERSION"
-msgstr ""
+msgstr "MIN_WEBGL_VERSION"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:814
 msgid ""
@@ -1209,7 +1209,7 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:823
 msgid "MAX_WEBGL_VERSION"
-msgstr ""
+msgstr "MAX_WEBGL_VERSION"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:825
 msgid ""
@@ -1249,7 +1249,7 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:863
 msgid "LEGACY_GL_EMULATION"
-msgstr ""
+msgstr "LEGACY_GL_EMULATION"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:865
 msgid ""
@@ -1260,7 +1260,7 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:874
 msgid "GL_FFP_ONLY"
-msgstr ""
+msgstr "GL_FFP_ONLY"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:876
 msgid ""
@@ -1273,7 +1273,7 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:887
 msgid "GL_PREINITIALIZED_CONTEXT"
-msgstr ""
+msgstr "GL_PREINITIALIZED_CONTEXT"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:889
 msgid ""
@@ -1298,7 +1298,7 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:912
 msgid "GL_DISABLE_HALF_FLOAT_EXTENSION_IF_BROKEN"
-msgstr ""
+msgstr "GL_DISABLE_HALF_FLOAT_EXTENSION_IF_BROKEN"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:914
 msgid ""
@@ -1312,7 +1312,7 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:924
 msgid "GL_WORKAROUND_SAFARI_GETCONTEXT_BUG"
-msgstr ""
+msgstr "GL_WORKAROUND_SAFARI_GETCONTEXT_BUG"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:926
 msgid ""
@@ -1326,7 +1326,7 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:937
 msgid "GL_ENABLE_GET_PROC_ADDRESS"
-msgstr ""
+msgstr "GL_ENABLE_GET_PROC_ADDRESS"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:939
 msgid ""
@@ -1393,7 +1393,7 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:986
 msgid "'web'     - the normal web environment."
-msgstr ""
+msgstr "'web'     - 普通的網頁環境。"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:987
 msgid ""
@@ -1411,7 +1411,7 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:991
 msgid "'node'    - Node.js."
-msgstr ""
+msgstr "'node'    - Node.js。"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:992
 msgid "'shell'   - a JS shell like d8, js, or jsc."
@@ -1458,7 +1458,7 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:1014
 msgid "Default value: ['web', 'webview', 'worker', 'node']"
-msgstr ""
+msgstr "默認值：['web', 'webview', 'worker', 'node']"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:1019
 msgid "LZ4"
@@ -1488,7 +1488,7 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:1039
 msgid "DISABLE_EXCEPTION_CATCHING"
-msgstr ""
+msgstr "DISABLE_EXCEPTION_CATCHING"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:1041
 msgid ""
@@ -1552,7 +1552,7 @@ msgstr ""
 #: ../../../source/docs/tools_reference/settings_reference.rst:3064
 #: ../../../source/docs/tools_reference/settings_reference.rst:3289
 msgid "Default value: []"
-msgstr ""
+msgstr "默認值：[]"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:1084
 msgid "DISABLE_EXCEPTION_THROWING"
@@ -1574,7 +1574,7 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:1107
 msgid "EXPORT_EXCEPTION_HANDLING_HELPERS"
-msgstr ""
+msgstr "EXPORT_EXCEPTION_HANDLING_HELPERS"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:1109
 msgid ""
@@ -1601,7 +1601,7 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:1123
 msgid "getCppExceptionTag: Returns the C++ tag"
-msgstr ""
+msgstr "getCppExceptionTag：回傳 C++ 標記"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:1124
 msgid ""
@@ -1674,7 +1674,7 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:1186
 msgid "ASYNCIFY_IMPORTS"
-msgstr ""
+msgstr "ASYNCIFY_IMPORTS"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:1188
 msgid ""
@@ -1688,7 +1688,7 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:1201
 msgid "ASYNCIFY_IGNORE_INDIRECT"
-msgstr ""
+msgstr "ASYNCIFY_IGNORE_INDIRECT"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:1203
 msgid ""
@@ -1711,7 +1711,7 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:1219
 msgid "Default value: 4096"
-msgstr ""
+msgstr "默認值：4096"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:1224
 msgid "ASYNCIFY_REMOVE"
@@ -1832,7 +1832,7 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:1320
 msgid "ASYNCIFY_DEBUG"
-msgstr ""
+msgstr "ASYNCIFY_DEBUG"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:1322
 msgid "Runtime debug logging from asyncify internals."
@@ -2441,10 +2441,12 @@ msgid ""
 "import init, { foo, bar } from \"./my_module.mjs\" await "
 "init(optionalArguments); foo(); bar();"
 msgstr ""
+"import init, { foo, bar } from \"./my_module.mjs\" await "
+"init(optionalArguments); foo(); bar();"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:1864
 msgid "EXPORT_ES6"
-msgstr ""
+msgstr "EXPORT_ES6"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:1866
 msgid ""
@@ -2458,7 +2460,7 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:1876
 msgid "EXPORT_NAME"
-msgstr ""
+msgstr "EXPORT_NAME"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:1878
 msgid ""
@@ -2468,11 +2470,11 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:1881
 msgid "Default value: 'Module'"
-msgstr ""
+msgstr "默認值：'Module'"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:1886
 msgid "DYNAMIC_EXECUTION"
-msgstr ""
+msgstr "DYNAMIC_EXECUTION"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:1888
 msgid ""
@@ -2556,7 +2558,7 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:1944
 msgid "USE_GLFW"
-msgstr ""
+msgstr "USE_GLFW"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:1946
 msgid ""
@@ -2676,7 +2678,7 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:2038
 msgid "Default value: \"\""
-msgstr ""
+msgstr "默認值：\"\""
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:2043
 msgid "WASM_ASYNC_COMPILATION"
@@ -2715,7 +2717,7 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:2077
 msgid "EMIT_PRODUCERS_SECTION"
-msgstr ""
+msgstr "EMIT_PRODUCERS_SECTION"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:2079
 msgid ""
@@ -2729,7 +2731,7 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:2092
 msgid "EMIT_EMSCRIPTEN_LICENSE"
-msgstr ""
+msgstr "EMIT_EMSCRIPTEN_LICENSE"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:2094
 msgid "Emits emscripten license info in the JS output."
@@ -2749,7 +2751,7 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:2115
 msgid "USE_SDL"
-msgstr ""
+msgstr "USE_SDL"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:2117
 msgid ""
@@ -2761,7 +2763,7 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:2131
 msgid "USE_SDL_GFX"
-msgstr ""
+msgstr "USE_SDL_GFX"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:2133
 msgid ""
@@ -2770,7 +2772,7 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:2142
 msgid "USE_SDL_IMAGE"
-msgstr ""
+msgstr "USE_SDL_IMAGE"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:2144
 msgid ""
@@ -2780,7 +2782,7 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:2153
 msgid "USE_SDL_TTF"
-msgstr ""
+msgstr "USE_SDL_TTF"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:2155
 msgid ""
@@ -2789,7 +2791,7 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:2164
 msgid "USE_SDL_NET"
-msgstr ""
+msgstr "USE_SDL_NET"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:2166
 msgid ""
@@ -2798,7 +2800,7 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:2175
 msgid "USE_ICU"
-msgstr ""
+msgstr "USE_ICU"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:2177
 msgid "1 = use icu from emscripten-ports Alternate syntax: --use-port=icu"
@@ -2806,7 +2808,7 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:2187
 msgid "USE_ZLIB"
-msgstr ""
+msgstr "USE_ZLIB"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:2189
 msgid "1 = use zlib from emscripten-ports Alternate syntax: --use-port=zlib"
@@ -2814,7 +2816,7 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:2199
 msgid "USE_BZIP2"
-msgstr ""
+msgstr "USE_BZIP2"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:2201
 msgid "1 = use bzip2 from emscripten-ports Alternate syntax: --use-port=bzip2"
@@ -2822,7 +2824,7 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:2211
 msgid "USE_GIFLIB"
-msgstr ""
+msgstr "USE_GIFLIB"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:2213
 msgid ""
@@ -2831,7 +2833,7 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:2223
 msgid "USE_LIBJPEG"
-msgstr ""
+msgstr "USE_LIBJPEG"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:2225
 msgid ""
@@ -2840,7 +2842,7 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:2235
 msgid "USE_LIBPNG"
-msgstr ""
+msgstr "USE_LIBPNG"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:2237
 msgid ""
@@ -2849,7 +2851,7 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:2247
 msgid "USE_REGAL"
-msgstr ""
+msgstr "USE_REGAL"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:2249
 msgid "1 = use Regal from emscripten-ports Alternate syntax: --use-port=regal"
@@ -2857,7 +2859,7 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:2259
 msgid "USE_BOOST_HEADERS"
-msgstr ""
+msgstr "USE_BOOST_HEADERS"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:2261
 msgid ""
@@ -2867,7 +2869,7 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:2271
 msgid "USE_BULLET"
-msgstr ""
+msgstr "USE_BULLET"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:2273
 msgid ""
@@ -2876,7 +2878,7 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:2283
 msgid "USE_VORBIS"
-msgstr ""
+msgstr "USE_VORBIS"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:2285
 msgid ""
@@ -2885,7 +2887,7 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:2295
 msgid "USE_OGG"
-msgstr ""
+msgstr "USE_OGG"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:2297
 msgid "1 = use ogg from emscripten-ports Alternate syntax: --use-port=ogg"
@@ -2893,7 +2895,7 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:2307
 msgid "USE_MPG123"
-msgstr ""
+msgstr "USE_MPG123"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:2309
 msgid ""
@@ -2902,7 +2904,7 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:2319
 msgid "USE_FREETYPE"
-msgstr ""
+msgstr "USE_FREETYPE"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:2321
 msgid ""
@@ -2911,7 +2913,7 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:2331
 msgid "USE_SDL_MIXER"
-msgstr ""
+msgstr "USE_SDL_MIXER"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:2333
 msgid ""
@@ -2921,7 +2923,7 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:2343
 msgid "USE_HARFBUZZ"
-msgstr ""
+msgstr "USE_HARFBUZZ"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:2345
 msgid ""
@@ -2930,7 +2932,7 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:2355
 msgid "USE_COCOS2D"
-msgstr ""
+msgstr "USE_COCOS2D"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:2357
 msgid ""
@@ -2939,7 +2941,7 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:2367
 msgid "USE_MODPLUG"
-msgstr ""
+msgstr "USE_MODPLUG"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:2369
 msgid ""
@@ -2949,7 +2951,7 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:2379
 msgid "SDL2_IMAGE_FORMATS"
-msgstr ""
+msgstr "SDL2_IMAGE_FORMATS"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:2381
 msgid ""
@@ -2959,7 +2961,7 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:2391
 msgid "SDL2_MIXER_FORMATS"
-msgstr ""
+msgstr "SDL2_MIXER_FORMATS"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:2393
 msgid "Formats to support in SDL2_mixer. Valid values: ogg, mp3, mod, mid"
@@ -2967,11 +2969,11 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:2397
 msgid "Default value: [\"ogg\"]"
-msgstr ""
+msgstr "默認值：[\"ogg\"]"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:2402
 msgid "USE_SQLITE3"
-msgstr ""
+msgstr "USE_SQLITE3"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:2404
 msgid ""
@@ -3029,7 +3031,7 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:2465
 msgid "WEBAUDIO_DEBUG"
-msgstr ""
+msgstr "WEBAUDIO_DEBUG"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:2467
 msgid "If true, enables deep debugging of Web Audio backend."
@@ -3138,7 +3140,7 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:2571
 msgid "ALLOW_BLOCKING_ON_MAIN_THREAD"
-msgstr ""
+msgstr "ALLOW_BLOCKING_ON_MAIN_THREAD"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:2573
 msgid ""
@@ -3152,7 +3154,7 @@ msgstr ""
 #: ../../../source/docs/tools_reference/settings_reference.rst:2585
 #: ../../../source/docs/tools_reference/settings_reference.rst:3252
 msgid "PTHREADS_DEBUG"
-msgstr ""
+msgstr "PTHREADS_DEBUG"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:2587
 msgid "If true, add in debug traces for diagnosing pthreads related issues."
@@ -3160,7 +3162,7 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:2594
 msgid "EVAL_CTORS"
-msgstr ""
+msgstr "EVAL_CTORS"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:2596
 msgid ""
@@ -3229,7 +3231,7 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:2651
 msgid "EMBIND_STD_STRING_IS_UTF8"
-msgstr ""
+msgstr "EMBIND_STD_STRING_IS_UTF8"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:2653
 msgid ""
@@ -3274,7 +3276,7 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:2691
 msgid "Default value: \"#canvas\""
-msgstr ""
+msgstr "默認值：\"#canvas\""
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:2696
 msgid "OFFSCREEN_FRAMEBUFFER"
@@ -3316,7 +3318,7 @@ msgstr ""
 #: ../../../source/docs/tools_reference/settings_reference.rst:2730
 #: ../../../source/docs/tools_reference/settings_reference.rst:3261
 msgid "FETCH_DEBUG"
-msgstr ""
+msgstr "FETCH_DEBUG"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:2732
 msgid "If nonzero, prints out debugging information in library_fetch.js"
@@ -3469,7 +3471,7 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:2864
 msgid "Default value: 79"
-msgstr ""
+msgstr "默認值：79"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:2869
 msgid "MIN_SAFARI_VERSION"
@@ -3490,7 +3492,7 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:2882
 msgid "Default value: 150000"
-msgstr ""
+msgstr "默認值：150000"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:2887
 msgid "MIN_CHROME_VERSION"
@@ -3508,7 +3510,7 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:2898
 msgid "Default value: 85"
-msgstr ""
+msgstr "默認值：85"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:2903
 msgid "MIN_NODE_VERSION"
@@ -3526,7 +3528,7 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:2912
 msgid "Default value: 180300"
-msgstr ""
+msgstr "默認值：180300"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:2917
 msgid "MINIMAL_RUNTIME"
@@ -3731,7 +3733,7 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:3098
 msgid "Default value: ''"
-msgstr ""
+msgstr "默認值：''"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:3103
 msgid "ERROR_ON_WASM_CHANGES_AFTER_LINK"
@@ -3849,7 +3851,7 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:3207
 msgid "ALLOW_UNIMPLEMENTED_SYSCALLS"
-msgstr ""
+msgstr "ALLOW_UNIMPLEMENTED_SYSCALLS"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:3209
 msgid ""
@@ -3886,7 +3888,7 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:3244
 msgid "RUNTIME_DEBUG"
-msgstr ""
+msgstr "RUNTIME_DEBUG"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:3246
 msgid ""
@@ -4039,7 +4041,7 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:3404
 msgid "Default value: ['*']"
-msgstr ""
+msgstr "默認值：['*']"
 
 #: ../../../source/docs/tools_reference/settings_reference.rst:3409
 msgid "FAKE_DYLIBS"

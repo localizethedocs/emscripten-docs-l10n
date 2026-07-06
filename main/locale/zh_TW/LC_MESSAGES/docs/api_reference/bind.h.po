@@ -199,7 +199,7 @@ msgstr ""
 
 #: ../../../source/docs/api_reference/bind.h.rst:344
 msgid "Classes"
-msgstr ""
+msgstr "類別"
 
 #: ../../../source/docs/api_reference/bind.h.rst:357
 msgid "A typedef of ``T``, the typename of the templated type for the class."

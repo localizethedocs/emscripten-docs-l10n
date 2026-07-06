@@ -19,7 +19,7 @@ msgstr ""
 
 #: ../../../source/docs/building_from_source/index.rst:5
 msgid "Building Emscripten from Source"
-msgstr ""
+msgstr "從來源碼建置 Emscripten"
 
 #: ../../../source/docs/building_from_source/index.rst:7
 msgid ""
@@ -62,7 +62,7 @@ msgstr ""
 
 #: ../../../source/docs/building_from_source/index.rst:32
 msgid "Building LLVM"
-msgstr ""
+msgstr "建置 LLVM"
 
 #: ../../../source/docs/building_from_source/index.rst:34
 msgid ""
@@ -95,7 +95,7 @@ msgstr ""
 
 #: ../../../source/docs/building_from_source/index.rst:54
 msgid "Building Binaryen"
-msgstr ""
+msgstr "建置 Binaryen"
 
 #: ../../../source/docs/building_from_source/index.rst:56
 msgid ""

@@ -106,7 +106,7 @@ msgstr ""
 
 #: ../../../source/docs/api_reference/advanced-apis.rst:66
 msgid "Advanced File System API"
-msgstr ""
+msgstr "進階檔案系統 API"
 
 #: ../../../source/docs/api_reference/advanced-apis.rst:68
 msgid ""
@@ -132,20 +132,20 @@ msgstr ""
 
 #: ../../../source/docs/api_reference/advanced-apis.rst:116
 msgid "``rs``"
-msgstr ""
+msgstr "``rs``"
 
 #: ../../../source/docs/api_reference/advanced-apis.rst:117
 msgid "``xw``"
-msgstr ""
+msgstr "``xw``"
 
 #: ../../../source/docs/api_reference/advanced-apis.rst:118
 msgid "``xw+``"
-msgstr ""
+msgstr "``xw+``"
 
 #: ../../../source/docs/api_reference/advanced-apis.rst:119
 msgid "``xa``"
-msgstr ""
+msgstr "``xa``"
 
 #: ../../../source/docs/api_reference/advanced-apis.rst:120
 msgid "``xa+``"
-msgstr ""
+msgstr "``xa+``"

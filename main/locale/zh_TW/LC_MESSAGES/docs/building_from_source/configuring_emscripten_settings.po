@@ -43,7 +43,7 @@ msgstr ""
 
 #: ../../../source/docs/building_from_source/configuring_emscripten_settings.rst:20
 msgid "Creating the compiler configuration file"
-msgstr ""
+msgstr "建立編譯器組態檔"
 
 #: ../../../source/docs/building_from_source/configuring_emscripten_settings.rst:22
 msgid ""
@@ -58,7 +58,7 @@ msgstr ""
 
 #: ../../../source/docs/building_from_source/configuring_emscripten_settings.rst:27
 msgid "Enter the command:"
-msgstr ""
+msgstr "輸入命令："
 
 #: ../../../source/docs/building_from_source/configuring_emscripten_settings.rst:33
 msgid ""
@@ -81,7 +81,7 @@ msgstr ""
 
 #: ../../../source/docs/building_from_source/configuring_emscripten_settings.rst:45
 msgid "Locating the compiler configuration file (.emscripten)"
-msgstr ""
+msgstr "定位編譯器組態檔（.emscripten）"
 
 #: ../../../source/docs/building_from_source/configuring_emscripten_settings.rst:47
 msgid ""
@@ -110,7 +110,7 @@ msgstr ""
 
 #: ../../../source/docs/building_from_source/configuring_emscripten_settings.rst:60
 msgid "Compiler configuration file-format"
-msgstr ""
+msgstr "編譯器組態檔案格式"
 
 #: ../../../source/docs/building_from_source/configuring_emscripten_settings.rst:62
 msgid ""
@@ -137,7 +137,7 @@ msgstr ""
 
 #: ../../../source/docs/building_from_source/configuring_emscripten_settings.rst:74
 msgid "Editing the compiler configuration file"
-msgstr ""
+msgstr "編輯編譯器組態檔"
 
 #: ../../../source/docs/building_from_source/configuring_emscripten_settings.rst:76
 msgid ""
@@ -154,7 +154,7 @@ msgstr ""
 
 #: ../../../source/docs/building_from_source/configuring_emscripten_settings.rst:87
 msgid "Use forward slashes!"
-msgstr ""
+msgstr "請使用正斜線！"
 
 #: ../../../source/docs/building_from_source/configuring_emscripten_settings.rst:89
 msgid ""

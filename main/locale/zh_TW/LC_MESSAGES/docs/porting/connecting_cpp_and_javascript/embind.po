@@ -149,7 +149,7 @@ msgstr ""
 
 #: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:113
 msgid "Classes"
-msgstr ""
+msgstr "類別"
 
 #: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:115
 msgid ""
