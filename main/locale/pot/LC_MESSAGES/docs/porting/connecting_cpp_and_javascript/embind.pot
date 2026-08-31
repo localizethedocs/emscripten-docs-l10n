@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Emscripten main\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-18 07:11+0000\n"
+"POT-Creation-Date: 2026-08-31 15:43+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -860,165 +860,164 @@ msgstr ""
 msgid "First consider the JavaScript below, which shows how to use the API:"
 msgstr ""
 
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1083
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1080
 msgid "The code can be transliterated to C++ using ``val``, as shown below:"
 msgstr ""
 
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1115
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1108
 msgid ""
 "First we use :cpp:func:`~emscripten::val::global` to get the symbol for the "
-"global ``AudioContext`` object (or ``webkitAudioContext`` if that does not "
-"exist). We then use :cpp:func:`~emscripten::val::new_` to create the "
-"context, and from this context we can create an ``oscillator``, :cpp:func:"
-"`~emscripten::val::set` its properties (again using ``val``) and then play "
-"the tone."
+"global ``AudioContext`` object.  We then use :cpp:func:`~emscripten::val::"
+"new_` to create the context, and from this context we can create an "
+"``oscillator``, :cpp:func:`~emscripten::val::set` its properties (again "
+"using ``val``) and then play the tone."
 msgstr ""
 
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1122
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1114
 msgid "The example can be compiled on the Linux/macOS terminal with::"
 msgstr ""
 
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1128
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1120
 msgid "Built-in type conversions"
 msgstr ""
 
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1130
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1122
 msgid ""
 "Out of the box, *embind* provides converters for many standard C++ types:"
 msgstr ""
 
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1133
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1125
 msgid "C++ type"
 msgstr ""
 
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1133
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1125
 msgid "JavaScript type"
 msgstr ""
 
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1135
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1127
 msgid "``void``"
 msgstr ""
 
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1135
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1127
 msgid "undefined"
 msgstr ""
 
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1137
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1129
 msgid "``bool``"
 msgstr ""
 
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1137
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1129
 msgid "true or false"
 msgstr ""
 
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1139
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1131
 msgid "``char``"
 msgstr ""
 
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1131
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1133
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1135
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1137
 #: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1139
 #: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1141
 #: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1143
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1145
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1147
 #: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1149
 #: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1151
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1157
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1159
 msgid "Number"
 msgstr ""
 
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1141
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1133
 msgid "``signed char``"
 msgstr ""
 
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1143
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1135
 msgid "``unsigned char``"
 msgstr ""
 
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1145
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1137
 msgid "``short``"
 msgstr ""
 
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1147
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1139
 msgid "``unsigned short``"
 msgstr ""
 
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1149
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1141
 msgid "``int``"
 msgstr ""
 
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1151
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1143
 msgid "``unsigned int``"
 msgstr ""
 
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1153
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1145
 msgid "``long``"
 msgstr ""
 
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1153
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1155
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1145
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1147
 msgid "Number, or BigInt*"
 msgstr ""
 
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1155
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1147
 msgid "``unsigned long``"
 msgstr ""
 
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1157
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1149
 msgid "``float``"
 msgstr ""
 
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1159
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1151
 msgid "``double``"
 msgstr ""
 
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1161
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1153
 msgid "``int64_t``"
 msgstr ""
 
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1161
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1163
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1153
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1155
 msgid "BigInt**"
 msgstr ""
 
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1163
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1155
 msgid "``uint64_t``"
 msgstr ""
 
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1165
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1157
 msgid "``std::string``"
 msgstr ""
 
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1165
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1157
 msgid "ArrayBuffer, Uint8Array, Uint8ClampedArray, Int8Array, or String"
 msgstr ""
 
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1167
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1159
 msgid "``std::wstring``"
 msgstr ""
 
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1167
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1159
 msgid "String (UTF-16 code units)"
 msgstr ""
 
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1169
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1161
 msgid "``emscripten::val``"
 msgstr ""
 
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1169
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1161
 msgid "anything"
 msgstr ""
 
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1172
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1164
 msgid "\\*BigInt when MEMORY64 is used, Number otherwise."
 msgstr ""
 
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1174
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1166
 msgid ""
 "\\*\\*Requires BigInt support to be enabled with the `-sWASM_BIGINT` flag."
 msgstr ""
 
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1176
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1168
 msgid ""
 "For convenience, *embind* provides factory functions to register ``std::"
 "vector<T, class Allocator=std::allocator<T>>`` (:cpp:func:"
@@ -1028,30 +1027,30 @@ msgid ""
 "types:"
 msgstr ""
 
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1188
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1180
 msgid "A full example is shown below:"
 msgstr ""
 
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1227
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1219
 msgid "The following JavaScript can be used to interact with the above C++."
 msgstr ""
 
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1281
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1273
 msgid "TypeScript Definitions"
 msgstr ""
 
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1284
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1276
 msgid "Generating"
 msgstr ""
 
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1286
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1278
 msgid ""
 "Embind supports generating TypeScript definition files from :cpp:func:"
 "`EMSCRIPTEN_BINDINGS` blocks. To generate **.d.ts** files invoke *emcc* with "
 "the :ref:`embind-emit-tsd <emcc-emit-tsd>` option::"
 msgstr ""
 
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1292
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1284
 msgid ""
 "Running this command will build the program with an instrumented version of "
 "embind that is then run in *node* to generate the definition files. Not all "
@@ -1060,11 +1059,11 @@ msgid ""
 "and `embind_tsgen.d.ts`_."
 msgstr ""
 
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1299
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1291
 msgid "Custom ``val`` Definitions"
 msgstr ""
 
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1301
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1293
 msgid ""
 ":cpp:class:`emscripten::val` types are mapped to TypeScript's `any` type by "
 "default, which does not provide much useful information for API's that "
@@ -1073,36 +1072,36 @@ msgid ""
 "in combination with :cpp:class:`emscripten::register_type`. An example below:"
 msgstr ""
 
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1307
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1299
 msgid "Two registration forms are supported:"
 msgstr ""
 
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1309
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1301
 msgid ""
 "Single parameter: ``register_type<T>(definition)`` — the provided string is "
 "inlined"
 msgstr ""
 
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1310
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1302
 msgid "everywhere the type appears."
 msgstr ""
 
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1311
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1303
 msgid ""
 "Two parameters: ``register_type<T>(name, definition)`` — creates a named "
 "TypeScript"
 msgstr ""
 
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1312
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1304
 msgid ""
 "type alias (``type name = definition;``) and uses ``name`` at call sites."
 msgstr ""
 
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1333
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1325
 msgid "``nonnull`` Pointers"
 msgstr ""
 
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1335
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1327
 msgid ""
 "C++ functions that return pointers generate TS definitions with "
 "``<SomeClass> | null`` to allow ``nullptr`` by default. If the C++ function "
@@ -1111,18 +1110,18 @@ msgid ""
 "null`` from TS. This avoids having to handle the ``null`` case in TS."
 msgstr ""
 
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1342
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1334
 msgid "Performance"
 msgstr ""
 
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1344
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1336
 msgid ""
 "At time of writing there has been no *comprehensive* *embind* performance "
 "testing, either against standard benchmarks, or relative to :ref:`WebIDL-"
 "Binder`."
 msgstr ""
 
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1348
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/embind.rst:1340
 msgid ""
 "The call overhead for simple functions has been measured at about 200 ns. "
 "While there is room for further optimisation, so far its performance in real-"

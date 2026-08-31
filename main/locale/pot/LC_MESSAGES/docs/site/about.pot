@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Emscripten main\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-18 07:11+0000\n"
+"POT-Creation-Date: 2026-08-31 15:43+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -96,209 +96,161 @@ msgstr ""
 
 #: ../../../source/docs/site/about.rst:44
 msgid ""
-"The site is published to the **emscripten-core/emscripten-site** *gh-pages* "
-"branch (GitHub pages)."
+"The site is published automatically to the `emscripten-site <https://github."
+"com/kripken/emscripten-site>`_ *gh-pages* branch (GitHub pages)."
 msgstr ""
 
-#: ../../../source/docs/site/about.rst:46
-msgid "Remember to update the :ref:`about-build-versions` for *public* builds."
-msgstr ""
-
-#: ../../../source/docs/site/about.rst:49
+#: ../../../source/docs/site/about.rst:48
 msgid "Installing Sphinx"
 msgstr ""
 
-#: ../../../source/docs/site/about.rst:51
+#: ../../../source/docs/site/about.rst:50
 msgid ""
 "This site requires a specific version of Sphinx to be installed. Run the "
 "following command to ensure you have the correct version installed: ::"
 msgstr ""
 
-#: ../../../source/docs/site/about.rst:60
+#: ../../../source/docs/site/about.rst:59
 msgid "Site builds"
 msgstr ""
 
-#: ../../../source/docs/site/about.rst:62
+#: ../../../source/docs/site/about.rst:61
 msgid ""
-"The site can be built from source on Ubuntu and Windows by navigating to the "
-"*/emscripten/site* directory and using the command: ::"
+"The site can be built from source by running ``make html`` from source the "
+"``emscripten/site`` directory."
 msgstr ""
 
-#: ../../../source/docs/site/about.rst:71
-msgid "SDK Builds"
-msgstr ""
-
-#: ../../../source/docs/site/about.rst:73
-msgid ""
-"SDK builds are virtually identical to :ref:`about-site-builds`. The main "
-"difference is that on SDK builds the :ref:`home page <home-page>` has a "
-"clear notification that it is an SDK build."
-msgstr ""
-
-#: ../../../source/docs/site/about.rst:75
-msgid ""
-"SDK builds are enabled by enabling the ``sdkbuild`` tag. This is done "
-"through the ``SPHINXOPTS`` environment variable: ::"
-msgstr ""
-
-#: ../../../source/docs/site/about.rst:87
-msgid "Build version"
-msgstr ""
-
-#: ../../../source/docs/site/about.rst:89
-msgid ""
-"The documentation version should match the Emscripten version for the "
-"current build. For a general site build this will be the latest tagged "
-"release as defined in `Emscripten version <https://github.com/emscripten-"
-"core/emscripten/blob/main/emscripten-version.txt>`_. For an SDK build it "
-"will be the Emscripten version for the SDK."
-msgstr ""
-
-#: ../../../source/docs/site/about.rst:91
-msgid ""
-"The version and release information is used in a few places in the "
-"documentation, for example :ref:`emscripten-authors`."
-msgstr ""
-
-#: ../../../source/docs/site/about.rst:93
-msgid ""
-"The version information is defined in **conf.py** — see variables "
-"``version`` and ``release``. These variables can be overridden by setting "
-"new values in the ``SPHINXOPTS`` environment variable. For example, to "
-"update the ``release`` variable through the command line on Windows: ::"
-msgstr ""
-
-#: ../../../source/docs/site/about.rst:106
+#: ../../../source/docs/site/about.rst:67
 msgid "Writing and updating articles"
 msgstr ""
 
-#: ../../../source/docs/site/about.rst:108
+#: ../../../source/docs/site/about.rst:69
 msgid ""
 "Sphinx is `well documented <http://sphinx-doc.org/latest/index.html>`_. This "
 "section only attempts to highlight specific styles and features used on this "
 "site."
 msgstr ""
 
-#: ../../../source/docs/site/about.rst:110
+#: ../../../source/docs/site/about.rst:71
 msgid ""
 "The :ref:`building-the-site` section explains how to find the sources for "
 "articles and build the site."
 msgstr ""
 
-#: ../../../source/docs/site/about.rst:113
+#: ../../../source/docs/site/about.rst:74
 msgid ""
 "Site content is written using :term:`reStructured text`. We recommend you "
 "read the following articles to understand the syntax:"
 msgstr ""
 
-#: ../../../source/docs/site/about.rst:115
+#: ../../../source/docs/site/about.rst:76
 msgid "`reStructured text primer <http://sphinx-doc.org/rest.html>`_."
 msgstr ""
 
-#: ../../../source/docs/site/about.rst:116
+#: ../../../source/docs/site/about.rst:77
 msgid ""
 "`Sphinx Domains <http://sphinx-doc.org/domains.html>`_ (define and link to "
 "code items)."
 msgstr ""
 
-#: ../../../source/docs/site/about.rst:117
+#: ../../../source/docs/site/about.rst:78
 msgid "`Inline markup <http://sphinx-doc.org/markup/inline.html>`_."
 msgstr ""
 
-#: ../../../source/docs/site/about.rst:122
+#: ../../../source/docs/site/about.rst:83
 msgid "Style guide"
 msgstr ""
 
-#: ../../../source/docs/site/about.rst:124
+#: ../../../source/docs/site/about.rst:85
 msgid ""
 "This section has a few very brief recommendations to help authors use common "
 "style."
 msgstr ""
 
-#: ../../../source/docs/site/about.rst:126
+#: ../../../source/docs/site/about.rst:87
 msgid ""
 "In terms of contributions, we value your coding and content writing far more "
 "than perfect prose! Just do your best, and then :ref:`ask for editorial "
 "review <contact>`."
 msgstr ""
 
-#: ../../../source/docs/site/about.rst:128
+#: ../../../source/docs/site/about.rst:89
 msgid "**Spelling:** Where possible use US-English spelling."
 msgstr ""
 
-#: ../../../source/docs/site/about.rst:130
+#: ../../../source/docs/site/about.rst:91
 msgid ""
 "**Avoid idiomatic expressions**: These can be particularly confusing to non-"
 "native speakers (for example \"putting your foot in your mouth\" actually "
 "means \"saying something embarrassing\")."
 msgstr ""
 
-#: ../../../source/docs/site/about.rst:132
+#: ../../../source/docs/site/about.rst:93
 msgid "**Emphasis:**"
 msgstr ""
 
-#: ../../../source/docs/site/about.rst:134
+#: ../../../source/docs/site/about.rst:95
 msgid ""
 "**Bold** : use for file names, and UI/menu instructions (for example: "
 "\"Press **OK** to do something\")."
 msgstr ""
 
-#: ../../../source/docs/site/about.rst:135
+#: ../../../source/docs/site/about.rst:96
 msgid ""
 "*Italic* : use for tool names - e.g. *Clang*, *emcc*, *Closure Compiler*."
 msgstr ""
 
-#: ../../../source/docs/site/about.rst:136
+#: ../../../source/docs/site/about.rst:97
 msgid ""
 "``monotype`` : use for inline code (where you can't link to the API "
 "reference) and for demonstrating tool command line options."
 msgstr ""
 
-#: ../../../source/docs/site/about.rst:138
+#: ../../../source/docs/site/about.rst:99
 msgid "Other than the above rules, emphasis should be used sparingly."
 msgstr ""
 
-#: ../../../source/docs/site/about.rst:141
+#: ../../../source/docs/site/about.rst:102
 msgid ""
 "**Lists**: Use a colon on the lead-in to the list where appropriate. "
 "Capitalize the first letter and use a full-stop for each item."
 msgstr ""
 
-#: ../../../source/docs/site/about.rst:145
+#: ../../../source/docs/site/about.rst:106
 msgid "How to link to a document or heading"
 msgstr ""
 
-#: ../../../source/docs/site/about.rst:147
+#: ../../../source/docs/site/about.rst:108
 msgid ""
 "To link to a page, first define a globally unique reference before the page "
 "title (e.g. ``_my-page-reference``) then link to it using the `ref <http://"
 "sphinx-doc.org/markup/inline.html#ref-role>`_ role as shown: ::"
 msgstr ""
 
-#: ../../../source/docs/site/about.rst:160
+#: ../../../source/docs/site/about.rst:121
 msgid ""
 "This is a better approach than linking to documents using the *:doc:* role, "
 "because the links do not get broken if the articles are moved."
 msgstr ""
 
-#: ../../../source/docs/site/about.rst:162
+#: ../../../source/docs/site/about.rst:123
 msgid ""
 "This approach is also recommended for linking to arbitrary headings in the "
 "site."
 msgstr ""
 
-#: ../../../source/docs/site/about.rst:164
+#: ../../../source/docs/site/about.rst:125
 msgid ""
 "There are a number of other roles that are useful for linking — including "
 "`Sphinx Domains <http://sphinx-doc.org/domains.html>`_ for linking to code "
 "items, and **term** for linking to glossary terms."
 msgstr ""
 
-#: ../../../source/docs/site/about.rst:169
+#: ../../../source/docs/site/about.rst:130
 msgid "Recommended section/heading markup"
 msgstr ""
 
-#: ../../../source/docs/site/about.rst:171
+#: ../../../source/docs/site/about.rst:132
 msgid ""
 "reStructured text `defines <http://sphinx-doc.org/rest.html#sections>`_ "
 "section headings using a separate line of punctuation characters after (and "
@@ -306,7 +258,7 @@ msgid ""
 "as long as the heading. For example: ::"
 msgstr ""
 
-#: ../../../source/docs/site/about.rst:176
+#: ../../../source/docs/site/about.rst:137
 msgid ""
 "Different punctuation characters are used to specify nested sections. "
 "Although the system does not mandate which punctuation character is used for "
@@ -314,11 +266,11 @@ msgid ""
 "levels are: ::"
 msgstr ""
 
-#: ../../../source/docs/site/about.rst:196
+#: ../../../source/docs/site/about.rst:157
 msgid "Working in markdown"
 msgstr ""
 
-#: ../../../source/docs/site/about.rst:198
+#: ../../../source/docs/site/about.rst:159
 msgid ""
 "New articles may be authored and discussed on the `wiki <https://github.com/"
 "emscripten-core/emscripten/wiki>`_ using Markdown syntax before being "
@@ -327,7 +279,7 @@ msgid ""
 "pandoc/try/?text=&from=markdown_github&to=rst>`_."
 msgstr ""
 
-#: ../../../source/docs/site/about.rst:200
+#: ../../../source/docs/site/about.rst:161
 msgid ""
 "The *get_wiki.py* tool (**/site/source/get_wiki.py**) can be used to "
 "automate getting a snapshot of the wiki. It clones the wiki and calls "
@@ -337,11 +289,11 @@ msgid ""
 "in the API Reference."
 msgstr ""
 
-#: ../../../source/docs/site/about.rst:204
+#: ../../../source/docs/site/about.rst:165
 msgid "Site license"
 msgstr ""
 
-#: ../../../source/docs/site/about.rst:206
+#: ../../../source/docs/site/about.rst:167
 msgid ""
 "The site is licensed under the same :ref:`emscripten-license` as the rest of "
 "Emscripten. Contributors to the site should add themselves to :ref:"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Emscripten main\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-18 07:11+0000\n"
+"POT-Creation-Date: 2026-08-31 15:43+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -31,7 +31,7 @@ msgid ""
 "convenience functions."
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:9
+#: ../../../source/docs/api_reference/preamble.js.rst:14
 msgid ""
 "We call this \"``preamble.js``\" because Emscripten's output JS, at a high "
 "level, contains the preamble (from ``src/preamble.js``), then the compiled "
@@ -40,7 +40,7 @@ msgid ""
 "running the application.)"
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:11
+#: ../../../source/docs/api_reference/preamble.js.rst:20
 msgid ""
 "The preamble code is included in the output JS, which is then optimized all "
 "together by the compiler, together with any ``--pre-js`` and ``--post-js`` "
@@ -49,7 +49,7 @@ msgid ""
 "compiler will see that you need them, and not remove them as being unused."
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:13
+#: ../../../source/docs/api_reference/preamble.js.rst:26
 msgid ""
 "If you want to call preamble methods from somewhere the compiler can't see, "
 "like another script tag on the HTML, you need to **export** them. To do so, "
@@ -59,7 +59,7 @@ msgid ""
 "``Module.ccall``, for example)."
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:15
+#: ../../../source/docs/api_reference/preamble.js.rst:33
 msgid ""
 "If you try to use ``Module.ccall`` or another runtime method without "
 "exporting it, you will get an error. In a build with ``-sASSERTIONS``, the "
@@ -68,19 +68,19 @@ msgid ""
 "useful to build with assertions."
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:22
+#: ../../../source/docs/api_reference/preamble.js.rst:44
 msgid "Table of Contents"
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:25
+#: ../../../source/docs/api_reference/preamble.js.rst:47
 msgid "Calling compiled C functions from JavaScript"
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:29
+#: ../../../source/docs/api_reference/preamble.js.rst:51
 msgid "Call a compiled C function from JavaScript."
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:31
+#: ../../../source/docs/api_reference/preamble.js.rst:53
 msgid ""
 "The function executes a compiled C function from JavaScript and returns the "
 "result. C++ name mangling means that \"normal\" C++ functions cannot be "
@@ -88,7 +88,7 @@ msgid ""
 "function defined with ``extern \"C\"``."
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:33
+#: ../../../source/docs/api_reference/preamble.js.rst:58
 msgid ""
 "``returnType`` and ``argTypes`` let you specify the types of parameters and "
 "the return value. The possible types are ``\"number\"``, ``\"string\"``, "
@@ -103,21 +103,21 @@ msgid ""
 "provide a pointer here (as a ``\"number\"``, as pointers are just numbers)."
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:48
+#: ../../../source/docs/api_reference/preamble.js.rst:83
 msgid ""
 "``ccall`` uses the C stack for temporary values. If you pass a string then "
 "it is only \"alive\" until the call is complete. If the code being called "
 "saves the pointer to be used later, it may point to invalid data."
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:49
+#: ../../../source/docs/api_reference/preamble.js.rst:86
 msgid ""
 "If you need a string to live forever, you can create it, for example, using "
 "``_malloc`` and :js:func:`stringToUTF8`. However, you must later delete it "
 "manually!"
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:50
+#: ../../../source/docs/api_reference/preamble.js.rst:89
 msgid ""
 "LLVM optimizations can inline and remove functions, after which you will not "
 "be able to call them. Similarly, function names minified by the *Closure "
@@ -125,7 +125,7 @@ msgid ""
 "functions to the ``EXPORTED_FUNCTIONS`` list when you invoke *emcc*:"
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:56
+#: ../../../source/docs/api_reference/preamble.js.rst:99
 msgid ""
 "(Note that we also export ``main`` - if we didn't, the compiler would assume "
 "we don't need it.) Exported functions can then be called as normal:"
@@ -135,12 +135,12 @@ msgstr ""
 msgid "Arguments"
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:63
-#: ../../../source/docs/api_reference/preamble.js.rst:116
+#: ../../../source/docs/api_reference/preamble.js.rst:106
+#: ../../../source/docs/api_reference/preamble.js.rst:178
 msgid "The name of the C function to be called."
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:64
+#: ../../../source/docs/api_reference/preamble.js.rst:107
 msgid ""
 "The return type of the function. Note that ``array`` is not supported as "
 "there is no way for us to know the length of the array. For a void function "
@@ -148,19 +148,19 @@ msgid ""
 "containing the word \"null\")."
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:66
+#: ../../../source/docs/api_reference/preamble.js.rst:109
 msgid ""
 "64-bit integers become two 32-bit parameters, for the low and high bits "
 "(since 64-bit integers cannot be represented in JavaScript numbers)."
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:68
+#: ../../../source/docs/api_reference/preamble.js.rst:111
 msgid ""
 "An array of the types of arguments for the function (if there are no "
 "arguments, this can be omitted)."
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:69
+#: ../../../source/docs/api_reference/preamble.js.rst:112
 msgid ""
 "An array of the arguments to the function, as native JavaScript values (as "
 "in ``returnType``). Note that string arguments will be stored on the stack "
@@ -171,7 +171,7 @@ msgstr ""
 msgid "Returns"
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:70
+#: ../../../source/docs/api_reference/preamble.js.rst:113
 msgid ""
 "The result of the function call as a native JavaScript value (as in "
 "``returnType``) or, if the ``async`` option is set, a JavaScript Promise of "
@@ -182,25 +182,25 @@ msgstr ""
 msgid "opts"
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:71
+#: ../../../source/docs/api_reference/preamble.js.rst:114
 msgid "An optional options object. It can contain the following properties:"
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:73
+#: ../../../source/docs/api_reference/preamble.js.rst:116
 msgid ""
 "``async``: If ``true``, implies that the ccall will perform an async "
 "operation. This assumes you are build with asyncify support."
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:75
+#: ../../../source/docs/api_reference/preamble.js.rst:118
 msgid "Async calls currently don't support promise error handling."
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:82
+#: ../../../source/docs/api_reference/preamble.js.rst:125
 msgid "Returns a native JavaScript wrapper for a C function."
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:84
+#: ../../../source/docs/api_reference/preamble.js.rst:127
 msgid ""
 "This is similar to :js:func:`ccall`, but returns a JavaScript function that "
 "can be reused as many times as needed. The C function can be defined in a C "
@@ -208,7 +208,7 @@ msgid ""
 "prevent name mangling)."
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:101
+#: ../../../source/docs/api_reference/preamble.js.rst:147
 msgid ""
 "``cwrap`` uses the C stack for temporary values. If you pass a string then "
 "it is only \"alive\" until the call is complete. If the code being called "
@@ -218,7 +218,7 @@ msgid ""
 "manually!"
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:102
+#: ../../../source/docs/api_reference/preamble.js.rst:153
 msgid ""
 "To wrap a function it must be exported by adding it to the "
 "``EXPORTED_FUNCTIONS`` list when you invoke *emcc*. If a function is not "
@@ -230,7 +230,7 @@ msgid ""
 "depending on how ``cwrap`` optimizes.)"
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:103
+#: ../../../source/docs/api_reference/preamble.js.rst:161
 msgid ""
 "``cwrap`` does not actually call compiled code (only calling the wrapper it "
 "returns does that). That means that it is safe to call ``cwrap`` early, "
@@ -239,11 +239,11 @@ msgid ""
 "general)."
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:109
+#: ../../../source/docs/api_reference/preamble.js.rst:171
 msgid "Exported functions can be called as normal:"
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:117
+#: ../../../source/docs/api_reference/preamble.js.rst:179
 msgid ""
 "The return type of the function. This can be ``\"number\"``, ``\"string\"`` "
 "or ``\"array\"``, which correspond to the appropriate JavaScript types (use "
@@ -253,7 +253,7 @@ msgid ""
 "the word \"null\")."
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:118
+#: ../../../source/docs/api_reference/preamble.js.rst:180
 msgid ""
 "An array of the types of arguments for the function (if there are no "
 "arguments, this can be omitted). Types are as in ``returnType``, except that "
@@ -261,30 +261,30 @@ msgid ""
 "the array)."
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:119
+#: ../../../source/docs/api_reference/preamble.js.rst:181
 msgid "An optional options object, see :js:func:`ccall`."
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:120
+#: ../../../source/docs/api_reference/preamble.js.rst:182
 msgid "A JavaScript function that can be used for running the C function."
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:124
+#: ../../../source/docs/api_reference/preamble.js.rst:186
 msgid "Accessing memory"
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:129
+#: ../../../source/docs/api_reference/preamble.js.rst:191
 msgid "Sets a value at a specific memory address at run-time."
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:132
+#: ../../../source/docs/api_reference/preamble.js.rst:194
 msgid ""
 ":js:func:`setValue` and :js:func:`getValue` only do *aligned* writes and "
 "reads."
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:133
-#: ../../../source/docs/api_reference/preamble.js.rst:148
+#: ../../../source/docs/api_reference/preamble.js.rst:195
+#: ../../../source/docs/api_reference/preamble.js.rst:210
 msgid ""
 "The ``type`` is an LLVM IR type (one of ``i8``, ``i16``, ``i32``, ``i64``, "
 "``float``, ``double``, or a pointer type like ``i8*`` or just ``*``), not "
@@ -293,61 +293,61 @@ msgid ""
 "used."
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:135
-#: ../../../source/docs/api_reference/preamble.js.rst:150
+#: ../../../source/docs/api_reference/preamble.js.rst:197
+#: ../../../source/docs/api_reference/preamble.js.rst:212
 msgid "A pointer (number) representing the memory address."
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:136
+#: ../../../source/docs/api_reference/preamble.js.rst:198
 msgid "The value to be stored"
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:137
-#: ../../../source/docs/api_reference/preamble.js.rst:151
+#: ../../../source/docs/api_reference/preamble.js.rst:199
+#: ../../../source/docs/api_reference/preamble.js.rst:213
 msgid "An LLVM IR type as a string (see \"note\" above)."
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:138
-#: ../../../source/docs/api_reference/preamble.js.rst:152
+#: ../../../source/docs/api_reference/preamble.js.rst:200
+#: ../../../source/docs/api_reference/preamble.js.rst:214
 msgid ""
 "Developers should ignore this variable. It is only used in ``SAFE_HEAP`` "
 "compilation mode, where it can help avoid infinite recursion in some "
 "specialist use cases."
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:144
+#: ../../../source/docs/api_reference/preamble.js.rst:206
 msgid "Gets a value at a specific memory address at run-time."
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:147
+#: ../../../source/docs/api_reference/preamble.js.rst:209
 msgid ""
 ":js:func:`setValue` and :js:func:`getValue` only do *aligned* writes and "
 "reads!"
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:154
+#: ../../../source/docs/api_reference/preamble.js.rst:216
 msgid "The value stored at the specified memory address."
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:160
+#: ../../../source/docs/api_reference/preamble.js.rst:222
 msgid "Conversion functions — strings, pointers and arrays"
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:164
+#: ../../../source/docs/api_reference/preamble.js.rst:226
 msgid ""
 "Given a pointer ``ptr`` to a null-terminated UTF8-encoded string in the "
 "Emscripten HEAP, returns a copy of that string as a JavaScript ``String`` "
 "object."
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:166
+#: ../../../source/docs/api_reference/preamble.js.rst:228
 msgid ""
 "A pointer to a null-terminated UTF8-encoded string in the Emscripten HEAP."
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:167
-#: ../../../source/docs/api_reference/preamble.js.rst:189
-#: ../../../source/docs/api_reference/preamble.js.rst:213
+#: ../../../source/docs/api_reference/preamble.js.rst:229
+#: ../../../source/docs/api_reference/preamble.js.rst:251
+#: ../../../source/docs/api_reference/preamble.js.rst:275
 msgid ""
 "An optional length that specifies the maximum number of bytes to read. You "
 "can omit this parameter to scan the string until the first \\0 byte. If "
@@ -358,46 +358,46 @@ msgid ""
 "consider consistently using one style or the other."
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:168
-#: ../../../source/docs/api_reference/preamble.js.rst:190
-#: ../../../source/docs/api_reference/preamble.js.rst:214
+#: ../../../source/docs/api_reference/preamble.js.rst:230
+#: ../../../source/docs/api_reference/preamble.js.rst:252
+#: ../../../source/docs/api_reference/preamble.js.rst:276
 msgid ""
 "If ``true``, the function will not stop on a NUL character, but will read "
 "the entire string up to ``maxBytesToRead``."
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:169
-#: ../../../source/docs/api_reference/preamble.js.rst:191
+#: ../../../source/docs/api_reference/preamble.js.rst:231
+#: ../../../source/docs/api_reference/preamble.js.rst:253
 msgid "A JavaScript ``String`` object"
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:174
+#: ../../../source/docs/api_reference/preamble.js.rst:236
 msgid ""
 "Copies the given JavaScript ``String`` object ``str`` to the Emscripten HEAP "
 "at address ``outPtr``, null-terminated and encoded in UTF8 form."
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:176
+#: ../../../source/docs/api_reference/preamble.js.rst:238
 msgid ""
 "The copy will require at most ``str.length*4+1`` bytes of space in the HEAP. "
 "You can use the function ``lengthBytesUTF8()`` to compute the exact amount "
 "of bytes (excluding the null terminator) needed to encode the string."
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:178
-#: ../../../source/docs/api_reference/preamble.js.rst:201
-#: ../../../source/docs/api_reference/preamble.js.rst:215
-#: ../../../source/docs/api_reference/preamble.js.rst:224
+#: ../../../source/docs/api_reference/preamble.js.rst:240
+#: ../../../source/docs/api_reference/preamble.js.rst:263
+#: ../../../source/docs/api_reference/preamble.js.rst:277
+#: ../../../source/docs/api_reference/preamble.js.rst:286
 msgid "A JavaScript ``String`` object."
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:180
+#: ../../../source/docs/api_reference/preamble.js.rst:242
 msgid ""
 "Pointer to data copied from ``str``, encoded in UTF8 format and null-"
 "terminated."
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:181
+#: ../../../source/docs/api_reference/preamble.js.rst:243
 msgid ""
 "A limit on the number of bytes that this function can at most write out. If "
 "the string is longer than this, the output is truncated. The outputted "
@@ -405,37 +405,37 @@ msgid ""
 "as ``maxBytesToWrite > 0``."
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:186
+#: ../../../source/docs/api_reference/preamble.js.rst:248
 msgid ""
 "Given a pointer ``ptr`` to a null-terminated UTF16LE-encoded string in the "
 "Emscripten HEAP, returns a copy of that string as a JavaScript ``String`` "
 "object."
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:188
+#: ../../../source/docs/api_reference/preamble.js.rst:250
 msgid ""
 "A pointer to a null-terminated UTF16LE-encoded string in the Emscripten HEAP."
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:197
+#: ../../../source/docs/api_reference/preamble.js.rst:259
 msgid ""
 "Copies the given JavaScript ``String`` object ``str`` to the Emscripten HEAP "
 "at address ``outPtr``, null-terminated and encoded in UTF16LE form."
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:199
+#: ../../../source/docs/api_reference/preamble.js.rst:261
 msgid ""
 "The copy will require exactly ``(str.length+1)*2`` bytes of space in the "
 "HEAP."
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:203
+#: ../../../source/docs/api_reference/preamble.js.rst:265
 msgid ""
 "Pointer to data copied from ``str``, encoded in UTF16LE format and null-"
 "terminated."
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:204
+#: ../../../source/docs/api_reference/preamble.js.rst:266
 msgid ""
 "A limit on the number of bytes that this function can at most write out. If "
 "the string is longer than this, the output is truncated. The outputted "
@@ -443,25 +443,25 @@ msgid ""
 "as ``maxBytesToWrite >= 2`` so that there is space for the null terminator."
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:210
+#: ../../../source/docs/api_reference/preamble.js.rst:272
 msgid ""
 "Given a pointer ``ptr`` to a null-terminated UTF32LE-encoded string in the "
 "Emscripten HEAP, returns a copy of that string as a JavaScript ``String`` "
 "object."
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:212
+#: ../../../source/docs/api_reference/preamble.js.rst:274
 msgid ""
 "A pointer to a null-terminated UTF32LE-encoded string in the Emscripten HEAP."
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:220
+#: ../../../source/docs/api_reference/preamble.js.rst:282
 msgid ""
 "Copies the given JavaScript ``String`` object ``str`` to the Emscripten HEAP "
 "at address ``outPtr``, null-terminated and encoded in UTF32LE form."
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:222
+#: ../../../source/docs/api_reference/preamble.js.rst:284
 msgid ""
 "The copy will require at most ``(str.length+1)*4`` bytes of space in the "
 "HEAP, but can use less, since ``str.length`` does not return the number of "
@@ -470,13 +470,13 @@ msgid ""
 "of bytes (excluding the null terminator) needed to encode the string."
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:226
+#: ../../../source/docs/api_reference/preamble.js.rst:288
 msgid ""
 "Pointer to data copied from ``str``, encoded in encoded in UTF32LE format "
 "and null-terminated."
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:227
+#: ../../../source/docs/api_reference/preamble.js.rst:289
 msgid ""
 "A limit on the number of bytes that this function can at most write out. If "
 "the string is longer than this, the output is truncated. The outputted "
@@ -484,16 +484,16 @@ msgid ""
 "as ``maxBytesToWrite >= 4`` so that there is space for the null terminator."
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:233
+#: ../../../source/docs/api_reference/preamble.js.rst:295
 msgid ""
 "Converts an ASCII or Latin-1 encoded string to a JavaScript String object."
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:235
+#: ../../../source/docs/api_reference/preamble.js.rst:297
 msgid "The pointer to be converted to a ``String``."
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:236
+#: ../../../source/docs/api_reference/preamble.js.rst:298
 msgid "A JavaScript ``String`` containing the data from ``ptr``."
 msgstr ""
 
@@ -501,114 +501,114 @@ msgstr ""
 msgid "Return type"
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:237
+#: ../../../source/docs/api_reference/preamble.js.rst:299
 msgid "String"
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:242
+#: ../../../source/docs/api_reference/preamble.js.rst:304
 msgid ""
 "This converts a JavaScript string into a C-like array of numbers, 0-"
 "terminated."
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:244
+#: ../../../source/docs/api_reference/preamble.js.rst:306
 msgid "The string to be converted."
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:246
+#: ../../../source/docs/api_reference/preamble.js.rst:308
 msgid "If ``true``, the new array is not zero-terminated."
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:248
+#: ../../../source/docs/api_reference/preamble.js.rst:310
 msgid "The length of the array (optional)."
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:249
+#: ../../../source/docs/api_reference/preamble.js.rst:311
 msgid "The array created from ``stringy``."
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:254
+#: ../../../source/docs/api_reference/preamble.js.rst:316
 msgid ""
 "This creates a JavaScript string from a zero-terminated C-like array of "
 "numbers."
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:256
+#: ../../../source/docs/api_reference/preamble.js.rst:318
 msgid "The array to convert."
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:257
+#: ../../../source/docs/api_reference/preamble.js.rst:319
 msgid "A ``String``, containing the content of ``array``."
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:262
+#: ../../../source/docs/api_reference/preamble.js.rst:324
 msgid ""
 "Writes an array to a specified address in the heap. Note that memory should "
 "to be allocated for the array before it is written."
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:264
+#: ../../../source/docs/api_reference/preamble.js.rst:326
 msgid "The array to write to memory."
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:265
+#: ../../../source/docs/api_reference/preamble.js.rst:327
 msgid "The address (number) where ``array`` is to be written."
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:271
+#: ../../../source/docs/api_reference/preamble.js.rst:333
 msgid "Run dependencies"
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:273
+#: ../../../source/docs/api_reference/preamble.js.rst:335
 msgid ""
 "Note that generally run dependencies are managed by the file packager and "
 "other parts of the system. It is rare for developers to use this API "
 "directly."
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:278
+#: ../../../source/docs/api_reference/preamble.js.rst:341
 msgid "Adds an ``id`` to the list of run dependencies."
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:280
+#: ../../../source/docs/api_reference/preamble.js.rst:343
 msgid "This adds a run dependency and increments the run dependency counter."
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:284
+#: ../../../source/docs/api_reference/preamble.js.rst:347
 msgid "An arbitrary id representing the operation."
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:291
+#: ../../../source/docs/api_reference/preamble.js.rst:354
 msgid "Removes a specified ``id`` from the list of run dependencies."
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:293
+#: ../../../source/docs/api_reference/preamble.js.rst:356
 msgid ""
 "The identifier for the specific dependency to be removed (added with :js:"
 "func:`addRunDependency`)"
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:299
+#: ../../../source/docs/api_reference/preamble.js.rst:362
 msgid "Stack trace"
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:303
+#: ../../../source/docs/api_reference/preamble.js.rst:366
 msgid "Returns the current stack track."
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:305
+#: ../../../source/docs/api_reference/preamble.js.rst:368
 msgid "The stack trace is not available at least on IE10 and Safari 6."
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:307
+#: ../../../source/docs/api_reference/preamble.js.rst:370
 msgid "The current stack trace, if available."
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:313
+#: ../../../source/docs/api_reference/preamble.js.rst:376
 msgid "Type accessors for the memory model"
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:315
+#: ../../../source/docs/api_reference/preamble.js.rst:378
 msgid ""
 "The :ref:`emscripten-memory-model` uses a typed array buffer "
 "(``ArrayBuffer``) to represent memory, with different views into it giving "
@@ -616,34 +616,34 @@ msgid ""
 "memory are listed below."
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:320
+#: ../../../source/docs/api_reference/preamble.js.rst:385
 msgid "View for 8-bit signed memory."
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:325
+#: ../../../source/docs/api_reference/preamble.js.rst:390
 msgid "View for 16-bit signed memory."
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:330
+#: ../../../source/docs/api_reference/preamble.js.rst:395
 msgid "View for 32-bit signed memory."
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:335
+#: ../../../source/docs/api_reference/preamble.js.rst:400
 msgid "View for 8-bit unsigned memory."
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:340
+#: ../../../source/docs/api_reference/preamble.js.rst:405
 msgid "View for 16-bit unsigned memory."
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:345
+#: ../../../source/docs/api_reference/preamble.js.rst:410
 msgid "View for 32-bit unsigned memory."
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:350
+#: ../../../source/docs/api_reference/preamble.js.rst:415
 msgid "View for 32-bit float memory."
 msgstr ""
 
-#: ../../../source/docs/api_reference/preamble.js.rst:355
+#: ../../../source/docs/api_reference/preamble.js.rst:420
 msgid "View for 64-bit float memory."
 msgstr ""

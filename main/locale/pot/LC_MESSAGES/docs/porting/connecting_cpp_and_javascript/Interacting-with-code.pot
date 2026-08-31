@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Emscripten main\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-18 07:11+0000\n"
+"POT-Creation-Date: 2026-08-31 15:43+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -656,11 +656,18 @@ msgid ""
 "starting with ``$`` have the ``$`` stripped and no underscore added."
 msgstr ""
 
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:606
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:601
+msgid ""
+"A library symbol can use ``__force: true`` to be included even when it is "
+"not referenced, and ``__export: true`` to be exported when included. Use "
+"both decorators to unconditionally include and export a symbol."
+msgstr ""
+
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:609
 msgid "Calling JavaScript functions as function pointers from C"
 msgstr ""
 
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:608
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:611
 msgid ""
 "You can use ``addFunction`` to return an integer value that represents a "
 "function pointer. Passing that integer to C code then lets it call that "
@@ -668,17 +675,17 @@ msgid ""
 "``addFunction`` will be called."
 msgstr ""
 
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:613
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:616
 msgid "See `test_add_function in test/test_core.py`_ for an example."
 msgstr ""
 
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:615
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:618
 msgid ""
 "You should build with ``-sALLOW_TABLE_GROWTH`` to allow new functions to be "
 "added to the table. Otherwise by default the table has a fixed size."
 msgstr ""
 
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:618
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:621
 msgid ""
 "When using ``addFunction`` with a JavaScript function, you need to provide "
 "an additional second argument, a Wasm function signature string, explained "
@@ -687,11 +694,11 @@ msgid ""
 "js>`_ for an example."
 msgstr ""
 
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:626
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:629
 msgid "Function Signatures"
 msgstr ""
 
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:628
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:631
 msgid ""
 "The LLVM Wasm backend requires a Wasm function signature string when using "
 "``addFunction`` and in JavaScript libraries. Each character within a "
@@ -699,37 +706,37 @@ msgid ""
 "return type of a function, and remaining characters are for parameter types."
 msgstr ""
 
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:633
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:636
 msgid "``'v'``: void type"
 msgstr ""
 
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:634
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:637
 msgid "``'i'``: 32-bit integer type"
 msgstr ""
 
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:635
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:638
 msgid "``'j'``: 64-bit integer type (see note below)"
 msgstr ""
 
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:636
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:639
 msgid "``'f'``: 32-bit float type"
 msgstr ""
 
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:637
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:640
 msgid "``'d'``: 64-bit float type"
 msgstr ""
 
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:638
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:641
 msgid "``'p'``: 32-bit or 64-bit pointer (MEMORY64)"
 msgstr ""
 
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:640
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:643
 msgid ""
 "For example, if you add a function that takes an integer and does not return "
 "anything, the signature is ``'vi'``."
 msgstr ""
 
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:643
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:646
 msgid ""
 "When ``'j'`` is used there are several ways in which the parameter value "
 "will be passed to JavaScript. By default, the value will either be passed as "
@@ -742,7 +749,7 @@ msgid ""
 "bit value passed as a 53 bit (double) and returns an integer error code:"
 msgstr ""
 
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:663
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:666
 msgid ""
 "Using ``-sWASM_BIGINT`` when linking is an alternative method of handling 64-"
 "bit types in libraries.  ```Number()``` may be needed on the JavaScript side "
@@ -751,11 +758,11 @@ msgid ""
 "highlight=environment#wasm-bigint>`_."
 msgstr ""
 
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:671
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:674
 msgid "Access memory from JavaScript"
 msgstr ""
 
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:673
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:676
 msgid ""
 "You can access memory using :js:func:`getValue(ptr, type) <getValue>` and :"
 "js:func:`setValue(ptr, value, type) <setValue>`. The first argument is a "
@@ -764,19 +771,19 @@ msgid ""
 "a pointer type like ``i8*`` (or just ``*``)."
 msgstr ""
 
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:679
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:682
 msgid ""
 "There are examples of these functions being used in the tests — see `test/"
 "core/test_utf.in`_ and `test/test_core.py`_."
 msgstr ""
 
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:682
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:685
 msgid ""
 "This is a lower-level operation than :js:func:`ccall` and :js:func:`cwrap` — "
 "we *do* need to care what specific type (e.g. integer) is being used."
 msgstr ""
 
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:686
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:689
 msgid ""
 "You can also access memory 'directly' by manipulating the arrays that "
 "represent memory. This is not recommended unless you are sure you know what "
@@ -784,7 +791,7 @@ msgid ""
 "js:func:`setValue`."
 msgstr ""
 
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:691
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:694
 msgid ""
 "A case where this might be required is if you want to import a large amount "
 "of data from JavaScript to be processed by compiled code. For example, the "
@@ -792,7 +799,7 @@ msgid ""
 "to process the data, and finally frees the buffer."
 msgstr ""
 
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:703
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:706
 msgid ""
 "Here ``my_function`` is a C function that receives a single integer "
 "parameter (or a pointer, they are both just 32-bit integers for us) and "
@@ -800,7 +807,7 @@ msgid ""
 "*buf)``."
 msgstr ""
 
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:707
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:710
 msgid ""
 "The converse case of exporting allocated memory into JavaScript can be "
 "tricky when Wasm-based memory is allowed to **grow**, by compiling with ``-"
@@ -809,29 +816,29 @@ msgid ""
 "simply do this:"
 msgstr ""
 
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:729
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:732
 msgid ""
 "Emscripten will refresh the canonical views like ``HEAPU8`` for you, which "
 "you can use to refresh your own views:"
 msgstr ""
 
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:746
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:749
 msgid ""
 "Another option to avoid such problems is to copy the data, when that makes "
 "sense."
 msgstr ""
 
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:752
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:755
 msgid "Affect execution behaviour"
 msgstr ""
 
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:754
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:757
 msgid ""
 "``Module`` is a global JavaScript object, with attributes that Emscripten-"
 "generated code calls at various points in its execution."
 msgstr ""
 
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:757
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:760
 msgid ""
 "Developers provide an implementation of ``Module`` to control how "
 "notifications from Emscripten are displayed, which files that are loaded "
@@ -839,11 +846,11 @@ msgid ""
 "information see :ref:`module`."
 msgstr ""
 
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:765
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:768
 msgid "Environment variables"
 msgstr ""
 
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:767
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:770
 msgid ""
 "Sometimes compiled code needs to access environment variables (for instance, "
 "in C, by calling the ``getenv()`` function). Emscripten-generated JavaScript "
@@ -851,7 +858,7 @@ msgid ""
 "\"virtualised\" environment is provided."
 msgstr ""
 
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:772
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:775
 msgid ""
 "The JavaScript object ``ENV`` contains the virtualised environment "
 "variables, and by modifying it you can pass variables to your compiled code. "
@@ -860,14 +867,14 @@ msgid ""
 "convenient way to do this."
 msgstr ""
 
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:778
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:781
 msgid ""
 "For example, to set an environment variable ``MY_FILE_ROOT`` to be ``\"/usr/"
 "lib/test/\"`` you could add the following JavaScript to your ``Module`` :ref:"
 "`setup code <module-creating>`:"
 msgstr ""
 
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:786
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:789
 msgid ""
 "Note that Emscripten will set default values for some environment variables "
 "(e.g. LANG) after you have configured ``ENV``, if you have not set your own "
@@ -875,24 +882,24 @@ msgid ""
 "their value to `undefined`. For example:"
 msgstr ""
 
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:798
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:801
 msgid "Binding C++ and JavaScript — WebIDL Binder and Embind"
 msgstr ""
 
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:800
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:803
 msgid ""
 "The JavaScript methods for calling compiled C functions are efficient, but "
 "cannot be used with name-mangled C++ functions."
 msgstr ""
 
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:803
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:806
 msgid ""
 ":ref:`WebIDL-Binder` and :ref:`embind` create bindings between C++ and "
 "JavaScript, allowing C++ code entities to be used in a natural manner from "
 "JavaScript. *Embind* additionally supports calling JavaScript code from C++."
 msgstr ""
 
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:807
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:810
 msgid ""
 "*Embind* can bind almost any C++ code, including sophisticated C++ "
 "constructs (e.g. ``shared_ptr`` and ``unique_ptr``). The *WebIDL Binder* "
@@ -902,25 +909,25 @@ msgid ""
 "the `Box2D`_ and `Bullet`_ physics engines."
 msgstr ""
 
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:814
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:817
 msgid ""
 "Both tools allow mapped items to be used from JavaScript in a similar way. "
 "However they operate at different levels, and use very different approaches "
 "for defining the binding:"
 msgstr ""
 
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:818
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:821
 msgid "*Embind* declares bindings within the C/C++ file."
 msgstr ""
 
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:819
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:822
 msgid ""
 "*WebIDL-Binder* declares the binding in a separate file. This is run through "
 "the binder tool to create \"glue\" code that is then compiled with the "
 "project."
 msgstr ""
 
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:823
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:826
 msgid ""
 "There is no strong evidence that one tool is \"better\" than the other in "
 "terms of performance (no comparative benchmarks exist), and both have been "
@@ -929,11 +936,11 @@ msgid ""
 "project and its build system."
 msgstr ""
 
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:832
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:835
 msgid "Binding C/C++ and JavaScript - Node-API"
 msgstr ""
 
-#: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:834
+#: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:837
 msgid ""
 "`Emnapi`_ is an unofficial `Node-API`_ implementation which can be used on "
 "Emscripten. If you would like to port existing Node-API addon to WebAssembly "

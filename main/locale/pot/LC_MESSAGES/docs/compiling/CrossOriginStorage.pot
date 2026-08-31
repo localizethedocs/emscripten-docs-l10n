@@ -8,10 +8,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Emscripten main\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-22 13:32+0000\n"
+"POT-Creation-Date: 2026-08-31 15:43+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -117,7 +118,7 @@ msgstr ""
 #: ../../../source/docs/compiling/CrossOriginStorage.rst:69
 msgid ""
 "The :ref:`CROSS_ORIGIN_STORAGE_ORIGINS` setting controls the ``origins`` "
-"field passed to ``requestFileHandles()`` on the write (cache-miss) path.  It "
+"field passed to ``requestFileHandle()`` on the write (cache-miss) path.  It "
 "has no effect on the read (cache-hit) path.  Three modes are available:"
 msgstr ""
 
@@ -283,24 +284,27 @@ msgstr ""
 #: ../../../source/docs/compiling/CrossOriginStorage.rst:192
 msgid ""
 "**Cache hit** — call ``navigator.crossOriginStorage."
-"requestFileHandles([cosHash])``. If the handle is returned (the module is "
-"already in COS), read it with ``handle.getFile()`` → ``.arrayBuffer()`` and "
-"pass the bytes to ``WebAssembly.instantiate()``. Then invoke "
-"``Module['onCOSCacheHit'](hash)`` if defined."
+"requestFileHandle(cosHash)``. If the handle is returned (the module is "
+"already in COS), invoke ``Module['onCOSCacheHit'](hash)`` if defined, then "
+"wrap ``handle.getFile().stream()`` in a ``Response`` with an ``application/"
+"wasm`` content type and pass it to ``WebAssembly.instantiateStreaming()``, "
+"so compilation overlaps reading the file from disk."
 msgstr ""
 
-#: ../../../source/docs/compiling/CrossOriginStorage.rst:199
+#: ../../../source/docs/compiling/CrossOriginStorage.rst:200
 msgid ""
 "**Cache miss** — if a ``NotFoundError`` is thrown, fetch the ``.wasm`` over "
-"the network as usual, invoke ``Module['onCOSCacheMiss'](hash, url)`` if "
-"defined, call ``WebAssembly.instantiate()`` immediately so the page loads "
-"without delay, and then write the bytes into COS in the background (fire-and-"
-"forget) using the ``origins`` value controlled by :ref:"
-"`CROSS_ORIGIN_STORAGE_ORIGINS` (``'*'`` by default). Once the write "
-"completes, invoke ``Module['onCOSStore'](hash)`` if defined."
+"the network as usual and invoke ``Module['onCOSCacheMiss'](hash, url)`` if "
+"defined. The response body is split with ``tee()``: one branch is passed to "
+"``WebAssembly.instantiateStreaming()`` immediately so compilation overlaps "
+"the download exactly as on the standard path, and the other branch is piped "
+"into COS in the background (fire-and-forget) using the ``origins`` value "
+"controlled by :ref:`CROSS_ORIGIN_STORAGE_ORIGINS` (``'*'`` by default). COS "
+"verifies the hash when the writable closes. Once the write completes, invoke "
+"``Module['onCOSStore'](hash)`` if defined."
 msgstr ""
 
-#: ../../../source/docs/compiling/CrossOriginStorage.rst:207
+#: ../../../source/docs/compiling/CrossOriginStorage.rst:210
 msgid ""
 "**Fallback** — any unexpected error (``NotAllowedError`` from the browser, "
 "network failure during the miss path, etc.) is logged with ``err()`` and the "
@@ -308,22 +312,22 @@ msgid ""
 "The page always loads."
 msgstr ""
 
-#: ../../../source/docs/compiling/CrossOriginStorage.rst:213
+#: ../../../source/docs/compiling/CrossOriginStorage.rst:216
 msgid "Instrumentation callbacks"
 msgstr ""
 
-#: ../../../source/docs/compiling/CrossOriginStorage.rst:215
+#: ../../../source/docs/compiling/CrossOriginStorage.rst:218
 msgid ""
 "Three optional ``Module`` properties let you observe COS events at runtime. "
 "They are **opt-in**: to include the callback code in the output, list them "
 "in ``INCOMING_MODULE_JS_API`` at link time::"
 msgstr ""
 
-#: ../../../source/docs/compiling/CrossOriginStorage.rst:243
+#: ../../../source/docs/compiling/CrossOriginStorage.rst:246
 msgid "Testing with the extension polyfill"
 msgstr ""
 
-#: ../../../source/docs/compiling/CrossOriginStorage.rst:245
+#: ../../../source/docs/compiling/CrossOriginStorage.rst:248
 msgid ""
 "Because no browser ships the COS API natively yet, you can experiment using "
 "the `Cross-Origin Storage extension <https://chromewebstore.google.com/"
@@ -331,36 +335,36 @@ msgid ""
 "injects a ``navigator.crossOriginStorage`` polyfill on every page."
 msgstr ""
 
-#: ../../../source/docs/compiling/CrossOriginStorage.rst:251
+#: ../../../source/docs/compiling/CrossOriginStorage.rst:254
 msgid "Manual testing"
 msgstr ""
 
-#: ../../../source/docs/compiling/CrossOriginStorage.rst:253
+#: ../../../source/docs/compiling/CrossOriginStorage.rst:256
 msgid "Install the extension in Chrome."
 msgstr ""
 
-#: ../../../source/docs/compiling/CrossOriginStorage.rst:254
+#: ../../../source/docs/compiling/CrossOriginStorage.rst:257
 msgid "Build your project with ``-sCROSS_ORIGIN_STORAGE -sENVIRONMENT=web``."
 msgstr ""
 
-#: ../../../source/docs/compiling/CrossOriginStorage.rst:255
+#: ../../../source/docs/compiling/CrossOriginStorage.rst:258
 msgid ""
 "Serve the output over HTTP (e.g. with ``emrun`` or ``python3 -m http."
 "server``)."
 msgstr ""
 
-#: ../../../source/docs/compiling/CrossOriginStorage.rst:256
+#: ../../../source/docs/compiling/CrossOriginStorage.rst:259
 msgid ""
 "Open the page — on the first load the Wasm binary is fetched and stored in "
 "COS. Open the same page in a second tab or from a different origin: the "
 "module is loaded from COS without a network request."
 msgstr ""
 
-#: ../../../source/docs/compiling/CrossOriginStorage.rst:261
+#: ../../../source/docs/compiling/CrossOriginStorage.rst:264
 msgid "Automated browser testing"
 msgstr ""
 
-#: ../../../source/docs/compiling/CrossOriginStorage.rst:263
+#: ../../../source/docs/compiling/CrossOriginStorage.rst:266
 msgid ""
 "The Emscripten browser test suite includes COS tests that run against the "
 "polyfill extension.  The extension must be available as an **unpacked** "
@@ -368,13 +372,13 @@ msgid ""
 "unpacks it automatically::"
 msgstr ""
 
-#: ../../../source/docs/compiling/CrossOriginStorage.rst:270
+#: ../../../source/docs/compiling/CrossOriginStorage.rst:273
 msgid ""
 "Then run the tests, passing the printed path as "
 "``EMTEST_COS_EXTENSION_PATH``::"
 msgstr ""
 
-#: ../../../source/docs/compiling/CrossOriginStorage.rst:277
+#: ../../../source/docs/compiling/CrossOriginStorage.rst:280
 msgid ""
 "``test_cross_origin_storage_fallback`` does not require the extension and "
 "verifies that a ``-sCROSS_ORIGIN_STORAGE`` build loads correctly on browsers "
@@ -383,28 +387,28 @@ msgid ""
 "paths in sequence."
 msgstr ""
 
-#: ../../../source/docs/compiling/CrossOriginStorage.rst:284
+#: ../../../source/docs/compiling/CrossOriginStorage.rst:287
 msgid "Verifying the embedded hash"
 msgstr ""
 
-#: ../../../source/docs/compiling/CrossOriginStorage.rst:286
+#: ../../../source/docs/compiling/CrossOriginStorage.rst:289
 msgid ""
 "You can confirm that the hash embedded in the ``.js`` output matches the "
 "actual ``.wasm`` file using standard tools:"
 msgstr ""
 
-#: ../../../source/docs/compiling/CrossOriginStorage.rst:297
+#: ../../../source/docs/compiling/CrossOriginStorage.rst:300
 msgid ""
 "Both values must be identical. The Emscripten test suite checks this "
 "automatically via ``test_cross_origin_storage_js_output`` in ``test/"
 "test_other.py``."
 msgstr ""
 
-#: ../../../source/docs/compiling/CrossOriginStorage.rst:302
+#: ../../../source/docs/compiling/CrossOriginStorage.rst:305
 msgid "Custom ``Module['instantiateWasm']`` implementations"
 msgstr ""
 
-#: ../../../source/docs/compiling/CrossOriginStorage.rst:304
+#: ../../../source/docs/compiling/CrossOriginStorage.rst:307
 msgid ""
 "The COS fetch logic described above lives inside ``instantiateAsync()``, "
 "which is the standard Emscripten wasm loading path.  When a program provides "
@@ -413,13 +417,13 @@ msgid ""
 "built-in COS code is never reached."
 msgstr ""
 
-#: ../../../source/docs/compiling/CrossOriginStorage.rst:310
+#: ../../../source/docs/compiling/CrossOriginStorage.rst:313
 msgid ""
 "To support COS in a custom loader, Emscripten exposes the build-time SHA-256 "
 "hash as a named Module property:"
 msgstr ""
 
-#: ../../../source/docs/compiling/CrossOriginStorage.rst:317
+#: ../../../source/docs/compiling/CrossOriginStorage.rst:320
 msgid ""
 "This property is set by the generated JavaScript before "
 "``Module['instantiateWasm']`` is called, so it is always available inside "
@@ -429,7 +433,7 @@ msgid ""
 "read ``Module['wasmHash']`` via a reference to that config object:"
 msgstr ""
 
-#: ../../../source/docs/compiling/CrossOriginStorage.rst:361
+#: ../../../source/docs/compiling/CrossOriginStorage.rst:368
 msgid ""
 "``Module['wasmHash']`` is only present in builds compiled with :ref:"
 "`CROSS_ORIGIN_STORAGE`.  Always guard on its truthiness before using it, as "
@@ -437,56 +441,56 @@ msgid ""
 "flag."
 msgstr ""
 
-#: ../../../source/docs/compiling/CrossOriginStorage.rst:367
+#: ../../../source/docs/compiling/CrossOriginStorage.rst:374
 msgid "Relationship to other caching mechanisms"
 msgstr ""
 
-#: ../../../source/docs/compiling/CrossOriginStorage.rst:369
+#: ../../../source/docs/compiling/CrossOriginStorage.rst:376
 msgid "COS is a complement to, not a replacement for, existing browser caches:"
 msgstr ""
 
-#: ../../../source/docs/compiling/CrossOriginStorage.rst:371
+#: ../../../source/docs/compiling/CrossOriginStorage.rst:378
 msgid ""
 "**HTTP cache / Service Worker cache** — still used for per-origin caching. "
 "COS adds cross-origin sharing on top."
 msgstr ""
 
-#: ../../../source/docs/compiling/CrossOriginStorage.rst:373
+#: ../../../source/docs/compiling/CrossOriginStorage.rst:380
 msgid ""
 "**``NODE_CODE_CACHING``** — a Node.js-specific V8 bytecode cache; unrelated "
 "to COS."
 msgstr ""
 
-#: ../../../source/docs/compiling/CrossOriginStorage.rst:375
+#: ../../../source/docs/compiling/CrossOriginStorage.rst:382
 msgid "**IndexedDB / OPFS** — per-origin storage; COS shares across origins."
 msgstr ""
 
-#: ../../../source/docs/compiling/CrossOriginStorage.rst:378
+#: ../../../source/docs/compiling/CrossOriginStorage.rst:385
 msgid "See also"
 msgstr ""
 
-#: ../../../source/docs/compiling/CrossOriginStorage.rst:380
+#: ../../../source/docs/compiling/CrossOriginStorage.rst:387
 msgid ""
 "`WICG Cross-Origin Storage explainer <https://github.com/WICG/cross-origin-"
 "storage>`_"
 msgstr ""
 
-#: ../../../source/docs/compiling/CrossOriginStorage.rst:381
+#: ../../../source/docs/compiling/CrossOriginStorage.rst:388
 msgid ""
 "`COS browser extension (Chrome Web Store) <https://chromewebstore.google.com/"
 "detail/cross-origin-storage/denpnpcgjgikjpoglpjefakmdcbmlgih>`_"
 msgstr ""
 
-#: ../../../source/docs/compiling/CrossOriginStorage.rst:382
+#: ../../../source/docs/compiling/CrossOriginStorage.rst:389
 msgid ""
 "`COS browser extension (source code) <https://github.com/web-ai-community/"
 "cross-origin-storage-extension>`_"
 msgstr ""
 
-#: ../../../source/docs/compiling/CrossOriginStorage.rst:383
+#: ../../../source/docs/compiling/CrossOriginStorage.rst:390
 msgid ":ref:`settings-reference` — ``CROSS_ORIGIN_STORAGE`` entry"
 msgstr ""
 
-#: ../../../source/docs/compiling/CrossOriginStorage.rst:384
+#: ../../../source/docs/compiling/CrossOriginStorage.rst:391
 msgid ":ref:`WebAssembly` — general guide to building Wasm with Emscripten"
 msgstr ""

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Emscripten main\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-18 07:11+0000\n"
+"POT-Creation-Date: 2026-08-31 15:43+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -27,7 +27,7 @@ msgid ""
 "generated code calls at various points in its execution."
 msgstr ""
 
-#: ../../../source/docs/api_reference/module.rst:9
+#: ../../../source/docs/api_reference/module.rst:10
 msgid ""
 "Developers can provide an implementation of ``Module`` to control the "
 "execution of code. For example, to define how notification messages from "
@@ -35,7 +35,7 @@ msgid ""
 "attribute."
 msgstr ""
 
-#: ../../../source/docs/api_reference/module.rst:11
+#: ../../../source/docs/api_reference/module.rst:14
 msgid ""
 "When an Emscripten application starts up it looks at the values on the "
 "``Module`` object and applies them. Note that changing the values *after* "
@@ -43,7 +43,7 @@ msgid ""
 "will get an error in that case."
 msgstr ""
 
-#: ../../../source/docs/api_reference/module.rst:16
+#: ../../../source/docs/api_reference/module.rst:19
 msgid ""
 "``Module`` is also used to provide access to Emscripten API functions (for "
 "example :js:func:`ccall`) in a safe way. Any function or runtime method "
@@ -54,21 +54,21 @@ msgid ""
 "remove it as unused). See the :ref:`relevant FAQ entry<faq-export-stuff>`."
 msgstr ""
 
-#: ../../../source/docs/api_reference/module.rst:21
+#: ../../../source/docs/api_reference/module.rst:30
 msgid "Table of Contents"
 msgstr ""
 
-#: ../../../source/docs/api_reference/module.rst:26
+#: ../../../source/docs/api_reference/module.rst:35
 msgid "Creating the Module object"
 msgstr ""
 
-#: ../../../source/docs/api_reference/module.rst:28
+#: ../../../source/docs/api_reference/module.rst:37
 msgid ""
 "Use emcc's :ref:`pre-js option<emcc-pre-js>` to add JavaScript code that "
 "defines (or extends) the ``Module`` object with the behaviour you need."
 msgstr ""
 
-#: ../../../source/docs/api_reference/module.rst:30
+#: ../../../source/docs/api_reference/module.rst:40
 msgid ""
 "When generating only JavaScript (as opposed to HTML), no ``Module`` object "
 "is created by default, and the behaviour is entirely defined by the "
@@ -76,7 +76,7 @@ msgid ""
 "will cause all notifications from the program to be calls to ``alert()``."
 msgstr ""
 
-#: ../../../source/docs/api_reference/module.rst:39
+#: ../../../source/docs/api_reference/module.rst:52
 msgid ""
 "If you run the :term:`Closure Compiler` on your code (which is optional, and "
 "can be done by ``--closure 1``), you will need quotation marks around the "
@@ -85,7 +85,7 @@ msgid ""
 "— this is done automatically for a ``--pre-js`` file."
 msgstr ""
 
-#: ../../../source/docs/api_reference/module.rst:41
+#: ../../../source/docs/api_reference/module.rst:58
 msgid ""
 "When generating HTML, Emscripten creates a ``Module`` object with default "
 "methods (see `src/shell.html <https://github.com/emscripten-core/emscripten/"
@@ -94,25 +94,25 @@ msgid ""
 "object, for example:"
 msgstr ""
 
-#: ../../../source/docs/api_reference/module.rst:47
+#: ../../../source/docs/api_reference/module.rst:68
 msgid ""
 "Note that once the Module object is received by the main JavaScript file, it "
 "will look for ``Module['print']`` and so forth at that time, and use them "
 "accordingly. Changing their values later may not be noticed."
 msgstr ""
 
-#: ../../../source/docs/api_reference/module.rst:50
+#: ../../../source/docs/api_reference/module.rst:73
 msgid "Compilation settings"
 msgstr ""
 
-#: ../../../source/docs/api_reference/module.rst:52
+#: ../../../source/docs/api_reference/module.rst:75
 msgid ""
 "The ``INCOMING_MODULE_JS_API`` compiler setting controls which ``Module`` "
 "attributes are supported in the emitted JS. This list contains commonly-used "
 "things by default."
 msgstr ""
 
-#: ../../../source/docs/api_reference/module.rst:56
+#: ../../../source/docs/api_reference/module.rst:79
 msgid ""
 "Setting this to the smallest possible list for your application will save JS "
 "code size. For example, if you use no ``Module`` attributes, you can build "
@@ -120,42 +120,42 @@ msgid ""
 "list them out, like this: ``-sINCOMING_MODULE_JS_API=print,printErr``."
 msgstr ""
 
-#: ../../../source/docs/api_reference/module.rst:62
+#: ../../../source/docs/api_reference/module.rst:85
 msgid "Affecting execution"
 msgstr ""
 
-#: ../../../source/docs/api_reference/module.rst:64
+#: ../../../source/docs/api_reference/module.rst:87
 msgid ""
 "The following ``Module`` attributes affect code execution. Set them to "
 "customize behavior."
 msgstr ""
 
-#: ../../../source/docs/api_reference/module.rst:69
+#: ../../../source/docs/api_reference/module.rst:93
 msgid ""
 "The commandline arguments. The value of ``arguments`` contains the values "
 "returned if compiled code checks ``argc`` and ``argv``."
 msgstr ""
 
-#: ../../../source/docs/api_reference/module.rst:73
+#: ../../../source/docs/api_reference/module.rst:98
 msgid ""
 "Allows you to provide your own ``ArrayBuffer`` or ``SharedArrayBuffer`` to "
 "use as the memory."
 msgstr ""
 
-#: ../../../source/docs/api_reference/module.rst:75
+#: ../../../source/docs/api_reference/module.rst:101
 msgid ""
 "This is only supported if ``-sWASM=0``. See ``Module.wasmMemory`` for "
 "WebAssembly support."
 msgstr ""
 
-#: ../../../source/docs/api_reference/module.rst:79
+#: ../../../source/docs/api_reference/module.rst:106
 msgid ""
 "Allows you to provide your own ``WebAssembly.Memory`` to use as the memory. "
 "The properties used to initialize the memory should match the compiler "
 "options."
 msgstr ""
 
-#: ../../../source/docs/api_reference/module.rst:81
+#: ../../../source/docs/api_reference/module.rst:110
 msgid ""
 "For example, if you set ``INITIAL_MEMORY`` to 8MB without memory growth, "
 "then the ``wasmMemory`` you provide (if any) should have both the "
@@ -163,7 +163,7 @@ msgid ""
 "64KB)."
 msgstr ""
 
-#: ../../../source/docs/api_reference/module.rst:85
+#: ../../../source/docs/api_reference/module.rst:116
 msgid ""
 "If set, this method will be called when the runtime needs to load a file, "
 "such as a ``.wasm`` WebAssembly file, ``.mem`` memory init file, or a file "
@@ -175,7 +175,7 @@ msgid ""
 "expectation), for example if you want to host them on a CDN."
 msgstr ""
 
-#: ../../../source/docs/api_reference/module.rst:87
+#: ../../../source/docs/api_reference/module.rst:125
 msgid ""
 "``prefix`` might be an empty string, if ``locateFile`` is called before we "
 "load the main JavaScript. For example, that can happen if a file package or "
@@ -183,7 +183,7 @@ msgid ""
 "before it loads the main JavaScript)."
 msgstr ""
 
-#: ../../../source/docs/api_reference/module.rst:89
+#: ../../../source/docs/api_reference/module.rst:130
 msgid ""
 "Several ``Module.*PrefixURL`` options have been deprecated in favor of "
 "``locateFile``, which includes ``memoryInitializerPrefixURL``, "
@@ -193,28 +193,28 @@ msgid ""
 "init-dir/\"``, then you can replace that with something like:"
 msgstr ""
 
-#: ../../../source/docs/api_reference/module.rst:102
+#: ../../../source/docs/api_reference/module.rst:149
 msgid "If set, stderr will log when any file is read."
 msgstr ""
 
-#: ../../../source/docs/api_reference/module.rst:106
+#: ../../../source/docs/api_reference/module.rst:153
 msgid ""
 "Controls whether Emscripten runtime libraries try to print with colors. "
 "Currently, this only affects sanitizers."
 msgstr ""
 
-#: ../../../source/docs/api_reference/module.rst:108
+#: ../../../source/docs/api_reference/module.rst:156
 msgid ""
 "If unset, colors will be enabled if printing to a terminal with ``node``."
 msgstr ""
 
-#: ../../../source/docs/api_reference/module.rst:110
+#: ../../../source/docs/api_reference/module.rst:158
 msgid ""
 "If set to ``true``, colors will always be used if possible. If set to "
 "``false``, colors will never be used."
 msgstr ""
 
-#: ../../../source/docs/api_reference/module.rst:114
+#: ../../../source/docs/api_reference/module.rst:163
 msgid ""
 "If set, this function is called when abnormal program termination occurs. "
 "That can happen due to the C method ``abort()`` being called directly, or "
@@ -225,7 +225,7 @@ msgid ""
 "recovering here)."
 msgstr ""
 
-#: ../../../source/docs/api_reference/module.rst:118
+#: ../../../source/docs/api_reference/module.rst:173
 msgid ""
 "If set, this function is called when the runtime is fully initialized, that "
 "is, when compiled code is safe to run, which is after any asynchronous "
@@ -234,7 +234,7 @@ msgid ""
 "be called is to wait for ``main()`` to be called.)"
 msgstr ""
 
-#: ../../../source/docs/api_reference/module.rst:122
+#: ../../../source/docs/api_reference/module.rst:181
 msgid ""
 "If ``noExitRuntime`` is set to ``true``, the runtime is not shut down after "
 "``main()`` completes. Shutting down the runtime calls shutdown callbacks, "
@@ -244,21 +244,21 @@ msgid ""
 "not be shut down, for example ``emscripten_set_main_loop``."
 msgstr ""
 
-#: ../../../source/docs/api_reference/module.rst:126
+#: ../../../source/docs/api_reference/module.rst:190
 msgid ""
 "If ``noInitialRun`` is set to ``true``, ``main()`` will not be automatically "
 "called (you can do so yourself later). The program will still call global "
 "initializers, set up memory initialization, and so forth."
 msgstr ""
 
-#: ../../../source/docs/api_reference/module.rst:130
+#: ../../../source/docs/api_reference/module.rst:196
 msgid ""
 "A function (or array of functions) that must be called before global "
 "initializers run, but after basic initialization of the JavaScript runtime. "
 "This is typically used for :ref:`File System operations <Filesystem-API>`."
 msgstr ""
 
-#: ../../../source/docs/api_reference/module.rst:134
+#: ../../../source/docs/api_reference/module.rst:202
 msgid ""
 "If building with ``-sGL_PREINITIALIZED_CONTEXT`` set, you can set ``Module."
 "preinitializedWebGLContext`` to a precreated instance of a WebGL context, "
@@ -270,7 +270,7 @@ msgid ""
 "code."
 msgstr ""
 
-#: ../../../source/docs/api_reference/module.rst:138
+#: ../../../source/docs/api_reference/module.rst:213
 msgid ""
 "A function (or array of functions) to call right before calling ``main()``, "
 "but after defining and setting up the environment, including global "
@@ -279,44 +279,43 @@ msgid ""
 "FileSystem API has been loaded, but before the program starts to run."
 msgstr ""
 
-#: ../../../source/docs/api_reference/module.rst:140
+#: ../../../source/docs/api_reference/module.rst:219
 msgid ""
 "If code needs to affect global initializers, it should instead be run using :"
 "js:attr:`preInit`."
 msgstr ""
 
-#: ../../../source/docs/api_reference/module.rst:144
+#: ../../../source/docs/api_reference/module.rst:224
 msgid ""
 "A function (or array of functions) to call after the program's ``main()`` "
 "returns."
 msgstr ""
 
-#: ../../../source/docs/api_reference/module.rst:148
+#: ../../../source/docs/api_reference/module.rst:228
 msgid "Called when something is printed to standard output (stdout)"
 msgstr ""
 
-#: ../../../source/docs/api_reference/module.rst:152
+#: ../../../source/docs/api_reference/module.rst:232
 msgid "Called when something is printed to standard error (stderr)"
 msgstr ""
 
-#: ../../../source/docs/api_reference/module.rst:156
+#: ../../../source/docs/api_reference/module.rst:236
 msgid ""
-"Allows pthread workers or WASM workers to independently load up the main "
-"application module JavaScript file (e.g. main.js) from a URL or blob. "
-"Creation of pthread workers or WASM workers need to load the main "
-"application module JavaScript file (e.g. main.js). By default, they load the "
-"content of main.js from the URL of main.js. However, if the main.js file was "
-"loaded from a Blob, it is not possible to access the URL of the main.js. "
-"Also, when main.js is bundled by a Node.JS module bundler (e.g. webpack), "
-"the URL of that script can be wrong, the URL after webpack bundler will "
-"result in wrong URL like main.chunk.js"
+"Allows pthread workers to independently load up the main file (e.g. main.js) "
+"from a URL or blob. New pthread workers need to load the main JavaScript "
+"file (e.g. main.js). By default, they load the content of main.js from the "
+"URL of main.js. However, if the main.js file was loaded from a Blob, it is "
+"not possible to access the URL of the main.js. Also, when main.js is bundled "
+"by a Node.JS module bundler (e.g. webpack), the URL of that script can be "
+"wrong, the URL after webpack bundler will result in wrong URL like main."
+"chunk.js"
 msgstr ""
 
-#: ../../../source/docs/api_reference/module.rst:159
+#: ../../../source/docs/api_reference/module.rst:245
 msgid "Other methods"
 msgstr ""
 
-#: ../../../source/docs/api_reference/module.rst:163
+#: ../../../source/docs/api_reference/module.rst:249
 msgid ""
 "This method should be called to destroy C++ objects created in JavaScript "
 "using :ref:`WebIDL bindings <WebIDL-Binder>`. If this method is not called, "
@@ -327,11 +326,11 @@ msgstr ""
 msgid "Arguments"
 msgstr ""
 
-#: ../../../source/docs/api_reference/module.rst:165
+#: ../../../source/docs/api_reference/module.rst:253
 msgid "The JavaScript-wrapped C++ object to be destroyed."
 msgstr ""
 
-#: ../../../source/docs/api_reference/module.rst:169
+#: ../../../source/docs/api_reference/module.rst:257
 msgid ""
 "If you want to manually manage the download of .data file packages for "
 "custom caching, progress reporting and error handling behavior, you can "
@@ -343,7 +342,7 @@ msgid ""
 "test_preload_file_with_manual_data_download`` for an example."
 msgstr ""
 
-#: ../../../source/docs/api_reference/module.rst:173
+#: ../../../source/docs/api_reference/module.rst:268
 msgid ""
 "When targeting WebAssembly, Module.instantiateWasm is an optional user-"
 "implemented callback function that the Emscripten runtime calls to perform "
@@ -351,39 +350,39 @@ msgid ""
 "with two parameters, ``imports`` and ``successCallback``. ``imports`` is a "
 "JS object which contains all the function imports that need to be passed to "
 "the WebAssembly Module when instantiating, and once instantiated, this "
-"callback function should call ``successCallback()`` with the generated "
-"WebAssembly Instance object."
+"callback function should call ``successCallback(instance, module)`` with the "
+"generated WebAssembly Instance object and WebAssembly Module object."
 msgstr ""
 
-#: ../../../source/docs/api_reference/module.rst:175
-msgid ""
-"The instantiation can be performed either synchronously or asynchronously. "
-"The return value of this function should contain the ``exports`` object of "
-"the instantiated WebAssembly Module, or an empty dictionary object ``{}`` if "
-"the instantiation is performed asynchronously, or ``false`` if instantiation "
-"failed."
-msgstr ""
-
-#: ../../../source/docs/api_reference/module.rst:177
+#: ../../../source/docs/api_reference/module.rst:277
 msgid ""
 "Overriding the WebAssembly instantiation procedure via this function is "
 "useful when you have other custom asynchronous startup actions or downloads "
 "that can be performed in parallel to WebAssembly compilation. Implementing "
-"this callback allows performing all of these in parallel. See the file "
-"``test/manual_wasm_instantiate.html`` and the test ``browser."
+"this callback allows performing all of these in parallel."
+msgstr ""
+
+#: ../../../source/docs/api_reference/module.rst:282
+msgid ""
+"It is easiest to provide ``instantiateWasm`` from inside of a `--pre-js` "
+"file. Inside a ``--pre-js`` file, the default behavior can usually be "
+"achieved as follows:"
+msgstr ""
+
+#: ../../../source/docs/api_reference/module.rst:294
+msgid ""
+"This won't work with ``-sWASM_ASYNC_COMPILATION=0`` or with pthreads but in "
+"other cases this results in the default loading behavior."
+msgstr ""
+
+#: ../../../source/docs/api_reference/module.rst:297
+msgid ""
+"See the file ``test/manual_wasm_instantiate.html`` and the test ``browser."
 "test_manual_wasm_instantiate`` for an example of how this construct works in "
 "action."
 msgstr ""
 
-#: ../../../source/docs/api_reference/module.rst:179
-msgid ""
-"Sanitizers or source map is currently not supported if overriding "
-"WebAssembly instantiation with Module.instantiateWasm. Providing Module."
-"instantiateWasm when source map or sanitizer is enabled can prevent "
-"WebAssembly instantiation from finishing."
-msgstr ""
-
-#: ../../../source/docs/api_reference/module.rst:183
+#: ../../../source/docs/api_reference/module.rst:304
 msgid ""
 "Override the default settings object used when fetching the Wasm module from "
 "the network.  This attribute is expected to be a string and it defaults to "

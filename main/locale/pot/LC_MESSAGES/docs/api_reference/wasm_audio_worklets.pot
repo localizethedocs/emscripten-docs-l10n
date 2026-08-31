@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Emscripten main\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-18 07:11+0000\n"
+"POT-Creation-Date: 2026-08-31 15:43+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -198,13 +198,13 @@ msgid ""
 "was a Wasm Worker thread."
 msgstr ""
 
-#: ../../../source/docs/api_reference/wasm_audio_worklets.rst:184
+#: ../../../source/docs/api_reference/wasm_audio_worklets.rst:186
 msgid ""
 "To synchronize information between an Audio Worklet Node and other threads "
 "in the application, there are three options:"
 msgstr ""
 
-#: ../../../source/docs/api_reference/wasm_audio_worklets.rst:186
+#: ../../../source/docs/api_reference/wasm_audio_worklets.rst:189
 msgid ""
 "Leverage the Web Audio \"AudioParams\" model. Each Audio Worklet Processor "
 "type is instantiated with a custom defined set of audio parameters that can "
@@ -212,7 +212,7 @@ msgid ""
 "are passed in the ``params`` array into the audio processing function."
 msgstr ""
 
-#: ../../../source/docs/api_reference/wasm_audio_worklets.rst:188
+#: ../../../source/docs/api_reference/wasm_audio_worklets.rst:194
 msgid ""
 "The main browser thread that created the Web Audio context can adjust the "
 "values of these parameters whenever desired. See `MDN function: "
@@ -220,7 +220,7 @@ msgid ""
 "setValueAtTime>`_."
 msgstr ""
 
-#: ../../../source/docs/api_reference/wasm_audio_worklets.rst:190
+#: ../../../source/docs/api_reference/wasm_audio_worklets.rst:199
 msgid ""
 "Data can be shared with the Audio Worklet thread using GCC/Clang lock-free "
 "atomics operations, Emscripten atomics operations and the Wasm Worker API "
@@ -228,7 +228,7 @@ msgid ""
 "information."
 msgstr ""
 
-#: ../../../source/docs/api_reference/wasm_audio_worklets.rst:192
+#: ../../../source/docs/api_reference/wasm_audio_worklets.rst:204
 msgid ""
 "Utilize the ``emscripten_audio_worklet_post_function_*()`` family of event "
 "passing functions. These functions operate similar to the "
@@ -238,11 +238,11 @@ msgid ""
 "other."
 msgstr ""
 
-#: ../../../source/docs/api_reference/wasm_audio_worklets.rst:196
+#: ../../../source/docs/api_reference/wasm_audio_worklets.rst:213
 msgid "More Examples"
 msgstr ""
 
-#: ../../../source/docs/api_reference/wasm_audio_worklets.rst:198
+#: ../../../source/docs/api_reference/wasm_audio_worklets.rst:215
 msgid ""
 "See the directory tests/webaudio/ for more code examples on Web Audio API "
 "and Wasm AudioWorklets."
