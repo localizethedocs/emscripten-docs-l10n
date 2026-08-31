@@ -1,0 +1,351 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) Copyright &copy; 2015, Emscripten Contributors.
+# This file is distributed under the same license as the Emscripten package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Emscripten main\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-18 07:11+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../../source/docs/compiling/WebAssembly.rst:5
+msgid "Building to WebAssembly"
+msgstr ""
+
+#: ../../../source/docs/compiling/WebAssembly.rst:7
+msgid ""
+"WebAssembly is a binary format for executing code on the web, allowing fast "
+"start times (smaller download and much faster parsing in browsers when "
+"compared to JS or asm.js). Emscripten compiles to WebAssembly by default, "
+"but you can also compile to JS for older browsers."
+msgstr ""
+
+#: ../../../source/docs/compiling/WebAssembly.rst:9
+msgid ""
+"For some historical background, see `these slides <https://kripken.github.io/"
+"talks/wasm.html>`_ and `this blogpost <https://hacks.mozilla.org/2015/12/"
+"compiling-to-webassembly-its-happening/>`_."
+msgstr ""
+
+#: ../../../source/docs/compiling/WebAssembly.rst:12
+msgid "Setup"
+msgstr ""
+
+#: ../../../source/docs/compiling/WebAssembly.rst:14
+msgid ""
+"WebAssembly is emitted by default, without the need for any special flags."
+msgstr ""
+
+#: ../../../source/docs/compiling/WebAssembly.rst:16
+msgid ""
+"If you **don't** want WebAssembly, you can disable it with something like"
+msgstr ""
+
+#: ../../../source/docs/compiling/WebAssembly.rst:22
+msgid ""
+"Deciding to compile to Wasm or JS can be done at the linking stage: it "
+"doesn't affect the object files."
+msgstr ""
+
+#: ../../../source/docs/compiling/WebAssembly.rst:25
+msgid "Backends"
+msgstr ""
+
+#: ../../../source/docs/compiling/WebAssembly.rst:27
+msgid ""
+"Emscripten emits WebAssembly using the **upstream LLVM Wasm backend**, since "
+"version ``1.39.0`` (October 2019). Previously emscripten also supported the "
+"old **fastcomp** backend which was removed in ``2.0.0`` (August 2020)."
+msgstr ""
+
+#: ../../../source/docs/compiling/WebAssembly.rst:31
+msgid ""
+"There are some differences you may notice between the two backends, if you "
+"upgrade from fastcomp to upstream:"
+msgstr ""
+
+#: ../../../source/docs/compiling/WebAssembly.rst:34
+msgid ""
+"The Wasm backend is strict about linking files with different features sets "
+"- for example, if one file was built with atomics but another was not, it "
+"will error at link time. This prevents possible bugs, but may mean you need "
+"to make some build system fixes."
+msgstr ""
+
+#: ../../../source/docs/compiling/WebAssembly.rst:39
+msgid ""
+"``WASM=0`` behaves differently in the two backends. In fastcomp we emit asm."
+"js, while in upstream we emit JS (since not all Wasm constructs can be "
+"expressed in asm.js). Also, the JS support implements the same external "
+"``WebAssembly.*`` API, so in particular startup will be async just like Wasm "
+"by default, and you can control that with ``WASM_ASYNC_COMPILATION`` (even "
+"though ``WASM=0``)."
+msgstr ""
+
+#: ../../../source/docs/compiling/WebAssembly.rst:46
+msgid ""
+"The Wasm backend uses Wasm object files by default. That means that it does "
+"codegen at the compile step, which makes the link step much faster - like a "
+"normal native compiler. For comparison, in fastcomp the compile step emits "
+"LLVM IR in object files."
+msgstr ""
+
+#: ../../../source/docs/compiling/WebAssembly.rst:51
+msgid ""
+"You normally wouldn't notice this, but some compiler flags affect codegen, "
+"like ``DISABLE_EXCEPTION_CATCHING``. Such flags must be passed during "
+"codegen. The simple and safe thing is to pass all ``-s`` flags at both "
+"compile and link time."
+msgstr ""
+
+#: ../../../source/docs/compiling/WebAssembly.rst:56
+msgid ""
+"You can enable Link Time Optimization (LTO) with the usual llvm flags (``-"
+"flto``, ``-flto=full``, ``-flto=thin``, at both compile and link times; "
+"note, however, that thin LTO is not heavily tested atm and so regular LTO is "
+"recommended)."
+msgstr ""
+
+#: ../../../source/docs/compiling/WebAssembly.rst:61
+msgid ""
+"With fastcomp, LTO optimization passes were not be run by default; for that "
+"it was necessary to pass ``--llvm-lto 1``.  With the llvm backend LTO passes "
+"will be run on any object files that are in bitcode format."
+msgstr ""
+
+#: ../../../source/docs/compiling/WebAssembly.rst:65
+msgid ""
+"Another thing you might notice is that fastcomp's link stage is able to "
+"perform some minor types of link time optimization even without LTO being "
+"set. The LLVM backend requires actually setting LTO for those things."
+msgstr ""
+
+#: ../../../source/docs/compiling/WebAssembly.rst:69
+msgid ""
+"`wasm-ld`, the linker used by the Wasm backend, requires libraries (`.a` "
+"archives) to contain symbol indexes.  This matches the behaviour the native "
+"GNU linker.  While `emar` will create such indexes by default, native tools "
+"such as GNU `ar` and GNU `strip` are not aware of the WebAssembly object "
+"format and cannot create archive indexes.  In particular, if you run GNU "
+"`strip` on an archive file that contains WebAssembly object files it will "
+"remove the index which makes the archive unusable at link time."
+msgstr ""
+
+#: ../../../source/docs/compiling/WebAssembly.rst:77
+msgid ""
+"Also see the `blocker bugs on the Wasm backend <https://github.com/"
+"emscripten-core/emscripten/projects/1>`_, and the `Wasm backend tagged "
+"issues <https://github.com/emscripten-core/emscripten/issues?"
+"utf8=✓&q=is%3Aissue+is%3Aopen+label%3A\"LLVM+wasm+backend\">`_."
+msgstr ""
+
+#: ../../../source/docs/compiling/WebAssembly.rst:80
+msgid "Trapping"
+msgstr ""
+
+#: ../../../source/docs/compiling/WebAssembly.rst:82
+msgid ""
+"WebAssembly can trap - throw an exception - on things like division by zero, "
+"rounding a very large float to an int, and so forth. In asm.js such things "
+"were silently ignored, as in JavaScript they do not throw, so this is a "
+"difference between JavaScript and WebAssembly that you may notice, with the "
+"browser reporting an error like ``float unrepresentable in integer range``, "
+"``integer result unrepresentable``, ``integer overflow``, or ``Out of bounds "
+"Trunc operation``."
+msgstr ""
+
+#: ../../../source/docs/compiling/WebAssembly.rst:84
+msgid ""
+"The LLVM Wasm backend avoids traps by adding more code around each possible "
+"trap (basically clamping the value if it would trap). This can increase code "
+"size and decrease speed, if you don't need that extra code. The proper "
+"solution for this is to use newer Wasm instructions that do not trap, by "
+"calling emcc or clang with ``-mnontrapping-fptoint``. That code may not run "
+"in older VMs, though."
+msgstr ""
+
+#: ../../../source/docs/compiling/WebAssembly.rst:87
+msgid "Compiler output"
+msgstr ""
+
+#: ../../../source/docs/compiling/WebAssembly.rst:89
+msgid ""
+"When using ``emcc`` to build to WebAssembly, you will see a ``.wasm`` file "
+"containing that code, as well as the usual ``.js`` file that is the main "
+"target of compilation. Those two are built to work together: run the ``.js`` "
+"(or ``.html``, if that's what you asked for) file, and it will load and set "
+"up the WebAssembly code for you, properly setting up imports and exports for "
+"it, etc. Basically, you don't need to care about whether the compiled code "
+"is asm.js or WebAssembly, it's just a compiler flag, and otherwise "
+"everything should just work (except the WebAssembly should be faster)."
+msgstr ""
+
+#: ../../../source/docs/compiling/WebAssembly.rst:91
+msgid ""
+"Note that the ``.wasm`` file is not standalone - it's not easy to manually "
+"run it without that ``.js`` code, as it depends on getting the proper "
+"imports that integrate with JS. For example, it receives imports for "
+"syscalls so that it can do things like print to the console. There is work "
+"in progress towards ways to create standalone ``.wasm`` files, see the "
+"`WebAssembly Standalone page <https://github.com/emscripten-core/emscripten/"
+"wiki/WebAssembly-Standalone>`_."
+msgstr ""
+
+#: ../../../source/docs/compiling/WebAssembly.rst:93
+msgid ""
+"You may also see additional files generated, like a ``.data`` file if you "
+"are preloading files into the virtual filesystem. All that is exactly the "
+"same as when building to asm.js. One difference you may notice is the lack "
+"of a ``.mem file``, which for asm.js contains the static memory "
+"initialization data, which in WebAssembly we can pack more efficiently into "
+"the WebAssembly binary itself."
+msgstr ""
+
+#: ../../../source/docs/compiling/WebAssembly.rst:97
+msgid "WebAssembly feature extensions"
+msgstr ""
+
+#: ../../../source/docs/compiling/WebAssembly.rst:99
+msgid ""
+"Since its original launch, WebAssembly has been expanded with various "
+"feature extensions, which have been implemented in browsers. A list of "
+"features (including already-shipped and in-progress) and details about "
+"browser versions that support them can be found on `webassembly.org <https://"
+"webassembly.org/features/>`_."
+msgstr ""
+
+#: ../../../source/docs/compiling/WebAssembly.rst:105
+msgid ""
+"Several of these features can be used by Emscripten (or are by default) and "
+"can be enabled or disabled individually (using either Clang or emscripten "
+"flags) or by selecting which version of browsers Emscripten should target."
+msgstr ""
+
+#: ../../../source/docs/compiling/WebAssembly.rst:109
+msgid "Examples:"
+msgstr ""
+
+#: ../../../source/docs/compiling/WebAssembly.rst:111
+msgid "Exception handling (see :ref:`exceptions` for details)."
+msgstr ""
+
+#: ../../../source/docs/compiling/WebAssembly.rst:112
+msgid "SIMD (see :ref:`Porting SIMD code` for details)."
+msgstr ""
+
+#: ../../../source/docs/compiling/WebAssembly.rst:113
+msgid ""
+"Nontrapping float-to-int conversion (enabled by default, use ``-mno-"
+"nontrapping-fptoint`` to disable). Clang will generate nontrapping "
+"(saturating) float-to-int conversion instructions for C typecasts. This "
+"should have no effect on programs that do not have undefined behavior but if "
+"the casted floating-point value is outside the range of the target integer "
+"type, the result will be a number of the max or min value instead of a trap. "
+"This also results in a small code size improvement because of details of the "
+"LLVM IR semantics."
+msgstr ""
+
+#: ../../../source/docs/compiling/WebAssembly.rst:121
+msgid ""
+"Bulk memory operations (enabled by default, use ``-mno-bulk-memory-opt -mno-"
+"bulk-memory`` to disable). ``memory.copy`` and ``memory.fill`` instructions "
+"are used in the implementation of C ``memcpy`` and ``memset``, and Clang may "
+"generate them elsewhere."
+msgstr ""
+
+#: ../../../source/docs/compiling/WebAssembly.rst:125
+msgid ""
+"JS BigInt integration (enabled by default, use the ``-sWASM_BIGINT=0`` :ref:"
+"`setting <wasm_bigint>` to disable). This has the effect that Wasm i64 "
+"values are passed and returned between Wasm and JS as BigInt values rather "
+"than being split by Binaryen into pairs of Numbers."
+msgstr ""
+
+#: ../../../source/docs/compiling/WebAssembly.rst:130
+msgid "Sign-extension operators (enabled by default)"
+msgstr ""
+
+#: ../../../source/docs/compiling/WebAssembly.rst:132
+msgid ""
+"For the features that are enabled by default (or will be when sufficient "
+"browser support exists), it's also possible to control them by specifying "
+"which browser versions you want to target. You can use the ``-"
+"sMIN_FIREFOX_VERSION`` :ref:`setting <min_firefox_version>` (and also "
+"``MIN_CHROME_VERSION``, ``MIN_SAFARI_VERSION`` and ``MIN_NODE_VERSION``). "
+"Setting a value lower than the default version will disable features not "
+"supported by the specified version. Some features (e.g. Exception handling "
+"and threads) are not enabled by default because they have tradeoffs (e.g. "
+"binary size costs or restrictions on how the resulting wasm can be used such "
+"as COEP headers). These are not controlled by the browser version flags and "
+"must be enabled explicitly. See the :ref:`settings <min_firefox_version>` "
+"page for details of the default browser versions Emscripten targets."
+msgstr ""
+
+#: ../../../source/docs/compiling/WebAssembly.rst:148
+msgid "``.wasm`` files and compilation"
+msgstr ""
+
+#: ../../../source/docs/compiling/WebAssembly.rst:150
+msgid ""
+"WebAssembly code is prepared somewhat differently than asm.js. asm.js can be "
+"bundled inside the main JS file, while as mentioned earlier WebAssembly is a "
+"binary file on the side, so you will have more than one file to distribute."
+msgstr ""
+
+#: ../../../source/docs/compiling/WebAssembly.rst:152
+msgid ""
+"Another noticeable effect is that WebAssembly is compiled asynchronously by "
+"default, which means you must wait for compilation to complete before "
+"calling compiled code (by waiting for ``main()``, or the "
+"``onRuntimeInitialized`` callback, etc., which you also need to do when you "
+"have anything else that makes startup async, like a ``.mem`` file for asm."
+"js, or preloaded file data, etc.). You can turn off async compilation by "
+"setting ``WASM_ASYNC_COMPILATION=0``, but that may not work in Chrome due to "
+"current limitations there."
+msgstr ""
+
+#: ../../../source/docs/compiling/WebAssembly.rst:154
+msgid ""
+"Note that even with async compilation turned off, fetching the WebAssembly "
+"binary may need to be an asynchronous operation (since the Web does not "
+"allow synchronous binary downloads on the main thread). If you can fetch the "
+"binary yourself, you can set ``Module['wasmBinary']`` and it will be used "
+"from there, and then (with async compilation off) compilation should be "
+"synchronous."
+msgstr ""
+
+#: ../../../source/docs/compiling/WebAssembly.rst:157
+msgid "Web server setup"
+msgstr ""
+
+#: ../../../source/docs/compiling/WebAssembly.rst:159
+msgid ""
+"To serve Wasm in the most efficient way over the network, make sure your web "
+"server has the proper MIME type for ``.wasm`` files, which is application/"
+"wasm. That will allow streaming compilation, where the browser can start to "
+"compile code as it downloads."
+msgstr ""
+
+#: ../../../source/docs/compiling/WebAssembly.rst:161
+msgid "In Apache, you can do this with"
+msgstr ""
+
+#: ../../../source/docs/compiling/WebAssembly.rst:167
+msgid "Also make sure that gzip is enabled:"
+msgstr ""
+
+#: ../../../source/docs/compiling/WebAssembly.rst:173
+msgid ""
+"If you serve large ``.wasm`` files, the webserver will consume CPU "
+"compressing them on the fly at each request. Instead you can pre-compress "
+"them to ``.wasm.gz`` and use content negotiation:"
+msgstr ""
