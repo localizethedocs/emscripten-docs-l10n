@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Emscripten main\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-18 07:11+0000\n"
+"POT-Creation-Date: 2026-08-31 15:43+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -244,37 +244,13 @@ msgstr ""
 
 #: ../../../source/docs/compiling/WebAssembly.rst:113
 msgid ""
-"Nontrapping float-to-int conversion (enabled by default, use ``-mno-"
-"nontrapping-fptoint`` to disable). Clang will generate nontrapping "
-"(saturating) float-to-int conversion instructions for C typecasts. This "
-"should have no effect on programs that do not have undefined behavior but if "
-"the casted floating-point value is outside the range of the target integer "
-"type, the result will be a number of the max or min value instead of a trap. "
-"This also results in a small code size improvement because of details of the "
-"LLVM IR semantics."
-msgstr ""
-
-#: ../../../source/docs/compiling/WebAssembly.rst:121
-msgid ""
-"Bulk memory operations (enabled by default, use ``-mno-bulk-memory-opt -mno-"
-"bulk-memory`` to disable). ``memory.copy`` and ``memory.fill`` instructions "
-"are used in the implementation of C ``memcpy`` and ``memset``, and Clang may "
-"generate them elsewhere."
-msgstr ""
-
-#: ../../../source/docs/compiling/WebAssembly.rst:125
-msgid ""
 "JS BigInt integration (enabled by default, use the ``-sWASM_BIGINT=0`` :ref:"
 "`setting <wasm_bigint>` to disable). This has the effect that Wasm i64 "
 "values are passed and returned between Wasm and JS as BigInt values rather "
 "than being split by Binaryen into pairs of Numbers."
 msgstr ""
 
-#: ../../../source/docs/compiling/WebAssembly.rst:130
-msgid "Sign-extension operators (enabled by default)"
-msgstr ""
-
-#: ../../../source/docs/compiling/WebAssembly.rst:132
+#: ../../../source/docs/compiling/WebAssembly.rst:119
 msgid ""
 "For the features that are enabled by default (or will be when sufficient "
 "browser support exists), it's also possible to control them by specifying "
@@ -290,18 +266,35 @@ msgid ""
 "page for details of the default browser versions Emscripten targets."
 msgstr ""
 
-#: ../../../source/docs/compiling/WebAssembly.rst:148
+#: ../../../source/docs/compiling/WebAssembly.rst:133
+msgid ""
+"Some features are available even in the oldest supported browser versions, "
+"and are enabled by default.  They can be turned of for specific compilation "
+"units using standard clang flags, but since they are present in the system "
+"libraries they will almost always be used in the final binary:"
+msgstr ""
+
+#: ../../../source/docs/compiling/WebAssembly.rst:138
+msgid ""
+"Nontrapping float-to-int conversion (``-mno-nontrapping-fptoint`` to disable)"
+msgstr ""
+
+#: ../../../source/docs/compiling/WebAssembly.rst:139
+msgid "Bulk memory operations. (``-mno-bulk-memory`` to disable)"
+msgstr ""
+
+#: ../../../source/docs/compiling/WebAssembly.rst:143
 msgid "``.wasm`` files and compilation"
 msgstr ""
 
-#: ../../../source/docs/compiling/WebAssembly.rst:150
+#: ../../../source/docs/compiling/WebAssembly.rst:145
 msgid ""
 "WebAssembly code is prepared somewhat differently than asm.js. asm.js can be "
 "bundled inside the main JS file, while as mentioned earlier WebAssembly is a "
 "binary file on the side, so you will have more than one file to distribute."
 msgstr ""
 
-#: ../../../source/docs/compiling/WebAssembly.rst:152
+#: ../../../source/docs/compiling/WebAssembly.rst:147
 msgid ""
 "Another noticeable effect is that WebAssembly is compiled asynchronously by "
 "default, which means you must wait for compilation to complete before "
@@ -313,7 +306,7 @@ msgid ""
 "current limitations there."
 msgstr ""
 
-#: ../../../source/docs/compiling/WebAssembly.rst:154
+#: ../../../source/docs/compiling/WebAssembly.rst:149
 msgid ""
 "Note that even with async compilation turned off, fetching the WebAssembly "
 "binary may need to be an asynchronous operation (since the Web does not "
@@ -323,11 +316,11 @@ msgid ""
 "synchronous."
 msgstr ""
 
-#: ../../../source/docs/compiling/WebAssembly.rst:157
+#: ../../../source/docs/compiling/WebAssembly.rst:152
 msgid "Web server setup"
 msgstr ""
 
-#: ../../../source/docs/compiling/WebAssembly.rst:159
+#: ../../../source/docs/compiling/WebAssembly.rst:154
 msgid ""
 "To serve Wasm in the most efficient way over the network, make sure your web "
 "server has the proper MIME type for ``.wasm`` files, which is application/"
@@ -335,15 +328,15 @@ msgid ""
 "compile code as it downloads."
 msgstr ""
 
-#: ../../../source/docs/compiling/WebAssembly.rst:161
+#: ../../../source/docs/compiling/WebAssembly.rst:156
 msgid "In Apache, you can do this with"
 msgstr ""
 
-#: ../../../source/docs/compiling/WebAssembly.rst:167
+#: ../../../source/docs/compiling/WebAssembly.rst:162
 msgid "Also make sure that gzip is enabled:"
 msgstr ""
 
-#: ../../../source/docs/compiling/WebAssembly.rst:173
+#: ../../../source/docs/compiling/WebAssembly.rst:168
 msgid ""
 "If you serve large ``.wasm`` files, the webserver will consume CPU "
 "compressing them on the fly at each request. Instead you can pre-compress "

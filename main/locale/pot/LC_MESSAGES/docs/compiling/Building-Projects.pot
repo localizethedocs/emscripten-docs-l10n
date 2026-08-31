@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Emscripten main\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-18 07:11+0000\n"
+"POT-Creation-Date: 2026-08-31 15:43+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,9 +23,10 @@ msgstr ""
 
 #: ../../../source/docs/compiling/Building-Projects.rst:7
 msgid ""
-"Emscripten provides two scripts that configure your makefiles to use :ref:"
-"`emcc <emccdoc>` as a drop-in replacement for *gcc* — in most cases the rest "
-"of your project’s current build system remains unchanged."
+"Emscripten provides helper scripts (*emconfigure*, *emcmake*, and *emmake*) "
+"that configure your build system to use :ref:`emcc <emccdoc>` as a drop-in "
+"replacement for *gcc* — in most cases the rest of your project’s current "
+"build system remains unchanged."
 msgstr ""
 
 #: ../../../source/docs/compiling/Building-Projects.rst:13
@@ -35,44 +36,76 @@ msgstr ""
 #: ../../../source/docs/compiling/Building-Projects.rst:15
 msgid ""
 "To build using Emscripten you need to replace *gcc* with *emcc* in your "
-"makefiles. This is done using *emconfigure*, which sets the appropriate "
-"environment variables like CXX (C++ compiler) and CC (the compiler)."
+"build system. This is done using *emconfigure* (for configure/autotools "
+"projects) or *emcmake* (for CMake projects), which set the appropriate "
+"environment variables or CMake toolchain file so that *emcc* is used."
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:17
-msgid "Consider the case where you normally build with the following commands:"
+#: ../../../source/docs/compiling/Building-Projects.rst:18
+msgid "Configure / Autoconf-based projects"
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:24
+#: ../../../source/docs/compiling/Building-Projects.rst:20
+msgid ""
+"Consider the case where you normally build a **configure**-based project "
+"with the following commands:"
+msgstr ""
+
+#: ../../../source/docs/compiling/Building-Projects.rst:27
 msgid ""
 "If you're not familiar with these build commands, the article `The magic "
 "behind configure, make, make install <https://thoughtbot.com/blog/the-magic-"
 "behind-configure-make-make-install>`_ is a good primer."
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:26
+#: ../../../source/docs/compiling/Building-Projects.rst:29
 msgid "To build with Emscripten, you would instead use the following commands:"
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:47
-msgid ""
-"*emconfigure* is called with the normal *configure* as an argument (in "
-"*configure*-based build systems), and *emmake* with *make* as an argument. "
-"If your build system uses **CMake**, replace ``./configure`` with ``cmake ."
-"`` etc. in the above example. If your build system doesn't use configure or "
-"CMake, then you can omit the first step and just run ``make`` (although then "
-"you may need to edit the ``Makefile`` manually)."
-msgstr ""
-
-#: ../../../source/docs/compiling/Building-Projects.rst:49
-msgid ""
-"We recommend you call both *emconfigure* and *emmake* scripts in "
-"*configure*- and *CMake*-based build systems. Whether you actually **need** "
-"to call both tools depends on the build system (some systems will store the "
-"environment variables in the configure step, and others will not)."
-msgstr ""
-
 #: ../../../source/docs/compiling/Building-Projects.rst:51
+msgid "CMake-based projects"
+msgstr ""
+
+#: ../../../source/docs/compiling/Building-Projects.rst:53
+msgid ""
+"Consider the case where you normally build a **CMake**-based project with "
+"the following commands:"
+msgstr ""
+
+#: ../../../source/docs/compiling/Building-Projects.rst:60
+msgid ""
+"To build with Emscripten, use *emcmake* to configure CMake to use the "
+"Emscripten toolchain file:"
+msgstr ""
+
+#: ../../../source/docs/compiling/Building-Projects.rst:72
+msgid ""
+"*emcmake* automatically passes the Emscripten CMake toolchain file (``-"
+"DCMAKE_TOOLCHAIN_FILE=.../Emscripten.cmake``) to CMake."
+msgstr ""
+
+#: ../../../source/docs/compiling/Building-Projects.rst:76
+msgid "Other build systems"
+msgstr ""
+
+#: ../../../source/docs/compiling/Building-Projects.rst:78
+msgid ""
+"If your build system doesn't use configure or CMake, then you can omit the "
+"configuration step and run ``emmake make`` (although then you may need to "
+"edit the ``Makefile`` manually if compiler variables like ``CC`` or ``CXX`` "
+"are hardcoded)."
+msgstr ""
+
+#: ../../../source/docs/compiling/Building-Projects.rst:83
+msgid ""
+"If you use *emconfigure* or *emcmake* during the configuration phase, "
+"*emmake* is generally not needed during the build phase because the compiler "
+"settings are stored in the generated build files. *emmake* is primarily "
+"needed when building projects that do not have a separate configuration "
+"phase."
+msgstr ""
+
+#: ../../../source/docs/compiling/Building-Projects.rst:85
 msgid ""
 "*Make* generates Wasm object files. It may also link the object files into "
 "libraries and/or Wasm executables. Unless such a build system has been "
@@ -81,7 +114,7 @@ msgid ""
 "JavaScript and WebAssembly."
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:59
+#: ../../../source/docs/compiling/Building-Projects.rst:93
 msgid ""
 "The file output from *make* might have a different suffix: **.a** for a "
 "static library archive, **.so** for a shared library, **.o** for object "
@@ -92,7 +125,7 @@ msgid ""
 "then they will contain LLVM bitcode)."
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:69
+#: ../../../source/docs/compiling/Building-Projects.rst:103
 msgid ""
 "Some build systems may not properly emit Wasm object files using the above "
 "procedure, and you may see ``is not a valid input file`` warnings. You can "
@@ -104,11 +137,11 @@ msgid ""
 "used, you may need to modify the configure or cmake scripts."
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:82
+#: ../../../source/docs/compiling/Building-Projects.rst:116
 msgid "Emscripten linker output files"
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:84
+#: ../../../source/docs/compiling/Building-Projects.rst:118
 msgid ""
 "Unless run with certain specific flags (such as ``-c``, ``-S``, ``-r``, or "
 "``-shared``) ``emcc`` will run the link phase which can produce more than "
@@ -117,14 +150,14 @@ msgid ""
 "a cheat sheet of which files are produced under which conditions:"
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:90
+#: ../../../source/docs/compiling/Building-Projects.rst:124
 msgid ""
 "``emcc ... -o output.html`` builds a ``output.html`` file as an output, as "
 "well as an accompanying ``output.js`` launcher file, and a ``output.wasm`` "
 "WebAssembly file."
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:91
+#: ../../../source/docs/compiling/Building-Projects.rst:125
 msgid ""
 "``emcc ... -o output.js`` omits generating a HTML launcher file (expecting "
 "you to provide it yourself if you plan to run in browser), and produces two "
@@ -132,7 +165,7 @@ msgid ""
 "shell)"
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:92
+#: ../../../source/docs/compiling/Building-Projects.rst:126
 msgid ""
 "``emcc ... -o output.wasm`` omits generating either JavaScript or HTML "
 "launcher file, and produces a single Wasm file built in standalone mode as "
@@ -144,13 +177,13 @@ msgid ""
 "``_initialize`` export before doing anything else with it."
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:93
+#: ../../../source/docs/compiling/Building-Projects.rst:127
 msgid ""
 "``emcc ... -o output.{html,js} -sWASM=0`` causes the compiler to target "
 "JavaScript, and therefore a ``.wasm`` file is not produced."
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:94
+#: ../../../source/docs/compiling/Building-Projects.rst:128
 msgid ""
 "``emcc ... -o output.{html,js} --emit-symbol-map`` produces a file ``output."
 "{html,js}.symbols`` if WebAssembly is being targeted (``-sWASM=0`` not "
@@ -159,20 +192,20 @@ msgid ""
 "e. if symbols minification did occur)."
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:95
+#: ../../../source/docs/compiling/Building-Projects.rst:129
 msgid ""
 "``emcc ... -o output.{html,js} -gsource-map`` generates a source map file "
 "``output.wasm.map``. If targeting JavaScript with ``-sWASM=0``, the filename "
 "is ``output.{html,js}.map``."
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:96
+#: ../../../source/docs/compiling/Building-Projects.rst:130
 msgid ""
 "``emcc ... -o output.{html,js} --preload-file xxx`` directive generates a "
 "preloaded MEMFS filesystem file ``output.data``."
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:97
+#: ../../../source/docs/compiling/Building-Projects.rst:131
 msgid ""
 "``emcc ... -o output.{html,js} -sWASM={0,1} -sSINGLE_FILE`` merges "
 "JavaScript and WebAssembly code in the single output file ``output.{html,js}"
@@ -180,12 +213,12 @@ msgid ""
 "preload-file``, the preloaded ``.data`` file still exists as a separate file)"
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:99
+#: ../../../source/docs/compiling/Building-Projects.rst:133
 msgid ""
 "This list is not exhaustive, but illustrates most commonly used combinations."
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:102
+#: ../../../source/docs/compiling/Building-Projects.rst:136
 msgid ""
 "Regardless of the name of the output file ``emcc`` will always perform "
 "linking and produce a final executable, unless a specific flags (e.g. ``-"
@@ -195,11 +228,11 @@ msgid ""
 "html``)."
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:112
+#: ../../../source/docs/compiling/Building-Projects.rst:146
 msgid "Building projects with optimizations"
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:114
+#: ../../../source/docs/compiling/Building-Projects.rst:148
 msgid ""
 "Emscripten performs :ref:`compiler optimization <Optimizing-Code>` at two "
 "levels: each source file is optimized by LLVM as it is compiled into an "
@@ -207,7 +240,7 @@ msgid ""
 "applied when converting object files into the final JavaScript/WebAssembly."
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:116
+#: ../../../source/docs/compiling/Building-Projects.rst:150
 msgid ""
 "In order to properly optimize code, it is usually best to use the **same** :"
 "ref:`optimization flags <emcc-compiler-optimization-options>` and other :ref:"
@@ -215,28 +248,28 @@ msgid ""
 "code, and object code to JavaScript (or HTML)."
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:118
+#: ../../../source/docs/compiling/Building-Projects.rst:152
 msgid "Consider the examples below:"
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:137
+#: ../../../source/docs/compiling/Building-Projects.rst:171
 msgid ""
 "However, sometimes you may want slightly different optimizations on certain "
 "files:"
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:146
+#: ../../../source/docs/compiling/Building-Projects.rst:180
 msgid ""
 "Unfortunately each build-system defines its own mechanisms for setting "
 "compiler and optimization methods. **You will need to work out the correct "
 "approach to set the LLVM optimization flags for your system**."
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:148
+#: ../../../source/docs/compiling/Building-Projects.rst:182
 msgid "Some build systems have a flag like ``./configure --enable-optimize``."
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:150
+#: ../../../source/docs/compiling/Building-Projects.rst:184
 msgid ""
 "JavaScript/WebAssembly optimizations are specified in the final step "
 "(sometimes called \"link\", as that step typically also links together a "
@@ -244,37 +277,37 @@ msgid ""
 "WebAssembly output). For example, to compile with :ref:`-O1 <emcc-O1>`:"
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:161
+#: ../../../source/docs/compiling/Building-Projects.rst:195
 msgid "Building projects with debug information"
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:163
+#: ../../../source/docs/compiling/Building-Projects.rst:197
 msgid ""
 "Building a project containing debug information requires that debug flags "
 "are specified for both the LLVM and JavaScript compilation phases."
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:165
+#: ../../../source/docs/compiling/Building-Projects.rst:199
 msgid ""
 "To make *Clang* and LLVM emit debug information in object files you need to "
 "compile the sources with :ref:`-g <emcc-g>` (exactly the same as with :term:"
 "`clang` or *gcc* normally)."
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:169
+#: ../../../source/docs/compiling/Building-Projects.rst:203
 msgid ""
 "Each build-system defines its own mechanisms for setting debug flags. **To "
 "get Clang to emit LLVM debug information, you will need to work out the "
 "correct approach for your system**."
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:171
+#: ../../../source/docs/compiling/Building-Projects.rst:205
 msgid ""
 "Some build systems have a flag like ``./configure --enable-debug``. In "
 "*CMake*-based build systems, set the ``CMAKE_BUILD_TYPE`` to ``\"Debug\"``."
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:173
+#: ../../../source/docs/compiling/Building-Projects.rst:207
 msgid ""
 "To get *emcc* to include the debug information present in object files when "
 "generating the final JavaScript and WebAssembly, your final ``emcc`` command "
@@ -282,15 +315,15 @@ msgid ""
 "options <emcc-gN>`."
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:184
+#: ../../../source/docs/compiling/Building-Projects.rst:218
 msgid "For more general information, see the topic :ref:`Debugging`."
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:188
+#: ../../../source/docs/compiling/Building-Projects.rst:222
 msgid "Using libraries"
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:190
+#: ../../../source/docs/compiling/Building-Projects.rst:224
 msgid ""
 "Built-in support is available for a number of standard libraries: *libc*, "
 "*libc++* and *SDL*. These will automatically be linked when you compile code "
@@ -298,7 +331,7 @@ msgid ""
 "more SDL-specific details)."
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:192
+#: ../../../source/docs/compiling/Building-Projects.rst:226
 msgid ""
 "If your project uses other libraries, for example `zlib <https://github.com/"
 "emscripten-core/emscripten/tree/main/test/third_party/zlib>`_ or *glib*, you "
@@ -307,17 +340,17 @@ msgid ""
 "with your main program to emit JavaScript+WebAssembly."
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:198
+#: ../../../source/docs/compiling/Building-Projects.rst:232
 msgid ""
 "For example, consider the case where a project \"project\" uses a library "
 "\"libstuff\":"
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:215
+#: ../../../source/docs/compiling/Building-Projects.rst:249
 msgid "Emscripten Ports"
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:217
+#: ../../../source/docs/compiling/Building-Projects.rst:251
 msgid ""
 "Emscripten Ports is a collection of useful libraries, ported to Emscripten. "
 "They reside in the `ports directory`_, and have integration with *emcc*. "
@@ -327,17 +360,17 @@ msgid ""
 "flags. For example:"
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:227
+#: ../../../source/docs/compiling/Building-Projects.rst:261
 msgid ""
 "If this if your first time using a given port you may see some notifications "
 "about it being downloaded and installed as your program is being compiled."
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:230
+#: ../../../source/docs/compiling/Building-Projects.rst:264
 msgid "To see a list of all available ports, run ``emcc --show-ports``."
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:232
+#: ../../../source/docs/compiling/Building-Projects.rst:266
 msgid ""
 "You can also use the standalone ``embuilder`` tools to explicitly build "
 "ports prior to running the compiler.  For example, you can build SDL2 using "
@@ -345,7 +378,7 @@ msgid ""
 "including a list of all available targets."
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:237
+#: ../../../source/docs/compiling/Building-Projects.rst:271
 msgid ""
 "Some ports take extra options. For example, when using the ``sdl2_image`` "
 "ports you can specify a list of image formats.  e.g. ``--use-port=sdl2_image:"
@@ -353,7 +386,7 @@ msgid ""
 "information on this."
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:242
+#: ../../../source/docs/compiling/Building-Projects.rst:276
 msgid ""
 "Emscripten also has support for the older SDL 1.3, which is built-in. Use "
 "can use this via ``-sUSE_SDL=1``. SDL 1.3 has support for `sdl-config`_. "
@@ -362,7 +395,7 @@ msgid ""
 "emscripten sysroot (``<sysroot>/bin/sdl-config``)."
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:248
+#: ../../../source/docs/compiling/Building-Projects.rst:282
 msgid ""
 "When a port is built and installed into the sysroot it will then be "
 "available to all following ``emcc`` commands.  For example, once you have "
@@ -370,18 +403,18 @@ msgid ""
 "future ``emcc`` commands will be able to see the SDL2 headers and libraries."
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:253
+#: ../../../source/docs/compiling/Building-Projects.rst:287
 msgid ""
 "Since emscripten 3.1.54, ``--use-port`` is the preferred syntax to use a "
 "port in your project. The legacy syntax (for example ``-sUSE_SDL2``, ``-"
 "sUSE_SDL_IMAGE=2``) remains available."
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:258
+#: ../../../source/docs/compiling/Building-Projects.rst:292
 msgid "Port-specific Notes"
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:260
+#: ../../../source/docs/compiling/Building-Projects.rst:294
 msgid ""
 "The ``sdl2_image`` port generally requires the specification of set of "
 "supported imagine formats.  For example ``--use-port=sdl2_image:formats=bmp,"
@@ -397,11 +430,11 @@ msgid ""
 "preloading)."
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:273
+#: ../../../source/docs/compiling/Building-Projects.rst:307
 msgid "Contrib ports"
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:275
+#: ../../../source/docs/compiling/Building-Projects.rst:309
 msgid ""
 "Contrib ports are contributed by the wider community and supported on a "
 "\"best effort\" basis. Since they are not run as part of emscripten CI they "
@@ -409,52 +442,52 @@ msgid ""
 "<Contrib-Ports>` for more information."
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:281
+#: ../../../source/docs/compiling/Building-Projects.rst:315
 msgid "Adding more ports"
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:283
+#: ../../../source/docs/compiling/Building-Projects.rst:317
 msgid ""
 "The simplest way to add a new port is to put it under the ``contrib`` "
 "directory. Basically, the steps are:"
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:286
+#: ../../../source/docs/compiling/Building-Projects.rst:320
 msgid "Make sure the port is open source and has a suitable license."
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:287
+#: ../../../source/docs/compiling/Building-Projects.rst:321
 msgid ""
 "Read the ``README.md`` file under ``tools/ports/contrib`` which contains "
 "more information."
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:290
+#: ../../../source/docs/compiling/Building-Projects.rst:324
 msgid "External ports"
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:292
+#: ../../../source/docs/compiling/Building-Projects.rst:326
 msgid ""
 "Emscripten also supports external ports (ports that are not part of the "
 "distribution). In order to use such a port, you simply provide its path: ``--"
 "use-port=/path/to/my_port.py``"
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:296
+#: ../../../source/docs/compiling/Building-Projects.rst:330
 msgid ""
 "Be aware that if you are working on the code of a port, the port API used by "
 "emscripten is not 100% stable and could change between versions."
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:300
+#: ../../../source/docs/compiling/Building-Projects.rst:334
 msgid "Build system issues"
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:303
+#: ../../../source/docs/compiling/Building-Projects.rst:337
 msgid "Build system self-execution"
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:305
+#: ../../../source/docs/compiling/Building-Projects.rst:339
 msgid ""
 "Some large projects generate executables and run them in order to generate "
 "input for later parts of the build process (for example, a parser may be "
@@ -463,7 +496,7 @@ msgid ""
 "using Emscripten because you cannot directly run the code you are generating."
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:307
+#: ../../../source/docs/compiling/Building-Projects.rst:341
 msgid ""
 "The simplest solution is usually to build the project twice: once natively, "
 "and once to JavaScript. When the JavaScript build procedure fails because a "
@@ -473,7 +506,7 @@ msgid ""
 "`pgen` executable during the build)."
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:309
+#: ../../../source/docs/compiling/Building-Projects.rst:343
 msgid ""
 "In some cases it makes sense to modify the build scripts so that they build "
 "the generated executable natively. For example, this can be done by "
@@ -484,28 +517,28 @@ msgid ""
 "used both for the final result and for a generated executable."
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:313
+#: ../../../source/docs/compiling/Building-Projects.rst:347
 msgid "Dynamic Linking"
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:315
+#: ../../../source/docs/compiling/Building-Projects.rst:349
 msgid ""
 "Emscripten's goal is to generate the fastest and smallest possible code. For "
 "that reason it focuses on compiling an entire project into a single Wasm "
 "file, and the recommendation is to avoiding dynamic linking in most cases."
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:319
+#: ../../../source/docs/compiling/Building-Projects.rst:353
 msgid ""
 "See :ref:`experimental support <Dynamic-Linking>` for more information if "
 "your project requires dynamic linking."
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:324
+#: ../../../source/docs/compiling/Building-Projects.rst:358
 msgid "Configure may run checks that appear to fail"
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:326
+#: ../../../source/docs/compiling/Building-Projects.rst:360
 msgid ""
 "Projects that use *configure*, *cmake*, or some other portable configuration "
 "method may run checks during the configure phase to verify that the "
@@ -515,14 +548,14 @@ msgid ""
 "environment, but not in the shell during *configure*)."
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:328
+#: ../../../source/docs/compiling/Building-Projects.rst:362
 msgid ""
 "Ensure that if a check is disabled, the tested functionality does work. This "
 "might involve manually adding commands to the make files using a build "
 "system-specific method."
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:330
+#: ../../../source/docs/compiling/Building-Projects.rst:364
 msgid ""
 "In general *configure* is not a good match for a cross-compiler like "
 "Emscripten. *configure* is designed to build natively for the local setup, "
@@ -531,11 +564,11 @@ msgid ""
 "these headers etc."
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:334
+#: ../../../source/docs/compiling/Building-Projects.rst:368
 msgid "Archive (.a) files"
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:336
+#: ../../../source/docs/compiling/Building-Projects.rst:370
 msgid ""
 "Emscripten supports **.a** archive files, which are bundles of object files. "
 "This is a simple format for libraries, that has special semantics - for "
@@ -544,18 +577,18 @@ msgid ""
 "in Emscripten as elsewhere."
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:339
+#: ../../../source/docs/compiling/Building-Projects.rst:373
 msgid "Manually using emcc"
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:341
+#: ../../../source/docs/compiling/Building-Projects.rst:375
 msgid ""
 "The :ref:`Tutorial` showed how :ref:`emcc <emccdoc>` can be used to compile "
 "single files into JavaScript. *Emcc* can also be used in all the other ways "
 "you would expect of *gcc*:"
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:373
+#: ../../../source/docs/compiling/Building-Projects.rst:407
 msgid ""
 "In addition to the capabilities it shares with *gcc*, *emcc* supports "
 "options to optimize code, control what debug information is emitted, "
@@ -564,23 +597,23 @@ msgid ""
 "line)."
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:377
+#: ../../../source/docs/compiling/Building-Projects.rst:411
 msgid "Detecting Emscripten in Preprocessor"
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:379
+#: ../../../source/docs/compiling/Building-Projects.rst:413
 msgid ""
 "Emscripten provides the following preprocessor macros that can be used to "
 "identify the compiler version and platform:"
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:381
+#: ../../../source/docs/compiling/Building-Projects.rst:415
 msgid ""
 "The preprocessor define ``__EMSCRIPTEN__`` is always defined when compiling "
 "programs with Emscripten."
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:382
+#: ../../../source/docs/compiling/Building-Projects.rst:416
 msgid ""
 "The preprocessor variables ``__EMSCRIPTEN_MAJOR__``, "
 "``__EMSCRIPTEN_MINOR__`` and ``__EMSCRIPTEN_TINY__`` are defined in "
@@ -588,14 +621,14 @@ msgid ""
 "Emscripten compiler version."
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:385
+#: ../../../source/docs/compiling/Building-Projects.rst:419
 msgid ""
 "Emscripten behaves like a variant of Unix, so the preprocessor defines "
 "``unix``, ``__unix`` and ``__unix__`` are always present when compiling code "
 "with Emscripten."
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:386
+#: ../../../source/docs/compiling/Building-Projects.rst:420
 msgid ""
 "Emscripten uses Clang/LLVM as its underlying codegen compiler, so the "
 "preprocessor defines ``__llvm__`` and ``__clang__`` are defined, and the "
@@ -603,33 +636,33 @@ msgid ""
 "``__clang_patchlevel__`` indicate the version of Clang that is used."
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:387
+#: ../../../source/docs/compiling/Building-Projects.rst:421
 msgid ""
 "Clang/LLVM is GCC-compatible, so the preprocessor defines ``__GNUC__``, "
 "``__GNUC_MINOR__`` and ``__GNUC_PATCHLEVEL__`` are also defined to represent "
 "the level of GCC compatibility that Clang/LLVM provides."
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:388
+#: ../../../source/docs/compiling/Building-Projects.rst:422
 msgid ""
 "The preprocessor string ``__VERSION__`` indicates the GCC compatible "
 "version, which is expanded to also show Emscripten version information."
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:389
+#: ../../../source/docs/compiling/Building-Projects.rst:423
 msgid ""
 "Likewise, ``__clang_version__`` is present and indicates both Emscripten and "
 "LLVM version information."
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:390
+#: ../../../source/docs/compiling/Building-Projects.rst:424
 msgid ""
 "Emscripten is a 32-bit platform, so ``size_t`` is a 32-bit unsigned integer, "
 "``__POINTER_WIDTH__=32``, ``__SIZEOF_LONG__=4`` and ``__LONG_MAX__`` equals "
 "``2147483647L``."
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:391
+#: ../../../source/docs/compiling/Building-Projects.rst:425
 msgid ""
 "When targeting SSEx SIMD APIs using one of the command line compiler flags "
 "``-msse``, ``-msse2``, ``-msse3``, ``-mssse3``, or ``-msse4.1``, one or more "
@@ -638,18 +671,18 @@ msgid ""
 "for these instruction sets."
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:392
+#: ../../../source/docs/compiling/Building-Projects.rst:426
 msgid ""
 "If targeting the pthreads multithreading support with the compiler & linker "
 "flag ``-pthread``, the preprocessor define ``__EMSCRIPTEN_PTHREADS__`` will "
 "be present."
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:396
+#: ../../../source/docs/compiling/Building-Projects.rst:430
 msgid "Using a compiler wrapper"
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:398
+#: ../../../source/docs/compiling/Building-Projects.rst:432
 msgid ""
 "Sometimes it can be useful to use a compiler wrapper in order to do things "
 "like ``ccache``, ``distcc`` or ``gomacc``.  For ``ccache`` the normal method "
@@ -661,11 +694,11 @@ msgid ""
 "settings this can also be set via an environment variable.  e.g::"
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:411
+#: ../../../source/docs/compiling/Building-Projects.rst:445
 msgid "pkg-config"
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:413
+#: ../../../source/docs/compiling/Building-Projects.rst:447
 msgid ""
 "*emconfigure* and *emmake* configure `pkg-config <https://www.freedesktop."
 "org/wiki/Software/pkg-config/>`_ for cross compiling and set the environment "
@@ -673,11 +706,11 @@ msgid ""
 "pkg-config paths, set the environment variable ``EM_PKG_CONFIG_PATH``."
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:420
+#: ../../../source/docs/compiling/Building-Projects.rst:454
 msgid "Examples / test code"
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:422
+#: ../../../source/docs/compiling/Building-Projects.rst:456
 msgid ""
 "The Emscripten test suite (`test/runner.py <https://github.com/emscripten-"
 "core/emscripten/blob/main/test/runner.py>`_) contains a number of good "
@@ -691,17 +724,17 @@ msgid ""
 "emscripten/tree/main/test/third_party/poppler>`_."
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:424
+#: ../../../source/docs/compiling/Building-Projects.rst:458
 msgid ""
 "It is also worth looking at the build scripts in the `ammo.js <https://"
 "github.com/kripken/ammo.js/blob/main/CMakeLists.txt>`_ project."
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:428
+#: ../../../source/docs/compiling/Building-Projects.rst:462
 msgid "Troubleshooting"
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:430
+#: ../../../source/docs/compiling/Building-Projects.rst:464
 msgid ""
 "Make sure to use ``emar`` (which calls ``llvm-ar``), as the system ``ar`` "
 "may not support our object files. ``emmake`` and ``emconfigure`` set the AR "
@@ -709,7 +742,7 @@ msgid ""
 "hardcode ``ar``."
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:434
+#: ../../../source/docs/compiling/Building-Projects.rst:468
 msgid ""
 "Similarly, using the system ``ranlib`` instead of ``emranlib`` (which calls "
 "``llvm-ranlib``) may lead to problems, like not supporting our object files "
@@ -720,25 +753,25 @@ msgid ""
 "core/emscripten/issues/9705#issuecomment-548199052>`_."
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:442
+#: ../../../source/docs/compiling/Building-Projects.rst:476
 msgid ""
 "The compilation error ``multiply defined symbol`` indicates that the project "
 "has linked a particular static library multiple times. The project will need "
 "to be changed so that the problem library is linked only once."
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:444
+#: ../../../source/docs/compiling/Building-Projects.rst:478
 msgid ""
 "You can use ``llvm-nm`` to see which symbols are defined in each object file."
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:446
+#: ../../../source/docs/compiling/Building-Projects.rst:480
 msgid ""
 "One solution is to use :ref:`dynamic-linking <Dynamic-Linking>`. This "
 "ensures that libraries are linked only once, in the final build stage."
 msgstr ""
 
-#: ../../../source/docs/compiling/Building-Projects.rst:447
+#: ../../../source/docs/compiling/Building-Projects.rst:481
 msgid ""
 "When generating standalone Wasm, make sure to invoke the ``_start`` or (for "
 "``--no-entry``) ``_initialize`` export before attempting to use the module."

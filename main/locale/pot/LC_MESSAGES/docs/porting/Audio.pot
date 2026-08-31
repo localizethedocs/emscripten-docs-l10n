@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Emscripten main\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-18 07:11+0000\n"
+"POT-Creation-Date: 2026-08-31 15:43+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -200,32 +200,32 @@ msgid ""
 "example):"
 msgstr ""
 
-#: ../../../source/docs/porting/Audio.rst:122
+#: ../../../source/docs/porting/Audio.rst:121
 msgid ""
 "It is reasonable to expect this sample rate to be either 44100Hz or 48000Hz. "
 "You can test it right now by copying the javascript part into your browser's "
 "console if you're curious."
 msgstr ""
 
-#: ../../../source/docs/porting/Audio.rst:128
+#: ../../../source/docs/porting/Audio.rst:127
 msgid "Improving and extending the implementation"
 msgstr ""
 
-#: ../../../source/docs/porting/Audio.rst:130
+#: ../../../source/docs/porting/Audio.rst:129
 msgid ""
 "Currently, the OpenAL capture implementation performs naïve linear "
 "resampling because it is simple and the small loss of quality was deemed "
 "acceptable."
 msgstr ""
 
-#: ../../../source/docs/porting/Audio.rst:132
+#: ../../../source/docs/porting/Audio.rst:131
 msgid ""
 "However, you're welcome to improve this by contributing if you so wish! See "
 "`this issue <https://github.com/emscripten-core/emscripten/issues/5349>`_ , "
 "for instance."
 msgstr ""
 
-#: ../../../source/docs/porting/Audio.rst:134
+#: ../../../source/docs/porting/Audio.rst:133
 msgid ""
 "Likewise, if you'd like to see a particular extension implemented (whether "
 "it is registered or not), then your best bet is to either file an issue "

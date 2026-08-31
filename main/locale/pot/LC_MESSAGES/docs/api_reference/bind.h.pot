@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Emscripten main\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-18 07:11+0000\n"
+"POT-Creation-Date: 2026-08-31 15:43+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -497,20 +497,20 @@ msgid ""
 "values in the :cpp:func:`EMSCRIPTEN_BINDINGS` block."
 msgstr ""
 
-#: ../../../source/docs/api_reference/bind.h.rst:869
+#: ../../../source/docs/api_reference/bind.h.rst:871
 msgid "Constants"
 msgstr ""
 
-#: ../../../source/docs/api_reference/bind.h.rst:879
+#: ../../../source/docs/api_reference/bind.h.rst:881
 msgid ""
 "Registers a constant to export to JavaScript. This is called from within an :"
 "cpp:func:`EMSCRIPTEN_BINDINGS` block."
 msgstr ""
 
-#: ../../../source/docs/api_reference/bind.h.rst:888
+#: ../../../source/docs/api_reference/bind.h.rst:890
 msgid "The name of the constant."
 msgstr ""
 
-#: ../../../source/docs/api_reference/bind.h.rst:889
+#: ../../../source/docs/api_reference/bind.h.rst:891
 msgid "The constant type. This can be any type known to *embind*."
 msgstr ""

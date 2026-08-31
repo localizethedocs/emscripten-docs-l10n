@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Emscripten main\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-18 07:11+0000\n"
+"POT-Creation-Date: 2026-08-31 15:43+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -43,55 +43,69 @@ msgid ""
 "For contributing to core Emscripten code, such as ``emcc.py``, you don't "
 "need to build any binaries as ``emcc.py`` is in Python, and the core JS "
 "generation is in JavaScript. You do still need binaries for LLVM and "
-"Binaryen, which you can get using the emsdk:"
+"Binaryen, which you can get using the emsdk."
 msgstr ""
 
-#: ../../../source/docs/contributing/developers_guide.rst:29
+#: ../../../source/docs/contributing/developers_guide.rst:24
 msgid ""
-"This will install the latest \"tip-of-tree\" binaries needed to run "
-"Emscripten. You can use these emsdk-provided binaries with a git checkout of "
-"the Emscripten repository.  To do this, you can either edit your local ``."
+"If you want to contribute back to Emscripten, it is recommended that you "
+"install the precise version of the emsdk binaries that are used by "
+"Emscripten CI when running the test suite:"
+msgstr ""
+
+#: ../../../source/docs/contributing/developers_guide.rst:33
+msgid ""
+"You can use these emsdk-provided binaries with a git checkout of the "
+"Emscripten repository.  To do this, you can either edit your local ``."
 "emscripten`` config file, or set ``EM_CONFIG=/path/to/emsdk/.emscripten`` in "
 "your environment."
 msgstr ""
 
-#: ../../../source/docs/contributing/developers_guide.rst:34
+#: ../../../source/docs/contributing/developers_guide.rst:37
 msgid ""
-"If you do want to contribute to LLVM or Binaryen, or to test modifications "
-"to them, you can :ref:`build them from source <installing-from-source>`."
+"Alternatively, if you want to test against the latest \"tip-of-tree\" "
+"binaries, you can install the ``tot`` target:"
 msgstr ""
 
-#: ../../../source/docs/contributing/developers_guide.rst:39
+#: ../../../source/docs/contributing/developers_guide.rst:45
+msgid ""
+"If you do want to contribute to LLVM or Binaryen, or to test modifications "
+"to them, you can :ref:`build them from source <installing-from-source>`.  If "
+"you choose this option you can use the ``tools/maint/sync_deps.py`` script "
+"to help keep your sources in sync with ``test/emsdk_version.txt``."
+msgstr ""
+
+#: ../../../source/docs/contributing/developers_guide.rst:52
 msgid "Repositories and branches of interest"
 msgstr ""
 
-#: ../../../source/docs/contributing/developers_guide.rst:41
+#: ../../../source/docs/contributing/developers_guide.rst:54
 msgid ""
 "The Emscripten main repository is https://github.com/emscripten-core/"
 "emscripten."
 msgstr ""
 
-#: ../../../source/docs/contributing/developers_guide.rst:43
+#: ../../../source/docs/contributing/developers_guide.rst:56
 msgid ""
 "Aside from the Emscripten repo, the other codebases of interest are LLVM and "
 "Binaryen, which Emscripten invokes, and :ref:`have their own repos "
 "<installing-from-source>`."
 msgstr ""
 
-#: ../../../source/docs/contributing/developers_guide.rst:50
+#: ../../../source/docs/contributing/developers_guide.rst:63
 msgid "Submitting patches"
 msgstr ""
 
-#: ../../../source/docs/contributing/developers_guide.rst:52
+#: ../../../source/docs/contributing/developers_guide.rst:65
 msgid ""
 "Patches should be submitted as *pull requests* in the normal way on GitHub."
 msgstr ""
 
-#: ../../../source/docs/contributing/developers_guide.rst:54
+#: ../../../source/docs/contributing/developers_guide.rst:67
 msgid "When submitting patches, please:"
 msgstr ""
 
-#: ../../../source/docs/contributing/developers_guide.rst:56
+#: ../../../source/docs/contributing/developers_guide.rst:69
 msgid ""
 "Add an automatic test if you add any new functionality or fix a bug. Search "
 "in ``test/*.py`` for related tests, as often the simplest thing is to add to "
@@ -99,13 +113,13 @@ msgid ""
 "for help."
 msgstr ""
 
-#: ../../../source/docs/contributing/developers_guide.rst:60
+#: ../../../source/docs/contributing/developers_guide.rst:73
 msgid ""
 "Pay attention to our coding style specified in `.clang-format <https://"
 "github.com/emscripten-core/emscripten/blob/main/.clang-format>`_."
 msgstr ""
 
-#: ../../../source/docs/contributing/developers_guide.rst:62
+#: ../../../source/docs/contributing/developers_guide.rst:75
 msgid ""
 "We normally squash and merge PRs, which means the PR turns into a single "
 "commit on the target branch. Because of that, it's ok to have merge commits "
@@ -113,35 +127,35 @@ msgid ""
 "final commit in the PR description, and we'll use it when squashing."
 msgstr ""
 
-#: ../../../source/docs/contributing/developers_guide.rst:68
+#: ../../../source/docs/contributing/developers_guide.rst:81
 msgid "Code reviews"
 msgstr ""
 
-#: ../../../source/docs/contributing/developers_guide.rst:70
+#: ../../../source/docs/contributing/developers_guide.rst:83
 msgid ""
 "One of the core developers will review a pull request before merging it. If "
 "several days pass without any comments on your PR, please comment in the PR "
 "which will ping them. (If that happens, sorry! Sometimes things get missed.)"
 msgstr ""
 
-#: ../../../source/docs/contributing/developers_guide.rst:75
+#: ../../../source/docs/contributing/developers_guide.rst:88
 msgid "Compiler overview"
 msgstr ""
 
-#: ../../../source/docs/contributing/developers_guide.rst:77
+#: ../../../source/docs/contributing/developers_guide.rst:90
 msgid ""
 "The :ref:`Emscripten Compiler Frontend (emcc) <emccdoc>` is a python script "
 "that manages the entire compilation process:"
 msgstr ""
 
-#: ../../../source/docs/contributing/developers_guide.rst:79
+#: ../../../source/docs/contributing/developers_guide.rst:92
 msgid ""
 "**emcc** calls :term:`Clang` to compile C++ and ``wasm-ld`` to link it. It "
 "builds and integrates with the Emscripten system libraries, both the "
 "compiled ones and the ones implemented in JS."
 msgstr ""
 
-#: ../../../source/docs/contributing/developers_guide.rst:82
+#: ../../../source/docs/contributing/developers_guide.rst:95
 msgid ""
 "**emcc** then calls `emscripten.py <https://github.com/emscripten-core/"
 "emscripten/blob/main/tools/emscripten.py>`_ which performs the final "
@@ -150,18 +164,18 @@ msgid ""
 "files) which emits the JS."
 msgstr ""
 
-#: ../../../source/docs/contributing/developers_guide.rst:86
+#: ../../../source/docs/contributing/developers_guide.rst:99
 msgid ""
 "If optimizing Wasm, **emcc** will then call **wasm-opt**, run meta-dce, and "
 "other useful things. It will also run JS optimizations on the JS that is "
 "emitted alongside the Wasm."
 msgstr ""
 
-#: ../../../source/docs/contributing/developers_guide.rst:91
+#: ../../../source/docs/contributing/developers_guide.rst:104
 msgid "Emscripten Test Suite"
 msgstr ""
 
-#: ../../../source/docs/contributing/developers_guide.rst:93
+#: ../../../source/docs/contributing/developers_guide.rst:106
 msgid ""
 "Emscripten has a :ref:`comprehensive test suite <emscripten-test-suite>`, "
 "which covers virtually all Emscripten functionality. These tests are run on "
@@ -170,11 +184,11 @@ msgid ""
 "developers know."
 msgstr ""
 
-#: ../../../source/docs/contributing/developers_guide.rst:100
+#: ../../../source/docs/contributing/developers_guide.rst:113
 msgid "Bisecting"
 msgstr ""
 
-#: ../../../source/docs/contributing/developers_guide.rst:102
+#: ../../../source/docs/contributing/developers_guide.rst:115
 msgid ""
 "If you find a regression, bisection is often the fastest way to figure out "
 "what went wrong. This is true not just for finding an actual regression in "
@@ -185,7 +199,7 @@ msgid ""
 "developers."
 msgstr ""
 
-#: ../../../source/docs/contributing/developers_guide.rst:109
+#: ../../../source/docs/contributing/developers_guide.rst:122
 msgid ""
 "If you have a large bisection range - for example, that covers more than one "
 "version of Emscripten - then you probably have changes across multiple repos "
@@ -195,14 +209,14 @@ msgid ""
 "approach you don't need to compile anything yourself, so it can be very fast!"
 msgstr ""
 
-#: ../../../source/docs/contributing/developers_guide.rst:116
+#: ../../../source/docs/contributing/developers_guide.rst:129
 msgid ""
 "To do this, you need a basic understanding of Emscripten's `release process "
 "<https://github.com/emscripten-core/emscripten/blob/main/docs/process."
 "md#release-processes>`_ The key idea is that::"
 msgstr ""
 
-#: ../../../source/docs/contributing/developers_guide.rst:122
+#: ../../../source/docs/contributing/developers_guide.rst:135
 msgid ""
 "can install an arbitrary build of emscripten from any point in the past "
 "(assuming the build succeeded). Each build is identified by a hash (a long "
@@ -213,24 +227,24 @@ msgid ""
 "emscripten-core/emsdk/blob/main/emscripten-releases-tags.json>`_."
 msgstr ""
 
-#: ../../../source/docs/contributing/developers_guide.rst:129
+#: ../../../source/docs/contributing/developers_guide.rst:142
 msgid "With that background, the bisection process would look like this:"
 msgstr ""
 
-#: ../../../source/docs/contributing/developers_guide.rst:131
+#: ../../../source/docs/contributing/developers_guide.rst:144
 msgid ""
 "Find the hashes to bisect between. You may already know them if you found "
 "the problem on ``tot`` builds. If instead you only know Emscripten version "
 "numbers, use ``emscripten-releases-tags.json`` to find the hashes."
 msgstr ""
 
-#: ../../../source/docs/contributing/developers_guide.rst:134
+#: ../../../source/docs/contributing/developers_guide.rst:147
 msgid ""
 "Using those hashes, do a normal ``git bisect`` on the ``emscripten-"
 "releases`` repo."
 msgstr ""
 
-#: ../../../source/docs/contributing/developers_guide.rst:136
+#: ../../../source/docs/contributing/developers_guide.rst:149
 msgid ""
 "In each step of the bisection, download the binary build for the current "
 "commit hash (in the ``emscripten-releases`` repo that you are bisecting on) "
@@ -239,7 +253,7 @@ msgid ""
 "first bad commit."
 msgstr ""
 
-#: ../../../source/docs/contributing/developers_guide.rst:142
+#: ../../../source/docs/contributing/developers_guide.rst:155
 msgid ""
 "The first bad commit is a single change in the releases repo. That commit "
 "will generally update a single sub-repo (Emscripten, LLVM, or Binaryen) to "
@@ -249,7 +263,7 @@ msgid ""
 "(even if that commit contains multiple changes)."
 msgstr ""
 
-#: ../../../source/docs/contributing/developers_guide.rst:149
+#: ../../../source/docs/contributing/developers_guide.rst:162
 msgid ""
 "If that commit contains multiple changes then you can optionally bisect "
 "further on the specific repo (as all the changes will normally be in just "
@@ -258,11 +272,11 @@ msgid ""
 "section."
 msgstr ""
 
-#: ../../../source/docs/contributing/developers_guide.rst:156
+#: ../../../source/docs/contributing/developers_guide.rst:169
 msgid "Working with C structs and defines"
 msgstr ""
 
-#: ../../../source/docs/contributing/developers_guide.rst:158
+#: ../../../source/docs/contributing/developers_guide.rst:171
 msgid ""
 "If you change the layout of C structs or modify C defines that are used in "
 "JavaScript library files you may need to modify ``tools/struct_info.json``.  "
@@ -272,18 +286,18 @@ msgid ""
 "and ``./tools/gen_struct_info.py --wasm64``."
 msgstr ""
 
-#: ../../../source/docs/contributing/developers_guide.rst:165
+#: ../../../source/docs/contributing/developers_guide.rst:178
 msgid "The ``test_gen_struct_info`` test will fail if you forget to do this."
 msgstr ""
 
-#: ../../../source/docs/contributing/developers_guide.rst:168
+#: ../../../source/docs/contributing/developers_guide.rst:181
 msgid "See also"
 msgstr ""
 
-#: ../../../source/docs/contributing/developers_guide.rst:170
+#: ../../../source/docs/contributing/developers_guide.rst:183
 msgid ":ref:`Debugging`"
 msgstr ""
 
-#: ../../../source/docs/contributing/developers_guide.rst:171
+#: ../../../source/docs/contributing/developers_guide.rst:184
 msgid ":ref:`Building-Projects`"
 msgstr ""

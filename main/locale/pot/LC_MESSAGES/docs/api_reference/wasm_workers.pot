@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Emscripten main\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-18 07:11+0000\n"
+"POT-Creation-Date: 2026-08-31 15:43+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -708,13 +708,13 @@ msgid ""
 "due to historical reasons."
 msgstr ""
 
-#: ../../../source/docs/api_reference/wasm_workers.rst:400
+#: ../../../source/docs/api_reference/wasm_workers.rst:403
 msgid ""
 "Both APIs allow one to spawn Web Workers from the main thread, though the "
 "semantics are different."
 msgstr ""
 
-#: ../../../source/docs/api_reference/wasm_workers.rst:402
+#: ../../../source/docs/api_reference/wasm_workers.rst:406
 msgid ""
 "With the Worker API, the user will be able to spawn a Web Worker from a "
 "custom URL. This URL can point to a completely separate JS file that was not "
@@ -724,7 +724,7 @@ msgid ""
 "program."
 msgstr ""
 
-#: ../../../source/docs/api_reference/wasm_workers.rst:404
+#: ../../../source/docs/api_reference/wasm_workers.rst:412
 msgid ""
 "The Worker API does not integrate with SharedArrayBuffer, so interaction "
 "with the loaded Worker will always be asynchronous. Wasm Workers however is "
@@ -732,7 +732,7 @@ msgid ""
 "in the same WebAssembly Memory address space of the main thread."
 msgstr ""
 
-#: ../../../source/docs/api_reference/wasm_workers.rst:406
+#: ../../../source/docs/api_reference/wasm_workers.rst:417
 msgid ""
 "Both the Worker API and Wasm Workers API provide the user with ability to "
 "postMessage() function calls to the Worker. In Worker API, this message "
@@ -743,7 +743,7 @@ msgid ""
 "thread."
 msgstr ""
 
-#: ../../../source/docs/api_reference/wasm_workers.rst:408
+#: ../../../source/docs/api_reference/wasm_workers.rst:425
 msgid ""
 "If posting function calls with the Emscripten Worker API, it is required "
 "that the target Worker URL points to an Emscripten compiled program (so it "
@@ -752,91 +752,91 @@ msgid ""
 "any C/C++ function may be posted, and does not need to be exported."
 msgstr ""
 
-#: ../../../source/docs/api_reference/wasm_workers.rst:410
+#: ../../../source/docs/api_reference/wasm_workers.rst:431
 msgid "Use the Emscripten Worker API when:"
 msgstr ""
 
-#: ../../../source/docs/api_reference/wasm_workers.rst:411
+#: ../../../source/docs/api_reference/wasm_workers.rst:432
 msgid ""
 "you want to easily spawn a Worker from a JS file that was not built using "
 "Emscripten"
 msgstr ""
 
-#: ../../../source/docs/api_reference/wasm_workers.rst:412
+#: ../../../source/docs/api_reference/wasm_workers.rst:434
 msgid ""
 "you want to spawn as Worker a single separate compiled program than the main "
 "thread program represents, and the main thread and Worker programs do not "
 "share common code"
 msgstr ""
 
-#: ../../../source/docs/api_reference/wasm_workers.rst:413
+#: ../../../source/docs/api_reference/wasm_workers.rst:437
 msgid ""
 "you do not want to require the use of SharedArrayBuffer, or setting up "
 "COOP+COEP headers"
 msgstr ""
 
-#: ../../../source/docs/api_reference/wasm_workers.rst:414
+#: ../../../source/docs/api_reference/wasm_workers.rst:439
 msgid ""
 "you only need to communicate with the Worker asynchronously using "
 "postMessage() function calls"
 msgstr ""
 
-#: ../../../source/docs/api_reference/wasm_workers.rst:416
+#: ../../../source/docs/api_reference/wasm_workers.rst:442
 msgid "Use the Wasm Workers API when:"
 msgstr ""
 
-#: ../../../source/docs/api_reference/wasm_workers.rst:417
+#: ../../../source/docs/api_reference/wasm_workers.rst:443
 msgid ""
 "you want to create one or more new threads that synchronously compute in the "
 "same Wasm Module context"
 msgstr ""
 
-#: ../../../source/docs/api_reference/wasm_workers.rst:418
+#: ../../../source/docs/api_reference/wasm_workers.rst:445
 msgid ""
 "you want to spawn multiple Workers from the same codebase and save memory by "
 "sharing the WebAssembly Module (object code) and Memory (address space) "
 "across the Workers"
 msgstr ""
 
-#: ../../../source/docs/api_reference/wasm_workers.rst:419
+#: ../../../source/docs/api_reference/wasm_workers.rst:448
 msgid ""
 "you want to synchronously coordinate communication between threads by using "
 "atomic primitives and locks"
 msgstr ""
 
-#: ../../../source/docs/api_reference/wasm_workers.rst:420
+#: ../../../source/docs/api_reference/wasm_workers.rst:450
 msgid ""
 "your web server has been configured with the needed COOP+COEP headers to "
 "enable SharedArrayBuffer capabilities on the site"
 msgstr ""
 
-#: ../../../source/docs/api_reference/wasm_workers.rst:423
+#: ../../../source/docs/api_reference/wasm_workers.rst:454
 msgid "Limitations"
 msgstr ""
 
-#: ../../../source/docs/api_reference/wasm_workers.rst:425
+#: ../../../source/docs/api_reference/wasm_workers.rst:456
 msgid ""
 "The following build options are not supported at the moment with Wasm "
 "Workers:"
 msgstr ""
 
-#: ../../../source/docs/api_reference/wasm_workers.rst:427
+#: ../../../source/docs/api_reference/wasm_workers.rst:458
 msgid "-sSINGLE_FILE"
 msgstr ""
 
-#: ../../../source/docs/api_reference/wasm_workers.rst:428
+#: ../../../source/docs/api_reference/wasm_workers.rst:459
 msgid "Dynamic linking (-sLINKABLE, -sMAIN_MODULE, -sSIDE_MODULE)"
 msgstr ""
 
-#: ../../../source/docs/api_reference/wasm_workers.rst:429
+#: ../../../source/docs/api_reference/wasm_workers.rst:460
 msgid "-sPROXY_TO_PTHREAD"
 msgstr ""
 
-#: ../../../source/docs/api_reference/wasm_workers.rst:432
+#: ../../../source/docs/api_reference/wasm_workers.rst:463
 msgid "Example Code"
 msgstr ""
 
-#: ../../../source/docs/api_reference/wasm_workers.rst:434
+#: ../../../source/docs/api_reference/wasm_workers.rst:465
 msgid ""
 "See the directory ``test/wasm_worker/`` for code examples on different Wasm "
 "Workers API functionality."
