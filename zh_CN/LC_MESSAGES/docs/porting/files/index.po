@@ -1,0 +1,58 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) Copyright &copy; 2015, Emscripten Contributors.
+# This file is distributed under the same license as the Emscripten package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Emscripten main\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-18 07:11+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../../source/docs/porting/files/index.rst:5
+msgid "Files and File Systems"
+msgstr ""
+
+#: ../../../source/docs/porting/files/index.rst:7
+msgid ""
+"This section contains articles related to using files in Emscripten-compiled "
+"code."
+msgstr ""
+
+#: ../../../source/docs/porting/files/index.rst:9
+msgid ""
+"The :ref:`file-system-overview` provides a high level overview of how file "
+"operations are supported by Emscripten."
+msgstr ""
+
+#: ../../../source/docs/porting/files/index.rst:10
+msgid ""
+":ref:`packaging-files` shows how to use :ref:`emcc <emccdoc>` to package the "
+"files needed by compiled code."
+msgstr ""
+
+#: ../../../source/docs/porting/files/index.rst:11
+msgid ""
+":ref:`Synchronous-Virtual-XHR-Backed-File-System-Usage` explains how to "
+"setup lazy loading of binary data from HTTP servers using XHR’s."
+msgstr ""
+
+#: ../../../source/docs/porting/files/index.rst:13
+msgid "API Reference:"
+msgstr ""
+
+#: ../../../source/docs/porting/files/index.rst:15
+msgid ":ref:`Filesystem-API` (JavaScript)."
+msgstr ""
+
+#: ../../../source/docs/porting/files/index.rst:16
+msgid ":ref:`emscripten-h-asynchronous-file-system-api` (C/C++)."
+msgstr ""

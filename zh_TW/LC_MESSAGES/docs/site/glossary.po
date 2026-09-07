@@ -1,0 +1,396 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) Copyright &copy; 2015, Emscripten Contributors.
+# This file is distributed under the same license as the Emscripten package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Emscripten main\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-18 07:11+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: zh_TW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../../source/docs/site/glossary.rst:3
+msgid "Glossary"
+msgstr "詞彙表"
+
+#: ../../../source/docs/site/glossary.rst:6
+msgid "General"
+msgstr ""
+
+#: ../../../source/docs/site/glossary.rst:13
+msgid "LLVM backend"
+msgstr ""
+
+#: ../../../source/docs/site/glossary.rst:15
+msgid ""
+"A (*Clang*) compiler backend that converts the :term:`LLVM` Intermediate "
+"Representation (IR) to code for a specified machine or other languages. In "
+"the case of Emscripten, the specified target is JavaScript."
+msgstr ""
+
+#: ../../../source/docs/site/glossary.rst:28
+msgid "Load-store consistency"
+msgstr ""
+
+#: ../../../source/docs/site/glossary.rst:30
+msgid ""
+"Load-Store Consistency (LSC), is the requirement that after a value with a "
+"specific type is written to a memory location, loads from that memory "
+"location will be of the same type. So if a variable contains a 32-bit "
+"floating point number, then both loads and stores to that variable will be "
+"of 32-bit floating point values, and not 16-bit unsigned integers or "
+"anything else."
+msgstr ""
+
+#: ../../../source/docs/site/glossary.rst:32
+msgid ""
+"This definition is taken from `Emscripten: An LLVM-to-JavaScript Compiler "
+"<https://github.com/emscripten-core/emscripten/blob/main/docs/paper.pdf?"
+"raw=true>`_ (section 2.1.1). There is additional detail in that paper."
+msgstr ""
+
+#: ../../../source/docs/site/glossary.rst:16
+msgid "Minifying"
+msgstr ""
+
+#: ../../../source/docs/site/glossary.rst:18
+msgid ""
+"`Minification <http://en.wikipedia.org/wiki/Minification_(programming)>`_ in "
+"JavaScript is the process of removing all unnecessary characters from source "
+"code without changing its functionality. At higher optimisation levels "
+"Emscripten uses the :term:`Closure Compiler` to minify Emscripten code."
+msgstr ""
+
+#: ../../../source/docs/site/glossary.rst:19
+msgid "Relooping"
+msgstr ""
+
+#: ../../../source/docs/site/glossary.rst:21
+msgid ""
+"Recreate high-level loop and ``if`` structures from the low-level labels and "
+"branches that appear in LLVM assembly (definition taken from `this paper "
+"<https://github.com/emscripten-core/emscripten/blob/main/docs/paper.pdf?"
+"raw=true>`_)."
+msgstr ""
+
+#: ../../../source/docs/site/glossary.rst:22
+msgid "SDL"
+msgstr ""
+
+#: ../../../source/docs/site/glossary.rst:24
+msgid ""
+"`Simple DirectMedia Layer <https://www.libsdl.org/>`_ (SDL) is a cross-"
+"platform development library designed to provide low level access to audio, "
+"keyboard, mouse, joystick, and graphics hardware via OpenGL and Direct3D."
+msgstr ""
+
+#: ../../../source/docs/site/glossary.rst:26
+msgid ""
+"The original compiler supported a number of other memory models and "
+"compilation modes (see `Code Generation Modes <https://github.com/emscripten-"
+"core/emscripten/wiki/Code-Generation-Modes>`_) but *Typed Arrays Mode 2* "
+"proved to have, among other benefits, the greatest support for arbitrary "
+"code."
+msgstr ""
+
+#: ../../../source/docs/site/glossary.rst:10
+msgid "XHR"
+msgstr ""
+
+#: ../../../source/docs/site/glossary.rst:12
+msgid ""
+"Contraction of ``XMLHttpRequest``. Emscripten uses XHRs for asynchronously "
+"downloading binary data."
+msgstr ""
+
+#: ../../../source/docs/site/glossary.rst:36
+msgid "Emscripten tools and dependencies"
+msgstr ""
+
+#: ../../../source/docs/site/glossary.rst:58
+msgid "Binaryen"
+msgstr ""
+
+#: ../../../source/docs/site/glossary.rst:60
+msgid ""
+"`Binaryen <https://github.com/WebAssembly/binaryen/>`_ is a WebAssembly "
+"compiler toolkit, which Emscripten uses to modify and optimize Wasm."
+msgstr ""
+
+#: ../../../source/docs/site/glossary.rst:40
+msgid "Clang"
+msgstr ""
+
+#: ../../../source/docs/site/glossary.rst:42
+msgid ""
+"Clang is a compiler front end for C, C++, and other programming languages "
+"that uses :term:`LLVM` as its back end."
+msgstr ""
+
+#: ../../../source/docs/site/glossary.rst:75
+msgid "Closure Compiler"
+msgstr ""
+
+#: ../../../source/docs/site/glossary.rst:77
+msgid ""
+"The closure compiler is used to minify Emscripten-generated code at higher "
+"optimisations."
+msgstr ""
+
+#: ../../../source/docs/site/glossary.rst:49
+msgid "Compiler Configuration File"
+msgstr ""
+
+#: ../../../source/docs/site/glossary.rst:51
+msgid ""
+"The :ref:`Compiler Configuration File <compiler-configuration-file>` stores "
+"the :term:`active <Active Tool/SDK>` tools and SDKs as defined using :term:"
+"`emsdk activate <emsdk>`."
+msgstr ""
+
+#: ../../../source/docs/site/glossary.rst:43
+msgid "emcc"
+msgstr ""
+
+#: ../../../source/docs/site/glossary.rst:45
+msgid ""
+"The :ref:`emccdoc`. Emscripten's drop-in replacement for a compiler like "
+"*gcc*."
+msgstr ""
+
+#: ../../../source/docs/site/glossary.rst:46
+msgid "Emscripten Command Prompt"
+msgstr ""
+
+#: ../../../source/docs/site/glossary.rst:48
+msgid ""
+"The :ref:`emcmdprompt` is used to call Emscripten tools from the command "
+"line on Windows."
+msgstr ""
+
+#: ../../../source/docs/site/glossary.rst:55
+msgid "Fastcomp"
+msgstr ""
+
+#: ../../../source/docs/site/glossary.rst:57
+msgid ""
+"Fastcomp was Emscripten's second compiler core, after the JS compiler and "
+"before the new LLVM Wasm backend."
+msgstr ""
+
+#: ../../../source/docs/site/glossary.rst:78
+msgid "Git"
+msgstr ""
+
+#: ../../../source/docs/site/glossary.rst:80
+msgid ""
+"`Git <http://en.wikipedia.org/wiki/Git_(software)>`_ is a distributed "
+"revision control system. Emscripten is hosted on :term:`GitHub` and can be "
+"updated and modified using a git client."
+msgstr ""
+
+#: ../../../source/docs/site/glossary.rst:81
+msgid "GitHub"
+msgstr ""
+
+#: ../../../source/docs/site/glossary.rst:83
+msgid ""
+"`GitHub <https://github.com/>`_ is a :term:`Git` repository web-based "
+"hosting service that also offers project-based collaboration features "
+"including wikis, task management, and bug tracking."
+msgstr ""
+
+#: ../../../source/docs/site/glossary.rst:85
+msgid "The Emscripten project is hosted on GitHub."
+msgstr ""
+
+#: ../../../source/docs/site/glossary.rst:67
+msgid "Java"
+msgstr ""
+
+#: ../../../source/docs/site/glossary.rst:69
+msgid ""
+"`Java <http://www.java.com/en/download/faq/whatis_java.xml>`_ is a "
+"programming language and computing platform. It is used by Emscripten for "
+"the code that performs some advanced optimisations. The required version is "
+"listed in the :ref:`toolchain requirements <central-list-of-emscripten-tools-"
+"and-dependencies>`."
+msgstr ""
+
+#: ../../../source/docs/site/glossary.rst:70
+msgid "JavaScript"
+msgstr ""
+
+#: ../../../source/docs/site/glossary.rst:72
+msgid ""
+"`JavaScript <http://en.wikipedia.org/wiki/JavaScript>`_ (`ECMAScript <http://"
+"en.wikipedia.org/wiki/ECMAScript>`_) is a programming language that is "
+"primarily used as part of a web browser, providing programmatic access to "
+"objects within a host environment. With :term:`node.js`, it is also being "
+"used in server-side network programming."
+msgstr ""
+
+#: ../../../source/docs/site/glossary.rst:74
+msgid ""
+"The `asm.js <http://asmjs.org/faq.html>`_ subset of JavaScript is "
+"Emscripten's target output language."
+msgstr ""
+
+#: ../../../source/docs/site/glossary.rst:86
+msgid "lli"
+msgstr ""
+
+#: ../../../source/docs/site/glossary.rst:87
+msgid "LLVM Interpreter"
+msgstr ""
+
+#: ../../../source/docs/site/glossary.rst:89
+msgid ""
+"The `LLVM interpreter (LLI) <http://llvm.org/releases/3.0/docs/CommandGuide/"
+"html/lli.html>`_ executes programs from :term:`LLVM` bitcode. This tool is "
+"not maintained and has odd errors and crashes."
+msgstr ""
+
+#: ../../../source/docs/site/glossary.rst:52
+msgid "LLVM"
+msgstr ""
+
+#: ../../../source/docs/site/glossary.rst:54
+msgid ""
+"`LLVM <http://en.wikipedia.org/wiki/LLVM>`_ is a compiler infrastructure "
+"designed to allow optimization of programs written in arbitrary programming "
+"languages."
+msgstr ""
+
+#: ../../../source/docs/site/glossary.rst:61
+msgid "node.js"
+msgstr ""
+
+#: ../../../source/docs/site/glossary.rst:63
+msgid ""
+"`Node.js <https://nodejs.org/en/>`_ is a cross-platform runtime environment "
+"for server-side and networking applications written in JavaScript. "
+"Essentially it allows you to run JavaScript applications outside of a "
+"browser context."
+msgstr ""
+
+#: ../../../source/docs/site/glossary.rst:64
+msgid "Python"
+msgstr ""
+
+#: ../../../source/docs/site/glossary.rst:66
+msgid ""
+"Python is a scripting language used to write many of Emscripten's tools. The "
+"required version is listed in the :ref:`toolchain requirements <central-list-"
+"of-emscripten-tools-and-dependencies>`."
+msgstr ""
+
+#: ../../../source/docs/site/glossary.rst:93
+msgid "SDK Terms"
+msgstr ""
+
+#: ../../../source/docs/site/glossary.rst:95
+msgid ""
+"The following terms are used when referring to the SDK and :ref:`emsdk`:"
+msgstr ""
+
+#: ../../../source/docs/site/glossary.rst:98
+msgid "emsdk"
+msgstr ""
+
+#: ../../../source/docs/site/glossary.rst:100
+msgid ""
+"The :ref:`emsdk` is used to perform all SDK maintenance and can install, "
+"update, add, remove and :term:`activate <Active Tool/SDK>` :term:`SDKs "
+"<SDK>` and :term:`tools <Tool>`. Most operations are of the form ``./emsdk "
+"command``. To access the *emsdk* script, launch the :term:`Emscripten "
+"Command Prompt`."
+msgstr ""
+
+#: ../../../source/docs/site/glossary.rst:101
+msgid "Tool"
+msgstr ""
+
+#: ../../../source/docs/site/glossary.rst:103
+msgid ""
+"The basic unit of software bundled in the :term:`SDK`. A Tool has a name and "
+"a version. For example, **clang-3.2-32bit** is a tool that contains the 32-"
+"bit version of the *Clang* v3.2 compiler. Other tools used by *Emscripten* "
+"include :term:`Java`, :term:`Git`, :term:`node.js`, etc."
+msgstr ""
+
+#: ../../../source/docs/site/glossary.rst:104
+msgid "SDK"
+msgstr ""
+
+#: ../../../source/docs/site/glossary.rst:106
+msgid ""
+"A set of :term:`tools <Tool>`. For example, **sdk-1.5.6-32bit** is an SDK "
+"consisting of the tools: clang-3.2-32bit, node-0.10.17-32bit, "
+"python-2.7.5.1-32bit and emscripten-1.5.6."
+msgstr ""
+
+#: ../../../source/docs/site/glossary.rst:108
+msgid ""
+"There are a number of different Emscripten SDK packages. These can be "
+"downloaded from :ref:`here <sdk-download-and-install>`."
+msgstr ""
+
+#: ../../../source/docs/site/glossary.rst:109
+msgid "Active Tool/SDK"
+msgstr ""
+
+#: ../../../source/docs/site/glossary.rst:111
+msgid ""
+"The :term:`emsdk` can store multiple versions of :term:`tools <Tool>` and :"
+"term:`SDKs <SDK>`. The active tools/SDK is the set of tools that are used by "
+"default on the *Emscripten Command Prompt*. This compiler configuration is "
+"stored in an emsdk-specific config file (**.emscripten**) and can be changed "
+"using *emsdk*."
+msgstr ""
+
+#: ../../../source/docs/site/glossary.rst:116
+msgid "emsdk root directory"
+msgstr ""
+
+#: ../../../source/docs/site/glossary.rst:118
+msgid ""
+"The :term:`emsdk` can manage any number of :term:`tools <Tool>` and :term:"
+"`SDKs <SDK>`, and these are stored in :term:`subdirectories <SDK root "
+"directory>` of the *emsdk root directory*. The **emsdk root** is the "
+"directory specified when you first installed an SDK."
+msgstr ""
+
+#: ../../../source/docs/site/glossary.rst:119
+msgid "SDK root directory"
+msgstr ""
+
+#: ../../../source/docs/site/glossary.rst:121
+msgid ""
+"The :term:`emsdk` can store any number of tools and SDKs. The *SDK root "
+"directory* is the directory used to store a particular :term:`SDK`. It is "
+"located as follows, with respect to the :term:`emsdk root directory`: "
+"**<emsdk root>\\\\emscripten\\\\<sdk root directory>\\\\**"
+msgstr ""
+
+#: ../../../source/docs/site/glossary.rst:125
+msgid "Site / Sphinx"
+msgstr ""
+
+#: ../../../source/docs/site/glossary.rst:129
+msgid "reStructured text"
+msgstr ""
+
+#: ../../../source/docs/site/glossary.rst:131
+msgid ""
+"Markup language used to define content on this site. See the `reStructured "
+"text primer <http://sphinx-doc.org/rest.html>`_."
+msgstr ""
