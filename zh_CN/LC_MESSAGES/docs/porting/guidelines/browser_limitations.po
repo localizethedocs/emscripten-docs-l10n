@@ -1,0 +1,79 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) Copyright &copy; 2015, Emscripten Contributors.
+# This file is distributed under the same license as the Emscripten package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Emscripten main\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-18 07:11+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../../source/docs/porting/guidelines/browser_limitations.rst:5
+msgid "Specific Browser Limitations"
+msgstr ""
+
+#: ../../../source/docs/porting/guidelines/browser_limitations.rst:7
+msgid ""
+"This page lists some of the differences between the latest versions of the "
+"major browsers that are relevant to Emscripten-compiled applications and "
+"games:"
+msgstr ""
+
+#: ../../../source/docs/porting/guidelines/browser_limitations.rst:9
+msgid ""
+"The function :c:func:`emscripten_get_now` returns a wallclock time as a "
+"``float`` in milliseconds. *Opera 12.16* and `Windows Google Chrome "
+"28.0.1500.95 <https://code.google.com/p/chromium/issues/detail?id=158234>`_ "
+"have a limitation that the timer precision is only in milliseconds. On other "
+"major browsers (*IE10*, *Firefox 22*, *Chrome 28* on non-Windows) it has sub-"
+"millisecond precision."
+msgstr ""
+
+#: ../../../source/docs/porting/guidelines/browser_limitations.rst:10
+msgid "WebGL is not fully supported on *Internet Explorer*:"
+msgstr ""
+
+#: ../../../source/docs/porting/guidelines/browser_limitations.rst:12
+msgid ""
+"*Internet Explorer 10* and older do not support WebGL. Trying to initialize "
+"a GL context via EGL, GLUT, SDL or similar will fail. Emscripten "
+"applications that do not depend on OpenGL can still run on this browser."
+msgstr ""
+
+#: ../../../source/docs/porting/guidelines/browser_limitations.rst:13
+msgid ""
+"*Internet Explorer 11* supports only part of WebGL 1.0. Some commands, "
+"shaders etc. may not work. You may be able to limit your app to using the "
+"subset that is supported by IE11."
+msgstr ""
+
+#: ../../../source/docs/porting/guidelines/browser_limitations.rst:14
+msgid ""
+"WebGL support on other major browsers is fairly good (see `WebGL support in "
+"different browsers <http://caniuse.com/#feat=webgl>`_)."
+msgstr ""
+
+#: ../../../source/docs/porting/guidelines/browser_limitations.rst:16
+msgid ""
+"*Opera 12.16* has limited support for the W3C File API. In particular it "
+"does not support `createObjectURL functionality <http://www.opera.com/docs/"
+"specs/presto2.12/apis/#file>`_, which means that it is not possible to use "
+"the browser's image codecs to decode preloaded files in the Emscripten "
+"virtual file system."
+msgstr ""
+
+#: ../../../source/docs/porting/guidelines/browser_limitations.rst:17
+msgid ""
+"OpenAL and SDL audio support in Emscripten depend on the Web Audio API (see "
+"`Web Audio API support in different browsers <http://caniuse.com/#feat=audio-"
+"api>`_)."
+msgstr ""
