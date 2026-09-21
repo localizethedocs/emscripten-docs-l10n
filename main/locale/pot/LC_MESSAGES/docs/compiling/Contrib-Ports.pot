@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Emscripten main\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-18 07:11+0000\n"
+"POT-Creation-Date: 2026-09-21 14:45+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -73,6 +73,7 @@ msgid ""
 msgstr ""
 
 #: ../../../source/docs/compiling/Contrib-Ports.rst:42
+#: ../../../source/docs/compiling/Contrib-Ports.rst:79
 msgid "Example usage:"
 msgstr ""
 
@@ -82,4 +83,29 @@ msgstr ""
 
 #: ../../../source/docs/compiling/Contrib-Ports.rst:69
 msgid "License: MIT License"
+msgstr ""
+
+#: ../../../source/docs/compiling/Contrib-Ports.rst:74
+msgid "contrib.libwebp"
+msgstr ""
+
+#: ../../../source/docs/compiling/Contrib-Ports.rst:76
+msgid ""
+"libwebp is a library for encoding and decoding images in the WebP format, "
+"including animation, alpha and metadata (mux/demux) support."
+msgstr ""
+
+#: ../../../source/docs/compiling/Contrib-Ports.rst:100
+msgid ""
+"Passing ``-pthread`` alongside ``--use-port=contrib.libwebp`` builds a multi-"
+"threaded variant of the library, which can speed up encoding."
+msgstr ""
+
+#: ../../../source/docs/compiling/Contrib-Ports.rst:103
+msgid ""
+"`Project information <https://chromium.googlesource.com/webm/libwebp>`__"
+msgstr ""
+
+#: ../../../source/docs/compiling/Contrib-Ports.rst:105
+msgid "License: BSD-3-Clause license"
 msgstr ""
