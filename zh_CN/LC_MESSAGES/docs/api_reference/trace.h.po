@@ -1,0 +1,723 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) Copyright &copy; 2015, Emscripten Contributors.
+# This file is distributed under the same license as the Emscripten package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Emscripten main\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-18 07:11+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../../source/docs/api_reference/trace.h.rst:5
+msgid "trace.h"
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:7
+msgid ""
+"The Emscripten tracing API provides some useful capabilities to better see "
+"what is going on inside of your application, in particular with respect to "
+"memory usage (which is otherwise not available to traditional browser "
+"performance tools)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:12
+msgid ""
+"The tracing API can talk to a custom collection server (see `Running the "
+"Server`_ for more details) or it can talk with the `Google Web Tracing "
+"Framework`_. When talking with the `Google Web Tracing Framework`_, a subset "
+"of the data available is collected."
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:20
+msgid "table of contents"
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:23
+msgid "Usage"
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:26
+msgid "Compiler Interaction"
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:28
+msgid ""
+"When using the tracing API, you should pass ``--tracing`` to ``emcc`` at "
+"each compile and link stage. This will automatically include the "
+"``library_trace.js`` library file as well as set the preprocessor flag "
+"``__EMSCRIPTEN_TRACING__``. If you are invoking ``clang`` directly to build "
+"your C / C++ code, then you will want to pass ``-D__EMSCRIPTEN_TRACING__`` "
+"when building code. When the preprocessor flag ``__EMSCRIPTEN_TRACING__`` is "
+"not defined, the tracing API implementation will be provided by inlined "
+"empty stubs."
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:37
+msgid ""
+"Also, since enabling tracing modifies the implementation of ``dlmalloc.c`` "
+"in the ``libc`` implementation, it is advised that you manually clear your "
+"cache before switching to using the tracing API. If you do not do this, then "
+"you will not get full allocation details recorded.  You can clear the cache "
+"with this ``emcc`` command::"
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:46
+msgid "Initialization and Teardown"
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:48
+msgid ""
+"To initialize the tracing API, you call :c:func:`emscripten_trace_configure`:"
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:54
+msgid ""
+"If you are simply going to use the tracing API with the `Google Web Tracing "
+"Framework`_, then you can just call :c:func:"
+"`emscripten_trace_configure_for_google_wtf` instead:"
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:62
+msgid ""
+"If you have the concept of a username or have some other way to identify a "
+"given user of the application, then passing that to the tracing API can make "
+"it easier to identify sessions in the collector server:"
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:70
+msgid ""
+"To shut it down at application exit, you simply call :c:func:"
+"`emscripten_trace_close`:"
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:78
+msgid "Contexts"
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:80
+msgid ""
+"Contexts are a way to tell the tracing API what part of your application is "
+"currently running. Contexts are effectively maintained as a stack of current "
+"contexts."
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:84
+msgid ""
+"A context might be something as big as \"running physics\" or as small as "
+"\"updating animations on entity X\"."
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:87
+msgid ""
+"The granularity of the context stack is up to the team instrumenting their "
+"application. Some applications may find fine-grained contexts more useful, "
+"while others are more comfortable with larger contexts."
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:91
+msgid ""
+"Rather than getting a stack trace on every tracing call, we can often look "
+"at the current context stack and record that instead, which is much cheaper."
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:95
+msgid ""
+"When contexts are fully implemented by the server, they will also be used to "
+"track how much time is spent in each context (a primitive profiling "
+"mechanism), as well as how much memory has been allocated and freed while "
+"the context was active. This should help give a good idea of which parts of "
+"your application are using more memory or creating a lot of churn (and "
+"possibly heap fragmentation)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:102
+msgid "Recording context entry and exit is simple:"
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:111
+msgid "Frames"
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:113
+msgid ""
+"It is important to record where your frame or event loop begins and ends. "
+"This allows the tracing API to perform useful additional analysis."
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:117
+msgid "Noting the start of an event loop is as easy as:"
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:123
+msgid "And noting the end of the event loop is just as easy:"
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:130
+msgid "Annotating Allocations"
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:132
+msgid ""
+"Each allocation and free operation should be recorded. Ideally, the data "
+"type name will also be recorded, but this must currently be done manually."
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:136
+msgid ""
+"When building with ``--tracing`` and a cleared cache, the ``libc`` that "
+"Emscripten builds will automatically record all calls to ``malloc``, "
+"``realloc`` and ``free``."
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:140
+msgid ""
+"As for recording the data type name, after you've allocated the memory, you "
+"can annotate the address:"
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:147
+msgid ""
+"Additionally, some applications may want to associate the size of additional "
+"storage with an allocation. This can be done via :c:func:"
+"`emscripten_trace_associate_storage_size`:"
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:156
+msgid "Overall Memory Usage"
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:158
+msgid ""
+"Periodically, the overall heap layout and memory usage should be reported to "
+"the trace API."
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:161
+msgid "This is done with 2 calls:"
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:169
+msgid "Logging Messages"
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:171
+msgid ""
+"Messages can be logged and recorded via the Emscripten tracing API. These "
+"messages can have both a channel and the actual message. The channel name "
+"will help to categorize and filter messages within the visualization "
+"interface. You should avoid allocating memory on the heap while logging a "
+"message."
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:181
+msgid ""
+"Over time, the visualization interface will improve to help you better "
+"correlate these log messages with other views, such as memory usage over "
+"time. Logging messages for things that may cause large amounts of memory "
+"activity, like loading a new model or game asset, is very useful when "
+"analyzing memory usage behavior patterns."
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:189
+msgid "Tasks"
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:191
+msgid ""
+"Specific tasks can be recorded and analyzed. A task is typically a unit of "
+"work that is not repeating. It may be suspended or blocked due to having "
+"portions performed asynchronously."
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:195
+msgid ""
+"An example of a task is loading an asset which usually involves chains of "
+"callbacks."
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:198
+msgid ""
+"The application should keep track of task IDs (integers) and ensure that "
+"they are unique."
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:201
+msgid ""
+"The task ID need not be passed to every trace call involving tasks as most "
+"calls operate on the current task."
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:204
+msgid "Tasks can be started and stopped with:"
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:211
+msgid "If a task is suspended / blocked, this can be noted via:"
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:217
+msgid "And when it is resumed:"
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:223
+msgid ""
+"It is common to need to associate additional data with the current task for "
+"use when examining task data later. An example of this would be the URL of "
+"an asset that was loaded:"
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:232
+msgid "Reporting Errors"
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:234
+msgid ""
+"Errors encountered by the application can be reported to the tracing API as "
+"an ancillary service:"
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:241
+msgid ""
+"This feature is included as an indication of the future direction of the "
+"Emscripten tracing API."
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:245
+msgid "Running the Server"
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:247
+msgid "Obtain a copy of the `emscripten-trace-collector`_ server."
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:248
+msgid "Follow the directions in the `README.rst`."
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:251
+msgid "Design Notes"
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:254
+msgid "Client / Server Design"
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:256
+msgid ""
+"The Emscripten tracing API gathers data from instrumented code and transmits "
+"it to a collector server. The server also performs data analysis and "
+"provides a web interface for viewing the collected data."
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:260
+msgid ""
+"This client / server design is intended to allow the tool to run without "
+"interfering with the browser on lower-end hardware where memory might be at "
+"a premium, like 32 bit Windows machines."
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:264
+msgid ""
+"This design also allows for a single server to be run to collect data from a "
+"variety of clients."
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:268
+msgid "Data Batching"
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:270
+msgid ""
+"Data is batched and sent to the server in chunks, roughly once or twice per "
+"second. This avoids having to open a new connection to the server for every "
+"single event being recorded."
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:275
+msgid "Do Not Perturb The Heap"
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:277
+msgid ""
+"When using the Emscripten tracing API, you should be careful that you do not "
+"perform operations that would perturb the heap. For example, you shouldn't "
+"allocate a string to pass to :c:func:`emscripten_trace_log_message` as that "
+"would result in the allocation being tracked and possibly disturbing the "
+"behavior or results that you are trying to analyze."
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:283
+msgid ""
+"For this reason, the Emscripten tracing API also keeps all of its own data "
+"off of the Emscripten heap and performs no writes to the Emscripten heap."
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:288
+msgid "Functions"
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:292
+msgid "The base URL for the collector server."
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:294
+msgid "The name of the application being traced."
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:0
+msgid "Return type"
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:296
+#: ../../../source/docs/api_reference/trace.h.rst:307
+#: ../../../source/docs/api_reference/trace.h.rst:318
+#: ../../../source/docs/api_reference/trace.h.rst:328
+#: ../../../source/docs/api_reference/trace.h.rst:340
+#: ../../../source/docs/api_reference/trace.h.rst:352
+#: ../../../source/docs/api_reference/trace.h.rst:367
+#: ../../../source/docs/api_reference/trace.h.rst:382
+#: ../../../source/docs/api_reference/trace.h.rst:393
+#: ../../../source/docs/api_reference/trace.h.rst:410
+#: ../../../source/docs/api_reference/trace.h.rst:425
+#: ../../../source/docs/api_reference/trace.h.rst:436
+#: ../../../source/docs/api_reference/trace.h.rst:452
+#: ../../../source/docs/api_reference/trace.h.rst:464
+#: ../../../source/docs/api_reference/trace.h.rst:480
+#: ../../../source/docs/api_reference/trace.h.rst:490
+#: ../../../source/docs/api_reference/trace.h.rst:504
+#: ../../../source/docs/api_reference/trace.h.rst:510
+#: ../../../source/docs/api_reference/trace.h.rst:520
+#: ../../../source/docs/api_reference/trace.h.rst:533
+#: ../../../source/docs/api_reference/trace.h.rst:541
+#: ../../../source/docs/api_reference/trace.h.rst:557
+#: ../../../source/docs/api_reference/trace.h.rst:569
+#: ../../../source/docs/api_reference/trace.h.rst:577
+msgid "void"
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:298
+msgid "Configure the connection to the collector server."
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:300
+msgid ""
+"This should be one of the very first things that is done after the "
+"application has started."
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:303
+msgid ""
+"In most cases, the ``collector_url`` will be ``http://127.0.0.1:5000/``."
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:309
+msgid ""
+"Configure tracing to communicate with the `Google Web Tracing Framework`_."
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:311
+msgid ""
+"Not all features of the tracing are available within the Google WTF tools. "
+"(Currently, only contexts, log messages and marks.)"
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:316
+msgid "Whether or not tracing is enabled."
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:320
+msgid ""
+"Set whether or not tracing is enabled. Using this option to disable tracing "
+"will likely result in inaccurate data being collected about memory usage."
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:326
+msgid "The username of the person running the application."
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:330
+msgid ""
+"This is useful when a collector server is being used by multiple people and "
+"you want to be able to identify individual sessions by a means other than "
+"their timestamped session ID."
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:334
+msgid ""
+"This can be set after tracing has already started, so it is fine to set this "
+"after the user has gone through a login or authentication process."
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:342
+msgid "This should be called at the start of the frame / event loop."
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:344
+#: ../../../source/docs/api_reference/trace.h.rst:356
+#: ../../../source/docs/api_reference/trace.h.rst:373
+#: ../../../source/docs/api_reference/trace.h.rst:387
+#: ../../../source/docs/api_reference/trace.h.rst:398
+#: ../../../source/docs/api_reference/trace.h.rst:415
+#: ../../../source/docs/api_reference/trace.h.rst:430
+#: ../../../source/docs/api_reference/trace.h.rst:441
+#: ../../../source/docs/api_reference/trace.h.rst:486
+#: ../../../source/docs/api_reference/trace.h.rst:496
+#: ../../../source/docs/api_reference/trace.h.rst:506
+#: ../../../source/docs/api_reference/trace.h.rst:512
+#: ../../../source/docs/api_reference/trace.h.rst:525
+#: ../../../source/docs/api_reference/trace.h.rst:549
+#: ../../../source/docs/api_reference/trace.h.rst:565
+#: ../../../source/docs/api_reference/trace.h.rst:573
+msgid "The current timestamp is associated with this data."
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:346
+msgid ""
+"The server uses this to track frame times (and therefore frames per second), "
+"as well as accounting for memory operations that happen during the frame "
+"processing."
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:354
+msgid "This should be called at the end of the frame / event loop."
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:358
+msgid ""
+"The server uses this to stop accruing memory operations and elapsed time to "
+"the frame."
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:363
+msgid "The category of the timeline event being emitted."
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:365
+msgid "The description for the timeline event being emitted."
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:369
+msgid ""
+"Record a log message. This is useful for noting events or actions which have "
+"occurred which might be advantageous to have correlated against memory usage "
+"or changes in frame rate."
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:375
+msgid ""
+"*The server doesn't yet do enough with this data. This will improve in the "
+"future.*"
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:380
+msgid "The name of the mark begin emitted."
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:384
+msgid ""
+"Record a mark in the timeline. This is primary for use with the `Google Web "
+"Tracing Framework`_."
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:391
+msgid "The error message being reported."
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:395
+msgid ""
+"The API will obtain the current callstack and include that in the report to "
+"the server."
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:400
+msgid ""
+"This could be used for various things including capturing JavaScript and web-"
+"worker errors, as well as failed assertions or other run-time errors from "
+"within the C/C++ code."
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:406
+msgid "Memory address which has been allocated."
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:408
+msgid "Size of the memory block allocated."
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:412
+msgid ""
+"This must be called for each and every memory allocation. The best place to "
+"do this is within the ``dlmalloc`` implementation in Emscripten."
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:419
+msgid "Old address of the memory block which has been reallocated."
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:421
+msgid "New address of the memory block which has been reallocated."
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:423
+msgid "New size of the memory block reallocated."
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:427
+msgid ""
+"This must be called for each and every memory re-allocation. The best place "
+"to do this is within the ``dlmalloc`` implementation in Emscripten."
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:434
+msgid "Memory address which is being freed."
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:438
+msgid ""
+"This must be called for each and every ``free`` operation. The best place to "
+"do this is within the ``dlmalloc`` implementation in Emscripten."
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:443
+msgid ""
+"It is also important that this not be called multiple times for a single "
+"``free`` operation."
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:448
+#: ../../../source/docs/api_reference/trace.h.rst:460
+msgid "Memory address which should be annotated."
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:450
+msgid "The name of the data type being allocated."
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:454
+msgid ""
+"Annotate an address with the name of the data type that is stored there. "
+"This is used by the server to help breakdown what is in memory."
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:462
+msgid "Size of the memory associated with this allocation."
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:466
+msgid ""
+"Associate an amount of additional storage with this address. This does not "
+"represent the size of the allocation itself, but rather associated memory "
+"that should be taken into account when looking at the size of this object."
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:471
+msgid "This associated storage is application specific in nature."
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:473
+msgid ""
+"An example is when an object contains a vector or string, you may want to be "
+"aware of that when analyzing memory usage and this provides a way to let the "
+"server be aware of that additional storage."
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:482
+msgid ""
+"This should be called periodically to report the usage of the normal "
+"Emscripten heap. This provides details of both the stack and the dynamic "
+"memory usage as well as the total memory size."
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:492
+msgid ""
+"This should be called periodically to report memory usage that is not part "
+"of the normal Emscripten heap. This is currently used to report OpenAL "
+"memory usage."
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:498
+msgid "*The server does not yet display this data.*"
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:502
+msgid "Context name."
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:516
+#: ../../../source/docs/api_reference/trace.h.rst:553
+msgid "Task ID"
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:518
+msgid "Task name"
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:522
+msgid ""
+"A task is initiated. The task ID should be unique over the lifetime of the "
+"application. It should be managed / tracked by the application."
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:529
+msgid "Key"
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:531
+msgid "Value"
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:535
+msgid "Associate a key / value pair with the current task."
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:539
+msgid "Why the task is suspending."
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:543
+msgid "The current task is suspended."
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:545
+msgid ""
+"The explanation should indicate why the task is being suspended so that this "
+"information can be made available when viewing the task's history."
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:555
+msgid "Why the task is being resumed."
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:559
+msgid ""
+"The task identified by ``task_id`` is resumed and made the current task."
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:561
+msgid ""
+"The explanation should indicate what the task is being resumed to do so that "
+"this information can be made available when viewing the task's history."
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:571
+msgid "The current task is ended."
+msgstr ""
+
+#: ../../../source/docs/api_reference/trace.h.rst:579
+msgid ""
+"This should be closed during application termination. It helps ensure is "
+"flushed to the server and terminates the tracing code."
+msgstr ""
