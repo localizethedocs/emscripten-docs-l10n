@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Emscripten main\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-18 07:11+0000\n"
+"POT-Creation-Date: 2026-09-21 14:45+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -94,10 +94,40 @@ msgid ""
 msgstr ""
 
 #: ../../../source/docs/porting/networking.rst:56
-msgid "Full POSIX Sockets over WebSocket Proxy Server"
+msgid "POSIX Sockets on Node.js"
 msgstr ""
 
 #: ../../../source/docs/porting/networking.rst:58
+msgid ""
+"When targeting Node.js, the linker flag ``-sNODERAWSOCKETS`` backs the POSIX "
+"sockets API with real host TCP, UDP and ``AF_UNIX`` stream sockets (see :ref:"
+"`NODERAWSOCKETS`)."
+msgstr ""
+
+#: ../../../source/docs/porting/networking.rst:62
+msgid ""
+"Non-blocking sockets (``SOCK_NONBLOCK``, ``fcntl(F_SETFL, O_NONBLOCK)`` or "
+"``ioctl(FIONBIO)``) behave as on Linux."
+msgstr ""
+
+#: ../../../source/docs/porting/networking.rst:65
+msgid ""
+"Blocking sockets cannot actually block. An operation on a blocking socket "
+"that would need to wait (``accept()``, ``recv()``/``read()``) fails with "
+"``EAGAIN`` instead, a blocking ``connect()`` returns ``0`` before the "
+"connection has completed, and a blocking ``send()`` never waits: it buffers "
+"without limit (only a non-blocking socket is bounded by the write buffer's "
+"high-water mark and reports ``EAGAIN``). Builds with ``ASSERTIONS`` print a "
+"warning the first time a blocking socket returns ``EAGAIN``. Applications "
+"should use non-blocking sockets together with ``poll()`` or ``epoll``, which "
+"can wait when called from a pthread, or when using :ref:`ASYNCIFY`."
+msgstr ""
+
+#: ../../../source/docs/porting/networking.rst:76
+msgid "Full POSIX Sockets over WebSocket Proxy Server"
+msgstr ""
+
+#: ../../../source/docs/porting/networking.rst:78
 msgid ""
 "Emscripten provides a native POSIX Sockets proxy server program, located in "
 "directory ``tools/websocket_to_posix_proxy/``, that allows full POSIX "
@@ -112,11 +142,11 @@ msgid ""
 "and debugging."
 msgstr ""
 
-#: ../../../source/docs/porting/networking.rst:69
+#: ../../../source/docs/porting/networking.rst:89
 msgid "The following POSIX sockets functions are proxied in this manner:"
 msgstr ""
 
-#: ../../../source/docs/porting/networking.rst:70
+#: ../../../source/docs/porting/networking.rst:90
 msgid ""
 "``socket()``, ``socketpair()``, ``shutdown()``, ``bind()``, ``connect()``, "
 "``listen()``, ``accept()``, ``getsockname()``, ``getpeername()``, "
@@ -125,17 +155,17 @@ msgid ""
 "``getnameinfo()``."
 msgstr ""
 
-#: ../../../source/docs/porting/networking.rst:72
+#: ../../../source/docs/porting/networking.rst:92
 msgid ""
 "The following POSIX sockets functions are currently not proxied (and will "
 "not work):"
 msgstr ""
 
-#: ../../../source/docs/porting/networking.rst:73
+#: ../../../source/docs/porting/networking.rst:93
 msgid "``poll()``, ``close()`` (use ``shutdown()`` instead), ``select()``"
 msgstr ""
 
-#: ../../../source/docs/porting/networking.rst:75
+#: ../../../source/docs/porting/networking.rst:95
 msgid ""
 "To use POSIX sockets proxying, link the application with flags ``-lwebsocket."
 "js -sPROXY_POSIX_SOCKETS -pthread -sPROXY_TO_PTHREAD``. That is, POSIX "
@@ -143,17 +173,17 @@ msgid ""
 "requires multithreading and proxying the application ``main()`` to a pthread."
 msgstr ""
 
-#: ../../../source/docs/porting/networking.rst:80
+#: ../../../source/docs/porting/networking.rst:100
 msgid ""
 "For an example of how the POSIX Sockets proxy server works in an Emscripten "
 "client program, see the file ``test/websocket/tcp_echo_client.c``."
 msgstr ""
 
-#: ../../../source/docs/porting/networking.rst:84
+#: ../../../source/docs/porting/networking.rst:104
 msgid "XmlHttpRequests and Fetch API"
 msgstr ""
 
-#: ../../../source/docs/porting/networking.rst:86
+#: ../../../source/docs/porting/networking.rst:106
 msgid ""
 "For HTTP transfers, one can use the browser built-in XmlHttpRequest (XHR) "
 "API and the newer Fetch API. These can be accessed directly from JavaScript. "
@@ -162,11 +192,11 @@ msgid ""
 "Fetch API."
 msgstr ""
 
-#: ../../../source/docs/porting/networking.rst:93
+#: ../../../source/docs/porting/networking.rst:113
 msgid "WebRTC and UDP"
 msgstr ""
 
-#: ../../../source/docs/porting/networking.rst:95
+#: ../../../source/docs/porting/networking.rst:115
 msgid ""
 "Direct UDP communication is not available in browsers, but as a close "
 "alternative, the WebRTC specification provides a mechanism to perform UDP-"
@@ -174,11 +204,11 @@ msgid ""
 "provide a C/C++ API for interacting with WebRTC."
 msgstr ""
 
-#: ../../../source/docs/porting/networking.rst:101
+#: ../../../source/docs/porting/networking.rst:121
 msgid "WebTransport and QUIC"
 msgstr ""
 
-#: ../../../source/docs/porting/networking.rst:103
+#: ../../../source/docs/porting/networking.rst:123
 msgid ""
 "WebTransport may be used to send UDP like datagrams over QUIC. Currently "
 "Emscripten does not provide a C/C++ API for interacting with WebTransport."

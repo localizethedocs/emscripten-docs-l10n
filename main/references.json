@@ -37,9 +37,9 @@
     "branch" : "main",
     "commit" : 
     {
-      "date" : "2026-06-19 09:26:21 -0700",
-      "hash" : "8484a7b66c2c1a26cc6d3281ace2c36e78a2a417",
-      "title" : "Avoid varargs in socket syscall layer. NFC (#27153)"
+      "date" : "2026-09-18 08:33:20 -0700",
+      "hash" : "d6c521a7f05449857c76bd99e396895583cf2083",
+      "title" : "Update emsdk version from fd7524c0 to 8324e947 (#27743)"
     }
   },
   "type" : "branch",
