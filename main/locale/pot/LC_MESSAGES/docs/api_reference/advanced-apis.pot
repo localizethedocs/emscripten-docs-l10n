@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Emscripten main\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-18 07:11+0000\n"
+"POT-Creation-Date: 2026-09-28 16:18+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -120,32 +120,32 @@ msgstr ""
 msgid "For advanced users only."
 msgstr ""
 
-#: ../../../source/docs/api_reference/advanced-apis.rst:111
+#: ../../../source/docs/api_reference/advanced-apis.rst:110
 msgid "Legacy v1 compatibility functions."
 msgstr ""
 
-#: ../../../source/docs/api_reference/advanced-apis.rst:114
+#: ../../../source/docs/api_reference/advanced-apis.rst:113
 msgid ""
 "There are also a small number of additional :ref:`flag modes <fs-read-and-"
 "write-flags>`:"
 msgstr ""
 
-#: ../../../source/docs/api_reference/advanced-apis.rst:116
+#: ../../../source/docs/api_reference/advanced-apis.rst:115
 msgid "``rs``"
 msgstr ""
 
-#: ../../../source/docs/api_reference/advanced-apis.rst:117
+#: ../../../source/docs/api_reference/advanced-apis.rst:116
 msgid "``xw``"
 msgstr ""
 
-#: ../../../source/docs/api_reference/advanced-apis.rst:118
+#: ../../../source/docs/api_reference/advanced-apis.rst:117
 msgid "``xw+``"
 msgstr ""
 
-#: ../../../source/docs/api_reference/advanced-apis.rst:119
+#: ../../../source/docs/api_reference/advanced-apis.rst:118
 msgid "``xa``"
 msgstr ""
 
-#: ../../../source/docs/api_reference/advanced-apis.rst:120
+#: ../../../source/docs/api_reference/advanced-apis.rst:119
 msgid "``xa+``"
 msgstr ""
