@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Emscripten main\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-18 07:11+0000\n"
+"POT-Creation-Date: 2026-10-05 16:43+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -120,8 +120,8 @@ msgstr ""
 msgid "For advanced users only."
 msgstr ""
 
-#: ../../../source/docs/api_reference/advanced-apis.rst:111
-msgid "Legacy v1 compatibility functions."
+#: ../../../source/docs/api_reference/advanced-apis.rst:110
+msgid "Legacy functions."
 msgstr ""
 
 #: ../../../source/docs/api_reference/advanced-apis.rst:114
