@@ -1,0 +1,112 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) Copyright &copy; 2015, Emscripten Contributors.
+# This file is distributed under the same license as the Emscripten package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Emscripten main\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-18 07:11+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../../source/docs/api_reference/index.rst:5
+msgid "API Reference"
+msgstr ""
+
+#: ../../../source/docs/api_reference/index.rst:7
+msgid ""
+"This section lists Emscripten's public API, organised by header file. At a "
+"very high level it consists of:"
+msgstr ""
+
+#: ../../../source/docs/api_reference/index.rst:10
+msgid ":ref:`emscripten-h`: APIs for integrating with the browser environment."
+msgstr ""
+
+#: ../../../source/docs/api_reference/index.rst:13
+msgid ""
+":ref:`html5-h`: Low level glue bindings for interfacing with HTML5 APIs from "
+"native code."
+msgstr ""
+
+#: ../../../source/docs/api_reference/index.rst:16
+msgid ""
+":ref:`console-h`: Functions for writing to the console and stdout/stderr."
+msgstr ""
+
+#: ../../../source/docs/api_reference/index.rst:19
+msgid ""
+":ref:`preamble-js`: APIs for working with compiled code from JavaScript."
+msgstr ""
+
+#: ../../../source/docs/api_reference/index.rst:22
+msgid ""
+":ref:`Filesystem-API` (**library_fs.js**): APIs for managing file systems "
+"and synchronous file operations."
+msgstr ""
+
+#: ../../../source/docs/api_reference/index.rst:25
+msgid ""
+":ref:`Fetch-API`: API for managing accesses to network XHR and IndexedDB."
+msgstr ""
+
+#: ../../../source/docs/api_reference/index.rst:28
+msgid ""
+":ref:`wasm workers section`: Enables writing multithreaded programs using a "
+"web-like API."
+msgstr ""
+
+#: ../../../source/docs/api_reference/index.rst:31
+msgid ""
+":ref:`wasm_audio_worklets`: Allows programs to implement audio processing "
+"nodes that run in a dedicated real-time audio processing thread context."
+msgstr ""
+
+#: ../../../source/docs/api_reference/index.rst:34
+msgid ""
+":ref:`Module`: Global JavaScript object that can be used to control code "
+"execution and access exported methods."
+msgstr ""
+
+#: ../../../source/docs/api_reference/index.rst:38
+msgid ""
+":ref:`val-h`: Embind API to support transliteration of JavaScript code to C+"
+"+."
+msgstr ""
+
+#: ../../../source/docs/api_reference/index.rst:41
+msgid ""
+":ref:`bind-h`: Embind API for binding C++ functions and classes so that they "
+"can be called from JavaScript in a natural way."
+msgstr ""
+
+#: ../../../source/docs/api_reference/index.rst:45
+msgid ":ref:`trace-h`: A tracing API for doing memory usage analysis."
+msgstr ""
+
+#: ../../../source/docs/api_reference/index.rst:48
+msgid ":ref:`fiber-h`: API for working with Fibers (co-operative threads)"
+msgstr ""
+
+#: ../../../source/docs/api_reference/index.rst:51
+msgid ""
+":ref:`proxying-h`: API for synchronously or asynchronously proxying work to "
+"a target pthread."
+msgstr ""
+
+#: ../../../source/docs/api_reference/index.rst:54
+msgid ":ref:`stack-h`: Inspecting the WebAssembly data stack."
+msgstr ""
+
+#: ../../../source/docs/api_reference/index.rst:57
+msgid ""
+":ref:`api-reference-advanced-apis`: APIs for advanced users/core developers."
+msgstr ""
