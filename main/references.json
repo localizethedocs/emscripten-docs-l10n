@@ -37,9 +37,9 @@
     "branch" : "main",
     "commit" : 
     {
-      "date" : "2026-06-19 09:26:21 -0700",
-      "hash" : "8484a7b66c2c1a26cc6d3281ace2c36e78a2a417",
-      "title" : "Avoid varargs in socket syscall layer. NFC (#27153)"
+      "date" : "2026-10-09 23:07:31 +0000",
+      "hash" : "ac0c9059fb1d62af2be2ab75388d08cf5e91a883",
+      "title" : "[cmake] Use `STATIC_LIBRARY` in `CheckTypeSize.cmake` (#27934)"
     }
   },
   "type" : "branch",
