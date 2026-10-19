@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Emscripten main\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-18 07:11+0000\n"
+"POT-Creation-Date: 2026-10-19 15:13+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,14 +24,13 @@ msgstr ""
 #: ../../../source/docs/compiling/Deploying-Pages.rst:7
 msgid ""
 "Emscripten compiled output can either be run directly in a JS shell from "
-"command line, or hosted on a web page. When hosting asm.js and WebAssembly "
-"compiled pages as .html for browsers to execute, Emscripten provides a "
-"default `HTML shell file` that serves as a launcher to run the code, "
-"simplified to get started with development. However when getting ready to "
-"release and host the content on a web site, a number of extra features and "
-"customizations are likely needed to polish the visitor experience. This "
-"guide highlights things to pay attention to when deploying sites to the "
-"public."
+"command line, or hosted on a web page. When hosting WebAssembly compiled "
+"pages as .html for browsers to execute, Emscripten provides a default `HTML "
+"shell file` that serves as a launcher to run the code, simplified to get "
+"started with development. However when getting ready to release and host the "
+"content on a web site, a number of extra features and customizations are "
+"likely needed to polish the visitor experience. This guide highlights things "
+"to pay attention to when deploying sites to the public."
 msgstr ""
 
 #: ../../../source/docs/compiling/Deploying-Pages.rst:10
@@ -43,10 +42,7 @@ msgid ""
 "Emscripten build output consists of two essential parts: 1) the low level "
 "compiled code module and 2) the JavaScript runtime to interact with it.  For "
 "example, when building with ``-o out.html``, the compiled code is stored in "
-"a file ``out.wasm`` and the runtime lives in a file ``out.js``. When "
-"targeting asm.js there exists an additional binary file ``out.mem`` that "
-"contains the static memory section of the compiled code. This part is "
-"embedded in the ``out.wasm`` file when targeting WebAssembly."
+"a file ``out.wasm`` and the runtime lives in a file ``out.js``."
 msgstr ""
 
 #: ../../../source/docs/compiling/Deploying-Pages.rst:14
@@ -86,11 +82,11 @@ msgid ""
 "download large amounts of asset data for the project, especially if the page "
 "is heavy on WebGL textures or geometry. Compiled code generally takes up "
 "more space than handwritten JavaScript, but machine code compresses "
-"efficiently. Therefore when hosting asm.js and WebAssembly, it is critical "
-"to ensure that all content is transferred using gzip compression, which all "
-"browsers and CDNs nowadays support built-in. Gzip compressing ``.wasm`` "
-"files give on average 60-75% size reductions compared to uncompressed ones, "
-"so it practically never makes sense to serve uncompressed files."
+"efficiently. Therefore when hosting WebAssembly, it is critical to ensure "
+"that all content is transferred using gzip compression, which all browsers "
+"and CDNs nowadays support built-in. Gzip compressing ``.wasm`` files give on "
+"average 60-75% size reductions compared to uncompressed ones, so it "
+"practically never makes sense to serve uncompressed files."
 msgstr ""
 
 #: ../../../source/docs/compiling/Deploying-Pages.rst:25
@@ -110,9 +106,9 @@ msgid ""
 "Make sure that gzip compression does not confuse the MIME types that the "
 "assets are served with. All JavaScript files (precompressed or not) should "
 "be best served with the HTTP response header ``Content-Type: application/"
-"javascript``, and all asset files (``.data``, ``.mem``) should be served "
-"with the header ``Content-Type: application/octet-stream``. WebAssembly ``."
-"wasm`` files should be served with ``Content-Type: application/wasm``."
+"javascript``, and all asset files (``.data``) should be served with the "
+"header ``Content-Type: application/octet-stream``. WebAssembly ``.wasm`` "
+"files should be served with ``Content-Type: application/wasm``."
 msgstr ""
 
 #: ../../../source/docs/compiling/Deploying-Pages.rst:29
@@ -160,39 +156,19 @@ msgstr ""
 
 #: ../../../source/docs/compiling/Deploying-Pages.rst:40
 msgid ""
-"If targeting asm.js and running on Firefox or Edge, the web page console "
-"displays a log message after the asm.js module has been compiled. This log "
-"message includes timing information about how long the compilation took. Asm."
-"js compilation begins the moment the asm.js script source file is added to "
-"the DOM, and once it finishes, the ``onload`` event of the script tag is "
-"called. This can be used to time how long asm.js compilation takes on "
-"Safari, Opera and Chrome."
+"Occasionally it can be easy to misattribute slow startup to WebAssembly "
+"compilation, when the actual cause of slowness can in fact be in executing "
+"the ``main()`` function entry point of the application itself. This is "
+"because these two actions are run closely back to back to each other. It is "
+"worthwhile to be precise to profile these two actions separately, check out "
+"the ``function callMain()`` in ``src/preamble.js`` which kicks off the "
+"execution of application ``main()`` code. If executing ``main()`` takes too "
+"long time, consider splitting it out to separate operations that are driven "
+"by multiple ``setTimeout()`` calls or by the ``emscripten_set_main_loop()`` "
+"event loop."
 msgstr ""
 
 #: ../../../source/docs/compiling/Deploying-Pages.rst:42
-msgid ""
-"It is recommended to migrate to WebAssembly to speed up compiled code "
-"startup times in browsers. WebAssembly modules are much faster to parse and "
-"compile compared to asm.js. Additionally, compiled ``WebAssembly.Module`` "
-"objects can be manually persisted to IndexedDB, which avoids the compilation "
-"step altogether on the second run. (see next section)"
-msgstr ""
-
-#: ../../../source/docs/compiling/Deploying-Pages.rst:44
-msgid ""
-"Occasionally it can be easy to misattribute slow startup to asm.js/"
-"WebAssembly compilation, when the actual cause of slowness can in fact be in "
-"executing the ``main()`` function entry point of the application itself. "
-"This is because these two actions are run closely back to back to each "
-"other. It is worthwhile to be precise to profile these two actions "
-"separately, check out the ``function callMain()`` in ``src/preamble.js`` "
-"which kicks off the execution of application ``main()`` code. If executing "
-"``main()`` takes too long time, consider splitting it out to separate "
-"operations that are driven by multiple ``setTimeout()`` calls or by the "
-"``emscripten_set_main_loop()`` event loop."
-msgstr ""
-
-#: ../../../source/docs/compiling/Deploying-Pages.rst:46
 msgid ""
 "To speed up network transfers, experience shows that the under regular "
 "network conditions, the fastest approach is to aggressively start all "
@@ -204,28 +180,28 @@ msgid ""
 "sequential transfer."
 msgstr ""
 
-#: ../../../source/docs/compiling/Deploying-Pages.rst:48
+#: ../../../source/docs/compiling/Deploying-Pages.rst:44
 msgid ""
 "In the case when the first time load of the page is dominated by network "
 "transfers, it is useful to take advantage of the fact that the CPU is "
 "otherwise mostly idle while waiting for downloads to finish. This CPU time "
 "can be utilized to perform other heavy tasks. An ideal candidate for this is "
-"to download and compile the asm.js/WebAssembly module already while "
-"downloading other page assets."
+"to download and compile the WebAssembly module already while downloading "
+"other page assets."
 msgstr ""
 
-#: ../../../source/docs/compiling/Deploying-Pages.rst:50
+#: ../../../source/docs/compiling/Deploying-Pages.rst:46
 msgid ""
 "A currently known issue on Windows based systems is that compiling WebGL "
 "shaders can be slow. This is also a primary candidate for an action to be "
 "performed in parallel while downloading other assets for the page."
 msgstr ""
 
-#: ../../../source/docs/compiling/Deploying-Pages.rst:53
+#: ../../../source/docs/compiling/Deploying-Pages.rst:49
 msgid "Providing a Quick Second Time Load"
 msgstr ""
 
-#: ../../../source/docs/compiling/Deploying-Pages.rst:55
+#: ../../../source/docs/compiling/Deploying-Pages.rst:51
 msgid ""
 "While the first run experience of visiting a page can take some time to "
 "finish all downloads, the second run experience of the page can be made much "
@@ -233,7 +209,7 @@ msgid ""
 "browser."
 msgstr ""
 
-#: ../../../source/docs/compiling/Deploying-Pages.rst:57
+#: ../../../source/docs/compiling/Deploying-Pages.rst:53
 msgid ""
 "All browsers have an implementation defined limit (20MB or 50MB) for assets, "
 "and files larger than that will bypass the browser's built-in web caches "
@@ -245,7 +221,7 @@ msgid ""
 "are cached to, and what kind of scheme will be used to evict data from it."
 msgstr ""
 
-#: ../../../source/docs/compiling/Deploying-Pages.rst:59
+#: ../../../source/docs/compiling/Deploying-Pages.rst:55
 msgid ""
 "While ``.wasm`` files are automatically cached like any resource, they still "
 "must be compiled in the browser before they can be instantiated. "
@@ -257,7 +233,7 @@ msgid ""
 "spec/issues/821>`_)."
 msgstr ""
 
-#: ../../../source/docs/compiling/Deploying-Pages.rst:61
+#: ../../../source/docs/compiling/Deploying-Pages.rst:57
 msgid ""
 "If the compiled C/C++ code itself performs any computation e.g. in "
 "``main()`` that could be skipped on the second load, use either IndexedDB or "
@@ -267,7 +243,7 @@ msgid ""
 "but its usage is restricted to storing small cookie style data fields only."
 msgstr ""
 
-#: ../../../source/docs/compiling/Deploying-Pages.rst:63
+#: ../../../source/docs/compiling/Deploying-Pages.rst:59
 msgid ""
 "When implementing IndexedDB based caching, it is good to note that as an "
 "asynchronous API that performs disk accesses, IndexedDB operations have some "
@@ -276,7 +252,7 @@ msgid ""
 "reduce latency."
 msgstr ""
 
-#: ../../../source/docs/compiling/Deploying-Pages.rst:65
+#: ../../../source/docs/compiling/Deploying-Pages.rst:61
 msgid ""
 "Another important point with persisting data is that for best practices "
 "towards the user, it is good to provide an explicit visual identification "
@@ -287,33 +263,32 @@ msgid ""
 "\"clear cache from all pages\" type of option."
 msgstr ""
 
-#: ../../../source/docs/compiling/Deploying-Pages.rst:68
+#: ../../../source/docs/compiling/Deploying-Pages.rst:64
 msgid "Reserving Memory for Compiled Code"
 msgstr ""
 
-#: ../../../source/docs/compiling/Deploying-Pages.rst:70
+#: ../../../source/docs/compiling/Deploying-Pages.rst:66
 msgid ""
-"An inherent property of asm.js and WebAssembly applications is that they "
-"need a linear block of memory to represent the application `heap`. This is "
-"often the single largest memory allocation that an Emscripten compiled page "
-"does, and therefore is the one that is at the biggest risk of failing if the "
-"user's system is low on memory."
+"An inherent property of WebAssembly applications is that they need a linear "
+"block of memory to represent the application `heap`. This is often the "
+"single largest memory allocation that an Emscripten compiled page does, and "
+"therefore is the one that is at the biggest risk of failing if the user's "
+"system is low on memory."
 msgstr ""
 
-#: ../../../source/docs/compiling/Deploying-Pages.rst:72
+#: ../../../source/docs/compiling/Deploying-Pages.rst:68
 msgid ""
 "Because this memory allocation needs to be contiguous, it can happen that "
 "the user's browser process does have enough memory, but only the address "
 "space of the process is too fragmented, and there is not enough linear "
 "address space available to satisfy the allocation. To avoid this issue, the "
-"best practice is to allocate the ``WebAssembly.Memory`` object "
-"(``ArrayBuffer`` for asm.js) up front at the top of the main page, before "
-"any other allocations or page script load actions are done. This ensures "
-"that the allocation has best chances to succeed. See the fields "
-"``Module['buffer']`` and ``Module['wasmMemory']`` for more information."
+"best practice is to allocate the ``WebAssembly.Memory`` object up front at "
+"the top of the main page, before any other allocations or page script load "
+"actions are done. This ensures that the allocation has best chances to "
+"succeed. See ``Module['wasmMemory']`` for more information."
 msgstr ""
 
-#: ../../../source/docs/compiling/Deploying-Pages.rst:74
+#: ../../../source/docs/compiling/Deploying-Pages.rst:70
 msgid ""
 "Last, it is easy to accidentally cling to large unneeded blocks of memory "
 "after the page has loaded. For example, in WebAssembly, once the WebAssembly "
@@ -327,11 +302,11 @@ msgid ""
 "profiling to ensure that memory is not being wasted."
 msgstr ""
 
-#: ../../../source/docs/compiling/Deploying-Pages.rst:77
+#: ../../../source/docs/compiling/Deploying-Pages.rst:73
 msgid "Robust Error Handling"
 msgstr ""
 
-#: ../../../source/docs/compiling/Deploying-Pages.rst:79
+#: ../../../source/docs/compiling/Deploying-Pages.rst:75
 msgid ""
 "To provide the best possible user experience, make sure that the different "
 "ways that the page can fail are taken into account, and good error reporting "
@@ -339,7 +314,7 @@ msgid ""
 "checklist for best practices."
 msgstr ""
 
-#: ../../../source/docs/compiling/Deploying-Pages.rst:81
+#: ../../../source/docs/compiling/Deploying-Pages.rst:77
 msgid ""
 "Aim to fail as early as possible. A large source of frustration for users "
 "comes from scenarios where user's system is not ready to run the given page, "
@@ -350,7 +325,7 @@ msgid ""
 "attempted at all."
 msgstr ""
 
-#: ../../../source/docs/compiling/Deploying-Pages.rst:83
+#: ../../../source/docs/compiling/Deploying-Pages.rst:79
 msgid ""
 "If a particular browser is known to not be supported, resist the temptation "
 "to read ``navigator.userAgent`` field to gate users with that browser, if at "
@@ -359,17 +334,17 @@ msgid ""
 "check:"
 msgstr ""
 
-#: ../../../source/docs/compiling/Deploying-Pages.rst:89
+#: ../../../source/docs/compiling/Deploying-Pages.rst:85
 msgid "but instead, detect the actual errors:"
 msgstr ""
 
-#: ../../../source/docs/compiling/Deploying-Pages.rst:95
+#: ../../../source/docs/compiling/Deploying-Pages.rst:91
 msgid ""
 "This way the page will be future compatible once support for the particular "
 "feature later becomes available."
 msgstr ""
 
-#: ../../../source/docs/compiling/Deploying-Pages.rst:97
+#: ../../../source/docs/compiling/Deploying-Pages.rst:93
 msgid ""
 "Test various failure cases up front by simulating different issues and "
 "browser limitations. For example, on Firefox, it is possible to manually "
@@ -380,13 +355,13 @@ msgid ""
 "``webgl.disabled`` to ``true``."
 msgstr ""
 
-#: ../../../source/docs/compiling/Deploying-Pages.rst:99
+#: ../../../source/docs/compiling/Deploying-Pages.rst:95
 msgid ""
 "When working with IndexedDB, prepare to handle out of quota errors when user "
 "is about to run out of free disk space or allowed quota for the domain."
 msgstr ""
 
-#: ../../../source/docs/compiling/Deploying-Pages.rst:101
+#: ../../../source/docs/compiling/Deploying-Pages.rst:97
 msgid ""
 "Simulate out of memory errors by allocating unrealistically much memory for "
 "``WebAssembly.Memory`` object and for the preloaded file packages, if using "
@@ -394,7 +369,7 @@ msgid ""
 "reported to the user or to an error database)."
 msgstr ""
 
-#: ../../../source/docs/compiling/Deploying-Pages.rst:103
+#: ../../../source/docs/compiling/Deploying-Pages.rst:99
 msgid ""
 "Simulate download timeouts either intrusively by programmatically aborting "
 "XHR downloads, physically disconnecting network access, or by using external "
@@ -403,7 +378,7 @@ msgid ""
 "scenarios is as desired."
 msgstr ""
 
-#: ../../../source/docs/compiling/Deploying-Pages.rst:105
+#: ../../../source/docs/compiling/Deploying-Pages.rst:101
 msgid ""
 "Use a network limiter tool to constrain download or upload bandwidth speeds "
 "to simulate slow network connections. This can uncover bugs related to "
@@ -412,7 +387,7 @@ msgid ""
 "might not always be the case."
 msgstr ""
 
-#: ../../../source/docs/compiling/Deploying-Pages.rst:107
+#: ../../../source/docs/compiling/Deploying-Pages.rst:103
 msgid ""
 "When developing the page locally, perform testing by using a local web "
 "server and not just via ``file://`` URLs. The script ``emrun.py`` in "
@@ -422,21 +397,21 @@ msgid ""
 "pages."
 msgstr ""
 
-#: ../../../source/docs/compiling/Deploying-Pages.rst:109
+#: ../../../source/docs/compiling/Deploying-Pages.rst:105
 msgid ""
 "Catch all exceptions that come from within entry points that call to "
-"compiled asm.js and WebAssembly code. There are three distinct exception "
-"classes that compiled code can throw:"
+"compiled WebAssembly code. There are three distinct exception classes that "
+"compiled code can throw:"
 msgstr ""
 
-#: ../../../source/docs/compiling/Deploying-Pages.rst:111
+#: ../../../source/docs/compiling/Deploying-Pages.rst:107
 msgid ""
 "C++ exceptions that are represented by a thrown integer and not caught by "
 "the C++ program. This integer points to a memory location in the application "
 "heap that contains pointer to the thrown object."
 msgstr ""
 
-#: ../../../source/docs/compiling/Deploying-Pages.rst:113
+#: ../../../source/docs/compiling/Deploying-Pages.rst:109
 msgid ""
 "Exceptions caused by Emscripten runtime calling the ``abort()`` function. "
 "These correspond to a fatal error that execution of the compiled code cannot "
@@ -444,7 +419,7 @@ msgid ""
 "pointer."
 msgstr ""
 
-#: ../../../source/docs/compiling/Deploying-Pages.rst:115
+#: ../../../source/docs/compiling/Deploying-Pages.rst:111
 msgid ""
 "Traps caused by compiled WebAssembly code. These correspond to fatal errors "
 "coming from the WebAssembly VM. This can occur for example when performing "
@@ -453,7 +428,7 @@ msgid ""
 "representable by that integer type."
 msgstr ""
 
-#: ../../../source/docs/compiling/Deploying-Pages.rst:117
+#: ../../../source/docs/compiling/Deploying-Pages.rst:113
 msgid ""
 "Implement a final \"catch all\" error handler on the page by implementing a "
 "``window.onerror`` script. This will be called as a last resort if no other "
@@ -462,7 +437,7 @@ msgid ""
 "onerror#window.onerror>`_ documentation on MDN."
 msgstr ""
 
-#: ../../../source/docs/compiling/Deploying-Pages.rst:119
+#: ../../../source/docs/compiling/Deploying-Pages.rst:115
 msgid ""
 "Do not let the html page \"freeze\" and bury the error message in the web "
 "page console, because most users will not know how to find it there. Strive "
@@ -474,7 +449,7 @@ msgid ""
 "address where to report the issue to."
 msgstr ""
 
-#: ../../../source/docs/compiling/Deploying-Pages.rst:121
+#: ../../../source/docs/compiling/Deploying-Pages.rst:117
 msgid ""
 "Provide meaningful and interactive loading progress indicators to show the "
 "user whether the loading progress is still proceeding and what is going to "
@@ -482,56 +457,56 @@ msgid ""
 "loading or if it hung?\"` state of mind."
 msgstr ""
 
-#: ../../../source/docs/compiling/Deploying-Pages.rst:124
+#: ../../../source/docs/compiling/Deploying-Pages.rst:120
 msgid "Prepare for The Web Environment"
 msgstr ""
 
-#: ../../../source/docs/compiling/Deploying-Pages.rst:126
+#: ../../../source/docs/compiling/Deploying-Pages.rst:122
 msgid ""
 "When planning a testing matrix before pushing a site live, the following "
 "items can be a good idea to review."
 msgstr ""
 
-#: ../../../source/docs/compiling/Deploying-Pages.rst:128
+#: ../../../source/docs/compiling/Deploying-Pages.rst:124
 msgid ""
 "Web page behavior can be subtly different when run as a top level window vs "
 "when run in an iframe. Make sure to test both scenarios if these are "
 "applicable."
 msgstr ""
 
-#: ../../../source/docs/compiling/Deploying-Pages.rst:130
+#: ../../../source/docs/compiling/Deploying-Pages.rst:126
 msgid ""
 "Test both 32 bit and 64 bit browsers, especially simulate out of memory "
 "scenarios on 32 bit browsers."
 msgstr ""
 
-#: ../../../source/docs/compiling/Deploying-Pages.rst:132
+#: ../../../source/docs/compiling/Deploying-Pages.rst:128
 msgid ""
 "Be aware of the `HTTP Cross-Origin Access Control <https://developer.mozilla."
 "org/en-US/docs/Web/HTTP/Access_control_CORS>`_ rules and how they pertain to "
 "the site architecture you are hosting."
 msgstr ""
 
-#: ../../../source/docs/compiling/Deploying-Pages.rst:134
+#: ../../../source/docs/compiling/Deploying-Pages.rst:130
 msgid ""
 "Be aware of the `Content Security Policy <https://developer.mozilla.org/en-"
 "US/docs/Web/HTTP/CSP>`_ rules and make note of what kind of CSP policy the "
 "site is planned to run with."
 msgstr ""
 
-#: ../../../source/docs/compiling/Deploying-Pages.rst:136
+#: ../../../source/docs/compiling/Deploying-Pages.rst:132
 msgid ""
 "Be mindful of the `Mixed Content Security <https://developer.mozilla.org/en-"
 "US/docs/Web/Security/Mixed_content>`_ restrictions that browsers impose."
 msgstr ""
 
-#: ../../../source/docs/compiling/Deploying-Pages.rst:138
+#: ../../../source/docs/compiling/Deploying-Pages.rst:134
 msgid ""
 "Make sure that the site runs well in private browsing (incognito) mode. For "
 "example, this will prevent the site from persisting data to IndexedDB."
 msgstr ""
 
-#: ../../../source/docs/compiling/Deploying-Pages.rst:140
+#: ../../../source/docs/compiling/Deploying-Pages.rst:136
 msgid ""
 "Test that the page works well when put into a background tab. Use the "
 "``blur``, ``focus`` and ``visibilitychange`` DOM events to react to page "
@@ -539,7 +514,7 @@ msgid ""
 "perform audio playback."
 msgstr ""
 
-#: ../../../source/docs/compiling/Deploying-Pages.rst:142
+#: ../../../source/docs/compiling/Deploying-Pages.rst:138
 msgid ""
 "If the page uses WebGL, make sure that it is able to gracefully handle the "
 "WebGL context loss event. Use the `WebGL_lose_context <https://www.khronos."
@@ -547,7 +522,7 @@ msgid ""
 "programmatically trigger context loss events when testing."
 msgstr ""
 
-#: ../../../source/docs/compiling/Deploying-Pages.rst:144
+#: ../../../source/docs/compiling/Deploying-Pages.rst:140
 msgid ""
 "Verify that the page works as intended on displays with different ``window."
 "devicePixelRatio`` (DPI) settings, in particular when using WebGL. See "
@@ -557,14 +532,14 @@ msgid ""
 "the browser reports."
 msgstr ""
 
-#: ../../../source/docs/compiling/Deploying-Pages.rst:146
+#: ../../../source/docs/compiling/Deploying-Pages.rst:142
 msgid ""
 "Test out that different page zoom levels do not break the site layout, "
 "especially when navigating to the page with the browser window already pre-"
 "zoomed."
 msgstr ""
 
-#: ../../../source/docs/compiling/Deploying-Pages.rst:148
+#: ../../../source/docs/compiling/Deploying-Pages.rst:144
 msgid ""
 "Likewise, verify that the page layout does not break when resizing the "
 "browser window, or when visiting the site having already initially sized the "
@@ -572,21 +547,21 @@ msgid ""
 "ratio."
 msgstr ""
 
-#: ../../../source/docs/compiling/Deploying-Pages.rst:150
+#: ../../../source/docs/compiling/Deploying-Pages.rst:146
 msgid ""
 "Especially if targeting mobile, be aware of the `<meta viewport> tag "
 "<https://developer.mozilla.org/en-US/docs/Web/HTML/Viewport_meta_tag>`_ for "
 "how to develop a site layout that works well on mobile."
 msgstr ""
 
-#: ../../../source/docs/compiling/Deploying-Pages.rst:152
+#: ../../../source/docs/compiling/Deploying-Pages.rst:148
 msgid ""
 "If the page uses WebGL, test out different GPUs on target platforms. In "
 "particular, verify the site behavior when simulating the lack of any needed "
 "WebGL extensions, and compressed texture format support."
 msgstr ""
 
-#: ../../../source/docs/compiling/Deploying-Pages.rst:154
+#: ../../../source/docs/compiling/Deploying-Pages.rst:150
 msgid ""
 "If using the ``requestAnimationFrame()`` API (i.e. "
 "``emscripten_set_main_loop()`` function) to drive rendering, be aware that "
@@ -597,14 +572,14 @@ msgid ""
 "becoming more common."
 msgstr ""
 
-#: ../../../source/docs/compiling/Deploying-Pages.rst:156
+#: ../../../source/docs/compiling/Deploying-Pages.rst:152
 msgid ""
 "Simulate lack of any special APIs that the page might need, e.g. Gamepad, "
 "Acceleration or Touch Events, and make sure that appropriate error flow is "
 "handled in those cases as well."
 msgstr ""
 
-#: ../../../source/docs/compiling/Deploying-Pages.rst:158
+#: ../../../source/docs/compiling/Deploying-Pages.rst:154
 msgid ""
 "If you have good tips or suggestions to share, please help improve this "
 "guide by posting feedback to the `Emscripten bug tracker <https://github.com/"
