@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-accent-color="violet" data-content_root="../../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Glossary - Emscripten 6.0.1-git (dev) 文档</title><link rel="shortcut icon" href="../../_static/emscripten.ico"/><link rel="index" title="索引" href="../../genindex.html" /><link rel="search" title="搜索" href="../../search.html" />
+      <link rel="canonical" href="https://projects.localizethedocs.org/emscripten-docs-l10n/docs/site/glossary.html" /><script>
+    function setColorMode(t){let e=document.documentElement;e.setAttribute("data-color-mode",t);let a=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,s=t;"auto"===t&&(s=a?"dark":"light"),"light"===s?(e.classList.remove("dark"),e.classList.add("light")):(e.classList.remove("light"),e.classList.add("dark"))}
+    setColorMode(localStorage._theme||"auto");
+  </script><link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=ad592e98" />
+    <link rel="stylesheet" type="text/css" href="../../_static/shibuya.css?v=9454f7d5" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link media="print" rel="stylesheet" type="text/css" href="../../_static/print.css?v=20ff2c19" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sy-f-text: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+  --sy-f-heading: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+}
+</style>
+    
+
+<script type="text/javascript" src="../../ltd-provenance.js"></script>
+<script type="text/javascript" src="../../ltd-current.js"></script>
+<script type="text/javascript" src="../../../../ltd-config.js"></script>
+<script type="text/javascript" src="../../../../ltd-flyout.js"></script>
+
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://projects.localizethedocs.org/emscripten-docs-l10n/docs/site/glossary.html"/>
+  <meta property="og:title" content="Glossary"/>
+    <meta name="twitter:card" content="summary"/>
+  </head>
+<body><div class="sy-head">
+  <div class="sy-head-blur"></div>
+  <div class="sy-head-inner sy-container mx-auto">
+    <a class="sy-head-brand" href="../../index.html">
+      <img class="light-logo" src="../../_static/emscripten_logo_full.svg" alt="Emscripten" height="28" loading="lazy" />
+      <img class="dark-logo" src="../../_static/emscripten_logo_full.svg" alt="Emscripten" height="28" loading="lazy" />
+      <strong>Emscripten</strong>
+    </a>
+    <div class="sy-head-nav" id="head-nav">
+      <nav class="sy-head-links"><ul>
+      <li class="link"><a class="js-menu" href="../index.html" id="nav-trigger-1" aria-controls="nav-children-1">
+            <span>Documentation</span>
+            <i class="i-lucide chevron-down"></i>
+          </a>
+        <ul id="nav-children-1" aria-labelledby="nav-trigger-1"><li><a href="../getting_started/downloads.html">Downloads</a></li><li><a href="../getting_started/bug_reports.html">Report Bug</a></li><li><a href="../introducing_emscripten/emscripten_license.html">Licensing</a></li><li><a href="../contributing/contributing.html">Contributing</a></li><li><a href="../introducing_emscripten/release_notes.html">Release Notes</a></li></ul>
+      </li>
+      <li class="link"><a class="js-menu" href="../introducing_emscripten/community.html" id="nav-trigger-2" aria-controls="nav-children-2">
+            <span>Community</span>
+            <i class="i-lucide chevron-down"></i>
+          </a>
+        <ul id="nav-children-2" aria-labelledby="nav-trigger-2"><li><a href="https://groups.google.com/forum/#!forum/emscripten-discuss">Mailing List</a></li><li><a href="https://github.com/emscripten-core/emscripten/wiki">Wiki</a></li></ul>
+      </li></ul></nav>
+      <div class="sy-head-extra flex items-center print:hidden"><form class="searchbox flex items-center" action="../../search.html" method="get">
+  <input type="text" name="q" placeholder="搜索" />
+  <kbd>/</kbd>
+</form><div class="sy-head-socials">
+  <a href="https://github.com/emscripten-core/emscripten" aria-label="GitHub">
+    <iconify-icon icon="simple-icons:github"></iconify-icon>
+  </a>
+  <a href="https://discord.gg/53u3EKq" aria-label="Discord">
+    <iconify-icon icon="simple-icons:discord"></iconify-icon>
+  </a></div></div>
+    </div>
+    <div class="sy-head-actions flex items-center shrink-0 print:hidden"><button class="js-theme theme-switch flex items-center"
+data-aria-auto="切换到亮色模式"
+data-aria-light="切换到暗色模式"
+data-aria-dark="切换到自动模式">
+<i class="i-lucide theme-icon"></i>
+</button><button class="md:hidden flex items-center js-menu" aria-label="Menu" type="button" aria-controls="head-nav" aria-expanded="false">
+        <div class="hamburger">
+          <span class="hamburger_1"></span>
+          <span class="hamburger_2"></span>
+          <span class="hamburger_3"></span>
+        </div>
+      </button>
+    </div>
+  </div>
+</div>
+<div class="sy-page sy-container flex mx-auto">
+  <aside id="lside" class="sy-lside md:w-72 md:shrink-0 print:hidden">
+    <div class="sy-lside-inner md:sticky">
+      <div class="sy-scrollbar p-6"><div class="sidebar-links">
+  <ul>
+    <li><a class="icon-link" href="https://github.com/emscripten-core/emscripten/discussions">
+  <span class="icon">
+    <svg viewBox="0 0 24 24" fill="none">
+      <path fill="var(--accent-9)" fill-rule="evenodd" clip-rule="evenodd" d="M11 5a6 6 0 0 0-4.687 9.746c.215.27.315.62.231.954l-.514 2.058a1 1 0 0 0 1.485 1.1l2.848-1.71c.174-.104.374-.15.576-.148H13a6 6 0 0 0 0-12h-2Z"/>
+      <circle fill="white" cx="12" cy="11" r="1"/>
+      <circle fill="white" cx="9" cy="11" r="1"/>
+      <circle fill="white" cx="15" cy="11" r="1"/>
+    </svg>
+  </span>
+  <span class="text">讨论</span>
+</a></li>
+  </ul>
+</div>
+        <div class="globaltoc" data-expand-depth="0"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../introducing_emscripten/index.html">Introducing Emscripten</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../introducing_emscripten/about_emscripten.html">About Emscripten</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../introducing_emscripten/community.html">Community</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../introducing_emscripten/emscripten_license.html">Open Source License</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../introducing_emscripten/release_notes.html">Release Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../introducing_emscripten/Talks-and-Publications.html">Talks and Publications</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/downloads.html">Download and install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/Tutorial.html">Emscripten Tutorial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/test-suite.html">Emscripten Test Suite</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/bug_reports.html">Bug Reporting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/FAQ.html">FAQ</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../compiling/index.html">Compiling and Running Projects</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../compiling/Building-Projects.html">Building Projects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../compiling/WebAssembly.html">Building to WebAssembly</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../compiling/Modularized-Output.html">Modularized Output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../compiling/Dynamic-Linking.html">Dynamic Linking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../compiling/Running-html-files-with-emrun.html">Running HTML files with emrun</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../compiling/Deploying-Pages.html">Deploying Emscripten Compiled Pages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../compiling/GitLab.html">Building and Deploying on GitLab</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../compiling/Contrib-Ports.html">Emscripten Contrib Ports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../compiling/CrossOriginStorage.html">Cross-Origin Storage (COS)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../porting/index.html">Porting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../porting/guidelines/index.html">Code Portability and Limitations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../porting/guidelines/portability_guidelines.html">Portability Guidelines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../porting/guidelines/api_limitations.html">API Limitations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../porting/guidelines/function_pointer_issues.html">Function Pointer Issues</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../porting/guidelines/browser_limitations.html">Specific Browser Limitations</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/emscripten-runtime-environment.html">Emscripten Runtime Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/connecting_cpp_and_javascript/index.html">Connecting C++ and JavaScript</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../porting/connecting_cpp_and_javascript/Interacting-with-code.html">Interacting with code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../porting/connecting_cpp_and_javascript/embind.html">Embind</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../porting/connecting_cpp_and_javascript/WebIDL-Binder.html">WebIDL Binder</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/files/index.html">Files and File Systems</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../porting/files/file_systems_overview.html">File System Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../porting/files/packaging_files.html">Packaging Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../porting/files/Synchronous-Virtual-XHR-Backed-File-System-Usage.html">Synchronous Virtual XHR Backed File System Usage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/multimedia_and_graphics/index.html">Multimedia and Graphics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../porting/multimedia_and_graphics/WebGPU-support.html">Using WebGPU in Emscripten</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../porting/multimedia_and_graphics/EGL-Support-in-Emscripten.html">EGL Support in Emscripten</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../porting/multimedia_and_graphics/OpenGL-support.html">OpenGL support in Emscripten</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/Audio.html">Audio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/Debugging.html">Debugging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/pthreads.html">Pthreads support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/networking.html">Networking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/simd.html">Using SIMD with WebAssembly</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/exceptions.html">C++ Exceptions Support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/setjmp-longjmp.html">C setjmp-longjmp Support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../porting/asyncify.html">Asynchronous Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../compiling/Building-Projects.html">Building Projects</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api_reference/index.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/emscripten.h.html">emscripten.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/html5.h.html">html5.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/console.h.html">console.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/preamble.js.html">preamble.js</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/Filesystem-API.html">File System API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/fetch.html">Fetch API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/module.html">Module object</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/val.h.html">val.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/bind.h.html">bind.h (under-construction)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/trace.h.html">trace.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/fiber.h.html">fiber.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/proxying.h.html">proxying.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/stack.h.html">stack.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/wasm_workers.html">Wasm Workers API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/wasm_audio_worklets.html">Wasm Audio Worklets API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/advanced-apis.html">Advanced APIs</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tools_reference/index.html">Tools Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tools_reference/emsdk.html">Emscripten SDK (emsdk)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools_reference/emcc.html">Emscripten Compiler Frontend (emcc)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools_reference/emcmdprompt.html">Emscripten Windows Command Prompt (emcmdprompt.bat)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools_reference/settings_reference.html">Emscripten Compiler Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools_reference/settings_reference.html#deprecated-settings">Deprecated Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools_reference/settings_reference.html#legacy-settings">Legacy Settings</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../optimizing/Optimizing-Code.html">Optimizing Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../optimizing/Optimizing-WebGL.html">Optimizing WebGL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debugging/Sanitizers.html">Debugging with Sanitizers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../building_from_source/index.html">Building Emscripten from Source</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../building_from_source/toolchain_what_is_needed.html">Emscripten Toolchain Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../building_from_source/configuring_emscripten_settings.html">Configuring Emscripten Settings when Manually Building from Source</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../building_from_source/verify_emscripten_environment.html">Verifying the Emscripten Development Environment</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing to Emscripten</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/contributing.html">Contributing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/developers_guide.html">Developer’s Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/AUTHORS.html">AUTHORS</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../optimizing/Profiling-Toolchain.html">Profiling the Toolchain</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about.html">About this site</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../genindex.html">索引</a></li>
+</ul>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="lside-overlay js-menu" role="button" aria-label="Close left sidebar" aria-controls="lside" aria-expanded="false"></div>
+  <aside id="rside" class="sy-rside pb-3 w-64 shrink-0 order-last">
+    <button class="rside-close js-menu xl:hidden" aria-label="Close Table of Contents" type="button" aria-controls="rside" aria-expanded="false">
+      <i class="i-lucide close"></i>
+    </button>
+    <div class="sy-scrollbar sy-rside-inner px-6 xl:top-16 xl:sticky xl:pl-0 pt-6 pb-4"><div class="localtoc"><h3>该页内容</h3><ul>
+<li><a class="reference internal" href="#general">General</a></li>
+<li><a class="reference internal" href="#emscripten-tools-and-dependencies">Emscripten tools and dependencies</a></li>
+<li><a class="reference internal" href="#sdk-terms">SDK Terms</a></li>
+<li><a class="reference internal" href="#site-sphinx">Site / Sphinx</a></li>
+</ul>
+</div><a class="js-repo-stats repo-stats flex items-center" href="https://github.com/emscripten-core/emscripten"
+  data-type="github" data-user="emscripten-core" data-repo="emscripten">
+  <span class="w-8 flex items-center justify-around shrink-0 text-3xl">
+    <iconify-icon icon="simple-icons:github"></iconify-icon>
+  </span>
+  <span class="flex-grow px-2 break-all">
+    
+    
+      <span>emscripten</span>
+    
+    <span class="flex text-sm repo-stats-count">
+      <span class="flex items-center pr-3">
+        <iconify-icon icon="lucide:star"></iconify-icon>
+        <strong class="js-repo-stars ml-1">0</strong>
+      </span>
+      <span class="flex items-center">
+        <iconify-icon icon="lucide:git-fork"></iconify-icon>
+        <strong class="js-repo-forks ml-1">0</strong>
+      </span>
+    </span>
+  </span>
+</a><div class="edit-this-page">
+  <a href="https://github.com/emscripten-core/emscripten/blob/main/site/source/docs/site/glossary.rst">编辑此页面</a>
+</div><div id="ethical-ad-placement" data-ea-publisher="readthedocs"></div></div>
+  </aside>
+  <div class="rside-overlay js-menu" role="button" aria-label="Close Table of Contents" aria-controls="rside" aria-expanded="false"></div>
+  <main class="sy-main w-full max-sm:max-w-full print:pt-6">
+<div class="sy-breadcrumbs" role="navigation">
+  <div class="sy-breadcrumbs-inner flex items-center">
+    <div class="md:hidden mr-3">
+      <button class="js-menu" aria-label="Menu" type="button" aria-controls="lside" aria-expanded="false">
+        <i class="i-lucide menu"></i>
+      </button>
+    </div>
+    <ol class="flex-1" itemscope itemtype="https://schema.org/BreadcrumbList"><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="../../index.html"><span itemprop="name">Emscripten</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="1" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <strong itemprop="name">Glossary</strong>
+        <meta itemprop="position" content="2" />
+      </li></ol>
+    <div class="xl:hidden ml-1">
+      <button class="js-menu" aria-label="Show table of contents" type="button" aria-controls="rside"
+        aria-expanded="false">
+        <i class="i-lucide outdent"></i>
+      </button>
+    </div>
+  </div>
+</div><div class="flex flex-col break-words justify-between">
+      <div class="relative min-w-0 max-w-6xl px-6 pb-6 pt-8 xl:px-12">
+  <article class="yue" role="main">
+          <section id="glossary">
+<h1>Glossary<a class="headerlink" href="#glossary" title="Link to this heading">¶</a></h1>
+<section id="general">
+<h2>General<a class="headerlink" href="#general" title="Link to this heading">¶</a></h2>
+<dl class="glossary">
+<dt id="term-LLVM-backend">LLVM backend<a class="headerlink" href="#term-LLVM-backend" title="Link to this term">¶</a></dt><dd><p>A (<em>Clang</em>) compiler backend that converts the <a class="reference internal" href="#term-LLVM"><span class="xref std std-term">LLVM</span></a> Intermediate Representation (IR) to code for a specified machine or other languages. In the case of Emscripten, the specified target is JavaScript.</p>
+</dd>
+<dt id="term-Load-store-consistency">Load-store consistency<a class="headerlink" href="#term-Load-store-consistency" title="Link to this term">¶</a></dt><dd><p>Load-Store Consistency (LSC), is the requirement that after a value with a specific type is written to a memory location, loads from that memory location will be of the same type. So if a variable contains a 32-bit floating point number, then both loads and stores to that variable will be of 32-bit floating point values, and not 16-bit unsigned integers or anything else.</p>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>This definition is taken from <a class="reference external" href="https://github.com/emscripten-core/emscripten/blob/main/docs/paper.pdf?raw=true">Emscripten: An LLVM-to-JavaScript Compiler</a> (section 2.1.1). There is additional detail in that paper.</p>
+</div>
+</dd>
+<dt id="term-Minifying">Minifying<a class="headerlink" href="#term-Minifying" title="Link to this term">¶</a></dt><dd><p><a class="reference external" href="http://en.wikipedia.org/wiki/Minification_(programming)">Minification</a> in JavaScript is the process of removing all unnecessary characters from source code without changing its functionality. At higher optimisation levels Emscripten uses the <a class="reference internal" href="#term-Closure-Compiler"><span class="xref std std-term">Closure Compiler</span></a> to minify Emscripten code.</p>
+</dd>
+<dt id="term-Relooping">Relooping<a class="headerlink" href="#term-Relooping" title="Link to this term">¶</a></dt><dd><p>Recreate high-level loop and <code class="docutils literal notranslate"><span class="pre">if</span></code> structures from the low-level labels and branches that appear in LLVM assembly (definition taken from <a class="reference external" href="https://github.com/emscripten-core/emscripten/blob/main/docs/paper.pdf?raw=true">this paper</a>).</p>
+</dd>
+<dt id="term-SDL">SDL<a class="headerlink" href="#term-SDL" title="Link to this term">¶</a></dt><dd><p><a class="reference external" href="https://www.libsdl.org/">Simple DirectMedia Layer</a> (SDL) is a cross-platform development library designed to provide low level access to audio, keyboard, mouse, joystick, and graphics hardware via OpenGL and Direct3D.</p>
+<p>The original compiler supported a number of other memory models and compilation modes (see <a class="reference external" href="https://github.com/emscripten-core/emscripten/wiki/Code-Generation-Modes">Code Generation Modes</a>) but <em>Typed Arrays Mode 2</em> proved to have, among other benefits, the greatest support for arbitrary code.</p>
+</dd>
+<dt id="term-XHR">XHR<a class="headerlink" href="#term-XHR" title="Link to this term">¶</a></dt><dd><p>Contraction of <code class="docutils literal notranslate"><span class="pre">XMLHttpRequest</span></code>. Emscripten uses XHRs for asynchronously downloading binary data.</p>
+</dd>
+</dl>
+</section>
+<section id="emscripten-tools-and-dependencies">
+<h2>Emscripten tools and dependencies<a class="headerlink" href="#emscripten-tools-and-dependencies" title="Link to this heading">¶</a></h2>
+<dl class="glossary">
+<dt id="term-Binaryen">Binaryen<a class="headerlink" href="#term-Binaryen" title="Link to this term">¶</a></dt><dd><p><a class="reference external" href="https://github.com/WebAssembly/binaryen/">Binaryen</a> is a WebAssembly compiler toolkit, which Emscripten uses to modify and optimize Wasm.</p>
+</dd>
+<dt id="term-Clang">Clang<a class="headerlink" href="#term-Clang" title="Link to this term">¶</a></dt><dd><p>Clang is a compiler front end for C, C++, and other programming languages that uses <a class="reference internal" href="#term-LLVM"><span class="xref std std-term">LLVM</span></a> as its back end.</p>
+</dd>
+<dt id="term-Closure-Compiler">Closure Compiler<a class="headerlink" href="#term-Closure-Compiler" title="Link to this term">¶</a></dt><dd><p>The closure compiler is used to minify Emscripten-generated code at higher optimisations.</p>
+</dd>
+<dt id="term-Compiler-Configuration-File">Compiler Configuration File<a class="headerlink" href="#term-Compiler-Configuration-File" title="Link to this term">¶</a></dt><dd><p>The <a class="reference internal" href="../tools_reference/emsdk.html#compiler-configuration-file"><span class="std std-ref">Compiler Configuration File</span></a> stores the <a class="reference internal" href="#term-Active-Tool-SDK"><span class="xref std std-term">active</span></a> tools and SDKs as defined using <a class="reference internal" href="#term-emsdk"><span class="xref std std-term">emsdk activate</span></a>.</p>
+</dd>
+<dt id="term-emcc">emcc<a class="headerlink" href="#term-emcc" title="Link to this term">¶</a></dt><dd><p>The <a class="reference internal" href="../tools_reference/emcc.html#emccdoc"><span class="std std-ref">Emscripten Compiler Frontend (emcc)</span></a>. Emscripten’s drop-in replacement for a compiler like <em>gcc</em>.</p>
+</dd>
+<dt id="term-Emscripten-Command-Prompt">Emscripten Command Prompt<a class="headerlink" href="#term-Emscripten-Command-Prompt" title="Link to this term">¶</a></dt><dd><p>The <a class="reference internal" href="../tools_reference/emcmdprompt.html#emcmdprompt"><span class="std std-ref">Emscripten Windows Command Prompt (emcmdprompt.bat)</span></a> is used to call Emscripten tools from the command line on Windows.</p>
+</dd>
+<dt id="term-Fastcomp">Fastcomp<a class="headerlink" href="#term-Fastcomp" title="Link to this term">¶</a></dt><dd><p>Fastcomp was Emscripten’s second compiler core, after the JS compiler and before the new LLVM Wasm backend.</p>
+</dd>
+<dt id="term-Git">Git<a class="headerlink" href="#term-Git" title="Link to this term">¶</a></dt><dd><p><a class="reference external" href="http://en.wikipedia.org/wiki/Git_(software)">Git</a> is a distributed revision control system. Emscripten is hosted on <a class="reference internal" href="#term-GitHub"><span class="xref std std-term">GitHub</span></a> and can be updated and modified using a git client.</p>
+</dd>
+<dt id="term-GitHub">GitHub<a class="headerlink" href="#term-GitHub" title="Link to this term">¶</a></dt><dd><p><a class="reference external" href="https://github.com/">GitHub</a> is a <a class="reference internal" href="#term-Git"><span class="xref std std-term">Git</span></a> repository web-based hosting service that also offers project-based collaboration features including wikis, task management, and bug tracking.</p>
+<p>The Emscripten project is hosted on GitHub.</p>
+</dd>
+<dt id="term-Java">Java<a class="headerlink" href="#term-Java" title="Link to this term">¶</a></dt><dd><p><a class="reference external" href="http://www.java.com/en/download/faq/whatis_java.xml">Java</a> is a programming language and computing platform. It is used by Emscripten for the code that performs some advanced optimisations. The required version is listed in the <a class="reference internal" href="../building_from_source/toolchain_what_is_needed.html#central-list-of-emscripten-tools-and-dependencies"><span class="std std-ref">toolchain requirements</span></a>.</p>
+</dd>
+<dt id="term-JavaScript">JavaScript<a class="headerlink" href="#term-JavaScript" title="Link to this term">¶</a></dt><dd><p><a class="reference external" href="http://en.wikipedia.org/wiki/JavaScript">JavaScript</a> (<a class="reference external" href="http://en.wikipedia.org/wiki/ECMAScript">ECMAScript</a>) is a programming language that is primarily used as part of a web browser, providing programmatic access to objects within a host environment. With <a class="reference internal" href="#term-node.js"><span class="xref std std-term">node.js</span></a>, it is also being used in server-side network programming.</p>
+<p>The <a class="reference external" href="http://asmjs.org/faq.html">asm.js</a> subset of JavaScript is Emscripten’s target output language.</p>
+</dd>
+<dt id="term-lli">lli<a class="headerlink" href="#term-lli" title="Link to this term">¶</a></dt><dt id="term-LLVM-Interpreter">LLVM Interpreter<a class="headerlink" href="#term-LLVM-Interpreter" title="Link to this term">¶</a></dt><dd><p>The <a class="reference external" href="http://llvm.org/releases/3.0/docs/CommandGuide/html/lli.html">LLVM interpreter (LLI)</a> executes programs from <a class="reference internal" href="#term-LLVM"><span class="xref std std-term">LLVM</span></a> bitcode. This tool is not maintained and has odd errors and crashes.</p>
+</dd>
+<dt id="term-LLVM">LLVM<a class="headerlink" href="#term-LLVM" title="Link to this term">¶</a></dt><dd><p><a class="reference external" href="http://en.wikipedia.org/wiki/LLVM">LLVM</a> is a compiler infrastructure designed to allow optimization of programs written in arbitrary programming languages.</p>
+</dd>
+<dt id="term-node.js">node.js<a class="headerlink" href="#term-node.js" title="Link to this term">¶</a></dt><dd><p><a class="reference external" href="https://nodejs.org/en/">Node.js</a> is a cross-platform runtime environment for server-side and networking applications written in JavaScript. Essentially it allows you to run JavaScript applications outside of a browser context.</p>
+</dd>
+<dt id="term-Python">Python<a class="headerlink" href="#term-Python" title="Link to this term">¶</a></dt><dd><p>Python is a scripting language used to write many of Emscripten’s tools. The required version is listed in the <a class="reference internal" href="../building_from_source/toolchain_what_is_needed.html#central-list-of-emscripten-tools-and-dependencies"><span class="std std-ref">toolchain requirements</span></a>.</p>
+</dd>
+</dl>
+</section>
+<section id="sdk-terms">
+<h2>SDK Terms<a class="headerlink" href="#sdk-terms" title="Link to this heading">¶</a></h2>
+<p>The following terms are used when referring to the SDK and <a class="reference internal" href="../tools_reference/emsdk.html#emsdk"><span class="std std-ref">Emscripten SDK (emsdk)</span></a>:</p>
+<dl class="glossary">
+<dt id="term-emsdk">emsdk<a class="headerlink" href="#term-emsdk" title="Link to this term">¶</a></dt><dd><p>The <a class="reference internal" href="../tools_reference/emsdk.html#emsdk"><span class="std std-ref">Emscripten SDK (emsdk)</span></a> is used to perform all SDK maintenance and can install, update, add, remove and <a class="reference internal" href="#term-Active-Tool-SDK"><span class="xref std std-term">activate</span></a> <a class="reference internal" href="#term-SDK"><span class="xref std std-term">SDKs</span></a> and <a class="reference internal" href="#term-Tool"><span class="xref std std-term">tools</span></a>. Most operations are of the form <code class="docutils literal notranslate"><span class="pre">./emsdk</span> <span class="pre">command</span></code>. To access the <em>emsdk</em> script, launch the <a class="reference internal" href="#term-Emscripten-Command-Prompt"><span class="xref std std-term">Emscripten Command Prompt</span></a>.</p>
+</dd>
+<dt id="term-Tool">Tool<a class="headerlink" href="#term-Tool" title="Link to this term">¶</a></dt><dd><p>The basic unit of software bundled in the <a class="reference internal" href="#term-SDK"><span class="xref std std-term">SDK</span></a>. A Tool has a name and a version. For example, <strong>clang-3.2-32bit</strong> is a tool that contains the 32-bit version of the <em>Clang</em> v3.2 compiler. Other tools used by <em>Emscripten</em> include <a class="reference internal" href="#term-Java"><span class="xref std std-term">Java</span></a>, <a class="reference internal" href="#term-Git"><span class="xref std std-term">Git</span></a>, <a class="reference internal" href="#term-node.js"><span class="xref std std-term">node.js</span></a>, etc.</p>
+</dd>
+<dt id="term-SDK">SDK<a class="headerlink" href="#term-SDK" title="Link to this term">¶</a></dt><dd><p>A set of <a class="reference internal" href="#term-Tool"><span class="xref std std-term">tools</span></a>. For example, <strong>sdk-1.5.6-32bit</strong> is an SDK consisting of the tools: clang-3.2-32bit, node-0.10.17-32bit, python-2.7.5.1-32bit and emscripten-1.5.6.</p>
+<p>There are a number of different Emscripten SDK packages. These can be downloaded from <a class="reference internal" href="../getting_started/downloads.html#sdk-download-and-install"><span class="std std-ref">here</span></a>.</p>
+</dd>
+<dt id="term-Active-Tool-SDK">Active Tool/SDK<a class="headerlink" href="#term-Active-Tool-SDK" title="Link to this term">¶</a></dt><dd><p>The <a class="reference internal" href="#term-emsdk"><span class="xref std std-term">emsdk</span></a> can store multiple versions of <a class="reference internal" href="#term-Tool"><span class="xref std std-term">tools</span></a> and
+<a class="reference internal" href="#term-SDK"><span class="xref std std-term">SDKs</span></a>. The active tools/SDK is the set of tools that are used
+by default on the <em>Emscripten Command Prompt</em>. This compiler configuration
+is stored in an emsdk-specific config file (<strong>.emscripten</strong>) and can be
+changed using <em>emsdk</em>.</p>
+</dd>
+<dt id="term-emsdk-root-directory">emsdk root directory<a class="headerlink" href="#term-emsdk-root-directory" title="Link to this term">¶</a></dt><dd><p>The <a class="reference internal" href="#term-emsdk"><span class="xref std std-term">emsdk</span></a> can manage any number of <a class="reference internal" href="#term-Tool"><span class="xref std std-term">tools</span></a> and <a class="reference internal" href="#term-SDK"><span class="xref std std-term">SDKs</span></a>, and these are stored in <a class="reference internal" href="#term-SDK-root-directory"><span class="xref std std-term">subdirectories</span></a> of the <em>emsdk root directory</em>. The <strong>emsdk root</strong> is the directory specified when you first installed an SDK.</p>
+</dd>
+<dt id="term-SDK-root-directory">SDK root directory<a class="headerlink" href="#term-SDK-root-directory" title="Link to this term">¶</a></dt><dd><p>The <a class="reference internal" href="#term-emsdk"><span class="xref std std-term">emsdk</span></a> can store any number of tools and SDKs. The <em>SDK root directory</em> is the directory used to store a particular <a class="reference internal" href="#term-SDK"><span class="xref std std-term">SDK</span></a>. It is located as follows, with respect to the <a class="reference internal" href="#term-emsdk-root-directory"><span class="xref std std-term">emsdk root directory</span></a>: <strong>&lt;emsdk root&gt;\emscripten\&lt;sdk root directory&gt;\</strong></p>
+</dd>
+</dl>
+</section>
+<section id="site-sphinx">
+<h2>Site / Sphinx<a class="headerlink" href="#site-sphinx" title="Link to this heading">¶</a></h2>
+<dl class="simple glossary">
+<dt id="term-reStructured-text">reStructured text<a class="headerlink" href="#term-reStructured-text" title="Link to this term">¶</a></dt><dd><p>Markup language used to define content on this site. See the <a class="reference external" href="http://sphinx-doc.org/rest.html">reStructured text primer</a>.</p>
+</dd>
+</dl>
+</section>
+</section>
+
+        </article><button class="back-to-top" type="button">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+  </svg>
+  <span>回到顶部</span>
+</button><div class="navigation flex print:hidden"></div></div>
+    </div>
+  </main>
+</div>
+<footer class="sy-foot">
+  <div class="sy-foot-inner sy-container mx-auto">
+    <div class="sy-foot-reserved md:flex justify-between items-center">
+      <div class="sy-foot-copyright"><p>Copyright &copy; 2015, Emscripten Contributors.</p>
+  
+  <p>
+    Made with
+    
+    <a href="https://www.sphinx-doc.org/">Sphinx</a> and
+    
+    <a href="https://shibuya.lepture.com">Shibuya theme</a>.
+  </p>
+</div>
+      <div class="sy-foot-socials">
+<a href="https://github.com/emscripten-core/emscripten" aria-label="GitHub">
+  <iconify-icon icon="simple-icons:github"></iconify-icon>
+</a>
+<a href="https://discord.gg/53u3EKq" aria-label="Discord">
+  <iconify-icon icon="simple-icons:discord"></iconify-icon>
+</a></div>
+    </div>
+  </div>
+</footer>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=c4790338"></script>
+      <script src="../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/translations.js?v=beaddf03"></script>
+      <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../../_static/shibuya.js?v=50760d75"></script></body>
+</html>
