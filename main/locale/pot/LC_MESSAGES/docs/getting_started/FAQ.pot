@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Emscripten main\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-18 07:11+0000\n"
+"POT-Creation-Date: 2026-10-26 14:55+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -91,10 +91,11 @@ msgstr ""
 
 #: ../../../source/docs/getting_started/FAQ.rst:46
 msgid ""
-"Check if there is a test for the failing functionality in the :ref:"
-"`Emscripten test suite <emscripten-test-suite>` (run ``grep -r`` in **test/"
-"**). They should all pass (with only rare exceptions), so they provide "
-"concrete \"known-good\" examples of how various options and code are used."
+"Check if there is a test for the failing functionality in "
+"the :ref:`Emscripten test suite <emscripten-test-suite>` (run ``grep -r`` in "
+"**test/**). They should all pass (with only rare exceptions), so they "
+"provide concrete \"known-good\" examples of how various options and code are "
+"used."
 msgstr ""
 
 #: ../../../source/docs/getting_started/FAQ.rst:54
@@ -167,8 +168,8 @@ msgstr ""
 
 #: ../../../source/docs/getting_started/FAQ.rst:96
 msgid ""
-"Make sure you optimize code by building with ``-O2`` (even more :ref:"
-"`aggressive optimization <emcc-O3>` is available, at the cost of "
+"Make sure you optimize code by building with ``-O2`` (even "
+"more :ref:`aggressive optimization <emcc-O3>` is available, at the cost of "
 "significantly increased compilation time)."
 msgstr ""
 
@@ -190,9 +191,9 @@ msgstr ""
 
 #: ../../../source/docs/getting_started/FAQ.rst:117
 msgid ""
-"Make sure you are using the Emscripten bundled system headers. Using :ref:"
-"`emcc <emccdoc>` will do so by default, but problems may occur if you use "
-"your local system headers with ``emcc``."
+"Make sure you are using the Emscripten bundled system headers. "
+"Using :ref:`emcc <emccdoc>` will do so by default, but problems may occur if "
+"you use your local system headers with ``emcc``."
 msgstr ""
 
 #: ../../../source/docs/getting_started/FAQ.rst:123
@@ -227,8 +228,8 @@ msgid ""
 "works in some browsers but not in others. Instead, it's best to use a local "
 "webserver. For example, Python has one built in, ``python -m http.server`` "
 "in Python 3 or ``python -m SimpleHTTPServer`` in Python 2. After doing that, "
-"you can visit ``http://localhost:8000/``. You can also use ``emrun FILENAME."
-"html`` (which will run a python webserver for you)."
+"you can visit ``http://localhost:8000/``. You can also use ``emrun "
+"FILENAME.html`` (which will run a python webserver for you)."
 msgstr ""
 
 #: ../../../source/docs/getting_started/FAQ.rst:148
@@ -283,8 +284,8 @@ msgstr ""
 msgid ""
 "Some libraries or object files in your project were built using the host "
 "compiler rather then the emscripten compiler.  If you are using autoconf or "
-"cmake make sure you use the emconfigure/emmake wrapper, see :ref:`Building-"
-"Projects`."
+"cmake make sure you use the emconfigure/emcmake/emmake wrappers, "
+"see :ref:`Building-Projects`."
 msgstr ""
 
 #: ../../../source/docs/getting_started/FAQ.rst:179
@@ -494,11 +495,12 @@ msgstr ""
 #: ../../../source/docs/getting_started/FAQ.rst:310
 msgid ""
 "Calling a compiled function before a page has fully loaded can result in an "
-"error, if the function relies on files that may not be present (for example :"
-"ref:`preloaded <emcc-preload-file>` files are loaded asynchronously, and "
-"therefore if you just place some JS that calls compiled code in a ``--post-"
-"js``, that code will be called synchronously at the end of the combined JS "
-"file, potentially before the asynchronous event happens, which is bad)."
+"error, if the function relies on files that may not be present (for "
+"example :ref:`preloaded <emcc-preload-file>` files are loaded "
+"asynchronously, and therefore if you just place some JS that calls compiled "
+"code in a ``--post-js``, that code will be called synchronously at the end "
+"of the combined JS file, potentially before the asynchronous event happens, "
+"which is bad)."
 msgstr ""
 
 #: ../../../source/docs/getting_started/FAQ.rst:317
@@ -644,9 +646,9 @@ msgstr ""
 
 #: ../../../source/docs/getting_started/FAQ.rst:447
 msgid ""
-"All functions not kept alive through ``EXPORTED_FUNCTIONS`` or :c:type:"
-"`EMSCRIPTEN_KEEPALIVE` will potentially be removed. Make sure you keep the "
-"things you need alive using one or both of those methods."
+"All functions not kept alive through ``EXPORTED_FUNCTIONS`` "
+"or :c:type:`EMSCRIPTEN_KEEPALIVE` will potentially be removed. Make sure you "
+"keep the things you need alive using one or both of those methods."
 msgstr ""
 
 #: ../../../source/docs/getting_started/FAQ.rst:451
