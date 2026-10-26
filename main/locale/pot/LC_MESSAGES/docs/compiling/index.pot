@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Emscripten main\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-22 13:32+0000\n"
+"POT-Creation-Date: 2026-10-26 14:55+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,43 +28,49 @@ msgstr ""
 
 #: ../../../source/docs/compiling/index.rst:9
 msgid ""
+":ref:`Best-Practices` covers recommended compiler flags, modern web "
+"workflows, and Dos and Don'ts for using Emscripten."
+msgstr ""
+
+#: ../../../source/docs/compiling/index.rst:10
+msgid ""
 ":ref:`Building-Projects` shows how to use :ref:`emccdoc` as a drop-in "
 "replacement for *gcc* in your existing project."
 msgstr ""
 
-#: ../../../source/docs/compiling/index.rst:10
+#: ../../../source/docs/compiling/index.rst:11
 msgid ""
 ":ref:`WebAssembly` explains how Emscripten can be used to build WebAssembly "
 "files"
 msgstr ""
 
-#: ../../../source/docs/compiling/index.rst:11
+#: ../../../source/docs/compiling/index.rst:12
 msgid ""
 ":ref:`Running-html-files-with-emrun` explains how to use *emrun* to run "
 "generated HTML pages in a locally launched web server."
 msgstr ""
 
-#: ../../../source/docs/compiling/index.rst:12
+#: ../../../source/docs/compiling/index.rst:13
 msgid ""
 ":ref:`Modularized-Output` covers the various options for generating "
 "modularized JS code."
 msgstr ""
 
-#: ../../../source/docs/compiling/index.rst:13
+#: ../../../source/docs/compiling/index.rst:14
 msgid ""
 ":ref:`Deploying-Pages` covers topics related to hosting Emscripten compiled "
 "web pages on a CDN."
 msgstr ""
 
-#: ../../../source/docs/compiling/index.rst:14
+#: ../../../source/docs/compiling/index.rst:15
 msgid ":ref:`GitLab` explains how to build and test projects on GitLab."
 msgstr ""
 
-#: ../../../source/docs/compiling/index.rst:15
+#: ../../../source/docs/compiling/index.rst:16
 msgid ":ref:`Contrib-Ports` contains information about contrib ports."
 msgstr ""
 
-#: ../../../source/docs/compiling/index.rst:16
+#: ../../../source/docs/compiling/index.rst:17
 msgid ""
 ":ref:`CrossOriginStorage` explains how to enable the experimental Cross-"
 "Origin Storage integration for sharing Wasm modules across origins."

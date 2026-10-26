@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Emscripten main\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-18 07:11+0000\n"
+"POT-Creation-Date: 2026-10-26 14:55+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -69,8 +69,8 @@ msgstr ""
 #: ../../../source/docs/api_reference/advanced-apis.rst:42
 msgid ""
 "For more information on what options can be used to configure Emscripten, "
-"read ``src/settings.js`` or visit `the emsettings page <https://emsettings."
-"surma.technology>`_."
+"read ``src/settings.js`` or visit `the emsettings page <https://"
+"emsettings.surma.technology>`_."
 msgstr ""
 
 #: ../../../source/docs/api_reference/advanced-apis.rst:48
@@ -120,8 +120,8 @@ msgstr ""
 msgid "For advanced users only."
 msgstr ""
 
-#: ../../../source/docs/api_reference/advanced-apis.rst:111
-msgid "Legacy v1 compatibility functions."
+#: ../../../source/docs/api_reference/advanced-apis.rst:110
+msgid "Legacy functions."
 msgstr ""
 
 #: ../../../source/docs/api_reference/advanced-apis.rst:114

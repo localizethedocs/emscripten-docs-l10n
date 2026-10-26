@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Emscripten main\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-18 07:11+0000\n"
+"POT-Creation-Date: 2026-10-26 14:55+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -86,8 +86,8 @@ msgstr ""
 
 #: ../../../source/docs/api_reference/bind.h.rst:147
 msgid ""
-"Registers a function to export to JavaScript. This is called from within an :"
-"cpp:func:`EMSCRIPTEN_BINDINGS` block."
+"Registers a function to export to JavaScript. This is called from within "
+"an :cpp:func:`EMSCRIPTEN_BINDINGS` block."
 msgstr ""
 
 #: ../../../source/docs/api_reference/bind.h.rst:150
@@ -280,12 +280,12 @@ msgstr ""
 #: ../../../source/docs/api_reference/bind.h.rst:538
 msgid ""
 "Class constructor for objects that use a factory function to create the "
-"object.  This method will accept either a function pointer, ``std::"
-"function`` object or function object which will return a newly constructed "
-"object.  When the ``Callable`` is a function object the function signature "
-"must be explicitly specified in the ``Signature`` template parameter in the "
-"format ``ReturnType (Args...)``.  For ``Callable`` types other than function "
-"objects the method signature will be deduced."
+"object.  This method will accept either a function pointer, "
+"``std::function`` object or function object which will return a newly "
+"constructed object.  When the ``Callable`` is a function object the function "
+"signature must be explicitly specified in the ``Signature`` template "
+"parameter in the format ``ReturnType (Args...)``.  For ``Callable`` types "
+"other than function objects the method signature will be deduced."
 msgstr ""
 
 #: ../../../source/docs/api_reference/bind.h.rst:543
@@ -310,23 +310,23 @@ msgstr ""
 #: ../../../source/docs/api_reference/bind.h.rst:619
 msgid ""
 "On the JavaScript side this is a function that gets bound as a property of "
-"the prototype. For example ``.function(\"myClassMember\", &MyClass::"
-"myClassMember)`` would bind ``myClassMember`` to ``MyClass.prototype."
-"myClassMember`` in the JavaScript.  This method will accept either a pointer-"
-"to-member-function, function pointer, ``std::function`` object or function "
-"object.  When the ``Callable`` is not a pointer-to-member-function it must "
-"accept the ``ClassType`` as the first (``this``) parameter.  When the "
-"``Callable`` is a function object the function signature must be explicitly "
-"specified in the ``Signature`` template parameter in the format ``ReturnType "
-"(Args...)``.  For ``Callable`` types other than function objects the method "
-"signature will be deduced."
+"the prototype. For example ``.function(\"myClassMember\", "
+"&MyClass::myClassMember)`` would bind ``myClassMember`` to "
+"``MyClass.prototype.myClassMember`` in the JavaScript.  This method will "
+"accept either a pointer-to-member-function, function pointer, "
+"``std::function`` object or function object.  When the ``Callable`` is not a "
+"pointer-to-member-function it must accept the ``ClassType`` as the first "
+"(``this``) parameter.  When the ``Callable`` is a function object the "
+"function signature must be explicitly specified in the ``Signature`` "
+"template parameter in the format ``ReturnType (Args...)``.  For ``Callable`` "
+"types other than function objects the method signature will be deduced."
 msgstr ""
 
 #: ../../../source/docs/api_reference/bind.h.rst:625
 msgid ""
-"A method name specified in the human-readable well-known symbol format (e."
-"g., ``@@iterator``) is bound using the named ``Symbol`` for JavaScript (e."
-"g., ``Symbol.iterator``)."
+"A method name specified in the human-readable well-known symbol format "
+"(e.g., ``@@iterator``) is bound using the named ``Symbol`` for JavaScript "
+"(e.g., ``Symbol.iterator``)."
 msgstr ""
 
 #: ../../../source/docs/api_reference/bind.h.rst:628
@@ -335,9 +335,9 @@ msgstr ""
 
 #: ../../../source/docs/api_reference/bind.h.rst:652
 msgid ""
-"Makes a bound class iterable in JavaScript by installing ``Symbol."
-"iterator``. This enables use with ``for...of`` loops, ``Array.from()``, and "
-"spread syntax."
+"Makes a bound class iterable in JavaScript by installing "
+"``Symbol.iterator``. This enables use with ``for...of`` loops, "
+"``Array.from()``, and spread syntax."
 msgstr ""
 
 #: ../../../source/docs/api_reference/bind.h.rst:0
@@ -364,8 +364,8 @@ msgid ""
 "object.  When ``Getter`` is not pointer-to-member-function, it must accept "
 "an instance of the ``ClassType`` as the ``this`` argument.  When ``Getter`` "
 "is a function object, the property type must be specified as a template "
-"parameter as it cannot be deduced, e.g.: ``myClass."
-"property<int>(\"myIntProperty\", MyIntGetterFunctor());``"
+"parameter as it cannot be deduced, e.g.: "
+"``myClass.property<int>(\"myIntProperty\", MyIntGetterFunctor());``"
 msgstr ""
 
 #: ../../../source/docs/api_reference/bind.h.rst:720
@@ -382,8 +382,8 @@ msgid ""
 "a function object.  When ``Getter`` or ``Setter`` is not pointer-to-member-"
 "function, it must accept an instance of the ``ClassType`` as the ``this`` "
 "argument. When ``Getter`` or ``Setter`` is a function object, the property "
-"type must be specified as a template parameter as it cannot be deduced, e."
-"g.: ``myClass.property<int>(\"myIntProperty\", MyIntGetterFunctor(), "
+"type must be specified as a template parameter as it cannot be deduced, "
+"e.g.: ``myClass.property<int>(\"myIntProperty\", MyIntGetterFunctor(), "
 "MyIntSetterFunctor());``"
 msgstr ""
 
@@ -399,15 +399,15 @@ msgstr ""
 msgid ""
 "On the JavaScript side this is a function that gets bound as a property of "
 "the constructor. For example ``.class_function(\"myStaticFunction\", "
-"&MyClass::myStaticFunction)`` binds ``myStaticFunction`` to ``MyClass."
-"myStaticFunction``."
+"&MyClass::myStaticFunction)`` binds ``myStaticFunction`` to "
+"``MyClass.myStaticFunction``."
 msgstr ""
 
 #: ../../../source/docs/api_reference/bind.h.rst:759
 msgid ""
-"A method name specified in the human-readable well-known symbol format (e."
-"g., ``@@species``) is bound using the named ``Symbol`` for JavaScript (e.g., "
-"``Symbol.species``)."
+"A method name specified in the human-readable well-known symbol format "
+"(e.g., ``@@species``) is bound using the named ``Symbol`` for JavaScript "
+"(e.g., ``Symbol.species``)."
 msgstr ""
 
 #: ../../../source/docs/api_reference/bind.h.rst:785
@@ -432,9 +432,9 @@ msgstr ""
 
 #: ../../../source/docs/api_reference/bind.h.rst:829
 msgid ""
-"Registers an enum to export to JavaScript. This is called from within an :"
-"cpp:func:`EMSCRIPTEN_BINDINGS` block and works with both C++98 enums and C+"
-"+11 \"enum classes\". See :ref:`embind-enums` for more information."
+"Registers an enum to export to JavaScript. This is called from within "
+"an :cpp:func:`EMSCRIPTEN_BINDINGS` block and works with both C++98 enums and "
+"C++11 \"enum classes\". See :ref:`embind-enums` for more information."
 msgstr ""
 
 #: ../../../source/docs/api_reference/bind.h.rst:836
@@ -449,10 +449,10 @@ msgstr ""
 msgid ""
 "Determines how the enumerated values are represented in JavaScript.  "
 "Possible values:  - ``enum_value_type::object`` (default):   Values are "
-"JavaScript objects with a ``.value`` field.  - ``enum_value_type::"
-"number``:   Values are plain numbers matching their corresponding C++ "
-"values.  - ``enum_value_type::string``:   Values are strings containing "
-"their name."
+"JavaScript objects with a ``.value`` field.  - "
+"``enum_value_type::number``:   Values are plain numbers matching their "
+"corresponding C++ values.  - ``enum_value_type::string``:   Values are "
+"strings containing their name."
 msgstr ""
 
 #: ../../../source/docs/api_reference/bind.h.rst:845
@@ -497,20 +497,20 @@ msgid ""
 "values in the :cpp:func:`EMSCRIPTEN_BINDINGS` block."
 msgstr ""
 
-#: ../../../source/docs/api_reference/bind.h.rst:869
+#: ../../../source/docs/api_reference/bind.h.rst:871
 msgid "Constants"
 msgstr ""
 
-#: ../../../source/docs/api_reference/bind.h.rst:879
+#: ../../../source/docs/api_reference/bind.h.rst:881
 msgid ""
-"Registers a constant to export to JavaScript. This is called from within an :"
-"cpp:func:`EMSCRIPTEN_BINDINGS` block."
+"Registers a constant to export to JavaScript. This is called from within "
+"an :cpp:func:`EMSCRIPTEN_BINDINGS` block."
 msgstr ""
 
-#: ../../../source/docs/api_reference/bind.h.rst:888
+#: ../../../source/docs/api_reference/bind.h.rst:890
 msgid "The name of the constant."
 msgstr ""
 
-#: ../../../source/docs/api_reference/bind.h.rst:889
+#: ../../../source/docs/api_reference/bind.h.rst:891
 msgid "The constant type. This can be any type known to *embind*."
 msgstr ""

@@ -1,0 +1,214 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) Copyright &copy; 2015, Emscripten Contributors.
+# This file is distributed under the same license as the Emscripten package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Emscripten main\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-26 14:55+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../../source/docs/compiling/best_practices.rst:5
+msgid "Best Practices"
+msgstr ""
+
+#: ../../../source/docs/compiling/best_practices.rst:7
+msgid ""
+"This guide provides recommendations and best practices for compiling C and C+"
+"+ to the modern web using WebAssembly and Emscripten."
+msgstr ""
+
+#: ../../../source/docs/compiling/best_practices.rst:10
+msgid ""
+"Following this guide when reporting bugs can also help speed up diagnosing "
+"and fixing issues since you will be on the well-trodden path."
+msgstr ""
+
+#: ../../../source/docs/compiling/best_practices.rst:13
+msgid ""
+"In some cases, Emscripten will guide you towards these best practices by "
+"emitting warnings, but that is not always possible."
+msgstr ""
+
+#: ../../../source/docs/compiling/best_practices.rst:18
+msgid "General Recommendations"
+msgstr ""
+
+#: ../../../source/docs/compiling/best_practices.rst:20
+msgid ""
+"**Avoid high-frequency calls between WebAssembly and JavaScript**; for "
+"example, avoid per-pixel or per-sample calls in favor of operations that "
+"process entire memory regions or buffers."
+msgstr ""
+
+#: ../../../source/docs/compiling/best_practices.rst:23
+msgid ""
+"**Avoid shipping debug information in production**; see below for "
+"recommended release build flags."
+msgstr ""
+
+#: ../../../source/docs/compiling/best_practices.rst:28
+msgid "Command-Line Style"
+msgstr ""
+
+#: ../../../source/docs/compiling/best_practices.rst:30
+msgid ""
+"Keeping the command line flag usage minimal and consistent helps with "
+"codebase understanding and avoids deviating from the well-lit path."
+msgstr ""
+
+#: ../../../source/docs/compiling/best_practices.rst:33
+msgid ""
+"**Don't pass settings that are enabled by default.** To keep command lines "
+"clean and concise, omit redundant options that are already default in modern "
+"Emscripten (such as ``-sWASM=1``)."
+msgstr ""
+
+#: ../../../source/docs/compiling/best_practices.rst:36
+msgid ""
+"**Prefer standard compiler flags** over Emscripten-specific ones where "
+"possible (for example, prefer ``-pthread`` over ``-sUSE_PTHREADS`` and ``-"
+"m64`` over ``-sMEMORY64``)."
+msgstr ""
+
+#: ../../../source/docs/compiling/best_practices.rst:39
+msgid ""
+"**Use simple comma-separated lists** for list-based settings (for example, "
+"``-sEXPORTED_FUNCTIONS=_main,_malloc`` rather than JSON arrays like ``-"
+"sEXPORTED_FUNCTIONS=['_main','_malloc']``)."
+msgstr ""
+
+#: ../../../source/docs/compiling/best_practices.rst:42
+msgid ""
+"**Avoid long lists on the command line**; use a response file "
+"(``@filename``) instead (for example, ``-"
+"sEXPORTED_FUNCTIONS=@exported_funcs.txt``)."
+msgstr ""
+
+#: ../../../source/docs/compiling/best_practices.rst:44
+msgid ""
+"**Don't include the \"=1\" suffix for boolean flags.** For example, write ``-"
+"sSTRICT`` and ``-sALLOW_MEMORY_GROWTH`` rather than ``-sSTRICT=1`` or ``-"
+"sALLOW_MEMORY_GROWTH=1``."
+msgstr ""
+
+#: ../../../source/docs/compiling/best_practices.rst:47
+msgid ""
+"**Use separate compilation** by compiling ``.cpp`` sources to ``.o`` object "
+"files before linking rather than combining everything into a single "
+"monolithic compiler invocation."
+msgstr ""
+
+#: ../../../source/docs/compiling/best_practices.rst:53
+msgid "Recommended Flags"
+msgstr ""
+
+#: ../../../source/docs/compiling/best_practices.rst:55
+msgid ""
+"``-sSTRICT``: Opt into strict modern Emscripten behavior, disabling "
+"deprecated or legacy compatibility features."
+msgstr ""
+
+#: ../../../source/docs/compiling/best_practices.rst:57
+msgid ""
+"``-sEXPORT_ES6``: Output a modern ES6 module (``module.mjs``). This option "
+"implies ``-sMODULARIZE`` so the generated code will be encapsulated and not "
+"impact the global namespace."
+msgstr ""
+
+#: ../../../source/docs/compiling/best_practices.rst:60
+msgid ""
+"``-sENVIRONMENT=web``: Limit the runtime support to only the environments "
+"you are targeting. This reduces code size by, for example, omitting Node.js "
+"and compatibility code."
+msgstr ""
+
+#: ../../../source/docs/compiling/best_practices.rst:63
+msgid ""
+"``-Werror -Wall``: Treat warnings as errors to catch C++ bugs and invalid "
+"compiler settings early."
+msgstr ""
+
+#: ../../../source/docs/compiling/best_practices.rst:65
+msgid ""
+"``-O3``, ``-Os``, or ``-Oz``: For release builds, choose ``-O3`` when "
+"runtime performance is most critical, or ``-Os`` / ``-Oz`` when minimizing "
+"binary payload size is the priority."
+msgstr ""
+
+#: ../../../source/docs/compiling/best_practices.rst:68
+msgid ""
+"``-flto``: Enable Link-Time Optimization (LTO) during both the compilation "
+"and linking steps of release builds for maximum runtime performance and size "
+"reduction."
+msgstr ""
+
+#: ../../../source/docs/compiling/best_practices.rst:74
+msgid "Debug vs. Release Profiles"
+msgstr ""
+
+#: ../../../source/docs/compiling/best_practices.rst:76
+msgid ""
+"When configuring build profiles, keep compile and link flags consistent "
+"within each configuration:"
+msgstr ""
+
+#: ../../../source/docs/compiling/best_practices.rst:79
+msgid ""
+"**Release Builds:** Use ``-Oz``, ``-Os`` or ``-O3`` combined with ``-flto``. "
+"Add ``--closure=1`` to get minified JavaScript too, unless you plan to "
+"minify with an external tool."
+msgstr ""
+
+#: ../../../source/docs/compiling/best_practices.rst:82
+msgid ""
+"**Debug Builds:** Use ``-g`` when compiling and either ``-g``, ``-gline-"
+"tables-only``, or ``-gsource-map`` when linking. Avoid optimization flags "
+"(such as ``-O2`` or ``-O3``) or ``-flto`` during debug builds for faster "
+"compilation and accurate debugging."
+msgstr ""
+
+#: ../../../source/docs/compiling/best_practices.rst:89
+msgid "Common Pitfalls"
+msgstr ""
+
+#: ../../../source/docs/compiling/best_practices.rst:92
+msgid "Asynchronous Code Execution and Main Thread Blocking"
+msgstr ""
+
+#: ../../../source/docs/compiling/best_practices.rst:94
+msgid ""
+"**Don't run long synchronous loops on the browser main thread.** The browser "
+"uses cooperative multitasking; blocking the main UI thread prevents "
+"rendering and freezes the web page."
+msgstr ""
+
+#: ../../../source/docs/compiling/best_practices.rst:98
+msgid ""
+"Restructure infinite loops to yield to the event loop "
+"using :c:func:`emscripten_set_main_loop` (see :ref:`emscripten-runtime-"
+"environment-howto-main-loop`)."
+msgstr ""
+
+#: ../../../source/docs/compiling/best_practices.rst:101
+msgid ""
+"For synchronous-looking C++ code that must pause (or interact with "
+"asynchronous JavaScript APIs such as ``fetch()`` or Web Promises) without "
+"refactoring into callbacks, use :ref:`Asyncify <yielding_to_main_loop>` (``-"
+"sASYNCIFY``) or JavaScript Promise Integration (``-sJSPI``)."
+msgstr ""
+
+#: ../../../source/docs/compiling/best_practices.rst:105
+msgid ""
+"Offload heavy compute or blocking operations to background workers "
+"using :doc:`multithreading and pthreads <../porting/pthreads>` (``-"
+"pthread``)."
+msgstr ""
