@@ -1,0 +1,127 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) Copyright &copy; 2015, Emscripten Contributors.
+# This file is distributed under the same license as the Emscripten package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Emscripten main\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-18 07:11+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../../source/docs/optimizing/Profiling-Toolchain.rst:5
+msgid "Profiling the Toolchain"
+msgstr ""
+
+#: ../../../source/docs/optimizing/Profiling-Toolchain.rst:7
+msgid ""
+"The toolchain interacts with a moderate amount of external tools and "
+"sublibraries, the exact set generally depends on which compilation and "
+"linker flags were used. If you are seeing abnormal compilation times, or if "
+"you are developing the Emscripten toolchain itself, it may be useful to "
+"profile the toolchain performance itself as it compiles your project. "
+"Emscripten has a built-in toolchain wide ``emprofile.py`` profiler that can "
+"be used for this purpose."
+msgstr ""
+
+#: ../../../source/docs/optimizing/Profiling-Toolchain.rst:10
+msgid "Quick Example"
+msgstr ""
+
+#: ../../../source/docs/optimizing/Profiling-Toolchain.rst:12
+msgid "To try out the toolchain profiler, run the following set of commands:"
+msgstr ""
+
+#: ../../../source/docs/optimizing/Profiling-Toolchain.rst:21
+msgid ""
+"On Windows, replace the ``export`` keyword with ``set`` instead. The last "
+"command should generate a HTML file of form ``toolchain_profiler."
+"results_yyyymmdd_hhmm.html`` that can be opened in the web browser to view "
+"the results."
+msgstr ""
+
+#: ../../../source/docs/optimizing/Profiling-Toolchain.rst:24
+msgid "Details"
+msgstr ""
+
+#: ../../../source/docs/optimizing/Profiling-Toolchain.rst:26
+msgid ""
+"The toolchain profiler is active whenever the toolchain is invoked with the "
+"environment variable ``EMPROFILE=1`` being set. In this mode, each called "
+"tool will accumulate profiling instrumentation data to a set of .json files "
+"under the Emscripten temp directory."
+msgstr ""
+
+#: ../../../source/docs/optimizing/Profiling-Toolchain.rst:29
+msgid "Profiling Tool Commands"
+msgstr ""
+
+#: ../../../source/docs/optimizing/Profiling-Toolchain.rst:31
+msgid ""
+"The command ``tools/emprofile.py --clear`` deletes all previously stored "
+"profiling data. Call this command to erase the profiling session to a fresh "
+"empty state. To start profiling, call Emscripten tool commands with the "
+"environment variable ``EMPROFILE=1`` set either system-wide as shown in the "
+"example, or on a per command basis, like this:"
+msgstr ""
+
+#: ../../../source/docs/optimizing/Profiling-Toolchain.rst:40
+msgid ""
+"Any number of commands can be profiled within one session, and when "
+"``emprofile`` is finally called, it will pick up records from all Emscripten "
+"tool invocations up to that point, graph them, and clear the recorded "
+"profiling data for the next run."
+msgstr ""
+
+#: ../../../source/docs/optimizing/Profiling-Toolchain.rst:42
+msgid ""
+"The output HTML filename can be chosen with the optional ``--"
+"outfile=myresults.html`` parameter."
+msgstr ""
+
+#: ../../../source/docs/optimizing/Profiling-Toolchain.rst:45
+msgid "Instrumenting Python Scripts"
+msgstr ""
+
+#: ../../../source/docs/optimizing/Profiling-Toolchain.rst:48
+msgid "Python Profiling Blocks"
+msgstr ""
+
+#: ../../../source/docs/optimizing/Profiling-Toolchain.rst:50
+msgid ""
+"Graphing the subprocess start and end times alone might sometimes be a bit "
+"too coarse view into what is happening. In Python code, it is possible to "
+"hierarchically annotate individual blocks of code to break down execution "
+"into custom tasks. These blocks will be shown in blue in the output graph. "
+"To add a custom profiling block, use the Python ``with`` keyword to add a "
+"``profile_block`` section:"
+msgstr ""
+
+#: ../../../source/docs/optimizing/Profiling-Toolchain.rst:61
+msgid ""
+"This will show the three functions in the same scope under a block "
+"'my_custom_task' drawn in blue in the profiling swimlane."
+msgstr ""
+
+#: ../../../source/docs/optimizing/Profiling-Toolchain.rst:63
+msgid ""
+"In some cases it may be cumbersome to wrap the code inside a ``with`` "
+"section. For these scenarios, it is also possible to use low level C-style "
+"``enter_block`` and ``exit_block`` statements."
+msgstr ""
+
+#: ../../../source/docs/optimizing/Profiling-Toolchain.rst:75
+msgid ""
+"However when using this form one must be cautious to ensure that each call "
+"to ``ToolchainProfiler.enter_block()`` is matched by exactly one call to "
+"``ToolchainProfiler.exit_block()`` in all code flows, so wrapping the code "
+"in a ``try-finally`` statement is a good idea."
+msgstr ""

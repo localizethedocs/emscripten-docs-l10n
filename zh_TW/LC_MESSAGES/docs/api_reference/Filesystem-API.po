@@ -1,0 +1,1424 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) Copyright &copy; 2015, Emscripten Contributors.
+# This file is distributed under the same license as the Emscripten package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Emscripten main\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-18 07:11+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: zh_TW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:5
+msgid "File System API"
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:7
+msgid ""
+"File operations in Emscripten are provided by the `FS <https://github.com/"
+"emscripten-core/emscripten/blob/main/src/library_fs.js>`_ library. It is "
+"used internally for all of Emscripten's **libc** and **libcxx** file I/O."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:9
+msgid ""
+"The API is *inspired* by the Linux/POSIX `File System API <http://linux.die."
+"net/man/2/>`_, with each presenting a very similar interface."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:11
+msgid ""
+"The underlying behaviour is also similar, except where differences between "
+"the native and browser environments make this unreasonable. For example, "
+"user and group permissions are defined but ignored in :js:func:`FS.open`."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:15
+msgid ""
+"Emscripten predominantly compiles code that uses synchronous file I/O, so "
+"the majority of the ``FS`` member functions offer a synchronous interface "
+"(with errors being reported by raising exceptions of type `FS.ErrnoError "
+"<https://github.com/emscripten-core/emscripten/blob/main/system/lib/libc/"
+"musl/arch/emscripten/bits/errno.h>`_)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:17
+msgid ""
+"File data in Emscripten is partitioned by mounted file systems. Several file "
+"systems are provided. An instance of :ref:`MEMFS <filesystem-api-memfs>` is "
+"mounted to ``/`` by default. The subdirectories `/home/web_user` and `/tmp` "
+"are also created automatically, in addition to several other special devices "
+"and streams (e.g. `/dev/null`, `/dev/random`, `/dev/stdin`, `/proc/self/"
+"fd`); see `FS.staticInit()` in the FS library for full details. Instances "
+"of :ref:`NODEFS <filesystem-api-nodefs>` and :ref:`IDBFS <filesystem-api-"
+"idbfs>` can be mounted to other directories if your application needs to :"
+"ref:`persist data <filesystem-api-persist-data>`."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:19
+msgid ""
+"The automatic tests in `test/test_core.py <https://github.com/emscripten-"
+"core/emscripten/blob/1.29.12/tests/test_core.py#L4285>`_ (search for "
+"``test_files``) contain many examples of how to use this API. The :ref:"
+"`tutorial <tutorial-files>` also shows how to pre-load a file so that it can "
+"be read from compiled C/C++."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:21
+msgid ""
+"A high level overview of the way File Systems work in Emscripten-ported code "
+"is provided in the :ref:`file-system-overview`."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:24
+msgid "New File System: WasmFS"
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:26
+msgid "Current Status: Stable, but not yet feature-complete with the old FS."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:28
+msgid ""
+"WasmFS is a high-performance, fully-multithreaded, WebAssembly-based file "
+"system layer for Emscripten that will replace the existing JavaScript "
+"version."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:30
+msgid ""
+"The JavaScript-based file system was originally written before pthreads were "
+"supported and when it was more optimal to write code in JS. As a result it "
+"has overhead in pthreads builds because we must proxy to the main thread "
+"where all filesystem operations are done. WasmFS, instead, is compiled to "
+"Wasm and has full multithreading support. It also aims to be more modular "
+"and extensible."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:32
+msgid ""
+"`Design Doc Link <https://docs.google.com/document/d/1-"
+"ZxybGvz0nCqygUDuWxCcCBhCebev3EbUSYoSOlc49Q/edit?usp=sharing>`_"
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:34
+msgid ""
+"`GitHub Tracking Issue <https://github.com/emscripten-core/emscripten/"
+"issues/15041>`_"
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:36
+msgid "Differences you may notice with the original JS filesystem include:"
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:38
+msgid ""
+"The original JS FS includes a lot of JS code by default, while WasmFS does "
+"not. As a result, if you write JS of your own, say ``FS.mkdir()``, then the "
+"JS FS would already have added that API support, and things would just work. "
+"With WasmFS you must opt-in to including the full JS API, to avoid bloating "
+"all builds. To do so, use ``-sFORCE_FILESYSTEM`` which forces the full "
+"filesystem API to be supported from JS."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:45
+msgid ""
+"WasmFS requires malloc internally, so you cannot build with ``-sWASMFS -"
+"sMALLOC=none``. If you want the smallest possible malloc, use ``-"
+"sMALLOC=emmalloc``. (Note that the optimizer may be able to remove WasmFS "
+"and malloc, if your code does not actually use files in a non-trivial way.)"
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:51
+msgid "Including File System Support"
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:53
+msgid ""
+"Emscripten decides whether to include file system support automatically. "
+"Many programs don't need files, and file system support is not negligible in "
+"size, so Emscripten avoids including it when it doesn't see a reason to. "
+"That means that if your C/C++ code does not access files, then  the ``FS`` "
+"object and other file system APIs will not be included in the output. And, "
+"on the other hand, if your C/C++ code does use files, then file system "
+"support will be automatically included. So normally things will \"just "
+"work\" and you don't need to think about this at all."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:55
+msgid ""
+"However, if your C/C++ code doesn't use files, but you want to use them from "
+"JavaScript, then you can build with ``-sFORCE_FILESYSTEM``, which will make "
+"the compiler include file system support even though it doesn't see it being "
+"used."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:57
+msgid ""
+"On the other hand, if you want to **not** include any filesystem support "
+"code (which may be included even due to printf or iostreams, due to how musl "
+"and libc++ are structured), you can build with ``-sFILESYSTEM=0``. Very "
+"simple stdout support will be included if necessary in such a case, enough "
+"for printf and such to work, but no filesystem code will be added, which can "
+"save a significant amount of code size."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:63
+msgid "Persistent data"
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:65
+msgid ""
+"Applications compiled with Emscripten usually expect synchronous I/O, so "
+"Emscripten itself provides file systems with completely synchronous "
+"interfaces."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:67
+msgid ""
+"However, due to JavaScript's event-driven nature, most *persistent* storage "
+"options offer only asynchronous interfaces. Emscripten offers :ref:`multiple "
+"file systems <filesystem-api-filesystems>` that can be mounted with :js:func:"
+"`FS.mount` to help deal with persistence depending on the execution context."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:72
+msgid "File systems"
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:74
+msgid ""
+"Only the :ref:`MEMFS <filesystem-api-memfs>` filesystem is included by "
+"default. All others must be enabled explicitly, using ``-lnodefs.js`` (:ref:"
+"`NODEFS <filesystem-api-nodefs>`), ``-lidbfs.js`` (:ref:`IDBFS <filesystem-"
+"api-idbfs>`), ``-lworkerfs.js`` (:ref:`WORKERFS <filesystem-api-workerfs>`), "
+"or ``-lproxyfs.js`` (:ref:`PROXYFS <filesystem-api-proxyfs>`)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:79
+msgid "MEMFS"
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:81
+msgid ""
+"This is the default file system mounted at ``/`` when the runtime is "
+"initialized. All files exist strictly in-memory, and any data written to "
+"them is lost when the page is reloaded."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:86
+msgid "NODEFS"
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:88
+#: ../../../source/docs/api_reference/Filesystem-API.rst:99
+msgid "This file system is only for use when running inside :term:`node.js`."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:90
+msgid ""
+"This file system lets a program in *node* map directories (via a mount "
+"operation) on the host filesystem to directories in Emscripten's virtual "
+"filesystem. It uses node's synchronous `FS API <http://nodejs.org/api/fs."
+"html>`_ to immediately persist any data written to the Emscripten file "
+"system to your local disk."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:92
+msgid ""
+"See `this test <https://github.com/emscripten-core/emscripten/blob/main/test/"
+"fs/test_nodefs_rw.c>`_ for an example."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:97
+msgid "NODERAWFS"
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:101
+msgid ""
+"This is a special backend as it replaces all normal filesystem access with "
+"direct Node.js operations, without the need to do `FS.mount()`. The initial "
+"working directory will be same as process.cwd() instead of VFS root "
+"directory.  Because this mode directly uses Node.js to access the real local "
+"filesystem on your OS, the code will not necessarily be portable between "
+"OSes - it will be as portable as a Node.js program would be, which means "
+"that differences in how the underlying OS handles permissions and errors and "
+"so forth may be noticeable.  This has mostly been tested on Linux so far."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:103
+msgid ""
+"See `this <https://github.com/emscripten-core/emscripten/blob/"
+"d936e807c4d7a6163827c1fdc4a8e87abe41db44/tests/fs/test_nodefs_rw.c#L31>`_ "
+"section on NODEFS, where you can see a mount operation - this is not needed "
+"in NODERAWFS."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:108
+msgid "IDBFS"
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:110
+msgid "This file system is only for use when running code inside a browser."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:112
+msgid ""
+"The *IDBFS* file system implements the :js:func:`FS.syncfs` interface, which "
+"when called will persist any operations to an ``IndexedDB`` instance."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:114
+msgid ""
+"This is provided to overcome the limitation that browsers do not offer "
+"synchronous APIs for persistent storage, and so (by default) all writes "
+"exist only temporarily in-memory."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:116
+msgid ""
+"If the mount option `autoPersist: true` is passed when mounting IDBFS, then "
+"whenever any changes are made to the IDBFS directory tree, they will be "
+"automatically persisted to the IndexedDB backend. This lets users avoid "
+"needing to manually call `FS.syncfs` to persist changes to the IDBFS mounted "
+"directory tree."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:121
+msgid "WORKERFS"
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:123
+msgid "This file system is only for use when running code inside a worker."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:125
+msgid ""
+"This file system provides read-only access to ``File`` and ``Blob`` objects "
+"inside a worker without copying the entire data into memory and can "
+"potentially be used for huge files."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:130
+msgid "PROXYFS"
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:132
+msgid ""
+"This allows a module to mount another module's file system. This is useful "
+"when separate modules need to share a file system without manually syncing "
+"file contents. For example:"
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:145
+msgid "Devices"
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:147
+msgid ""
+"Emscripten supports registering arbitrary device drivers composed of a "
+"device id and a set of device-specific stream callbacks. Once a driver has "
+"been registered with :js:func:`FS.registerDevice`, a device node can be "
+"created to reference it (using :js:func:`FS.mkdev`)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:149
+msgid ""
+"The device node acts as an interface between the device and the file system. "
+"Any stream referencing the new node will inherit the stream callbacks "
+"registered for the device, making all of the high-level FS operations "
+"transparently interact with the device."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:151
+msgid ""
+"Every device is different and unique. While common file operations like "
+"``open``, ``close``, ``read``, and ``write`` are typically supported (and "
+"inherited by file streams to provide a layer of abstraction for the "
+"equivalent *libc* functions to call), each device should implement whatever "
+"callbacks it needs based on its unique characteristics."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:155
+msgid ""
+"Converts a major and minor number into a single unique integer. This is used "
+"as an id to represent the device."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:0
+msgid "Arguments"
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:157
+msgid "Major number."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:158
+msgid "Minor number."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:164
+msgid "Registers the specified device driver with a set of callbacks."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:166
+msgid "The specific device driver id, created using :js:func:`makedev`."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:167
+msgid ""
+"The set of callbacks required by the device. For an example, see the `NODEFS "
+"default callbacks <https://github.com/emscripten-core/emscripten/"
+"blob/1.29.12/src/library_nodefs.js#L213>`_."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:172
+msgid "Setting up standard I/O devices"
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:174
+msgid ""
+"Emscripten standard I/O works by going through the virtual ``/dev/stdin``, "
+"``/dev/stdout`` and ``/dev/stderr`` devices. You can set them up using your "
+"own I/O functions by calling :js:func:`FS.init`."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:176
+msgid "By default:"
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:178
+msgid ""
+"``stdin`` will read from the terminal in command line engines and use "
+"``window.prompt()`` in browsers (in both cases, with line buffering)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:179
+msgid ""
+"``stdout`` will use a ``print`` function if one such is defined, printing to "
+"the terminal in command line engines and to the browser console in browsers "
+"that have a console (again, line-buffered)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:180
+msgid "``stderr`` will use the same output function as ``stdout``."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:182
+msgid ""
+"All the configuration should be done before the ``main()`` is executed, "
+"typically by implementing :js:attr:`Module.preRun`. See :ref:`Interacting-"
+"with-code` for more information."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:187
+msgid "Sets up standard I/O devices for ``stdin``, ``stdout``, and ``stderr``."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:189
+msgid ""
+"The devices are set up using the following (optional) callbacks. If any of "
+"the callbacks throw an exception, it will be caught and handled as if the "
+"device malfunctioned."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:191
+msgid ""
+"Input callback. This will be called with no parameters whenever the program "
+"attempts to read from ``stdin``. It should return an ASCII character code "
+"when data is available, or ``null`` when it isn't."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:192
+msgid ""
+"Output callback. This will be called with an ASCII character code whenever "
+"the program writes to ``stdout``. It may also be called with ``null`` to "
+"flush the output."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:193
+msgid ""
+"Error callback. This is similar to ``output``, except it is called when data "
+"is written to ``stderr``."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:197
+msgid "File system API"
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:199
+msgid ""
+"Functions derived from libc like ``FS.readdir()`` use all-lowercase names, "
+"whereas added functions like ``FS.readFile()`` use camelCase names."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:203
+msgid ""
+"Mounts the FS object specified by ``type`` to the directory specified by "
+"``mountpoint``. The ``opts`` object is specific to each file system type."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:205
+msgid ""
+"The :ref:`file system type <filesystem-api-filesystems>`: ``MEMFS``, "
+"``NODEFS``, ``IDBFS`` or ``WORKERFS``."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:206
+msgid ""
+"A generic settings object used by the underlying file system.  ``NODEFS`` "
+"uses the `root` parameter to map the Emscripten directory to the physical "
+"directory. For example, to mount the current folder as a NODEFS "
+"instance:  .. code-block:: javascript     FS.mkdir('/working');    FS."
+"mount(NODEFS, { root: '.' }, '/working');  ``WORKERFS`` accepts `files` and "
+"`blobs` parameters to map a provided flat list of files into the "
+"``mountpoint`` directory:  .. code-block:: javascript     var blob = new "
+"Blob(['blob data']);    FS.mkdir('/working');    FS.mount(WORKERFS, "
+"{      blobs: [{ name: 'blob.txt', data: blob }],      files: files, // "
+"Array of File objects or FileList    }, '/working');   You can also pass in "
+"a package of files, created by ``tools/file_packager`` with ``--separate-"
+"metadata``. You must provide the metadata as a JSON object, and the data as "
+"a blob:  .. code-block:: javascript     // load metadata and blob using "
+"XMLHttpRequests, or IndexedDB, or from someplace else    FS.mkdir('/"
+"working');    FS.mount(WORKERFS, {      packages: [{ metadata: meta, blob: "
+"blob }]    }, '/working');"
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:206
+msgid "A generic settings object used by the underlying file system."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:208
+msgid ""
+"``NODEFS`` uses the `root` parameter to map the Emscripten directory to the "
+"physical directory. For example, to mount the current folder as a NODEFS "
+"instance:"
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:215
+msgid ""
+"``WORKERFS`` accepts `files` and `blobs` parameters to map a provided flat "
+"list of files into the ``mountpoint`` directory:"
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:227
+msgid ""
+"You can also pass in a package of files, created by ``tools/file_packager`` "
+"with ``--separate-metadata``. You must provide the metadata as a JSON "
+"object, and the data as a blob:"
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:239
+msgid ""
+"A path to an existing local Emscripten directory where the file system is to "
+"be mounted. It can be either an absolute path, or something relative to the "
+"current directory."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:244
+msgid "Unmounts the specified ``mountpoint``."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:246
+msgid "The directory to unmount."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:250
+msgid ""
+"Responsible for iterating and synchronizing all mounted file systems in an "
+"asynchronous fashion."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:253
+msgid ""
+"Currently, only the :ref:`filesystem-api-idbfs` file system implements the "
+"interfaces needed for synchronization. All other file systems are completely "
+"synchronous and don't require synchronization."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:257
+msgid ""
+"The ``populate`` flag is used to control the intended direction of the "
+"underlying synchronization between Emscripten`s internal data, and the file "
+"system's persistent data."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:261
+#: ../../../source/docs/api_reference/Filesystem-API.rst:376
+#: ../../../source/docs/api_reference/Filesystem-API.rst:463
+msgid "For example:"
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:280
+msgid ""
+"A real example of this functionality can be seen in `test_idbfs_sync.c "
+"<https://github.com/emscripten-core/emscripten/blob/main/test/fs/"
+"test_idbfs_sync.c>`_."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:282
+msgid ""
+"``true`` to initialize Emscripten's file system data with the data from the "
+"file system's persistent source, and ``false`` to save Emscripten`s file "
+"system data to the file system's persistent source."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:283
+msgid ""
+"A notification callback function that is invoked on completion of the "
+"synchronization. If an error occurred, it will be provided as a parameter to "
+"this function."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:288
+msgid "Creates a new directory node in the file system. For example:"
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:294
+#: ../../../source/docs/api_reference/Filesystem-API.rst:308
+#: ../../../source/docs/api_reference/Filesystem-API.rst:461
+msgid ""
+"The underlying implementation does not support user or group permissions. "
+"The caller is always treated as the owner of the folder, and only "
+"permissions relevant to the owner apply."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:296
+#: ../../../source/docs/api_reference/Filesystem-API.rst:310
+msgid "The path name for the new directory node."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:297
+#: ../../../source/docs/api_reference/Filesystem-API.rst:311
+#: ../../../source/docs/api_reference/Filesystem-API.rst:325
+msgid ""
+":ref:`File permissions <fs-read-and-write-flags>` for the new node. The "
+"default setting (`in octal numeric notation <http://en.wikipedia.org/wiki/"
+"File_system_permissions#Numeric_notation>`_) is 0777."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:302
+msgid ""
+"Creates a new directory node and all parent directories in the file system. "
+"For example:"
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:316
+msgid ""
+"Creates a new device node in the file system referencing the registered "
+"device driver (:js:func:`FS.registerDevice`) for ``dev``. For example:"
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:324
+msgid "The path name for the new device node."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:326
+msgid "The registered device driver."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:331
+msgid ""
+"Creates a symlink node at ``newpath`` linking to ``oldpath``. For example:"
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:338
+msgid "The path name of the file to link to."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:339
+msgid "The path to the new symlink node, that points to ``oldpath``."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:345
+msgid "Renames the node at ``oldpath`` to ``newpath``. For example:"
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:352
+msgid "The old path name."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:353
+msgid "The new path name"
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:358
+msgid "Removes an empty directory located at ``path``."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:360
+#: ../../../source/docs/api_reference/Filesystem-API.rst:701
+msgid "Example"
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:367
+msgid "Path of the directory to be removed."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:372
+msgid "Unlinks the node at ``path``."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:374
+msgid ""
+"This removes a name from the file system. If that name was the last link to "
+"a file (and no processes have the file open) the file is deleted."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:383
+msgid "Path of the target node."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:388
+msgid ""
+"Gets the string value stored in the symbolic link at ``path``. For example:"
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:404
+#: ../../../source/docs/api_reference/Filesystem-API.rst:429
+#: ../../../source/docs/api_reference/Filesystem-API.rst:542
+msgid "outputs::"
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:408
+#: ../../../source/docs/api_reference/Filesystem-API.rst:447
+#: ../../../source/docs/api_reference/Filesystem-API.rst:454
+#: ../../../source/docs/api_reference/Filesystem-API.rst:470
+#: ../../../source/docs/api_reference/Filesystem-API.rst:478
+#: ../../../source/docs/api_reference/Filesystem-API.rst:496
+#: ../../../source/docs/api_reference/Filesystem-API.rst:507
+msgid "Path to the target file."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:0
+msgid "Returns"
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:409
+msgid "The string value stored in the symbolic link at ``path``."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:414
+msgid ""
+"Gets a JavaScript object containing statistics about the node at ``path``. "
+"For example:"
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:452
+msgid ""
+"Identical to :js:func:`FS.stat`, However, if ``path`` is a symbolic link "
+"then the returned stats will be for the link itself, not the file that it "
+"links to."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:459
+msgid "Change the mode flags for ``path`` to ``mode``."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:471
+#: ../../../source/docs/api_reference/Filesystem-API.rst:479
+#: ../../../source/docs/api_reference/Filesystem-API.rst:487
+msgid ""
+"The new :ref:`file permissions <fs-read-and-write-flags>` for ``path``, `in "
+"octal numeric notation <http://en.wikipedia.org/wiki/"
+"File_system_permissions#Numeric_notation>`_."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:476
+msgid ""
+"Identical to :js:func:`FS.chmod`. However, if ``path`` is a symbolic link "
+"then the mode will be set on the link itself, not the file that it links to."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:484
+msgid ""
+"Identical to :js:func:`FS.chmod`. However, a raw file descriptor is supplied "
+"as ``fd``."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:486
+#: ../../../source/docs/api_reference/Filesystem-API.rst:518
+msgid "Descriptor of target file."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:492
+msgid ""
+"Change the ownership of the specified file to the given user or group id."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:494
+#: ../../../source/docs/api_reference/Filesystem-API.rst:505
+#: ../../../source/docs/api_reference/Filesystem-API.rst:516
+msgid "|note-completeness|"
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:497
+#: ../../../source/docs/api_reference/Filesystem-API.rst:508
+#: ../../../source/docs/api_reference/Filesystem-API.rst:519
+msgid "The id of the user to take ownership of the file."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:498
+#: ../../../source/docs/api_reference/Filesystem-API.rst:509
+#: ../../../source/docs/api_reference/Filesystem-API.rst:520
+msgid "The id of the group to take ownership of the file."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:503
+msgid ""
+"Identical to :js:func:`FS.chown`. However, if ``path`` is a symbolic link "
+"then the properties will be set on the link itself, not the file that it "
+"links to."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:514
+msgid ""
+"Identical to :js:func:`FS.chown`. However, a raw file descriptor is supplied "
+"as ``fd``."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:526
+msgid "Truncates a file to the specified length. For example:"
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:546
+msgid "Path of the file to be truncated."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:547
+#: ../../../source/docs/api_reference/Filesystem-API.rst:555
+msgid "The truncation length for the file."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:552
+msgid ""
+"Truncates the file identified by the ``fd`` to the specified length "
+"(``len``)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:554
+msgid "Descriptor of file to be truncated."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:560
+msgid ""
+"Change the timestamps of the file located at ``path``. The times passed to "
+"the arguments are in *milliseconds* since January 1, 1970 (midnight UTC/GMT)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:562
+msgid ""
+"Note that in the current implementation the stored timestamp is a single "
+"value, the maximum of ``atime`` and ``mtime``."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:564
+msgid "The path of the file to update."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:565
+msgid "The file access time (milliseconds)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:566
+msgid "The file modify time (milliseconds)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:572
+msgid "Opens a file with the specified flags. ``flags`` can be:"
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:576
+msgid "``r`` — Open file for reading."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:577
+msgid "``r+`` — Open file for reading and writing."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:578
+msgid "``w`` — Open file for writing."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:579
+msgid "``wx`` — Like ``w`` but fails if path exists."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:580
+msgid ""
+"``w+`` — Open file for reading and writing. The file is created if it does "
+"not exist or truncated if it exists."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:581
+msgid "``wx+`` — Like ``w+`` but fails if path exists."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:582
+msgid ""
+"``a`` — Open file for appending. The file is created if it does not exist."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:583
+msgid "``ax`` — Like ``a`` but fails if path exists."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:584
+msgid ""
+"``a+`` — Open file for reading and appending. The file is created if it does "
+"not exist."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:585
+msgid "``ax+`` — Like ``a+`` but fails if path exists."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:587
+msgid ""
+"The underlying implementation does not support user or group permissions. "
+"The file permissions set in ``mode`` are only used if the file is created. "
+"The caller is always treated as the owner of the file, and only those "
+"permissions apply."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:590
+msgid "The path of the file to open."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:591
+msgid "Read and write :ref:`flags <fs-read-and-write-flags>`."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:592
+msgid ""
+"File permission :ref:`flags <fs-read-and-write-flags>` for the file. The "
+"default setting (`in octal numeric notation <http://en.wikipedia.org/wiki/"
+"File_system_permissions#Numeric_notation>`_) is 0666."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:593
+msgid "A stream object."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:599
+msgid "Closes the file stream."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:601
+msgid "The stream to be closed."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:607
+msgid ""
+"Repositions the offset of the stream ``offset`` bytes relative to the "
+"beginning, current position, or end of the file, depending on the ``whence`` "
+"parameter."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:609
+msgid ""
+"The ``_llseek()`` function repositions the ``offset`` of the open file "
+"associated with the file descriptor ``fd`` to ``(offset_high<<32) | "
+"offset_low`` bytes relative to the beginning of the file, the current "
+"position in the file, or the end of the file, depending on whether whence is "
+"``SEEK_SET``, ``SEEK_CUR``, or ``SEEK_END``, respectively. It returns the "
+"resulting file position in the argument result."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:611
+msgid "Todo"
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:611
+msgid ""
+"**HamishW** Above sentence does not make sense. Have requested feedback."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:613
+msgid "The stream for which the offset is to be repositioned."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:614
+msgid "The offset (in bytes) relative to ``whence``."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:615
+msgid ""
+"Point in file (beginning, current point, end) from which to calculate the "
+"offset: ``SEEK_SET`` (0), ``SEEK_CUR`` (1) or ``SEEK_END`` (2)"
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:620
+msgid ""
+"Read ``length`` bytes from the stream, storing them into ``buffer`` starting "
+"at ``offset``."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:622
+msgid ""
+"By default, reading starts from the stream's current offset, however, a "
+"specific offset can be specified with the ``position`` argument. For example:"
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:631
+msgid "The stream to read from."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:632
+msgid "The buffer to store the read data."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:633
+msgid "The offset within ``buffer`` to store the data."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:634
+msgid "The length of data to write in ``buffer``."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:635
+msgid ""
+"The offset within the stream to read. By default this is the stream's "
+"current offset."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:641
+msgid "Writes ``length`` bytes from ``buffer``, starting at ``offset``."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:643
+msgid ""
+"By default, writing starts from the stream's current offset, however, a "
+"specific offset can be specified with the ``position`` argument. For example:"
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:652
+msgid "The stream to write to."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:653
+msgid "The buffer to write."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:654
+msgid "The offset within ``buffer`` to write."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:655
+msgid "The length of data to write."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:656
+msgid ""
+"The offset within the stream to write. By default this is the stream's "
+"current offset."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:663
+msgid ""
+"Reads the entire file at ``path`` and returns it as a ``string`` (encoding "
+"is ``utf8``), or as a new ``Uint8Array`` buffer (encoding is ``binary``)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:665
+msgid "The file to read."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:666
+msgid ""
+"- **encoding** (*string*)   Defines the encoding used to return the file "
+"contents: ``binary`` | ``utf8`` . The default is ``binary`` - **flags** "
+"(*string*)   Read flags, as defined in :js:func:`FS.open`. The default is "
+"'r'."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:668
+msgid ""
+"**encoding** (*string*) Defines the encoding used to return the file "
+"contents: ``binary`` | ``utf8`` . The default is ``binary``"
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:670
+msgid ""
+"**flags** (*string*) Read flags, as defined in :js:func:`FS.open`. The "
+"default is 'r'."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:673
+msgid ""
+"The file as a ``string`` or ``Uint8Array`` buffer, depending on the encoding."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:679
+msgid ""
+"Writes the entire contents of ``data`` to the file at ``path``. For example:"
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:686
+msgid "The file to which to write ``data``."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:687
+msgid "The data to write. A string will always be decoded as UTF-8."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:688
+msgid ""
+"- **flags** (*string*)   Write flags, as defined in :js:func:`FS.open`. The "
+"default is 'w'."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:690
+msgid ""
+"**flags** (*string*) Write flags, as defined in :js:func:`FS.open`. The "
+"default is 'w'."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:697
+msgid ""
+"Creates a file that will be loaded lazily on first access from a given URL "
+"or local file system path, and returns a reference to it."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:699
+msgid ""
+"Firefox and Chrome have recently disabled synchronous binary XHRs, which "
+"means this cannot work for JavaScript in regular HTML pages (but it works "
+"within Web Workers)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:709
+msgid ""
+"The parent folder, either as a path (e.g. `'/usr/lib'`) or an object "
+"previously returned from a `FS.mkdir()` or `FS.createPath()` call."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:711
+#: ../../../source/docs/api_reference/Filesystem-API.rst:725
+msgid "The name of the new file."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:712
+msgid ""
+"In the browser, this is the URL whose contents will be returned when this "
+"file is accessed. In a command line engine like *node.js*, this will be the "
+"local (real) file system path from where the contents will be loaded. Note "
+"that writes to this file are virtual."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:713
+#: ../../../source/docs/api_reference/Filesystem-API.rst:727
+msgid ""
+"Whether the file should have read permissions set from the program's point "
+"of view."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:714
+#: ../../../source/docs/api_reference/Filesystem-API.rst:728
+msgid ""
+"Whether the file should have write permissions set from the program's point "
+"of view."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:715
+msgid "A reference to the new file."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:721
+msgid ""
+"Preloads a file asynchronously, and uses preload plugins to prepare its "
+"content. You should call this in ``preRun``, ``main()`` will then be delayed "
+"until all preloaded files are ready. This is how the :ref:`preload-file "
+"<emcc-preload-file>` option works in *emcc* when ``--use-preload-plugins`` "
+"has been specified (if you use this method by itself, you will need to build "
+"the program with that option)."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:723
+msgid ""
+"The parent folder, either as a path (e.g. **'/usr/lib'**) or an object "
+"previously returned from a `FS.mkdir()` or `FS.createPath()` call."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:726
+msgid ""
+"In the browser, this is the URL whose contents will be returned when the "
+"file is accessed. In a command line engine, this will be the local (real) "
+"file system path the contents will be loaded from. Note that writes to this "
+"file are virtual."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:734
+msgid ""
+"Users can specify callbacks to receive different filesystem events. This is "
+"useful for tracking changes in the filesystem. This requires -sFS_DEBUG."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:738
+msgid "``willMovePath`` — Indicates path is about to be moved."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:739
+msgid "``onMovePath`` — Indicates path is moved."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:740
+msgid "``willDeletePath`` — Indicates path is about to be deleted."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:741
+msgid "``onDeletePath`` — Indicates path deleted."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:742
+msgid "``onOpenFile`` — Indicates file is opened."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:743
+msgid ""
+"``onWriteToFile`` — Indicates file is being written to and number of bytes "
+"written."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:744
+msgid "``onReadFile`` — Indicates file is being read and number of bytes read."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:745
+msgid "``onSeekFile`` — Indicates seeking within a file, position, and whence."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:746
+msgid "``onCloseFile`` — Indicates a file being closed."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:0
+msgid "callback name"
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:748
+msgid "The name of the callback that indicates the filesystem event"
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:750
+msgid "Example Code"
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:805
+msgid "Example Output"
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:832
+msgid "File types"
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:834
+msgid ""
+"Emscripten's file system supports regular files, directories, symlinks, "
+"character devices, block devices and sockets. Similarly to most Unix "
+"systems, all of these file types can be operated on using the higher-level "
+"FS operations like :js:func:`FS.read` and :js:func:`FS.write`."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:839
+msgid "Tests if the ``mode`` bitmask represents a file."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:841
+#: ../../../source/docs/api_reference/Filesystem-API.rst:859
+#: ../../../source/docs/api_reference/Filesystem-API.rst:868
+#: ../../../source/docs/api_reference/Filesystem-API.rst:877
+#: ../../../source/docs/api_reference/Filesystem-API.rst:886
+msgid "A bitmask of possible file properties."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:842
+msgid "``true`` if the ``mode`` bitmask represents a file."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:0
+msgid "Return type"
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:843
+#: ../../../source/docs/api_reference/Filesystem-API.rst:851
+#: ../../../source/docs/api_reference/Filesystem-API.rst:861
+#: ../../../source/docs/api_reference/Filesystem-API.rst:870
+#: ../../../source/docs/api_reference/Filesystem-API.rst:879
+#: ../../../source/docs/api_reference/Filesystem-API.rst:888
+msgid "bool"
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:848
+msgid "Tests if the ``mode`` bitmask represents a directory."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:850
+msgid "``true`` if the ``mode`` bitmask represents a directory."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:857
+msgid "Tests if the ``mode`` bitmask represents a symlink."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:860
+msgid "``true`` if the ``mode`` bitmask represents a symlink."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:866
+msgid "Tests if the ``mode`` bitmask represents a character device."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:869
+msgid "``true`` if the ``mode`` bitmask represents a character device."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:875
+msgid "Tests if the ``mode`` bitmask represents a block device."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:878
+msgid "``true`` if the ``mode`` bitmask represents a block device."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:884
+msgid "Tests if the ``mode`` bitmask represents a socket."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:887
+msgid "``true`` if the ``mode`` bitmask represents a socket."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:892
+msgid "Paths"
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:897
+msgid "Gets the current working directory."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:899
+msgid "The current working directory."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:904
+msgid "Sets the current working directory."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:906
+msgid "The path to set as current working directory."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:911
+msgid "Reads the contents of the ``path``."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:913
+#: ../../../source/docs/api_reference/Filesystem-API.rst:925
+#: ../../../source/docs/api_reference/Filesystem-API.rst:952
+msgid "The incoming path."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:915
+msgid ""
+"an array of the names of the files in the directory including ``'.'`` and "
+"``'..'``."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:919
+msgid ""
+"Looks up the incoming path and returns an object containing both the "
+"resolved path and node."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:921
+msgid ""
+"The options (``opts``) allow you to specify whether the object, its parent "
+"component, a symlink, or the item the symlink points to are returned. For "
+"example: ::"
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:926
+msgid ""
+"Options for the path:  - **parent** (*bool*)   If true, stop resolving the "
+"path once the penultimate component is reached.   For example, the path ``/"
+"foo/bar`` with ``{ parent: true }`` would return an object representing ``/"
+"foo``. The default is ``false``. - **follow** (*bool*)   If true, follow the "
+"last component if it is a symlink.   For example, consider a symlink ``/foo/"
+"symlink`` that links to ``/foo/notes.txt``. If ``{ follow: true }``, an "
+"object representing ``/foo/notes.txt`` would be returned. If ``{ follow: "
+"false }``, an object representing the symlink file would be returned. The "
+"default is ``false``."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:926
+msgid "Options for the path:"
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:928
+msgid ""
+"**parent** (*bool*) If true, stop resolving the path once the penultimate "
+"component is reached. For example, the path ``/foo/bar`` with ``{ parent: "
+"true }`` would return an object representing ``/foo``. The default is "
+"``false``."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:931
+msgid ""
+"**follow** (*bool*) If true, follow the last component if it is a symlink. "
+"For example, consider a symlink ``/foo/symlink`` that links to ``/foo/notes."
+"txt``. If ``{ follow: true }``, an object representing ``/foo/notes.txt`` "
+"would be returned. If ``{ follow: false }``, an object representing the "
+"symlink file would be returned. The default is ``false``."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:935
+msgid ""
+"an object with the format:  .. code-block:: javascript    {     path: "
+"resolved_path,     node: resolved_node   }"
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:935
+#: ../../../source/docs/api_reference/Filesystem-API.rst:956
+msgid "an object with the format:"
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:947
+msgid ""
+"Looks up the incoming path and returns an object containing information "
+"about file stats and nodes. Built on top of ``FS.lookupPath`` and provides "
+"more information about given path and its parent. If any error occurs it "
+"won't throw but returns an ``error`` property."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:953
+msgid "If true, don't follow the last component if it is a symlink."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:956
+msgid ""
+"an object with the format:  .. code-block:: javascript    {     isRoot: "
+"boolean,     exists: boolean,     error: Error,     name: string,     path: "
+"resolved_path,     object: resolved_node,     parentExists: boolean,     "
+"parentPath: resolved_parent_path,     parentObject: resolved_parent_node   }"
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:975
+msgid "Gets the absolute path to ``node``, accounting for mounts."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:977
+msgid "The current node."
+msgstr ""
+
+#: ../../../source/docs/api_reference/Filesystem-API.rst:978
+msgid "The absolute path to ``node``."
+msgstr ""
