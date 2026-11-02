@@ -37,9 +37,9 @@
     "branch" : "main",
     "commit" : 
     {
-      "date" : "2026-06-19 09:26:21 -0700",
-      "hash" : "8484a7b66c2c1a26cc6d3281ace2c36e78a2a417",
-      "title" : "Avoid varargs in socket syscall layer. NFC (#27153)"
+      "date" : "2026-11-02 09:29:55 -0800",
+      "hash" : "92b541348ed8f38cf4638f8c4c6cebc4b076fb67",
+      "title" : "Add a posix_spawnp stub, and return the error from posix_spawn (#28135)"
     }
   },
   "type" : "branch",

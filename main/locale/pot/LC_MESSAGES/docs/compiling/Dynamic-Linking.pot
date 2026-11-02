@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Emscripten main\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-18 07:11+0000\n"
+"POT-Creation-Date: 2026-11-02 17:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -198,12 +198,11 @@ msgstr ""
 
 #: ../../../source/docs/compiling/Dynamic-Linking.rst:113
 msgid ""
-"Build other parts of your code as side modules, linking it using ``-"
-"shared``.  You can also used the emscripten-specific :ref:`SIDE_MODULE` "
-"setting which does the same thing by default."
+"Build other parts of your code as side modules, linking it using ``-shared`` "
+"(or the emscripten-specific :ref:`SIDE_MODULE` setting)."
 msgstr ""
 
-#: ../../../source/docs/compiling/Dynamic-Linking.rst:117
+#: ../../../source/docs/compiling/Dynamic-Linking.rst:116
 msgid ""
 "For the main module the output suffix should be ``.js`` (the WebAssembly "
 "file will be generated alongside it just like normal).  For the side module "
@@ -212,14 +211,14 @@ msgid ""
 "systems)."
 msgstr ""
 
-#: ../../../source/docs/compiling/Dynamic-Linking.rst:123
+#: ../../../source/docs/compiling/Dynamic-Linking.rst:122
 msgid ""
 "In order to have the side modules loaded at startup you need to tell the "
 "main module about their existence.  You can do this by specifying them on "
 "the command line when you link the main module. e.g."
 msgstr ""
 
-#: ../../../source/docs/compiling/Dynamic-Linking.rst:131
+#: ../../../source/docs/compiling/Dynamic-Linking.rst:130
 msgid ""
 "At runtime, the JavaScript loading code will load ``libsomething.wasm`` "
 "(along with any other side modules) along with the main module before the "
@@ -227,13 +226,13 @@ msgid ""
 "from any of the modules linked together."
 msgstr ""
 
-#: ../../../source/docs/compiling/Dynamic-Linking.rst:137
+#: ../../../source/docs/compiling/Dynamic-Linking.rst:136
 msgid "Runtime Dynamic Linking with ``dlopen()``"
 msgstr ""
 
-#: ../../../source/docs/compiling/Dynamic-Linking.rst:139
+#: ../../../source/docs/compiling/Dynamic-Linking.rst:138
 msgid ""
-"Runtime dynamic linking can be performed by the calling the ``dlopen()`` "
+"Runtime dynamic linking can be performed by calling the ``dlopen()`` "
 "function to load side modules after the program is already running. The "
 "procedure begins in the same way, with the same flags used to build the main "
 "and side modules.  The difference is that you do not specify the side "
@@ -244,45 +243,66 @@ msgid ""
 "basically it - you can then use ``dlopen(), dlsym()``, etc. normally."
 msgstr ""
 
-#: ../../../source/docs/compiling/Dynamic-Linking.rst:150
+#: ../../../source/docs/compiling/Dynamic-Linking.rst:149
 msgid "Building Dynamic Libraries using ``-shared``"
 msgstr ""
 
-#: ../../../source/docs/compiling/Dynamic-Linking.rst:152
+#: ../../../source/docs/compiling/Dynamic-Linking.rst:151
 msgid ""
-"In traditional toolchains the ``-shared`` flag is used to generated dynamic "
+"In traditional toolchains the ``-shared`` flag is used to generate dynamic "
 "libraries.  Historically, due to early limitations, Emscripten would produce "
 "a fake dynamic library (along with a warning) when the ``-shared`` flag was "
-"used. When your main program is linked against these fake dynamic library "
-"they would be linked into your main program like regular static other object "
-"files."
+"used. When your main program is linked against these fake dynamic libraries "
+"they would be linked into your main program like regular static object files."
 msgstr ""
 
-#: ../../../source/docs/compiling/Dynamic-Linking.rst:158
+#: ../../../source/docs/compiling/Dynamic-Linking.rst:157
 msgid ""
-"These days Emscripten will produce real dynamic libraries by default and ``-"
-"shared`` is essentially the same as ``-sSIDE_MODULE``."
+"These days Emscripten will produce real dynamic libraries by default when ``-"
+"shared`` is used.  Note that ``-shared`` differs slightly from both ``-"
+"sSIDE_MODULE=1`` and ``-sSIDE_MODULE=2`` in order to match native linker "
+"behaviour:"
 msgstr ""
 
-#: ../../../source/docs/compiling/Dynamic-Linking.rst:161
+#: ../../../source/docs/compiling/Dynamic-Linking.rst:162
 msgid ""
-"This behaviour can be controlled using the :ref:`FAKE_DYLIBS` settings.  If "
-"you prefer the older behaviour with fake dynamic libraryies you can enable "
+"Unlike ``-sSIDE_MODULE=1``, static archives (``.a`` files) are not wrapped "
+"in ``--whole-archive``, so only referenced archive members are linked in."
+msgstr ""
+
+#: ../../../source/docs/compiling/Dynamic-Linking.rst:164
+msgid ""
+"Unlike ``-sSIDE_MODULE=2``, ``--no-export-dynamic`` is not passed to the "
+"linker, so all default-visibility symbols in linked object files are "
+"exported automatically without needing ``EMSCRIPTEN_KEEPALIVE`` "
+"or :ref:`EXPORTED_FUNCTIONS`."
+msgstr ""
+
+#: ../../../source/docs/compiling/Dynamic-Linking.rst:169
+msgid ""
+"If both ``-shared`` and ``-sSIDE_MODULE`` are specified on the command line, "
+"the explicit ``SIDE_MODULE`` setting takes precedence."
+msgstr ""
+
+#: ../../../source/docs/compiling/Dynamic-Linking.rst:172
+msgid ""
+"This behaviour can be controlled using the :ref:`FAKE_DYLIBS` setting.  If "
+"you prefer the older behaviour with fake dynamic libraries you can enable "
 "this setting."
 msgstr ""
 
-#: ../../../source/docs/compiling/Dynamic-Linking.rst:166
+#: ../../../source/docs/compiling/Dynamic-Linking.rst:177
 msgid "Code Size"
 msgstr ""
 
-#: ../../../source/docs/compiling/Dynamic-Linking.rst:168
+#: ../../../source/docs/compiling/Dynamic-Linking.rst:179
 msgid ""
 "By default, main modules disable dead code elimination. That means that all "
 "the code compiled remains in the output, including all system libraries "
 "linked in, and also all the JS library code."
 msgstr ""
 
-#: ../../../source/docs/compiling/Dynamic-Linking.rst:172
+#: ../../../source/docs/compiling/Dynamic-Linking.rst:183
 msgid ""
 "That is the default behavior since it is the least surprising. But it is "
 "also possible to use normal dead code elimination, by building with ``-"
@@ -290,11 +310,11 @@ msgid ""
 "normally, with no special behavior for keeping code alive. It is then your "
 "responsibility to make sure that code that side modules need is kept alive. "
 "You can do this either by adding to :ref:`EXPORTED_FUNCTIONS` or tagging the "
-"symbol ``EMSCRIPTEN_KEEPALIVE`` in the source code. See ``other."
-"test_minimal_dynamic`` for an example of this in action."
+"symbol ``EMSCRIPTEN_KEEPALIVE`` in the source code. See "
+"``other.test_minimal_dynamic`` for an example of this in action."
 msgstr ""
 
-#: ../../../source/docs/compiling/Dynamic-Linking.rst:181
+#: ../../../source/docs/compiling/Dynamic-Linking.rst:192
 msgid ""
 "If you are doing load time dynamic linking then any symbols needed by the "
 "side modules specified on the command line will be kept alive automatically. "
@@ -302,15 +322,15 @@ msgid ""
 "load time dynamic linking."
 msgstr ""
 
-#: ../../../source/docs/compiling/Dynamic-Linking.rst:186
+#: ../../../source/docs/compiling/Dynamic-Linking.rst:197
 msgid "There is also the corresponding ``-sSIDE_MODULE=2`` for side modules."
 msgstr ""
 
-#: ../../../source/docs/compiling/Dynamic-Linking.rst:189
+#: ../../../source/docs/compiling/Dynamic-Linking.rst:200
 msgid "System Libraries"
 msgstr ""
 
-#: ../../../source/docs/compiling/Dynamic-Linking.rst:191
+#: ../../../source/docs/compiling/Dynamic-Linking.rst:202
 msgid ""
 "As mentioned earlier, system libraries are handled in a special way by the "
 "Emscripten linker, and in dynamic linking, only the main module is linked "
@@ -319,7 +339,7 @@ msgid ""
 "dependencies are automatically handled."
 msgstr ""
 
-#: ../../../source/docs/compiling/Dynamic-Linking.rst:197
+#: ../../../source/docs/compiling/Dynamic-Linking.rst:208
 msgid ""
 "However when linking a main module without its side modules (Usually with ``-"
 "sMAIN_MODULE=1``) it is possible that required system libraries are not "
@@ -327,24 +347,24 @@ msgid ""
 "module to be linked against certain libraries."
 msgstr ""
 
-#: ../../../source/docs/compiling/Dynamic-Linking.rst:202
+#: ../../../source/docs/compiling/Dynamic-Linking.rst:213
 msgid ""
 "You can build the main module with ``EMCC_FORCE_STDLIBS=1`` in the "
 "environment to force inclusion of all standard libs.  A more refined "
 "approach is to name the system libraries that you want to explicitly "
-"include.  For example, with something like ``EMCC_FORCE_STDLIBS=libcxx,"
-"libcxxabi`` (if you need those two libs)."
+"include.  For example, with something like "
+"``EMCC_FORCE_STDLIBS=libcxx,libcxxabi`` (if you need those two libs)."
 msgstr ""
 
-#: ../../../source/docs/compiling/Dynamic-Linking.rst:209
+#: ../../../source/docs/compiling/Dynamic-Linking.rst:220
 msgid "Miscellaneous Notes"
 msgstr ""
 
-#: ../../../source/docs/compiling/Dynamic-Linking.rst:212
+#: ../../../source/docs/compiling/Dynamic-Linking.rst:223
 msgid "Dynamic Checks"
 msgstr ""
 
-#: ../../../source/docs/compiling/Dynamic-Linking.rst:214
+#: ../../../source/docs/compiling/Dynamic-Linking.rst:225
 msgid ""
 "Native linkers generally only run code when all symbols are resolved. "
 "Emscripten’s dynamic linker hooks up symbols to unresolved references to "
@@ -355,37 +375,37 @@ msgid ""
 "unminified build); building with :ref:`ASSERTIONS` can help some more."
 msgstr ""
 
-#: ../../../source/docs/compiling/Dynamic-Linking.rst:224
+#: ../../../source/docs/compiling/Dynamic-Linking.rst:235
 msgid "Limitations"
 msgstr ""
 
-#: ../../../source/docs/compiling/Dynamic-Linking.rst:226
+#: ../../../source/docs/compiling/Dynamic-Linking.rst:237
 msgid ""
 "Chromium does not support synchronous compiling of Wasm modules over 8Mb on "
 "the main thread.  You could run into this limit when using the synchronous "
 "``dlopen`` API to load large side modules.   Emscripten has async versions "
-"of ``dlopen`` that can work around this issue (See :c:func:"
-"`emscripten_dlopen`)."
+"of ``dlopen`` that can work around this issue "
+"(See :c:func:`emscripten_dlopen`)."
 msgstr ""
 
-#: ../../../source/docs/compiling/Dynamic-Linking.rst:230
+#: ../../../source/docs/compiling/Dynamic-Linking.rst:241
 msgid ""
 "``EM_ASM`` and ``EM_JS`` code defined within side modules depends on "
 "``eval`` support and are therefore incompatible with ``-"
 "sDYNAMIC_EXECUTION=0`` (See :ref:`DYNAMIC_EXECUTION`)."
 msgstr ""
 
-#: ../../../source/docs/compiling/Dynamic-Linking.rst:236
+#: ../../../source/docs/compiling/Dynamic-Linking.rst:247
 msgid "Pthreads support"
 msgstr ""
 
-#: ../../../source/docs/compiling/Dynamic-Linking.rst:238
+#: ../../../source/docs/compiling/Dynamic-Linking.rst:249
 msgid ""
 "Dynamic linking + pthreads is still experimental.  As such, linking with "
 "both :ref:`MAIN_MODULE` and ``-pthread`` will produce a warning."
 msgstr ""
 
-#: ../../../source/docs/compiling/Dynamic-Linking.rst:241
+#: ../../../source/docs/compiling/Dynamic-Linking.rst:252
 msgid ""
 "While load-time dynamic linking works without any complications, runtime "
 "dynamic linking via ``dlopen``/``dlsym`` can require some extra "
@@ -396,7 +416,7 @@ msgid ""
 "every thread in the process."
 msgstr ""
 
-#: ../../../source/docs/compiling/Dynamic-Linking.rst:248
+#: ../../../source/docs/compiling/Dynamic-Linking.rst:259
 msgid ""
 "Changes to the table are protected by a mutex, and before any thread returns "
 "from ``dlopen`` or ``dlsym`` it will wait until all other threads are sync.  "
@@ -404,10 +424,10 @@ msgid ""
 "the low level primitives of `emscripten_futex_wait` and `emscripten_yield`."
 msgstr ""
 
-#: ../../../source/docs/compiling/Dynamic-Linking.rst:253
+#: ../../../source/docs/compiling/Dynamic-Linking.rst:264
 msgid ""
 "For most use cases all this happens under hood and no special action is "
-"needed. However, there there is one class of application that currently may "
+"needed. However, there is one class of application that currently may "
 "require modification.  If your applications busy waits, or directly uses the "
 "``atomic.waitXX`` instructions (or the clang "
 "``__builtin_wasm_memory_atomic_waitXX`` builtins) you maybe need to switch "
