@@ -43,9 +43,9 @@ msgstr ""
 #: ../../../source/docs/optimizing/Profiling-Toolchain.rst:21
 msgid ""
 "On Windows, replace the ``export`` keyword with ``set`` instead. The last "
-"command should generate a HTML file of form ``toolchain_profiler."
-"results_yyyymmdd_hhmm.html`` that can be opened in the web browser to view "
-"the results."
+"command should generate a HTML file of form "
+"``toolchain_profiler.results_yyyymmdd_hhmm.html`` that can be opened in the "
+"web browser to view the results."
 msgstr ""
 
 #: ../../../source/docs/optimizing/Profiling-Toolchain.rst:24

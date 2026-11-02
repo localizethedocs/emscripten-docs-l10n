@@ -23,8 +23,8 @@ msgstr ""
 
 #: ../../../source/docs/porting/files/Synchronous-Virtual-XHR-Backed-File-System-Usage.rst:7
 msgid ""
-"Emscripten supports lazy loading of binary data from HTTP servers using :"
-"term:`XHR`. This functionality can be used to create a backend for "
+"Emscripten supports lazy loading of binary data from HTTP servers "
+"using :term:`XHR`. This functionality can be used to create a backend for "
 "synchronous file access from compiled code."
 msgstr ""
 
@@ -39,9 +39,9 @@ msgstr ""
 
 #: ../../../source/docs/porting/files/Synchronous-Virtual-XHR-Backed-File-System-Usage.rst:11
 msgid ""
-"This mechanism is only possible in `Web Workers <https://developer.mozilla."
-"org/en/docs/Web/Guide/Performance/Using_web_workers>`_ (due to browser "
-"limitations)."
+"This mechanism is only possible in `Web Workers <https://"
+"developer.mozilla.org/en/docs/Web/Guide/Performance/Using_web_workers>`_ "
+"(due to browser limitations)."
 msgstr ""
 
 #: ../../../source/docs/porting/files/Synchronous-Virtual-XHR-Backed-File-System-Usage.rst:13
@@ -97,9 +97,9 @@ msgstr ""
 
 #: ../../../source/docs/porting/files/Synchronous-Virtual-XHR-Backed-File-System-Usage.rst:32
 msgid ""
-"The test code simply creates a file in the virtual file system using :js:"
-"func:`FS.createLazyFile` and sets the compiled code to use the same file (**/"
-"bigfile**):"
+"The test code simply creates a file in the virtual file system "
+"using :js:func:`FS.createLazyFile` and sets the compiled code to use the "
+"same file (**/bigfile**):"
 msgstr ""
 
 #: ../../../source/docs/porting/files/Synchronous-Virtual-XHR-Backed-File-System-Usage.rst:42

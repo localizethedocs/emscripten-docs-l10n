@@ -77,9 +77,9 @@ msgstr ""
 
 #: ../../../source/docs/getting_started/downloads.rst:59
 msgid ""
-"On Windows, if you use the ``activate`` command, the step of ``emsdk_env."
-"bat`` is optional. If you want to know more, see :ref:`activate SDK version "
-"<emsdk-set-active-tools>`."
+"On Windows, if you use the ``activate`` command, the step of "
+"``emsdk_env.bat`` is optional. If you want to know more, see :ref:`activate "
+"SDK version <emsdk-set-active-tools>`."
 msgstr ""
 
 #: ../../../source/docs/getting_started/downloads.rst:61
@@ -123,10 +123,10 @@ msgid ""
 "There are also \"tip-of-tree builds\", which are the very latest code that "
 "passes integration tests on `Chromium CI <https://ci.chromium.org/p/"
 "emscripten-releases>`_. This is updated much more frequently than tagged "
-"releases, but may be less stable (we `tag releases manually <https://github."
-"com/emscripten-core/emscripten/blob/main/docs/process.md#minor-version-"
-"updates-1xy-to-1xy1>`_ using a more careful procedure). Tip-of-tree builds "
-"may be useful for continuous integration that uses the emsdk (as "
+"releases, but may be less stable (we `tag releases manually <https://"
+"github.com/emscripten-core/emscripten/blob/main/docs/process.md#minor-"
+"version-updates-1xy-to-1xy1>`_ using a more careful procedure). Tip-of-tree "
+"builds may be useful for continuous integration that uses the emsdk (as "
 "Emscripten's GitHub CI does), and you may want to use it in your own CI as "
 "well, so that if you find a regression on your project you can report it and "
 "prevent it from reaching a tagged release. Tip-of-tree builds may also be "
@@ -188,8 +188,8 @@ msgstr ""
 
 #: ../../../source/docs/getting_started/downloads.rst:135
 msgid ""
-"Install Xcode from the `macOS App Store <http://superuser.com/"
-"questions/455214/where-is-svn-on-os-x-mountain-lion>`_."
+"Install Xcode from the `macOS App Store <http://superuser.com/questions/"
+"455214/where-is-svn-on-os-x-mountain-lion>`_."
 msgstr ""
 
 #: ../../../source/docs/getting_started/downloads.rst:136
@@ -224,8 +224,8 @@ msgstr ""
 
 #: ../../../source/docs/getting_started/downloads.rst:146
 msgid ""
-"Download and install latest CMake from `Kitware CMake downloads <http://www."
-"cmake.org/download/>`_."
+"Download and install latest CMake from `Kitware CMake downloads <http://"
+"www.cmake.org/download/>`_."
 msgstr ""
 
 #: ../../../source/docs/getting_started/downloads.rst:149
@@ -285,9 +285,9 @@ msgstr ""
 #: ../../../source/docs/getting_started/downloads.rst:207
 msgid ""
 "The package manager can do many other maintenance tasks ranging from "
-"fetching specific old versions of the SDK through to using the :ref:"
-"`versions of the tools on GitHub <emsdk-dev-sdk>` (or even your own fork). "
-"Check out all the possibilities in the :ref:`emsdk_howto`."
+"fetching specific old versions of the SDK through to using "
+"the :ref:`versions of the tools on GitHub <emsdk-dev-sdk>` (or even your own "
+"fork). Check out all the possibilities in the :ref:`emsdk_howto`."
 msgstr ""
 
 #: ../../../source/docs/getting_started/downloads.rst:215
@@ -328,19 +328,19 @@ msgstr "使用非官方軟體包進行安裝"
 msgid ""
 "The `emsdk` is the only officially supported way to use Emscripten that is "
 "supported by the Emscripten project, and the only one that we constantly "
-"test (`emsdk CI <https://github.com/emscripten-core/emsdk/blob/main/."
-"circleci/config.yml>`_, `Emscripten GitHub CI <https://github.com/emscripten-"
-"core/emscripten/blob/main/.circleci/config.yml>`_, `Chromium CI <https://ci."
-"chromium.org/p/emscripten-releases>`_)."
+"test (`emsdk CI <https://github.com/emscripten-core/emsdk/blob/"
+"main/.circleci/config.yml>`_, `Emscripten GitHub CI <https://github.com/"
+"emscripten-core/emscripten/blob/main/.circleci/config.yml>`_, `Chromium CI "
+"<https://ci.chromium.org/p/emscripten-releases>`_)."
 msgstr ""
 
 #: ../../../source/docs/getting_started/downloads.rst:244
 msgid ""
 "While we don't officially support other ways of getting Emscripten, we "
 "definitely appreciate the efforts by third parties to `package Emscripten "
-"<https://github.com/emscripten-core/emscripten/blob/main/docs/packaging."
-"md>`_ for users' convenience, and we'd like to help out, please get in touch "
-"if you are such a packager!"
+"<https://github.com/emscripten-core/emscripten/blob/main/docs/"
+"packaging.md>`_ for users' convenience, and we'd like to help out, please "
+"get in touch if you are such a packager!"
 msgstr ""
 
 #: ../../../source/docs/getting_started/downloads.rst:250

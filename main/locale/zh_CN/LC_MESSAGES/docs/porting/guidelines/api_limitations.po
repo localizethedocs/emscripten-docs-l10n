@@ -56,8 +56,8 @@ msgid ""
 "sandboxed, and does not have direct access to the local file system. "
 "Instead, Emscripten creates a virtual file system that may be preloaded with "
 "data or linked to URLs for lazy loading. This affects when synchronous file "
-"system functions can be called and how a project is compiled. See the :ref:"
-"`file-system-overview` for more information."
+"system functions can be called and how a project is compiled. See "
+"the :ref:`file-system-overview` for more information."
 msgstr ""
 
 #: ../../../source/docs/porting/guidelines/api_limitations.rst:23

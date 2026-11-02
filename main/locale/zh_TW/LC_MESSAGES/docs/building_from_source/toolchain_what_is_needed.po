@@ -112,8 +112,8 @@ msgstr ""
 #: ../../../source/docs/building_from_source/toolchain_what_is_needed.rst:44
 msgid ""
 "Windows: Install `Visual Studio 2017 <http://go.microsoft.com/?"
-"linkid=9709949>`_ and `cmake <http://www.cmake.org/cmake/resources/software."
-"html>`_."
+"linkid=9709949>`_ and `cmake <http://www.cmake.org/cmake/resources/"
+"software.html>`_."
 msgstr ""
 
 #: ../../../source/docs/building_from_source/toolchain_what_is_needed.rst:48
@@ -132,8 +132,8 @@ msgstr ""
 
 #: ../../../source/docs/building_from_source/toolchain_what_is_needed.rst:67
 msgid ""
-"Install Xcode from the `macOS App Store <http://superuser.com/"
-"questions/455214/where-is-svn-on-os-x-mountain-lion>`_."
+"Install Xcode from the `macOS App Store <http://superuser.com/questions/"
+"455214/where-is-svn-on-os-x-mountain-lion>`_."
 msgstr ""
 
 #: ../../../source/docs/building_from_source/toolchain_what_is_needed.rst:68

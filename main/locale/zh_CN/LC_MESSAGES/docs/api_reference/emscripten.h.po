@@ -30,9 +30,10 @@ msgstr ""
 
 #: ../../../source/docs/api_reference/emscripten.h.rst:9
 msgid ""
-"Emscripten uses existing/familiar APIs where possible (for example: :term:"
-"`SDL`). This API provides C++ support for capabilities that are specific to "
-"JavaScript or the browser environment, or for which there is no existing API."
+"Emscripten uses existing/familiar APIs where possible (for "
+"example: :term:`SDL`). This API provides C++ support for capabilities that "
+"are specific to JavaScript or the browser environment, or for which there is "
+"no existing API."
 msgstr ""
 
 #: ../../../source/docs/api_reference/emscripten.h.rst:15
@@ -417,8 +418,8 @@ msgstr ""
 
 #: ../../../source/docs/api_reference/emscripten.h.rst:356
 msgid ""
-"If the main loop function needs to receive user-defined data, use :c:func:"
-"`emscripten_set_main_loop_arg` instead."
+"If the main loop function needs to receive user-defined data, "
+"use :c:func:`emscripten_set_main_loop_arg` instead."
 msgstr ""
 
 #: ../../../source/docs/api_reference/emscripten.h.rst:358
@@ -438,9 +439,9 @@ msgstr ""
 msgid ""
 "If ``simulate_infinite_loop`` is true, the function will throw an exception "
 "in order to stop execution of the caller. This will lead to the main loop "
-"being entered instead of code after the call to :c:func:"
-"`emscripten_set_main_loop` being run, which is the closest we can get to "
-"simulating an infinite loop (we do something similar in `glutMainLoop "
+"being entered instead of code after the call "
+"to :c:func:`emscripten_set_main_loop` being run, which is the closest we can "
+"get to simulating an infinite loop (we do something similar in `glutMainLoop "
 "<https://github.com/emscripten-core/emscripten/blob/1.29.12/system/include/"
 "GL/freeglut_std.h#L400>`_ in `GLUT <http://www.opengl.org/resources/"
 "libraries/glut/>`_). If this parameter is ``false``, then the behavior is "
@@ -481,19 +482,19 @@ msgstr ""
 
 #: ../../../source/docs/api_reference/emscripten.h.rst:368
 msgid ""
-"See :c:func:`emscripten_set_main_loop_expected_blockers`, :c:func:"
-"`emscripten_pause_main_loop`, :c:func:`emscripten_resume_main_loop` and :c:"
-"func:`emscripten_cancel_main_loop` for information about blocking, pausing, "
-"and resuming the main loop of the calling thread."
+"See :c:func:`emscripten_set_main_loop_expected_blockers`, :c:func:`emscripten_pause_main_loop`, :c:func:`emscripten_resume_main_loop` "
+"and :c:func:`emscripten_cancel_main_loop` for information about blocking, "
+"pausing, and resuming the main loop of the calling thread."
 msgstr ""
 
 #: ../../../source/docs/api_reference/emscripten.h.rst:370
 msgid ""
-"Calling this function overrides the effect of any previous calls to :c:func:"
-"`emscripten_set_main_loop_timing` in the calling thread by applying the "
-"timing mode specified by the parameter ``fps``. To specify a different "
-"timing mode for the current thread, call the function :c:func:"
-"`emscripten_set_main_loop_timing` after setting up the main loop."
+"Calling this function overrides the effect of any previous calls "
+"to :c:func:`emscripten_set_main_loop_timing` in the calling thread by "
+"applying the timing mode specified by the parameter ``fps``. To specify a "
+"different timing mode for the current thread, call the "
+"function :c:func:`emscripten_set_main_loop_timing` after setting up the main "
+"loop."
 msgstr ""
 
 #: ../../../source/docs/api_reference/emscripten.h.rst:372
@@ -566,9 +567,10 @@ msgstr ""
 
 #: ../../../source/docs/api_reference/emscripten.h.rst:398
 msgid ""
-"In the \"counted\" version, blockers are counted (internally) and ``Module."
-"setStatus`` is called with some text to report progress (``setStatus`` is a "
-"general hook that a program can define in order to show processing updates)."
+"In the \"counted\" version, blockers are counted (internally) and "
+"``Module.setStatus`` is called with some text to report progress "
+"(``setStatus`` is a general hook that a program can define in order to show "
+"processing updates)."
 msgstr ""
 
 #: ../../../source/docs/api_reference/emscripten.h.rst:402
@@ -603,9 +605,9 @@ msgstr ""
 
 #: ../../../source/docs/api_reference/emscripten.h.rst:416
 msgid ""
-"These are fairly low-level functions. :c:func:"
-"`emscripten_push_main_loop_blocker` (and friends) provide more convenient "
-"alternatives."
+"These are fairly low-level "
+"functions. :c:func:`emscripten_push_main_loop_blocker` (and friends) provide "
+"more convenient alternatives."
 msgstr ""
 
 #: ../../../source/docs/api_reference/emscripten.h.rst:422
@@ -614,9 +616,9 @@ msgstr ""
 
 #: ../../../source/docs/api_reference/emscripten.h.rst:424
 msgid ""
-"See also :c:func:`emscripten_set_main_loop` and :c:func:"
-"`emscripten_set_main_loop_arg` for information about setting and using the "
-"main loop."
+"See also :c:func:`emscripten_set_main_loop` "
+"and :c:func:`emscripten_set_main_loop_arg` for information about setting and "
+"using the main loop."
 msgstr ""
 
 #: ../../../source/docs/api_reference/emscripten.h.rst:426
@@ -641,10 +643,10 @@ msgstr ""
 #: ../../../source/docs/api_reference/emscripten.h.rst:432
 msgid ""
 "This function can be used to interactively control the rate at which "
-"Emscripten runtime drives the main loop specified by calling the function :c:"
-"func:`emscripten_set_main_loop`. In native development, this corresponds "
-"with the \"swap interval\" or the \"presentation interval\" for 3D "
-"rendering. The new tick interval specified by this function takes effect "
+"Emscripten runtime drives the main loop specified by calling the "
+"function :c:func:`emscripten_set_main_loop`. In native development, this "
+"corresponds with the \"swap interval\" or the \"presentation interval\" for "
+"3D rendering. The new tick interval specified by this function takes effect "
 "immediately on the existing main loop, and this function must be called only "
 "after setting up a main loop via :c:func:`emscripten_set_main_loop`."
 msgstr ""
@@ -754,10 +756,11 @@ msgstr ""
 #: ../../../source/docs/api_reference/emscripten.h.rst:451
 msgid ""
 "Returns the current main loop timing mode that is in effect. For "
-"interpretation of the values, see the documentation of the function :c:func:"
-"`emscripten_set_main_loop_timing`. The timing mode is controlled by calling "
-"the functions :c:func:`emscripten_set_main_loop_timing` and :c:func:"
-"`emscripten_set_main_loop`."
+"interpretation of the values, see the documentation of the "
+"function :c:func:`emscripten_set_main_loop_timing`. The timing mode is "
+"controlled by calling the "
+"functions :c:func:`emscripten_set_main_loop_timing` "
+"and :c:func:`emscripten_set_main_loop`."
 msgstr ""
 
 #: ../../../source/docs/api_reference/emscripten.h.rst:0
@@ -974,51 +977,51 @@ msgstr ""
 
 #: ../../../source/docs/api_reference/emscripten.h.rst:555
 msgid ""
-"Function pointer type for the ``onload`` callback of :c:func:"
-"`emscripten_async_wget_data` (specific values of the parameters documented "
-"in that method)."
+"Function pointer type for the ``onload`` callback "
+"of :c:func:`emscripten_async_wget_data` (specific values of the parameters "
+"documented in that method)."
 msgstr ""
 
 #: ../../../source/docs/api_reference/emscripten.h.rst:565
 msgid ""
-"Function pointer type for the ``onload`` callback of :c:func:"
-"`emscripten_async_wget2` (specific values of the parameters documented in "
-"that method)."
+"Function pointer type for the ``onload`` callback "
+"of :c:func:`emscripten_async_wget2` (specific values of the parameters "
+"documented in that method)."
 msgstr ""
 
 #: ../../../source/docs/api_reference/emscripten.h.rst:575
 msgid ""
-"Function pointer type for the ``onerror`` and ``onprogress`` callbacks of :c:"
-"func:`emscripten_async_wget2` (specific values of the parameters documented "
-"in that method)."
+"Function pointer type for the ``onerror`` and ``onprogress`` callbacks "
+"of :c:func:`emscripten_async_wget2` (specific values of the parameters "
+"documented in that method)."
 msgstr ""
 
 #: ../../../source/docs/api_reference/emscripten.h.rst:585
 msgid ""
-"Function pointer type for the ``onload`` callback of :c:func:"
-"`emscripten_async_wget2_data` (specific values of the parameters documented "
-"in that method)."
+"Function pointer type for the ``onload`` callback "
+"of :c:func:`emscripten_async_wget2_data` (specific values of the parameters "
+"documented in that method)."
 msgstr ""
 
 #: ../../../source/docs/api_reference/emscripten.h.rst:595
 msgid ""
-"Function pointer type for the ``onerror`` callback of :c:func:"
-"`emscripten_async_wget2_data` (specific values of the parameters documented "
-"in that method)."
+"Function pointer type for the ``onerror`` callback "
+"of :c:func:`emscripten_async_wget2_data` (specific values of the parameters "
+"documented in that method)."
 msgstr ""
 
 #: ../../../source/docs/api_reference/emscripten.h.rst:604
 msgid ""
-"Function pointer type for the ``onprogress`` callback of :c:func:"
-"`emscripten_async_wget2_data` (specific values of the parameters documented "
-"in that method)."
+"Function pointer type for the ``onprogress`` callback "
+"of :c:func:`emscripten_async_wget2_data` (specific values of the parameters "
+"documented in that method)."
 msgstr ""
 
 #: ../../../source/docs/api_reference/emscripten.h.rst:613
 msgid ""
-"Function pointer type for the ``onload`` callback of :c:func:"
-"`emscripten_run_preload_plugins_data` (specific values of the parameters "
-"documented in that method)."
+"Function pointer type for the ``onload`` callback "
+"of :c:func:`emscripten_run_preload_plugins_data` (specific values of the "
+"parameters documented in that method)."
 msgstr ""
 
 #: ../../../source/docs/api_reference/emscripten.h.rst:626
@@ -1216,8 +1219,8 @@ msgstr ""
 
 #: ../../../source/docs/api_reference/emscripten.h.rst:673
 msgid ""
-"This is an **experimental** \"more feature-complete\" version of :c:func:"
-"`emscripten_async_wget`."
+"This is an **experimental** \"more feature-complete\" version "
+"of :c:func:`emscripten_async_wget`."
 msgstr ""
 
 #: ../../../source/docs/api_reference/emscripten.h.rst:675
@@ -1303,8 +1306,8 @@ msgstr ""
 #: ../../../source/docs/api_reference/emscripten.h.rst:711
 msgid ""
 "This is the \"data\" version of :c:func:`emscripten_async_wget2`. It is an "
-"**experimental** \"more feature complete\" version of :c:func:"
-"`emscripten_async_wget_data`."
+"**experimental** \"more feature complete\" version "
+"of :c:func:`emscripten_async_wget_data`."
 msgstr ""
 
 #: ../../../source/docs/api_reference/emscripten.h.rst:715
@@ -1792,13 +1795,13 @@ msgstr ""
 
 #: ../../../source/docs/api_reference/emscripten.h.rst:988
 msgid ""
-"The called worker function can return data, by calling :c:func:"
-"`emscripten_worker_respond`. When the worker is called, if a callback was "
-"given it will be called with three arguments: a data pointer, a size, and an "
-"argument that was provided when calling :c:func:`emscripten_call_worker` (to "
-"more easily associate callbacks to calls). The data block defined by the "
-"data pointer and size behave like the data block in the worker function — it "
-"exists only during the callback."
+"The called worker function can return data, by "
+"calling :c:func:`emscripten_worker_respond`. When the worker is called, if a "
+"callback was given it will be called with three arguments: a data pointer, a "
+"size, and an argument that was provided when "
+"calling :c:func:`emscripten_call_worker` (to more easily associate callbacks "
+"to calls). The data block defined by the data pointer and size behave like "
+"the data block in the worker function — it exists only during the callback."
 msgstr ""
 
 #: ../../../source/docs/api_reference/emscripten.h.rst:990
@@ -1836,8 +1839,8 @@ msgstr ""
 
 #: ../../../source/docs/api_reference/emscripten.h.rst:997
 msgid ""
-"*(char*)* : The ``data`` pointer provided in :c:func:"
-"`emscripten_call_worker`."
+"*(char*)* : The ``data`` pointer provided "
+"in :c:func:`emscripten_call_worker`."
 msgstr ""
 
 #: ../../../source/docs/api_reference/emscripten.h.rst:998
@@ -1910,32 +1913,33 @@ msgstr ""
 
 #: ../../../source/docs/api_reference/emscripten.h.rst:1039
 msgid ""
-"If specified, prints a warning message (combined with :c:data:"
-"`EM_LOG_CONSOLE`)."
+"If specified, prints a warning message (combined "
+"with :c:data:`EM_LOG_CONSOLE`)."
 msgstr ""
 
 #: ../../../source/docs/api_reference/emscripten.h.rst:1043
 msgid ""
-"If specified, prints an info message to console (combined with :c:data:"
-"`EM_LOG_CONSOLE`)."
+"If specified, prints an info message to console (combined "
+"with :c:data:`EM_LOG_CONSOLE`)."
 msgstr ""
 
 #: ../../../source/docs/api_reference/emscripten.h.rst:1047
 msgid ""
-"If specified, prints a debug message to console (combined with :c:data:"
-"`EM_LOG_CONSOLE`)."
+"If specified, prints a debug message to console (combined "
+"with :c:data:`EM_LOG_CONSOLE`)."
 msgstr ""
 
 #: ../../../source/docs/api_reference/emscripten.h.rst:1051
 msgid ""
-"If specified, prints an error message (combined with :c:data:"
-"`EM_LOG_CONSOLE`). If neither :c:data:`EM_LOG_WARN`, :c:data:"
-"`EM_LOG_ERROR`, :c:data:`EM_LOG_INFO` nor :c:data:`EM_LOG_DEBUG` is "
-"specified, a log message is printed. :c:data:`EM_LOG_WARN`, :c:data:"
-"`EM_LOG_INFO`, :c:data:`EM_LOG_DEBUG` and :c:data:`EM_LOG_ERROR` are "
-"mutually exclusive. If :c:data:`EM_LOG_CONSOLE` is not specified then the "
-"message will be outputted via err() (for :c:data:`EM_LOG_ERROR` or :c:data:"
-"`EM_LOG_WARN`) or out() otherwise."
+"If specified, prints an error message (combined "
+"with :c:data:`EM_LOG_CONSOLE`). If "
+"neither :c:data:`EM_LOG_WARN`, :c:data:`EM_LOG_ERROR`, :c:data:`EM_LOG_INFO` "
+"nor :c:data:`EM_LOG_DEBUG` is specified, a log message is "
+"printed. :c:data:`EM_LOG_WARN`, :c:data:`EM_LOG_INFO`, :c:data:`EM_LOG_DEBUG` "
+"and :c:data:`EM_LOG_ERROR` are mutually exclusive. "
+"If :c:data:`EM_LOG_CONSOLE` is not specified then the message will be "
+"outputted via err() (for :c:data:`EM_LOG_ERROR` or :c:data:`EM_LOG_WARN`) or "
+"out() otherwise."
 msgstr ""
 
 #: ../../../source/docs/api_reference/emscripten.h.rst:1055
@@ -1947,9 +1951,9 @@ msgstr ""
 #: ../../../source/docs/api_reference/emscripten.h.rst:1059
 msgid ""
 "If specified, prints a call stack that contains file names referring to "
-"lines in the built .js/.html file along with the message. The flags :c:data:"
-"`EM_LOG_C_STACK` and :c:data:`EM_LOG_JS_STACK` can be combined to output "
-"both untranslated and translated file and line information."
+"lines in the built .js/.html file along with the message. The "
+"flags :c:data:`EM_LOG_C_STACK` and :c:data:`EM_LOG_JS_STACK` can be combined "
+"to output both untranslated and translated file and line information."
 msgstr ""
 
 #: ../../../source/docs/api_reference/emscripten.h.rst:1063
@@ -2054,9 +2058,9 @@ msgstr ""
 #: ../../../source/docs/api_reference/emscripten.h.rst:1120
 msgid ""
 "A binary OR of items from the list of :c:data:`EM_LOG_xxx <EM_LOG_CONSOLE>` "
-"flags that specify printing options. The flags :c:data:`EM_LOG_CONSOLE`, :c:"
-"data:`EM_LOG_WARN` and :c:data:`EM_LOG_ERROR` do not apply in this function "
-"and are ignored."
+"flags that specify printing options. The "
+"flags :c:data:`EM_LOG_CONSOLE`, :c:data:`EM_LOG_WARN` "
+"and :c:data:`EM_LOG_ERROR` do not apply in this function and are ignored."
 msgstr ""
 
 #: ../../../source/docs/api_reference/emscripten.h.rst:1121
@@ -2137,8 +2141,8 @@ msgstr ""
 
 #: ../../../source/docs/api_reference/emscripten.h.rst:1158
 msgid ""
-"The maximum number of bytes that can be written to the output pointer "
-"'to' (including the null terminator)."
+"The maximum number of bytes that can be written to the output pointer 'to' "
+"(including the null terminator)."
 msgstr ""
 
 #: ../../../source/docs/api_reference/emscripten.h.rst:1159
@@ -2154,13 +2158,13 @@ msgstr ""
 #: ../../../source/docs/api_reference/emscripten.h.rst:1166
 msgid ""
 "The functions in this section register callback functions for receiving "
-"socket events. These events are analogous to `WebSocket <https://developer."
-"mozilla.org/en/docs/WebSockets>`_ events but are emitted *after* the "
-"internal Emscripten socket processing has occurred. This means, for example, "
-"that the message callback will be triggered after the data has been added to "
-"the *recv_queue*, so that an application receiving this callback can simply "
-"read the data using the file descriptor passed as a parameter to the "
-"callback. All of the callbacks are passed a file descriptor (``fd``) "
+"socket events. These events are analogous to `WebSocket <https://"
+"developer.mozilla.org/en/docs/WebSockets>`_ events but are emitted *after* "
+"the internal Emscripten socket processing has occurred. This means, for "
+"example, that the message callback will be triggered after the data has been "
+"added to the *recv_queue*, so that an application receiving this callback "
+"can simply read the data using the file descriptor passed as a parameter to "
+"the callback. All of the callbacks are passed a file descriptor (``fd``) "
 "representing the socket that the notified activity took place on. The error "
 "callback also takes an ``int`` representing the socket error number "
 "(``errno``) and a ``char*`` that represents the error message (``msg``)."
@@ -2214,8 +2218,8 @@ msgstr ""
 #: ../../../source/docs/api_reference/emscripten.h.rst:1193
 msgid ""
 "Function pointer for :c:func:`emscripten_set_socket_open_callback`, and the "
-"other socket functions (except :c:func:"
-"`emscripten_set_socket_error_callback`). This is defined as:"
+"other socket functions "
+"(except :c:func:`emscripten_set_socket_error_callback`). This is defined as:"
 msgstr ""
 
 #: ../../../source/docs/api_reference/emscripten.h.rst:0
@@ -2347,8 +2351,8 @@ msgstr ""
 #: ../../../source/docs/api_reference/emscripten.h.rst:1308
 msgid ""
 "These functions require Asyncify (``-sASYNCIFY``). These functions are "
-"asynchronous but appear synchronous in C. See `Asyncify <https://emscripten."
-"org/docs/porting/asyncify.html>`_ for more details."
+"asynchronous but appear synchronous in C. See `Asyncify <https://"
+"emscripten.org/docs/porting/asyncify.html>`_ for more details."
 msgstr ""
 
 #: ../../../source/docs/api_reference/emscripten.h.rst:1311

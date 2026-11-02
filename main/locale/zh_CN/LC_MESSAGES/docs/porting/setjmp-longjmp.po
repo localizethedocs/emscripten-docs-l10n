@@ -48,9 +48,9 @@ msgstr ""
 #: ../../../source/docs/porting/setjmp-longjmp.rst:15
 msgid ""
 "If :ref:`native Wasm exceptions <webassembly-exception-handling-based-"
-"support>` are used, ``SUPPORT_LONGJMP`` defaults to ``wasm``, and if :ref:"
-"`JavaScript-based exceptions <javascript-based-exception-support>` are used "
-"or no exception support is used, it defaults to ``emscripten``."
+"support>` are used, ``SUPPORT_LONGJMP`` defaults to ``wasm``, and "
+"if :ref:`JavaScript-based exceptions <javascript-based-exception-support>` "
+"are used or no exception support is used, it defaults to ``emscripten``."
 msgstr ""
 
 #: ../../../source/docs/porting/setjmp-longjmp.rst:20

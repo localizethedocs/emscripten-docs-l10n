@@ -210,8 +210,8 @@ msgstr ""
 #: ../../../source/docs/compiling/Running-html-files-with-emrun.rst:98
 msgid ""
 "``--serve_root <path>``: Specify a custom directory to use as the root "
-"directory for the spawned web server. By default, the directory where the **."
-"html** file resides is used."
+"directory for the spawned web server. By default, the directory where the "
+"**.html** file resides is used."
 msgstr ""
 
 #: ../../../source/docs/compiling/Running-html-files-with-emrun.rst:99

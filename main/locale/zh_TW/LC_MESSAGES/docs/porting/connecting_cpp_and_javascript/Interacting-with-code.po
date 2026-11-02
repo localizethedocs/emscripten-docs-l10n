@@ -132,8 +132,8 @@ msgstr ""
 
 #: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:54
 msgid ""
-"The easiest way to call compiled C functions from JavaScript is to use :js:"
-"func:`ccall` or :js:func:`cwrap`."
+"The easiest way to call compiled C functions from JavaScript is to "
+"use :js:func:`ccall` or :js:func:`cwrap`."
 msgstr ""
 
 #: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:57
@@ -195,10 +195,10 @@ msgstr ""
 
 #: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:101
 msgid ""
-"You can run this yourself by first opening the generated page **function."
-"html** in a web browser (nothing will happen on page load because there is "
-"no ``main()``). Open a JavaScript environment (**Control-Shift-K** on "
-"Firefox, **Control-Shift-J** on Chrome), and enter the above commands as "
+"You can run this yourself by first opening the generated page "
+"**function.html** in a web browser (nothing will happen on page load because "
+"there is no ``main()``). Open a JavaScript environment (**Control-Shift-K** "
+"on Firefox, **Control-Shift-J** on Chrome), and enter the above commands as "
 "three separate commands, pressing **Enter** after each one. You should get "
 "the results ``3`` and ``5`` — the expected output for these inputs using C++ "
 "integer mathematics."
@@ -230,8 +230,9 @@ msgstr ""
 
 #: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:133
 msgid ""
-"Exporting is done at compile time. For example: ``-sEXPORTED_FUNCTIONS=_main,"
-"_other_function`` exports ``main()`` and ``other_function()``."
+"Exporting is done at compile time. For example: ``-"
+"sEXPORTED_FUNCTIONS=_main,_other_function`` exports ``main()`` and "
+"``other_function()``."
 msgstr ""
 
 #: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:136
@@ -389,10 +390,11 @@ msgstr ""
 
 #: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:253
 msgid ""
-"The most direct, but slightly slower, way is to use :c:func:"
-"`emscripten_run_script`. This effectively runs the specified JavaScript code "
-"from C/C++ using ``eval()``. For example, to call the browser's ``alert()`` "
-"function with the text 'hi', you would call the following JavaScript:"
+"The most direct, but slightly slower, way is to "
+"use :c:func:`emscripten_run_script`. This effectively runs the specified "
+"JavaScript code from C/C++ using ``eval()``. For example, to call the "
+"browser's ``alert()`` function with the text 'hi', you would call the "
+"following JavaScript:"
 msgstr ""
 
 #: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:263
@@ -457,8 +459,9 @@ msgstr ""
 #: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:330
 msgid ""
 "You need to specify if the return value is an ``int``, ``double`` or pointer "
-"type using the appropriate macro :c:macro:`EM_ASM_INT`, :c:macro:"
-"`EM_ASM_DOUBLE` or :c:macro:`EM_ASM_PTR`. (:c:macro:`EM_ASM_PTR` is the same "
+"type using the appropriate "
+"macro :c:macro:`EM_ASM_INT`, :c:macro:`EM_ASM_DOUBLE` "
+"or :c:macro:`EM_ASM_PTR`. (:c:macro:`EM_ASM_PTR` is the same "
 "as :c:macro:`EM_ASM_INT` unless ``MEMORY64`` is used, so is mostly needed in "
 "code that wants to be compatible with ``MEMORY64``)."
 msgstr ""
@@ -683,8 +686,8 @@ msgid ""
 "When using ``addFunction`` with a JavaScript function, you need to provide "
 "an additional second argument, a Wasm function signature string, explained "
 "below. See `test/interop/test_add_function_post.js <https://github.com/"
-"emscripten-core/emscripten/blob/main/test/interop/test_add_function_post."
-"js>`_ for an example."
+"emscripten-core/emscripten/blob/main/test/interop/"
+"test_add_function_post.js>`_ for an example."
 msgstr ""
 
 #: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:626
@@ -757,9 +760,9 @@ msgstr ""
 
 #: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:673
 msgid ""
-"You can access memory using :js:func:`getValue(ptr, type) <getValue>` and :"
-"js:func:`setValue(ptr, value, type) <setValue>`. The first argument is a "
-"pointer (a number representing a memory address). ``type`` must be an LLVM "
+"You can access memory using :js:func:`getValue(ptr, type) <getValue>` "
+"and :js:func:`setValue(ptr, value, type) <setValue>`. The first argument is "
+"a pointer (a number representing a memory address). ``type`` must be an LLVM "
 "IR type, one of ``i8``, ``i16``, ``i32``, ``i64``, ``float``, ``double`` or "
 "a pointer type like ``i8*`` (or just ``*``)."
 msgstr ""
@@ -780,8 +783,8 @@ msgstr ""
 msgid ""
 "You can also access memory 'directly' by manipulating the arrays that "
 "represent memory. This is not recommended unless you are sure you know what "
-"you are doing, and need the additional speed over :js:func:`getValue` and :"
-"js:func:`setValue`."
+"you are doing, and need the additional speed over :js:func:`getValue` "
+"and :js:func:`setValue`."
 msgstr ""
 
 #: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:691
@@ -863,8 +866,8 @@ msgstr ""
 #: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:778
 msgid ""
 "For example, to set an environment variable ``MY_FILE_ROOT`` to be ``\"/usr/"
-"lib/test/\"`` you could add the following JavaScript to your ``Module`` :ref:"
-"`setup code <module-creating>`:"
+"lib/test/\"`` you could add the following JavaScript to your "
+"``Module`` :ref:`setup code <module-creating>`:"
 msgstr ""
 
 #: ../../../source/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.rst:786

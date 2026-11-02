@@ -82,8 +82,8 @@ msgstr ""
 #: ../../../source/docs/api_reference/trace.h.rst:54
 msgid ""
 "If you are simply going to use the tracing API with the `Google Web Tracing "
-"Framework`_, then you can just call :c:func:"
-"`emscripten_trace_configure_for_google_wtf` instead:"
+"Framework`_, then you can just "
+"call :c:func:`emscripten_trace_configure_for_google_wtf` instead:"
 msgstr ""
 
 #: ../../../source/docs/api_reference/trace.h.rst:62
@@ -95,8 +95,8 @@ msgstr ""
 
 #: ../../../source/docs/api_reference/trace.h.rst:70
 msgid ""
-"To shut it down at application exit, you simply call :c:func:"
-"`emscripten_trace_close`:"
+"To shut it down at application exit, you simply "
+"call :c:func:`emscripten_trace_close`:"
 msgstr ""
 
 #: ../../../source/docs/api_reference/trace.h.rst:78
@@ -187,8 +187,8 @@ msgstr ""
 #: ../../../source/docs/api_reference/trace.h.rst:147
 msgid ""
 "Additionally, some applications may want to associate the size of additional "
-"storage with an allocation. This can be done via :c:func:"
-"`emscripten_trace_associate_storage_size`:"
+"storage with an allocation. This can be done "
+"via :c:func:`emscripten_trace_associate_storage_size`:"
 msgstr ""
 
 #: ../../../source/docs/api_reference/trace.h.rst:156

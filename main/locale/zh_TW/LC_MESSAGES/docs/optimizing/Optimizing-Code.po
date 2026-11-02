@@ -47,9 +47,9 @@ msgstr ""
 msgid ""
 "Code is optimized by specifying :ref:`optimization flags <emcc-compiler-"
 "optimization-options>` when running :ref:`emcc <emccdoc>`. The levels "
-"include: :ref:`-O0 <emcc-O0>` (no optimization), :ref:`-O1 <emcc-O1>`, :ref:"
-"`-O2 <emcc-O2>`, :ref:`-Os <emcc-Os>`, :ref:`-Oz <emcc-Oz>`, :ref:`-Og <emcc-"
-"Og>`, and :ref:`-O3 <emcc-O3>`."
+"include: :ref:`-O0 <emcc-O0>` (no optimization), :ref:`-O1 <emcc-"
+"O1>`, :ref:`-O2 <emcc-O2>`, :ref:`-Os <emcc-Os>`, :ref:`-Oz <emcc-"
+"Oz>`, :ref:`-Og <emcc-Og>`, and :ref:`-O3 <emcc-O3>`."
 msgstr ""
 
 #: ../../../source/docs/optimizing/Optimizing-Code.rst:25
@@ -277,8 +277,8 @@ msgstr ""
 
 #: ../../../source/docs/optimizing/Optimizing-Code.rst:116
 msgid ""
-"Disable inlining when possible, using ``-sINLINING_LIMIT``. Compiling with -"
-"Os or -Oz generally avoids inlining too. (Inlining can make code faster, "
+"Disable inlining when possible, using ``-sINLINING_LIMIT``. Compiling with "
+"-Os or -Oz generally avoids inlining too. (Inlining can make code faster, "
 "though, so use this carefully.)"
 msgstr ""
 

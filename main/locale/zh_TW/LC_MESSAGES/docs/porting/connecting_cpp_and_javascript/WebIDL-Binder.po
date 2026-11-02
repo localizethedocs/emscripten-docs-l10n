@@ -235,11 +235,11 @@ msgstr ""
 #: ../../../source/docs/porting/connecting_cpp_and_javascript/WebIDL-Binder.rst:151
 msgid ""
 "While the objects are also available in the global namespace by default, "
-"there are cases where they will not be (for example, if you use the :term:"
-"`closure compiler` to minify code or wrap compiled code in a function to "
-"avoid polluting the global namespace). You can of course use whatever name "
-"you like for the module by assigning it to a new variable: ``var "
-"MyModuleName = Module;``."
+"there are cases where they will not be (for example, if you use "
+"the :term:`closure compiler` to minify code or wrap compiled code in a "
+"function to avoid polluting the global namespace). You can of course use "
+"whatever name you like for the module by assigning it to a new variable: "
+"``var MyModuleName = Module;``."
 msgstr ""
 
 #: ../../../source/docs/porting/connecting_cpp_and_javascript/WebIDL-Binder.rst:153
@@ -258,10 +258,11 @@ msgstr ""
 
 #: ../../../source/docs/porting/connecting_cpp_and_javascript/WebIDL-Binder.rst:157
 msgid ""
-"If a C++ object does need to be cleaned up, you must explicitly call :js:"
-"func:`Module.destroy(obj) <Module.destroy>` to invoke its destructor — then "
-"drop all references to the object so that it can be garbage collected. For "
-"example, if ``Bar`` were to allocate memory that requires cleanup:"
+"If a C++ object does need to be cleaned up, you must explicitly "
+"call :js:func:`Module.destroy(obj) <Module.destroy>` to invoke its "
+"destructor — then drop all references to the object so that it can be "
+"garbage collected. For example, if ``Bar`` were to allocate memory that "
+"requires cleanup:"
 msgstr ""
 
 #: ../../../source/docs/porting/connecting_cpp_and_javascript/WebIDL-Binder.rst:165
@@ -687,8 +688,8 @@ msgstr ""
 
 #: ../../../source/docs/porting/connecting_cpp_and_javascript/WebIDL-Binder.rst:530
 msgid ""
-"The WebIDL types are fully documented in `this W3C specification <http://www."
-"w3.org/TR/WebIDL/>`_."
+"The WebIDL types are fully documented in `this W3C specification <http://"
+"www.w3.org/TR/WebIDL/>`_."
 msgstr ""
 
 #: ../../../source/docs/porting/connecting_cpp_and_javascript/WebIDL-Binder.rst:536
@@ -699,9 +700,9 @@ msgstr ""
 msgid ""
 "For a complete working example, see `test_webidl <https://github.com/"
 "emscripten-core/emscripten/tree/main/test/webidl>`_ in the `test suite "
-"<https://github.com/emscripten-core/emscripten/blob/main/test/test_core."
-"py>`_. The test suite code is guaranteed to work and covers more cases than "
-"this article alone."
+"<https://github.com/emscripten-core/emscripten/blob/main/test/"
+"test_core.py>`_. The test suite code is guaranteed to work and covers more "
+"cases than this article alone."
 msgstr ""
 
 #: ../../../source/docs/porting/connecting_cpp_and_javascript/WebIDL-Binder.rst:540

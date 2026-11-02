@@ -346,6 +346,6 @@ msgstr "網站授權條款"
 #: ../../../source/docs/site/about.rst:206
 msgid ""
 "The site is licensed under the same :ref:`emscripten-license` as the rest of "
-"Emscripten. Contributors to the site should add themselves to :ref:"
-"`emscripten-authors`."
+"Emscripten. Contributors to the site should add themselves "
+"to :ref:`emscripten-authors`."
 msgstr ""

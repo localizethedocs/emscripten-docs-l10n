@@ -176,9 +176,9 @@ msgstr ""
 
 #: ../../../source/docs/porting/asyncify.rst:200
 msgid ""
-"You can use ``__async: 1`` if you just want to include the function in :ref:"
-"`ASYNCIFY_IMPORTS` or ``__async: 'auto'`` if you also want the function to "
-"wrapper in ``Asyncify.handleAsync``."
+"You can use ``__async: 1`` if you just want to include the function "
+"in :ref:`ASYNCIFY_IMPORTS` or ``__async: 'auto'`` if you also want the "
+"function to wrapper in ``Asyncify.handleAsync``."
 msgstr ""
 
 #: ../../../source/docs/porting/asyncify.rst:206
@@ -196,9 +196,9 @@ msgstr ""
 msgid ""
 "When using this form, the compiler doesn't statically know that ``do_fetch`` "
 "is asynchronous anymore. Instead, you must tell the compiler that "
-"``do_fetch()`` can do an asynchronous operation using :ref:"
-"`ASYNCIFY_IMPORTS`, otherwise it won't instrument the code to allow pausing "
-"and resuming (see more details later down):"
+"``do_fetch()`` can do an asynchronous operation "
+"using :ref:`ASYNCIFY_IMPORTS`, otherwise it won't instrument the code to "
+"allow pausing and resuming (see more details later down):"
 msgstr ""
 
 #: ../../../source/docs/porting/asyncify.rst:235
@@ -213,8 +213,8 @@ msgstr ""
 msgid ""
 "Note that when using this form, you can't return a value from the function "
 "itself. Instead, you need to pass it as an argument to the ``wakeUp`` "
-"callback and propagate it by returning the result of ``Asyncify."
-"handleSleep`` in ``do_fetch`` itself."
+"callback and propagate it by returning the result of "
+"``Asyncify.handleSleep`` in ``do_fetch`` itself."
 msgstr ""
 
 #: ../../../source/docs/porting/asyncify.rst:259
@@ -275,9 +275,9 @@ msgstr ""
 
 #: ../../../source/docs/porting/asyncify.rst:325
 msgid ""
-"In this case you don't need to worry about :ref:`ASYNCIFY_IMPORTS` or :ref:"
-"`JSPI_IMPORTS`, since it's an internal implementation detail of ``val::"
-"await`` and Emscripten takes care of it automatically."
+"In this case you don't need to worry about :ref:`ASYNCIFY_IMPORTS` "
+"or :ref:`JSPI_IMPORTS`, since it's an internal implementation detail of "
+"``val::await`` and Emscripten takes care of it automatically."
 msgstr ""
 
 #: ../../../source/docs/porting/asyncify.rst:329
@@ -345,8 +345,8 @@ msgid ""
 "async imports and exports differently. Asyncify will automatically determine "
 "what exports will become async based on what could potentially call an an "
 "async import (:ref:`ASYNCIFY_IMPORTS`). However, with JSPI, the async "
-"imports and exports must be explicitly set using :ref:`JSPI_IMPORTS` and :"
-"ref:`JSPI_EXPORTS` settings."
+"imports and exports must be explicitly set using :ref:`JSPI_IMPORTS` "
+"and :ref:`JSPI_EXPORTS` settings."
 msgstr ""
 
 #: ../../../source/docs/porting/asyncify.rst:421
@@ -376,17 +376,18 @@ msgid ""
 "code to allow unwinding and rewinding. That overhead is usually not extreme, "
 "something like 50% or so. Asyncify achieves that by doing a whole-program "
 "analysis to find functions need to be instrumented and which do not - "
-"basically, which can call something that reaches one of :ref:"
-"`ASYNCIFY_IMPORTS`. That analysis avoids a lot of unnecessary overhead, "
-"however, it is limited by **indirect calls**, since it can't tell where they "
-"go - it could be anything in the function table (with the same type)."
+"basically, which can call something that reaches one "
+"of :ref:`ASYNCIFY_IMPORTS`. That analysis avoids a lot of unnecessary "
+"overhead, however, it is limited by **indirect calls**, since it can't tell "
+"where they go - it could be anything in the function table (with the same "
+"type)."
 msgstr ""
 
 #: ../../../source/docs/porting/asyncify.rst:442
 msgid ""
 "If you know that indirect calls are never on the stack when unwinding, then "
-"you can tell Asyncify to ignore indirect calls using :ref:"
-"`ASYNCIFY_IGNORE_INDIRECT`."
+"you can tell Asyncify to ignore indirect calls "
+"using :ref:`ASYNCIFY_IGNORE_INDIRECT`."
 msgstr ""
 
 #: ../../../source/docs/porting/asyncify.rst:446
@@ -406,12 +407,12 @@ msgstr ""
 #: ../../../source/docs/porting/asyncify.rst:453
 msgid ""
 ":ref:`ASYNCIFY_ADD` is a list of functions that do unwind the stack, and "
-"will be processed like the imports. This is mostly useful if you use :ref:"
-"`ASYNCIFY_IGNORE_INDIRECT` but want to also mark some additional functions "
-"that need to unwind. If the :ref:`ASYNCIFY_PROPAGATE_ADD` setting is "
-"disabled however, then this list will only be added after the whole-program "
-"analysis. If :ref:`ASYNCIFY_PROPAGATE_ADD` is disabled then you must also "
-"add their callers, their callers' callers, and so on."
+"will be processed like the imports. This is mostly useful if you "
+"use :ref:`ASYNCIFY_IGNORE_INDIRECT` but want to also mark some additional "
+"functions that need to unwind. If the :ref:`ASYNCIFY_PROPAGATE_ADD` setting "
+"is disabled however, then this list will only be added after the whole-"
+"program analysis. If :ref:`ASYNCIFY_PROPAGATE_ADD` is disabled then you must "
+"also add their callers, their callers' callers, and so on."
 msgstr ""
 
 #: ../../../source/docs/porting/asyncify.rst:460
@@ -424,11 +425,11 @@ msgstr ""
 msgid ""
 "You can enable the :ref:`ASYNCIFY_ADVISE` setting, which will tell the "
 "compiler to output which functions it is currently instrumenting and why. "
-"You can then determine whether you should add any functions to :ref:"
-"`ASYNCIFY_REMOVE` or whether it would be safe to enable :ref:"
-"`ASYNCIFY_IGNORE_INDIRECT`. Note that this phase of the compiler happens "
-"after many optimization phases, and several functions maybe be inlined "
-"already. To be safe, run it with `-O0`."
+"You can then determine whether you should add any functions "
+"to :ref:`ASYNCIFY_REMOVE` or whether it would be safe to "
+"enable :ref:`ASYNCIFY_IGNORE_INDIRECT`. Note that this phase of the compiler "
+"happens after many optimization phases, and several functions maybe be "
+"inlined already. To be safe, run it with `-O0`."
 msgstr ""
 
 #: ../../../source/docs/porting/asyncify.rst:470
@@ -450,8 +451,8 @@ msgstr ""
 #: ../../../source/docs/porting/asyncify.rst:481
 msgid ""
 "If you see an exception thrown from an ``asyncify_*`` API, then it may be a "
-"stack overflow. You can increase the stack size with the :ref:"
-"`ASYNCIFY_STACK_SIZE` option."
+"stack overflow. You can increase the stack size with "
+"the :ref:`ASYNCIFY_STACK_SIZE` option."
 msgstr ""
 
 #: ../../../source/docs/porting/asyncify.rst:486
@@ -536,6 +537,7 @@ msgstr ""
 
 #: ../../../source/docs/porting/asyncify.rst:533
 msgid ""
-"The internal JS API is different. See notes above on ``Asyncify."
-"handleSleep()``, and see ``src/library_async.js`` for more examples."
+"The internal JS API is different. See notes above on "
+"``Asyncify.handleSleep()``, and see ``src/library_async.js`` for more "
+"examples."
 msgstr ""

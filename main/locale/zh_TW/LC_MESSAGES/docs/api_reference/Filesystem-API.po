@@ -30,8 +30,8 @@ msgstr ""
 
 #: ../../../source/docs/api_reference/Filesystem-API.rst:9
 msgid ""
-"The API is *inspired* by the Linux/POSIX `File System API <http://linux.die."
-"net/man/2/>`_, with each presenting a very similar interface."
+"The API is *inspired* by the Linux/POSIX `File System API <http://"
+"linux.die.net/man/2/>`_, with each presenting a very similar interface."
 msgstr ""
 
 #: ../../../source/docs/api_reference/Filesystem-API.rst:11
@@ -59,17 +59,17 @@ msgid ""
 "and streams (e.g. `/dev/null`, `/dev/random`, `/dev/stdin`, `/proc/self/"
 "fd`); see `FS.staticInit()` in the FS library for full details. Instances "
 "of :ref:`NODEFS <filesystem-api-nodefs>` and :ref:`IDBFS <filesystem-api-"
-"idbfs>` can be mounted to other directories if your application needs to :"
-"ref:`persist data <filesystem-api-persist-data>`."
+"idbfs>` can be mounted to other directories if your application needs "
+"to :ref:`persist data <filesystem-api-persist-data>`."
 msgstr ""
 
 #: ../../../source/docs/api_reference/Filesystem-API.rst:19
 msgid ""
 "The automatic tests in `test/test_core.py <https://github.com/emscripten-"
 "core/emscripten/blob/1.29.12/tests/test_core.py#L4285>`_ (search for "
-"``test_files``) contain many examples of how to use this API. The :ref:"
-"`tutorial <tutorial-files>` also shows how to pre-load a file so that it can "
-"be read from compiled C/C++."
+"``test_files``) contain many examples of how to use this API. "
+"The :ref:`tutorial <tutorial-files>` also shows how to pre-load a file so "
+"that it can be read from compiled C/C++."
 msgstr ""
 
 #: ../../../source/docs/api_reference/Filesystem-API.rst:21
@@ -111,8 +111,8 @@ msgstr ""
 
 #: ../../../source/docs/api_reference/Filesystem-API.rst:34
 msgid ""
-"`GitHub Tracking Issue <https://github.com/emscripten-core/emscripten/"
-"issues/15041>`_"
+"`GitHub Tracking Issue <https://github.com/emscripten-core/emscripten/issues/"
+"15041>`_"
 msgstr ""
 
 #: ../../../source/docs/api_reference/Filesystem-API.rst:36
@@ -131,8 +131,8 @@ msgstr ""
 
 #: ../../../source/docs/api_reference/Filesystem-API.rst:45
 msgid ""
-"WasmFS requires malloc internally, so you cannot build with ``-sWASMFS -"
-"sMALLOC=none``. If you want the smallest possible malloc, use ``-"
+"WasmFS requires malloc internally, so you cannot build with ``-sWASMFS "
+"-sMALLOC=none``. If you want the smallest possible malloc, use ``-"
 "sMALLOC=emmalloc``. (Note that the optimizer may be able to remove WasmFS "
 "and malloc, if your code does not actually use files in a non-trivial way.)"
 msgstr ""
@@ -186,8 +186,9 @@ msgstr ""
 msgid ""
 "However, due to JavaScript's event-driven nature, most *persistent* storage "
 "options offer only asynchronous interfaces. Emscripten offers :ref:`multiple "
-"file systems <filesystem-api-filesystems>` that can be mounted with :js:func:"
-"`FS.mount` to help deal with persistence depending on the execution context."
+"file systems <filesystem-api-filesystems>` that can be mounted "
+"with :js:func:`FS.mount` to help deal with persistence depending on the "
+"execution context."
 msgstr ""
 
 #: ../../../source/docs/api_reference/Filesystem-API.rst:72
@@ -197,10 +198,10 @@ msgstr ""
 #: ../../../source/docs/api_reference/Filesystem-API.rst:74
 msgid ""
 "Only the :ref:`MEMFS <filesystem-api-memfs>` filesystem is included by "
-"default. All others must be enabled explicitly, using ``-lnodefs.js`` (:ref:"
-"`NODEFS <filesystem-api-nodefs>`), ``-lidbfs.js`` (:ref:`IDBFS <filesystem-"
-"api-idbfs>`), ``-lworkerfs.js`` (:ref:`WORKERFS <filesystem-api-workerfs>`), "
-"or ``-lproxyfs.js`` (:ref:`PROXYFS <filesystem-api-proxyfs>`)."
+"default. All others must be enabled explicitly, using ``-lnodefs.js`` "
+"(:ref:`NODEFS <filesystem-api-nodefs>`), ``-lidbfs.js`` (:ref:`IDBFS "
+"<filesystem-api-idbfs>`), ``-lworkerfs.js`` (:ref:`WORKERFS <filesystem-api-"
+"workerfs>`), or ``-lproxyfs.js`` (:ref:`PROXYFS <filesystem-api-proxyfs>`)."
 msgstr ""
 
 #: ../../../source/docs/api_reference/Filesystem-API.rst:79
@@ -227,8 +228,8 @@ msgstr ""
 msgid ""
 "This file system lets a program in *node* map directories (via a mount "
 "operation) on the host filesystem to directories in Emscripten's virtual "
-"filesystem. It uses node's synchronous `FS API <http://nodejs.org/api/fs."
-"html>`_ to immediately persist any data written to the Emscripten file "
+"filesystem. It uses node's synchronous `FS API <http://nodejs.org/api/"
+"fs.html>`_ to immediately persist any data written to the Emscripten file "
 "system to your local disk."
 msgstr ""
 
@@ -376,8 +377,8 @@ msgstr ""
 #: ../../../source/docs/api_reference/Filesystem-API.rst:167
 msgid ""
 "The set of callbacks required by the device. For an example, see the `NODEFS "
-"default callbacks <https://github.com/emscripten-core/emscripten/"
-"blob/1.29.12/src/library_nodefs.js#L213>`_."
+"default callbacks <https://github.com/emscripten-core/emscripten/blob/"
+"1.29.12/src/library_nodefs.js#L213>`_."
 msgstr ""
 
 #: ../../../source/docs/api_reference/Filesystem-API.rst:172
@@ -477,9 +478,9 @@ msgid ""
 "A generic settings object used by the underlying file system.  ``NODEFS`` "
 "uses the `root` parameter to map the Emscripten directory to the physical "
 "directory. For example, to mount the current folder as a NODEFS "
-"instance:  .. code-block:: javascript     FS.mkdir('/working');    FS."
-"mount(NODEFS, { root: '.' }, '/working');  ``WORKERFS`` accepts `files` and "
-"`blobs` parameters to map a provided flat list of files into the "
+"instance:  .. code-block:: javascript     FS.mkdir('/working');    "
+"FS.mount(NODEFS, { root: '.' }, '/working');  ``WORKERFS`` accepts `files` "
+"and `blobs` parameters to map a provided flat list of files into the "
 "``mountpoint`` directory:  .. code-block:: javascript     var blob = new "
 "Blob(['blob data']);    FS.mkdir('/working');    FS.mount(WORKERFS, "
 "{      blobs: [{ name: 'blob.txt', data: blob }],      files: files, // "
@@ -1374,10 +1375,10 @@ msgstr ""
 #: ../../../source/docs/api_reference/Filesystem-API.rst:931
 msgid ""
 "**follow** (*bool*) If true, follow the last component if it is a symlink. "
-"For example, consider a symlink ``/foo/symlink`` that links to ``/foo/notes."
-"txt``. If ``{ follow: true }``, an object representing ``/foo/notes.txt`` "
-"would be returned. If ``{ follow: false }``, an object representing the "
-"symlink file would be returned. The default is ``false``."
+"For example, consider a symlink ``/foo/symlink`` that links to ``/foo/"
+"notes.txt``. If ``{ follow: true }``, an object representing ``/foo/"
+"notes.txt`` would be returned. If ``{ follow: false }``, an object "
+"representing the symlink file would be returned. The default is ``false``."
 msgstr ""
 
 #: ../../../source/docs/api_reference/Filesystem-API.rst:935

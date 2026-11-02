@@ -69,8 +69,8 @@ msgstr ""
 #: ../../../source/docs/api_reference/advanced-apis.rst:42
 msgid ""
 "For more information on what options can be used to configure Emscripten, "
-"read ``src/settings.js`` or visit `the emsettings page <https://emsettings."
-"surma.technology>`_."
+"read ``src/settings.js`` or visit `the emsettings page <https://"
+"emsettings.surma.technology>`_."
 msgstr ""
 
 #: ../../../source/docs/api_reference/advanced-apis.rst:48

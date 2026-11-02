@@ -152,8 +152,8 @@ msgstr ""
 #: ../../../source/docs/site/glossary.rst:51
 msgid ""
 "The :ref:`Compiler Configuration File <compiler-configuration-file>` stores "
-"the :term:`active <Active Tool/SDK>` tools and SDKs as defined using :term:"
-"`emsdk activate <emsdk>`."
+"the :term:`active <Active Tool/SDK>` tools and SDKs as defined "
+"using :term:`emsdk activate <emsdk>`."
 msgstr ""
 
 #: ../../../source/docs/site/glossary.rst:43
@@ -350,11 +350,11 @@ msgstr ""
 
 #: ../../../source/docs/site/glossary.rst:111
 msgid ""
-"The :term:`emsdk` can store multiple versions of :term:`tools <Tool>` and :"
-"term:`SDKs <SDK>`. The active tools/SDK is the set of tools that are used by "
-"default on the *Emscripten Command Prompt*. This compiler configuration is "
-"stored in an emsdk-specific config file (**.emscripten**) and can be changed "
-"using *emsdk*."
+"The :term:`emsdk` can store multiple versions of :term:`tools <Tool>` "
+"and :term:`SDKs <SDK>`. The active tools/SDK is the set of tools that are "
+"used by default on the *Emscripten Command Prompt*. This compiler "
+"configuration is stored in an emsdk-specific config file (**.emscripten**) "
+"and can be changed using *emsdk*."
 msgstr ""
 
 #: ../../../source/docs/site/glossary.rst:116
@@ -363,9 +363,9 @@ msgstr ""
 
 #: ../../../source/docs/site/glossary.rst:118
 msgid ""
-"The :term:`emsdk` can manage any number of :term:`tools <Tool>` and :term:"
-"`SDKs <SDK>`, and these are stored in :term:`subdirectories <SDK root "
-"directory>` of the *emsdk root directory*. The **emsdk root** is the "
+"The :term:`emsdk` can manage any number of :term:`tools <Tool>` "
+"and :term:`SDKs <SDK>`, and these are stored in :term:`subdirectories <SDK "
+"root directory>` of the *emsdk root directory*. The **emsdk root** is the "
 "directory specified when you first installed an SDK."
 msgstr ""
 

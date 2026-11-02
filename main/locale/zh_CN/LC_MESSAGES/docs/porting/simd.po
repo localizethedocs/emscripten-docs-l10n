@@ -111,9 +111,9 @@ msgstr ""
 
 #: ../../../source/docs/porting/simd.rst:40
 msgid ""
-"At the source level, the GCC/Clang `SIMD Vector Extensions <https://gcc.gnu."
-"org/onlinedocs/gcc/Vector-Extensions.html>`_ can be used and will be lowered "
-"to WebAssembly SIMD instructions where possible."
+"At the source level, the GCC/Clang `SIMD Vector Extensions <https://"
+"gcc.gnu.org/onlinedocs/gcc/Vector-Extensions.html>`_ can be used and will be "
+"lowered to WebAssembly SIMD instructions where possible."
 msgstr ""
 
 #: ../../../source/docs/porting/simd.rst:42
@@ -349,9 +349,9 @@ msgstr ""
 #: ../../../source/docs/porting/simd.rst:140
 msgid ""
 "Included for orthogonality, these instructions have no equivalent x86 "
-"instruction and are `emulated with 10 x86 instructions in v8 <https://github."
-"com/v8/v8/blob/b6520eda5eafc3b007a5641b37136dfc9d92f63d/src/compiler/backend/"
-"x64/code-generator-x64.cc#L2834-L2858>`_."
+"instruction and are `emulated with 10 x86 instructions in v8 <https://"
+"github.com/v8/v8/blob/b6520eda5eafc3b007a5641b37136dfc9d92f63d/src/compiler/"
+"backend/x64/code-generator-x64.cc#L2834-L2858>`_."
 msgstr ""
 
 #: ../../../source/docs/porting/simd.rst:145
@@ -3664,8 +3664,8 @@ msgstr ""
 msgid ""
 "The following table highlights the availability and expected performance of "
 "different AVX2 intrinsics. Refer to `Intel Intrinsics Guide on AVX2 <https://"
-"www.intel.com/content/www/us/en/docs/intrinsics-guide/index."
-"html#avxnewtechs=AVX2>`_."
+"www.intel.com/content/www/us/en/docs/intrinsics-guide/"
+"index.html#avxnewtechs=AVX2>`_."
 msgstr ""
 
 #: ../../../source/docs/porting/simd.rst:1151

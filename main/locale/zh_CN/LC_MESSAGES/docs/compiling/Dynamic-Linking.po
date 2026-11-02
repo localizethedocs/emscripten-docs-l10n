@@ -290,8 +290,8 @@ msgid ""
 "normally, with no special behavior for keeping code alive. It is then your "
 "responsibility to make sure that code that side modules need is kept alive. "
 "You can do this either by adding to :ref:`EXPORTED_FUNCTIONS` or tagging the "
-"symbol ``EMSCRIPTEN_KEEPALIVE`` in the source code. See ``other."
-"test_minimal_dynamic`` for an example of this in action."
+"symbol ``EMSCRIPTEN_KEEPALIVE`` in the source code. See "
+"``other.test_minimal_dynamic`` for an example of this in action."
 msgstr ""
 
 #: ../../../source/docs/compiling/Dynamic-Linking.rst:181
@@ -332,8 +332,8 @@ msgid ""
 "You can build the main module with ``EMCC_FORCE_STDLIBS=1`` in the "
 "environment to force inclusion of all standard libs.  A more refined "
 "approach is to name the system libraries that you want to explicitly "
-"include.  For example, with something like ``EMCC_FORCE_STDLIBS=libcxx,"
-"libcxxabi`` (if you need those two libs)."
+"include.  For example, with something like "
+"``EMCC_FORCE_STDLIBS=libcxx,libcxxabi`` (if you need those two libs)."
 msgstr ""
 
 #: ../../../source/docs/compiling/Dynamic-Linking.rst:209
@@ -364,8 +364,8 @@ msgid ""
 "Chromium does not support synchronous compiling of Wasm modules over 8Mb on "
 "the main thread.  You could run into this limit when using the synchronous "
 "``dlopen`` API to load large side modules.   Emscripten has async versions "
-"of ``dlopen`` that can work around this issue (See :c:func:"
-"`emscripten_dlopen`)."
+"of ``dlopen`` that can work around this issue "
+"(See :c:func:`emscripten_dlopen`)."
 msgstr ""
 
 #: ../../../source/docs/compiling/Dynamic-Linking.rst:230

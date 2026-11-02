@@ -584,8 +584,8 @@ msgstr ""
 
 #: ../../../source/docs/api_reference/preamble.js.rst:293
 msgid ""
-"The identifier for the specific dependency to be removed (added with :js:"
-"func:`addRunDependency`)"
+"The identifier for the specific dependency to be removed (added "
+"with :js:func:`addRunDependency`)"
 msgstr ""
 
 #: ../../../source/docs/api_reference/preamble.js.rst:299

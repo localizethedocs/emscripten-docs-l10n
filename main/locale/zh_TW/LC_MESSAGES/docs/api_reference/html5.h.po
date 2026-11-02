@@ -61,8 +61,8 @@ msgstr ""
 
 #: ../../../source/docs/api_reference/html5.h.rst:19
 msgid ""
-"`Screen Orientation Events for portrait/landscape handling <https://dvcs.w3."
-"org/hg/screen-orientation/raw-file/tip/Overview.html>`_."
+"`Screen Orientation Events for portrait/landscape handling <https://"
+"dvcs.w3.org/hg/screen-orientation/raw-file/tip/Overview.html>`_."
 msgstr ""
 
 #: ../../../source/docs/api_reference/html5.h.rst:20
@@ -73,8 +73,8 @@ msgstr ""
 
 #: ../../../source/docs/api_reference/html5.h.rst:21
 msgid ""
-"`Pointer Lock Events for relative-mode mouse motion control <http://www.w3."
-"org/TR/pointerlock/>`_."
+"`Pointer Lock Events for relative-mode mouse motion control <http://"
+"www.w3.org/TR/pointerlock/>`_."
 msgstr ""
 
 #: ../../../source/docs/api_reference/html5.h.rst:22
@@ -105,8 +105,8 @@ msgstr ""
 
 #: ../../../source/docs/api_reference/html5.h.rst:27
 msgid ""
-"`WebGL context events <http://www.khronos.org/registry/webgl/specs/"
-"latest/1.0/#5.15.2>`_."
+"`WebGL context events <http://www.khronos.org/registry/webgl/specs/latest/"
+"1.0/#5.15.2>`_."
 msgstr ""
 
 #: ../../../source/docs/api_reference/html5.h.rst:28
@@ -230,13 +230,13 @@ msgstr ""
 
 #: ../../../source/docs/api_reference/html5.h.rst:89
 msgid ""
-"The ``useCapture`` parameter  maps to ``useCapture`` in `EventTarget."
-"addEventListener <https://developer.mozilla.org/en-US/docs/Web/API/"
-"EventTarget.addEventListener>`_. It indicates whether or not to initiate "
+"The ``useCapture`` parameter  maps to ``useCapture`` in "
+"`EventTarget.addEventListener <https://developer.mozilla.org/en-US/docs/Web/"
+"API/EventTarget.addEventListener>`_. It indicates whether or not to initiate "
 "*capture*: if ``true`` the callback will be invoked only for the DOM capture "
 "and target phases; if ``false`` the callback will be triggered during the "
-"target and bubbling phases. See `DOM Level 3 Events <http://www.w3.org/"
-"TR/2003/NOTE-DOM-Level-3-Events-20031107/events.html#Events-phases>`_ for a "
+"target and bubbling phases. See `DOM Level 3 Events <http://www.w3.org/TR/"
+"2003/NOTE-DOM-Level-3-Events-20031107/events.html#Events-phases>`_ for a "
 "more detailed explanation."
 msgstr ""
 
@@ -343,8 +343,8 @@ msgstr ""
 
 #: ../../../source/docs/api_reference/html5.h.rst:166
 msgid ""
-"Some functions, including :c:func:`emscripten_request_pointerlock` and :c:"
-"func:`emscripten_request_fullscreen`, are affected by web security."
+"Some functions, including :c:func:`emscripten_request_pointerlock` "
+"and :c:func:`emscripten_request_fullscreen`, are affected by web security."
 msgstr ""
 
 #: ../../../source/docs/api_reference/html5.h.rst:168
@@ -417,11 +417,12 @@ msgstr ""
 
 #: ../../../source/docs/api_reference/html5.h.rst:199
 msgid ""
-"Most functions in this API return a result of type :c:data:"
-"`EMSCRIPTEN_RESULT`. None of the functions fail or abort by throwing a "
-"JavaScript or C++ exception. If a particular browser does not support the "
-"given feature, the value :c:data:`EMSCRIPTEN_RESULT_NOT_SUPPORTED` will be "
-"returned at the time the callback is registered."
+"Most functions in this API return a result of "
+"type :c:data:`EMSCRIPTEN_RESULT`. None of the functions fail or abort by "
+"throwing a JavaScript or C++ exception. If a particular browser does not "
+"support the given feature, the "
+"value :c:data:`EMSCRIPTEN_RESULT_NOT_SUPPORTED` will be returned at the time "
+"the callback is registered."
 msgstr ""
 
 #: ../../../source/docs/api_reference/html5.h.rst:204
@@ -578,8 +579,8 @@ msgstr ""
 
 #: ../../../source/docs/api_reference/html5.h.rst:297
 msgid ""
-"Indicates the location of the key on the keyboard. One of the :c:data:"
-"`DOM_KEY_LOCATION <DOM_KEY_LOCATION_STANDARD>` values."
+"Indicates the location of the key on the keyboard. One of "
+"the :c:data:`DOM_KEY_LOCATION <DOM_KEY_LOCATION_STANDARD>` values."
 msgstr ""
 
 #: ../../../source/docs/api_reference/html5.h.rst:304
@@ -983,16 +984,17 @@ msgstr ""
 msgid ""
 "The event structure passed in `mouse events <https://dvcs.w3.org/hg/"
 "dom3events/raw-file/tip/html/DOM3-Events.html#interface-MouseEvent>`_: "
-"`click <https://dvcs.w3.org/hg/dom3events/raw-file/tip/html/DOM3-Events."
-"html#event-type-click>`_, `mousedown <https://dvcs.w3.org/hg/dom3events/raw-"
-"file/tip/html/DOM3-Events.html#event-type-mousedown>`_, `mouseup <https://"
-"dvcs.w3.org/hg/dom3events/raw-file/tip/html/DOM3-Events.html#event-type-"
-"mouseup>`_, `dblclick <https://dvcs.w3.org/hg/dom3events/raw-file/tip/html/"
-"DOM3-Events.html#event-type-dblclick>`_, `mousemove <https://dvcs.w3.org/hg/"
-"dom3events/raw-file/tip/html/DOM3-Events.html#event-type-mousemove>`_, "
-"`mouseenter <https://dvcs.w3.org/hg/dom3events/raw-file/tip/html/DOM3-Events."
-"html#event-type-mouseenter>`_ and `mouseleave <https://dvcs.w3.org/hg/"
-"dom3events/raw-file/tip/html/DOM3-Events.html#event-type-mouseleave>`_."
+"`click <https://dvcs.w3.org/hg/dom3events/raw-file/tip/html/DOM3-"
+"Events.html#event-type-click>`_, `mousedown <https://dvcs.w3.org/hg/"
+"dom3events/raw-file/tip/html/DOM3-Events.html#event-type-mousedown>`_, "
+"`mouseup <https://dvcs.w3.org/hg/dom3events/raw-file/tip/html/DOM3-"
+"Events.html#event-type-mouseup>`_, `dblclick <https://dvcs.w3.org/hg/"
+"dom3events/raw-file/tip/html/DOM3-Events.html#event-type-dblclick>`_, "
+"`mousemove <https://dvcs.w3.org/hg/dom3events/raw-file/tip/html/DOM3-"
+"Events.html#event-type-mousemove>`_, `mouseenter <https://dvcs.w3.org/hg/"
+"dom3events/raw-file/tip/html/DOM3-Events.html#event-type-mouseenter>`_ and "
+"`mouseleave <https://dvcs.w3.org/hg/dom3events/raw-file/tip/html/DOM3-"
+"Events.html#event-type-mouseleave>`_."
 msgstr ""
 
 #: ../../../source/docs/api_reference/html5.h.rst:418
@@ -1099,10 +1101,11 @@ msgstr ""
 
 #: ../../../source/docs/api_reference/html5.h.rst:518
 msgid ""
-"Note that for this function call to succeed, :c:func:"
-"`emscripten_set_xxx_callback <emscripten_set_click_callback>` must have "
-"first been called with one of the mouse event types and a non-zero callback "
-"function pointer to enable the mouse state capture."
+"Note that for this function call to "
+"succeed, :c:func:`emscripten_set_xxx_callback "
+"<emscripten_set_click_callback>` must have first been called with one of the "
+"mouse event types and a non-zero callback function pointer to enable the "
+"mouse state capture."
 msgstr ""
 
 #: ../../../source/docs/api_reference/html5.h.rst:520
@@ -1207,9 +1210,9 @@ msgstr ""
 msgid ""
 "The event structure passed in DOM element `UIEvent <https://dvcs.w3.org/hg/"
 "dom3events/raw-file/tip/html/DOM3-Events.html#interface-UIEvent>`_ events: "
-"`resize <https://dvcs.w3.org/hg/dom3events/raw-file/tip/html/DOM3-Events."
-"html#event-type-resize>`_ and `scroll <https://dvcs.w3.org/hg/dom3events/raw-"
-"file/tip/html/DOM3-Events.html#event-type-scroll>`_."
+"`resize <https://dvcs.w3.org/hg/dom3events/raw-file/tip/html/DOM3-"
+"Events.html#event-type-resize>`_ and `scroll <https://dvcs.w3.org/hg/"
+"dom3events/raw-file/tip/html/DOM3-Events.html#event-type-scroll>`_."
 msgstr ""
 
 #: ../../../source/docs/api_reference/html5.h.rst:632
@@ -1301,8 +1304,8 @@ msgstr ""
 
 #: ../../../source/docs/api_reference/html5.h.rst:721
 msgid ""
-"The `nodeName <https://developer.mozilla.org/en-US/docs/Web/API/Node."
-"nodeName>`_ of the target HTML Element."
+"The `nodeName <https://developer.mozilla.org/en-US/docs/Web/API/"
+"Node.nodeName>`_ of the target HTML Element."
 msgstr ""
 
 #: ../../../source/docs/api_reference/html5.h.rst:723
@@ -1349,13 +1352,13 @@ msgstr ""
 
 #: ../../../source/docs/api_reference/html5.h.rst:761
 msgid ""
-"Registers a callback function for receiving DOM element `blur <https://dvcs."
-"w3.org/hg/dom3events/raw-file/tip/html/DOM3-Events.html#event-type-blur>`_, "
-"`focus <https://dvcs.w3.org/hg/dom3events/raw-file/tip/html/DOM3-Events."
-"html#event-type-focus>`_, `focusin <https://dvcs.w3.org/hg/dom3events/raw-"
-"file/tip/html/DOM3-Events.html#event-type-focusin>`_ and `focusout <https://"
+"Registers a callback function for receiving DOM element `blur <https://"
 "dvcs.w3.org/hg/dom3events/raw-file/tip/html/DOM3-Events.html#event-type-"
-"focusout>`_ events."
+"blur>`_, `focus <https://dvcs.w3.org/hg/dom3events/raw-file/tip/html/DOM3-"
+"Events.html#event-type-focus>`_, `focusin <https://dvcs.w3.org/hg/dom3events/"
+"raw-file/tip/html/DOM3-Events.html#event-type-focusin>`_ and `focusout "
+"<https://dvcs.w3.org/hg/dom3events/raw-file/tip/html/DOM3-Events.html#event-"
+"type-focusout>`_ events."
 msgstr ""
 
 #: ../../../source/docs/api_reference/html5.h.rst:774
@@ -1455,10 +1458,10 @@ msgstr ""
 
 #: ../../../source/docs/api_reference/html5.h.rst:851
 msgid ""
-"Note that for this function call to succeed, :c:func:"
-"`emscripten_set_deviceorientation_callback` must have first been called with "
-"a non-zero callback function pointer to enable the ``deviceorientation`` "
-"state capture."
+"Note that for this function call to "
+"succeed, :c:func:`emscripten_set_deviceorientation_callback` must have first "
+"been called with a non-zero callback function pointer to enable the "
+"``deviceorientation`` state capture."
 msgstr ""
 
 #: ../../../source/docs/api_reference/html5.h.rst:853
@@ -1532,8 +1535,8 @@ msgstr ""
 
 #: ../../../source/docs/api_reference/html5.h.rst:930
 msgid ""
-"Registers a callback function for receiving the `devicemotion <http://w3c."
-"github.io/deviceorientation/spec-source-orientation.html#devicemotion>`_ "
+"Registers a callback function for receiving the `devicemotion <http://"
+"w3c.github.io/deviceorientation/spec-source-orientation.html#devicemotion>`_ "
 "event."
 msgstr ""
 
@@ -1545,10 +1548,10 @@ msgstr ""
 
 #: ../../../source/docs/api_reference/html5.h.rst:943
 msgid ""
-"Note that for this function call to succeed, :c:func:"
-"`emscripten_set_devicemotion_callback` must have first been called with a "
-"non-zero callback function pointer to enable the ``devicemotion`` state "
-"capture."
+"Note that for this function call to "
+"succeed, :c:func:`emscripten_set_devicemotion_callback` must have first been "
+"called with a non-zero callback function pointer to enable the "
+"``devicemotion`` state capture."
 msgstr ""
 
 #: ../../../source/docs/api_reference/html5.h.rst:945
@@ -1596,14 +1599,14 @@ msgstr ""
 #: ../../../source/docs/api_reference/html5.h.rst:994
 msgid ""
 "One of the :c:type:`EM_ORIENTATION_PORTRAIT_xxx "
-"<EMSCRIPTEN_ORIENTATION_PORTRAIT_PRIMARY>` fields, or :c:type:"
-"`EMSCRIPTEN_ORIENTATION_UNKNOWN` if unknown."
+"<EMSCRIPTEN_ORIENTATION_PORTRAIT_PRIMARY>` fields, "
+"or :c:type:`EMSCRIPTEN_ORIENTATION_UNKNOWN` if unknown."
 msgstr ""
 
 #: ../../../source/docs/api_reference/html5.h.rst:998
 msgid ""
-"Emscripten-specific extension: Some browsers refer to ``window."
-"orientation``, so report that as well."
+"Emscripten-specific extension: Some browsers refer to "
+"``window.orientation``, so report that as well."
 msgstr ""
 
 #: ../../../source/docs/api_reference/html5.h.rst:1000
@@ -1621,8 +1624,8 @@ msgstr ""
 
 #: ../../../source/docs/api_reference/html5.h.rst:1014
 msgid ""
-"The type of orientationchange event (:c:data:"
-"`EMSCRIPTEN_EVENT_ORIENTATIONCHANGE`)."
+"The type of orientationchange event "
+"(:c:data:`EMSCRIPTEN_EVENT_ORIENTATIONCHANGE`)."
 msgstr ""
 
 #: ../../../source/docs/api_reference/html5.h.rst:0
@@ -1685,8 +1688,8 @@ msgstr ""
 msgid ""
 "An enum-like type which specifies how the Emscripten runtime should treat "
 "the CSS size of the target element when displaying it in fullscreen mode via "
-"calls to functions :c:func:`emscripten_request_fullscreen_strategy` and :c:"
-"func:`emscripten_enter_soft_fullscreen`."
+"calls to functions :c:func:`emscripten_request_fullscreen_strategy` "
+"and :c:func:`emscripten_enter_soft_fullscreen`."
 msgstr ""
 
 #: ../../../source/docs/api_reference/html5.h.rst:1081
@@ -1713,20 +1716,21 @@ msgid ""
 "of the target element to cover the whole screen, while adding either "
 "vertical or horizontal black letterbox padding to preserve the aspect ratio "
 "of the content. The aspect ratio that is used here is the render target size "
-"of the canvas element. To change the desired aspect ratio, call :c:func:"
-"`emscripten_set_canvas_element_size` before entering fullscreen mode."
+"of the canvas element. To change the desired aspect ratio, "
+"call :c:func:`emscripten_set_canvas_element_size` before entering fullscreen "
+"mode."
 msgstr ""
 
 #: ../../../source/docs/api_reference/html5.h.rst:1098
 msgid ""
 "An enum-like type which specifies how the Emscripten runtime should treat "
 "the pixel size (render target resolution) of the target canvas element when "
-"displaying it in fullscreen mode via calls to functions :c:func:"
-"`emscripten_request_fullscreen_strategy` and :c:func:"
-"`emscripten_enter_soft_fullscreen`. To better understand the underlying "
-"distinction between the CSS size of a canvas element versus the render "
-"target size of a canvas element, see https://www.khronos.org/webgl/wiki/"
-"HandlingHighDPI."
+"displaying it in fullscreen mode via calls to "
+"functions :c:func:`emscripten_request_fullscreen_strategy` "
+"and :c:func:`emscripten_enter_soft_fullscreen`. To better understand the "
+"underlying distinction between the CSS size of a canvas element versus the "
+"render target size of a canvas element, see https://www.khronos.org/webgl/"
+"wiki/HandlingHighDPI."
 msgstr ""
 
 #: ../../../source/docs/api_reference/html5.h.rst:1104
@@ -1742,10 +1746,10 @@ msgid ""
 "Specifies that the Emscripten runtime should resize the render target of the "
 "canvas element to match 1:1 with the CSS size of the element in fullscreen "
 "mode. On high DPI displays (`window.devicePixelRatio` > 1), the CSS size is "
-"not the same as the physical screen resolution of the device. Call :c:func:"
-"`emscripten_get_device_pixel_ratio` to obtain the pixel ratio between CSS "
-"pixels and actual device pixels of the screen. Use this mode when you want "
-"to render to a pixel resolution that is DPI-independent."
+"not the same as the physical screen resolution of the device. "
+"Call :c:func:`emscripten_get_device_pixel_ratio` to obtain the pixel ratio "
+"between CSS pixels and actual device pixels of the screen. Use this mode "
+"when you want to render to a pixel resolution that is DPI-independent."
 msgstr ""
 
 #: ../../../source/docs/api_reference/html5.h.rst:1115
@@ -1800,8 +1804,8 @@ msgstr ""
 
 #: ../../../source/docs/api_reference/html5.h.rst:1152
 msgid ""
-"The `nodeName <https://developer.mozilla.org/en-US/docs/Web/API/Node."
-"nodeName>`_ of the target HTML Element that is in full screen mode."
+"The `nodeName <https://developer.mozilla.org/en-US/docs/Web/API/"
+"Node.nodeName>`_ of the target HTML Element that is in full screen mode."
 msgstr ""
 
 #: ../../../source/docs/api_reference/html5.h.rst:1156
@@ -1825,10 +1829,10 @@ msgstr ""
 
 #: ../../../source/docs/api_reference/html5.h.rst:1179
 msgid ""
-"The options structure that is passed in to functions :c:func:"
-"`emscripten_request_fullscreen_strategy` and :c:func:"
-"`emscripten_enter_soft_fullscreen` to configure how the target element "
-"should be displayed in fullscreen mode."
+"The options structure that is passed in to "
+"functions :c:func:`emscripten_request_fullscreen_strategy` "
+"and :c:func:`emscripten_enter_soft_fullscreen` to configure how the target "
+"element should be displayed in fullscreen mode."
 msgstr ""
 
 #: ../../../source/docs/api_reference/html5.h.rst:1184
@@ -1960,9 +1964,9 @@ msgid ""
 "This function makes changes to the DOM to satisfy consistent presentation "
 "across browsers. These changes have been designed to intrude as little as "
 "possible, and the changes are cleared once windowed browsing is restored. If "
-"any of these changes are conflicting, see the function :c:func:"
-"`emscripten_request_fullscreen` instead, which performs a bare fullscreen "
-"request without any modifications to the DOM."
+"any of these changes are conflicting, see the "
+"function :c:func:`emscripten_request_fullscreen` instead, which performs a "
+"bare fullscreen request without any modifications to the DOM."
 msgstr ""
 
 #: ../../../source/docs/api_reference/html5.h.rst:1270
@@ -1994,8 +1998,8 @@ msgstr ""
 #: ../../../source/docs/api_reference/html5.h.rst:1286
 msgid ""
 "Pressing the esc button does not automatically exit the soft fullscreen "
-"mode. To return to windowed presentation mode, manually call the function :c:"
-"func:`emscripten_exit_soft_fullscreen`."
+"mode. To return to windowed presentation mode, manually call the "
+"function :c:func:`emscripten_exit_soft_fullscreen`."
 msgstr ""
 
 #: ../../../source/docs/api_reference/html5.h.rst:1290
@@ -2035,8 +2039,8 @@ msgstr ""
 
 #: ../../../source/docs/api_reference/html5.h.rst:1320
 msgid ""
-"The `nodeName <https://developer.mozilla.org/en-US/docs/Web/API/Node."
-"nodeName>`_ of the target HTML Element that has the pointer lock active."
+"The `nodeName <https://developer.mozilla.org/en-US/docs/Web/API/"
+"Node.nodeName>`_ of the target HTML Element that has the pointer lock active."
 msgstr ""
 
 #: ../../../source/docs/api_reference/html5.h.rst:1326
@@ -2051,8 +2055,8 @@ msgstr ""
 
 #: ../../../source/docs/api_reference/html5.h.rst:1342
 msgid ""
-"The type of pointerlockchange event (:c:data:"
-"`EMSCRIPTEN_EVENT_POINTERLOCKCHANGE`)."
+"The type of pointerlockchange event "
+"(:c:data:`EMSCRIPTEN_EVENT_POINTERLOCKCHANGE`)."
 msgstr ""
 
 #: ../../../source/docs/api_reference/html5.h.rst:0
@@ -2079,8 +2083,8 @@ msgstr ""
 
 #: ../../../source/docs/api_reference/html5.h.rst:1357
 msgid ""
-"The type of pointerlockerror event (:c:data:"
-"`EMSCRIPTEN_EVENT_POINTERLOCKERROR`)."
+"The type of pointerlockerror event "
+"(:c:data:`EMSCRIPTEN_EVENT_POINTERLOCKERROR`)."
 msgstr ""
 
 #: ../../../source/docs/api_reference/html5.h.rst:0
@@ -2154,8 +2158,8 @@ msgstr ""
 
 #: ../../../source/docs/api_reference/html5.h.rst:1450
 msgid ""
-"The document is loaded off screen and not visible (`prerender <http://www.w3."
-"org/TR/page-visibility/#pv-prerender>`_)."
+"The document is loaded off screen and not visible (`prerender <http://"
+"www.w3.org/TR/page-visibility/#pv-prerender>`_)."
 msgstr ""
 
 #: ../../../source/docs/api_reference/html5.h.rst:1454
@@ -2189,8 +2193,8 @@ msgstr ""
 
 #: ../../../source/docs/api_reference/html5.h.rst:1485
 msgid ""
-"The type of ``visibilitychange`` event (:c:data:"
-"`EMSCRIPTEN_VISIBILITY_HIDDEN`)."
+"The type of ``visibilitychange`` event "
+"(:c:data:`EMSCRIPTEN_VISIBILITY_HIDDEN`)."
 msgstr ""
 
 #: ../../../source/docs/api_reference/html5.h.rst:0
@@ -2444,9 +2448,9 @@ msgstr ""
 #: ../../../source/docs/api_reference/html5.h.rst:1760
 msgid ""
 "After having called emscripten_sample_gamepad_data(), this function returns "
-"the number of gamepads connected to the system or :c:type:"
-"`EMSCRIPTEN_RESULT_NOT_SUPPORTED` if the current browser does not support "
-"gamepads."
+"the number of gamepads connected to the system "
+"or :c:type:`EMSCRIPTEN_RESULT_NOT_SUPPORTED` if the current browser does not "
+"support gamepads."
 msgstr ""
 
 #: ../../../source/docs/api_reference/html5.h.rst:1765
@@ -2536,8 +2540,8 @@ msgstr ""
 
 #: ../../../source/docs/api_reference/html5.h.rst:1845
 msgid ""
-"The type of ``BatteryManager`` event (:c:data:"
-"`EMSCRIPTEN_EVENT_BATTERYCHARGINGCHANGE`)."
+"The type of ``BatteryManager`` event "
+"(:c:data:`EMSCRIPTEN_EVENT_BATTERYCHARGINGCHANGE`)."
 msgstr ""
 
 #: ../../../source/docs/api_reference/html5.h.rst:0
@@ -2558,8 +2562,8 @@ msgstr ""
 
 #: ../../../source/docs/api_reference/html5.h.rst:1860
 msgid ""
-"Registers a callback function for receiving the `BatteryManager <http://www."
-"w3.org/TR/battery-status/#batterymanager-interface>`_ events: "
+"Registers a callback function for receiving the `BatteryManager <http://"
+"www.w3.org/TR/battery-status/#batterymanager-interface>`_ events: "
 "``chargingchange`` and ``levelchange``."
 msgstr ""
 
@@ -2645,8 +2649,8 @@ msgstr ""
 #: ../../../source/docs/api_reference/html5.h.rst:1942
 msgid ""
 "Registers a callback function for receiving the page `beforeunload <http://"
-"www.whatwg.org/specs/web-apps/current-work/multipage/history."
-"html#beforeunloadevent>`_ event."
+"www.whatwg.org/specs/web-apps/current-work/multipage/"
+"history.html#beforeunloadevent>`_ event."
 msgstr ""
 
 #: ../../../source/docs/api_reference/html5.h.rst:1944
@@ -2945,8 +2949,8 @@ msgstr ""
 
 #: ../../../source/docs/api_reference/html5.h.rst:2120
 msgid ""
-"A word of caution about :c:type:`EmscriptenWebGLContextAttributes."
-"majorVersion`:"
+"A word of caution "
+"about :c:type:`EmscriptenWebGLContextAttributes.majorVersion`:"
 msgstr ""
 
 #: ../../../source/docs/api_reference/html5.h.rst:2122
@@ -3189,8 +3193,8 @@ msgid ""
 "The API provided here are low-level functions that directly call the "
 "relevant Web APIs and nothing more. They don't integrate with the emscripten "
 "runtime, such as checking if the program has halted and cancelling a "
-"callback if so. For that purpose, see the function :c:func:"
-"`emscripten_set_main_loop()`."
+"callback if so. For that purpose, see the "
+"function :c:func:`emscripten_set_main_loop()`."
 msgstr ""
 
 #: ../../../source/docs/api_reference/html5.h.rst:2282
@@ -3225,8 +3229,8 @@ msgstr ""
 
 #: ../../../source/docs/api_reference/html5.h.rst:2287
 msgid ""
-"An ID to the ``setTimeout()`` call that can be passed to :c:func:"
-"`emscripten_clear_timeout()` to cancel the pending timeout timer."
+"An ID to the ``setTimeout()`` call that can be passed "
+"to :c:func:`emscripten_clear_timeout()` to cancel the pending timeout timer."
 msgstr ""
 
 #: ../../../source/docs/api_reference/html5.h.rst:2292
@@ -3272,8 +3276,8 @@ msgstr ""
 
 #: ../../../source/docs/api_reference/html5.h.rst:2318
 msgid ""
-"An ID to the ``requestAnimationFrame()`` call that can be passed to :c:func:"
-"`emscripten_cancel_animation_frame()` to cancel the pending "
+"An ID to the ``requestAnimationFrame()`` call that can be passed "
+"to :c:func:`emscripten_cancel_animation_frame()` to cancel the pending "
 "``requestAnimationFrame`` timer."
 msgstr ""
 
@@ -3310,15 +3314,15 @@ msgstr ""
 
 #: ../../../source/docs/api_reference/html5.h.rst:2352
 msgid ""
-"An ID to the ``setImmediate()`` call that can be passed to :c:func:"
-"`emscripten_clear_immediate()` to cancel the pending callback."
+"An ID to the ``setImmediate()`` call that can be passed "
+"to :c:func:`emscripten_clear_immediate()` to cancel the pending callback."
 msgstr ""
 
 #: ../../../source/docs/api_reference/html5.h.rst:2357
 msgid ""
 "Cancels a pending ``setImmediate()`` call on the calling thread. This "
-"function must be called on the same thread as the :c:func:"
-"`emscripten_set_immediate()` call that registered the callback."
+"function must be called on the same thread as "
+"the :c:func:`emscripten_set_immediate()` call that registered the callback."
 msgstr ""
 
 #: ../../../source/docs/api_reference/html5.h.rst:2360
@@ -3338,12 +3342,12 @@ msgstr ""
 #: ../../../source/docs/api_reference/html5.h.rst:2376
 msgid ""
 "Initializes a ``setInterval()`` loop on the given function on the calling "
-"thread. Returns an ID to the initialized loop. Call :c:func:"
-"`emscripten_clear_interval()` with this ID to terminate the loop. Note that "
-"this function will cause the given callback to be called repeatedly. Do not "
-"call ``emscripten_set_interval()`` again on the same callback function from "
-"inside the callback, as that would register multiple loops to run "
-"simultaneously."
+"thread. Returns an ID to the initialized loop. "
+"Call :c:func:`emscripten_clear_interval()` with this ID to terminate the "
+"loop. Note that this function will cause the given callback to be called "
+"repeatedly. Do not call ``emscripten_set_interval()`` again on the same "
+"callback function from inside the callback, as that would register multiple "
+"loops to run simultaneously."
 msgstr ""
 
 #: ../../../source/docs/api_reference/html5.h.rst:2385
@@ -3355,8 +3359,8 @@ msgstr ""
 #: ../../../source/docs/api_reference/html5.h.rst:2391
 msgid ""
 "Cancels a currently executing ``setInterval()`` loop on the calling thread. "
-"This function must be called on the same thread as the :c:func:"
-"`emscripten_set_interval()` call that registered the callback."
+"This function must be called on the same thread as "
+"the :c:func:`emscripten_set_interval()` call that registered the callback."
 msgstr ""
 
 #: ../../../source/docs/api_reference/html5.h.rst:2394

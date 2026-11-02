@@ -48,16 +48,16 @@ msgstr ""
 
 #: ../../../source/docs/api_reference/val.h.rst:26
 msgid ""
-"This same code can be written in C++, using :cpp:func:`~emscripten::val::"
-"global` to get the symbol for the global ``XMLHttpRequest`` object and then "
-"using it to open a URL."
+"This same code can be written in C++, "
+"using :cpp:func:`~emscripten::val::global` to get the symbol for the global "
+"``XMLHttpRequest`` object and then using it to open a URL."
 msgstr ""
 
 #: ../../../source/docs/api_reference/val.h.rst:34
 msgid ""
-"You can test whether the ``open`` method call was successful using :cpp:func:"
-"`~emscripten::val::operator[]` to read an object property, then :cpp:func:"
-"`~emscripten::val::as` to coerce the type:"
+"You can test whether the ``open`` method call was successful "
+"using :cpp:func:`~emscripten::val::operator[]` to read an object property, "
+"then :cpp:func:`~emscripten::val::as` to coerce the type:"
 msgstr ""
 
 #: ../../../source/docs/api_reference/val.h.rst:48
@@ -120,9 +120,9 @@ msgstr ""
 #: ../../../source/docs/api_reference/val.h.rst:129
 msgid ""
 "Creates a ``val`` from a raw handle. This can be used for retrieving values "
-"from JavaScript, where the JavaScript side should wrap a value with ``Emval."
-"toHandle``, pass it to C++, and then C++ can use ``take_ownership`` to "
-"convert it to a ``val`` instance. Example:"
+"from JavaScript, where the JavaScript side should wrap a value with "
+"``Emval.toHandle``, pass it to C++, and then C++ can use ``take_ownership`` "
+"to convert it to a ``val`` instance. Example:"
 msgstr ""
 
 #: ../../../source/docs/api_reference/val.h.rst:149

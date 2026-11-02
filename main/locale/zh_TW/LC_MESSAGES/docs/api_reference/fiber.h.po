@@ -53,10 +53,10 @@ msgstr ""
 
 #: ../../../source/docs/api_reference/fiber.h.rst:26
 msgid ""
-"This structure represents a Fiber context `continuation <https://en."
-"wikipedia.org/wiki/Continuation>`_. The runtime does not keep references to "
-"these objects, they only contain information needed to perform the context "
-"switch. The switch operation updates some of the contents, however."
+"This structure represents a Fiber context `continuation <https://"
+"en.wikipedia.org/wiki/Continuation>`_. The runtime does not keep references "
+"to these objects, they only contain information needed to perform the "
+"context switch. The switch operation updates some of the contents, however."
 msgstr ""
 
 #: ../../../source/docs/api_reference/fiber.h.rst:30
@@ -67,15 +67,15 @@ msgstr ""
 
 #: ../../../source/docs/api_reference/fiber.h.rst:34
 msgid ""
-"Lower limit of the C stack region. Must be below :c:member:"
-"`emscripten_fiber_t.stack_base`."
+"Lower limit of the C stack region. Must be "
+"below :c:member:`emscripten_fiber_t.stack_base`."
 msgstr ""
 
 #: ../../../source/docs/api_reference/fiber.h.rst:38
 msgid ""
-"Current position of the stack pointer. Must be between :c:member:"
-"`emscripten_fiber_t.stack_base` and :c:member:`emscripten_fiber_t."
-"stack_limit`."
+"Current position of the stack pointer. Must be "
+"between :c:member:`emscripten_fiber_t.stack_base` "
+"and :c:member:`emscripten_fiber_t.stack_limit`."
 msgstr ""
 
 #: ../../../source/docs/api_reference/fiber.h.rst:42
@@ -127,8 +127,8 @@ msgstr "函數"
 
 #: ../../../source/docs/api_reference/fiber.h.rst:76
 msgid ""
-"Initializes a fiber context. It can then be entered by calling :c:func:"
-"`emscripten_fiber_swap`."
+"Initializes a fiber context. It can then be entered by "
+"calling :c:func:`emscripten_fiber_swap`."
 msgstr ""
 
 #: ../../../source/docs/api_reference/fiber.h.rst:0
@@ -188,11 +188,11 @@ msgstr ""
 
 #: ../../../source/docs/api_reference/fiber.h.rst:92
 msgid ""
-"This function sets up :c:member:`emscripten_fiber_t.stack_base` and :c:"
-"member:`emscripten_fiber_t.stack_limit` to refer to the current stack "
-"boundaries, sets :c:member:`emscripten_fiber_t.entry` to `NULL`, and makes :"
-"c:member:`emscripten_fiber_t.asyncify_data` refer to the provided Asyncify "
-"stack memory. Other fields are not changed."
+"This function sets up :c:member:`emscripten_fiber_t.stack_base` "
+"and :c:member:`emscripten_fiber_t.stack_limit` to refer to the current stack "
+"boundaries, sets :c:member:`emscripten_fiber_t.entry` to `NULL`, and "
+"makes :c:member:`emscripten_fiber_t.asyncify_data` refer to the provided "
+"Asyncify stack memory. Other fields are not changed."
 msgstr ""
 
 #: ../../../source/docs/api_reference/fiber.h.rst:94
@@ -211,14 +211,16 @@ msgstr ""
 #: ../../../source/docs/api_reference/fiber.h.rst:104
 msgid ""
 "Fiber representing the current context. It will be partially updated, such "
-"as that switching back into it via another call to :c:func:"
-"`emscripten_fiber_swap` would appear to return from the original call."
+"as that switching back into it via another call "
+"to :c:func:`emscripten_fiber_swap` would appear to return from the original "
+"call."
 msgstr ""
 
 #: ../../../source/docs/api_reference/fiber.h.rst:105
 msgid ""
 "Fiber representing the target context. If the fiber has an entry point, it "
-"will be called in the new context and set to `NULL`. Otherwise, :c:member:"
-"`emscripten_fiber_t.asyncify_data` is used to rewind the call stack. If the "
-"fiber is invalid or incomplete, the behavior is undefined."
+"will be called in the new context and set to `NULL`. "
+"Otherwise, :c:member:`emscripten_fiber_t.asyncify_data` is used to rewind "
+"the call stack. If the fiber is invalid or incomplete, the behavior is "
+"undefined."
 msgstr ""

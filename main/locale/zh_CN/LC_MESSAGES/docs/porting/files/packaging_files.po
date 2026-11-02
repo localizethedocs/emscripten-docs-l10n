@@ -23,9 +23,9 @@ msgstr ""
 
 #: ../../../source/docs/porting/files/packaging_files.rst:7
 msgid ""
-"This topic shows how to package the files that will be used to populate :ref:"
-"`Emscripten's virtual file system <file-system-overview>` when the page is "
-"loaded."
+"This topic shows how to package the files that will be used to "
+"populate :ref:`Emscripten's virtual file system <file-system-overview>` when "
+"the page is loaded."
 msgstr ""
 
 #: ../../../source/docs/porting/files/packaging_files.rst:9
@@ -40,9 +40,9 @@ msgstr ""
 
 #: ../../../source/docs/porting/files/packaging_files.rst:15
 msgid ""
-"*Emcc* uses the *file packager* to package the files and generate the :ref:"
-"`File System API <Filesystem-API>` calls that create and load the file "
-"system at run time. While *Emcc* is the recommended tool for packaging, "
+"*Emcc* uses the *file packager* to package the files and generate "
+"the :ref:`File System API <Filesystem-API>` calls that create and load the "
+"file system at run time. While *Emcc* is the recommended tool for packaging, "
 "there are cases where it can make sense to run the *file packager* manually."
 msgstr ""
 
@@ -69,8 +69,8 @@ msgstr ""
 
 #: ../../../source/docs/porting/files/packaging_files.rst:31
 msgid ""
-"The command generates **file.html**, **file.js** and **file.data**. The **."
-"data** file contains all the files in **asset_dir/**, and is loaded by "
+"The command generates **file.html**, **file.js** and **file.data**. The "
+"**.data** file contains all the files in **asset_dir/**, and is loaded by "
 "**file.js**."
 msgstr ""
 
@@ -146,8 +146,8 @@ msgid ""
 "You can load multiple datafiles by running the file packager on each and "
 "loading the **.js** outputs. See `BananaBread <https://github.com/kripken/"
 "BananaBread>`_ for an example of dynamic loading (`cube2/js/game-setup.js "
-"<https://github.com/kripken/BananaBread/blob/master/cube2/js/game-setup."
-"js>`_)."
+"<https://github.com/kripken/BananaBread/blob/master/cube2/js/game-"
+"setup.js>`_)."
 msgstr ""
 
 #: ../../../source/docs/porting/files/packaging_files.rst:71
@@ -220,11 +220,11 @@ msgstr ""
 #: ../../../source/docs/porting/files/packaging_files.rst:122
 msgid ""
 "The following characters may be used in filenames: ``A-Z``, ``a-z``, "
-"``0-9``, the space character and any of the characters ``!#$%&'()+,-.;"
-"=@[]^_`{}~``. Additionally, the following characters may be used if your "
-"host filesystem supports them: ``\"*<>?|`` (Windows does not allow using "
-"these in filenames). When specifying the character ``@`` on the command "
-"line, it must be escaped to the form ``@@`` to avoid triggering the "
+"``0-9``, the space character and any of the characters ``!#$%&'()"
+"+,-.;=@[]^_`{}~``. Additionally, the following characters may be used if "
+"your host filesystem supports them: ``\"*<>?|`` (Windows does not allow "
+"using these in filenames). When specifying the character ``@`` on the "
+"command line, it must be escaped to the form ``@@`` to avoid triggering the "
 "``src@dst`` mapping notation (see above). The characters ``/``, ``\\`` and "
 "``:`` cannot be used."
 msgstr ""
@@ -269,10 +269,10 @@ msgstr ""
 #: ../../../source/docs/porting/files/packaging_files.rst:146
 msgid ""
 "With ``--use-preload-plugins``, files can be automatically decoded based on "
-"their extension. This can also be done manually by calling :c:func:"
-"`emscripten_run_preload_plugins` on each file. The files remain stored in "
-"their original form in the file system, but their decoded form can be used "
-"directly."
+"their extension. This can also be done manually by "
+"calling :c:func:`emscripten_run_preload_plugins` on each file. The files "
+"remain stored in their original form in the file system, but their decoded "
+"form can be used directly."
 msgstr ""
 
 #: ../../../source/docs/porting/files/packaging_files.rst:152
@@ -283,9 +283,9 @@ msgstr ""
 msgid ""
 "**Images** (``.jpg``, ``.jpeg``, ``.png``, ``.bmp``): The files are decoded "
 "using the browser's image decoder, and can then be used by ``IMG_Load`` "
-"(SDL1 and SDL2 port, which rely on :c:func:"
-"`emscripten_get_preloaded_image_data`). (Set ``Module.noImageDecoding`` to "
-"``true`` to disable)."
+"(SDL1 and SDL2 port, which rely "
+"on :c:func:`emscripten_get_preloaded_image_data`). (Set "
+"``Module.noImageDecoding`` to ``true`` to disable)."
 msgstr ""
 
 #: ../../../source/docs/porting/files/packaging_files.rst:159

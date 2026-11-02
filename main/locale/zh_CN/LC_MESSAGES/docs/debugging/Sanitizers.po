@@ -235,8 +235,8 @@ msgstr ""
 
 #: ../../../source/docs/debugging/Sanitizers.rst:347
 msgid ""
-"For example, put the above snippet with your options into ``asan_options."
-"js``, and compile with ``--pre-js asan_options.js``."
+"For example, put the above snippet with your options into "
+"``asan_options.js``, and compile with ``--pre-js asan_options.js``."
 msgstr ""
 
 #: ../../../source/docs/debugging/Sanitizers.rst:350

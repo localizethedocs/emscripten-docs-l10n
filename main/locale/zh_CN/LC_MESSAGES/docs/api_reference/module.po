@@ -260,14 +260,14 @@ msgstr ""
 
 #: ../../../source/docs/api_reference/module.rst:134
 msgid ""
-"If building with ``-sGL_PREINITIALIZED_CONTEXT`` set, you can set ``Module."
-"preinitializedWebGLContext`` to a precreated instance of a WebGL context, "
-"which will be used later when initializing WebGL in C/C++ side. Precreating "
-"the GL context is useful if doing GL side loading (shader compilation, "
-"texture loading etc.) parallel to other page startup actions, and/or for "
-"detecting WebGL feature support, such as GL version or compressed texture "
-"support up front on a page before or in parallel to loading up any compiled "
-"code."
+"If building with ``-sGL_PREINITIALIZED_CONTEXT`` set, you can set "
+"``Module.preinitializedWebGLContext`` to a precreated instance of a WebGL "
+"context, which will be used later when initializing WebGL in C/C++ side. "
+"Precreating the GL context is useful if doing GL side loading (shader "
+"compilation, texture loading etc.) parallel to other page startup actions, "
+"and/or for detecting WebGL feature support, such as GL version or compressed "
+"texture support up front on a page before or in parallel to loading up any "
+"compiled code."
 msgstr ""
 
 #: ../../../source/docs/api_reference/module.rst:138
@@ -281,8 +281,8 @@ msgstr ""
 
 #: ../../../source/docs/api_reference/module.rst:140
 msgid ""
-"If code needs to affect global initializers, it should instead be run using :"
-"js:attr:`preInit`."
+"If code needs to affect global initializers, it should instead be run "
+"using :js:attr:`preInit`."
 msgstr ""
 
 #: ../../../source/docs/api_reference/module.rst:144
@@ -339,8 +339,8 @@ msgid ""
 "remotePackageSize)`` callback to provide the contents of the data files back "
 "to the file loading scripts. The return value of this callback should be an "
 "Arraybuffer with the contents of the downloaded file data. See file ``test/"
-"manual_download_data.html`` and the test ``browser."
-"test_preload_file_with_manual_data_download`` for an example."
+"manual_download_data.html`` and the test "
+"``browser.test_preload_file_with_manual_data_download`` for an example."
 msgstr ""
 
 #: ../../../source/docs/api_reference/module.rst:173
@@ -370,16 +370,16 @@ msgid ""
 "useful when you have other custom asynchronous startup actions or downloads "
 "that can be performed in parallel to WebAssembly compilation. Implementing "
 "this callback allows performing all of these in parallel. See the file "
-"``test/manual_wasm_instantiate.html`` and the test ``browser."
-"test_manual_wasm_instantiate`` for an example of how this construct works in "
-"action."
+"``test/manual_wasm_instantiate.html`` and the test "
+"``browser.test_manual_wasm_instantiate`` for an example of how this "
+"construct works in action."
 msgstr ""
 
 #: ../../../source/docs/api_reference/module.rst:179
 msgid ""
 "Sanitizers or source map is currently not supported if overriding "
-"WebAssembly instantiation with Module.instantiateWasm. Providing Module."
-"instantiateWasm when source map or sanitizer is enabled can prevent "
+"WebAssembly instantiation with Module.instantiateWasm. Providing "
+"Module.instantiateWasm when source map or sanitizer is enabled can prevent "
 "WebAssembly instantiation from finishing."
 msgstr ""
 

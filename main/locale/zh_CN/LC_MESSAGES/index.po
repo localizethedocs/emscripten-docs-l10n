@@ -50,8 +50,8 @@ msgstr ""
 #: ../../../source/index.rst:31
 msgid ""
 "Compile your existing projects written in C or C++ -- or any language that "
-"uses `LLVM <https://llvm.org/>`_ -- to browsers, `Node.js <https://nodejs."
-"org/>`_, or `wasm runtimes <https://v8.dev/blog/emscripten-standalone-"
+"uses `LLVM <https://llvm.org/>`_ -- to browsers, `Node.js <https://"
+"nodejs.org/>`_, or `wasm runtimes <https://v8.dev/blog/emscripten-standalone-"
 "wasm#running-in-wasm-runtimes>`_."
 msgstr ""
 

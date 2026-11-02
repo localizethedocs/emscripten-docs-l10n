@@ -23,9 +23,9 @@ msgstr ""
 
 #: ../../../source/docs/building_from_source/configuring_emscripten_settings.rst:7
 msgid ""
-"Emscripten can be configured via a :ref:`compiler configuration file (."
-"emscripten) <compiler-configuration-file>`. These settings include paths to "
-"the tools (LLVM, Clang, Binaryen, etc.) and the compiler's temporary "
+"Emscripten can be configured via a :ref:`compiler configuration file "
+"(.emscripten) <compiler-configuration-file>`. These settings include paths "
+"to the tools (LLVM, Clang, Binaryen, etc.) and the compiler's temporary "
 "directory for intermediate build files."
 msgstr ""
 

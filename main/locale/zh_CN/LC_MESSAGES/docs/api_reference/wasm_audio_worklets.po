@@ -62,11 +62,11 @@ msgstr ""
 #: ../../../source/docs/api_reference/wasm_audio_worklets.rst:31
 msgid ""
 "If you want to load an emscripten-generated program into an AudioContext "
-"that you have created yourself, without depending on shared memory or :ref:"
-"`WASM_WORKERS` you can add ``worklet`` to :ref:`ENVIRONMENT`.  In this mode, "
-"because Audio Worklets do not have any kind of fetch API, you will need "
-"either use `-sSINGLE_FILE` (to embed the Wasm file), or use a custom "
-"`instantiateWasm` to supply the Wasm module yourself (e.g. via "
+"that you have created yourself, without depending on shared memory "
+"or :ref:`WASM_WORKERS` you can add ``worklet`` to :ref:`ENVIRONMENT`.  In "
+"this mode, because Audio Worklets do not have any kind of fetch API, you "
+"will need either use `-sSINGLE_FILE` (to embed the Wasm file), or use a "
+"custom `instantiateWasm` to supply the Wasm module yourself (e.g. via "
 "`postMessage`)."
 msgstr ""
 
@@ -77,11 +77,12 @@ msgstr ""
 #: ../../../source/docs/api_reference/wasm_audio_worklets.rst:41
 msgid ""
 "Authoring Wasm Audio Worklets is similar to developing Audio Worklets API "
-"based applications in JS (see `MDN: Using AudioWorklets <https://developer."
-"mozilla.org/en-US/docs/Web/API/Web_Audio_API/Using_AudioWorklet>`_), with "
-"the exception that users will not manually implement the JS code for the "
-"ScriptProcessorNode files in the AudioWorkletGlobalScope. This is managed "
-"automatically by the Emscripten Wasm AudioWorklets runtime."
+"based applications in JS (see `MDN: Using AudioWorklets <https://"
+"developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API/"
+"Using_AudioWorklet>`_), with the exception that users will not manually "
+"implement the JS code for the ScriptProcessorNode files in the "
+"AudioWorkletGlobalScope. This is managed automatically by the Emscripten "
+"Wasm AudioWorklets runtime."
 msgstr ""
 
 #: ../../../source/docs/api_reference/wasm_audio_worklets.rst:46
@@ -183,8 +184,8 @@ msgstr ""
 
 #: ../../../source/docs/api_reference/wasm_audio_worklets.rst:177
 msgid ""
-"And that's it! Compile the code with the linker flags ``-sAUDIO_WORKLET -"
-"sWASM_WORKERS`` to enable targeting AudioWorklets."
+"And that's it! Compile the code with the linker flags ``-sAUDIO_WORKLET "
+"-sWASM_WORKERS`` to enable targeting AudioWorklets."
 msgstr ""
 
 #: ../../../source/docs/api_reference/wasm_audio_worklets.rst:180

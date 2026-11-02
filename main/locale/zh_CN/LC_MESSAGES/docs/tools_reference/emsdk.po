@@ -30,11 +30,11 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/emsdk.rst:9
 msgid ""
-"With *emsdk* you can download, install or remove *any* :term:`SDK` or :term:"
-"`Tool`, and even use the :ref:`bleeding edge versions <emsdk-dev-sdk>` in "
-"development on GitHub. To access the *emsdk* on Windows, first launch the :"
-"ref:`Emscripten Command Prompt <emcmdprompt>`. Most operations are of the "
-"form ``./emsdk command``."
+"With *emsdk* you can download, install or remove *any* :term:`SDK` "
+"or :term:`Tool`, and even use the :ref:`bleeding edge versions <emsdk-dev-"
+"sdk>` in development on GitHub. To access the *emsdk* on Windows, first "
+"launch the :ref:`Emscripten Command Prompt <emcmdprompt>`. Most operations "
+"are of the form ``./emsdk command``."
 msgstr ""
 
 #: ../../../source/docs/tools_reference/emsdk.rst:11
@@ -219,10 +219,10 @@ msgstr ""
 
 #: ../../../source/docs/tools_reference/emsdk.rst:91
 msgid ""
-"The file should generally not be updated directly unless you're :ref:"
-"`building Emscripten from source <installing-from-source>`. Instead, use the "
-"*emsdk* to activate specific SDKs and tools as needed (``emsdk activate "
-"<tool/SDK>``)."
+"The file should generally not be updated directly unless "
+"you're :ref:`building Emscripten from source <installing-from-source>`. "
+"Instead, use the *emsdk* to activate specific SDKs and tools as needed "
+"(``emsdk activate <tool/SDK>``)."
 msgstr ""
 
 #: ../../../source/docs/tools_reference/emsdk.rst:95

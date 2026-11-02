@@ -111,9 +111,10 @@ msgstr ""
 
 #: ../../../source/docs/porting/exceptions.rst:99
 msgid ""
-"In JavaScript, you can also examine the stack traces using `WebAssembly."
-"Exception.prototype.stack <https://developer.mozilla.org/en-US/docs/"
-"WebAssembly/JavaScript_interface/Exception/stack>`_ property. For example:"
+"In JavaScript, you can also examine the stack traces using "
+"`WebAssembly.Exception.prototype.stack <https://developer.mozilla.org/en-US/"
+"docs/WebAssembly/JavaScript_interface/Exception/stack>`_ property. For "
+"example:"
 msgstr ""
 
 #: ../../../source/docs/porting/exceptions.rst:113
@@ -195,8 +196,8 @@ msgid ""
 "crashes the program, i.e., there is no ``catch`` that catches it and the "
 "callers are not marked as ``noexcept``. This applies to both Emscripten-"
 "style and WebAssembly exceptions. That functionality requires `two-phase "
-"exception handling <https://itanium-cxx-abi.github.io/cxx-abi/abi-eh."
-"html>`_, which neither supports. So the following program does NOT print "
+"exception handling <https://itanium-cxx-abi.github.io/cxx-abi/abi-"
+"eh.html>`_, which neither supports. So the following program does NOT print "
 "``my set_terminate``:"
 msgstr ""
 

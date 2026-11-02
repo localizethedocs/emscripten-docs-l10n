@@ -143,8 +143,8 @@ msgstr ""
 #: ../../../source/docs/compiling/Modularized-Output.rst:98
 #: ../../../source/docs/compiling/Modularized-Output.rst:141
 msgid ""
-"This setting implicitly enables :ref:`export_es6` and will not work when :"
-"ref:`export_es6` is explictly disabled."
+"This setting implicitly enables :ref:`export_es6` and will not work "
+"when :ref:`export_es6` is explictly disabled."
 msgstr ""
 
 #: ../../../source/docs/compiling/Modularized-Output.rst:101

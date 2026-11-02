@@ -50,9 +50,9 @@ msgstr ""
 msgid ""
 "This will install the latest \"tip-of-tree\" binaries needed to run "
 "Emscripten. You can use these emsdk-provided binaries with a git checkout of "
-"the Emscripten repository.  To do this, you can either edit your local ``."
-"emscripten`` config file, or set ``EM_CONFIG=/path/to/emsdk/.emscripten`` in "
-"your environment."
+"the Emscripten repository.  To do this, you can either edit your local "
+"``.emscripten`` config file, or set ``EM_CONFIG=/path/to/emsdk/.emscripten`` "
+"in your environment."
 msgstr ""
 
 #: ../../../source/docs/contributing/developers_guide.rst:34
@@ -198,8 +198,8 @@ msgstr ""
 #: ../../../source/docs/contributing/developers_guide.rst:116
 msgid ""
 "To do this, you need a basic understanding of Emscripten's `release process "
-"<https://github.com/emscripten-core/emscripten/blob/main/docs/process."
-"md#release-processes>`_ The key idea is that::"
+"<https://github.com/emscripten-core/emscripten/blob/main/docs/"
+"process.md#release-processes>`_ The key idea is that::"
 msgstr ""
 
 #: ../../../source/docs/contributing/developers_guide.rst:122

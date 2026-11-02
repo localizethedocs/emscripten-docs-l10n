@@ -97,8 +97,8 @@ msgstr ""
 
 #: ../../../source/docs/getting_started/test-suite.rst:58
 msgid ""
-"`sanity`: Tests for emscripten setting itself up. This modifies your `."
-"emscripten` file temporarily."
+"`sanity`: Tests for emscripten setting itself up. This modifies your "
+"`.emscripten` file temporarily."
 msgstr ""
 
 #: ../../../source/docs/getting_started/test-suite.rst:59

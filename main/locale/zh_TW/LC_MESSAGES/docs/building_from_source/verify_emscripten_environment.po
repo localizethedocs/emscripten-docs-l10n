@@ -23,11 +23,11 @@ msgstr ""
 
 #: ../../../source/docs/building_from_source/verify_emscripten_environment.rst:7
 msgid ""
-"After you've :ref:`installed the SDK <sdk-download-and-install>` or :ref:"
-"`built an Emscripten development environment from sources <installing-from-"
-"source>`, the compiler should just work! This section shows how to verify "
-"that the environment has been set up correctly, and how to troubleshoot "
-"installation problems when they do occur."
+"After you've :ref:`installed the SDK <sdk-download-and-install>` "
+"or :ref:`built an Emscripten development environment from sources "
+"<installing-from-source>`, the compiler should just work! This section shows "
+"how to verify that the environment has been set up correctly, and how to "
+"troubleshoot installation problems when they do occur."
 msgstr ""
 
 #: ../../../source/docs/building_from_source/verify_emscripten_environment.rst:11
@@ -100,8 +100,8 @@ msgstr "執行完整的測試套件"
 #: ../../../source/docs/building_from_source/verify_emscripten_environment.rst:57
 msgid ""
 "Emscripten has a comprehensive test suite which may be used to further "
-"validate all or parts of the toolchain. For more information, see :ref:"
-"`emscripten-test-suite`."
+"validate all or parts of the toolchain. For more information, "
+"see :ref:`emscripten-test-suite`."
 msgstr ""
 
 #: ../../../source/docs/building_from_source/verify_emscripten_environment.rst:63
@@ -111,9 +111,9 @@ msgstr "疑難排解"
 #: ../../../source/docs/building_from_source/verify_emscripten_environment.rst:65
 msgid ""
 "First run ``./emcc --check`` and examine the output to find missing "
-"components. You can also try ``./emcc --clear-cache`` to empty the :ref:"
-"`compiler's internal cache <emcc-clear-cache>` and reset it to a known good "
-"state."
+"components. You can also try ``./emcc --clear-cache`` to empty "
+"the :ref:`compiler's internal cache <emcc-clear-cache>` and reset it to a "
+"known good state."
 msgstr ""
 
 #: ../../../source/docs/building_from_source/verify_emscripten_environment.rst:71

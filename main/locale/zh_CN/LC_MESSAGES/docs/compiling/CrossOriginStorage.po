@@ -96,11 +96,11 @@ msgstr ""
 #: ../../../source/docs/compiling/CrossOriginStorage.rst:52
 msgid ""
 "The exception is a Wasm binary that you deploy across **multiple origins you "
-"own** — for example, the same library shared between ``https://app.example."
-"com`` and ``https://api.example.com``. In that case COS can eliminate the "
-"redundant download between your own origins. Use :ref:"
-"`CROSS_ORIGIN_STORAGE_ORIGINS` to restrict access to only those origins "
-"rather than opening the cache entry to the world."
+"own** — for example, the same library shared between ``https://"
+"app.example.com`` and ``https://api.example.com``. In that case COS can "
+"eliminate the redundant download between your own origins. "
+"Use :ref:`CROSS_ORIGIN_STORAGE_ORIGINS` to restrict access to only those "
+"origins rather than opening the cache entry to the world."
 msgstr ""
 
 #: ../../../source/docs/compiling/CrossOriginStorage.rst:60
@@ -125,9 +125,9 @@ msgstr ""
 #: ../../../source/docs/compiling/CrossOriginStorage.rst:73
 msgid ""
 "**Globally available** (default, no explicit setting needed) — any origin "
-"can retrieve the file.  This is applied automatically when :ref:"
-"`CROSS_ORIGIN_STORAGE` is used without specifying :ref:"
-"`CROSS_ORIGIN_STORAGE_ORIGINS`:"
+"can retrieve the file.  This is applied automatically "
+"when :ref:`CROSS_ORIGIN_STORAGE` is used without "
+"specifying :ref:`CROSS_ORIGIN_STORAGE_ORIGINS`:"
 msgstr ""
 
 #: ../../../source/docs/compiling/CrossOriginStorage.rst:82
@@ -187,9 +187,9 @@ msgstr ""
 #: ../../../source/docs/compiling/CrossOriginStorage.rst:127
 msgid ""
 "The flag emits a **warning** when the target environment does not include "
-"the web (``-sENVIRONMENT=node``, ``-sENVIRONMENT=shell``): ``navigator."
-"crossOriginStorage`` is a browser API and is never available in those "
-"environments."
+"the web (``-sENVIRONMENT=node``, ``-sENVIRONMENT=shell``): "
+"``navigator.crossOriginStorage`` is a browser API and is never available in "
+"those environments."
 msgstr ""
 
 #: ../../../source/docs/compiling/CrossOriginStorage.rst:131
@@ -218,8 +218,8 @@ msgstr ""
 #: ../../../source/docs/compiling/CrossOriginStorage.rst:143
 msgid ""
 "The COS API is a progressive enhancement. Browsers without the API continue "
-"to load the Wasm module via the normal ``fetch()`` and ``WebAssembly."
-"instantiateStreaming()`` path without any error."
+"to load the Wasm module via the normal ``fetch()`` and "
+"``WebAssembly.instantiateStreaming()`` path without any error."
 msgstr ""
 
 #: ../../../source/docs/compiling/CrossOriginStorage.rst:148
@@ -283,11 +283,12 @@ msgstr ""
 
 #: ../../../source/docs/compiling/CrossOriginStorage.rst:192
 msgid ""
-"**Cache hit** — call ``navigator.crossOriginStorage."
-"requestFileHandles([cosHash])``. If the handle is returned (the module is "
-"already in COS), read it with ``handle.getFile()`` → ``.arrayBuffer()`` and "
-"pass the bytes to ``WebAssembly.instantiate()``. Then invoke "
-"``Module['onCOSCacheHit'](hash)`` if defined."
+"**Cache hit** — call "
+"``navigator.crossOriginStorage.requestFileHandles([cosHash])``. If the "
+"handle is returned (the module is already in COS), read it with "
+"``handle.getFile()`` → ``.arrayBuffer()`` and pass the bytes to "
+"``WebAssembly.instantiate()``. Then invoke ``Module['onCOSCacheHit'](hash)`` "
+"if defined."
 msgstr ""
 
 #: ../../../source/docs/compiling/CrossOriginStorage.rst:199
@@ -296,8 +297,8 @@ msgid ""
 "the network as usual, invoke ``Module['onCOSCacheMiss'](hash, url)`` if "
 "defined, call ``WebAssembly.instantiate()`` immediately so the page loads "
 "without delay, and then write the bytes into COS in the background (fire-and-"
-"forget) using the ``origins`` value controlled by :ref:"
-"`CROSS_ORIGIN_STORAGE_ORIGINS` (``'*'`` by default). Once the write "
+"forget) using the ``origins`` value controlled "
+"by :ref:`CROSS_ORIGIN_STORAGE_ORIGINS` (``'*'`` by default). Once the write "
 "completes, invoke ``Module['onCOSStore'](hash)`` if defined."
 msgstr ""
 
@@ -346,8 +347,8 @@ msgstr ""
 
 #: ../../../source/docs/compiling/CrossOriginStorage.rst:255
 msgid ""
-"Serve the output over HTTP (e.g. with ``emrun`` or ``python3 -m http."
-"server``)."
+"Serve the output over HTTP (e.g. with ``emrun`` or ``python3 -m "
+"http.server``)."
 msgstr ""
 
 #: ../../../source/docs/compiling/CrossOriginStorage.rst:256
@@ -432,10 +433,10 @@ msgstr ""
 
 #: ../../../source/docs/compiling/CrossOriginStorage.rst:361
 msgid ""
-"``Module['wasmHash']`` is only present in builds compiled with :ref:"
-"`CROSS_ORIGIN_STORAGE`.  Always guard on its truthiness before using it, as "
-"shown above, so the same loader code works in builds compiled without the "
-"flag."
+"``Module['wasmHash']`` is only present in builds compiled "
+"with :ref:`CROSS_ORIGIN_STORAGE`.  Always guard on its truthiness before "
+"using it, as shown above, so the same loader code works in builds compiled "
+"without the flag."
 msgstr ""
 
 #: ../../../source/docs/compiling/CrossOriginStorage.rst:367
