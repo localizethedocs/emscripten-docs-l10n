@@ -37,9 +37,9 @@
     "branch" : "main",
     "commit" : 
     {
-      "date" : "2026-06-19 09:26:21 -0700",
-      "hash" : "8484a7b66c2c1a26cc6d3281ace2c36e78a2a417",
-      "title" : "Avoid varargs in socket syscall layer. NFC (#27153)"
+      "date" : "2026-11-23 20:25:22 +0200",
+      "hash" : "bb431d2bf7ab9c03bfa3736cbf34ab900c2e1a68",
+      "title" : "Refactor Firefox test browser prefs list  (#28373)"
     }
   },
   "type" : "branch",

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Emscripten main\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-18 07:11+0000\n"
+"POT-Creation-Date: 2026-11-23 19:43+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -29,14 +29,31 @@ msgstr ""
 
 #: ../../../source/docs/building_from_source/index.rst:10
 msgid ""
-"Emscripten itself is written in Python and JavaScript so it does not need to "
-"be compiled.  However, after checkout you will need to run the top level "
-"``bootstrap.py`` script before the toolchain is usable.  This performs "
-"various steps including ``npm install`` and the creation of compiler entry "
-"points (e.g. `.bat` files on windows)."
+"Emscripten itself is written in Python and JavaScript, so it has no native "
+"binaries to compile.  However, after checkout you will need to run the top "
+"level ``bootstrap.py`` script before the toolchain is usable.  This performs "
+"several setup steps:"
+msgstr ""
+
+#: ../../../source/docs/building_from_source/index.rst:15
+msgid "Installing npm packages (``npm ci``)."
 msgstr ""
 
 #: ../../../source/docs/building_from_source/index.rst:16
+msgid ""
+"Bundling the link-time JavaScript tools (``tools/*.mjs`` and ``src/*.mjs``) "
+"into ``dist/`` using ``rolldown`` (``npm run build``)."
+msgstr ""
+
+#: ../../../source/docs/building_from_source/index.rst:18
+msgid "Creating compiler entry points (e.g. ``.exe`` files on Windows)."
+msgstr ""
+
+#: ../../../source/docs/building_from_source/index.rst:19
+msgid "Initializing git submodules and optionally installing git hooks."
+msgstr ""
+
+#: ../../../source/docs/building_from_source/index.rst:21
 msgid ""
 "Emscripten comes with its own versions of some C/C++ system libraries which "
 "``emcc`` builds automatically as and when needed (in the emsdk builds, these "
@@ -44,7 +61,7 @@ msgid ""
 "tool - see ``embuilder --help`` for more information."
 msgstr ""
 
-#: ../../../source/docs/building_from_source/index.rst:21
+#: ../../../source/docs/building_from_source/index.rst:26
 msgid ""
 "In addition to the main emscripten repository you will also need to checkout "
 "and build LLVM and Binaryen (as detailed below).  After compiling these, you "
@@ -52,7 +69,7 @@ msgid ""
 "locations."
 msgstr ""
 
-#: ../../../source/docs/building_from_source/index.rst:26
+#: ../../../source/docs/building_from_source/index.rst:31
 msgid ""
 "Use the ``main`` branches of each of these repositories, or check the "
 "`Packaging <https://github.com/emscripten-core/emscripten/blob/main/docs/"
@@ -60,11 +77,11 @@ msgid ""
 "release."
 msgstr ""
 
-#: ../../../source/docs/building_from_source/index.rst:32
+#: ../../../source/docs/building_from_source/index.rst:37
 msgid "Building LLVM"
 msgstr ""
 
-#: ../../../source/docs/building_from_source/index.rst:34
+#: ../../../source/docs/building_from_source/index.rst:39
 msgid ""
 "Build LLVM from the `git repo <https://github.com/llvm/llvm-project>`_. "
 "Include clang and wasm-ld (using something like ``-"
@@ -74,13 +91,13 @@ msgid ""
 "work:"
 msgstr ""
 
-#: ../../../source/docs/building_from_source/index.rst:45
+#: ../../../source/docs/building_from_source/index.rst:50
 msgid ""
 "Then set the environment variable ``EM_LLVM_ROOT`` to ``<llvm_src>/build/"
 "bin`` (no need to install)."
 msgstr ""
 
-#: ../../../source/docs/building_from_source/index.rst:47
+#: ../../../source/docs/building_from_source/index.rst:52
 msgid ""
 "If you need to match the emsdk releases of LLVM, `review the emscripten-"
 "release build and test scripts <https://chromium.googlesource.com/emscripten-"
@@ -89,15 +106,15 @@ msgid ""
 "main/src/build.py>`_."
 msgstr ""
 
-#: ../../../source/docs/building_from_source/index.rst:51
+#: ../../../source/docs/building_from_source/index.rst:56
 msgid "Please refer to the upstream docs for more detail."
 msgstr ""
 
-#: ../../../source/docs/building_from_source/index.rst:54
+#: ../../../source/docs/building_from_source/index.rst:59
 msgid "Building Binaryen"
 msgstr ""
 
-#: ../../../source/docs/building_from_source/index.rst:56
+#: ../../../source/docs/building_from_source/index.rst:61
 msgid ""
 "See the `Binaryen build instructions <https://github.com/WebAssembly/"
 "binaryen#building>`_."
